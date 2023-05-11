@@ -440,3 +440,5 @@ speedf <- factor(speed, levels=c("slow", "medium", "fast"), ordered = TRUE)
 speedf
 speedf <- ordered(speed, levels=c("slow", "medium", "fast"))
 speedf
+
+############################################################################
