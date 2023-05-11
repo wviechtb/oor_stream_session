@@ -241,3 +241,6 @@ attributes(x)$subject
 # create a named numeric vector with 4 elements
 x <- c(Bob = 2, Sue = 4, Joe = 5, Gill = 8)
 x
+mode(x)
+typeof(x)
+
