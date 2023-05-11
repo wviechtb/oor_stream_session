@@ -92,3 +92,6 @@ mode(fivenum)
 # but (obviously) they are not (atomic) vectors
 is.vector(fivenum)
 is.atomic(fivenum)
+
+# use length() to find the number of elements in a vector
+length(x)
