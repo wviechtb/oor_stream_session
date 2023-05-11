@@ -46,3 +46,13 @@ x[3]
 
 # in R, this can be explicitly stated as
 NA_character_
+
+# list all elements in the workspace
+ls()
+
+# remove x
+rm(x)
+
+# list all elements in the workspace
+ls()
+
