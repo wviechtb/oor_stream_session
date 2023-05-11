@@ -159,4 +159,3 @@ d
 # there is also as.numeric() which always creates a 'double'
 typeof(as.numeric(digits))
 
-
