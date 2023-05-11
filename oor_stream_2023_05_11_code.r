@@ -95,3 +95,10 @@ is.atomic(fivenum)
 
 # use length() to find the number of elements in a vector
 length(x)
+
+# for a list, length() tells us about the number of elements in the list
+length(l)
+
+# an object can have other 'attributes'; for example, lists have an attribute
+# called 'names' which gives the names of the list elements
+attributes(l)
