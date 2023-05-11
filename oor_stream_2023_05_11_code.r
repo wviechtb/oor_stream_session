@@ -159,3 +159,14 @@ d
 # there is also as.numeric() which always creates a 'double'
 typeof(as.numeric(digits))
 
+############################################################################
+
+### 3.2: Changing the length of an object
+
+# we can create an empty numeric vector with numeric()
+e <- numeric()
+e
+
+# this empty vector still has a mode (and a type)
+mode(e)
+typeof(e)
