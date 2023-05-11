@@ -190,3 +190,8 @@ logical(10)
 e[3] <- 17
 e
 
+# in contrast to what is stated in the manual, can even do this when the mode
+# of the value that we are assigning to an element is different than the mode
+# of the vector itself, but implicit type coercion then happens
+e[5] <- "Bob"
+e
