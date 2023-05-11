@@ -299,3 +299,12 @@ class(y)
 
 # depending on the class of the object given to summary(), the function
 # behaves differently
+
+# sidenote: the 'levels' of a factor are actually an attribute
+attributes(y)
+
+# manually create a data frame with three variables
+dat <- data.frame(subject = c("Bob", "Sue", "Gill", "Tom"),
+                  age = c(25, 23, 28, 21), y = c(5, 6, 3, 4))
+dat
+
