@@ -411,3 +411,6 @@ tapply(incomes, statef, fivenum)
 # then tapply() returns a list where each element is the five-number summary
 # of a particular level of statef
 
+# by splitting the incomes by statef levels, we can see that this is a 'ragged
+# array' because the lengths of these vectors are not all the same
+split(incomes, statef)
