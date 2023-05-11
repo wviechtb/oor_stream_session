@@ -347,4 +347,12 @@ unclass(res)
 
 ### 4.1: A specific example
 
+# create a character vector
+state <- c("tas", "sa",  "qld", "nsw", "nsw", "nt",  "wa",  "wa", "qld",
+           "vic", "nsw", "vic", "qld", "qld", "sa",  "tas", "sa",  "nt",
+           "wa",  "vic", "qld", "nsw", "nsw", "wa", "sa",  "act", "nsw",
+           "vic", "vic", "act")
+state
+
+
 ############################################################################
