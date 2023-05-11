@@ -354,5 +354,13 @@ state <- c("tas", "sa",  "qld", "nsw", "nsw", "nt",  "wa",  "wa", "qld",
            "vic", "vic", "act")
 state
 
+# turn state into a factor and assign this to statef
+statef <- factor(state)
+statef
+
+# notice that when you print a factor, it also lists the levels of it
+
+# can also just request to list the levels with levels()
+levels(statef)
 
 ############################################################################
