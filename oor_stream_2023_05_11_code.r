@@ -219,3 +219,10 @@ alpha
 ############################################################################
 
 ### 3.3: Getting and setting attributes
+
+# create a numeric vector and add some attributes to it
+x <- c(2, 4, 3, 1, 6, 8)
+attr(x, "date") <- "2023-05-11"
+attr(x, "subject") <- c("Bob", "Sue", "Joe", "Gill", "Tom", "Anna")
+x
+
