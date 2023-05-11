@@ -20,6 +20,9 @@
 x <- c(1, 3, 2, 4, 5, 3)
 mode(x)
 
+# we can also check if something is an 'atomic vector'
+is.atomic(x)
+
 # try to mix numerical values with a string in the same vector
 x <- c(1, 3, 2, "Bob", 4, 5)
 x
@@ -58,3 +61,4 @@ ls()
 
 # character(0) indicates a character vector with no elements, so this shows
 # that there are no elements in the workspace
+
