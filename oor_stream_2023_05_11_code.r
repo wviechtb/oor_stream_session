@@ -235,16 +235,18 @@ attr(x, "subject")
 attributes(x)$subject
 
 # depending on the type of object, there are some special types of attributes
-# that have a particular function/purpose; we can illustrate this using a
-# 'named vector'
+# that have a particular purpose; we can illustrate this using a 'named
+# vector'
 
-# create a named numeric vector with 4 elements
+# create a named (numeric) vector with 4 elements
 x <- c(Bob = 2, Sue = 4, Joe = 5, Gill = 8)
 x
 mode(x)
 typeof(x)
 
-# the names of such a vector are actually an attribute; so the 'names'
-# attribute is a special type of attribute that also changes how the vector is
-# printed
+# the names of such a vector are actually an attribute
 attributes(x)
+
+# so the 'names' attribute is a special type of attribute that also changes
+# how the vector is printed
+x
