@@ -396,3 +396,10 @@ stdError <- function(x) sqrt(var(x)/length(x))
 # this as a new variable to 'dat'
 dat$se <- tapply(incomes, statef, stdError)
 dat
+
+# add the 95% CI limits for the means to the data frame
+# see: https://en.wikipedia.org/wiki/Confidence_interval#Example
+dat$ci.lb <- dat$mean - qt(.975, df=dat$n-1) * dat$se
+dat$ci.ub <- dat$mean + qt(.975, df=dat$n-1) * dat$se
+dat
+
