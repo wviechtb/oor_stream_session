@@ -170,3 +170,13 @@ e
 # this empty vector still has a mode (and a type)
 mode(e)
 typeof(e)
+
+# similarly, can create empty character or logical vectors
+character()
+logical()
+
+# note: if you do specify the length of the vector, R initializes these
+# different vector types to different default values
+numeric(10)
+character(10)
+logical(10)
