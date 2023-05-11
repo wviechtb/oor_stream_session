@@ -16,6 +16,8 @@
 
 ### 3: Objects, their modes and attributes
 
+############################################################################
+
 ### 3.1: Intrinsic attributes: mode and length
 
 # create a numeric vector and check its 'mode'
@@ -345,6 +347,8 @@ unclass(res)
 
 ### 4: Ordered and unordered factors
 
+############################################################################
+
 ### 4.1: A specific example
 
 # create a character vector
@@ -364,3 +368,8 @@ statef
 levels(statef)
 
 ############################################################################
+
+### 4.2: The function tapply() and ragged arrays
+
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54, 62, 69, 70, 42, 56, 61, 61, 61,
+             58, 51, 48, 65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
