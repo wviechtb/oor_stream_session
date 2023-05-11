@@ -77,3 +77,9 @@ mode(l)
 # a list is defined to be a vector in R, but it is not an atomic vector
 is.vector(l)
 is.atomic(l)
+
+# create the numeric vector 'x' and take the mean of its values
+x <- c(1, 3, 2, 4, 5, 3)
+mean(x)
+
+# mean() is a function
