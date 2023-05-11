@@ -277,6 +277,13 @@ mode(x)
 class(x)
 
 # illustrate how the class of an object can influence how a function behaves
+x <- c(2, 3, 2, 5, 3, 1, 4, 2, 3)
+summary(x)
 
+# so if we use summary() on a numeric vector, it prints the five-number
+# summary and also the mean
+
+# turn the elements in x into a factor and assign this to y
+y <- factor(x)
 
 
