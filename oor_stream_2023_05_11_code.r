@@ -189,3 +189,4 @@ logical(10)
 # and second element will be missing (NA)
 e[3] <- 17
 e
+
