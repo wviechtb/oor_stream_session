@@ -380,5 +380,10 @@ incmeans
 
 # can use any function in tapply() that takes a vector as input and produces a
 # single value as output (like the mean or the SD or whatever)
-data.frame(mean = tapply(incomes, statef, mean), sd = tapply(i
-  ncomes, statef, sd))
+tapply(incomes, statef, sd)
+
+# the output from tapply() is just a vector (with the means or SDs or
+# whatever), which we can collect in a data frame
+dat <- data.frame(mean = tapply(incomes, statef, mean),
+                  sd   = tapply(incomes, statef, sd))
+dat
