@@ -82,4 +82,7 @@ is.atomic(l)
 x <- c(1, 3, 2, 4, 5, 3)
 mean(x)
 
-# mean() is a function
+# mean() is a function or a 'command' in R; functions in R are also objects,
+# which you can inspect, manipulate, and create new ones
+
+
