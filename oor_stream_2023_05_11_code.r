@@ -403,3 +403,11 @@ dat$ci.lb <- dat$mean - qt(.975, df=dat$n-1) * dat$se
 dat$ci.ub <- dat$mean + qt(.975, df=dat$n-1) * dat$se
 dat
 
+# tapply() is even more flexible; the function that we apply to the values
+# within each state level can also yield multiple values; for example, we
+# earlier saw the fivenum() function
+tapply(incomes, statef, fivenum)
+
+# then tapply() returns a list where each element is the five-number summary
+# of a particular level of statef
+
