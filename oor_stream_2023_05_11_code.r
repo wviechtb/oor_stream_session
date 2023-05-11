@@ -420,3 +420,9 @@ split(incomes, statef)
 
 ### 4.3: Ordered factors
 
+# create two character vectors
+name  <- c("Bob", "Sue", "Tom", "Gill")
+speed <- c("slow", "fast", "medium", "slow")
+
+speedf <- factor(speed, levels=c("slow", "medium", "fast"))
+speedf
