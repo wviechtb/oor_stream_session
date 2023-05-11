@@ -150,3 +150,13 @@ digits
 # this is doing 'explicit type coercion' (note that we already saw 'implicit
 # type coercion' earlier, for example when mixing numbers and strings in a
 # vector or when mixing doubles and integers in a vector)
+
+# you can even turn a character vector into a numeric vector (either a double
+# or integer vector) using as.double() or as.integer()
+d <- as.integer(digits)
+d
+
+# there is also as.numeric() which always creates a 'double'
+typeof(as.numeric(digits))
+
+
