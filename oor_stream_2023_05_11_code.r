@@ -138,3 +138,6 @@ typeof(x)
 # create a vector of the numbers 0, 1, ..., 9
 z <- 0:9
 z
+
+# when we use : to create a numeric sequence, it creates an integer vector
+typeof(z)
