@@ -244,3 +244,7 @@ x
 mode(x)
 typeof(x)
 
+# the names of such a vector are actually an attribute; so the 'names'
+# attribute is a special type of attribute that also changes how the vector is
+# printed
+attributes(x)
