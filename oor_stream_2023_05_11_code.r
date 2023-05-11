@@ -226,3 +226,10 @@ attr(x, "date") <- "2023-05-11"
 attr(x, "subject") <- c("Bob", "Sue", "Joe", "Gill", "Tom", "Anna")
 x
 
+# while in this case, printing x directly shows all of its (non-intrinsic)
+# attributes, we can still use attributes() just to list them
+attributes(x)
+
+# we can extract a particular attributes in two different ways
+attr(x, "subject")
+attributes(x)$subject
