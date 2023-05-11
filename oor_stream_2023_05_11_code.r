@@ -56,3 +56,5 @@ rm(x)
 # list all elements in the workspace
 ls()
 
+# character(0) indicates a character vector with no elements, so this shows
+# that there are no elements in the workspace
