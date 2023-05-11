@@ -424,5 +424,19 @@ split(incomes, statef)
 name  <- c("Bob", "Sue", "Tom", "Gill")
 speed <- c("slow", "fast", "medium", "slow")
 
+# turn speed into a (unordered) factor
+speedf <- factor(speed)
+speedf
+
+# note: the factor levels are determined alphabetically
+
+# we can explicitly set what is the first, second, and third level
 speedf <- factor(speed, levels=c("slow", "medium", "fast"))
+speedf
+
+# but speedf is still an unordered factor; we can make it an ordered factor in
+# two different ways
+speedf <- factor(speed, levels=c("slow", "medium", "fast"), ordered = TRUE)
+speedf
+speedf <- ordered(speed, levels=c("slow", "medium", "fast"))
 speedf
