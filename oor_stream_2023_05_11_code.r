@@ -376,4 +376,9 @@ incomes <- c(60, 49, 40, 61, 64, 60, 59, 54, 62, 69, 70, 42, 56, 61, 61, 61,
 
 # compute the mean of incomes for each level of statef
 incmeans <- tapply(incomes, statef, mean)
+incmeans
 
+# can use any function in tapply() that takes a vector as input and produces a
+# single value as output (like the mean or the SD or whatever)
+data.frame(mean = tapply(incomes, statef, mean), sd = tapply(i
+  ncomes, statef, sd))
