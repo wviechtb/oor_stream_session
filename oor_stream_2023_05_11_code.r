@@ -16,3 +16,13 @@
 
 ### 3.1: Intrinsic attributes: mode and length
 
+# create a numeric vector and check its 'mode'
+x <- c(1,3,2,4,5,3)
+mode(x)
+
+# try to mix numerical values with a string in the same vector
+x <- c(1,3,2,"Bob",4,5)
+x
+mode(x)
+
+# everything has turned into a character string, so we have a character vector
