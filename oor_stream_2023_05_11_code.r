@@ -121,7 +121,12 @@ x
 mode(x)
 typeof(x)
 
-# by default, R assumes that
+# if we don't use L, then the numeric vector is of type 'double'
+x <- c(2, 1, 5, 3)
+x
+mode(x)
+typeof(x)
+
 
 # create a vector of the numbers 0, 1, ..., 9
 z <- 0:9
