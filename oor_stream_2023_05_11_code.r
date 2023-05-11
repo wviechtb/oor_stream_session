@@ -30,6 +30,7 @@ is.atomic(x)
 x <- c(1, 3, 2, "Bob", 4, 5)
 x
 mode(x)
+is.vector(x)
 is.atomic(x)
 
 # everything has turned into a character string, so we have a character vector
@@ -73,5 +74,6 @@ l
 # the mode of a list is 'list' (surprise!)
 mode(l)
 
-# a list is not an atomic vector
+# a list is defined to be a vector in R, but it is not an atomic vector
+is.vector(l)
 is.atomic(l)
