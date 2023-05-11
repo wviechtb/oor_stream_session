@@ -102,3 +102,7 @@ length(l)
 # an object can have other 'attributes'; for example, lists have an attribute
 # called 'names' which gives the names of the list elements
 attributes(l)
+
+# create a vector of the numbers 0, 1, ..., 9
+z <- 0:9
+z
