@@ -389,5 +389,8 @@ dat <- data.frame(mean = tapply(incomes, statef, mean),
                   n    = tapply(incomes, statef, length))
 dat
 
-# create a functin called stdError() that computes the standard error of a mean
+# create a function called stdError() that computes the standard error of a mean
 stdError <- function(x) sqrt(var(x)/length(x))
+
+# compute the standard error of the mean income for each statef level
+tapply(incomes, statef, stdError)
