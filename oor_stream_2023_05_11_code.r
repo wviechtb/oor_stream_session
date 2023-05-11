@@ -373,3 +373,7 @@ levels(statef)
 
 incomes <- c(60, 49, 40, 61, 64, 60, 59, 54, 62, 69, 70, 42, 56, 61, 61, 61,
              58, 51, 48, 65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+
+# compute the mean of incomes for each level of statef
+incmeans <- tapply(incomes, statef, mean)
+
