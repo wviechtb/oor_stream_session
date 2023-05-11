@@ -79,10 +79,16 @@ is.vector(l)
 is.atomic(l)
 
 # create the numeric vector 'x' and take the mean of its values
-x <- c(1, 3, 2, 4, 5, 3)
-mean(x)
+x <- c(1, 3, 2, 4, 5, 3, 3, 4, 1, 2, 3, 1, 5, 4, 5, 8, 4, 5)
+fivenum(x)
 
-# mean() is a function or a 'command' in R; functions in R are also objects,
-# which you can inspect, manipulate, and create new ones
+# fivenum() is a function or a 'command' in R; functions in R are also
+# objects, which you can inspect, manipulate, and create new ones
+fivenum
 
+# can also check the mode of such an object
+mode(fivenum)
 
+# but (obviously) they are not (atomic) vectors
+is.vector(fivenum)
+is.atomic(fivenum)
