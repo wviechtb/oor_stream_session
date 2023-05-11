@@ -127,6 +127,11 @@ x
 mode(x)
 typeof(x)
 
+# cannot mix doubles and integers in the same vector
+x <- c(2, 1, 5L, 3)
+x
+mode(x)
+typeof(x)
 
 # create a vector of the numbers 0, 1, ..., 9
 z <- 0:9
