@@ -17,12 +17,32 @@
 ### 3.1: Intrinsic attributes: mode and length
 
 # create a numeric vector and check its 'mode'
-x <- c(1,3,2,4,5,3)
+x <- c(1, 3, 2, 4, 5, 3)
 mode(x)
 
 # try to mix numerical values with a string in the same vector
-x <- c(1,3,2,"Bob",4,5)
+x <- c(1, 3, 2, "Bob", 4, 5)
 x
 mode(x)
 
 # everything has turned into a character string, so we have a character vector
+
+# a numeric vector with a missing value
+x <- c(1, 3, 2, NA, 5, 3)
+mode(x)
+
+# the 4th value is missing and it is a numeric missing value
+x[4]
+
+# in R, this can be explicitly stated as
+NA_real_
+
+# a character vector with a missing value
+x <- c("Bob", "Sue", NA, "Gil")
+mode(x)
+
+# the 3rd value is missing and it is a character missing value
+x[3]
+
+# in R, this can be explicitly stated as
+NA_character_
