@@ -20,6 +20,9 @@
 x <- c(1, 3, 2, 4, 5, 3)
 mode(x)
 
+# check if 'x' is a vector
+is.vector(x)
+
 # we can also check if something is an 'atomic vector'
 is.atomic(x)
 
@@ -63,5 +66,12 @@ ls()
 # character(0) indicates a character vector with no elements, so this shows
 # that there are no elements in the workspace
 
+# create a list with three elements
 l <- list(x = c(1,3,2,5), y = c("Bob","Sue"), z = 42)
 l
+
+# the mode of a list is 'list' (surprise!)
+mode(l)
+
+# a list is not an atomic vector
+is.atomic(l)
