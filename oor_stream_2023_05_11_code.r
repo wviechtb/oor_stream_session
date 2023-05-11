@@ -103,6 +103,26 @@ length(l)
 # called 'names' which gives the names of the list elements
 attributes(l)
 
+# numeric vectors can be of different types
+x <- c(2.4, 1.8, 5.7, 3.9)
+x
+
+# obviously, x is a numeric vector
+mode(x)
+
+# but it is a collection of numbers that have a fractional part; in R, this
+# means that this numeric vector is of type 'double'
+typeof(x)
+
+# we can have another numeric vector that is of type 'integer'; for this, we
+# put L after each integer
+x <- c(2L, 1L, 5L, 3L)
+x
+mode(x)
+typeof(x)
+
+# by default, R assumes that
+
 # create a vector of the numbers 0, 1, ..., 9
 z <- 0:9
 z
