@@ -205,3 +205,17 @@ alpha <- alpha[1:5]
 alpha
 
 # this effectively shortens alpha
+
+# we can also directly assign a length to a vector and if the length is
+# shorter than the current length, it drops the extra elements
+length(alpha) <- 3
+alpha
+
+# can also assign a longer length than the current one; the addition new
+# elements then will be missing values (NAs)
+length(alpha) <- 10
+alpha
+
+############################################################################
+
+### 3.3: Getting and setting attributes
