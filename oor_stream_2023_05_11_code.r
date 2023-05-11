@@ -14,6 +14,8 @@
 
 ############################################################################
 
+### 3: Objects, their modes and attributes
+
 ### 3.1: Intrinsic attributes: mode and length
 
 # create a numeric vector and check its 'mode'
@@ -338,3 +340,11 @@ unclass(res)
 # elements (some of which make sense, like 'coefficients' or 'residuals', but
 # there are many others whose meaning/purpose is not so clear, but this is not
 # relevant for now)
+
+############################################################################
+
+### 4: Ordered and unordered factors
+
+### 4.1: A specific example
+
+############################################################################
