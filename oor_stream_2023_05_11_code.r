@@ -276,3 +276,7 @@ mode(x)
 # but it is a matrix and it has that class (and also the class 'array')
 class(x)
 
+# illustrate how the class of an object can influence how a function behaves
+
+
+
