@@ -27,6 +27,7 @@ is.atomic(x)
 x <- c(1, 3, 2, "Bob", 4, 5)
 x
 mode(x)
+is.atomic(x)
 
 # everything has turned into a character string, so we have a character vector
 
@@ -62,3 +63,5 @@ ls()
 # character(0) indicates a character vector with no elements, so this shows
 # that there are no elements in the workspace
 
+l <- list(x = c(1,3,2,5), y = c("Bob","Sue"), z = 42)
+l
