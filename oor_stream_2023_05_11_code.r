@@ -308,3 +308,21 @@ dat <- data.frame(subject = c("Bob", "Sue", "Gill", "Tom"),
                   age = c(25, 23, 28, 21), y = c(5, 6, 3, 4))
 dat
 
+# the way a data frame is printed (remember: typing 'dat' is just a shortcut
+# for 'print(dat)') again has to do with the class of the object
+class(dat)
+
+# remove the class from dat
+unclass(dat)
+
+# when we do so, we see that a data frame is really just a list, where each
+# list element is a variable in the data frame
+
+# consider a more complex example where we fit the linear regression model
+# with 'y' as the outcome variable and 'age' as the predictor
+res <- lm(y ~ age, data=dat)
+res
+
+# when we print 'res', we just get the estimated intercept and slope; to get
+# the full regression table (and things like R^2), we can use summary()
+summary(res)
