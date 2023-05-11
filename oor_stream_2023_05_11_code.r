@@ -291,3 +291,11 @@ y
 summary(y)
 
 # if we use summary() on a factor, it creates a frequency table
+
+# how does R know what to do when using summary() in these different cases?
+# this has to do with the class of the object
+class(x)
+class(y)
+
+# depending on the class of the object given to summary(), the function
+# behaves differently
