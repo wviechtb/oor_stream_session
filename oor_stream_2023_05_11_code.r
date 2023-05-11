@@ -33,7 +33,8 @@ mode(x)
 is.vector(x)
 is.atomic(x)
 
-# everything has turned into a character string, so we have a character vector
+# everything has turned into a character string, so we have a character
+# vector; R uses various rules for doing this sort of 'type coercion'
 
 # a numeric vector with a missing value
 x <- c(1, 3, 2, NA, 5, 3)
@@ -141,3 +142,8 @@ z
 
 # when we use : to create a numeric sequence, it creates an integer vector
 typeof(z)
+
+# turn the numeric (integer) vector z into a character vector
+digits <- as.character(z)
+digits
+
