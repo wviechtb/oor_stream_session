@@ -147,3 +147,6 @@ typeof(z)
 digits <- as.character(z)
 digits
 
+# this is doing 'explicit type coercion' (note that we already saw 'implicit
+# type coercion' earlier, for example when mixing numbers and strings in a
+# vector or when mixing doubles and integers in a vector)
