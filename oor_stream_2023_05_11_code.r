@@ -371,6 +371,7 @@ levels(statef)
 
 ### 4.2: The function tapply() and ragged arrays
 
+# create a numeric vector with the incomes
 incomes <- c(60, 49, 40, 61, 64, 60, 59, 54, 62, 69, 70, 42, 56, 61, 61, 61,
              58, 51, 48, 65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
 
@@ -414,3 +415,8 @@ tapply(incomes, statef, fivenum)
 # by splitting the incomes by statef levels, we can see that this is a 'ragged
 # array' because the lengths of these vectors are not all the same
 split(incomes, statef)
+
+############################################################################
+
+### 4.3: Ordered factors
+
