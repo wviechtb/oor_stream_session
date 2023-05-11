@@ -263,3 +263,16 @@ attr(x, "dim") <- c(3,2)
 # this turns the vector into a matrix with 3 rows and 2 columns
 x
 
+# list the attributes of x
+attributes(x)
+
+############################################################################
+
+### 3.4: The class of an object
+
+# all of the elements in x are numeric
+mode(x)
+
+# but it is a matrix and it has that class (and also the class 'array')
+class(x)
+
