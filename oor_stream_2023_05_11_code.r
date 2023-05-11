@@ -385,5 +385,9 @@ tapply(incomes, statef, sd)
 # the output from tapply() is just a vector (with the means or SDs or
 # whatever), which we can collect in a data frame
 dat <- data.frame(mean = tapply(incomes, statef, mean),
-                  sd   = tapply(incomes, statef, sd))
+                  sd   = tapply(incomes, statef, sd),
+                  n    = tapply(incomes, statef, length))
 dat
+
+# create a functin called stdError() that computes the standard error of a mean
+stdError <- function(x) sqrt(var(x)/length(x))
