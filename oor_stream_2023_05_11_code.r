@@ -233,3 +233,11 @@ attributes(x)
 # we can extract a particular attributes in two different ways
 attr(x, "subject")
 attributes(x)$subject
+
+# depending on the type of object, there are some special types of attributes
+# that have a particular function/purpose; we can illustrate this using a
+# 'named vector'
+
+# create a named numeric vector with 4 elements
+x <- c(Bob = 2, Sue = 4, Joe = 5, Gill = 8)
+x
