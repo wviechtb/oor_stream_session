@@ -284,8 +284,8 @@ summary(x)
 # so if we use summary() on a numeric vector, it prints the five-number
 # summary and also the mean
 
-# turn the elements in x into a factor (which can take on the values 1, 2,
-# ..., 5) and assign this to y
+# turn the elements in x into a factor (which can take on the values, or
+# 'levels', 1, 2, ..., 5) and assign this to y
 y <- factor(x, levels=1:5)
 y
 summary(y)
