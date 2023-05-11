@@ -326,3 +326,15 @@ res
 # when we print 'res', we just get the estimated intercept and slope; to get
 # the full regression table (and things like R^2), we can use summary()
 summary(res)
+
+# that summary() provides all of this output for a 'regression model object'
+# has to do with the class of the object
+class(res)
+
+# remove the class from res
+unclass(res)
+
+# now we see that res is actually list with a whole bunch of different
+# elements (some of which make sense, like 'coefficients' or 'residuals', but
+# there are many others whose meaning/purpose is not so clear, but this is not
+# relevant for now)
