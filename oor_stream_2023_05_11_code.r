@@ -250,3 +250,16 @@ attributes(x)
 # so the 'names' attribute is a special type of attribute that also changes
 # how the vector is printed
 x
+
+# another example of this is the 'dim' attribute
+
+# create a numeric vector with 6 elements
+x <- c(3,2,5,7,1,3)
+x
+
+# assign c(3,2) as the 'dim' attribute of 'x'
+attr(x, "dim") <- c(3,2)
+
+# this turns the vector into a matrix with 3 rows and 2 columns
+x
+
