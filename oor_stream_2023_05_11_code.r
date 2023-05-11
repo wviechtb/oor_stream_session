@@ -441,4 +441,8 @@ speedf
 speedf <- ordered(speed, levels=c("slow", "medium", "fast"))
 speedf
 
+# the information that speedf is now an ordered factor is contained in the
+# class of this object (which now actually has two classes)
+class(speedf)
+
 ############################################################################
