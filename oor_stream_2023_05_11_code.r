@@ -133,6 +133,8 @@ x
 mode(x)
 typeof(x)
 
+# if we try, then the integers get 'promoted' to doubles
+
 # create a vector of the numbers 0, 1, ..., 9
 z <- 0:9
 z
