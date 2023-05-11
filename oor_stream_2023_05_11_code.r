@@ -195,3 +195,13 @@ e
 # of the vector itself, but implicit type coercion then happens
 e[5] <- "Bob"
 e
+
+# create a vector with 10 numbers
+alpha <- c(2, 4, 3, 1, 8, 5, 4, 5, 3, 7)
+alpha
+
+# select elements 1 through 5 from this vector and assign it on top of alpha
+alpha <- alpha[1:5]
+alpha
+
+# this effectively shortens alpha
