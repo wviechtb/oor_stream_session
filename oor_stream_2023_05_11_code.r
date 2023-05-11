@@ -167,7 +167,10 @@ typeof(as.numeric(digits))
 e <- numeric()
 e
 
-# this empty vector still has a mode (and a type)
+# it is of length 0
+length(e)
+
+# but this empty vector still has a mode (and a type)
 mode(e)
 typeof(e)
 
@@ -180,3 +183,9 @@ logical()
 numeric(10)
 character(10)
 logical(10)
+
+# assign the value 17 to the third element of e; since right now, e is of
+# length 0, R will happily change the length of the vector to 3, but the first
+# and second element will be missing (NA)
+e[3] <- 17
+e
