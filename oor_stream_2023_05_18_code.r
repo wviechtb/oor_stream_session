@@ -84,14 +84,18 @@ x <- sapply(years, function(year) {
 
    year <- 1989
 
-   # calculate how old people are in the year 2000 for people who were 45-54 years old in a particular year
+   # calculate how old people are in the year 2000 for people who were 45 to
+   # 54 years old in a particular year
    ages_in_2000 <- (2000-year) + (45:54)
 
-   # check which rows correspond to these ages in the year 2000 (and only take the April data)
+   # check which rows correspond to these ages in the year 2000 (and only take
+   # the April data)
    ok <- dat$AGE %in% ages_in_2000 & dat$YEAR==2000 & dat$MONTH==4
-   dat[ok,c("AGE","NHWA_MALE","NHWA_FEMALE")]
 
-   #
+   #dat[ok,c("AGE","NHWA_MALE","NHWA_FEMALE")]
+
+   # compute the weighted mean of the mortality rates in 2000 weighting by the
+   # number of non-Hispanic whites that were between 45 and 54 in that year
    weighted.mean(deathpr_by_age, dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
 
 })
