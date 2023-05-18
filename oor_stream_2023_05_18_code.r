@@ -73,3 +73,12 @@ lines(years, rates.adj, lwd=2, col="red")
 text(2001, sav$Rates[sav$Year == 2001], "Raw death rate", pos=4)
 text(2001, rates.adj[sav$Year == 2001], "Expected just from\nage shift", pos=3)
 
+rates.avg <- sapply(years, function(year) {
+   mean(dat$Deaths[dat$Year == year] / dat$Population[dat$Year == year])
+})
+
+# Figure 2.12a
+plot(years, rates.avg / rates.avg[1], type="n", bty="l",
+     xlab="", ylab="Age-adj death rate, relative to 1999")
+grid()
+lines(years, rates.avg / rates.avg[1], lwd=2)
