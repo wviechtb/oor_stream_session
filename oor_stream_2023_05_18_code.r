@@ -39,6 +39,7 @@ lines(dat$Year, dat$Rates, lwd=3)
 # read in the mortality data again
 dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
 
+# compute the mean age within the 45 to 54 age group in the years 1999 to 2013
 years <- 1999:2013
 mage <- sapply(years, function(year) {
    weighted.mean(45:54, dat[dat$Year == year, "Population"])
@@ -50,6 +51,18 @@ plot(years, mage, type="n", bty="l",
      xlab="", ylab="Avg age among non-Hisp whites 45-54")
 grid()
 lines(years, mage, lwd=3)
+
+# read in the mortality data again
+dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
+
+# extract the 2013 mortality rates
+rates2013 <- with(dat[dat$Year == 2013,], Deaths / Population)
+
+
+
+
+
+
 
 
 
