@@ -65,7 +65,7 @@ lines(years, mage, lwd=3)
 # note: this seems to assume that everybody born in a particular year survives
 # until they are 45-54 years old, which seems like a debatable assumption
 
-# mortality rates in 2013 by age (overall and separately by gender) from life
+# mortality rates in 2000 by age (overall and separately by gender) from life
 # tables as given in the code for this example on the book website
 deathpr_by_age <- c(.003064, .003322, .003589, .003863, .004148, .004458, .004800, .005165, .005554, .005971)
 deathpr_male   <- c(.003244, .003571, .003926, .004309, .004719, .005156, .005622, .006121, .006656, .007222)
@@ -84,7 +84,9 @@ x <- sapply(years, function(year) {
    ages_in_2000 <- (2000 - year) + (45:54)
 
    ok <- dat$AGE %in% ages_in_2000 & dat$MONTH==4 & dat$YEAR==2000
-   dat[ok,c(1:4)]
+   dat[ok,c("AGE","NHWA_MALE","NHWA_FEMALE")]
+
+   weighted.mean(deathpr_by_age, dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
 
 })
 
