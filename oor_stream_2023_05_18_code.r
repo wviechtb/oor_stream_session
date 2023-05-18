@@ -21,9 +21,11 @@ download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Ag
 # read in the data
 dat <- read.table("births.txt", header=TRUE)
 
-mage <- sapply(1989:2015, function(age) {
+mage <- sapply(1989:2015, function(year) {
 
-   age <- 1989
+   year <- 1989
+   ages <- 45:54
+   ok <- dat$year %in% (year - ages)
 
 
 })
