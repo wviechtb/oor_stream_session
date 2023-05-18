@@ -42,15 +42,19 @@ dat <- read.table("births.txt", header=TRUE)
 # compute the mean age within the 45 to 54 age group in the years 1999 to 2013
 years <- 1999:2013
 mage <- sapply(years, function(year) {
+
    # the age group we are interested in
    ages <- 54:45
+
    # check which birth years correspond to these ages
    ok <- dat$year %in% (year - ages)
+
    # compute the weight mean of the ages with weights equal to the number of
    # births corresponding to these ages (note: we need to specify the ages
    # above from oldest to youngest, so that the birth numbers correspond to
    # the ages)
    weighted.mean(ages, dat$births[ok])
+
 })
 
 # print the mean ages
@@ -80,12 +84,14 @@ x <- sapply(years, function(year) {
 
    year <- 1989
 
-   # calculate the age of people who were 45-54 years old in 'year' in 2000
-   ages_in_2000 <- (2000 - year) + (45:54)
+   # calculate how old people are in the year 2000 for people who were 45-54 years old in a particular year
+   ages_in_2000 <- (2000-year) + (45:54)
 
-   ok <- dat$AGE %in% ages_in_2000 & dat$MONTH==4 & dat$YEAR==2000
+   # check which rows correspond to these ages in the year 2000 (and only take the April data)
+   ok <- dat$AGE %in% ages_in_2000 & dat$YEAR==2000 & dat$MONTH==4
    dat[ok,c("AGE","NHWA_MALE","NHWA_FEMALE")]
 
+   #
    weighted.mean(deathpr_by_age, dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
 
 })
