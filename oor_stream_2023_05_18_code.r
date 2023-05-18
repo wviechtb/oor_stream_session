@@ -36,6 +36,9 @@ plot(dat$Year, dat$Rates, type="n", bty="l",
 grid()
 lines(dat$Year, dat$Rates, lwd=3)
 
+# make a copy of dat for later
+sav <- dat
+
 # read in the birth data
 dat <- read.table("births.txt", header=TRUE)
 
@@ -78,11 +81,7 @@ deathpr_female <- c(.002069, .002270, .002486, .002716, .002960, .003226, .00350
 # read in the data
 dat <- read.csv("US-EST00INT-ALLDATA.csv")
 
-# NHWA_MALE NHWA_FEMALE
-
-x <- sapply(years, function(year) {
-
-   year <- 1989
+rate.adjusted <- sapply(years, function(year) {
 
    # calculate how old people are in the year 2000 for people who were 45 to
    # 54 years old in a particular year
@@ -99,4 +98,11 @@ x <- sapply(years, function(year) {
    weighted.mean(deathpr_by_age, dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
 
 })
+
+# Figure 2.11c
+plot(sav$Year, sav$Rates, type="n", bty="l",
+     xlab="", ylab="Death rate among non-Hisp whites 45-54")
+grid()
+lines(sav$Year, sav$Rates, lwd=3)
+lines(years, rate.adjusted, lwd=3)
 
