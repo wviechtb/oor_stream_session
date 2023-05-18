@@ -95,7 +95,8 @@ rate.adjusted <- sapply(years, function(year) {
 
    # compute the weighted mean of the mortality rates in 2000 weighting by the
    # number of non-Hispanic whites that were between 45 and 54 in that year
-   weighted.mean(deathpr_by_age, dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
+   #weighted.mean(deathpr_by_age, dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
+   sum(deathpr_male * dat$NHWA_MALE[ok] + deathpr_female * dat$NHWA_FEMALE[ok]) / sum(dat$NHWA_MALE[ok] + dat$NHWA_FEMALE[ok])
 
 })
 
@@ -106,3 +107,8 @@ grid()
 lines(sav$Year, sav$Rates, lwd=3)
 lines(years, rate.adjusted, lwd=3)
 
+
+plot(years, rate.adjusted, type="n", bty="l",
+     xlab="", ylab="Death rate among non-Hisp whites 45-54")
+grid()
+lines(years, rate.adjusted, lwd=3)
