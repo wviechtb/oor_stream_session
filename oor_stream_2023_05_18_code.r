@@ -103,8 +103,8 @@ rates.avg.2013 <- rates.avg.2013 / rates.avg.2013[1]
 plot(years, rates.avg, type="n", bty="l", ylim=c(1,1.065),
      xlab="", ylab="Age-adj death rate, relative to 1999")
 grid()
-lines(years, rates.av, lwd=2)
+lines(years, rates.avg, lwd=2)
 lines(years, rates.avg.1999, lwd=2, lty="dashed")
 lines(years, rates.avg.2013, lwd=2, lty="dotted")
-text(2002, rates.avg.1999[years == 2002], "Using 1999\nage dist", pos=3)
-text(2003, rates.avg.2013[years == 2003], "Using 2013\nage dist", pos=1)
+text(2003, rates.avg.1999[years == 2003], "Using 1999\nage dist", pos=3)
+text(2004, rates.avg.2013[years == 2004], "Using 2013\nage dist", pos=1)
