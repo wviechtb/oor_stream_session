@@ -15,3 +15,5 @@
 
 ### 2.4: Data and adjustment: trends in mortality rates
 
+# download the dataset
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/births.txt", destfile="births.txt")
