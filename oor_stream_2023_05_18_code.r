@@ -36,8 +36,25 @@ plot(dat$Year, dat$Rates, type="n", bty="l",
 grid()
 lines(dat$Year, dat$Rates, lwd=3)
 
-# make a copy of dat for later
-sav <- dat
+# read in the mortality data again
+dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
+
+years <- 1999:2013
+mage <- sapply(years, function(year) {
+   weighted.mean(45:54, dat[dat$Year == year, "Population"])
+})
+mage
+
+# Figure 2.11b
+plot(years, mage, type="n", bty="l",
+     xlab="", ylab="Avg age among non-Hisp whites 45-54")
+grid()
+lines(years, mage, lwd=3)
+
+
+
+
+
 
 # read in the birth data
 dat <- read.table("births.txt", header=TRUE)
