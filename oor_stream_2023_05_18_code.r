@@ -17,6 +17,7 @@
 
 # download the datasets
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/white_nonhisp_death_rates_from_1999_to_2013.txt", destfile="white_nonhisp_death_rates_from_1999_to_2013.txt")
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/white_nonhisp_death_rates_from_1999_to_2013_by_sex.txt", destfile="white_nonhisp_death_rates_from_1999_to_2013_by_sex.txt")
 
 # read in the mortality data
 dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
