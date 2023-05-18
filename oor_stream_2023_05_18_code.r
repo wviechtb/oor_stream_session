@@ -22,10 +22,12 @@ download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Ag
 dat <- read.table("births.txt", header=TRUE)
 
 mage <- sapply(1989:2015, function(year) {
-
-   year <- 1989
-   ages <- 45:54
+   # the age group we are interested in
+   ages <- 54:45
+   # check which birth years correspond to these ages
    ok <- dat$year %in% (year - ages)
-
-
+   # compute the weight mean of the ages with weights equal to the number of
+   # births corresponding to these ages
+   weighted.mean(ages, dat$births[ok])
 })
+mage
