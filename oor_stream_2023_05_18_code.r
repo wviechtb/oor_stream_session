@@ -58,6 +58,8 @@ dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE
 # extract the 2013 mortality rates
 rates2013 <- with(dat[dat$Year == 2013,], Deaths / Population)
 
+# compute the mortality rate for people within the 45 to 54 age group in each
+# year assuming that the 2013 mortality rates apply to all the years
 rates.adj <- sapply(years, function(year) {
    weighted.mean(rates2013, dat$Population[dat$Year == year])
 })
@@ -70,3 +72,4 @@ lines(sav$Year, sav$Rates, lwd=2)
 lines(years, rates.adj, lwd=2, col="red")
 text(2001, sav$Rates[sav$Year == 2001], "Raw death rate", pos=4)
 text(2001, rates.adj[sav$Year == 2001], "Expected just from\nage shift", pos=3)
+
