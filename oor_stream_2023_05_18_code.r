@@ -18,6 +18,23 @@
 # download the datasets
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/births.txt", destfile="births.txt")
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/US-EST00INT-ALLDATA.csv", destfile="US-EST00INT-ALLDATA.csv")
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/white_nonhisp_death_rates_from_1999_to_2013.txt", destfile="white_nonhisp_death_rates_from_1999_to_2013.txt")
+
+# read in the mortality data
+dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
+
+# compute the total number of deaths and the population size in each year
+# between 1999 and 2013 for people between 45 and 54 years of age
+dat <- aggregate(dat[c("Deaths","Population")], list(Year = dat$Year), sum)
+
+# compute the raw death rate for each year
+dat$Rates <- with(dat, Deaths / Population)
+
+# Figure 2.11a
+plot(dat$Year, dat$Rates, type="n", bty="l",
+     xlab="", ylab="Death rate among non-Hisp whites 45-54")
+grid()
+lines(dat$Year, dat$Rates, lwd=3)
 
 # read in the birth data
 dat <- read.table("births.txt", header=TRUE)
@@ -65,6 +82,9 @@ x <- sapply(years, function(year) {
 
    # calculate the age of people who were 45-54 years old in 'year' in 2000
    ages_in_2000 <- (2000 - year) + (45:54)
+
+   ok <- dat$AGE %in% ages_in_2000 & dat$MONTH==4 & dat$YEAR==2000
+   dat[ok,c(1:4)]
 
 })
 
