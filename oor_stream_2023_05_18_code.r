@@ -17,3 +17,6 @@
 
 # download the dataset
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/births.txt", destfile="births.txt")
+
+# read in the data
+dat <- read.table("births.txt", header=TRUE)
