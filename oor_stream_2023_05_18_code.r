@@ -73,6 +73,8 @@ lines(years, rates.adj, lwd=2, col="red")
 text(2001, sav$Rates[sav$Year == 2001], "Raw death rate", pos=4)
 text(2001, rates.adj[sav$Year == 2001], "Expected just from\nage shift", pos=3)
 
+# take the unweighted average of the death rates in each year (this implies
+# that we are assuming an equal number of people for each age)
 rates.avg <- sapply(years, function(year) {
    mean(dat$Deaths[dat$Year == year] / dat$Population[dat$Year == year])
 })
@@ -82,3 +84,18 @@ plot(years, rates.avg / rates.avg[1], type="n", bty="l",
      xlab="", ylab="Age-adj death rate, relative to 1999")
 grid()
 lines(years, rates.avg / rates.avg[1], lwd=2)
+
+rates.avg.1999 <- sapply(years, function(year) {
+   weighted.mean(dat$Deaths[dat$Year == year] / dat$Population[dat$Year == year], dat$Population[dat$Year == 1999])
+})
+rates.avg.2013 <- sapply(years, function(year) {
+   weighted.mean(dat$Deaths[dat$Year == year] / dat$Population[dat$Year == year], dat$Population[dat$Year == 2013])
+})
+
+# Figure 2.12b
+plot(years, rates.avg / rates.avg[1], type="n", bty="l",
+     xlab="", ylab="Age-adj death rate, relative to 1999")
+grid()
+lines(years, rates.avg / rates.avg[1], lwd=2)
+lines(years, rates.avg.1999 / rates.avg.1999[1], lwd=2, lty="dashed")
+lines(years, rates.avg.2013 / rates.avg.2013[1], lwd=2, lty="dotted")
