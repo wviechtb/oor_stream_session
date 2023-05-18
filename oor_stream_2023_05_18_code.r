@@ -95,12 +95,16 @@ rates.avg.2013 <- sapply(years, function(year) {
    weighted.mean(dat$Deaths[dat$Year == year] / dat$Population[dat$Year == year], dat$Population[dat$Year == 2013])
 })
 
+# rescale the rates relative to 1999
+rates.avg.1999 <- rates.avg.1999 / rates.avg.1999[1]
+rates.avg.2013 <- rates.avg.2013 / rates.avg.2013[1]
+
 # Figure 2.12b
-plot(years, rates.avg / rates.avg[1], type="n", bty="l", ylim=c(1,1.065),
+plot(years, rates.avg, type="n", bty="l", ylim=c(1,1.065),
      xlab="", ylab="Age-adj death rate, relative to 1999")
 grid()
-lines(years, rates.avg / rates.avg[1], lwd=2)
-lines(years, rates.avg.1999 / rates.avg.1999[1], lwd=2, lty="dashed")
-lines(years, rates.avg.2013 / rates.avg.2013[1], lwd=2, lty="dotted")
-text(2002, rates.avg.1999[years == 2002] / rates.avg.1999[1], "Using 1999\nage dist", pos=3)
-text(2003, rates.avg.2013[years == 2003] / rates.avg.2013[1], "Using 2013\nage dist", pos=1)
+lines(years, rates.av, lwd=2)
+lines(years, rates.avg.1999, lwd=2, lty="dashed")
+lines(years, rates.avg.2013, lwd=2, lty="dotted")
+text(2002, rates.avg.1999[years == 2002], "Using 1999\nage dist", pos=3)
+text(2003, rates.avg.2013[years == 2003], "Using 2013\nage dist", pos=1)
