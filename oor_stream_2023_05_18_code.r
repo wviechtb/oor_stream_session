@@ -44,7 +44,6 @@ years <- 1999:2013
 mage <- sapply(years, function(year) {
    weighted.mean(45:54, dat[dat$Year == year, "Population"])
 })
-mage
 
 # Figure 2.11b
 plot(years, mage, type="n", bty="l",
@@ -58,7 +57,11 @@ dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE
 # extract the 2013 mortality rates
 rates2013 <- with(dat[dat$Year == 2013,], Deaths / Population)
 
+rates.adj <- sapply(years, function(year) {
+   weighted.mean(rates2013, dat$Population[dat$Year == year])
+})
 
+rates.adj
 
 
 
