@@ -19,7 +19,7 @@
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/white_nonhisp_death_rates_from_1999_to_2013.txt", destfile="white_nonhisp_death_rates_from_1999_to_2013.txt")
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/AgePeriodCohort/data/white_nonhisp_death_rates_from_1999_to_2013_by_sex.txt", destfile="white_nonhisp_death_rates_from_1999_to_2013_by_sex.txt")
 
-# read in the mortality data
+# read in the data
 dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
 
 # compute the total number of deaths and the population size in each year
@@ -38,7 +38,7 @@ lines(dat$Year, dat$Rates, lwd=2)
 # make a copy of dat for Figure 2.11c
 sav <- dat
 
-# read in the mortality data again
+# read in the data again
 dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
 
 # compute the mean age within the 45 to 54 age group in the years 1999 to 2013
@@ -53,7 +53,7 @@ plot(years, mage, type="n", bty="l",
 grid()
 lines(years, mage, lwd=2)
 
-# read in the mortality data again
+# read in the data again
 dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013.txt", header=TRUE)
 
 # extract the 2013 mortality rates
@@ -109,3 +109,34 @@ lines(years, rates.avg.1999, lwd=2, lty="dashed")
 lines(years, rates.avg.2013, lwd=2, lty="dotted")
 text(2003, rates.avg.1999[years == 2003], "Using 1999\nage dist", pos=3)
 text(2004, rates.avg.2013[years == 2004], "Using 2013\nage dist", pos=1)
+
+# read in the data
+dat <- read.table("white_nonhisp_death_rates_from_1999_to_2013_by_sex.txt", header=TRUE)
+
+# select rows for age 45 to 54
+dat <- dat[dat$Age %in% 45:54,]
+
+# create two subsets for females and males
+dat.f <- dat[dat$Male == 0,]
+dat.m <- dat[dat$Male == 1,]
+
+rates.avg.f <- sapply(years, function(year) {
+   mean(dat.f$Deaths[dat.f$Year == year] / dat.f$Population[dat.f$Year == year])
+})
+rates.avg.m <- sapply(years, function(year) {
+   mean(dat.m$Deaths[dat.m$Year == year] / dat.m$Population[dat.m$Year == year])
+})
+
+rates.avg.f <- rates.avg.f / rates.avg.f[1]
+rates.avg.m <- rates.avg.m / rates.avg.m[1]
+
+# Figure 2.12c
+plot(years, rates.avg.f, type="n", bty="l", ylim=c(1,1.10),
+     xlab="", ylab="Age-adj death rate, relative to 1999")
+grid()
+lines(years, rates.avg.f, lwd=2, col="red")
+lines(years, rates.avg.m, lwd=2, col="blue")
+text(2010, rates.avg.f[years == 2010], "Women", pos=1)
+text(2010, rates.avg.m[years == 2010], "Men", pos=1)
+
+############################################################################
