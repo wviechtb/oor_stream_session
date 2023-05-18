@@ -21,7 +21,7 @@ download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Ag
 # read in the data
 dat <- read.table("births.txt", header=TRUE)
 
-# compute the mean age within the 45 to 54 age group in the years 1989 to 2015
+# compute the mean age within the 45 to 54 age group in the years 1999 to 2013
 years <- 1999:2013
 mage <- sapply(years, function(year) {
    # the age group we are interested in
@@ -37,8 +37,14 @@ mage <- sapply(years, function(year) {
 
 mage
 
-# Figure 2.11(c)
+# Figure 2.11b
 plot(years, mage, type="n", bty="l",
      xlab="", ylab="Avg age among non-Hisp whites 45-54")
 grid()
 lines(years, mage, lwd=3)
+
+# mortality rates by age (overall and separately by gender) from life tables
+# as given in the code for this example on the book website
+deathpr_by_age <- c(.003064, .003322, .003589, .003863, .004148, .004458, .004800, .005165, .005554, .005971)
+deathpr_male   <- c(.003244, .003571, .003926, .004309, .004719, .005156, .005622, .006121, .006656, .007222)
+deathpr_female <- c(.002069, .002270, .002486, .002716, .002960, .003226, .003505, .003779, .004040, .004301)
