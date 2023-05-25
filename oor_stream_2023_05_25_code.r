@@ -212,5 +212,15 @@ A
 B
 A %*% B
 
-A %*% c(6,2,4)
+# can use the diag() function to turn a vector into a diagonal matrix
+diag(c(4,2,5,8))
+
+# can use the diag() function to extract the diagonal elements of a matrix
+A <- matrix(1:16, nrow=4, ncol=4)
+A
+diag(A)
+
+# can use the diag() function to create a k*k-dimensional identity matrix
+diag(5)
+
 
