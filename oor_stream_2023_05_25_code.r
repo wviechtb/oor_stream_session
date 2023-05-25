@@ -246,3 +246,21 @@ solve(A)
 # remember: A %*% A^{-1} = I
 # https://en.wikipedia.org/wiki/Invertible_matrix
 round(A %*% solve(A), digits=6)
+
+## 5.7.3: Eigenvalues and eigenvectors
+
+# copy the mtcars dataset to dat
+dat <- mtcars
+dat
+
+# keep only a few variable
+dat <- dat[c("mpg", "hp", "wt")]
+dat
+
+# create the correlation matrix of these three variables
+R <- cor(dat)
+R
+
+# do an eigenvalue-eigenvector decomposition of the correlation matrix
+ev <- eigen(A)
+ev
