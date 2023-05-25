@@ -63,3 +63,6 @@ a[2,,]
 
 # select the second level of the second dimension
 a[,2,]
+
+# get the dimension vector
+dim(a)
