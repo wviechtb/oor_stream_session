@@ -334,4 +334,17 @@ y <- matrix(dat$mpg, ncol=1)
 y
 
 # manually compute the 'regression coefficients' from the model above
-solve(t(X) %*% X) %*% t(X) %*% y
+b <- solve(t(X) %*% X) %*% t(X) %*% y
+b
+
+# compute the predicted values
+X %*% b
+
+# compute the residuals (the difference between the actual mpg values and the
+# predicted values based on the model)
+(y - X %*% b)
+
+# compute the sum of the squared residuals
+sum((y - X %*% b)^2)
+
+# it turns out that the values of b we computed earlier minimize this
