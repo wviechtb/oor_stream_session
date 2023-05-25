@@ -92,3 +92,9 @@ x[i]
 # replace those values with 0
 x[i] <- 0
 x
+
+# see what happens when elements in the index vector are 0 or NA
+i[1,1] <- 0
+i[3,2] <- NA
+i
+x[i]
