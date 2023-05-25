@@ -76,5 +76,15 @@ a[c(2,3,8,13)]
 
 ### 5.3: Index matrices
 
-#
+# create a two-dimension array (i.e., a matrix)
 x <- array(round(rnorm(20), digits=3), dim=c(4,5))
+x
+
+# create an index matrix
+i <- array(c(1:3,3:1), dim=c(3,2))
+i
+
+# using the index array, we extract the value in the first row and third
+# column, the value in the second row and second column, and the value in the
+# third row and first column
+x[i]
