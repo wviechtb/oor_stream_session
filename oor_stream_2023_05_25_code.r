@@ -311,4 +311,6 @@ tr <- function(x) sum(diag(x))
 tr(A)
 
 # determinant of a matrix
+# https://en.wikipedia.org/wiki/Determinant_of_a_matrix
 det(A)
+
