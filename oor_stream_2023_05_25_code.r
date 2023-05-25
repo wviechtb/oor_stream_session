@@ -53,8 +53,8 @@ class(a)
 
 ### 5.2: Array indexing. Subsections of an array
 
-# back to the 3*4*2 array
-a <- 1:24
+# back to the 3*4*2 array, but let's use some more interesting numbers
+a <- round(rnorm(24), digits=2)
 dim(a) <- c(3,4,2)
 a
 
@@ -66,3 +66,9 @@ a[,2,]
 
 # get the dimension vector
 dim(a)
+
+# internally, 'a' is still stored as a vector; we just attached dimensions to
+# it which prints the vector in array format, but we can still refer to
+# elements of the vector using [] notation
+a
+
