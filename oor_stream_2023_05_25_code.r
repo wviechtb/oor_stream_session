@@ -292,3 +292,23 @@ D <- diag(res$d)
 
 R
 U %*% D %*% t(V)
+
+# computing the trace of a matrix
+# https://en.wikipedia.org/wiki/Trace_of_a_matrix
+A <- matrix(1:16, nrow=4, ncol=4)
+A
+
+# step 1) extract the diagonal elements
+diag(A)
+
+# step 2) sum them up
+sum(diag(A))
+
+# a function for doing this
+tr <- function(x) sum(diag(x))
+
+# use the function
+tr(A)
+
+# determinant of a matrix
+det(A)
