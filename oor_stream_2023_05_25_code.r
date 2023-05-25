@@ -348,3 +348,11 @@ X %*% b
 sum((y - X %*% b)^2)
 
 # it turns out that the values of b we computed earlier minimize this
+
+# the variance-covariance matrix of the regression coefficients
+vb <- solve(t(X) %*% X) * sum((y - X %*% b)^2) / (nrow(dat) - nrow(b))
+
+# the square-root of the diagonal elements of this matrix are the 'standard
+# errors' of the regression coefficients
+sqrt(diag(vb))
+
