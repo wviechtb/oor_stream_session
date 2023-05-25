@@ -237,7 +237,9 @@ x
 b <- A %*% x
 b
 
-#
+# find x given A and b
 solve(A,b)
 
+# taking the inverse of matrix A
 solve(A)
+
