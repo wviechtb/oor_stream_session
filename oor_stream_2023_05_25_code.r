@@ -390,3 +390,21 @@ c(A)
 
 # the 'official way' of converting an array/matrix back to a vector
 as.vector(A)
+
+############################################################################
+
+### 5.10: Frequency tables from factors
+
+# let's use again 'mtcars'
+dat <- mtcars
+dat
+
+# turn cyl and gear into factors
+dat$cyl  <- factor(dat$cyl)
+dat$gear <- factor(dat$gear)
+
+# frequency table of the number of cylinders of the cars
+table(dat$cyl)
+
+# frequency table of the cross-classification of the cyl and gear variables
+table(dat$cyl, dat$gear)
