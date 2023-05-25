@@ -18,7 +18,9 @@
 
 # create a vector with 1500 random draws from a standard normal distribution
 z <- rnorm(1500)
-z
+
+# look at the first 15 values of z
+head(z, 15)
 
 # attach three dimensions to this vector with the first dimension having
 # length 3, the second length 5, and the third length 100
