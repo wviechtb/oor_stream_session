@@ -88,3 +88,7 @@ i
 # column, the value in the second row and second column, and the value in the
 # third row and first column
 x[i]
+
+# replace those values with 0
+x[i] <- 0
+x
