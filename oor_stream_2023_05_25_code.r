@@ -314,3 +314,16 @@ tr(A)
 # https://en.wikipedia.org/wiki/Determinant_of_a_matrix
 det(A)
 
+## 5.7.5: Least squares fitting and the QR decomposition
+
+# let's again use the 'mtcars' dataset
+dat <- mtcars
+dat
+
+# fit a linear regression model predicting mpg from hp, wt, and am
+res <- lm(mpg ~ hp + wt + am, data=dat)
+summary(res)
+
+# illustrate how such a regression model is fitted
+# https://en.wikipedia.org/wiki/Linear_regression
+
