@@ -266,6 +266,15 @@ R
 ev <- eigen(R)
 ev
 
+# demonstrate what an eigenvalue-eigenvector decomposition does
+Q <- ev$vectors
+Q
+L <- diag(ev$values)
+L
+
+R
+Q %*% L %*% solve(Q)
+
 ## 5.7.4: Singular value decomposition and determinants
 
 # singular value decomposition of the correlation matrix
