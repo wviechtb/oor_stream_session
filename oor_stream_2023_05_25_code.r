@@ -356,3 +356,8 @@ vb <- solve(t(X) %*% X) * sum((y - X %*% b)^2) / (nrow(dat) - nrow(b))
 # errors' of the regression coefficients
 sqrt(diag(vb))
 
+# try out the lsfit() function (remove the column of 1's from X first)
+X <- X[,-1]
+ans <- lsfit(X, y)
+ans$coefficients
+
