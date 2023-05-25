@@ -223,4 +223,3 @@ diag(A)
 # can use the diag() function to create a k*k-dimensional identity matrix
 diag(5)
 
-
