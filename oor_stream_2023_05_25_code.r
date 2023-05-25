@@ -407,4 +407,4 @@ dat$gear <- factor(dat$gear)
 table(dat$cyl)
 
 # frequency table of the cross-classification of the cyl and gear variables
-table(dat$cyl, dat$gear)
+table(cylinders = dat$cyl, gears = dat$gear)
