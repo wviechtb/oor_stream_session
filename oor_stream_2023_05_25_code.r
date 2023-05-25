@@ -151,3 +151,18 @@ b
 
 a %o% b
 outer(a, b, "*")
+
+# let's consider a simpler example where each input to outer() is just a vector
+a <- c(2,4,3,1)
+b <- c(12,10,9,11,7,10)
+a
+b
+outer(a, b, "*")
+
+#
+x <- seq(-pi, pi, len=50)
+y <- x
+fun <- function(x, y) cos(y)/(1 + x^2)
+z <- outer(x, y, fun)
+dim(z)
+
