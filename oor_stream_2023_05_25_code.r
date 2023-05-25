@@ -327,3 +327,11 @@ summary(res)
 # illustrate how such a regression model is fitted
 # https://en.wikipedia.org/wiki/Linear_regression
 
+X <- cbind(1, as.matrix(dat[c("hp","wt","am")]))
+X <- unname(X)
+X
+y <- matrix(dat$mpg, ncol=1)
+y
+
+# manually compute the 'regression coefficients' from the model above
+solve(t(X) %*% X) %*% t(X) %*% y
