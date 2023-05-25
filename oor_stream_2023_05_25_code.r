@@ -223,3 +223,13 @@ diag(A)
 # can use the diag() function to create a k*k-dimensional identity matrix
 diag(5)
 
+## 5.7.2: Linear equations and inversion
+
+A <- matrix(sample(1:4,25,replace=TRUE), nrow=5, ncol=5)
+A
+x <- c(2,1,4,3,5)
+x
+b <- A %*% x
+b
+
+solve(A,b)
