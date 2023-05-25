@@ -98,3 +98,10 @@ i[1,1] <- 0
 i[3,2] <- NA
 i
 x[i]
+
+# create a logical matrix indicating which elements are greater 0
+l <- x > 0
+l
+
+# use this logical matrix for picking out elements from x
+x[l]
