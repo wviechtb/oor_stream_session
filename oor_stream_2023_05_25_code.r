@@ -69,6 +69,5 @@ dim(a)
 
 # internally, 'a' is still stored as a vector; we just attached dimensions to
 # it which prints the vector in array format, but we can still refer to
-# elements of the vector using [] notation
-a
-
+# individual elements of the vector using [] notation
+a[c(2,3,8,13)]
