@@ -201,3 +201,10 @@ ncol(A)
 
 # or just use dim()
 dim(A)
+
+## 5.7.1: Matrix multiplication
+
+B <- matrix(..., nrow=, ncol=)
+
+# multiply the two matrices
+A %*% B
