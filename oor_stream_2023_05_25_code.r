@@ -262,5 +262,6 @@ R <- cor(dat)
 R
 
 # do an eigenvalue-eigenvector decomposition of the correlation matrix
-ev <- eigen(A)
+# https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix
+ev <- eigen(R)
 ev
