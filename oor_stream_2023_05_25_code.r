@@ -409,4 +409,11 @@ table(dat$cyl)
 # frequency table of the cross-classification of the cyl and gear variables
 table(cylinders = dat$cyl, gears = dat$gear)
 
+# we can think of these types of frequency tables as matrices
+tab <- table(cylinders = dat$cyl, gears = dat$gear)
+tab
+
+# so we can do the same operations on these matrices as we saw earlier
+tab[1,]
+
 ############################################################################
