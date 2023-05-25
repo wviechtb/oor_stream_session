@@ -128,3 +128,17 @@ dim(h) <- c(3,4,2)
 # recycling also happens when the input vector is a single value
 Z <- array(0, c(3,4,2))
 Z
+
+# mathematical operations are done element-by-element
+A <- array(sample(1:4,6,replace=TRUE), dim=c(3,2))
+B <- array(sample(1:4,6,replace=TRUE), dim=c(3,2))
+C <- array(sample(1:4,6,replace=TRUE), dim=c(3,2))
+A
+B
+C
+D <- 2*A*B + C + 1
+D
+
+############################################################################
+
+### 5.5: The outer product of two arrays
