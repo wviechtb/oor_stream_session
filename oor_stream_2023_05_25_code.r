@@ -191,3 +191,13 @@ t(A)
 ############################################################################
 
 ### 5.7: Matrix facilities
+
+# create a matrix
+A <- matrix(1:6, nrow=3, ncol=2)
+
+# number of rows and columns
+nrow(A)
+ncol(A)
+
+# or just use dim()
+dim(A)
