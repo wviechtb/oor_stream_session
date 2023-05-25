@@ -225,11 +225,19 @@ diag(5)
 
 ## 5.7.2: Linear equations and inversion
 
+# create a 5x5 matrix with random integers between 1 and 4
 A <- matrix(sample(1:4,25,replace=TRUE), nrow=5, ncol=5)
 A
+
+# create a vector of length 5
 x <- c(2,1,4,3,5)
 x
+
+# multiply A and x
 b <- A %*% x
 b
 
+#
 solve(A,b)
+
+solve(A)
