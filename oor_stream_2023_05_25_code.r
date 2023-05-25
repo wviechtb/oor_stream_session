@@ -243,3 +243,5 @@ solve(A,b)
 # taking the inverse of matrix A
 solve(A)
 
+# remember: A %*% A^{-1} = I
+round(A %*% solve(A), digits=6)
