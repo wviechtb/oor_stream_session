@@ -373,3 +373,20 @@ cbind(A, c(5,2,3,4))
 # simple example of rbind()
 rbind(A, c(5,2,3,4))
 
+# turn a vector into a row or column vector (i.e., a matrix with a single row
+# or a matrix with a single column)
+x <- c(2,4,6,2,5)
+rbind(x)
+cbind(x)
+
+############################################################################
+
+### 5.9: The concatenation function, c(), with arrays
+
+# demonstrate what c() does when the input is an array/matrix
+A <- matrix(1:16, nrow=4, ncol=4)
+A
+c(A)
+
+# the 'official way' of converting an array/matrix back to a vector
+as.vector(A)
