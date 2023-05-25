@@ -109,3 +109,22 @@ x[l]
 ############################################################################
 
 ### 5.4: The array() function
+
+# create an array using array()
+h <- round(rnorm(24), digits=3)
+h
+Z <- array(h, dim=c(3,4,2))
+Z
+
+# illustrate recycling
+h <- round(rnorm(7), digits=3)
+h
+Z <- array(h, dim=c(3,4,2))
+Z
+
+# but this does not work
+dim(h) <- c(3,4,2)
+
+# recycling also happens when the input vector is a single value
+Z <- array(0, c(3,4,2))
+Z
