@@ -244,4 +244,5 @@ solve(A,b)
 solve(A)
 
 # remember: A %*% A^{-1} = I
+# https://en.wikipedia.org/wiki/Invertible_matrix
 round(A %*% solve(A), digits=6)
