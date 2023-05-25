@@ -204,7 +204,10 @@ dim(A)
 
 ## 5.7.1: Matrix multiplication
 
-B <- matrix(..., nrow=, ncol=)
+# create another matrix B which has as many rows as there are columns in A
+B <- matrix(c(7,3,4,6,2,3,8,1), nrow=2, ncol=4)
 
 # multiply the two matrices
+A
+B
 A %*% B
