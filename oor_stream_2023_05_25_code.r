@@ -181,3 +181,10 @@ hist(detmat, breaks=seq(-81,81,length=30))
 ############################################################################
 
 ### 5.6: Generalized transpose of an array
+
+# illustrate transposing with the simple case of a matrix
+A <- array(1:6, dim=c(3,2))
+A
+aperm(A, c(2,1))
+
+############################################################################
