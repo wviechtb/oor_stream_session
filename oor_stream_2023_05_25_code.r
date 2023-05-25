@@ -408,3 +408,5 @@ table(dat$cyl)
 
 # frequency table of the cross-classification of the cyl and gear variables
 table(cylinders = dat$cyl, gears = dat$gear)
+
+############################################################################
