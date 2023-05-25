@@ -279,4 +279,16 @@ Q %*% L %*% solve(Q)
 
 # singular value decomposition of the correlation matrix
 # https://en.wikipedia.org/wiki/Singular_value_decomposition
-svd(R)
+res <- svd(R)
+res
+
+# read the help page for the svd() function
+help(svd)
+
+# demonstrate what a singular value decomposition does
+U <- res$u
+V <- res$v
+D <- diag(res$d)
+
+R
+U %*% D %*% t(V)
