@@ -54,7 +54,7 @@ class(a)
 ### 5.2: Array indexing. Subsections of an array
 
 # back to the 3*4*2 array, but let's use some more interesting numbers
-a <- round(rnorm(24), digits=2)
+a <- round(rnorm(24), digits=3)
 dim(a) <- c(3,4,2)
 a
 
@@ -71,3 +71,10 @@ dim(a)
 # it which prints the vector in array format, but we can still refer to
 # individual elements of the vector using [] notation
 a[c(2,3,8,13)]
+
+############################################################################
+
+### 5.3: Index matrices
+
+#
+x <- array(round(rnorm(20), digits=3), dim=c(4,5))
