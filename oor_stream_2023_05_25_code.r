@@ -142,3 +142,12 @@ D
 ############################################################################
 
 ### 5.5: The outer product of two arrays
+
+# an example of creating an outer product
+a <- array(c(2,4,3,1), dim=c(2,2))
+b <- array(c(12,10,9,11,7,10), dim=c(3,2))
+a
+b
+
+a %o% b
+outer(a, b, "*")
