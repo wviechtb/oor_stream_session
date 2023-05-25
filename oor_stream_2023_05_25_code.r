@@ -105,3 +105,7 @@ l
 
 # use this logical matrix for picking out elements from x
 x[l]
+
+############################################################################
+
+### 5.4: The array() function
