@@ -360,3 +360,8 @@ sqrt(diag(vb))
 X <- X[,-1]
 ans <- lsfit(X, y)
 ans$coefficients
+
+############################################################################
+
+### 5.8: Forming partitioned matrices, cbind() and rbind()
+
