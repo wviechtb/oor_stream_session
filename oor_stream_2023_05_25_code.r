@@ -32,3 +32,24 @@ attributes(z)
 
 # we see that z now as a dimension attribute, which is the 'dimension vector'
 
+# another example with a vector that just has the numbers 1 through 24
+a <- 1:24
+a
+
+# again attach dimensions to this vector
+dim(a) <- c(3,4,2)
+a
+
+# create a one-dimensional array
+a <- 1:24
+a
+attributes(a)
+dim(a) <- 24
+a
+attributes(a)
+class(a)
+
+############################################################################
+
+### 5.2: Array indexing. Subsections of an array
+
