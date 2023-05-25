@@ -159,10 +159,10 @@ a
 b
 outer(a, b, "*")
 
-#
+# a fancier example
 x <- seq(-pi, pi, len=50)
 y <- x
 fun <- function(x, y) cos(y)/(1 + x^2)
 z <- outer(x, y, fun)
 dim(z)
-
+persp(x, y, z, theta=45, phi=35, col="lightgray")
