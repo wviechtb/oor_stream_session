@@ -416,4 +416,7 @@ tab
 # so we can do the same operations on these matrices as we saw earlier
 tab[1,]
 
+# so the frequency table also has dimensions
+dim(tab)
+
 ############################################################################
