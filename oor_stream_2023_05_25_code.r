@@ -166,3 +166,14 @@ fun <- function(x, y) cos(y)/(1 + x^2)
 z <- outer(x, y, fun)
 dim(z)
 persp(x, y, z, theta=45, phi=35, col="lightgray")
+
+# an example: determinants of 2 by 2 single-digit matrices
+ad <- outer(0:9, 0:9)
+bc <- outer(0:9, 0:9)
+ad
+bc
+detmat <- outer(d, d, "-")
+freqtab <- table(detmat)
+freqtab
+plot(freqtab, xlab="Determinant", ylab="Frequency")
+hist(detmat, breaks=seq(-81,81,length=30))
