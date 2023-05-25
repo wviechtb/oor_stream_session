@@ -265,3 +265,5 @@ R
 # https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix
 ev <- eigen(R)
 ev
+
+## 5.7.4: Singular value decomposition and determinants
