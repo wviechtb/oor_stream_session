@@ -177,3 +177,7 @@ freqtab <- table(detmat)
 freqtab
 plot(freqtab, xlab="Determinant", ylab="Frequency")
 hist(detmat, breaks=seq(-81,81,length=30))
+
+############################################################################
+
+### 5.6: Generalized transpose of an array
