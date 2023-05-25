@@ -53,3 +53,10 @@ class(a)
 
 ### 5.2: Array indexing. Subsections of an array
 
+# back to the 3*4*2 array
+a <- 1:24
+dim(a) <- c(3,4,2)
+a
+
+# select the second level of the first dimension
+a[2,,]
