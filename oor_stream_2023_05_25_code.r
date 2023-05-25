@@ -365,3 +365,11 @@ ans$coefficients
 
 ### 5.8: Forming partitioned matrices, cbind() and rbind()
 
+# simple example of cbind()
+A <- matrix(1:16, nrow=4, ncol=4)
+A
+cbind(A, c(5,2,3,4))
+
+# simple example of rbind()
+rbind(A, c(5,2,3,4))
+
