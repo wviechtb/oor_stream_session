@@ -360,4 +360,3 @@ sqrt(diag(vb))
 X <- X[,-1]
 ans <- lsfit(X, y)
 ans$coefficients
-
