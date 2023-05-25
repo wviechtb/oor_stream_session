@@ -267,3 +267,7 @@ ev <- eigen(R)
 ev
 
 ## 5.7.4: Singular value decomposition and determinants
+
+# singular value decomposition of the correlation matrix
+# https://en.wikipedia.org/wiki/Singular_value_decomposition
+svd(R)
