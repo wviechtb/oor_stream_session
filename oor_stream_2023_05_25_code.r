@@ -60,3 +60,6 @@ a
 
 # select the second level of the first dimension
 a[2,,]
+
+# select the second level of the second dimension
+a[,2,]
