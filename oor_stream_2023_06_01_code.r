@@ -27,3 +27,4 @@ weighted.mean(mean.age, pop.size)
 
 # the weights that are used are for computing the weighted average
 pop.size / sum(pop.size)
+
