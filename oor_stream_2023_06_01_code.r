@@ -91,6 +91,9 @@ X %*% b
 # download the dataset corresponding to the example
 download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile2.txt", destfile="mile2.txt")
 
+# see Wikipedia for more details on this sporting event and the dataset
+# https://en.wikipedia.org/wiki/Mile_run_world_record_progression
+
 # read in the data
 dat <- read.table("mile2.txt", header=TRUE)
 dat
@@ -118,10 +121,3 @@ text(1950, 242, pos=4, expression(y == 1007 - 0.393*x))
 
 # add the regression line from the model to the figure
 abline(res, lwd=3)
-
-# predict the world record in 2005 based on the model (note: this is
-# extrapolation beyond the range of the data)
-predict(res, newdata=data.frame(year.month=2005))
-
-# compare this to the actual time in 2005
-# https://en.wikipedia.org/wiki/Mile_run_world_record_progression
