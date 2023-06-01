@@ -228,3 +228,7 @@ summary(res)
 
 # add the regression line to the plot
 abline(res, lwd=3)
+
+# note: the intercept and slope given in the book (1.4 and 0.74, respectively)
+# are slightly different from what we find above (1.2 and 0.76, respectively),
+# but are fairly close and the plot and fitted line essentially look the same
