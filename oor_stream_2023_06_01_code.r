@@ -144,17 +144,18 @@ curve(1.5*10^9 * exp(log(2)/50 * (x-1900)), from=1900, to=2000, lwd=3,
 # let's see what is really going in the world; let's get the data from Wikipedia
 # https://en.wikipedia.org/wiki/World_population#Annual_population_growth
 
-# we will only use the data up to 1970 (since after that the growth is more or
-# less linear, which kind of defeats the purpose of this little exercise)
+# unfortunately, this page only provides data starting at 1951; also, we will
+# only use the data up to 1970 (since after that the growth is more or less
+# linear, which kind of defeats the purpose of this little exercise)
 dat <- structure(list(year = 1951:1970, size = c(2584034261, 2630861562,
 2677608960, 2724846741, 2773019936, 2822443282, 2873306090, 2925686705,
 2979576185, 3034949748, 3091843507, 3150420795, 3211001009, 3273978338,
 3339583597, 3407922630, 3478769962, 3551599127, 3625680627, 3700437046 )),
 row.names = c(NA, 20L), class = "data.frame")
 
-# inspect the first 6 lines of the dataset
-head(dat)
+# examine the dataset
+dat
 
 # scatterplot of year versus size
-plot(log(size) ~ year, data=dat, subset=year<=1970, pch=21, bg="gray", type="o", lty="dotted")
+plot(size ~ year, data=dat, subset=year<=1970, pch=21, bg="gray", type="o", lty="dotted")
 
