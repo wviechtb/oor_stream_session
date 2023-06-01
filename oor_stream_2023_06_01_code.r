@@ -178,5 +178,24 @@ exp(1.882e-02 * 10)
 
 # for every 10 years, the population size increased by a factor of 1.21 (or 21%)
 
-# to see why exp(b) gives the factor by which the population size increases for a one
+# to see why exp(b) gives the factor by which the population size increases
+# for a one-year increase, note that the model is given by this:
+#
 # log(size) = a + b*year
+#
+# so to compute how much log(size) changes when year goes up by one unit, we
+# can compute:
+#
+# log(size | year+1) - log(size | year) = (a + b*(year+1)) - (a + b*year)
+#                                       = a + b*year + b - a - b*year
+#                                       =              b
+#
+# since:
+#
+# log(size | year+1) - log(size | year) = log((size | year+1) / (size | year))
+#
+# then when we exponentiate both sides of the equation, we get:
+#
+# (size | year+1) / (size | year) = exp(b)
+
+
