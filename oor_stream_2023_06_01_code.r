@@ -43,3 +43,9 @@ download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/El
 # read in the data
 dat <- read.table("hibbs.dat", header=TRUE)
 
+# fit a regression model predicting the vote variable from the growth variable
+res <- lm(vote ~ growth, data=dat)
+summary(res)
+
+# note: in the book, the coefficients shown are based on the Bayesian model
+# that was fitted in chapter 1; here, let's stick to the non-Bayesian results
