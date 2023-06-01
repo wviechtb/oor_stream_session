@@ -157,5 +157,8 @@ row.names = c(NA, 20L), class = "data.frame")
 dat
 
 # scatterplot of year versus size
-plot(size ~ year, data=dat, subset=year<=1970, pch=21, bg="gray", type="o", lty="dotted")
+plot(size ~ year, data=dat, pch=21, bg="gray", type="o", lty="dotted")
 
+# if there is exponential growth, then the relationship between log(size) and
+# year should be roughly linear and that is indeed the case
+plot(log(size) ~ year, data=dat, pch=21, bg="gray", type="o", lty="dotted")
