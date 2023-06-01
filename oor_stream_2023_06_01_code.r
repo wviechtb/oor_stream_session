@@ -60,3 +60,13 @@ round(coef(res), 1)
 
 # predicted vote when growth is equal to -1
 predict(res, newdata=data.frame(growth=-1))
+
+# predicted vote when growth is equal to 0
+predict(res, newdata=data.frame(growth=0))
+
+# predicted vote when growth is equal to 3
+predict(res, newdata=data.frame(growth=3))
+
+# we can do this in a single line of code and include even more growth values
+newdat <- data.frame(growth=-1:4)
+cbind(newdat, pred=predict(res, newdata=newdat))
