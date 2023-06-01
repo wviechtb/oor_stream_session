@@ -245,7 +245,7 @@ text(log(dat$bm)[28], log(dat$rate)[28], dat$name[28], pos=2)
 plot(dat$bm, dat$rate, pch=19, bty="l",
      xlab="body mass in kg", ylab="metabolic rate in watts")
 text(dat$bm[1],  dat$rate[1],  dat$name[1],  pos=4)
-text(dat$bm[22], dat$rate[22], dat$name[22], pos=2)
+text(dat$bm[22], dat$rate[22], dat$name[22], pos=3)
 text(dat$bm[28], dat$rate[28], dat$name[28], pos=2)
 
 # compute the predicted log(rate) as a function of log(bm) for all values of
@@ -255,3 +255,4 @@ pred <- predict(res, newdata=newdat)
 
 # add the line for the relationship between bm and rate to the plot
 lines(newdat$bm, exp(pred), lwd=3)
+
