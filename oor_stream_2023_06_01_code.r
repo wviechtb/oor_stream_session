@@ -132,3 +132,11 @@ summary(res)
 
 ### 3.4: Exponential and power-law growth and decline;
 ###      logarithmic and log-log relationships
+
+# exponential growth example
+curve(1.5*10^9 * 2^((x-1900)/50), from=1900, to=2000, lwd=3,
+      xlab="Year", ylab="Population Size")
+
+# draw the same line again, but now in the A*exp(b*x) form
+curve(1.5*10^9 * exp(log(2)/50 * (x-1900)), from=1900, to=2000, lwd=3,
+      xlab="Year", ylab="Population Size", add=TRUE, col="red")
