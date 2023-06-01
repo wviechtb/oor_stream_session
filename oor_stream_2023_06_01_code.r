@@ -217,4 +217,4 @@ pos <- c(0.01,0.1,1,10,100,1000,10000)
 axis(side=1, at=log(pos), label=pos)
 pos <- c(0.1,1,10,100,1000)
 axis(side=2, at=log(pos), label=pos, las=2)
-round(exp(dat$bm), 2)
+
