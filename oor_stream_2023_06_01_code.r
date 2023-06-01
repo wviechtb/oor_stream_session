@@ -141,7 +141,8 @@ curve(1.5*10^9 * 2^((x-1900)/50), from=1900, to=2000, lwd=3,
 curve(1.5*10^9 * exp(log(2)/50 * (x-1900)), from=1900, to=2000, lwd=3,
       xlab="Year", ylab="Population Size", add=TRUE, col="red")
 
-
+# let's see what is really going in the world; let's get the data from Wikipedia
+# https://en.wikipedia.org/wiki/World_population#Annual_population_growth
 
 1951  2584034261
 1952  2630861562
