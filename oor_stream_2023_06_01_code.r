@@ -28,3 +28,9 @@ weighted.mean(mean.age, pop.size)
 # the weights that are used are for computing the weighted average
 pop.size / sum(pop.size)
 
+# another example: prevalence of hypertension in the US, Mexico, and Canada
+# (based on some very quick googling)
+prevalence <- c(0.47, 0.18, 0.25)
+weighted.mean(prevalence, pop.size)
+
+# so among all 456 million people in North America, about 38% have hypertension
