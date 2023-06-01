@@ -162,3 +162,13 @@ plot(size ~ year, data=dat, pch=21, bg="gray", type="o", lty="dotted")
 # if there is exponential growth, then the relationship between log(size) and
 # year should be roughly linear and that is indeed the case
 plot(log(size) ~ year, data=dat, pch=21, bg="gray", type="o", lty="dotted")
+
+# fit the regression model (on the log scale)
+res <- lm(log(size) ~ year, data=dat)
+summary(res)
+
+# the increase in popoulation size per 10-year increase
+exp(1.882e-02 * 10)
+
+# so we see that between 1951 and 1970, the world population increased by a
+# factor of 1.21 (or 21%) every 10 years
