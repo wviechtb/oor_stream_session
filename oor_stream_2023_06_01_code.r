@@ -72,8 +72,12 @@ newdat <- data.frame(growth=-1:4)
 cbind(newdat, pred=predict(res, newdata=newdat))
 
 # create the X matrix
-X <- cbind(intercept=1, newdat)
+X <- as.matrix(cbind(intercept=1, newdat))
 X
 
-b <- coef(res)
+# create the column vector with the regression coefficients
+b <- cbind(coef(res))
+b
+
+# multiply to get the predicted values manually
 X %*% b
