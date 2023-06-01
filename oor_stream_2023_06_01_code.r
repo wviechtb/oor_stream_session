@@ -256,3 +256,8 @@ pred <- predict(res, newdata=newdat)
 # add the line for the relationship between bm and rate to the plot
 lines(newdat$bm, exp(pred), lwd=3)
 
+# to express the model results in terms of y (i.e., the rate) directly, we
+# exponentiate the intercept estimate
+exp(coef(res)[1])
+
+# and then we can write: rate = 3.23 * bm^0.76
