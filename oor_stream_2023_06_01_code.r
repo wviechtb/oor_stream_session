@@ -57,3 +57,6 @@ round(coef(res), 1)
 # that was fitted in chapter 1; here, let's stick to the non-Bayesian results
 
 # so, the model says: predicted vote = 46.2 + 3.1 * growth
+
+# predicted vote when growth is equal to -1
+predict(res, newdata=data.frame(growth=-1))
