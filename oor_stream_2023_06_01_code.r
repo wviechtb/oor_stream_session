@@ -108,3 +108,9 @@ dat
 res <- lm(seconds ~ year.month, data=dat)
 summary(res)
 
+# create a scatterplot of the data
+plot(seconds ~ year.month, data=dat, xlim=c(1900,2000), ylim=c(215,265),
+     pch=21, bg="gray", xlab="Year", ylab="Time (seconds)", type="o", lty="dotted")
+
+# add the regression line from the model to the figure
+abline(res, lwd=3)
