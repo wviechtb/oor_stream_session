@@ -34,3 +34,5 @@ prevalence <- c(0.47, 0.18, 0.25)
 weighted.mean(prevalence, pop.size)
 
 # so among all 456 million people in North America, about 38% have hypertension
+
+### 3.2: Vectors and matrices
