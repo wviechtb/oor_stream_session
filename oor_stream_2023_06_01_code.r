@@ -212,9 +212,13 @@ dat$names[c(1,22,28)] <- c("Mouse", "Man", "Elephant")
 
 # Figure 3.4
 plot(dat$bm, dat$rate, pch=19, xaxt="n", yaxt="n", bty="l",
-     xlim=log(c(0.01,10000)), ylim=log(c(0.1,1000)))
+     xlim=log(c(0.01,10000)), ylim=log(c(0.1,2000)),
+     xlab="Body mass (kg)", ylab="Metabolic rate (watts)")
 pos <- c(0.01,0.1,1,10,100,1000,10000)
 axis(side=1, at=log(pos), label=pos)
 pos <- c(0.1,1,10,100,1000)
 axis(side=2, at=log(pos), label=pos, las=2)
 
+text(dat$bm[1], dat$rate[1], dat$name[1], pos=1)
+text(dat$bm[22], dat$rate[22], dat$name[22], pos=3)
+text(dat$bm[28], dat$rate[28], dat$name[28], pos=2)
