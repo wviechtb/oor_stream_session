@@ -248,3 +248,8 @@ text(dat$bm[1],  dat$rate[1],  dat$name[1],  pos=4)
 text(dat$bm[22], dat$rate[22], dat$name[22], pos=2)
 text(dat$bm[28], dat$rate[28], dat$name[28], pos=2)
 
+# compute the predicted log(rate) as a function of log(bm) for all values of
+# bm between 1 and 4000
+newdat <- data.frame(bm=1:4000)
+pred <- predict(res, newdata=newdat)
+
