@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 3.1 - ?
+# - Section(s): 3.1 - 3.4
 #
 # last updated: 2023-06-01
 
@@ -261,3 +261,5 @@ lines(newdat$bm, exp(pred), lwd=3)
 exp(coef(res)[1])
 
 # and then we can write: rate = 3.23 * bm^0.76
+
+############################################################################
