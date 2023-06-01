@@ -206,6 +206,15 @@ dat <- structure(list(bm = c(-3.86, -3.8, -1.22, -0.85, -0.83, -0.32, 1.04,
 3.29, 3.68, 3.94, 4.06, 4.14, 4.41, 4.73, 5.6, 5.67, 6, 6.33, 7.65)),
 row.names = c(NA, -28L), class = "data.frame")
 
-plot(dat$bm, dat$rate, pch=19)
+# add the names for three of the species
+dat$names <- NA
+dat$names[c(1,22,28)] <- c("Mouse", "Man", "Elephant")
 
+# Figure 3.4
+plot(dat$bm, dat$rate, pch=19, xaxt="n", yaxt="n", bty="l",
+     xlim=log(c(0.01,10000)), ylim=log(c(0.1,1000)))
+pos <- c(0.01,0.1,1,10,100,1000,10000)
+axis(side=1, at=log(pos), label=pos)
+pos <- c(0.1,1,10,100,1000)
+axis(side=2, at=log(pos), label=pos, las=2)
 round(exp(dat$bm), 2)
