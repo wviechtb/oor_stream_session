@@ -88,3 +88,23 @@ X %*% b
 
 ### 3.3: Graphing a line
 
+# download the dataset corresponding to the example
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile2.txt", destfile="mile2.txt")
+
+# read in the data
+dat <- read.table("mile2.txt", header=TRUE)
+dat
+
+# create a variable that combines year and month (as a fraction of 12 months)
+dat$year.month <- with(dat, yr + month / 12)
+
+# create a variable that combines the min and sec variable into total seconds
+dat$seconds <- with(dat, min*60 + sec)
+
+# inspect the dataset
+dat
+
+# fit a regression model predicting seconds from year.month
+res <- lm(seconds ~ year.month, data=dat)
+summary(res)
+
