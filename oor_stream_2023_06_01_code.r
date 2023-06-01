@@ -36,3 +36,6 @@ weighted.mean(prevalence, pop.size)
 # so among all 456 million people in North America, about 38% have hypertension
 
 ### 3.2: Vectors and matrices
+
+# download the dataset for this example from the book website
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
