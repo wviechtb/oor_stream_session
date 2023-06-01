@@ -118,3 +118,7 @@ text(1950, 242, pos=4, expression(y == 1007 - 0.393*x))
 
 # add the regression line from the model to the figure
 abline(res, lwd=3)
+
+# predict the world record in 2005 based on the model (note: this is
+# extrapolation beyond the range of the data)
+predict(res, newdata=data.frame(year.month=2005))
