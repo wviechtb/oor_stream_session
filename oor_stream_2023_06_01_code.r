@@ -253,3 +253,5 @@ text(dat$bm[28], dat$rate[28], dat$name[28], pos=2)
 newdat <- data.frame(bm=1:4000)
 pred <- predict(res, newdata=newdat)
 
+# add the line for the relationship between bm and rate to the plot
+lines(newdat$bm, exp(pred), lwd=3)
