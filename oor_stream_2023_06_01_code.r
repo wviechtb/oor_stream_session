@@ -222,3 +222,9 @@ text(log(dat$bm)[1],  log(dat$rate)[1],  dat$name[1],  pos=1)
 text(log(dat$bm)[22], log(dat$rate)[22], dat$name[22], pos=3)
 text(log(dat$bm)[28], log(dat$rate)[28], dat$name[28], pos=2)
 
+# fit the log-log regression model
+res <- lm(log(rate) ~ log(bm), data=dat)
+summary(res)
+
+# add the regression line to the plot
+abline(res, lwd=3)
