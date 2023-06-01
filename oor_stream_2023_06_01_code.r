@@ -25,5 +25,5 @@ pop.size <- c(310000000, 112000000, 34000000)
 # use weighted.mean() to obtain the weighted average
 weighted.mean(mean.age, pop.size)
 
-# the weights that are used are
+# the weights that are used are for computing the weighted average
 pop.size / sum(pop.size)
