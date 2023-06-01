@@ -127,3 +127,8 @@ res <- lm(seconds ~ I(year.month-1900), data=dat)
 summary(res)
 
 # now the intercept refers to the predicted time in 1900
+
+############################################################################
+
+### 3.4: Exponential and power-law growth and decline;
+###      logarithmic and log-log relationships
