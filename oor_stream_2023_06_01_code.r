@@ -121,3 +121,9 @@ text(1950, 242, pos=4, expression(y == 1007 - 0.393*x))
 
 # add the regression line from the model to the figure
 abline(res, lwd=3)
+
+# center year.month at 1900 to make the intercept more meaningful
+res <- lm(seconds ~ I(year.month-1900), data=dat)
+summary(res)
+
+# now the intercept refers to the predicted time in 1900
