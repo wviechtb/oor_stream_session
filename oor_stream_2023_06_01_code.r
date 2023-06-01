@@ -199,21 +199,21 @@ exp(1.882e-02 * 10)
 # (size | year+1) / (size | year) = exp(b)
 
 # data for Figure 3.4 (both variable in log units)
-dat <- structure(list(bm = c(-3.86, -3.8, -1.22, -0.85, -0.83, -0.32, 1.04,
-0.81, 1.01, 1.15, 1.08, 1.15, 1.52, 1.66, 2.41, 2.72, 2.99, 3.67, 3.68, 3.87,
-4.13, 4.22, 4.91, 5.51, 6.2, 6.22, 6.42, 8.22 ), rate = c(-1.77, -1.22, 0.34,
-0.48, 0.69, 0.86, 1.34, 1.8, 1.79, 1.87, 2.02, 2.18, 2.39, 2.64, 2.88, 3.17,
-3.29, 3.68, 3.94, 4.06, 4.14, 4.41, 4.73, 5.6, 5.67, 6, 6.33, 7.65)),
+dat <- structure(list(bm = c(0.0211, 0.0224, 0.2952, 0.4274, 0.436, 0.7261,
+2.8292, 2.2479, 2.7456, 3.1582, 2.9447, 3.1582, 4.5722, 5.2593, 11.134,
+15.1803, 19.8857, 39.2519, 39.6464, 47.9424, 62.1779, 68.0335, 135.6394,
+247.1511, 492.749, 502.7032, 614.0031, 3714.5024), rate = c(0.1703, 0.2952,
+1.4049, 1.6161, 1.9937, 2.3632, 3.819, 6.0496, 5.9895, 6.4883, 7.5383, 8.8463,
+10.9135, 14.0132, 17.8143, 23.8075, 26.8429, 39.6464, 51.4186, 57.9743,
+62.8028, 82.2695, 113.2956, 270.4264, 290.0345, 403.4288, 561.1566,
+2100.6456), names = c("Mouse", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+NA, NA, NA, NA, NA, NA, NA, NA, "Man", NA, NA, NA, NA, NA, "Elephant")),
 row.names = c(NA, -28L), class = "data.frame")
 
-# add the names for three of the species
-dat$names <- NA
-dat$names[c(1,22,28)] <- c("Mouse", "Man", "Elephant")
-
 # Figure 3.4
-plot(dat$bm, dat$rate, pch=19, xaxt="n", yaxt="n", bty="l",
+plot(log(dat$bm), log(dat$rate), pch=19, xaxt="n", yaxt="n", bty="l",
      xlim=log(c(0.01,10000)), ylim=log(c(0.1,2000)),
-     xlab="Body mass (kg)", ylab="Metabolic rate (watts)")
+     xlab="Body mass (kg)", ylab="Metabolic rate (watt)")
 pos <- c(0.01,0.1,1,10,100,1000,10000)
 axis(side=1, at=log(pos), label=pos)
 pos <- c(0.1,1,10,100,1000)
