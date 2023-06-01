@@ -167,9 +167,17 @@ plot(log(size) ~ year, data=dat, pch=21, bg="gray", type="o", lty="dotted")
 res <- lm(log(size) ~ year, data=dat)
 summary(res)
 
+# the increase in popoulation size per 1-year increase
+exp(1.882e-02)
+
+# so we see that between 1951 and 1970, the world population increased by a
+# factor of 1.02 (or roughly 2%) every year
+
 # the increase in popoulation size per 10-year increase
 exp(1.882e-02 * 10)
 
 # so we see that between 1951 and 1970, the world population increased by a
 # factor of 1.21 (or 21%) every 10 years
 
+# to see why exp(b) gives the factor by which the population size increases for a one
+# log(size) = a + b*year
