@@ -176,8 +176,7 @@ exp(1.882e-02)
 # the increase in popoulation size per 10-year increase
 exp(1.882e-02 * 10)
 
-# so we see that between 1951 and 1970, the world population increased by a
-# factor of 1.21 (or 21%) every 10 years
+# for every 10 years, the population size increased by a factor of 1.21 (or 21%)
 
 # to see why exp(b) gives the factor by which the population size increases for a one
 # log(size) = a + b*year
