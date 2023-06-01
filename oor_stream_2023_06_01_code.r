@@ -43,9 +43,17 @@ download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/El
 # read in the data
 dat <- read.table("hibbs.dat", header=TRUE)
 
+# inspect the dataset
+dat
+
 # fit a regression model predicting the vote variable from the growth variable
 res <- lm(vote ~ growth, data=dat)
 summary(res)
 
+# show only the regression coefficients rounded to one decimal place
+round(coef(res), 1)
+
 # note: in the book, the coefficients shown are based on the Bayesian model
 # that was fitted in chapter 1; here, let's stick to the non-Bayesian results
+
+# so, the model says: predicted vote = 46.2 + 3.1 * growth
