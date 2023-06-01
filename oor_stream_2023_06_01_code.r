@@ -113,5 +113,8 @@ plot(seconds ~ year.month, data=dat, xlim=c(1900,2000), ylim=c(215,265),
      xaxs="i", bty="l", pch=21, bg="gray", type="o", lty="dotted",
      xlab="Year", ylab="Time (seconds)")
 
+# add the equation for the line
+text(1950, 242, pos=4, "y = 1007 - 0.393x")
+
 # add the regression line from the model to the figure
 abline(res, lwd=3)
