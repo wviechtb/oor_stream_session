@@ -198,7 +198,7 @@ exp(1.882e-02 * 10)
 #
 # (size | year+1) / (size | year) = exp(b)
 
-# data for Figure 3.4 (both variable in log units)
+# data for Figure 3.4
 dat <- structure(list(bm = c(0.0211, 0.0224, 0.2952, 0.4274, 0.436, 0.7261,
 2.8292, 2.2479, 2.7456, 3.1582, 2.9447, 3.1582, 4.5722, 5.2593, 11.134,
 15.1803, 19.8857, 39.2519, 39.6464, 47.9424, 62.1779, 68.0335, 135.6394,
@@ -219,6 +219,6 @@ axis(side=1, at=log(pos), label=pos)
 pos <- c(0.1,1,10,100,1000)
 axis(side=2, at=log(pos), label=pos, las=2)
 
-text(dat$bm[1], dat$rate[1], dat$name[1], pos=1)
-text(dat$bm[22], dat$rate[22], dat$name[22], pos=3)
-text(dat$bm[28], dat$rate[28], dat$name[28], pos=2)
+text(log(dat$bm)[1],  log(dat$rate)[1],  dat$name[1],  pos=1)
+text(log(dat$bm)[22], log(dat$rate)[22], dat$name[22], pos=3)
+text(log(dat$bm)[28], log(dat$rate)[28], dat$name[28], pos=2)
