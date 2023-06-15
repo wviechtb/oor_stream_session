@@ -53,5 +53,15 @@ Lst$x
 # which contain a single component, namely the first component
 Lst[1]
 
-# this will return a list with components 1 and 3 from 'Lst'
+# why does this distinction matter? for example, we can take the mean of a
+# numeric vector, but we cannot take the mean of a list (even if that list
+# only has a single component)
+mean(Lst[["child.ages"]])
+
+# so this does not work (trying to take the mean of a list)
+mean(Lst["child.ages"])
+
+# accordingly, [] notation allows extracting multiple list elements from a
+# list; for example, this will return a list with components 1 and 3 from 'Lst'
 Lst[c(1,3)]
+
