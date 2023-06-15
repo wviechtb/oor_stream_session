@@ -33,3 +33,10 @@ length(Lst)
 # if components have names, can use those to select components
 Lst[["no.children"]]
 Lst$no.children
+
+# sidenote: with $, we can abbreviate component names, but this does not work
+# with the [["component_name"]] notation
+Lst$no.c
+Lst[["no.c"]]
+
+# NULL means that there is no list element of that name
