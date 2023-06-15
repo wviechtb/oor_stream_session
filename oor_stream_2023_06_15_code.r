@@ -172,5 +172,10 @@ dat[,2,drop=FALSE]
 # this will give an error, because R does not find 'age' in 'dat'
 age
 
+# as shown above, we can use $ notation to access variables within data frames
+dat$age
+
+
+
 ############################################################################
 
