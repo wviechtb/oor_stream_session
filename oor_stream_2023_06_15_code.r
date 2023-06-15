@@ -264,7 +264,15 @@ dat
 ysum <- with(dat, y1 + y2 + y3)
 
 # now there is a ysum vector floating around in the workspace that is
-# independent from the data frame, which can easily lead to errors
+# independent from the data frame, which can easily lead to errors; for
+# example, if we remove some cases from 'dat', then this has no affect on ysum
+dat <- dat[dat$sex == "Male",]
+dat
+ysum
+
+## 6.3.4: Attaching arbitrary lists
+
+
 
 ############################################################################
 
