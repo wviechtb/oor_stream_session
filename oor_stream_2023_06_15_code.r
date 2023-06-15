@@ -68,3 +68,11 @@ Lst[c("name", "no.children")]
 
 # analogously, [[]] notation cannot be used extract multiple list elements
 Lst[[c(3,4)]]
+
+# an example of a list that does not have component names
+z <- list(c(1,4,6), "Chicken", diag(4))
+z
+
+# can also have list where some components have names while others do not
+z <- list(c(1,4,6), animal="Chicken", diag(4))
+z
