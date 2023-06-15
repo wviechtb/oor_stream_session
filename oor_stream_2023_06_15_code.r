@@ -41,3 +41,6 @@ Lst[["no.c"]]
 
 # NULL means that there is no list element of that name
 
+# the [[""]] notation also allows us to use variables for the variable names
+x <- "name"
+Lst[[x]]
