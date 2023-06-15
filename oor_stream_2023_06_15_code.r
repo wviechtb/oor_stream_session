@@ -169,5 +169,8 @@ dat[,2,drop=FALSE]
 
 ## 6.3.2: attach() and detach()
 
+# this will give an error, because R does not find 'age' in 'dat'
+age
+
 ############################################################################
 
