@@ -117,3 +117,5 @@ dat
 
 ##  6.2.1 Concatenating lists
 
+# combine/concatenate a bunch of lists into a new list
+c(Lst, z, dat)
