@@ -104,4 +104,6 @@ age <- c(32, 26, 18)
 dat
 
 # add a fifth element to the list
-dat[5] <- list(c(7,3,5))
+dat[[5]] <- c(7,3,5)
+dat
+
