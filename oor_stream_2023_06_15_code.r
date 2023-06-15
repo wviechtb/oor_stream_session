@@ -251,8 +251,13 @@ dat$ysum <- NULL
 # lead to errors; this is why some people discourage the use of attach()
 
 # instead of using attach(), we can use with()
+dat$ysum <- with(dat, y1 + y2 + y3)
+dat
 
+## 6.3.3: Working with data frames
 
+# given that this is suggesting using attach(), I would say we can skip this
+# advice
 
 ############################################################################
 
