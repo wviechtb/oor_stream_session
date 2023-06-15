@@ -187,5 +187,11 @@ searchpaths()
 # now we can refer to elements from 'dat' directly
 age
 
+# remove 'dat' from the search paths
+detach(dat)
+
+# check what the search paths are
+searchpaths()
+
 ############################################################################
 
