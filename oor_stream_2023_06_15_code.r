@@ -225,14 +225,13 @@ dat
 ls()
 ysum
 
-# then we might try this
+# have to still tell R that we want ysum to be a new variable inside dat
 rm(ysum)
 attach(dat)
 dat$ysum <- y1 + y2 + y3
 detach(dat)
 dat
 
-# that works
 
 ############################################################################
 
