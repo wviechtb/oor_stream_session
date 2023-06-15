@@ -119,3 +119,11 @@ dat
 
 # combine/concatenate a bunch of lists into a new list
 c(Lst, z, dat)
+
+############################################################################
+
+### 6.3 Data frames
+
+# combine the 4 variables created earlier into a data frame
+dat <- data.frame(id, age, sex, grp)
+dat
