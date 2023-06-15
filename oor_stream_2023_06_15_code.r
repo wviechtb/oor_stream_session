@@ -243,9 +243,14 @@ dat$ysum <- y1 + y2 + y3
 detach(dat)
 dat
 
+# remove ysum from 'dat' again
+dat$ysum <- NULL
+
 # as we can see, the sum was created based on y1 from the workspace (the
 # 'global environment') and y2 and y3 from 'dat'; this can be confusing and
-# lead to errors
+# lead to errors; this is why some people discourage the use of attach()
+
+# instead of using attach(), we can use with()
 
 
 
