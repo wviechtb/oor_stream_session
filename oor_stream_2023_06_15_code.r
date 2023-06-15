@@ -128,6 +128,12 @@ c(Lst, z, dat)
 dat <- data.frame(id, age, sex, grp)
 dat
 
+# data frames are of class 'data.frame'
+class(dat)
+
+# internally, data frames are stored as lists; we can see this if unclass 'dat'
+unclass(dat)
+
 # can index rows and columns using [] notation
 
 # give me the first row from dat
@@ -141,6 +147,12 @@ dat[,2]
 
 # can also refer to columns by their variable names
 dat[,"age"]
+
+# since data frames are lists, we can also use [[]] and $ and [] notation
+dat[["age"]]
+dat$age
+dat["age"]
+dat[c("age","grp")]
 
 # note: this is returning the second column from dat as a vector
 
