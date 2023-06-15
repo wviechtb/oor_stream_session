@@ -82,3 +82,26 @@ z
 # instruct R to give us a warning whenever abbreviated component names are used
 options(warnPartialMatchDollar=TRUE)
 Lst$child
+
+# get the attributes of 'Lst' (which here includes the component names)
+attributes(Lst)
+
+############################################################################
+
+### 6.2: Constructing and modifying lists
+
+# an example showing how to create a list from existing objects
+id  <- c("Bob", "Sue", "John")
+age <- c(25, 21, 30)
+sex <- c("Male", "Female", "Male")
+grp <- c("Trt", "Trt", "Ctrl")
+dat <- list(id, age, sex, grp)
+dat
+
+# the objects that are put into the list are copied, so changing one of the
+# original objects does not affect the list
+age <- c(32, 26, 18)
+dat
+
+# add a fifth element to the list
+dat[5] <- list(c(7,3,5))
