@@ -107,3 +107,10 @@ dat
 dat[[5]] <- c(7,3,5)
 dat
 
+# can also use the component name between [[]]
+dat[["whatever"]] <- c(1,4,2)
+dat
+
+# or again use $ notation
+dat$blah <- c(4,1,5)
+dat
