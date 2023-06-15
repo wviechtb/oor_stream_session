@@ -178,8 +178,11 @@ dat$age
 # the 'search paths' are the locations where R looks for things
 searchpaths()
 
-# attach 'dat' to the 'search path'
+# attach 'dat' to the search paths
 attach(dat)
+
+# object 'dat' is now part of where R looks for things
+searchpaths()
 
 # now we can refer to elements from 'dat' directly
 age
