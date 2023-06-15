@@ -114,3 +114,6 @@ dat
 # or again use $ notation
 dat$blah <- c(4,1,5)
 dat
+
+##  6.2.1 Concatenating lists
+
