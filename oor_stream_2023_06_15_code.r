@@ -202,5 +202,10 @@ dat
 # compute the sum score of variables y1, y2, y3
 dat$y1 + dat$y2 + dat$y3
 
+# could use attach() to make this computation more convenient
+attach(dat)
+y1 + y2 + y3
+
+
 ############################################################################
 
