@@ -244,7 +244,9 @@ detach(dat)
 dat
 
 # as we can see, the sum was created based on y1 from the workspace (the
-# 'global environment') and y2 and y3 from 'dat'
+# 'global environment') and y2 and y3 from 'dat'; this can be confusing and
+# lead to errors
+
 
 
 ############################################################################
