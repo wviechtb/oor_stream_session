@@ -127,3 +127,22 @@ c(Lst, z, dat)
 # combine the 4 variables created earlier into a data frame
 dat <- data.frame(id, age, sex, grp)
 dat
+
+# can index rows and columns using [] notation
+
+# give me the first row from dat
+dat[1,]
+
+# give me rows 1 and 3 from dat
+dat[c(1,3),]
+
+# give me the second column from dat
+dat[,2]
+
+# note: this is returning the second column from dat as a vector
+
+# give me columns 2 and 4 from dat
+dat[,c(2,4)]
+
+# with drop=FALSE, a single column from dat stays a data frame
+dat[,2,drop=FALSE]
