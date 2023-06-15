@@ -64,4 +64,7 @@ mean(Lst["child.ages"])
 # accordingly, [] notation allows extracting multiple list elements from a
 # list; for example, this will return a list with components 1 and 3 from 'Lst'
 Lst[c(1,3)]
+Lst[c("name", "no.children")]
 
+# analogously, [[]] notation cannot be used extract multiple list elements
+Lst[[c(3,4)]]
