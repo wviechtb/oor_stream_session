@@ -272,6 +272,8 @@ ysum
 
 ## 6.3.4: Attaching arbitrary lists
 
+# again, do NOT use attach()
+
 
 
 ############################################################################
