@@ -130,6 +130,9 @@ c(Lst, z, dat)
 dat <- data.frame(id, age, sex, grp)
 dat
 
+# remove the original vector objects
+rm(id, age, sex, grp)
+
 # data frames are of class 'data.frame'
 class(dat)
 
