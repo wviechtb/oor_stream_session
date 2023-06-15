@@ -139,6 +139,9 @@ dat[c(1,3),]
 # give me the second column from dat
 dat[,2]
 
+# can also refer to columns by their variable names
+dat[,"age"]
+
 # note: this is returning the second column from dat as a vector
 
 # give me columns 2 and 4 from dat
@@ -146,3 +149,5 @@ dat[,c(2,4)]
 
 # with drop=FALSE, a single column from dat stays a data frame
 dat[,2,drop=FALSE]
+
+
