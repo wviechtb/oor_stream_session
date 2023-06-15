@@ -218,6 +218,21 @@ dat$ysum <- NULL
 attach(dat)
 ysum <- y1 + y2 + y3
 detach(dat)
+dat
+
+# uhm, where is ysum?!? what we have done is create a vector called 'ysum' in
+# our workspace, but it is not part of 'dat'
+ls()
+ysum
+
+# then we might try this
+rm(ysum)
+attach(dat)
+dat$ysum <- y1 + y2 + y3
+detach(dat)
+dat
+
+# that works
 
 ############################################################################
 
