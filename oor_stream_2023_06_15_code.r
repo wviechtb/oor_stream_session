@@ -29,3 +29,7 @@ Lst[[4]][1]
 
 # the length of a list is the number of components
 length(Lst)
+
+# if components have names, can use those to select components
+Lst[["no.children"]]
+Lst$no.children
