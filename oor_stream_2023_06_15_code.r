@@ -232,6 +232,12 @@ dat$ysum <- y1 + y2 + y3
 detach(dat)
 dat
 
+# while using attach() can be convenient, it can also be confusing; say we
+# have an object in our workspace called y1 (in addition to a variable called
+# y1 inside of dat)
+y1 <- c(100, 200, 500)
+
+
 
 ############################################################################
 
