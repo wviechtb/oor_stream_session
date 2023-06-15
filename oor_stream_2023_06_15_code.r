@@ -272,9 +272,9 @@ ysum
 
 ## 6.3.4: Attaching arbitrary lists
 
-# again, do NOT use attach()
+# again, do NOT use attach() (unless you know exactly what you are doing)
 
-
+## 6.3.5: Managing the search path
 
 ############################################################################
 
