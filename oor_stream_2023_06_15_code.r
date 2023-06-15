@@ -48,3 +48,10 @@ Lst[[x]]
 # with $ notation, this is not possible; this will try to get the list element
 # called 'x' (and not use what is stored in 'x' as component name)
 Lst$x
+
+# we can also use [] on lists; for example, the following will return a list
+# which contain a single component, namely the first component
+Lst[1]
+
+# this will return a list with components 1 and 3 from 'Lst'
+Lst[c(1,3)]
