@@ -76,3 +76,10 @@ z
 # can also have list where some components have names while others do not
 z <- list(c(1,4,6), animal="Chicken", diag(4))
 z
+
+# sidenote: while using abbreviate component names with the $ notation seems
+# convenient, it is also a potential source of errors or confusion; we can
+# instruct R to give us a warning whenever abbreviated component names are
+# used
+options(warnPartialMatchDollar=TRUE)
+Lst$child
