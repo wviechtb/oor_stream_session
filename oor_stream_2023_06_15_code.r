@@ -122,7 +122,9 @@ c(Lst, z, dat)
 
 ############################################################################
 
-### 6.3 Data frames
+### 6.3: Data frames
+
+## 6.3.1: Making data frames
 
 # combine the 4 variables created earlier into a data frame
 dat <- data.frame(id, age, sex, grp)
@@ -162,4 +164,7 @@ dat[,c(2,4)]
 # with drop=FALSE, a single column from dat stays a data frame
 dat[,2,drop=FALSE]
 
+## 6.3.2: attach() and detach()
+
+############################################################################
 
