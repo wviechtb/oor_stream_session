@@ -193,5 +193,14 @@ detach(dat)
 # check what the search paths are
 searchpaths()
 
+# add a few more variables to dat
+dat$y1 <- c(2,5,5)
+dat$y2 <- c(3,2,4)
+dat$y3 <- c(5,4,6)
+dat
+
+# compute the sum score of variables y1, y2, y3
+dat$y1 + dat$y2 + dat$y3
+
 ############################################################################
 
