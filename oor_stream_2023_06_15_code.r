@@ -205,7 +205,19 @@ dat$y1 + dat$y2 + dat$y3
 # could use attach() to make this computation more convenient
 attach(dat)
 y1 + y2 + y3
+detach(dat)
 
+# add this sum score as a new variable to the dataset
+dat$ysum <- dat$y1 + dat$y2 + dat$y3
+dat
+
+# now do the same thing using the attach() workflow
+dat$ysum <- NULL
+
+# might try this
+attach(dat)
+ysum <- y1 + y2 + y3
+detach(dat)
 
 ############################################################################
 
