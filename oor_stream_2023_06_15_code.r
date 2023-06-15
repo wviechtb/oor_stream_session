@@ -237,6 +237,14 @@ dat
 # y1 inside of dat)
 y1 <- c(100, 200, 500)
 
+# now attach 'dat' and compute the sum of y1, y2, y3
+attach(dat)
+dat$ysum <- y1 + y2 + y3
+detach(dat)
+dat
+
+# as we can see, the sum was created based on y1 from the workspace (the
+# 'global environment') and y2 and y3 from 'dat'
 
 
 ############################################################################
