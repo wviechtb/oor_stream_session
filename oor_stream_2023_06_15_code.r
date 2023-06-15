@@ -256,8 +256,15 @@ dat
 
 ## 6.3.3: Working with data frames
 
-# given that this is suggesting using attach(), I would say we can skip this
-# advice
+# this is suggesting using attach(), so I would say we can skip this advice
+
+# one piece of advice though: when creating new variables (e.g., like a sum
+# score as shown above), make sure to add the variable to the data frame and
+# not put it into your global environment; in other words, do not do this
+ysum <- with(dat, y1 + y2 + y3)
+
+# now there is a ysum vector floating around in the workspace that is
+# independent from the data frame, which can easily lead to errors
 
 ############################################################################
 
