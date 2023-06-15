@@ -44,3 +44,7 @@ Lst[["no.c"]]
 # the [[""]] notation also allows us to use variables for the variable names
 x <- "name"
 Lst[[x]]
+
+# with $ notation, this is not possible; this will try to get the list element
+# called 'x' (and not use what is stored in 'x' as component name)
+Lst$x
