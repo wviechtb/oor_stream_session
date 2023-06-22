@@ -87,5 +87,13 @@ xs <- seq(60, 80, length=1000)
 ys <- dnorm(xs, mean=69.1, sd=2.9)
 lines(xs, ys, lwd=3, col="dodgerblue")
 abline(v=69.1, lty="dotted")
+legend("topright", inset=.02, col=c("firebrick","dodgerblue"), lty=1,
+       legend=c("women","men"), lwd=3)
 
+# draw the density for the 50/50 mixture of the two distributions
+xs <- seq(55, 80, length=1000)
+ys.w <- dnorm(xs, mean=63.7, sd=2.7)
+ys.m <- dnorm(xs, mean=69.1, sd=2.9)
+ys <- 0.5 * ys.w + 0.5 * ys.m
+plot(xs, ys, type="l", xlab="height (inches)", ylab="density", lwd=3)
 
