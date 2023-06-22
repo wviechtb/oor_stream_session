@@ -241,17 +241,17 @@ median(weight)
 # https://en.wikipedia.org/wiki/Binomial_distribution
 
 # simulate 1000000 values from a binomial distribution with n=20 and p=0.3
-hits <- rbinom(1000000, size=20, prob=0.3)
+baskets <- rbinom(1000000, size=20, prob=0.3)
 
 # create a frequency table of these values
-table(hits)
+table(baskets)
 
 # create a plot of the frequencies divided by 1000000
-plot(table(hits)/1000000, type="h", ylab="Probability", bty="l")
+plot(table(baskets)/1000000, type="h", ylab="Probability", bty="l")
 
-# mean and SD of the hits values
-mean(hits)
-sd(hits)
+# mean and SD of the baskets values
+mean(baskets)
+sd(baskets)
 
 # compare these to the formulas in the book
 20*0.3
