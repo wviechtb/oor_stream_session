@@ -46,7 +46,8 @@ hist(height, breaks=100)
 # the proportion of women in the sample who are 60 inches or shorter
 mean(height <= 60)
 
-# redraw the normal distribution and shade in more areas
+# redraw the normal distribution and shade in more areas (for 1, 2, and 3
+# standard deviations around the mean)
 xs <- seq(55, 74, length=1000)
 ys <- dnorm(xs, mean=63.7, sd=2.7)
 plot(xs, ys, type="l", xlab="height (inches)", ylab="density", lwd=3)
@@ -60,3 +61,12 @@ xs.sub <- seq(63.7-1*2.7, 63.7+1*2.7, length=1000)
 ys.sub <- dnorm(xs.sub, mean=63.7, sd=2.7)
 polygon(c(xs.sub,63.7+1*2.7,rev(xs.sub)), c(ys.sub,0,rep(0,1000)), col="gray90", border=NA)
 lines(xs, ys, lwd=3)
+
+# size of the area mu-sigma to mu+sigma (one SD below to one SD above the mean)
+pnorm(63.7+1*2.7, mean=63.7, sd=2.7) - pnorm(63.7-1*2.7, mean=63.7, sd=2.7)
+
+# so this is the probability of sampling a women from the distribution whose
+# height is between one SD below the mean to one SD above the mean
+
+# the proportion of women in the sample whose height falls within this range
+mean(height >= 63.7-1*2.7 & height <= 63.7+1*2.7)
