@@ -15,3 +15,12 @@
 
 ### 3.5: Probability distributions
 
+# draw a normal distribution with a mean of 63.7 and a standard deviation of 2.7
+xs <- seq(55, 74, length=1000)
+ys <- dnorm(xs, mean=63.7, sd=2.7)
+plot(xs, ys, type="l", xlab="height (inches)", ylab="density", lwd=3)
+abline(v=63.7, lty="dotted")
+
+# shade in the area of the distribution
+
+height <-
