@@ -147,3 +147,10 @@ hist(height / 2.54)
 
 # simulate the difference of the mean height of 100 men and the mean height of 100 women
 mean(rnorm(100, mean=69.1, sd=2.9)) - mean(rnorm(100, mean=63.7, sd=2.7))
+
+# replicate this process 100000 times
+mdiff <- replicate(100000, mean(rnorm(100, mean=69.1, sd=2.9)) -
+                           mean(rnorm(100, mean=63.7, sd=2.7)))
+
+# histogram of the resulting values
+hist(mdiff, breaks=100)
