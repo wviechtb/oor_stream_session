@@ -15,6 +15,8 @@
 
 ### 3.5: Probability distributions
 
+## Normal distribution; mean and standard deviation
+
 # draw a normal distribution with a mean of 63.7 and a standard deviation of 2.7
 xs <- seq(55, 74, length=1000)
 ys <- dnorm(xs, mean=63.7, sd=2.7)
@@ -136,3 +138,12 @@ sd(height)
 
 # and hence the SD of the height variable is the square root of that
 sqrt(350 * 0.25)
+
+## Linear transformations
+
+# transform the height in centimeters into the height in inches and draw the
+# histogram of these values (still a normal distribution)
+hist(height / 2.54)
+
+# simulate the difference of the mean height of 100 men and the mean height of 100 women
+mean(rnorm(100, mean=69.1, sd=2.9)) - mean(rnorm(100, mean=63.7, sd=2.7))
