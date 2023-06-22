@@ -198,3 +198,5 @@ mean(change)
 sd(change)
 sqrt(var(pretest) + var(posttest) - 2*cor(pretest, posttest)*sd(pretest)*sd(posttest))
 
+## Lognormal distribution
+
