@@ -256,3 +256,8 @@ sd(hits)
 # compare these to the formulas in the book
 20*0.3
 sqrt(20*0.3*(1-0.3))
+
+## Poisson distribution
+# https://en.wikipedia.org/wiki/Poisson_distribution
+
+
