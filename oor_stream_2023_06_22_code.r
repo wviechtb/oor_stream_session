@@ -193,3 +193,8 @@ change <- posttest - pretest
 # compute the difference between the means and the mean of the change scores
 mean(posttest) - mean(pretest)
 mean(change)
+
+# compute the SD of the change scores and compare this to the formula in the book
+sd(change)
+sqrt(var(pretest) + var(posttest) - 2*cor(pretest, posttest)*sd(pretest)*sd(posttest))
+
