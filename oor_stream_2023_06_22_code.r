@@ -176,5 +176,20 @@ abline(a=0, b=1)
 # correlation between the two variables
 cor(pretest, posttest)
 
-# compute the difference between the means
+# compute the sum of the two scores
+sumscore <- posttest + pretest
+
+# compute the sum of the means and the mean of the sum scores
+mean(pretest) + mean(posttest)
+mean(sumscore)
+
+# compute the SD of the sum scores and compare this to the formula in the book
+sd(sumscore)
+sqrt(var(pretest) + var(posttest) + 2*cor(pretest, posttest)*sd(pretest)*sd(posttest))
+
+# compute the change scores
+change <- posttest - pretest
+
+# compute the difference between the means and the mean of the change scores
 mean(posttest) - mean(pretest)
+mean(change)
