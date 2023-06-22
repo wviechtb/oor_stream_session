@@ -246,5 +246,13 @@ hits <- rbinom(1000000, size=20, prob=0.3)
 # create a frequency table of these values
 table(hits)
 
-# create a barplot of these frequencies
-barplot(table(hits))
+# create a plot of the frequencies divided by 1000000
+plot(table(hits)/1000000, type="h", ylab="Probability", bty="l")
+
+# mean and SD of the hits values
+mean(hits)
+sd(hits)
+
+# compare these to the formulas in the book
+20*0.3
+sqrt(20*0.3*(1-0.3))
