@@ -107,7 +107,7 @@ x350 <- sample(c(0,1), 100000, replace=TRUE)
 set.seed(1234)
 X <- replicate(350, sample(c(0,1), 100000, replace=TRUE))
 
-# X is a matrix with 1000000 rows and 350 columns; the columns are the 350
+# X is a matrix with 100000 rows and 350 columns; the columns are the 350
 # variables representing the presence/absence of genetics factors that
 # influence the height of a person
 
@@ -116,3 +116,8 @@ height <- rowSums(X)
 
 # draw a histogram of the resulting values for the 100000 people
 hist(height, breaks=100)
+
+# the mean, variance, and SD of the height values
+mean(height)
+var(height)
+sd(height)
