@@ -34,4 +34,8 @@ pnorm(60, mean=63.7, sd=2.7)
 # height is 60 inches or shorter
 
 # generate a random sample of the height of one million women from this distribution
+set.seed(1234)
 height <- rnorm(1000000, mean=63.7, sd=2.7)
+
+# the proportion of women in the sample who are 60 inches or shorter
+mean(height <= 60)
