@@ -232,3 +232,19 @@ sqrt((exp(var(logweight)) - 1) * exp(2*mean(logweight) + var(logweight)))
 # the median of the weight values
 exp(median(logweight))
 median(weight)
+
+# since mean(logweight) and median(logweight) are estimates of the same thing
+# (since the true mean and median under a normal distribution are identical),
+# exp(mean(logweight)) is actually an estimate of the median weight
+
+## Binomial distribution
+# https://en.wikipedia.org/wiki/Binomial_distribution
+
+# simulate 1000000 values from a binomial distribution with n=20 and p=0.3
+hits <- rbinom(1000000, size=20, prob=0.3)
+
+# create a frequency table of these values
+table(hits)
+
+# create a barplot of these frequencies
+barplot(table(hits))
