@@ -98,11 +98,21 @@ ys <- 0.5 * ys.w + 0.5 * ys.m
 plot(xs, ys, type="l", xlab="height (inches)", ylab="density", lwd=3)
 
 # to illustrate the CLT, let's consider ...
-x001 <- sample(c(0,1), 1000000, replace=TRUE)
-x002 <- sample(c(0,1), 1000000, replace=TRUE)
+x001 <- sample(c(0,1), 100000, replace=TRUE)
+x002 <- sample(c(0,1), 100000, replace=TRUE)
 # ...
-x100 <- sample(c(0,1), 1000000, replace=TRUE)
+x350 <- sample(c(0,1), 100000, replace=TRUE)
 
 # instead of doing the above a 100 times, we can use replicate()
-X <- replicate(100, sample(c(0,1), 1000000, replace=TRUE))
+set.seed(1234)
+X <- replicate(350, sample(c(0,1), 100000, replace=TRUE))
 
+# X is a matrix with 1000000 rows and 350 columns; the columns are the 350
+# variables representing the presence/absence of genetics factors that
+# influence the height of a person
+
+# take the sum across these 350 variables (the row sums)
+height <- rowSums(X)
+
+# draw a histogram of the resulting values for the 100000 people
+hist(height, breaks=100)
