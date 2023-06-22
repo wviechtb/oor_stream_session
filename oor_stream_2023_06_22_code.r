@@ -130,3 +130,9 @@ sd(height)
 
 # the variance of each of the variables in X is equal to 0.25
 ((0-0.5)^2 + (1-0.5)^2) / 2
+
+# the variance of the height variable then is 350 times this variance
+350 * 0.25
+
+# and hence the SD of the height variable is the square root of that
+sqrt(350 * 0.25)
