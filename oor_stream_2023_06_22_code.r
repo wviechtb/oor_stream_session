@@ -216,7 +216,7 @@ hist(weight, breaks=100)
 exp(mean(logweight))
 exp(sd(logweight))
 
-# mean and SD of the weight values
+# note: these are not the same as taking the mean and SD of the weight values
 mean(weight)
 sd(weight)
 
