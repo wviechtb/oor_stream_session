@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 3.5 -
+# - Section(s): 3.5
 #
 # last updated: 2023-06-22
 
@@ -315,3 +315,7 @@ plot(table(michaels)/1000000, type="h", ylab="Probability", bty="l")
 # so we see that the Poisson distribution and the binomial distribution can
 # look very similar to each other; this is not generally true, but will be
 # true when 'size' is at least 20 and 'prob' is <= 0.05
+
+## Comparing distributions
+
+############################################################################
