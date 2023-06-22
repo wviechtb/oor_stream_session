@@ -121,3 +121,8 @@ hist(height, breaks=100)
 mean(height)
 var(height)
 sd(height)
+
+# the mean of a variable that takes on with 50% change the value 1 and with
+# 50% change the value 0 is 0.5; therefore, the true mean of the height
+# variable we generated above must be 350 times this mean
+350 * 0.5
