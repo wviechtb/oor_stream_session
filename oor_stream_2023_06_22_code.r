@@ -7,9 +7,11 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 3.1 - 3.5
+# - Section(s): 3.5 -
 #
 # last updated: 2023-06-22
 
 ############################################################################
+
+### 3.5: Probability distributions
 
