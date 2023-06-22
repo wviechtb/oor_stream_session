@@ -284,4 +284,12 @@ mean(hits)
 var(hits)
 sd(hits)
 
-# the mean and SD of a Poisson random variable are equal to the rate parameter
+# the mean and variance of a Poisson random variable are equal to the rate parameter
+
+# simulate the number of cancer cases in a county of 100,000 people that are
+# followed for one year when the rate of the cancer is 45.2 per 1,000,000
+# person years and repeat this process 500,000 times
+cases <- rpois(500000, lambda=4.52)
+
+# create a plot of the frequencies divided by 500000
+plot(table(cases)/500000, type="h", ylab="Probability", bty="l")
