@@ -21,7 +21,7 @@ ys <- dnorm(xs, mean=63.7, sd=2.7)
 plot(xs, ys, type="l", xlab="height (inches)", ylab="density", lwd=3)
 abline(v=63.7, lty="dotted")
 
-# shade in the area of the distribution where height is 6 inches or below
+# shade in the area of the distribution where height is 60 inches or below
 xs <- seq(55, 60, length=1000)
 ys <- dnorm(xs, mean=63.7, sd=2.7)
 polygon(c(xs,60,rev(xs)), c(ys,0,rep(0,1000)), col="lightgray", border=NA)
@@ -33,5 +33,4 @@ pnorm(60, mean=63.7, sd=2.7)
 # this is the probability of sampling a woman from the distribution whose
 # height is 60 inches or shorter
 
-
-height <-
+height <- rnorm(
