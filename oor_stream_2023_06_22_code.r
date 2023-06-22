@@ -260,4 +260,21 @@ sqrt(20*0.3*(1-0.3))
 ## Poisson distribution
 # https://en.wikipedia.org/wiki/Poisson_distribution
 
+# simulate 100000 values from a Poisson distribution with rate equal to 380
+hits <- rpois(100000, lambda=380)
 
+# create a plot of the frequencies divided by 100000
+plot(table(hits)/100000, type="h", ylab="Probability", bty="l")
+
+# this looks very much like a normal distribution; this is not coincidence
+
+# the process of generating a Poisson random variable with rate parameter
+# equal to 380 is the same as generating 380 Poisson random variable with rate
+# parameter equal to 1 and summing up their values
+X <- replicate(380, rpois(100000, lambda=1))
+hits <- rowSums(X)
+plot(table(hits)/1000000, type="h", ylab="Probability", bty="l")
+
+# and as discussed above, the CLT then tells us that this variable (since it
+# is the sum of many independent random variables) should have a distribution
+# that is approximated by a normal distribution
