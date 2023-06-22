@@ -76,3 +76,16 @@ pnorm(63.7+2*2.7, mean=63.7, sd=2.7) - pnorm(63.7-2*2.7, mean=63.7, sd=2.7)
 
 # size of the area mu-3*sigma to mu+3*sigma (three SDs below to three SDs above the mean)
 pnorm(63.7+3*2.7, mean=63.7, sd=2.7) - pnorm(63.7-3*2.7, mean=63.7, sd=2.7)
+
+# draw the normal distributions for the women and men in the same plot
+xs <- seq(55, 74, length=1000)
+ys <- dnorm(xs, mean=63.7, sd=2.7)
+plot(xs, ys, type="l", xlab="height (inches)", ylab="density", lwd=3,
+     xlim=c(55,80), col="firebrick")
+abline(v=63.7, lty="dotted")
+xs <- seq(60, 80, length=1000)
+ys <- dnorm(xs, mean=69.1, sd=2.9)
+lines(xs, ys, lwd=3, col="dodgerblue")
+abline(v=69.1, lty="dotted")
+
+
