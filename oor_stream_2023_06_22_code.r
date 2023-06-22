@@ -33,4 +33,5 @@ pnorm(60, mean=63.7, sd=2.7)
 # this is the probability of sampling a woman from the distribution whose
 # height is 60 inches or shorter
 
-height <- rnorm(
+# generate a random sample of the height of one million women from this distribution
+height <- rnorm(1000000, mean=63.7, sd=2.7)
