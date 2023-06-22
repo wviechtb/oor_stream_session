@@ -175,3 +175,6 @@ abline(a=0, b=1)
 
 # correlation between the two variables
 cor(pretest, posttest)
+
+# compute the difference between the means
+mean(posttest) - mean(pretest)
