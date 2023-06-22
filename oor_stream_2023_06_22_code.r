@@ -70,3 +70,9 @@ pnorm(63.7+1*2.7, mean=63.7, sd=2.7) - pnorm(63.7-1*2.7, mean=63.7, sd=2.7)
 
 # the proportion of women in the sample whose height falls within this range
 mean(height >= 63.7-1*2.7 & height <= 63.7+1*2.7)
+
+# size of the area mu-2*sigma to mu+2*sigma (two SDs below to two SDs above the mean)
+pnorm(63.7+2*2.7, mean=63.7, sd=2.7) - pnorm(63.7-2*2.7, mean=63.7, sd=2.7)
+
+# size of the area mu-3*sigma to mu+3*sigma (three SDs below to three SDs above the mean)
+pnorm(63.7+3*2.7, mean=63.7, sd=2.7) - pnorm(63.7-3*2.7, mean=63.7, sd=2.7)
