@@ -103,4 +103,6 @@ x002 <- sample(c(0,1), 1000000, replace=TRUE)
 # ...
 x100 <- sample(c(0,1), 1000000, replace=TRUE)
 
+# instead of doing the above a 100 times, we can use replicate()
 X <- replicate(100, sample(c(0,1), 1000000, replace=TRUE))
+
