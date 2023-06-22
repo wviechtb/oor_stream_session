@@ -278,3 +278,10 @@ plot(table(hits)/1000000, type="h", ylab="Probability", bty="l")
 # and as discussed above, the CLT then tells us that this variable (since it
 # is the sum of many independent random variables) should have a distribution
 # that is approximated by a normal distribution
+
+# the mean, variance, and SD of the hits variable
+mean(hits)
+var(hits)
+sd(hits)
+
+# the mean and SD of a Poisson random variable are equal to the rate parameter
