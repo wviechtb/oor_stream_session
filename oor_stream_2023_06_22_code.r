@@ -220,3 +220,5 @@ exp(sd(logweight))
 mean(weight)
 sd(weight)
 
+# we can estimate the mean weight from the mean and SD logweight values
+exp(mean(logweight) + var(logweight)/2)
