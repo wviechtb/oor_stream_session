@@ -293,3 +293,7 @@ cases <- rpois(500000, lambda=4.52)
 
 # create a plot of the frequencies divided by 500000
 plot(table(cases)/500000, type="h", ylab="Probability", bty="l")
+
+# the mean, variance, and SD of the cases variable
+mean(cases)
+var(cases)
