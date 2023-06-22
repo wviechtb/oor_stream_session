@@ -294,6 +294,24 @@ cases <- rpois(500000, lambda=4.52)
 # create a plot of the frequencies divided by 500000
 plot(table(cases)/500000, type="h", ylab="Probability", bty="l")
 
-# the mean, variance, and SD of the cases variable
+# the mean and variance of the cases variable
 mean(cases)
 var(cases)
+
+# simulate data from a Poisson distribution where the rate is 7.5
+michaels <- rpois(1000000, lambda=7.5)
+
+# create a plot of the frequencies divided by 1000000
+par(mfrow=c(2,1))
+plot(table(michaels)/1000000, type="h", ylab="Probability", bty="l")
+
+# we can also think of this example (and this may actually be more natural) as
+# data coming from a binomial distribution
+michaels <- rbinom(1000000, size=750, prob=0.01)
+
+# create a plot of the frequencies divided by 1000000
+plot(table(michaels)/1000000, type="h", ylab="Probability", bty="l")
+
+# so we see that the Poisson distribution and the binomial distribution can
+# look very similar to each other; this is not generally true, but will be
+# true when 'size' is at least 20 and 'prob' is <= 0.05
