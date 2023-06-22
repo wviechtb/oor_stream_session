@@ -200,3 +200,23 @@ sqrt(var(pretest) + var(posttest) - 2*cor(pretest, posttest)*sd(pretest)*sd(post
 
 ## Lognormal distribution
 
+# simulate the log weight of 1000000 men
+logweight <- rnorm(1000000, mean=5.13, sd=0.17)
+
+# histogram of these values
+hist(logweight, breaks=100)
+
+# exponentiate these values to get the weight (in pounds) of these people
+weight <- exp(logweight)
+
+# histogram of the weight values
+hist(weight, breaks=100)
+
+# exponentiate the mean and SD of the logweight values
+exp(mean(logweight))
+exp(sd(logweight))
+
+# mean and SD of the weight values
+mean(weight)
+sd(weight)
+
