@@ -16,6 +16,7 @@
 ### 3.5: Probability distributions
 
 ## Normal distribution; mean and standard deviation
+# https://en.wikipedia.org/wiki/Normal_distribution
 
 # draw a normal distribution with a mean of 63.7 and a standard deviation of 2.7
 xs <- seq(55, 74, length=1000)
@@ -199,6 +200,7 @@ sd(change)
 sqrt(var(pretest) + var(posttest) - 2*cor(pretest, posttest)*sd(pretest)*sd(posttest))
 
 ## Lognormal distribution
+# https://en.wikipedia.org/wiki/Log-normal_distribution
 
 # simulate the log weight of 1000000 men
 logweight <- rnorm(1000000, mean=5.13, sd=0.17)
