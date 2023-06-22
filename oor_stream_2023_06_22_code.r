@@ -228,6 +228,7 @@ exp(mean(logweight) + var(logweight)/2)
 # and we can estimate the SD weight from the mean and SD logweight values
 sqrt((exp(var(logweight)) - 1) * exp(2*mean(logweight) + var(logweight)))
 
-#
+# sidenote: the exponentiated median of the logweight values is the same as
+# the median of the weight values
 exp(median(logweight))
 median(weight)
