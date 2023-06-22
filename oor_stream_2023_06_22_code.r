@@ -154,3 +154,24 @@ mdiff <- replicate(100000, mean(rnorm(100, mean=69.1, sd=2.9)) -
 
 # histogram of the resulting values
 hist(mdiff, breaks=100)
+
+# the mean and SD of the resulting values
+mean(mdiff)
+sd(mdiff)
+
+## Mean and standard deviation of the sum of correlated random variables
+
+# say we measure people twice on the same variable, once before and once after
+# some kind of treatment
+set.seed(1234)
+pretest  <- rnorm(100, mean=100, sd=15)
+posttest <- pretest + rnorm(100, mean=12, sd=10)
+
+# create a scatterplot of the two variables
+plot(pretest, posttest, pch=21, bg="gray", xlab="Pre-test", ylab="Post-test")
+
+# add the diagonal line for when pretest = posttest
+abline(a=0, b=1)
+
+# correlation between the two variables
+cor(pretest, posttest)
