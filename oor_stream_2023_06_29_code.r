@@ -45,9 +45,8 @@ dat
 
 ### 7.2: The scan() function
 
-dat <- scan("input.dat", list("",0,0))
+dat <- scan("houses.txt", list(Price=0,Floor=0,Area=0,Rooms=0,Age=0,Cent.heat=""))
 dat <- data.frame(dat)
-names(dat) <- c("name", "age", "y")
 dat
 
 ############################################################################
