@@ -145,3 +145,5 @@ dat4
 
 ### SPSS, Excel, and other file formats
 
+# the 'R Data Import/Export' manual contains a lot of additional information:
+# https://cran.r-project.org/doc/manuals/r-release/R-data.html
