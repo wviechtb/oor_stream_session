@@ -16,3 +16,4 @@
 
 ### 7.1: The read.table() function
 
+dat <- read.table("houses.data")
