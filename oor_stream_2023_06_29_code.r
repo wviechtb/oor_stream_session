@@ -184,6 +184,10 @@ dat
 # read in Stata version 5-12 datasets (even version 12 is quite old); the
 # readstata13 and haven packages can also read in more recent versions
 
+# for reading in data from Excel spreadsheets, see:
+# https://cran.r-project.org/doc/manuals/r-release/R-data.html#Reading-Excel-spreadsheets
+
+# the readxl package can read in both .xls and .xlsx Excel files
 
 
 ############################################################################
