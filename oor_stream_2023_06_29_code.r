@@ -16,4 +16,11 @@
 
 ### 7.1: The read.table() function
 
-dat <- read.table("houses.data")
+# note: the example dataset shown at the beginning of this section has 'row
+# names' but this is quite specific to R and not what you usually would have
+# in such a dataset that was exported for example from Excel, SPSS, or some
+# other software; therefore, the houses.txt file that we will work with does
+# not contain these row names
+
+# read in the data from the houses.txt file
+dat <- read.table("houses.txt")
