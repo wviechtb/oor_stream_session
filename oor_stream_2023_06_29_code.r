@@ -46,6 +46,9 @@ dat
 ### 7.2: The scan() function
 
 dat <- scan("input.dat", list("",0,0))
+dat <- data.frame(dat)
+names(dat) <- c("name", "age", "y")
+dat
 
 ############################################################################
 
