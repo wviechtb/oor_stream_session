@@ -23,4 +23,13 @@
 # not contain these row names
 
 # read in the data from the houses.txt file
-dat <- read.table("houses.txt")
+dat <- read.table("houses.txt", header=TRUE)
+
+
+
+############################################################################
+
+# missing in external datasets
+
+# SPSS, Excel, and other file formats
+# reading in Unicode symbols
