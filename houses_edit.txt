@@ -1,0 +1,6 @@
+Price Floor Area Rooms Age Cent.heat
+1 52 111 830 5 6.2 no
+2 54.75 128 710 5 7.5 no
+3 57.5 101 1000 7 4.2 no
+4 57.5 131 690 6 8.8 no
+5 59.75 93 900 5 1.9 yes
