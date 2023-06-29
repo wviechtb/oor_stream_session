@@ -91,6 +91,12 @@ dat2
 # also, say that the Age value for the 4th house is unknown
 dat2$Age[4] <- NA
 
+# add a new variable to dat2 with some comments about the houses
+dat2$comment <- ""
+dat2$comment[1] <- "beautiful garden"
+dat2$comment[3] <- "no basement"
+dat2$comment[4] <- "blah # blup"
+
 ############################################################################
 
 ### Saving data
