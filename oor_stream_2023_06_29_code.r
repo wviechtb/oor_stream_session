@@ -65,6 +65,11 @@ data()
 # one of the datasets is called 'mtcars' - we can directly access the dataset
 mtcars
 
+# for some packages with built-in datasets, one has to use the data() function
+# to actually load the dataset; this isn't really necessary, but just for
+# illustration purposes
+data(mtcars)
+
 ############################################################################
 
 # missing in external datasets
