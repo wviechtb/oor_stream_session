@@ -187,7 +187,7 @@ dat
 # for reading in data from Excel spreadsheets, see:
 # https://cran.r-project.org/doc/manuals/r-release/R-data.html#Reading-Excel-spreadsheets
 
-# the readxl package can read in both .xls and .xlsx Excel files
-
+# the readxl package can read in both .xls and .xlsx Excel files and the
+# openxlsx package can read in .xlsx files
 
 ############################################################################
