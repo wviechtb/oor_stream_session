@@ -80,6 +80,14 @@ View(mtcars)
 # edit the 'dat' datset and assign the changed dataset to 'dat2'
 dat2 <- edit(dat)
 
+# never use this! this creates a non-reproducible workflow; if you need to
+# make adjustments to the dataset, you should do this with code (which you can
+# then always re-run to make the same changes)
+
+
+dat2 <- dat
+dat2$Rooms[3] <- 7
+
 ############################################################################
 
 # missing in external datasets
