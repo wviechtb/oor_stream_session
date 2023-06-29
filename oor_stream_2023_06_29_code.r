@@ -173,4 +173,10 @@ library(haven)
 
 # read in the houses_edit.sav file
 dat <- read_spss("houses_edit.sav")
+dat
+str(dat)
 
+# turn the tibble into a regular data frame
+dat$Cent.heat <- as_factor(dat$Cent.heat)
+dat <- data.frame(zap_formats(zap_label(zap_labels(zap_widths(dat)))))
+dat
