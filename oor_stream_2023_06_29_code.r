@@ -30,6 +30,7 @@ dat <- read.table("houses.txt", header=TRUE)
 ############################################################################
 
 # missing in external datasets
+# the # symbol in external datasets
 
 # SPSS, Excel, and other file formats
 # reading in Unicode symbols
