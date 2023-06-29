@@ -116,6 +116,9 @@ dat3
 # everything after it; you can switch off this behavior in read.table() with
 # comment.char=""
 
+# save 'dat2' to an R data file called houses_edit.rdata
+save(dat2, file="houses_edit.rdata")
+
 ############################################################################
 
 ### Reading in data with non-standard symbols
@@ -125,4 +128,5 @@ dat4
 
 ############################################################################
 
-# SPSS, Excel, and other file formats
+### SPSS, Excel, and other file formats
+
