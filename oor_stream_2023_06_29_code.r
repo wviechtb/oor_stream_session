@@ -162,3 +162,15 @@ str(dat)
 # into a factor and the variable labels are an attribute of the dataset
 dat$Cent.heat
 attributes(dat)$variable.labels
+
+# the haven package can also read in SPSS files
+
+# install the haven package if it not already installed
+#install.packages("haven")
+
+# load the haven package
+library(haven)
+
+# read in the houses_edit.sav file
+dat <- read_spss("houses_edit.sav")
+
