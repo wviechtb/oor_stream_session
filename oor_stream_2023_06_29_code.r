@@ -103,7 +103,7 @@ dat2$Comment[4] <- "blah # blup"
 
 # save dat2 as a tab-delimited plain text file without row names and using
 # 'blank' for missing values (not "NA")
-write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t", quote=FALSE)
+write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t")
 
 # now we can read the data back into R with
 dat3 <- read.table("houses_edit.txt", header=TRUE, sep="\t")
