@@ -124,6 +124,15 @@ rm(dat2)
 
 # load 'dat2' from houses_edit.rdata
 load("houses_edit.rdata")
+dat2
+
+# disadvantage of rdata files: they cannot be read into any other software but R
+# advantage of rdata files:
+# - they are typically smaller in size than .txt files (due to compression)
+# - they can be saved and loaded faster (which is only relevant when the
+#   dataset is very large)
+# - they contain an exact representation of the object(s) that you saved
+#   (e.g., factor and time/date variables are saved as such)
 
 ############################################################################
 
