@@ -74,6 +74,14 @@ data(mtcars)
 
 ### 7.4: Editing data
 
+# to inspect a dataset, we can use the View() command
+View(mtcars)
+
+# edit the 'dat' datset and assign the changed dataset to 'dat2'
+dat2 <- edit(dat)
+
+############################################################################
+
 # missing in external datasets
 # the # symbol in external datasets
 
