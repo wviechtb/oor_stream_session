@@ -45,7 +45,10 @@ dat
 
 ### 7.2: The scan() function
 
-dat <- scan("houses.txt", list(Price=0,Floor=0,Area=0,Rooms=0,Age=0,Cent.heat=""))
+# read in the data from the houses.txt file using scan(); note: we need to
+# skip the first line since it is the header row that contains the variable
+# names and not actual data
+dat <- scan("houses.txt", list(Price=0,Floor=0,Area=0,Rooms=0,Age=0,Cent.heat=""), skip=1)
 dat <- data.frame(dat)
 dat
 
