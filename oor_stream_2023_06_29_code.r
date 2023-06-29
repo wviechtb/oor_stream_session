@@ -92,10 +92,10 @@ dat2
 dat2$Age[4] <- NA
 
 # add a new variable to dat2 with some comments about the houses
-dat2$comment <- ""
-dat2$comment[1] <- "beautiful garden"
-dat2$comment[3] <- "no basement"
-dat2$comment[4] <- "blah # blup"
+dat2$Comment <- ""
+dat2$Comment[1] <- "beautiful garden"
+dat2$Comment[3] <- "no basement"
+dat2$Comment[4] <- "blah # blup"
 
 ############################################################################
 
@@ -103,7 +103,7 @@ dat2$comment[4] <- "blah # blup"
 
 # save dat2 as a tab-delimited plain text file without row names and using
 # 'blank' for missing values (not "NA")
-write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t")
+write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t", quote=FALSE)
 
 # now we can read the data back into R with
 dat3 <- read.table("houses_edit.txt", header=TRUE, sep="\t")
