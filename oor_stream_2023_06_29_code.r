@@ -62,7 +62,7 @@ dat
 # see what built-in datasets are currently available
 data()
 
-# one of the datasets is called 'mtcars' - we can directly access the dataset
+# one of the datasets is called 'mtcars'; we can directly access the dataset
 mtcars
 
 # for some packages with built-in datasets, one has to use the data() function
