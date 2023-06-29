@@ -118,7 +118,5 @@ dat3
 
 ############################################################################
 
-# the # symbol in external datasets
-
 # SPSS, Excel, and other file formats
 # reading in Unicode symbols
