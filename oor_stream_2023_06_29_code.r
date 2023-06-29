@@ -143,7 +143,7 @@ dat4
 
 ############################################################################
 
-### SPSS, Excel, and other file formats
+### SPSS, Stata, Excel, and other file formats
 
 # the 'R Data Import/Export' manual contains a lot of additional information:
 # https://cran.r-project.org/doc/manuals/r-release/R-data.html
@@ -179,3 +179,11 @@ str(dat)
 # turn the tibble into a regular data frame
 dat <- data.frame(zap_formats(zap_label(zap_labels(zap_widths(as_factor(dat))))))
 dat
+
+# for Stata, there is read.spss() from the foreign package, but this can only
+# read in Stata version 5-12 datasets (even version 12 is quite old); the
+# readstata13 and haven packages can also read in more recent versions
+
+
+
+############################################################################
