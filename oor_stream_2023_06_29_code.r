@@ -57,6 +57,16 @@ dat
 
 ############################################################################
 
+### 7.3: Accessing builtin datasets
+
+# see what built-in datasets are currently available
+data()
+
+# one of the datasets is called 'mtcars' - we can directly access the dataset
+mtcars
+
+############################################################################
+
 # missing in external datasets
 # the # symbol in external datasets
 
