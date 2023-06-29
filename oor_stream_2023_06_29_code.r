@@ -118,5 +118,11 @@ dat3
 
 ############################################################################
 
+### Reading in data with non-standard symbols
+
+dat4 <- read.table("houses2.txt", header=TRUE, sep="\t")
+dat4
+
+############################################################################
+
 # SPSS, Excel, and other file formats
-# reading in Unicode symbols
