@@ -8,7 +8,7 @@
 # Topic(s):
 # - An Introduction to R
 #   https://cran.r-project.org/doc/manuals/r-release/R-intro.html
-# - Section(s): 7.1 - ?
+# - Section(s): 7.1 - 7.4
 #
 # last updated: 2023-06-29
 
@@ -133,13 +133,6 @@ dat2
 #   dataset is very large)
 # - they contain an exact representation of the object(s) that you saved
 #   (e.g., factor and time/date variables are saved as such)
-
-############################################################################
-
-### Reading in data with non-standard symbols
-
-dat4 <- read.table("houses2.txt", header=TRUE, sep="\t")
-dat4
 
 ############################################################################
 
