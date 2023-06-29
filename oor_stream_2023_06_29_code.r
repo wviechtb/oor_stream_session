@@ -109,6 +109,13 @@ write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t")
 dat3 <- read.table("houses_edit.txt", header=TRUE, sep="\t")
 dat3
 
+# note: when exporting dat2 to houses_edit.txt, strings are in quotes;
+# however, other software from which we might export a dataset may not do
+# this; then the # symbol in the dataset will cause a problem, because
+# read.table() by default treats everything after # as a comment and ignores
+# everything after it; you can switch off this behavior in read.table() with
+# comment.char=""
+
 ############################################################################
 
 # the # symbol in external datasets
