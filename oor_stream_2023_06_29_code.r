@@ -52,6 +52,9 @@ dat <- scan("houses.txt", list(Price=0,Floor=0,Area=0,Rooms=0,Age=0,Cent.heat=""
 dat <- data.frame(dat)
 dat
 
+# it is not clear why one would ever want to use this kind of workflow; using
+# read.table() is simpler and more convenient
+
 ############################################################################
 
 # missing in external datasets
