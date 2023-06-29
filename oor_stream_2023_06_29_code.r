@@ -88,7 +88,19 @@ dat2 <- dat
 dat2$Rooms[3] <- 7
 dat2
 
+# also, say that the Age value for the 4th house is unknown
+dat2$Age[4] <- NA
+
 ############################################################################
+
+### Saving data
+
+# save dat2 as a tab-delimited plain text file without row names and using
+# 'blank' for missing values (not "NA")
+write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t")
+
+# now we can read the data back into R with
+dat3 <- read.table("houses_edit.txt", header=TRUE, sep="\t")
 
 # missing in external datasets
 # the # symbol in external datasets
