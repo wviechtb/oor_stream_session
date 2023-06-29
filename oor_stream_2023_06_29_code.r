@@ -16,6 +16,15 @@
 
 ### 7.1: The read.table() function
 
+# check what the current working directory (working folder) is
+getwd()
+
+# if this does not correspond to the location of this script and the
+# houses.txt datafile, then you need to change the working directory to this
+# location with the setwd() command, where you need to replace ... with the
+# correct location
+setwd("...")
+
 # note: the example dataset shown at the beginning of this section has 'row
 # names' but this is quite specific to R and not what you usually would have
 # in such a dataset that was exported for example from Excel, SPSS, or some
