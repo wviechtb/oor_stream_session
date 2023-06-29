@@ -147,3 +147,18 @@ dat4
 
 # the 'R Data Import/Export' manual contains a lot of additional information:
 # https://cran.r-project.org/doc/manuals/r-release/R-data.html
+
+# for reading in SPSS files, the 'foreign' package has a function called
+# read.spss() for reading in SPSS .sav files
+library(foreign)
+help(read.spss)
+
+# read in the houses_edit.sav file
+dat <- read.spss("houses_edit.sav", to.data.frame=TRUE)
+dat
+str(dat)
+
+# variable 'Cent.heat' which used value labels in SPSS is automatically turned
+# into a factor and the variable labels are an attribute of the dataset
+dat$Cent.heat
+attributes(dat)$variable.labels
