@@ -25,6 +25,10 @@ getwd()
 # correct location
 setwd("...")
 
+# in RStudio, we can also click on Session - Set Working Directory - To Source
+# File Location (this sets the working directory to the location of this
+# script)
+
 # note: the example dataset shown at the beginning of this section has 'row
 # names' but this is quite specific to R and not what you usually would have
 # in such a dataset that was exported for example from Excel, SPSS, or some
@@ -34,6 +38,8 @@ setwd("...")
 # read in the data from the houses.txt file
 dat <- read.table("houses.txt", header=TRUE)
 
+# inspect the data that were read in
+dat
 
 
 ############################################################################
