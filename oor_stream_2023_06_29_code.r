@@ -119,6 +119,12 @@ dat3
 # save 'dat2' to an R data file called houses_edit.rdata
 save(dat2, file="houses_edit.rdata")
 
+# remove dat2 from the workspace
+rm(dat2)
+
+# load 'dat2' from houses_edit.rdata
+load("houses_edit.rdata")
+
 ############################################################################
 
 ### Reading in data with non-standard symbols
