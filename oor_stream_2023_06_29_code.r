@@ -101,8 +101,10 @@ write.table(dat2, file="houses_edit.txt", row.names=FALSE, na="", sep="\t")
 
 # now we can read the data back into R with
 dat3 <- read.table("houses_edit.txt", header=TRUE, sep="\t")
+dat3
 
-# missing in external datasets
+############################################################################
+
 # the # symbol in external datasets
 
 # SPSS, Excel, and other file formats
