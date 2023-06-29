@@ -41,7 +41,11 @@ dat <- read.table("houses.txt", header=TRUE)
 # inspect the data that were read in
 dat
 
+############################################################################
+
 ### 7.2: The scan() function
+
+dat <- scan("input.dat", list("",0,0))
 
 ############################################################################
 
