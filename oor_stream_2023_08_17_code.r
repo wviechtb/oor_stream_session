@@ -23,6 +23,9 @@
 # equal split of the votes using a simulation approach)
 n <- 2000
 y <- rnorm(10000000, mean=0.49, sd=0.04)
-mean(round(y * n) == 1000)
+mean(round(y * n) == n/2)
 
+# use the equation in the book to obtain the same value
 dnorm(0.5, mean=0.49, sd=0.04) / n
+
+# we can confirm that when we change n (to say 20,000), this still works
