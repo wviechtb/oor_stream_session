@@ -17,6 +17,10 @@
 
 ## Using an empirical forecast
 
+# simulate y (proportion of the votes received by one of the candidates) 10^7
+# times and then compute the probability of seeing exactly 1000 votes for each
+# candidate in 2000 voters (this gives an empirical estimate of seeing an
+# equal split of the votes using a simulation approach)
 n <- 2000
 y <- rnorm(10000000, mean=0.49, sd=0.04)
 mean(round(y * n) == 1000)
