@@ -28,7 +28,9 @@ mean(round(y * n) == n/2)
 # use the equation in the book to obtain the same value
 dnorm(0.5, mean=0.49, sd=0.04) / n
 
-# we can confirm that when we change n (to say 20,000), this still works
+# we can confirm that when we change n (to say 20,000 or 200,000), this still
+# works, but when n is very large, we need to increase how many values of y we
+# simulate to get an accurate estimate with the simulation approach
 
 # actually, to do this absolutely correctly, what we need to figure out is the
 # probability of seeing a value of y that would give us an even split of the
