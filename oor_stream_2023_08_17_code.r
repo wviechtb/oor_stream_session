@@ -55,5 +55,19 @@ n <- 200000
 dnorm(0.5, mean=0.49, sd=0.04) / n
 pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
 
+# the probability of getting an additional 1000 voters to turn out for the
+# candidate that is not-favored being decisive (i.e., it will push the number
+# of votes for the candidate from losing the election to winning the election)
+# is the following according to the book (approximately)
+1000*dnorm(0.5, 0.49, 0.04) / n
+
+# the exact calculation should be this
+pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1000/n, mean=0.49, sd=0.04)
+
+
+
+############################################################################
+
+
 # set scipen back to the default
 options(scipen=0)
