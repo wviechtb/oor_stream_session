@@ -45,3 +45,6 @@ round((0.5 + 1/(2*n)) * n)
 
 # we can compute the probability of seeing such a y with pnorm() as follows
 pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
+
+# the larger n is, the closer the equation from the book is to the correct
+# value (and for 200,000, there is essentially no difference)
