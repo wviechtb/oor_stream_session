@@ -41,4 +41,5 @@ dnorm(0.5, mean=0.49, sd=0.04) / n
 round((0.5 - 1/(2*n)) * n)
 round((0.5 + 1/(2*n)) * n)
 
+# we can compute the probability of seeing such a y with pnorm() as follows
 pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
