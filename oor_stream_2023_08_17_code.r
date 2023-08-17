@@ -86,7 +86,12 @@ hist(y, breaks=250, freq=F)
 # 0.5 is essentially zero); this does not seem like a reasonable model to
 # capture the uncertainty of an election where one candidate is very slightly
 # favored; in contrast, the normal model we used earlier allows for much more
-# uncertainty in y
+# uncertainty in y; contrast the SD=0.04 we used earlier with the SD of the y
+# values from the binomial model
+sd(y)
+
+# sidenote: this is essentially sqrt(p*(1-p)/n)
+sqrt(0.49*0.51/n)
 
 ############################################################################
 
