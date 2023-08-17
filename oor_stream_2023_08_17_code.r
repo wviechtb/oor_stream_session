@@ -95,8 +95,7 @@ sqrt(0.49*0.51/n)
 
 # so the SD for y is much smaller under the binomial model
 
-############################################################################
-
-
 # set scipen back to the default
 options(scipen=0)
+
+############################################################################
