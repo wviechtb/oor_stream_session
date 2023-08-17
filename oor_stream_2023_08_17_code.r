@@ -64,6 +64,16 @@ pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
 # the exact calculation should be this
 pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1000/n+1/(2*n), mean=0.49, sd=0.04)
 
+# these two are essentially the same and very close to 1/21
+1/21
+
+## Using an reasonable-seeming but inappropriate probability model
+
+# probability of x=100,000 when n=200,000 and p=0.5
+dbinom(100000, size=200000, prob=0.5)
+
+# probability of x=100,000 when n=200,000 and p=0.49
+dbinom(100000, size=200000, prob=0.49)
 
 
 ############################################################################
