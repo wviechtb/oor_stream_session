@@ -102,6 +102,17 @@ options(scipen=0)
 
 ### 4.1 Sampling distributions and generative models
 
+## The sampling distribution
+
+# say we are interested in the height of individuals and the population
+# consists of N=10 individuals with heights equal to:
+y <- c(178, 184, 165, 173, 196, 168, 171, 185, 180, 174)
+
+# using combn(), we can generate all possible samples of size n=3
+sampdist <- apply(combn(10, 3), 2, function(i) y[i])
+sampdist
+
+# so there are 120 different datasets in the sampling distribution
 
 
 ############################################################################
