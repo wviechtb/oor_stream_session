@@ -15,3 +15,10 @@
 
 ### 3.6: Probability modeling
 
+## Using an empirical forecast
+
+n <- 2000
+y <- rnorm(10000000, mean=0.49, sd=0.04)
+mean(round(y * n) == 1000)
+
+dnorm(0.5, mean=0.49, sd=0.04) / n
