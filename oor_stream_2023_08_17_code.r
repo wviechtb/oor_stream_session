@@ -114,5 +114,16 @@ sampdist
 
 # so there are 120 different datasets in the sampling distribution
 
+# in the measurement error example where the observations are generated from
+# y_i = a + b*x_i + e_i (where e_i ~ N(0, sigma) and i = 1, ..., n), we cannot
+# really generate all possible datasets, because there is an infinite number
+# of them; for example, say n=10 and the x_i values are as follows
+xi <- c(9.5, 2.9, 6.4, 9.0, 8.6, 2.5, 9.2, 3.0, 8.9, 5.8)
+
+# and say a=2, b=1, and sigma=0.5, then 5 possible datasets would be
+replicate(5, 2 + 1 * xi + rnorm(10, 0, 0.5))
+
+
+
 
 ############################################################################
