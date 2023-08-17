@@ -29,3 +29,16 @@ mean(round(y * n) == n/2)
 dnorm(0.5, mean=0.49, sd=0.04) / n
 
 # we can confirm that when we change n (to say 20,000), this still works
+
+# actually, to do this absolutely correctly, what we need to figure out is the
+# probability of seeing a value of y that would give us an even split of the
+# votes when we multiply y with n (and round); this will happen when the value
+# of y is between 0.5 - 1/(2*n) and 0.5 + 1/(2*n); that is, when y is between:
+0.5 - 1/(2*n)
+0.5 + 1/(2*n)
+
+# since then y multiplied by n (and rounded) gives us an even split
+round((0.5 - 1/(2*n)) * n)
+round((0.5 + 1/(2*n)) * n)
+
+pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
