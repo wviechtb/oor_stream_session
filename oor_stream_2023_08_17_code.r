@@ -123,12 +123,5 @@ xi <- c(9.5, 2.9, 6.4, 9.0, 8.6, 2.5, 9.2, 3.0, 8.9, 5.8)
 # and say a=2, b=1, and sigma=0.5, then 5 possible datasets would be
 replicate(5, 2 + 1 * xi + rnorm(10, 0, 0.5))
 
-# let's consider another example where we actually can generate the entire
-# sampling distribution in a real scenario; we can use the chickwts dataset
-# for this and to keep things a bit simpler, only keep the data for two of the
-# groups
-dat <- chickwts[1:22,]
-dat
-
 
 ############################################################################
