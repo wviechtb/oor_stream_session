@@ -93,6 +93,8 @@ sd(y)
 # the actual SD is sqrt(p*(1-p)/n)
 sqrt(0.49*0.51/n)
 
+# so the SD for y is much smaller under the binomial model
+
 ############################################################################
 
 
