@@ -62,7 +62,7 @@ pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
 1000*dnorm(0.5, 0.49, 0.04) / n
 
 # the exact calculation should be this
-pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1000/n, mean=0.49, sd=0.04)
+pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1000/n+1/(2*n), mean=0.49, sd=0.04)
 
 
 
