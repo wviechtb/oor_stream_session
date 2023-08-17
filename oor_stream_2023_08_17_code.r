@@ -75,6 +75,18 @@ dbinom(100000, size=200000, prob=0.5)
 # probability of x=100,000 when n=200,000 and p=0.49
 dbinom(100000, size=200000, prob=0.49)
 
+# simulate a very large number of values of y from the binomial model
+y <- rbinom(10000000, size=200000, prob=0.49) / n
+
+# histogram for these proportions
+hist(y, breaks=250, freq=F)
+
+# as we can see, under the binomial model, there is essentially no chance that
+# the non-favored candidate will win (the probability of y being larger than
+# 0.5 is essentially zero); this does not seem like a reasonable model to
+# capture the uncertainty of an election where one candidate is very slightly
+# favored; in contrast, the normal model we used earlier allows for much more
+# uncertainty in y
 
 ############################################################################
 
