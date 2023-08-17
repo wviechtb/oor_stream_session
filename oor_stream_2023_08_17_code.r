@@ -17,6 +17,9 @@
 
 ## Using an empirical forecast
 
+# switch off scientific notation for this example
+options(scipen=100)
+
 # simulate y (proportion of the votes received by one of the candidates) 10^7
 # times and then compute the probability of seeing exactly 1000 votes for each
 # candidate in 2000 voters (this gives an empirical estimate of seeing an
@@ -48,3 +51,9 @@ pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
 
 # the larger n is, the closer the equation from the book is to the correct
 # value (and for 200,000, there is essentially no difference)
+n <- 200000
+dnorm(0.5, mean=0.49, sd=0.04) / n
+pnorm(0.5+1/(2*n), mean=0.49, sd=0.04) - pnorm(0.5-1/(2*n), mean=0.49, sd=0.04)
+
+# set scipen back to the default
+options(scipen=0)
