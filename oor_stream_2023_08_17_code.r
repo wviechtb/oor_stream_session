@@ -90,7 +90,7 @@ hist(y, breaks=250, freq=F)
 # values from the binomial model
 sd(y)
 
-# sidenote: this is essentially sqrt(p*(1-p)/n)
+# the actual SD is sqrt(p*(1-p)/n)
 sqrt(0.49*0.51/n)
 
 ############################################################################
