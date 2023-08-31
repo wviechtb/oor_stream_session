@@ -8,7 +8,7 @@
 # Topic(s):
 # - An Introduction to R
 #   https://cran.r-project.org/doc/manuals/r-release/R-intro.html
-# - Section(s): 8.1 - ?
+# - Section(s): 8.1 - 8.2
 #
 # last updated: 2023-08-31
 
