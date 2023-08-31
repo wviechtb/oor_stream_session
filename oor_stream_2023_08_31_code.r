@@ -180,4 +180,7 @@ hist(dat$eruptions, col="gray30")
 hist(dat$eruptions, breaks=30, col="gray30")
 
 # we can also specify the exact position of the break points
-hist(dat$eruptions, breaks=seq(0,6,by=0.125), col="gray30")
+hist(dat$eruptions, breaks=seq(1,6,by=0.125), col="gray30")
+
+hist(dat$eruptions, breaks=seq(1,6,by=0.125),
+     xlab="Eruption Time (in minutes)", main="", col="gray30")
