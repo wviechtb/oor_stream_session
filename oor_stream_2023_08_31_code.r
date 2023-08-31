@@ -79,3 +79,20 @@ for (i in 1:50) {
           legend=c("standard normal", paste0("t-distribution (df=",i,")")))
    Sys.sleep(0.2)
 }
+
+## chi-squared distribution
+
+# calculate the density of a chi-squared distribution with df=2
+xs <- seq(0, 10, length=10000)
+ys <- dchisq(xs, df=2)
+plot(xs, ys, type="l", lwd=2, bty="l")
+
+# add lines for df=4 and df=6
+ys <- dchisq(xs, df=4)
+lines(xs, ys, type="l", lwd=2, lty="dashed")
+ys <- dchisq(xs, df=6)
+lines(xs, ys, type="l", lwd=2, lty="dotted")
+
+# add legend
+legend("topright", inset=.01, lty=c("solid","dashed","dotted"), lwd=2,
+       legend=c("chi-squared (df=2)", "chi-squared (df=4)", "chi-squared (df=6)"))
