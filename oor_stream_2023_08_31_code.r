@@ -18,8 +18,8 @@
 
 ## normal distribution
 
-# calculate the density of standard normal distribution for values between -4
-# and 4 and then plot the distribution (note: mean=0 and sd=1 are the
+# calculate the density of standard normal distribution for values between
+# -4 and 4 and then plot the distribution (note: mean=0 and sd=1 are the
 # defaults, so we could leave those out)
 xs <- seq(-4, 4, length=10000)
 ys <- dnorm(xs, mean=0, sd=1)
