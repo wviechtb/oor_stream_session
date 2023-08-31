@@ -236,3 +236,6 @@ x <- rchisq(1000, df=10)
 qqnorm(x, pch=21, bg="lightgray")
 qqline(x, lwd=3)
 
+# carry out a Shapiro-Wilk test for the eruptions variable
+# https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test
+shapiro.test(dat$eruptions)
