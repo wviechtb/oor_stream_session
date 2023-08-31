@@ -46,3 +46,7 @@ qnorm(.30)
 
 # draw in the line that corresponds to this value
 segments(qnorm(.30), 0, qnorm(.30), dnorm(qnorm(.30)))
+
+# simulate 10 values from a standard normal distribution
+rnorm(10)
+
