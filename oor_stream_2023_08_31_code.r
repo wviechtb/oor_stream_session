@@ -196,3 +196,15 @@ lines(density(dat$eruptions, bw="SJ"), lwd=2)
 
 # put tick marks below the histogram at the location of the eruption times
 rug(dat$eruptions)
+
+# keep only those rows of the dataset where eruptions > 3
+dat <- dat[dat$eruptions > 3,]
+
+# create a histogram of these data and superimpose a kernel density estimate
+hist(dat$eruptions, breaks=seq(3,5.5,by=0.1), freq=FALSE,
+     xlab="Eruption Time (in minutes)", main="", col="gray30")
+lines(density(dat$eruptions, bw="SJ"), lwd=2)
+
+
+# plot the empirical cumulative distribution function
+plot(ecdf(dat$eruptions), do.points=FALSE, verticals=TRUE)
