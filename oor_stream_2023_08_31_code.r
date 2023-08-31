@@ -192,4 +192,7 @@ hist(dat$eruptions, breaks=seq(1,6,by=0.125), freq=FALSE,
 
 # use density() to obtain a 'kernel density estimate' of the distribution of
 # the eruptions variable
-lines(density(eruptions, bw=0.1))
+lines(density(dat$eruptions, adjust=0.4), lwd=2)
+
+# put tick marks below the histogram at the location of the eruption times
+rug(dat$eruptions)
