@@ -139,10 +139,13 @@ pbinom(6, size=10, prob=0.6)
 
 ## 8.2: Examining the distribution of a set of data
 
+# note: we are not using attach() for reasons discussed in the session on
+# 2023-06-15 (briefly: using attach() can at times be confusing)
+
 # copy the faithful dataset to dat
 dat <- faithful
 
 # examine the first 6 rows of the dataset
 head(dat)
 
-
+summary(dat$eruptions)
