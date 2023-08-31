@@ -102,3 +102,8 @@ pchisq(3.84, df=1, lower.tail=FALSE)
 
 ## binomial distribution
 
+# compute the probability of seeing 0, 1, ..., 10 tails when flipping a coin
+# 10 times where the probability of a tail is 0.6 (the coin is NOT fair)
+dbinom(0:10, size=10, prob=0.6)
+
+# for example, there is a ~25% chance that you will see 6 tails (and 4 heads)
