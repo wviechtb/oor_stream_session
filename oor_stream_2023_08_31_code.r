@@ -146,4 +146,3 @@ dat <- faithful
 head(dat)
 
 
-
