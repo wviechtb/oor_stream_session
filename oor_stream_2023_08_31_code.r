@@ -33,3 +33,13 @@ xs <- seq(-4, -1, length=10000)
 ys <- dnorm(xs, mean=0, sd=1)
 polygon(c(xs,rev(xs)), c(ys,rep(0,10000)), col="lightgray")
 
+# what proportion of the distribution falls above 2
+pnorm(2, lower.tail=FALSE)
+
+# shade in the corresponding area in the plot
+xs <- seq(2, 4, length=10000)
+ys <- dnorm(xs, mean=0, sd=1)
+polygon(c(xs,rev(xs)), c(ys,rep(0,10000)), col="lightgray")
+
+# find the value under which a proportion of 0.10 of the distribution falls
+qnorm(.10)
