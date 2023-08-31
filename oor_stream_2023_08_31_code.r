@@ -111,16 +111,13 @@ xs <- 0:10
 ys <- dbinom(xs, size=10, prob=0.6)
 ys
 
+# for example, there is a ~25% chance that you will see 6 tails (and 4 heads)
+
 # plot the distribution
 plot(xs, ys, type="h")
 
-# for example, there is a ~25% chance that you will see 6 tails (and 4 heads)
-
-
-
-
-# what is the probability
-pbinom(8, size=10, prob=0.6)
+# what is the probability of seeing 6 tails or fewer
+pbinom(6, size=10, prob=0.6)
 
 
 
