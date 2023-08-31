@@ -153,3 +153,7 @@ head(dat)
 
 # compute some summary statistics for the eruptions variable
 summary(dat$eruptions)
+fivenum(dat$eruptions)
+
+# create a stem-and-leaf plot for the eruptions variable
+stem(dat$eruptions, scale=2)
