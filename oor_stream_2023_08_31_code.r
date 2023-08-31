@@ -96,3 +96,9 @@ lines(xs, ys, type="l", lwd=2, lty="dotted")
 # add legend
 legend("topright", inset=.01, lty=c("solid","dashed","dotted"), lwd=2,
        legend=c("chi-squared (df=2)", "chi-squared (df=4)", "chi-squared (df=6)"))
+
+# what area of a chi-square distribution with df=1 falls above 3.84
+pchisq(3.84, df=1, lower.tail=FALSE)
+
+## binomial distribution
+
