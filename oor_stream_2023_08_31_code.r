@@ -191,8 +191,8 @@ hist(dat$eruptions, breaks=seq(1,6,by=0.125), freq=FALSE,
      xlab="Eruption Time (in minutes)", main="", col="gray30")
 
 # use density() to obtain a 'kernel density estimate' of the distribution of
-# the eruptions variable
-lines(density(dat$eruptions, adjust=0.4), lwd=2)
+# the eruptions variable (using the SJ rule for selecting the bandwidth)
+lines(density(dat$eruptions, bw="SJ"), lwd=2)
 
 # put tick marks below the histogram at the location of the eruption times
 rug(dat$eruptions)
