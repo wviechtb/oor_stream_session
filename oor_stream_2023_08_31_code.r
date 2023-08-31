@@ -243,3 +243,5 @@ shapiro.test(dat$eruptions)
 # carry out a Kolmogorov-Smirnov test test for the eruptions variable
 # https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test
 ks.test(dat$eruptions, pnorm, mean=mean(dat$eruptions), sd=sd(dat$eruptions))
+
+############################################################################
