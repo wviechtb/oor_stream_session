@@ -168,4 +168,13 @@ stem(dat$eruptions, scale=2)
 # the eruption length is around 1.8 minutes, and another peak where the
 # eruption time is around 4.5 minutes)
 
+# if we don't adjust the scale argument and leave it at the default, then for
+# this dataset, stem() groups the 1.6s and 1.7s together, the 1.8s and 1.9s,
+# and so on
+stem(dat$eruptions)
 
+# draw a histogram for this variable
+hist(dat$eruptions, col="gray30")
+
+# increase the number of bins
+hist(dat$eruptions, breaks=30, col="gray30")
