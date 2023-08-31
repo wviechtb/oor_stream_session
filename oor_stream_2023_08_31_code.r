@@ -135,3 +135,8 @@ plot(xs, ys, type="h")
 # what is the probability of seeing 6 tails or fewer
 pbinom(6, size=10, prob=0.6)
 
+############################################################################
+
+## 8.2: Examining the distribution of a set of data
+
+
