@@ -28,6 +28,9 @@ plot(xs, ys, type="l", lwd=2, bty="l")
 # what proportion of the distribution falls below -1
 pnorm(-1)
 
+# so there is a ~16% probability of seeing a value between -infinity and -1
+# when drawing a random value from a standard normal distribution
+
 # shade in the corresponding area in the plot
 xs <- seq(-4, -1, length=10000)
 ys <- dnorm(xs, mean=0, sd=1)
@@ -108,6 +111,9 @@ xs <- 0:10
 ys <- dbinom(xs, size=10, prob=0.6)
 ys
 
+# plot the distribution
+plot(xs, ys, type="h")
+
 # for example, there is a ~25% chance that you will see 6 tails (and 4 heads)
 
 
@@ -115,3 +121,6 @@ ys
 
 # what is the probability
 pbinom(8, size=10, prob=0.6)
+
+
+
