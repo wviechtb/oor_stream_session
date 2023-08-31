@@ -202,9 +202,19 @@ dat <- dat[dat$eruptions > 3,]
 
 # create a histogram of these data and superimpose a kernel density estimate
 hist(dat$eruptions, breaks=seq(3,5.5,by=0.1), freq=FALSE,
-     xlab="Eruption Time (in minutes)", main="", col="gray30")
+     xlab="Eruption Time (in minutes)", main="")
 lines(density(dat$eruptions, bw="SJ"), lwd=2)
 
+# superimpose the density from a normal distribution with a mean and SD of
+# that of the actual data
+xs <- seq(3.0, 5.5, by=0.01)
+ys <- dnorm(xs, mean=mean(dat$eruptions), sd=sd(dat$eruptions))
+lines(xs, ys, lty="dotted", lwd=2)
 
-# plot the empirical cumulative distribution function
-plot(ecdf(dat$eruptions), do.points=FALSE, verticals=TRUE)
+# plot the empirical cumulative distribution function (ecdf)
+plot(ecdf(dat$eruptions), do.points=FALSE, verticals=TRUE, lwd=2)
+
+# superimpose the cumulative distribution function from a normal distribution
+# with a mean and SD of that of the actual data on top of the ecdf
+xs <- seq(3.0, 5.5, by=0.01)
+lines(xs, pnorm(xs, mean=mean(dat$eruptions), sd=sd(dat$eruptions)), lty="dotted", lwd=2)
