@@ -145,7 +145,11 @@ pbinom(6, size=10, prob=0.6)
 # copy the faithful dataset to dat
 dat <- faithful
 
+# read the help file for the dataset
+help(faithful)
+
 # examine the first 6 rows of the dataset
 head(dat)
 
+# compute some summary statistics for the eruptions variable
 summary(dat$eruptions)
