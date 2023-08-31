@@ -41,5 +41,8 @@ xs <- seq(2, 4, length=10000)
 ys <- dnorm(xs, mean=0, sd=1)
 polygon(c(xs,rev(xs)), c(ys,rep(0,10000)), col="lightgray")
 
-# find the value under which a proportion of 0.10 of the distribution falls
-qnorm(.10)
+# find the value under which a proportion of 0.30 of the distribution falls
+qnorm(.30)
+
+# draw in the line that corresponds to this value
+segments(qnorm(.30), 0, qnorm(.30), dnorm(qnorm(.30)))
