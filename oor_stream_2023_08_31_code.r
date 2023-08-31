@@ -139,6 +139,11 @@ pbinom(6, size=10, prob=0.6)
 
 ## 8.2: Examining the distribution of a set of data
 
+# copy the faithful dataset to dat
 dat <- faithful
+
+# examine the first 6 rows of the dataset
+head(dat)
+
 
 
