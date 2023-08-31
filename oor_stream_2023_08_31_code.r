@@ -157,3 +157,6 @@ fivenum(dat$eruptions)
 
 # create a stem-and-leaf plot for the eruptions variable
 stem(dat$eruptions, scale=2)
+
+# there is one 1.60 in the dataset, one 1.67, one 1.70, one 1.73, six 1.75s,
+# two 1.78s, and so on
