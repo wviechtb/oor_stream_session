@@ -224,6 +224,8 @@ lines(xs, pnorm(xs, mean=mean(dat$eruptions), sd=sd(dat$eruptions)), lty="dotted
 qqnorm(dat$eruptions, pch=21, bg="lightgray")
 qqline(dat$eruptions, lwd=3)
 
+# https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot
+
 # ...
 x <- rt(1000, df=5)
 qqnorm(x, pch=21, bg="lightgray")
