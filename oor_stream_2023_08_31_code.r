@@ -83,6 +83,22 @@ for (i in 1:50) {
    Sys.sleep(0.2)
 }
 
+# say you do an independent samples t-test (with df=20) and obtain a
+# t-statistic of 2.23, then we can use pt() to compute the two-sided p-value
+# as follows
+2 * pt(2.23, df=20, lower.tail=FALSE)
+
+# draw the corresponding t-distribution and shade in the tail areas
+xs <- seq(-4, 4, length=10000)
+ys <- dt(xs, df=20)
+plot(xs, ys, type="l", lwd=2, bty="l")
+xs <- seq(2.23, 4, length=10000)
+ys <- dt(xs, df=20)
+polygon(c(xs,rev(xs)), c(ys,rep(0,10000)), col="lightgray")
+xs <- seq(-4, -2.23, length=10000)
+ys <- dt(xs, df=20)
+polygon(c(xs,rev(xs)), c(ys,rep(0,10000)), col="lightgray")
+
 ## chi-squared distribution
 
 # calculate the density of a chi-squared distribution with df=2
@@ -118,6 +134,4 @@ plot(xs, ys, type="h")
 
 # what is the probability of seeing 6 tails or fewer
 pbinom(6, size=10, prob=0.6)
-
-
 
