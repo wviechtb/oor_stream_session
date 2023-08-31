@@ -212,9 +212,25 @@ ys <- dnorm(xs, mean=mean(dat$eruptions), sd=sd(dat$eruptions))
 lines(xs, ys, lty="dotted", lwd=2)
 
 # plot the empirical cumulative distribution function (ecdf)
-plot(ecdf(dat$eruptions), do.points=FALSE, verticals=TRUE, lwd=2)
+plot(ecdf(dat$eruptions), do.points=TRUE, verticals=TRUE, lwd=2,
+     xlab="Eruption Time (in minutes)", main="", col.01line=NA, bty="l")
 
 # superimpose the cumulative distribution function from a normal distribution
 # with a mean and SD of that of the actual data on top of the ecdf
 xs <- seq(3.0, 5.5, by=0.01)
 lines(xs, pnorm(xs, mean=mean(dat$eruptions), sd=sd(dat$eruptions)), lty="dotted", lwd=2)
+
+# draw a Q-Q normal plot for the eruptions variable
+qqnorm(dat$eruptions, pch=21, bg="lightgray")
+qqline(dat$eruptions, lwd=3)
+
+# ...
+x <- rt(1000, df=5)
+qqnorm(x, pch=21, bg="lightgray")
+qqline(x, lwd=3)
+
+# ...
+x <- rchisq(1000, df=10)
+qqnorm(x, pch=21, bg="lightgray")
+qqline(x, lwd=3)
+
