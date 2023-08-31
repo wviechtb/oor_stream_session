@@ -155,8 +155,17 @@ head(dat)
 summary(dat$eruptions)
 fivenum(dat$eruptions)
 
+# look at the raw data for the eruptions variable rounded to two decimal places
+round(dat$eruptions, digits=2)
+
 # create a stem-and-leaf plot for the eruptions variable
 stem(dat$eruptions, scale=2)
 
 # there is one 1.60 in the dataset, one 1.67, one 1.70, one 1.73, six 1.75s,
-# two 1.78s, and so on
+# two 1.78s, and so on; so the step-and-leaf plot gives us the entire dataset
+# (rounded to two decimal places) and it also shows us something about the
+# distribution of the variable (i.e., there are actually two peaks, one where
+# the eruption length is around 1.8 minutes, and another peak where the
+# eruption time is around 4.5 minutes)
+
+
