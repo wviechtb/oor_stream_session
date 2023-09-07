@@ -181,4 +181,17 @@ se
 # 'capturing' the true mean
 arrows(obsmean - 2*se, 0, obsmean + 2*se, 0, angle=90, code=3, lwd=3)
 
-# let's repeat this process 100 times
+# let's repeat this process 200 times
+res <- replicate(200, {
+   obsmean <- mean(rnorm(100, mean=175, sd=10))
+   ci.lb <- obsmean - 2*se
+   ci.ub <- obsmean + 2*se
+   c(obsmean=obsmean, ci.lb=ci.lb, ci.ub=ci.ub)
+})
+res
+
+plot(NA, xlim=c(1,200), ylim=range(res), xlab="Simulation",
+     ylab="Estimate (95% CI)", bty="l")
+abline(h=175)
+segments(1:200, res[2,], 1:200, res[3,], col=ifelse(res[2,] > 175 | res[3,] < 175, "red", "gray60"))
+points(1:200, res[1,], pch=19, cex=0.5)
