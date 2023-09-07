@@ -150,3 +150,10 @@ sd(means)
 means <- replicate(100000, mean(((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175))
 sd(means)
 10 / sqrt(100)
+
+# and it also does not depend on the sampling distribution being normal
+means <- replicate(100000, mean(((rchisq(5, df=3) - 3) / sqrt(2*3)) * 10 + 175))
+hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+sd(means)
+10 / sqrt(5)
+
