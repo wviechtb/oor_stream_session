@@ -76,3 +76,13 @@ var(y)
 # two statistics, the statistic is an 'unbiased estimator' of the
 # corresponding parameter (but not for the range, as we saw above)
 
+# illustrate how the variation of the statistic (i.e., the standard error)
+# gets smaller as we increase the sample size
+par(mfrow=c(2,2))
+ns <- c(3, 5, 7, 10)
+for (n in ns) {
+   sampdist <- apply(combn(10, n), 2, function(i) y[i])
+   means <- apply(sampdist, 2, mean)
+   hist(means, main=paste0("Sampling Distribution of the Mean (n=", n, ")"),
+        xlab="Mean", breaks=seq(168, 190, by=2))
+}
