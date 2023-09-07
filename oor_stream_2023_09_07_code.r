@@ -39,3 +39,7 @@ hist(means, main="Sampling Distribution of the Mean", xlab="Mean")
 
 ## Standard errors, inferential uncertainty, and confidence intervals
 
+# the standard deviation of the statistic in our sampling distribution is
+# called the 'standard error' of the statistic
+sd(means)
+
