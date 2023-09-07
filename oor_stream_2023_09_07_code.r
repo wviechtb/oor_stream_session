@@ -89,3 +89,5 @@ for (n in ns) {
 
 # when the standard error of the statistic goes to zero as we increase the
 # sample size, then we say that the estimator is consistent
+
+# blah blah blah
