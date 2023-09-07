@@ -99,5 +99,11 @@ for (n in ns) {
 # distributed with a true mean of 175 and a true standard deviation of 10;
 # then a random sample of 100 people from that population can be generated
 # with rnorm()
-rnorm(100, mean=175, sd=10)
+x <- rnorm(100, mean=175, sd=10)
+x
 
+# then we can compute the mean height of our sample
+mean(x)
+
+# let's replicate this process 10000 times
+replicate(10000, mean(rnorm(100, mean=175, sd=10)))
