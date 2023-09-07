@@ -190,8 +190,9 @@ res <- replicate(200, {
 })
 res
 
+# draw the confidence intervals (in purple if it misses the true mean)
 plot(NA, xlim=c(1,200), ylim=range(res), xlab="Simulation",
      ylab="Estimate (95% CI)", bty="l")
 abline(h=175)
-segments(1:200, res[2,], 1:200, res[3,], col=ifelse(res[2,] > 175 | res[3,] < 175, "red", "gray60"))
+segments(1:200, res[2,], 1:200, res[3,], col=ifelse(res[2,] > 175 | res[3,] < 175, "#ff00cc", "#00ccff"), lwd=2)
 points(1:200, res[1,], pch=19, cex=0.5)
