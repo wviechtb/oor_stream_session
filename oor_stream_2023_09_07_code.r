@@ -30,3 +30,5 @@ means
 # note: we could also do the above with
 colMeans(sampdist)
 
+# the means vector is the sampling distribution of the mean (the statistic) in
+# this particular example
