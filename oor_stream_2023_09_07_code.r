@@ -90,3 +90,14 @@ for (n in ns) {
 # when the standard error of the statistic goes to zero as we increase the
 # sample size, then we say that the estimator is consistent
 
+# the example above is along the lines of the 'sampling model' introduced in
+# section 4.1; now let's consider an example along the lines of the
+# 'measurement model' where we cannot generate the entire sampling
+# distribution of the data, but we can (if we know the properties of the
+# generative model) generate a very large number of possible datasets easily;
+# for example, say that the height of people in the population is normally
+# distributed with a true mean of 175 and a true standard deviation of 10;
+# then a random sample of 100 people from that population can be generated
+# with rnorm()
+rnorm(100, mean=175, sd=10)
+
