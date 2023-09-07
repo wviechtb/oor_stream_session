@@ -111,13 +111,20 @@ means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
 # create a histogram of the sampling distribution of the mean in this scenario
 hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
 
-# blah blah ...
+# illustrate that the sampling distribution of the mean is still approximately
+# normal even when the raw data come from a non-normal (in this case, very
+# right-skewed distribution) as long as n is sufficiently large (due to the CLT)
 x <- ((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175
 x
 hist(x)
 
 means <- replicate(100000, mean(((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175))
 hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+
+
+
+ranges <- replicate(1000, {x <- rnorm(100000, mean=175, sd=10); max(x)-min(x)})
+hist(ranges, breaks=20, main="", xlab="")
 
 
 
