@@ -272,3 +272,5 @@ obsprop + 2*se
 ## Standard error and confidence interval for a proportion when y = 0 or y = 𝑛
 
 # ...
+
+############################################################################
