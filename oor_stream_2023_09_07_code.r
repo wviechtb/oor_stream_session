@@ -145,3 +145,8 @@ sd(means)
 
 # note that these two are not exactly equal to each other because we are
 # 'only' generating 100000 values of the statistic
+
+# this does not depend on the raw data being normally distributed
+means <- replicate(100000, mean(((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175))
+sd(means)
+10 / sqrt(100)
