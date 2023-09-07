@@ -167,3 +167,8 @@ hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
 obsmean <- mean(rnorm(100, mean=175, sd=10))
 points(obsmean, 0, pch=19, cex=2)
 
+# we know this one mean came from a normal sampling distribution
+
+# if I would know sigma (the SD of the data in the population), then I know
+# what the standard error is of the mean
+
