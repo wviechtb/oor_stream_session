@@ -70,3 +70,9 @@ hist(variances, main="Sampling Distribution of the Variance", xlab="Variance")
 sd(variances)
 mean(variances)
 var(y)
+
+# note: for the mean and variance, the mean of the values in the respective
+# sampling distribution is equal to the corresponding parameter; so for these
+# two statistics, the statistic is an 'unbiased estimator' of the
+# corresponding parameter (but not for the range, as we saw above)
+
