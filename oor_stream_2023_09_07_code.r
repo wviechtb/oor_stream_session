@@ -119,3 +119,10 @@ hist(x)
 means <- replicate(100000, mean(((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175))
 hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
 
+
+
+# let's go back to the case where the raw data are actually normally distributed
+means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
+
+# compute the standard error of the mean in this example
+sd(means)
