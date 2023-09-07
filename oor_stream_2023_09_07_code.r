@@ -229,4 +229,9 @@ points(1:200, res[1,], pch=19, cex=0.5)
 
 # to account for the fact that we have replaced the unknown true standard
 # error with the estimated one, we would have to use a t-distribution for
-# constructing the CI; instead of +-2 (or
+# constructing the CI; instead of +-2 (or more precisely, +-1.96), we would
+# use the appropriate 'critical value' from a t-distribution with n-1 degrees
+# of freedom
+qt(.975, df=100-1)
+
+# but when n is so large, the difference is again negligible
