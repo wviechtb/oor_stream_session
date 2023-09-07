@@ -39,6 +39,10 @@ hist(means, main="Sampling Distribution of the Mean", xlab="Mean")
 
 ## Standard errors, inferential uncertainty, and confidence intervals
 
+# interestingly, the mean of the means in the sampling distribution is equal
+# to the parameter we are estimating
+mean(means)
+
 # the standard deviation of the statistic in our sampling distribution is
 # called the 'standard error' of the statistic
 sd(means)
@@ -49,7 +53,20 @@ ranges <- apply(sampdist, 2, function(x) max(x) - min(x))
 ranges
 
 # create a histogram of the sampling distribution of the range
-hist(ranges, main="Sampling Distribution of the Range", xlab="Range")
+hist(ranges, main="Sampling Distribution of the Range", xlab="Range", breaks=10)
 
 # the standard error of the range
 sd(ranges)
+
+# note: for the range, the mean of the sampling distribution is way lower than
+# the corresponding parameter in the population
+max(y) - min(y)
+mean(ranges)
+
+# sampling distribution of the variance
+variances <- apply(sampdist, 2, function(x) var(x))
+variances
+hist(variances, main="Sampling Distribution of the Variance", xlab="Variance")
+sd(variances)
+mean(variances)
+var(y)
