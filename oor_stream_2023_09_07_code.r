@@ -117,18 +117,23 @@ hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
 x <- ((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175
 x
 hist(x)
-
 means <- replicate(100000, mean(((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175))
 hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
 
+# the CLT also applies to other statistics, like the SD (but convergence to a
+# normal distribution is slower, so n needs to be increased further)
+sds <- replicate(100000, sd(rnorm(100, mean=175, sd=10)))
+hist(ranges, breaks=20, main="", xlab="")
 
-
+# but the CLT does not kick in for a statistic like the range (because it is
+# not the sum of many small independent random variables)
 ranges <- replicate(1000, {x <- rnorm(100000, mean=175, sd=10); max(x)-min(x)})
 hist(ranges, breaks=20, main="", xlab="")
 
+## Standard errors and confidence intervals for averages and proportions
 
-
-# let's go back to the case where the raw data are actually normally distributed
+# let's go back to the case where the raw data are actually normally
+# distributed and we are looking at the sampling distribution of the mean
 means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
 
 # compute the standard error of the mean in this example
