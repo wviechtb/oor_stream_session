@@ -23,6 +23,9 @@ y <- c(178, 184, 165, 173, 196, 168, 171, 185, 180, 174)
 sampdist <- apply(combn(10, 3), 2, function(i) y[i])
 sampdist
 
+# say we are interested in the mean of the population (the parameter/estimand)
+mean(y)
+
 # take the mean of each column in the sampling distribution of the data
 means <- apply(sampdist, 2, mean)
 means
@@ -31,4 +34,8 @@ means
 colMeans(sampdist)
 
 # the means vector is the sampling distribution of the mean (the statistic) in
-# this particular example
+# this particular example; let's create a histogram of this distribution
+hist(means, main="Sampling Distribution of the Mean", xlab="Mean")
+
+## Standard errors, inferential uncertainty, and confidence intervals
+
