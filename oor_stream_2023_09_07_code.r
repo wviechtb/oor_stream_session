@@ -177,13 +177,15 @@ points(obsmean, 0, pch=19, cex=2)
 se <- 10 / sqrt(100)
 se
 
-# so, if we take the observed mean +- 2 * se, then this has a ~95% chance of
-# 'capturing' the true mean
+# so, if we take the observed mean +-2*se, then this has a ~95% chance of
+# 'capturing' the true mean (to be precise, we should use +-1.96*se, but the
+# difference is quite negligible)
 arrows(obsmean - 2*se, 0, obsmean + 2*se, 0, angle=90, code=3, lwd=3)
 
 # let's repeat this process 200 times
 res <- replicate(200, {
-   obsmean <- mean(rnorm(100, mean=175, sd=10))
+   x <- rnorm(100, mean=175, sd=10)
+   obsmean <- mean(x)
    ci.lb <- obsmean - 2*se
    ci.ub <- obsmean + 2*se
    c(obsmean=obsmean, ci.lb=ci.lb, ci.ub=ci.ub)
@@ -196,3 +198,35 @@ plot(NA, xlim=c(1,200), ylim=range(res), xlab="Simulation",
 abline(h=175)
 segments(1:200, res[2,], 1:200, res[3,], col=ifelse(res[2,] > 175 | res[3,] < 175, "#ff00cc", "#00ccff"), lwd=2)
 points(1:200, res[1,], pch=19, cex=0.5)
+
+# in practice, we do not know the SD of the data in the population; but we
+# could use the SD of the sample as an indicator of what the SD in the
+# population might be; say we draw this sample
+x <- rnorm(100, mean=175, sd=10)
+x
+
+# then we can *estimate* the standard error with
+sd(x) / sqrt(100)
+
+# note: when people say 'standard error', they are typically referring to the
+# estimate of the true standard error
+
+# now repeat what we did above, but using the estimated standard error
+res <- replicate(200, {
+   x <- rnorm(100, mean=175, sd=10)
+   obsmean <- mean(x)
+   ci.lb <- obsmean - 2*sd(x)/sqrt(100)
+   ci.ub <- obsmean + 2*sd(x)/sqrt(100)
+   c(obsmean=obsmean, ci.lb=ci.lb, ci.ub=ci.ub)
+})
+res
+
+plot(NA, xlim=c(1,200), ylim=range(res), xlab="Simulation",
+     ylab="Estimate (95% CI)", bty="l")
+abline(h=175)
+segments(1:200, res[2,], 1:200, res[3,], col=ifelse(res[2,] > 175 | res[3,] < 175, "#ff00cc", "#00ccff"), lwd=2)
+points(1:200, res[1,], pch=19, cex=0.5)
+
+# to account for the fact that we have replaced the unknown true standard
+# error with the estimated one, we would have to use a t-distribution for
+# constructing the CI; instead of +-2 (or
