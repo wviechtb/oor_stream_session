@@ -138,3 +138,10 @@ means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
 
 # compute the standard error of the mean in this example
 sd(means)
+
+# for a simple random sample, the standard error is equal to the SD of the
+# data in the population divided by the square-root of the sample size
+10 / sqrt(100)
+
+# note that these two are not exactly equal to each other because we are
+# 'only' generating 100000 values of the statistic
