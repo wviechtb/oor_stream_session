@@ -153,14 +153,17 @@ sd(means)
 
 # and it also does not depend on the sampling distribution being normal
 means <- replicate(100000, mean(((rchisq(5, df=3) - 3) / sqrt(2*3)) * 10 + 175))
-hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+hist(means, breaks=80, main="Sampling Distribution of the Mean", xlab="Mean")
 sd(means)
 10 / sqrt(5)
 
 # let's go back to the case where the raw data are normally distributed
 means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
 means
-hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+hist(means, breaks=80, main="Sampling Distribution of the Mean", xlab="Mean")
+
+# add the true mean as a vertical line
+abline(v=175, lwd=5)
 
 # now when we actually run out experiment/study, we just see one sample and
 # hence one observation (one draw) from that sampling distribution
@@ -169,6 +172,13 @@ points(obsmean, 0, pch=19, cex=2)
 
 # we know this one mean came from a normal sampling distribution
 
-# if I would know sigma (the SD of the data in the population), then I know
-# what the standard error is of the mean
+# if I would know sigma (the SD of the data in the population), then we would
+# also know what the standard error of the mean is; in this case
+se <- 10 / sqrt(100)
+se
 
+# so, if we take the observed mean +- 2 * se, then this has a ~95% chance of
+# 'capturing' the true mean
+arrows(obsmean - 2*se, 0, obsmean + 2*se, 0, angle=90, code=3, lwd=3)
+
+# let's repeat this process 100 times
