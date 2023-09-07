@@ -157,3 +157,13 @@ hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
 sd(means)
 10 / sqrt(5)
 
+# let's go back to the case where the raw data are normally distributed
+means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
+means
+hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+
+# now when we actually run out experiment/study, we just see one sample and
+# hence one observation (one draw) from that sampling distribution
+obsmean <- mean(rnorm(100, mean=175, sd=10))
+points(obsmean, 0, pch=19, cex=2)
+
