@@ -105,5 +105,17 @@ x
 # then we can compute the mean height of our sample
 mean(x)
 
-# let's replicate this process 10000 times
-replicate(10000, mean(rnorm(100, mean=175, sd=10)))
+# let's replicate this process 100000 times
+means <- replicate(100000, mean(rnorm(100, mean=175, sd=10)))
+
+# create a histogram of the sampling distribution of the mean in this scenario
+hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+
+# blah blah ...
+x <- ((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175
+x
+hist(x)
+
+means <- replicate(100000, mean(((rchisq(100, df=3) - 3) / sqrt(2*3)) * 10 + 175))
+hist(means, breaks=100, main="Sampling Distribution of the Mean", xlab="Mean")
+
