@@ -43,3 +43,13 @@ hist(means, main="Sampling Distribution of the Mean", xlab="Mean")
 # called the 'standard error' of the statistic
 sd(means)
 
+# we could also be interested in the range (i.e., the difference between the
+# maximum and minimum value in our sample) as a statistic
+ranges <- apply(sampdist, 2, function(x) max(x) - min(x))
+ranges
+
+# create a histogram of the sampling distribution of the range
+hist(ranges, main="Sampling Distribution of the Range", xlab="Range")
+
+# the standard error of the range
+sd(ranges)
