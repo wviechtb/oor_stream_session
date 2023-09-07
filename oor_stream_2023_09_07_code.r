@@ -235,3 +235,40 @@ points(1:200, res[1,], pch=19, cex=0.5)
 qt(.975, df=100-1)
 
 # but when n is so large, the difference is again negligible
+
+# generate a sample of 100 0's and 1's where there is a 50% chance of a 0 and
+# a 50% chance of a 1 and then compute the mean (i.e., the proportion)
+x <- sample(c(0,1), 100, replace=TRUE)
+x
+mean(x)
+
+# simulate 100000 of such proportions
+props <- replicate(100000, mean(sample(c(0,1), 100, replace=TRUE)))
+hist(props, breaks=50, main="Sampling Distribution of the Proportion", xlab="Proportion")
+
+# the true standard error of a proportion is equal to sqrt(p*(1-p)/n) where p
+# is the true proportion
+sqrt(0.5*0.5/100)
+sd(props)
+
+# try this out when the chance of a 0 is 80% (and hence 20% for a 1)
+props <- replicate(100000, mean(sample(c(0,1), 100, replace=TRUE, prob=c(.8,.2))))
+hist(props, breaks=40, main="Sampling Distribution of the Proportion", xlab="Proportion")
+sqrt(0.8*0.2/100)
+sd(props)
+
+# in practice, we do not know the true standard error, but we can estimate it
+# by plugging in the observed proportion for the unknown true proportion in
+# the equation for the standard error
+x <- sample(c(0,1), 100, replace=TRUE)
+x
+obsprop <- mean(x)
+obsprop
+se <- sqrt(obsprop*(1-obsprop)/100)
+se
+obsprop - 2*se
+obsprop + 2*se
+
+## Standard error and confidence interval for a proportion when y = 0 or y = 𝑛
+
+# ...
