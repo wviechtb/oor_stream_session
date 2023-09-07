@@ -86,3 +86,6 @@ for (n in ns) {
    hist(means, main=paste0("Sampling Distribution of the Mean (n=", n, ")"),
         xlab="Mean", breaks=seq(168, 190, by=2))
 }
+
+# when the standard error of the statistic goes to zero as we increase the
+# sample size, then we say that the estimator is consistent
