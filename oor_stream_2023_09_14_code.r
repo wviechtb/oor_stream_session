@@ -334,3 +334,20 @@ pred
 
 # add the regression line (or rather, curve) to the plot
 lines(wtvals, pred, lwd=3, col="blue")
+
+# instead of I(wt^2), we can use poly()
+res <- lm(mpg ~ poly(wt, degree=2), data=mtcars)
+summary(res)
+
+# note: poly() construct 'orthogonal polynomial' terms (to minimize the
+# correlation between the terms), so the coefficients are different, but the
+# underlying model is still going to give the same predictions
+
+# predicted values are computed in the exact same way as before
+pred <- predict(res, newdata=data.frame(wt=wtvals))
+pred
+lines(wtvals, pred, lwd=3, col="red")
+
+#
+res <- lm(mpg ~ poly(wt, degree=5), data=mtcars)
+pred <- predict(res, newdata=data.frame(wt=wtvals))
