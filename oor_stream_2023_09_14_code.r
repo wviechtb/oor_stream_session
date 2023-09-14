@@ -38,3 +38,13 @@ t.test(A, B)
 # for more details, see:
 # https://en.wikipedia.org/wiki/Welch%27s_t-test
 # https://en.wikipedia.org/wiki/Student%27s_t-test
+
+# look at the observed variances for the two variables
+var(A)
+var(B)
+
+# test the equality of the two variances
+var.test(A, B)
+
+# run the classical Student's t-test (assuming equal variances)
+t.test(A, B, var.equal=TRUE)
