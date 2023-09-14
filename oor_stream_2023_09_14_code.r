@@ -260,6 +260,17 @@ res
 # use summary() to get the full output from the regression model
 summary(res)
 
+# add the regression line from the simple regression model above to the plot
+abline(res, lwd=3)
+
+# more generally, we can get predicted values using predict()
+wtvals <- seq(1, 6, length=1000)
+pred <- predict(res, newdata=data.frame(wt=wtvals))
+pred
+
+# add the regression line based on these predicted values to the plot
+lines(wtvals, pred, lwd=3, col="blue")
+
 # in the model above, the intercept refers to the predicted average gas
 # mileage for cars whose weight is 0 pounds (which is obviously meaningless);
 # we can make the intercept meaningful by centering the predictor at a more
@@ -277,7 +288,9 @@ summary(res)
 # now the intercept is the predicted average gas mileage of cars whose weight
 # is 3000 pounds
 
-
 # a regression model with multiple predictors (multiple regression)
 res <- lm(mpg ~ wt + hp, data=mtcars)
 summary(res)
+
+# we saw earlier in the scatterplot that the relationship between mpg and wt
+# may not be linear
