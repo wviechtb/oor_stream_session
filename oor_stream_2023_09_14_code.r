@@ -175,4 +175,18 @@ summary(lm(mpg ~ disp, data=mtcars))
 summary(lm(mpg ~ hp,   data=mtcars))
 
 # and so on, but this is tedious (especially if the number of variables was
-# even larger)
+# even larger); instead, once we realize that we are fitting regression models
+# where the predictor is the variable in these columns
+2:ncol(mtcars)
+
+# then the use of a for-loop becomes obvious, because we can 'access' a
+# particular variable from the dataset using such column indices
+mtcars[[2]]
+mtcars[[3]]
+# and so on
+
+# so we can do the following
+for (i in 2:ncol(mtcars)) {
+   summary(lm(mpg ~ mtcars[[i]], data=mtcars))
+}
+
