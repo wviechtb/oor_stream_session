@@ -87,6 +87,14 @@ ks.test(heat ~ method, data=dat)
 
 ############################################################################
 
-### 9: Grouping, loops and conditional execution
-
 ### 9.1: Grouped expressions
+
+# like whatever ...
+
+### 9.2: Control statements
+
+x <- 5
+
+if (x == 5) print("x is five!") else print("x is not five :(")
+
+
