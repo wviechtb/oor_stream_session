@@ -97,4 +97,29 @@ x <- 5
 
 if (x == 5) print("x is five!") else print("x is not five :(")
 
+## the difference between && and &
+
+# which values of 'heat' are larger than 80?
+dat$heat > 80
+
+# which values of 'method' are equal to A?
+dat$method == "A"
+
+# which values of 'heat' are larger than 80 and are from method A?
+dat$heat > 80 & dat$method == "A"
+
+# the double && is only for a single logical
+y <- 7
+x == 5 && y < 8
+
+# this generates an error
+dat$heat > 80 && dat$method == "A"
+
+# why would you ever want to use &&?
+
+# the && is evaluted left-to-right, so if the first logical is FALSE, then
+# none of the following expressions are evaluated; for example, running
+# mean(rnorm(10^10)) > 0 would not only take a huge amount of time, but would
+# require more memory than my computer has
+x == 4 && mean(rnorm(10^10)) > 0
 
