@@ -225,10 +225,15 @@ names(mtcars)[which.max(r2)]
 # the largest R^2 value (of about 0.75)
 
 # often, one can avoid writing explicit loops and make the code more concise;
-# for example, suppose we want the mean of every variable in the dataset
+# for example, suppose we want the mean of every variable in the dataset; we
+# could do this with a for-loop as follows
 means <- rep(NA, ncol(mtcars))
 for (i in 1:ncol(mtcars)) {
    means[i] <- mean(mtcars[[i]])
 }
 means
+
+# but there are often specialized / vectorized functions that can do this
+# automatically, for example
+colMeans(mtcars)
 
