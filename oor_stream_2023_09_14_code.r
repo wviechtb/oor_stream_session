@@ -190,6 +190,9 @@ for (i in 2:ncol(mtcars)) {
    print(summary(lm(mpg ~ mtcars[[i]], data=mtcars)))
 }
 
-# but now we are still looking manually for the highest R^2 which is tedious
+# but now we are still looking manually for the highest R^2 which is tedious;
+# without getting into how one can figure this out for now, it turns out that
+# the R^2 value from a regression model can be extracted as follows
+summary(lm(mpg ~ cyl,  data=mtcars))$r.squared
 
 
