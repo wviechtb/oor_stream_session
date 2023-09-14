@@ -143,3 +143,11 @@ ifelse(dat$heat > 80, "red", "blue")
 # groups or values in plots; here is a silly example
 plot(dat$heat, xlab="Observation Number", ylab="Heat", pch=19, cex=1.2,
      col=ifelse(dat$heat > 80, "red", "blue"))
+
+## for-loops
+
+# a very simple example
+for (i in 1:20) {
+   print(paste("i is equal to:", i))
+}
+
