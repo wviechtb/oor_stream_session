@@ -141,5 +141,5 @@ ifelse(dat$heat > 80, "red", "blue")
 
 # this is useful in all kinds of circumstances, for example to distinguish
 # groups or values in plots; here is a silly example
-plot(dat$heat, xlab="Observation", ylab="Heat", pch=19,
+plot(dat$heat, xlab="Observation Number", ylab="Heat", pch=19, cex=1.2,
      col=ifelse(dat$heat > 80, "red", "blue"))
