@@ -67,3 +67,12 @@ ks.test(A, B)
 # to get the same result as in the manual, we can use
 ks.test(A, B, exact=FALSE)
 
+# put the data from the example into a data frame
+dat <- data.frame(method=c(rep("A",length(A)),rep("B",length(B))), heat=c(A,B))
+dat
+
+# rerun everything above but with this data layout
+boxplot(heat ~ method, data=dat, xlab="Method", ylab="Latent Heat (cal/gm)")
+t.test(heat ~ method, data=dat)
+t.test(heat ~ method, data=dat, var.equal=TRUE)
+by(dat$heat, dat$method, var)
