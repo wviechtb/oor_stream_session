@@ -201,8 +201,25 @@ for (i in 2:ncol(mtcars)) {
 }
 
 # better, but still not ideal, because which variable does that highest R^2
-# value actually correspond to? let's actually *store* the R^2 values
+# value actually correspond to? let's actually *store* the R^2 values somewhere
+
+r2 <- rep(NA, ncol(mtcars))
+r2
 
 for (i in 2:ncol(mtcars)) {
-   print(summary(lm(mpg ~ mtcars[[i]], data=mtcars))$r.squared)
+   r2[i] <- summary(lm(mpg ~ mtcars[[i]], data=mtcars))$r.squared
 }
+
+r2
+
+# what is the largest R^2 value?
+max(r2, na.rm=TRUE)
+
+# which value of R^2 is the largest (the maximum)
+which.max(r2)
+
+# this corresponds to which variable in the dataset
+names(mtcars)[which.max(r2)]
+
+# so predicting mpg (miles per gallon) from wt (the weight of the car) yields
+# the largest R^2 value (of about 0.75)
