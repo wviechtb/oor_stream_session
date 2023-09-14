@@ -251,3 +251,15 @@ colMeans(mtcars)
 
 # simple regression model predicting mpg (miles per gallon) from wt (weight)
 res <- lm(mpg ~ wt, data=mtcars)
+res
+
+# use summary() to get the full output from the regression model
+summary(res)
+
+# scatterplot of the two variables
+plot(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5,
+     xlab="Weight (in 1000lbs)", ylab="Mile per Gallon")
+
+# a regression model with multiple predictors (multiple regression)
+res <- lm(mpg ~ wt + hp, data=mtcars)
+summary(res)
