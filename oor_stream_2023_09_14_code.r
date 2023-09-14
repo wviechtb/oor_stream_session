@@ -53,3 +53,11 @@ t.test(A, B, var.equal=TRUE)
 # https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test
 wilcox.test(A, B)
 
+# look at the empirical cumulative distribution function of the two variables
+plot(ecdf(A), do.points=FALSE, verticals=TRUE, xlim=range(A, B), col="red", lwd=5, main="")
+plot(ecdf(B), do.points=FALSE, verticals=TRUE, add=TRUE, col="blue", lwd=5)
+text(80.00, 0.77, "Method B", cex=1.5)
+text(80.01, 0.25, "Method A", cex=1.5)
+
+# Kolmogorov-Smirnov test (of the maximal vertical distance between the two ecdf)
+ks.test(A, B)
