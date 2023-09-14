@@ -187,6 +187,9 @@ mtcars[[3]]
 
 # so we can do the following
 for (i in 2:ncol(mtcars)) {
-   summary(lm(mpg ~ mtcars[[i]], data=mtcars))
+   print(summary(lm(mpg ~ mtcars[[i]], data=mtcars)))
 }
+
+# but now we are still looking manually for the highest R^2 which is tedious
+
 
