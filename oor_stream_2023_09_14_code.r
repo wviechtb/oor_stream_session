@@ -127,3 +127,7 @@ x == 4 && mean(rnorm(10^10)) > 0
 
 # but do not run 'x == 4 & mean(rnorm(10^10)) > 0' because then both sides of
 # the & are run/evaluated and this would crash my R session
+
+# same thing with || (for 'or' comparisons); if the first expression is TRUE,
+# then there is no need to evaluate the second and it isn't even run
+x == 5 || mean(rnorm(10^10)) > 0
