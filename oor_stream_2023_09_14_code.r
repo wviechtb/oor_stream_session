@@ -303,4 +303,6 @@ res <- lm(mpg ~ wt + hp, data=mtcars)
 summary(res)
 
 # we saw earlier in the scatterplot that the relationship between mpg and wt
-# may not be linear
+# may not be linear (redraw the scatterplot)
+plot(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5,
+     xlab="Weight (in 1000lbs)", ylab="Mile per Gallon")
