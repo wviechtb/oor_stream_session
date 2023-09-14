@@ -120,6 +120,9 @@ dat$heat > 80 && dat$method == "A"
 # the && is evaluted left-to-right, so if the first logical is FALSE, then
 # none of the following expressions are evaluated; for example, running
 # mean(rnorm(10^10)) > 0 would not only take a huge amount of time, but would
-# require more memory than my computer has
+# require more memory than my computer has; but running the following is no
+# problem, because the second expression (mean(rnorm(10^10)) > 0) is never
+# actually run
 x == 4 && mean(rnorm(10^10)) > 0
 
+x == 4 & mean(rnorm(10^10)) > 0
