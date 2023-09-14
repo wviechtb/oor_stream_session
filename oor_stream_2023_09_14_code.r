@@ -261,7 +261,21 @@ res
 summary(res)
 
 # in the model above, the intercept refers to the predicted average gas
-# millage for cars whose weight is 0 pounds (which is obviously meaningless)
+# mileage for cars whose weight is 0 pounds (which is obviously meaningless);
+# we can make the intercept meaningful by centering the predictor at a more
+# meaningful value, for example at the mean
+res <- lm(mpg ~ I(wt-mean(wt)), data=mtcars)
+summary(res)
+
+# so now the intercept refers to the predicted average gas mileage of cars
+# whose weight is equal to the mean weight of the cars in this dataset
+
+# one can also directly set the value at which to center
+res <- lm(mpg ~ I(wt-3), data=mtcars)
+summary(res)
+
+# now the intercept is the predicted average gas mileage of cars whose weight
+# is 3000 pounds
 
 
 # a regression model with multiple predictors (multiple regression)
