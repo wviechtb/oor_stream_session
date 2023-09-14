@@ -352,3 +352,5 @@ lines(wtvals, pred, lwd=3, col="red")
 res <- lm(mpg ~ poly(wt, degree=5), data=mtcars)
 pred <- predict(res, newdata=data.frame(wt=wtvals))
 lines(wtvals, pred, lwd=3, col="green")
+
+############################################################################
