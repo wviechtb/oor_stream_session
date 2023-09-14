@@ -84,3 +84,9 @@ text(80.00, 0.77, "Method B", cex=1.5)
 text(80.01, 0.25, "Method A", cex=1.5)
 
 ks.test(heat ~ method, data=dat)
+
+############################################################################
+
+### 9: Grouping, loops and conditional execution
+
+### 9.1: Grouped expressions
