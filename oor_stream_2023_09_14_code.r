@@ -151,3 +151,12 @@ for (i in 1:20) {
    print(paste("i is equal to:", i))
 }
 
+# a few more examples
+for (i in c(2,9,5)) {
+   print(paste("i is equal to:", i))
+}
+
+for (i in c("chicken","cow","pig")) {
+   print(paste("i is equal to:", i))
+}
+
