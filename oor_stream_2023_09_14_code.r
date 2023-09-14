@@ -264,12 +264,22 @@ summary(res)
 abline(res, lwd=3)
 
 # more generally, we can get predicted values using predict()
-wtvals <- seq(1, 6, length=1000)
+wtvals <- seq(1, 6, length=100)
 pred <- predict(res, newdata=data.frame(wt=wtvals))
 pred
 
 # add the regression line based on these predicted values to the plot
 lines(wtvals, pred, lwd=3, col="blue")
+
+# predict() can also compute confidence (and prediction) intervals
+pred <- predict(res, newdata=data.frame(wt=wtvals), interval="confidence")
+pred <- data.frame(pred)
+pred
+lines(wtvals, pred$lwr, lty="dotted")
+lines(wtvals, pred$upr, lty="dotted")
+
+# draw the points again (so they are on top of the lines)
+points(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5)
 
 # in the model above, the intercept refers to the predicted average gas
 # mileage for cars whose weight is 0 pounds (which is obviously meaningless);
