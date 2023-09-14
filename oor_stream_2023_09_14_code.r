@@ -52,3 +52,4 @@ t.test(A, B, var.equal=TRUE)
 # two-sample Wilcoxon test (or Mann-Whitney U test)
 # https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test
 wilcox.test(A, B)
+
