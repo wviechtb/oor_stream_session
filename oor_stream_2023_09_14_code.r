@@ -74,5 +74,13 @@ dat
 # rerun everything above but with this data layout
 boxplot(heat ~ method, data=dat, xlab="Method", ylab="Latent Heat (cal/gm)")
 t.test(heat ~ method, data=dat)
-t.test(heat ~ method, data=dat, var.equal=TRUE)
 by(dat$heat, dat$method, var)
+var.test(heat ~ method, data=dat)
+t.test(heat ~ method, data=dat, var.equal=TRUE)
+
+plot(ecdf(dat$heat[dat$method=="A"]), do.points=FALSE, verticals=TRUE, xlim=range(A, B), col="red", lwd=5, main="")
+plot(ecdf(dat$heat[dat$method=="B"]), do.points=FALSE, verticals=TRUE, add=TRUE, col="blue", lwd=5)
+text(80.00, 0.77, "Method B", cex=1.5)
+text(80.01, 0.25, "Method A", cex=1.5)
+
+ks.test(heat ~ method, data=dat)
