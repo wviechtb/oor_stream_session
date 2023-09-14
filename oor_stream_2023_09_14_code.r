@@ -314,3 +314,23 @@ predict(res, newdata=data.frame(wt=wtvals, hp=150))
 # may not be linear (redraw the scatterplot)
 plot(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5,
      xlab="Weight (in 1000lbs)", ylab="Mile per Gallon")
+
+# again add the line from the linear regression model to the plot
+res <- lm(mpg ~ wt, data=mtcars)
+abline(res)
+
+# fit a polynomial regression model to the second degree (to model a quadratic
+# relationship between the two variables)
+res <- lm(mpg ~ wt + I(wt^2), data=mtcars)
+summary(res)
+
+# compute predicted values for cars between 1000 and 6000 pounds
+pred <- predict(res, newdata=data.frame(wt=wtvals))
+pred
+
+# note: we only need to specify the wt values for this model; the predict()
+# function is clever enough to also construct the squared terms of wt for
+# making the predictions
+
+# add the regression line (or rather, curve) to the plot
+lines(wtvals, pred, lwd=3, col="blue")
