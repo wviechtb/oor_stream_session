@@ -136,3 +136,10 @@ x == 4 && mean(rnorm(10^10)) > 0
 # then there is no need to evaluate the second and it isn't even run
 x == 5 || mean(rnorm(10^10)) > 0
 
+# the ifelse() function is a 'vectorized' version of if () else
+ifelse(dat$heat > 80, "red", "blue")
+
+# this is useful in all kinds of circumstances, for example to distinguish
+# groups or values in plots; here is a silly example
+plot(dat$heat, xlab="Observation", ylab="Heat", pch=19,
+     col=ifelse(dat$heat > 80, "red", "blue"))
