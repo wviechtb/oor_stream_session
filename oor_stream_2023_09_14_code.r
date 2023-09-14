@@ -29,4 +29,12 @@ boxplot(A, B)
 par(bty="l")
 boxplot(list(A=A, B=B), xlab="Method", ylab="Latent Heat (cal/gm)")
 
+# independent samples t-test
+t.test(A, B)
 
+# note: this runs Welch's t-test (which does not assume equality of variances
+# in the two groups / for the two variables)
+
+# for more details, see:
+# https://en.wikipedia.org/wiki/Welch%27s_t-test
+# https://en.wikipedia.org/wiki/Student%27s_t-test
