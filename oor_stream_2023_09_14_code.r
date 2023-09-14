@@ -61,3 +61,9 @@ text(80.01, 0.25, "Method A", cex=1.5)
 
 # Kolmogorov-Smirnov test (of the maximal vertical distance between the two ecdf)
 ks.test(A, B)
+
+# note: these results are slightly different from what it shows in the manual,
+# because now the test is based on the exact p-value, not the approximate one;
+# to get the same result as in the manual, we can use
+ks.test(A, B, exact=FALSE)
+
