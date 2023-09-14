@@ -97,6 +97,11 @@ x <- 5
 
 if (x == 5) print("x is five!") else print("x is not five :(")
 
+# note: the expression between () must be a single TRUE or FALSE, so this does
+# not work and generates an erro
+if (dat$heat > 80) print("heat is above 80") else print("heat is 80 or below")
+
+
 ## the difference between && and &
 
 # which values of 'heat' are larger than 80?
@@ -131,3 +136,4 @@ x == 4 && mean(rnorm(10^10)) > 0
 # same thing with || (for 'or' comparisons); if the first expression is TRUE,
 # then there is no need to evaluate the second and it isn't even run
 x == 5 || mean(rnorm(10^10)) > 0
+
