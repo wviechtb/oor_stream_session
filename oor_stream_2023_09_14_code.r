@@ -195,4 +195,14 @@ for (i in 2:ncol(mtcars)) {
 # the R^2 value from a regression model can be extracted as follows
 summary(lm(mpg ~ cyl,  data=mtcars))$r.squared
 
+# so we can do the following
+for (i in 2:ncol(mtcars)) {
+   print(summary(lm(mpg ~ mtcars[[i]], data=mtcars))$r.squared)
+}
 
+# better, but still not ideal, because which variable does that highest R^2
+# value actually correspond to? let's actually *store* the R^2 values
+
+for (i in 2:ncol(mtcars)) {
+   print(summary(lm(mpg ~ mtcars[[i]], data=mtcars))$r.squared)
+}
