@@ -302,6 +302,14 @@ summary(res)
 res <- lm(mpg ~ wt + hp, data=mtcars)
 summary(res)
 
+# say we want to predict the gas mileage of a car that weighs 3000 pounds and
+# has a horsepower of 150
+predict(res, newdata=data.frame(wt=3, hp=150))
+
+# predict the gas mileage for cars that weigh between 1000 and 6000 pounds
+# holding horsepower constant at 150
+predict(res, newdata=data.frame(wt=wtvals, hp=150))
+
 # we saw earlier in the scatterplot that the relationship between mpg and wt
 # may not be linear (redraw the scatterplot)
 plot(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5,
