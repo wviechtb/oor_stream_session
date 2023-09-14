@@ -125,4 +125,5 @@ dat$heat > 80 && dat$method == "A"
 # actually run
 x == 4 && mean(rnorm(10^10)) > 0
 
-x == 4 & mean(rnorm(10^10)) > 0
+# but do not run 'x == 4 & mean(rnorm(10^10)) > 0' because then both sides of
+# the & are run/evaluated and this would crash my R session
