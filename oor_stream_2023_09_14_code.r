@@ -152,6 +152,7 @@ for (i in 1:20) {
 }
 
 # a few more examples
+
 for (i in c(2,9,5)) {
    print(paste("i is equal to:", i))
 }
@@ -159,4 +160,18 @@ for (i in c(2,9,5)) {
 for (i in c("chicken","cow","pig")) {
    print(paste("i is equal to:", i))
 }
+
+# as a sort-of not entirely silly application of this, let's consider the
+# mtcars dataset and suppose we want to run simple regression models where we
+# predict the mpg (mile per gallon) variable from each other variable in the
+# dataset and we want to find out for which variable R^2 is the largest
+mtcars
+
+# we could do this manually as follows (note: we haven't actually gotten to
+# fitting regression models - this comes in section 11, but let's already do
+# this here to make this example a bit more interesting)
+summary(lm(mpg ~ cyl, data=mtcars))
+summary(lm(mpg ~ disp, data=mtcars))
+summary(lm(mpg ~ hp, data=mtcars))
+# and so on
 
