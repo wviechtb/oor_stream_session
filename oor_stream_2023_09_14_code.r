@@ -223,3 +223,12 @@ names(mtcars)[which.max(r2)]
 
 # so predicting mpg (miles per gallon) from wt (the weight of the car) yields
 # the largest R^2 value (of about 0.75)
+
+# often, one can avoid writing explicit loops and make the code more concise;
+# for example, suppose we want the mean of every variable in the dataset
+means <- rep(NA, ncol(mtcars))
+for (i in 1:ncol(mtcars)) {
+   means[i] <- mean(mtcars[[i]])
+}
+means
+
