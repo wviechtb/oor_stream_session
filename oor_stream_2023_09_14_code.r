@@ -170,8 +170,9 @@ mtcars
 # we could do this manually as follows (note: we haven't actually gotten to
 # fitting regression models - this comes in section 11, but let's already do
 # this here to make this example a bit more interesting)
-summary(lm(mpg ~ cyl, data=mtcars))
+summary(lm(mpg ~ cyl,  data=mtcars))
 summary(lm(mpg ~ disp, data=mtcars))
-summary(lm(mpg ~ hp, data=mtcars))
-# and so on
+summary(lm(mpg ~ hp,   data=mtcars))
 
+# and so on, but this is tedious (especially if the number of variables was
+# even larger)
