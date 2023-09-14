@@ -48,3 +48,5 @@ var.test(A, B)
 
 # run the classical Student's t-test (assuming equal variances)
 t.test(A, B, var.equal=TRUE)
+
+# two-sample Wilcoxon test (or Mann-Whitney U test)
