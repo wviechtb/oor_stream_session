@@ -239,3 +239,15 @@ colMeans(mtcars)
 
 ############################################################################
 
+### 10: Writing your own functions
+
+# we will skip this (will come back to this topic in some future stream)
+
+############################################################################
+
+### 11.1: Defining statistical models; formulae
+
+# let's do some regression modeling using formula syntax with the mtcars dataset
+
+# simple regression model predicting mpg (miles per gallon) from wt (weight)
+res <- lm(mpg ~ wt, data=mtcars)
