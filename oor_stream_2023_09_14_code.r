@@ -249,16 +249,20 @@ colMeans(mtcars)
 
 # let's do some regression modeling using formula syntax with the mtcars dataset
 
-# simple regression model predicting mpg (miles per gallon) from wt (weight)
+# scatterplot of mpg (miles per gallon) on the y-axis and wt (weight) on the x-axis
+plot(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5,
+     xlab="Weight (in 1000lbs)", ylab="Mile per Gallon")
+
+# simple regression model predicting mpg from wt
 res <- lm(mpg ~ wt, data=mtcars)
 res
 
 # use summary() to get the full output from the regression model
 summary(res)
 
-# scatterplot of the two variables
-plot(mpg ~ wt, data=mtcars, pch=21, bg="lightgray", cex=1.5,
-     xlab="Weight (in 1000lbs)", ylab="Mile per Gallon")
+# in the model above, the intercept refers to the predicted average gas
+# millage for cars whose weight is 0 pounds (which is obviously meaningless)
+
 
 # a regression model with multiple predictors (multiple regression)
 res <- lm(mpg ~ wt + hp, data=mtcars)
