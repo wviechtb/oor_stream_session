@@ -181,6 +181,10 @@ mean(y) + qt(c(0.025, 0.975), n-1) * se
 y <- sample(rep(c(0,1,2,3,4), c(600,300,50,30,20)))
 y
 
+# note: calling this 'nonbinary discrete data' is a bit odd; this is simply a
+# count variable; if we are interested in the mean count, then we can proceed
+# as above
+
 # mean and standard deviation of these values
 mean(y)
 sd(y)
