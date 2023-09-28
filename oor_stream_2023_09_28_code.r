@@ -202,3 +202,26 @@ mean(y) * 1000000
 
 # confidence interval for the number of pet dogs in a city of one million
 ci * 1000000
+
+# another example; say we measure the height of 10 individuals (in cm)
+cm <- c(178, 184, 165, 173, 196, 168, 171, 185, 180, 174)
+
+# compute the mean height and the corresponding confidence interval
+mean(cm)
+n <- length(cm)
+se <- sd(cm) / sqrt(n)
+ci.cm <- mean(cm) + qt(c(0.025, 0.975), n-1) * se
+round(ci.cm, digits=2)
+
+# transform the values into heights in inches
+inches <- cm * 0.393701
+
+# compute the mean height and the corresponding confidence interval
+mean(inches)
+se <- sd(inches) / sqrt(n)
+ci.inches <- mean(inches) + qt(c(0.025, 0.975), n-1) * se
+round(ci.inches, digits=2)
+
+# show that the confidence interval for inches can be obtained by transforming
+# the bounds of the confidence interval for centimeters
+round(ci.cm * 0.393701, digits=2)
