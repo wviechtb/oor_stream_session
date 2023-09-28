@@ -192,4 +192,10 @@ sd(y)
 # construct the 95% confidence interval for the true mean
 n <- length(y)
 se <- sd(y) / sqrt(n)
-mean(y) + qt(c(0.025, 0.975), n-1) * se
+ci <- round(mean(y) + qt(c(0.025, 0.975), n-1) * se, digits=2)
+ci
+
+## Linear transformations
+
+# confidence interval for the total number of pet dogs in a city of one million
+ci * 1000000
