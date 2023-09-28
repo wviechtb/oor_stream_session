@@ -81,3 +81,15 @@ curve(dchisq(x, df=n-1), add=TRUE, lwd=5)
 hist(stats[2,]^2, breaks=80, xlab="Variance",
      main="Sampling Distribution of the Variance", freq=FALSE)
 curve(dchisq(x * (n-1) / 10^2, df=n-1) * (n-1) / 10^2, add=TRUE, lwd=5)
+
+# and from this, we can derive the distribution of the standard deviation
+hist(stats[2,], breaks=80, xlab="Standard Deviation",
+     main="Sampling Distribution of the Standard Deviation", freq=FALSE)
+curve(dchisq(x^2 * (n-1) / 10^2, df=n-1) * 2 * x * (n-1) / 10^2, add=TRUE, lwd=5)
+
+
+x = sd^2 * (n-1) / sigma^2
+y = sqrt(x / (n-1) * sigma^2)
+x = y^2 * (n-1) / sigma^2
+
+dx/dy = 2*y * (n-1) / sigma^2
