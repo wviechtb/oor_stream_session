@@ -49,3 +49,13 @@ sqrt(se.m^2 + se.w^2)
 ## Sampling distribution of the sample mean and standard deviation;
 ## normal and chi^2 distributions
 
+# let's repeat again what we essentially did last time and simulate 100
+# observations from a normal distribution with true mean 175 and true standard
+# deviation 10 and then compute the mean and standard deviation and then
+# repeat this 100,000 times
+stats <- replicate(100000, {
+   x <- rnorm(100, mean=175, sd=10)
+   c(mean(x), sd(x))
+})
+
+# the first row of stats are the means, the second row are the SDs
