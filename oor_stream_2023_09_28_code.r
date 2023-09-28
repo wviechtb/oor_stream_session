@@ -162,3 +162,16 @@ for (i in 1:50) {
           legend=c("standard normal", paste0("t-distribution (df=",i,")")))
    Sys.sleep(0.2)
 }
+
+# the example data (the weight of some object is measured 5 times)
+y <- c(35, 34, 38, 35, 37)
+
+# mean and standard deviation of the 5 measurements
+mean(y)
+sd(y)
+
+# construct the 95% confidence interval for the true mean
+n <- length(y)
+estimate <- mean(y)
+se <- sd(y) / sqrt(n)
+estimate + qt(c(0.025, 0.975), n-1) * se
