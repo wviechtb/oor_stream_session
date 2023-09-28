@@ -260,3 +260,22 @@ apply(dat, 1, function(x) segments(x["date"], 100*(x["support2"] - x["se"]),
 
 ## Weighted averages
 
+# illustrate the calculations based on just the three countries
+pr <- c(0.55, 0.61, 0.38)
+se <- c(0.02, 0.03, 0.03)
+pop <- c(68, 84, 59) # population size in millions
+ntot <- sum(pop)
+weights <- pop / ntot
+
+# weighted average
+avg <- sum(weights * pr)
+avg
+
+# se of the weighted average
+se.avg <- sqrt(sum((weights * se)^2))
+se.avg
+
+# construct a 95% confidence interval
+avg + c(-2,2) * se.avg
+
+############################################################################
