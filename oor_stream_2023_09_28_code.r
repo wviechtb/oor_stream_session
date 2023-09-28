@@ -53,16 +53,19 @@ sqrt(se.m^2 + se.w^2)
 # observations from a normal distribution with true mean 175 and true standard
 # deviation 10 and then compute the mean and standard deviation and then
 # repeat this 100,000 times
+set.seed(1234)
 stats <- replicate(100000, {
    x <- rnorm(10, mean=175, sd=10)
    c(mean(x), sd(x))
 })
 
-# the first row of stats are the means, the second row are the SDs
+# the first row of stats includes the means, so look at the corresponding
+# sampling distribution and superimpose the theoretical one
 hist(stats[1,], breaks=80, xlab="Mean",
      main="Sampling Distribution of the Mean", freq=FALSE)
 curve(dnorm(x, mean=175, sd=10/sqrt(10)), add=TRUE, lwd=5)
 
-hist(stats[2,], breaks=80, xlab="Standard Deviation",
+# the second row includes the SDs
+hist(stats[2,], breaks=60, xlab="Standard Deviation",
      main="Sampling Distribution of the Standard Deviation", freq=FALSE)
 curve(dnorm(x, mean=mean(stats[2,]), sd=sd(stats[2,])), add=TRUE, lwd=5)
