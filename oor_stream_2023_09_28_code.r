@@ -253,3 +253,6 @@ plot(dat$date, dat$support2*100, pch=19, xlab="Year",
 dat$se <- sqrt(dat$support2*(1-dat$support2)/1000)
 dat
 
+# add the 68% confidence interval bounds around each point
+apply(dat, 1, function(x) segments(x["date"], 100*(x["support2"] - x["se"]),
+                                   x["date"], 100*(x["support2"] + x["se"])))
