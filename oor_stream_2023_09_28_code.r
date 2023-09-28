@@ -59,3 +59,5 @@ stats <- replicate(100000, {
 })
 
 # the first row of stats are the means, the second row are the SDs
+hist(stats[1,], breaks=100, xlab="Mean",
+     main="Sampling Distribution of the Mean", freq=FALSE)
