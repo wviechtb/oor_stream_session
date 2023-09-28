@@ -55,8 +55,9 @@ sqrt(se.m^2 + se.w^2)
 # repeat this 100,000 times
 set.seed(1234)
 n <- 10
+sigma <- 10
 stats <- replicate(100000, {
-   x <- rnorm(n, mean=175, sd=10)
+   x <- rnorm(n, mean=175, sd=sigma)
    c(mean(x), sd(x))
 })
 
@@ -64,7 +65,13 @@ stats <- replicate(100000, {
 # sampling distribution and superimpose the theoretical one
 hist(stats[1,], breaks=80, xlab="Mean",
      main="Sampling Distribution of the Mean", freq=FALSE)
-curve(dnorm(x, mean=175, sd=10/sqrt(n)), add=TRUE, lwd=5)
+curve(dnorm(x, mean=175, sd=sigma/sqrt(n)), add=TRUE, lwd=5)
+
+# compute the standard deviation of the means (i.e., the standard error of the mean)
+sd(stats[1,])
+
+# statistical theory says that the SE is equal to this
+sigma / sqrt(n)
 
 # the second row includes the standard deviations, so look at the
 # corresponding sampling distribution
@@ -73,14 +80,14 @@ hist(stats[2,], breaks=60, xlab="Standard Deviation",
 
 # check that the distribution of the scaled variances is really a chi-squared
 # distribution with n-1 degrees of freedom
-hist(stats[2,]^2 * (n-1) / 10^2, breaks=60, xlab="Variance * (n-1) / sigma",
+hist(stats[2,]^2 * (n-1) / sigma^2, breaks=60, xlab="Variance * (n-1) / sigma",
      main="Sampling Distribution of the Scaled Variance", freq=FALSE)
 curve(dchisq(x, df=n-1), add=TRUE, lwd=5)
 
 # from this, we can derive the distribution of the variance
 hist(stats[2,]^2, breaks=80, xlab="Variance",
      main="Sampling Distribution of the Variance", freq=FALSE)
-curve(dchisq(y * (n-1) / 10^2, df=n-1) * (n-1) / 10^2, add=TRUE, lwd=5, xname="y")
+curve(dchisq(y * (n-1) / sigma^2, df=n-1) * (n-1) / sigma^2, add=TRUE, lwd=5, xname="y")
 
 # https://online.stat.psu.edu/stat414/lesson/23/23.1
 # x = sd^2 * (n-1) / sigma^2 ~ chi^2(df=n-1)
@@ -91,12 +98,19 @@ curve(dchisq(y * (n-1) / 10^2, df=n-1) * (n-1) / 10^2, add=TRUE, lwd=5, xname="y
 # and from this, we can derive the distribution of the standard deviation
 hist(stats[2,], breaks=80, xlab="Standard Deviation",
      main="Sampling Distribution of the Standard Deviation", freq=FALSE)
-curve(dchisq(y^2 * (n-1) / 10^2, df=n-1) * 2 * y * (n-1) / 10^2, add=TRUE, lwd=5, xname="y")
+curve(dchisq(y^2 * (n-1) / sigma^2, df=n-1) * 2 * y * (n-1) / sigma^2, add=TRUE, lwd=5, xname="y")
 
 # x = sd^2 * (n-1) / sigma^2 ~ chi^2(df=n-1)
 # y = sqrt(x / (n-1) * sigma^2) (here y is then the standard deviation)
 # x = y^2 * (n-1) / sigma^2
 # dx/dy = 2*y * (n-1) / sigma^2
+
+# compute the standard deviation of the standard deviations (i.e., the
+# standard error of the standard deviation)
+sd(stats[2,])
+1/(2*sigma) * sqrt(2 * sigma^4 / (n-1))
+
+
 
 # now let's look at the bivariate sampling distribution of the mean and
 # standard deviation; we will use 2-dimensional kernel density estimation for
@@ -113,5 +127,8 @@ cor(stats[1,], stats[2,])
 
 # construct the variance-covariance matrix of the two statistics
 var(t(stats))
+
+
+
 
 ## Degrees of freedom
