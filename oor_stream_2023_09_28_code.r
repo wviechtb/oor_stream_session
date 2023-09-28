@@ -257,3 +257,6 @@ dat
 # add the 68% confidence interval bounds around each point
 apply(dat, 1, function(x) segments(x["date"], 100*(x["support2"] - x["se"]),
                                    x["date"], 100*(x["support2"] + x["se"])))
+
+## Weighted averages
+
