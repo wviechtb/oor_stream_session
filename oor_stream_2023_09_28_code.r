@@ -172,6 +172,10 @@ sd(y)
 
 # construct the 95% confidence interval for the true mean
 n <- length(y)
-estimate <- mean(y)
 se <- sd(y) / sqrt(n)
-estimate + qt(c(0.025, 0.975), n-1) * se
+mean(y) + qt(c(0.025, 0.975), n-1) * se
+
+## Inference for discrete data
+
+# create the data for the example
+y <- rep(c(0,1,2,3,4), c(600,300,50,30,20))
