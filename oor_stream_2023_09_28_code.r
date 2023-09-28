@@ -246,8 +246,9 @@ dat$date <- dat$year + dat$month / 12
 dat
 
 # recreate Figure 4.3
-plot(dat$date, dat$support2*100, pch=19, xlab="Year",
-     ylab="Percentage support for the death penalty")
+plot(dat$date, dat$support2*100, type="l", col="gray80",
+     xlab="Year", ylab="Percentage support for the death penalty")
+points(dat$date, dat$support2*100, pch=19)
 
 # compute the standard error for each proportion
 dat$se <- sqrt(dat$support2*(1-dat$support2)/1000)
