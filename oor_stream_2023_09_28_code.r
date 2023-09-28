@@ -235,3 +235,8 @@ round(ci.cm * 0.393701, digits=2)
 dat <- data.frame(matrix(scan("polls.dat"), ncol=5, byrow=TRUE))
 names(dat) <- c("year", "month", "support", "nosupport", "noopinion")
 dat
+
+# compute the proportion of people that support the death penalty among the
+# people who do have an opinion on the matter
+dat$support2 <- with(dat, support / (support + nosupport))
+dat
