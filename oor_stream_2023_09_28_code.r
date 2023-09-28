@@ -19,11 +19,15 @@
 
 # generate two vectors of data corresponding to the given example
 
-x.men <- sample(c(rep(1,228), rep(0,172)))
-x.men
-mean(x.men)
+x.m <- sample(c(rep(1,228), rep(0,172)))
+x.m
+prop.m <- mean(x.m)
+prop.m
 
-x.women <- sample(c(rep(1,270), rep(0,330)))
-x.women
-mean(x.women)
+x.w <- sample(c(rep(1,270), rep(0,330)))
+x.w
+prop.w <- mean(x.w)
+prop.w
 
+se.m <- sqrt(prop.m * (1-prop.m) / length(x.m))
+se.w <- sqrt(prop.w * (1-prop.w) / length(x.w))
