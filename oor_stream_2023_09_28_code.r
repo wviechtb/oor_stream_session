@@ -13,3 +13,7 @@
 
 ############################################################################
 
+### 4.2: Estimates, standard errors, and confidence intervals
+
+## Standard error for a comparison
+
