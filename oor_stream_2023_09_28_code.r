@@ -54,10 +54,16 @@ sqrt(se.m^2 + se.w^2)
 # deviation 10 and then compute the mean and standard deviation and then
 # repeat this 100,000 times
 stats <- replicate(100000, {
-   x <- rnorm(100, mean=175, sd=10)
+   x <- rnorm(20, mean=175, sd=10)
    c(mean(x), sd(x))
 })
 
 # the first row of stats are the means, the second row are the SDs
-hist(stats[1,], breaks=100, xlab="Mean",
+hist(stats[1,], breaks=80, xlab="Mean",
      main="Sampling Distribution of the Mean", freq=FALSE)
+curve(dnorm(x, mean=175, sd=10/sqrt(100)), add=TRUE, lwd=5)
+
+hist(stats[2,], breaks=80, xlab="Standard Deviation",
+     main="Sampling Distribution of the Standard Deviation", freq=FALSE)
+
+curve(dnorm(x, mean=175, sd=10/sqrt(100)), add=TRUE, lwd=5)
