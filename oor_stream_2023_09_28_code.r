@@ -107,3 +107,6 @@ persp(res, xlab="Mean", ylab="Standard Deviation", zlab="Density",
       col="gray80", border="gray50", ticktype="detailed",
       theta=135, phi=35, shade=0.7, ltheta=135)
 
+# when the raw data are normally distributed, then the mean and standard
+# deviation are independent of each other
+cor(stats[1,], stats[2,])
