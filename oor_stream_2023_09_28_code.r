@@ -71,7 +71,8 @@ curve(dnorm(x, mean=175, sd=10/sqrt(n)), add=TRUE, lwd=5)
 hist(stats[2,], breaks=60, xlab="Standard Deviation",
      main="Sampling Distribution of the Standard Deviation", freq=FALSE)
 
-#
+# check that the distribution of the scaled variances is really a chi-squared
+# distribution with n-1 degrees of freedom
 hist(stats[2,]^2 * (n-1) / 10^2, breaks=60, xlab="Variance * (n-1) / sigma",
      main="Sampling Distribution of the Scaled Variance", freq=FALSE)
 curve(dchisq(x, df=n-1), add=TRUE, lwd=5)
