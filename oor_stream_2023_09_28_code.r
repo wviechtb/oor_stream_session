@@ -84,7 +84,7 @@ curve(dchisq(y * (n-1) / 10^2, df=n-1) * (n-1) / 10^2, add=TRUE, lwd=5, xname="y
 
 # https://online.stat.psu.edu/stat414/lesson/23/23.1
 # x = sd^2 * (n-1) / sigma^2
-# y = x / (n-1) * sigma^2
+# y = x / (n-1) * sigma^2 (here y is then the variance)
 # x = y * (n-1) / sigma^2
 # dx/dy = (n-1) / sigma^2
 
@@ -94,6 +94,6 @@ hist(stats[2,], breaks=80, xlab="Standard Deviation",
 curve(dchisq(y^2 * (n-1) / 10^2, df=n-1) * 2 * y * (n-1) / 10^2, add=TRUE, lwd=5, xname="y")
 
 # x = sd^2 * (n-1) / sigma^2
-# y = sqrt(x / (n-1) * sigma^2)
+# y = sqrt(x / (n-1) * sigma^2) (here y is then the standard deviation)
 # x = y^2 * (n-1) / sigma^2
 # dx/dy = 2*y * (n-1) / sigma^2
