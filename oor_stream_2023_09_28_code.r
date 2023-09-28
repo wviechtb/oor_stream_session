@@ -18,16 +18,30 @@
 ## Standard error for a comparison
 
 # generate two vectors of data corresponding to the given example
-
 x.m <- sample(c(rep(1,228), rep(0,172)))
 x.m
-prop.m <- mean(x.m)
-prop.m
-
 x.w <- sample(c(rep(1,270), rep(0,330)))
 x.w
+
+# compute the observed proportions
+prop.m <- mean(x.m)
+prop.m
 prop.w <- mean(x.w)
 prop.w
 
+# compute the (estimated) standard errors of these two proportions
 se.m <- sqrt(prop.m * (1-prop.m) / length(x.m))
 se.w <- sqrt(prop.w * (1-prop.w) / length(x.w))
+se.m
+se.w
+
+# compute the difference between the two proportions
+prop.m - prop.w
+
+# compute the (estimated) standard error of this difference
+sqrt(se.m^2 + se.w^2)
+
+# so now we can construct an approximate 95% confidence interval for the
+# true difference in the same manner as we did previously
+(prop.m - prop.w) - 2*sqrt(se.m^2 + se.w^2)
+(prop.m - prop.w) + 2*sqrt(se.m^2 + se.w^2)
