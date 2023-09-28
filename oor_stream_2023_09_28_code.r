@@ -54,8 +54,8 @@ sqrt(se.m^2 + se.w^2)
 # deviation 10 and then compute the mean and standard deviation and then
 # repeat this 100,000 times
 set.seed(1234)
-n <- 10
-sigma <- 10
+n <- 50
+sigma <- 20
 stats <- replicate(100000, {
    x <- rnorm(n, mean=175, sd=sigma)
    c(mean(x), sd(x))
@@ -106,11 +106,11 @@ curve(dchisq(y^2 * (n-1) / sigma^2, df=n-1) * 2 * y * (n-1) / sigma^2, add=TRUE,
 # dx/dy = 2*y * (n-1) / sigma^2
 
 # compute the standard deviation of the standard deviations (i.e., the
-# standard error of the standard deviation)
+# standard error of the standard deviation); based on a bunch of tedious
+# derivations (not shown), we can derive an approximate equation for the true
+# standard error
 sd(stats[2,])
-1/(2*sigma) * sqrt(2 * sigma^4 / (n-1))
-
-
+sigma / sqrt(2*(n-1))
 
 # now let's look at the bivariate sampling distribution of the mean and
 # standard deviation; we will use 2-dimensional kernel density estimation for
