@@ -17,3 +17,13 @@
 
 ## Standard error for a comparison
 
+# generate two vectors of data corresponding to the given example
+
+x.men <- sample(c(rep(1,228), rep(0,172)))
+x.men
+mean(x.men)
+
+x.women <- sample(c(rep(1,270), rep(0,330)))
+x.women
+mean(x.women)
+
