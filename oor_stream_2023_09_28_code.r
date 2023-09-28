@@ -133,4 +133,32 @@ cor(stats[1,], stats[2,])
 # construct the variance-covariance matrix of the two statistics
 var(t(stats))
 
-## Degrees of freedom
+## Confidence intervals from the t distribution
+
+# first draw a standard normal distribution
+xs <- seq(-4, 4, length=10000)
+ys <- dnorm(xs, mean=0, sd=1)
+plot(xs, ys, type="l", bty="l", lty="dotted")
+
+# calculate the density of a t-distribution with df=5 and add this to the plot
+xs <- seq(-4, 4, length=10000)
+ys <- dt(xs, df=5)
+lines(xs, ys, type="l", lwd=2)
+
+# add a legend
+legend("topright", inset=.01, lty=c("dotted","solid"), lwd=c(1,2),
+       legend=c("standard normal", "t-distribution (df=5)"))
+
+# a simple animation showing how a t-distributions looks more and more like a
+# standard normal when the degrees of freedom get large
+for (i in 1:50) {
+   xs <- seq(-4, 4, length=10000)
+   ys <- dnorm(xs, mean=0, sd=1)
+   plot(xs, ys, type="l", bty="l", lty="dotted")
+   xs <- seq(-4, 4, length=10000)
+   ys <- dt(xs, df=i)
+   lines(xs, ys, type="l", lwd=2)
+   legend("topright", inset=.01, lty=c("dotted","solid"), lwd=c(1,2),
+          legend=c("standard normal", paste0("t-distribution (df=",i,")")))
+   Sys.sleep(0.2)
+}
