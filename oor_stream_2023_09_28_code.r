@@ -54,8 +54,8 @@ sqrt(se.m^2 + se.w^2)
 # deviation 10 and then compute the mean and standard deviation and then
 # repeat this 100,000 times
 set.seed(1234)
-n <- 50
-sigma <- 20
+n <- 12
+sigma <- 10
 stats <- replicate(100000, {
    x <- rnorm(n, mean=175, sd=sigma)
    c(mean(x), sd(x))
@@ -70,17 +70,18 @@ curve(dnorm(x, mean=175, sd=sigma/sqrt(n)), add=TRUE, lwd=5)
 # compute the standard deviation of the means (i.e., the standard error of the mean)
 sd(stats[1,])
 
-# statistical theory says that the SE is equal to this
+# based on statistical theory, we can derive the equation for the standard
+# error of the mean
 sigma / sqrt(n)
 
 # the second row includes the standard deviations, so look at the
 # corresponding sampling distribution
-hist(stats[2,], breaks=60, xlab="Standard Deviation",
+hist(stats[2,], breaks=80, xlab="Standard Deviation",
      main="Sampling Distribution of the Standard Deviation", freq=FALSE)
 
 # check that the distribution of the scaled variances is really a chi-squared
 # distribution with n-1 degrees of freedom
-hist(stats[2,]^2 * (n-1) / sigma^2, breaks=60, xlab="Variance * (n-1) / sigma",
+hist(stats[2,]^2 * (n-1) / sigma^2, breaks=80, xlab="Variance * (n-1) / sigma",
      main="Sampling Distribution of the Scaled Variance", freq=FALSE)
 curve(dchisq(x, df=n-1), add=TRUE, lwd=5)
 
@@ -106,11 +107,17 @@ curve(dchisq(y^2 * (n-1) / sigma^2, df=n-1) * 2 * y * (n-1) / sigma^2, add=TRUE,
 # dx/dy = 2*y * (n-1) / sigma^2
 
 # compute the standard deviation of the standard deviations (i.e., the
-# standard error of the standard deviation); based on a bunch of tedious
-# derivations (not shown), we can derive an approximate equation for the true
-# standard error
+# standard error of the standard deviation)
 sd(stats[2,])
+
+# based on a bunch of tedious derivations (not shown), we can derive an
+# approximate equation for the true standard error of the standard deviation
 sigma / sqrt(2*(n-1))
+
+# they are not exactly the same because (a) we only simulated 100,000 values,
+# plus the equation that was derived is just an approximation
+
+
 
 # now let's look at the bivariate sampling distribution of the mean and
 # standard deviation; we will use 2-dimensional kernel density estimation for
