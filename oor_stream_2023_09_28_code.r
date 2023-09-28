@@ -97,3 +97,13 @@ curve(dchisq(y^2 * (n-1) / 10^2, df=n-1) * 2 * y * (n-1) / 10^2, add=TRUE, lwd=5
 # y = sqrt(x / (n-1) * sigma^2) (here y is then the standard deviation)
 # x = y^2 * (n-1) / sigma^2
 # dx/dy = 2*y * (n-1) / sigma^2
+
+# now let's look at the bivariate sampling distribution of the mean and
+# standard deviation; we will use 2-dimensional kernel density estimation for
+# this and create 3-dimension perspective plot based on that
+library(MASS)
+res <- kde2d(stats[1,], stats[2,], n=50)
+persp(res, xlab="Mean", ylab="Standard Deviation", zlab="Density",
+      col="gray80", border="gray50", ticktype="detailed",
+      theta=135, phi=35, shade=0.7, ltheta=135)
+
