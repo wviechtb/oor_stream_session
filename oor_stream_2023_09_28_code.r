@@ -76,3 +76,8 @@ hist(stats[2,], breaks=60, xlab="Standard Deviation",
 hist(stats[2,]^2 * (n-1) / 10^2, breaks=60, xlab="Variance * (n-1) / sigma",
      main="Sampling Distribution of the Scaled Variance", freq=FALSE)
 curve(dchisq(x, df=n-1), add=TRUE, lwd=5)
+
+# from this, we can derive the distribution of the variance
+hist(stats[2,]^2, breaks=80, xlab="Variance",
+     main="Sampling Distribution of the Variance", freq=FALSE)
+curve(dchisq(x * (n-1) / 10^2, df=n-1) * (n-1) / 10^2, add=TRUE, lwd=5)
