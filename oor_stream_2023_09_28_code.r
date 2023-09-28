@@ -114,10 +114,8 @@ sd(stats[2,])
 # approximate equation for the true standard error of the standard deviation
 sigma / sqrt(2*(n-1))
 
-# they are not exactly the same because (a) we only simulated 100,000 values,
-# plus the equation that was derived is just an approximation
-
-
+# they are not exactly the same because we only simulated 100,000 values plus
+# the equation that was derived is just an approximation
 
 # now let's look at the bivariate sampling distribution of the mean and
 # standard deviation; we will use 2-dimensional kernel density estimation for
@@ -134,8 +132,5 @@ cor(stats[1,], stats[2,])
 
 # construct the variance-covariance matrix of the two statistics
 var(t(stats))
-
-
-
 
 ## Degrees of freedom
