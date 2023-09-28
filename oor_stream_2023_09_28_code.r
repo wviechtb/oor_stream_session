@@ -113,3 +113,5 @@ cor(stats[1,], stats[2,])
 
 # construct the variance-covariance matrix of the two statistics
 var(t(stats))
+
+## Degrees of freedom
