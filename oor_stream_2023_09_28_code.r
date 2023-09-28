@@ -110,3 +110,6 @@ persp(res, xlab="Mean", ylab="Standard Deviation", zlab="Density",
 # when the raw data are normally distributed, then the mean and standard
 # deviation are independent of each other
 cor(stats[1,], stats[2,])
+
+# construct the variance-covariance matrix of the two statistics
+var(t(stats))
