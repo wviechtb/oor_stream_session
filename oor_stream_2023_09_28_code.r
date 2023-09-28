@@ -225,3 +225,7 @@ round(ci.inches, digits=2)
 # show that the confidence interval for inches can be obtained by transforming
 # the bounds of the confidence interval for centimeters
 round(ci.cm * 0.393701, digits=2)
+
+## Comparisons, visual and numerical
+
+dat <- matrix(scan("polls.dat"), ncol=5, byrow=TRUE)
