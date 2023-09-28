@@ -228,4 +228,10 @@ round(ci.cm * 0.393701, digits=2)
 
 ## Comparisons, visual and numerical
 
-dat <- matrix(scan("polls.dat"), ncol=5, byrow=TRUE)
+# read in the dataset, turn it into a proper data frame, and give the
+# variables proper names (support = percent that supports the death penalty;
+# nosupport = percent that does not; noopinion = percent that has no opinion
+# on the matter)
+dat <- data.frame(matrix(scan("polls.dat"), ncol=5, byrow=TRUE))
+names(dat) <- c("year", "month", "support", "nosupport", "noopinion")
+dat
