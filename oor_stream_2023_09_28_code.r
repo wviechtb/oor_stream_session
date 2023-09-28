@@ -45,3 +45,7 @@ sqrt(se.m^2 + se.w^2)
 # true difference in the same manner as we did previously
 (prop.m - prop.w) - 2*sqrt(se.m^2 + se.w^2)
 (prop.m - prop.w) + 2*sqrt(se.m^2 + se.w^2)
+
+## Sampling distribution of the sample mean and standard deviation;
+## normal and chi^2 distributions
+
