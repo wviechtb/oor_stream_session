@@ -197,5 +197,8 @@ ci
 
 ## Linear transformations
 
-# confidence interval for the total number of pet dogs in a city of one million
+# estimated number of pet dogs in a city of one million
+mean(y) * 1000000
+
+# confidence interval for the number of pet dogs in a city of one million
 ci * 1000000
