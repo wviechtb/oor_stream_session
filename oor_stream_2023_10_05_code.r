@@ -126,8 +126,12 @@ mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="6")
 res <- lm(mpg ~ fcyl, data=mtcars)
 summary(res)
 
-# regression model with a factor as predictor and we remove the intercept term
+# let's go back to the case where the reference level is 4 cylinders
 mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="4")
+res <- lm(mpg ~ fcyl, data=mtcars)
+summary(res)
+
+# regression model with a factor as predictor and we remove the intercept term
 res <- lm(mpg ~ 0 + fcyl, data=mtcars)
 summary(res)
 model.matrix(res)
