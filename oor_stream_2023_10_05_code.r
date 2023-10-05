@@ -126,6 +126,11 @@ mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="6")
 res <- lm(mpg ~ fcyl, data=mtcars)
 summary(res)
 
+#
+res <- lm(mpg ~ 0 + factor(cyl), data=mtcars)
+summary(res)
+
+
 
 ############################################################################
 
