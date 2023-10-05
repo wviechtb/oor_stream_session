@@ -104,7 +104,6 @@ library(car)
 # (0) * beta0 + (-1) * beta1 + (1) * beta2 = beta2 - beta1
 linearHypothesis(res, hypothesis.matrix=c(0,-1,1))
 
-
 # by default, the 'reference level' is the value of the variable that is
 # alpha-numerically the lowest
 factor(mtcars$cyl)
