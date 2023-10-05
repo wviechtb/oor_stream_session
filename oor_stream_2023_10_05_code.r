@@ -207,9 +207,10 @@ summary(glht(res, rbind(c(0,-1,1))), test=adjusted("none"))
 # adjust the p-values for multiple testing using the Bonferroni method
 summary(glht(res, rbind(c(-1,1,0),c(-1,0,1),c(0,-1,1))), test=adjusted("bonferroni"))
 
-
-
-linearHypothesis(res, hypothesis.matrix=rbind(c(-1,1,0),c(-1,0,1),c(0,-1,1)))
+# we can also get the result of the omnibus test from the model with the
+# intercept term from the model without the intercept term, by simultaneously
+# testing the contrasts of 6 versus 4 cylinders and 8 versus 4 cylinders
+linearHypothesis(res, hypothesis.matrix=rbind(c(-1,1,0),c(-1,0,1)))
 
 
 ############################################################################
