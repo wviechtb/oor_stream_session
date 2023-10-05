@@ -14,3 +14,11 @@
 
 ############################################################################
 
+### 11.1: Defining statistical models; formulae
+
+# before we continue, let's look at some examples with categorical predictors
+
+# compare the gas mileage of cars with an automatic versus manual transmission
+res <- lm(mpg ~ am, data=mtcars)
+
+## 11.1.1 Contrasts
