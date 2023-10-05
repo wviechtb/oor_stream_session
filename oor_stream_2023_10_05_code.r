@@ -256,14 +256,16 @@ summary(res)
 # so now the intercept refers to 8 cylinders and we get contrasts of 4 versus
 # 8 and 6 versus 8 cylinders
 
-# use contrs.sum for 'sum to zero contrasts'
+# use contr.sum for 'sum to zero contrasts'
 options(contrasts = c("contr.sum", "contr.poly"))
 res <- lm(mpg ~ factor(cyl), data=mtcars)
 model.matrix(res)
 
-# to make it clearer what has happened, let's compare these columns with the
-# original cyl variable
-cbind(mtcars$cyl, model.matrix(res))
-
 # examine the results
 summary(res)
+
+# maybe add an explanation about this here or at least a reference where this
+# is explained
+
+############################################################################
+
