@@ -58,6 +58,10 @@ mtcars$transmission <- factor(mtcars$transmission)
 res <- lm(mpg ~ transmission, data=mtcars)
 summary(res)
 
+# sidenote: this is the same as running a classical Student's t-test (assuming
+# equal variances within the two groups)
+t.test(mpg ~ am, data=mtcars, var.equal=TRUE)
+
 # scatterplot of mpg (miles per gallon) on the y-axis and cyl (number of
 # cylinders) on the x-axis
 plot(mpg ~ cyl, data=mtcars, pch=21, bg="lightgray", cex=1.5,
@@ -87,6 +91,9 @@ model.matrix(res)
 # intercept is the expected mpg for cars with 4 cylinders; beta1 is the mean
 # difference in mpg for cars with 6 cylinders versus cars with 4 cylinders and
 # beta2 is the mean difference in mpg for cars with 8 versus 4 cylinders
+
+# sidenote: this is the same as running an ANOVA (we will get to aov() later)
+summary(aov(mpg ~ factor(cyl), data=mtcars))
 
 # get the predicted (expected) mpg for each level of cyl from the model
 newdat <- data.frame(cyl=c(4,6,8))
