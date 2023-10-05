@@ -66,6 +66,7 @@ plot(mpg ~ cyl, data=mtcars, pch=21, bg="lightgray", cex=1.5,
 # linear regression model with number of cylinders as a numeric variable
 res <- lm(mpg ~ cyl, data=mtcars)
 summary(res)
+abline(res, lwd=3)
 
 
 
