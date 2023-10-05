@@ -55,8 +55,16 @@ model.matrix(~ factor(mtcars$transmission))
 
 # we can also include a factor directly in the model as a predictor
 mtcars$transmission <- factor(mtcars$transmission)
-
 res <- lm(mpg ~ transmission, data=mtcars)
 summary(res)
+
+
+
+
+
+
+
+############################################################################
+
 
 ## 11.1.1 Contrasts
