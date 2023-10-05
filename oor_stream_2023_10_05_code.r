@@ -267,5 +267,6 @@ summary(res)
 # maybe add an explanation about this here or at least a reference where this
 # is explained
 
-############################################################################
+options(contrasts = c("contr.treatment", "contr.poly"))
 
+############################################################################
