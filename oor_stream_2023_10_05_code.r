@@ -130,12 +130,16 @@ summary(res)
 mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="4")
 res <- lm(mpg ~ 0 + fcyl, data=mtcars)
 summary(res)
+model.matrix(res)
 
-# so the model is given by this equation:
+# the model fitted is given by this equation:
 #
-# mpg = beta0 + beta1 * factor(cyl)6 + beta2 * factor(cyl)8 + error
-
-
+# mpg = beta1 * fcyl4 + beta2 * fcyl6 + beta3 * fcyl8 + error
+#
+# where fcyl4 = 1 for cars with 4 cylinders, fcyl6 = 1 for cars with 6
+# cylinders, and fcyl8 = 1 for cars with 8 cylinders, so beta1 is the expected
+# mpg for cars with 4 cylinders, beta2 is the expected mpg for cars with 6
+# cylinders, and beta3 is the expected mpg for cars with 8 cylinders
 
 ############################################################################
 
