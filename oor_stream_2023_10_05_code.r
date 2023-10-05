@@ -176,9 +176,8 @@ model.matrix(res)
 # we see again that these are the mpg means of the three groups
 by(mtcars$mpg, mtcars$cyl, mean)
 
-
-# we can get the same contrasts from the earlier model with linearHypothesis()
-linearHypothesis(res, hypothesis.matrix=c(0,-1,1))
+# get the same contrasts as from the model with the intercept term
+linearHypothesis(res, hypothesis.matrix=c())
 
 
 ############################################################################
