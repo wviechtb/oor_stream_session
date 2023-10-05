@@ -173,6 +173,10 @@ model.matrix(res)
 # mpg for cars with 4 cylinders, beta2 is the expected mpg for cars with 6
 # cylinders, and beta3 is the expected mpg for cars with 8 cylinders
 
+# we see again that these are the mpg means of the three groups
+by(mtcars$mpg, mtcars$cyl, mean)
+
+
 # we can get the same contrasts from the earlier model with linearHypothesis()
 linearHypothesis(res, hypothesis.matrix=c(0,-1,1))
 
