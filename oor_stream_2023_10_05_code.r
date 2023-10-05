@@ -58,7 +58,14 @@ mtcars$transmission <- factor(mtcars$transmission)
 res <- lm(mpg ~ transmission, data=mtcars)
 summary(res)
 
+# scatterplot of mpg (miles per gallon) on the y-axis and cyl (number of
+# cylinders) on the x-axis
+plot(mpg ~ cyl, data=mtcars, pch=21, bg="lightgray", cex=1.5,
+     xlab="Number of Cylinders", ylab="Mile per Gallon")
 
+# linear regression model with number of cylinders as a numeric variable
+res <- lm(mpg ~ cyl, data=mtcars)
+summary(res)
 
 
 
