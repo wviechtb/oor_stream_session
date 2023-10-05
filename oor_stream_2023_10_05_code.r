@@ -237,3 +237,9 @@ model.matrix(res)
 # as indicators in the model matrix
 res <- lm(mpg ~ 0 + factor(cyl), data=mtcars)
 model.matrix(res)
+
+# but as we saw, when the intercept is included, then by default the model
+# matrix implies that we want contrasts between 6 cylinders versus 4 cylinders
+# and 8 cylinders versus 4 cylinders
+res <- lm(mpg ~ factor(cyl), data=mtcars)
+model.matrix(res)
