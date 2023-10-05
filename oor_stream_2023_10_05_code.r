@@ -209,6 +209,9 @@ summary(glht(res, rbind(c(-1,1,0),c(-1,0,1),c(0,-1,1))), test=adjusted("bonferro
 
 
 
+linearHypothesis(res, hypothesis.matrix=rbind(c(-1,1,0),c(-1,0,1),c(0,-1,1)))
+
+
 ############################################################################
 
 
