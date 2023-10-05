@@ -79,7 +79,11 @@ summary(res)
 model.matrix(res)
 
 # so factor(cyl)6 is 1 for cars with 6 cylinders, factor(cyl)8 is 1 for cars
-# with 8 cylinders, and both are 0 for cars with 4 cylinders
+# with 8 cylinders, and both are 0 for cars with 4 cylinders; so the intercept
+# is the expected mpg for cars with 4 cylinders; the coefficient for
+# factor(cyl)6 is the mean difference in mpg for cars with 6 cylinders versus
+# cars with 4 cylinders and the coefficient for factor(cyl)8 is the mean
+# difference in mpg for cars with 8 cylinders versus cars with 4 cylinders
 
 ############################################################################
 
