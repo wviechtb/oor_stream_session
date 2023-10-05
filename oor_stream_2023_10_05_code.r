@@ -40,6 +40,7 @@ mtcars
 res <- lm(mpg ~ transmission, data=mtcars)
 summary(res)
 
-# the results are identical
+# the results are identical; the 'transmission' variable was turned into a
+# 'factor' which then gets dummy-coded for inclusion in the model
 
 ## 11.1.1 Contrasts
