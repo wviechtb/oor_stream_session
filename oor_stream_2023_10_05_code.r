@@ -212,8 +212,6 @@ summary(glht(res, rbind(c(-1,1,0),c(-1,0,1),c(0,-1,1))), test=adjusted("bonferro
 # testing the contrasts of 6 versus 4 cylinders and 8 versus 4 cylinders
 linearHypothesis(res, hypothesis.matrix=rbind(c(-1,1,0),c(-1,0,1)))
 
-
 ############################################################################
-
 
 ## 11.1.1 Contrasts
