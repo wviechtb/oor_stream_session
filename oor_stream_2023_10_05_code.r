@@ -85,6 +85,11 @@ model.matrix(res)
 # cars with 4 cylinders and the coefficient for factor(cyl)8 is the mean
 # difference in mpg for cars with 8 cylinders versus cars with 4 cylinders
 
+# we can estimate the mean difference in mpg for cars with 8 versus 6
+# cylinders from this by taking the difference between the corresponding coefficients
+
+
+
 # by default, the 'reference level' is the value of the variable that is
 # alpha-numerically the lowest
 factor(mtcars$cyl)
