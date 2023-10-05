@@ -88,6 +88,9 @@ model.matrix(res)
 # difference in mpg for cars with 6 cylinders versus cars with 4 cylinders and
 # beta2 is the mean difference in mpg for cars with 8 versus 4 cylinders
 
+
+
+
 # we can estimate the mean difference in mpg for cars with 8 versus 6
 # cylinders from this by taking the difference between the corresponding
 # coefficients; but how can we get a test of this difference?
