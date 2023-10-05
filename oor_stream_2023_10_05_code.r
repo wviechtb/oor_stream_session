@@ -89,10 +89,12 @@ model.matrix(res)
 # beta2 is the mean difference in mpg for cars with 8 versus 4 cylinders
 
 # get the predicted (expected) mpg for each level of cyl from the model
-pred <- predict(res, newdata=data.frame(cyl=c(4,6,8)))
+newdat <- data.frame(cyl=c(4,6,8))
+pred <- predict(res, newdata=newdat)
 pred
 
-
+# add the predicted values to the plot
+points(newdat$cyl, pred, pch=19, cex=2.5, type="o", lty="dotted", lwd=3)
 
 # we can estimate the mean difference in mpg for cars with 8 versus 6
 # cylinders from this by taking the difference between the corresponding
