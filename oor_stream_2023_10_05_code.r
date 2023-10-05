@@ -243,3 +243,15 @@ model.matrix(res)
 # and 8 cylinders versus 4 cylinders
 res <- lm(mpg ~ factor(cyl), data=mtcars)
 model.matrix(res)
+
+# use contr.SAS for unordered factors, which just means that the last level of
+# the factor becomes the reference level
+options(contrasts = c("contr.SAS", "contr.poly"))
+res <- lm(mpg ~ factor(cyl), data=mtcars)
+model.matrix(res)
+
+# examine the results
+summary(res)
+
+# so now the intercept refers to 8 cylinders and we get contrasts of 4 versus
+# 8 and 6 versus 8 cylinders
