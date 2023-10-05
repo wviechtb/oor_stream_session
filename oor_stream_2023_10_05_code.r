@@ -92,8 +92,13 @@ factor(mtcars$cyl)
 # but we can change the reference level with relevel()
 relevel(factor(mtcars$cyl), ref="6")
 
-# or when we create the factor, we specify the levels in the desired order
+# or when we create the factor, we specify the levels in the desired order,
+# with the first denoting the reference level
 factor(mtcars$cyl, levels=c("6","4","8"))
+
+# same regression model as above but with 6 cylinders as the reference level
+res <- lm(mpg ~ relevel(factor(cyl), ref="6"), data=mtcars)
+summary(res)
 
 ############################################################################
 
