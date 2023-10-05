@@ -215,3 +215,25 @@ linearHypothesis(res, hypothesis.matrix=rbind(c(-1,1,0),c(-1,0,1)))
 ############################################################################
 
 ## 11.1.1 Contrasts
+
+# for quantitative variables, the model matrix just contains a column with
+# their values
+res <- lm(mpg ~ cyl, data=mtcars)
+model.matrix(res)
+res <- lm(mpg ~ cyl + hp + wt, data=mtcars)
+model.matrix(res)
+
+# for a factor, we saw already earlier how indicators (dummy variables) are
+# created for all levels except the first (reference) level
+res <- lm(mpg ~ factor(cyl), data=mtcars)
+model.matrix(res)
+
+# we will ignore the discussion about ordered factors, because in the context
+# of lm(), this just gives a different parameterization of the same model as
+# we fitted above, but doesn't change anything about what the fit is (i.e.,
+# the predicted values are identical)
+
+# as we saw earlier, when we remove the intercept, then all levels are encoded
+# as indicators in the model matrix
+res <- lm(mpg ~ 0 + factor(cyl), data=mtcars)
+model.matrix(res)
