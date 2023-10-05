@@ -93,6 +93,9 @@ newdat <- data.frame(cyl=c(4,6,8))
 pred <- predict(res, newdata=newdat)
 pred
 
+# these are in fact just the means of cars falling within these three groups
+by(mtcars$mpg, mtcars$cyl, mean)
+
 # add the predicted values to the plot
 points(newdat$cyl, pred, pch=19, cex=2.5, type="o", lty="dotted", lwd=3)
 
