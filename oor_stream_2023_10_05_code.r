@@ -43,4 +43,20 @@ summary(res)
 # the results are identical; the 'transmission' variable was turned into a
 # 'factor' which then gets dummy-coded for inclusion in the model
 
+# as we saw in section 4, we can manually turn a variable into a factor with
+# the factor() function
+factor(mtcars$transmission)
+
+# we can also do the dummy-coding manually with the model.matrix() function
+model.matrix(~ factor(mtcars$transmission))
+
+# so the 0 refers to the first level (automatic) and the 1 refers to the
+# second level (manual)
+
+# we can also include a factor directly in the model as a predictor
+mtcars$transmission <- factor(mtcars$transmission)
+
+res <- lm(mpg ~ transmission, data=mtcars)
+summary(res)
+
 ## 11.1.1 Contrasts
