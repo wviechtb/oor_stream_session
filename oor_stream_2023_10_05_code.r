@@ -126,9 +126,14 @@ mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="6")
 res <- lm(mpg ~ fcyl, data=mtcars)
 summary(res)
 
-#
-res <- lm(mpg ~ 0 + factor(cyl), data=mtcars)
+# regression model with a factor as predictor and we remove the intercept term
+mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="4")
+res <- lm(mpg ~ 0 + fcyl, data=mtcars)
 summary(res)
+
+# so the model is given by this equation:
+#
+# mpg = beta0 + beta1 * factor(cyl)6 + beta2 * factor(cyl)8 + error
 
 
 
