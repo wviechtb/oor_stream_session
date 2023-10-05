@@ -75,8 +75,11 @@ model.matrix(res)
 res <- lm(mpg ~ factor(cyl), data=mtcars)
 summary(res)
 
+# inspect the corresponding model matrix
+model.matrix(res)
 
-
+# so factor(cyl)6 is 1 for cars with 6 cylinders, factor(cyl)8 is 1 for cars
+# with 8 cylinders, and both are 0 for cars with 4 cylinders
 
 ############################################################################
 
