@@ -106,6 +106,16 @@ by(mtcars$mpg, mtcars$cyl, mean)
 # add the predicted values to the plot
 points(newdat$cyl, pred, pch=19, cex=2.5, type="o", lty="dotted", lwd=3)
 
+# we notice that the predicted values are quite similar for the two models; so
+# does the model that treats cylinders as a categorical variable give us a
+# significantly better fit?
+res1 <- lm(mpg ~ cyl, data=mtcars)
+res2 <- lm(mpg ~ factor(cyl), data=mtcars)
+anova(res1, res2)
+
+# since the model comparison F-test is not significant, the fit of the model
+# that treats cylinders categorically is not significantly better
+
 # we can estimate the mean difference in mpg for cars with 8 versus 6
 # cylinders from this by taking the difference between the corresponding
 # coefficients; but how can we get a test of this difference?
@@ -145,7 +155,7 @@ res <- lm(mpg ~ fcyl, data=mtcars)
 summary(res)
 
 # let's go back to the case where the reference level is 4 cylinders
-mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="4")
+mtcars$fcyl <- factor(mtcars$cyl)
 res <- lm(mpg ~ fcyl, data=mtcars)
 summary(res)
 
