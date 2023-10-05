@@ -130,7 +130,7 @@ library(multcomp)
 
 # now we can test the following linear combination of the coefficients:
 # (0) * beta0 + (-1) * beta1 + (1) * beta2 = beta2 - beta1
-summary(glht(res, cbind(0,-1,1)), test=adjusted("none"))
+summary(glht(res, rbind(c(0,-1,1))), test=adjusted("none"))
 
 # note: since we are only testing a single linear combination, whether the
 # p-value given is adjusted for multiple testing or not makes no difference,
@@ -145,7 +145,7 @@ summary(glht(res, cbind(0,-1,1)), test=adjusted("none"))
 library(car)
 
 # we can again test the linear combination of coefficients as above
-linearHypothesis(res, hypothesis.matrix=c(0,-1,1))
+linearHypothesis(res, hypothesis.matrix=rbind(c(0,-1,1)))
 
 # by default, the 'reference level' is the value of the variable that is
 # alpha-numerically the lowest
