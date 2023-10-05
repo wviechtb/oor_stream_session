@@ -121,8 +121,24 @@ anova(res1, res2)
 # coefficients; but how can we get a test of this difference?
 coef(res)[3] - coef(res)[2]
 
-# for this, we will make use of the 'car' package, so install the package
+# for this, we will make use of the 'multcomp' package, so install the package
 # first if you do not already have it installed
+#install.packages("multcomp")
+
+# load the 'multcomp' package
+library(multcomp)
+
+# now we can test the following linear combination of the coefficients:
+# (0) * beta0 + (-1) * beta1 + (1) * beta2 = beta2 - beta1
+summary(glht(res, cbind(0,-1,1)), test=adjusted("none"))
+
+# note: since we are only testing a single linear combination, whether the
+# p-value given is adjusted for multiple testing or not makes no difference,
+# but note that by default, the p-value is adjusted, which matters when
+# testing multiple such linear combinations at the same time
+
+# we can also make use of the 'car' package, so install the package first if
+# you do not already have it installed
 #install.packages("car")
 
 # load the 'car' package
@@ -177,7 +193,12 @@ model.matrix(res)
 by(mtcars$mpg, mtcars$cyl, mean)
 
 # get the same contrasts as from the model with the intercept term
-linearHypothesis(res, hypothesis.matrix=c())
+
+#
+library(multcomp)
+summary(glht(res, cbind(-1,1,0)))
+
+linearHypothesis(res, hypothesis.matrix=c(-1,1,0))
 
 
 ############################################################################
