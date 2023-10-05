@@ -90,7 +90,7 @@ model.matrix(res)
 
 # get the predicted (expected) mpg for each level of cyl from the model
 pred <- predict(res, newdata=data.frame(cyl=c(4,6,8)))
-
+pred
 
 
 
