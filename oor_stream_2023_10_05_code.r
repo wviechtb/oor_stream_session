@@ -86,16 +86,19 @@ model.matrix(res)
 # difference in mpg for cars with 8 cylinders versus cars with 4 cylinders
 
 # we can estimate the mean difference in mpg for cars with 8 versus 6
-# cylinders from this by taking the difference between the corresponding coefficients
+# cylinders from this by taking the difference between the corresponding
+# coefficients; but how can we get a test of this difference?
 coef(res)[3] - coef(res)[2]
 
-# install the 'car' package
+# for this, we will make use of the 'car' package, so install the package
+# first if you do not already have it installed
 #install.packages("car")
 
 # load the 'car' package
 library(car)
 
-
+#
+linearHypothesis
 
 
 # by default, the 'reference level' is the value of the variable that is
