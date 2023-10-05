@@ -20,5 +20,16 @@
 
 # compare the gas mileage of cars with an automatic versus manual transmission
 res <- lm(mpg ~ am, data=mtcars)
+summary(res)
+
+# we are fitting this model:
+#
+# mpg = beta0 + beta1 * am + error
+#
+# where am = 0 for cars with an automatic transmission and am = 1 for cars
+# with a manual transmission, so the intercept is the expected mpg for cars
+# with an automatic transmission
+
+
 
 ## 11.1.1 Contrasts
