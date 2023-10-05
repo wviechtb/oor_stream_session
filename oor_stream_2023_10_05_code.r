@@ -100,6 +100,8 @@ factor(mtcars$cyl, levels=c("6","4","8"))
 res <- lm(mpg ~ relevel(factor(cyl), ref="6"), data=mtcars)
 summary(res)
 
+
+
 ############################################################################
 
 
