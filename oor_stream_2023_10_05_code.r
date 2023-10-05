@@ -198,8 +198,15 @@ by(mtcars$mpg, mtcars$cyl, mean)
 
 # get the same contrasts as from the model with the intercept term
 summary(glht(res, rbind(c(-1,1,0))), test=adjusted("none"))
+summary(glht(res, rbind(c(-1,0,1))), test=adjusted("none"))
 
-linearHypothesis(res, hypothesis.matrix=c(-1,1,0))
+# and we can get again the contrast between 8 and 6 cylinders
+summary(glht(res, rbind(c(0,-1,1))), test=adjusted("none"))
+
+# we can obtain all three contrasts in a single line of code; now we will also
+# adjust the p-values for multiple testing using the Bonferroni method
+summary(glht(res, rbind(c(-1,1,0),c(-1,0,1),c(0,-1,1))), test=adjusted("bonferroni"))
+
 
 
 ############################################################################
