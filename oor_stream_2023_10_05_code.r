@@ -85,6 +85,16 @@ model.matrix(res)
 # cars with 4 cylinders and the coefficient for factor(cyl)8 is the mean
 # difference in mpg for cars with 8 cylinders versus cars with 4 cylinders
 
+# by default, the 'reference level' is the value of the variable that is
+# alpha-numerically the lowest
+factor(mtcars$cyl)
+
+# but we can change the reference level with relevel()
+relevel(factor(mtcars$cyl), ref="6")
+
+# or when we create the factor, we specify the levels in the desired order
+factor(mtcars$cyl, levels=c("6","4","8"))
+
 ############################################################################
 
 
