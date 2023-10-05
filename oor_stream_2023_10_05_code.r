@@ -78,12 +78,15 @@ summary(res)
 # inspect the corresponding model matrix
 model.matrix(res)
 
-# so factor(cyl)6 is 1 for cars with 6 cylinders, factor(cyl)8 is 1 for cars
-# with 8 cylinders, and both are 0 for cars with 4 cylinders; so the intercept
-# is the expected mpg for cars with 4 cylinders; the coefficient for
-# factor(cyl)6 is the mean difference in mpg for cars with 6 cylinders versus
-# cars with 4 cylinders and the coefficient for factor(cyl)8 is the mean
-# difference in mpg for cars with 8 cylinders versus cars with 4 cylinders
+# so the model is given by this equation:
+#
+# mpg = beta0 + beta1 * factor(cyl)6 + beta2 * factor(cyl)8 + error
+#
+# where factor(cyl)6 is 1 for cars with 6 cylinders, factor(cyl)8 is 1 for
+# cars with 8 cylinders, and both are 0 for cars with 4 cylinders; so the
+# intercept is the expected mpg for cars with 4 cylinders; beta1 is the mean
+# difference in mpg for cars with 6 cylinders versus cars with 4 cylinders and
+# beta2 is the mean difference in mpg for cars with 8 versus 4 cylinders
 
 # we can estimate the mean difference in mpg for cars with 8 versus 6
 # cylinders from this by taking the difference between the corresponding
@@ -97,7 +100,7 @@ coef(res)[3] - coef(res)[2]
 # load the 'car' package
 library(car)
 
-#
+# now we can test the following linear contrast of the coefficients
 linearHypothesis
 
 
