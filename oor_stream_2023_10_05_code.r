@@ -28,7 +28,10 @@ summary(res)
 #
 # where am = 0 for cars with an automatic transmission and am = 1 for cars
 # with a manual transmission, so the intercept is the expected mpg for cars
-# with an automatic transmission
+# with an automatic transmission and the slope for am is the mean difference
+# in mpg for cars with a manual transmission compared to cars with an
+# automatic transmission
+
 
 
 
