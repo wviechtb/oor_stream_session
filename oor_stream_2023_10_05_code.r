@@ -128,8 +128,13 @@ coef(res)[3] - coef(res)[2]
 # load the 'multcomp' package
 library(multcomp)
 
-# now we can test the following linear combination of the coefficients:
+# we want test the following linear combination of the coefficients:
 # (0) * beta0 + (-1) * beta1 + (1) * beta2 = beta2 - beta1
+
+# construct the corresponding matrix with the multipliers
+rbind(c(0,-1,1))
+
+# we can use this together with glht() to test this linear combination
 summary(glht(res, rbind(c(0,-1,1))), test=adjusted("none"))
 
 # note: since we are only testing a single linear combination, whether the
@@ -144,7 +149,7 @@ summary(glht(res, rbind(c(0,-1,1))), test=adjusted("none"))
 # load the 'car' package
 library(car)
 
-# we can again test the linear combination of coefficients as above
+# we can again test the linear combination of the coefficients as above
 linearHypothesis(res, hypothesis.matrix=rbind(c(0,-1,1)))
 
 # by default, the 'reference level' is the value of the variable that is
@@ -192,10 +197,7 @@ model.matrix(res)
 by(mtcars$mpg, mtcars$cyl, mean)
 
 # get the same contrasts as from the model with the intercept term
-
-#
-library(multcomp)
-summary(glht(res, cbind(-1,1,0)))
+summary(glht(res, rbind(c(-1,1,0))), test=adjusted("none"))
 
 linearHypothesis(res, hypothesis.matrix=c(-1,1,0))
 
