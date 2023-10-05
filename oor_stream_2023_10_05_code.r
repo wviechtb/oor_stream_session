@@ -88,6 +88,9 @@ model.matrix(res)
 # difference in mpg for cars with 6 cylinders versus cars with 4 cylinders and
 # beta2 is the mean difference in mpg for cars with 8 versus 4 cylinders
 
+# get the predicted (expected) mpg for each level of cyl from the model
+pred <- predict(res, newdata=data.frame(cyl=c(4,6,8)))
+
 
 
 
