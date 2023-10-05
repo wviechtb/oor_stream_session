@@ -87,6 +87,14 @@ model.matrix(res)
 
 # we can estimate the mean difference in mpg for cars with 8 versus 6
 # cylinders from this by taking the difference between the corresponding coefficients
+coef(res)[3] - coef(res)[2]
+
+# install the 'car' package
+#install.packages("car")
+
+# load the 'car' package
+library(car)
+
 
 
 
