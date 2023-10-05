@@ -100,6 +100,12 @@ factor(mtcars$cyl, levels=c("6","4","8"))
 res <- lm(mpg ~ relevel(factor(cyl), ref="6"), data=mtcars)
 summary(res)
 
+# in the output, the names of the predictor variables becomes quite long this
+# way, so let's first create the releveled factor and then include it in the
+# model
+mtcars$fcyl <- relevel(factor(mtcars$cyl), ref="6")
+res <- lm(mpg ~ fcyl, data=mtcars)
+summary(res)
 
 
 ############################################################################
