@@ -32,7 +32,14 @@ summary(res)
 # in mpg for cars with a manual transmission compared to cars with an
 # automatic transmission
 
+# say am was coded not as a dummy variable, but as a string variable
+mtcars$transmission <- ifelse(mtcars$am == 1, "manual", "automatic")
+mtcars
 
+# use such a string in the model
+res <- lm(mpg ~ transmission, data=mtcars)
+summary(res)
 
+# the results are identical
 
 ## 11.1.1 Contrasts
