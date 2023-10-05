@@ -63,11 +63,17 @@ summary(res)
 plot(mpg ~ cyl, data=mtcars, pch=21, bg="lightgray", cex=1.5,
      xlab="Number of Cylinders", ylab="Mile per Gallon")
 
-# linear regression model with number of cylinders as a numeric variable
+# regression model with number of cylinders as a numeric variable
 res <- lm(mpg ~ cyl, data=mtcars)
 summary(res)
 abline(res, lwd=3)
 
+# inspect the corresponding model matrix
+model.matrix(res)
+
+# regression model where we treat cyl as a factor (categorical variable)
+res <- lm(mpg ~ factor(cyl), data=mtcars)
+summary(res)
 
 
 
