@@ -73,3 +73,16 @@ res
 
 # look at the documentation for setmfopt() to see what other options can be set
 help(setmfopt)
+
+# re-examine the output
+res
+
+# set the number of digits to print to 2 in the output
+print(res, digits=2)
+
+# we can set the number of digits to show globally
+setmfopt(digits=2)
+
+# re-examine the output
+res
+predict(res, transf=exp)
