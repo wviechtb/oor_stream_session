@@ -172,3 +172,10 @@ regtest(res)
 
 # file drawer analysis using the Rosenthal approach
 fsn(yi, vi, data=dat)
+
+# file drawer analysis using the Orwin approach, calculating the number of
+# studies averaging null results that it would take to reduce the pooled odds
+# 1.05 (i.e., a 5% increase in the odds of lung cancer in exposed women);
+# note: the analysis is done with log odds ratios, so we also have to specify
+# the target effect size in log units
+fsn(yi, vi, data=dat, type="Orwin", target=log(1.05))
