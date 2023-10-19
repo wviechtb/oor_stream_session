@@ -133,3 +133,15 @@ par(op)
 # create funnel plot
 funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
        atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
+
+# can also have custom themes
+setmfopt(theme="custom", fg="yellow", bg="darkblue")
+
+# all colors used in plots created by metafor are chosen relative to the
+# foreground and background colors
+
+# create funnel plot
+funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
+       atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
+
+############################################################################
