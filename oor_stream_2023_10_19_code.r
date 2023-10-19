@@ -169,3 +169,6 @@ funnel(res)
 
 # run the regression test for funnel plot asymmetry
 regtest(res)
+
+# file drawer analysis using the Rosenthal approach
+fsn(yi, vi, data=dat)
