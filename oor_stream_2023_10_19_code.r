@@ -71,6 +71,8 @@ res
 
 ############################################################################
 
+### look at some other optins can that be set/adjusted
+
 # look at the documentation for setmfopt() to see what other options can be set
 help(setmfopt)
 
@@ -102,8 +104,6 @@ library(crayon)
 # re-examine the output
 res
 predict(res, transf=exp)
-
-############################################################################
 
 # create forest plot
 forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
@@ -153,3 +153,8 @@ funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
        atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
 
 ############################################################################
+
+### updates to the fsn() function
+
+# fit equal-effects model
+rma(yi, vi, data=dat, method="EE")
