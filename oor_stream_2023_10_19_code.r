@@ -13,3 +13,8 @@
 
 ############################################################################
 
+# install the metafor package
+#install.packages("metafor")
+
+# load the metafor package
+library(metafor)
