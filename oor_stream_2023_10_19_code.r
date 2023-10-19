@@ -96,4 +96,13 @@ predict(res, transf=exp)
 
 # see help(misc_options) for further details
 
+# for example, when loading the crayon package, we can get styled output
+library(crayon)
+
+# re-examine the output
+res
+predict(res, transf=exp)
+
+
+
 ############################################################################
