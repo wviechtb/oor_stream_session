@@ -156,7 +156,11 @@ funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
 
 ### updates to the fsn() function
 
+# copy the dat.hackshaw1998 dataset to dat
+dat <- dat.hackshaw1998
+
 # fit equal-effects model
 res <- rma(yi, vi, data=dat, method="EE")
 res
+predict(res, transf=exp)
 
