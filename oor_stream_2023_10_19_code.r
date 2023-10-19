@@ -208,7 +208,12 @@ predict(res, transf=exp)
 # pooled effect size to 0.05 based on a random-effects model
 fsn(yi, vi, data=dat, type="General")
 
+# can also pass a model object to fsn()
+fsn(res)
+
 # file drawer analysis using the general approach, where we want to determine
 # how many studies it would take to reduce the pooled effect size to log(1.05)
 # based on a random-effects model
 fsn(yi, vi, data=dat, type="General", target=log(1.05))
+fsn(res, target=log(1.05))
+
