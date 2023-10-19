@@ -164,3 +164,8 @@ res <- rma(yi, vi, data=dat, method="EE")
 res
 predict(res, transf=exp)
 
+# create funnel plot
+funnel(res)
+
+# run the regression test for funnel plot asymmetry
+regtest(res)
