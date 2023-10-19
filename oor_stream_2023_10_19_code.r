@@ -179,3 +179,4 @@ fsn(yi, vi, data=dat)
 # note: the analysis is done with log odds ratios, so we also have to specify
 # the target effect size in log units
 fsn(yi, vi, data=dat, type="Orwin", target=log(1.05))
+
