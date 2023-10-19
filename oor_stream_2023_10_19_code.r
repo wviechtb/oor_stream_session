@@ -90,4 +90,10 @@ predict(res, transf=exp)
 # specify how various elements of the output should be rounded
 setmfopt(digits = c(est=2, se=3, test=2, pval=3, ci=2, var=3, sevar=3, fit=3, het=3))
 
+# re-examine the output
+res
+predict(res, transf=exp)
+
 # see help(misc_options) for further details
+
+############################################################################
