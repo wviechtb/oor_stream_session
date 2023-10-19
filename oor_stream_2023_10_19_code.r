@@ -70,3 +70,6 @@ setmfopt(space=TRUE)
 res
 
 ############################################################################
+
+# look at the documentation for setmfopt() to see what other options can be set
+help(setmfopt)
