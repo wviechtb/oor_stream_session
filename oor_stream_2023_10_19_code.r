@@ -180,3 +180,9 @@ fsn(yi, vi, data=dat)
 # the target effect size in log units
 fsn(yi, vi, data=dat, type="Orwin", target=log(1.05))
 
+# demonstrate that if we add 104 studies with null results that have
+# sampling variances equal to the harmonic mean of the sampling variances of
+# the original studies, then we indeed get the target pooled effect size
+yi.all <- c(dat$yi, rep(0, 104))
+vi.all <- c(dat$vi, rep(1/mean(1/dat$vi), 104))
+rma(yi.all, vi.all, method="EE")
