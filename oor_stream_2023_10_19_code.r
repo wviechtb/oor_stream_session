@@ -157,4 +157,6 @@ funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
 ### updates to the fsn() function
 
 # fit equal-effects model
-rma(yi, vi, data=dat, method="EE")
+res <- rma(yi, vi, data=dat, method="EE")
+res
+
