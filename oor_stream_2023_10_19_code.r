@@ -117,3 +117,19 @@ par(op)
 # create funnel plot
 funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
        atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
+
+# we can force plots to have a dark background
+setmfopt(theme="dark")
+
+# create forest plot
+forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.xpos=c(-9.5,-8,-6,-4.5),
+       cex=0.9, header="Author(s) and Year", shade=TRUE)
+op <- par(cex=0.9, font=2)
+text(c(-9.5,-8,-6,-4.5), res$k+2, c("TB+", "TB-", "TB+", "TB-"))
+text(c(-8.75,-5.25),     res$k+3, c("Vaccinated", "Control"))
+par(op)
+
+# create funnel plot
+funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
+       atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
