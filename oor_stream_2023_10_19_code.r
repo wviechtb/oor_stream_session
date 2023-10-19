@@ -52,5 +52,21 @@ rm(.rmspace)
 # re-examine the output
 res
 
+# the approach above for setting such options is outdated
+
+# get the metafor package options
+getmfopt()
+
+# set the space option to FALSE
+setmfopt(space=FALSE)
+
+# re-examine the output
+res
+
+# set the space option back to TRUE
+setmfopt(space=TRUE)
+
+# re-examine the output
+res
 
 ############################################################################
