@@ -18,3 +18,17 @@
 
 # load the metafor package
 library(metafor)
+
+### calculate log risk ratios and corresponding sampling variances
+dat <- escalc(measure="RR", ai=tpos, bi=tneg,
+                            ci=cpos, di=cneg, data=dat.bcg,
+                            slab=paste0(author, ", ", year))
+dat
+
+### random-effects model
+res <- rma(yi, vi, data=dat)
+res
+
+### average risk ratio with 95% CI
+predict(res, transf=exp)
+
