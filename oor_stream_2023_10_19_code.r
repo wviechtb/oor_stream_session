@@ -144,4 +144,12 @@ setmfopt(theme="custom", fg="yellow", bg="darkblue")
 funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
        atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
 
+# in RStudio, can set theme to "auto" in which case the foreground and
+# background colors of plots are chosen according to the RStudio theme
+setmfopt(theme="auto")
+
+# create funnel plot
+funnel(res, ylim=c(0,0.8), las=1, digits=list(3L,1),
+       atransf=exp, at=log(c(0.125, 0.25, 0.5, 1, 2, 4)))
+
 ############################################################################
