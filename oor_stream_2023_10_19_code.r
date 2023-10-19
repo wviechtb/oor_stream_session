@@ -217,3 +217,6 @@ fsn(res)
 fsn(yi, vi, data=dat, type="General", target=log(1.05))
 fsn(res, target=log(1.05))
 
+# try out the exact calculation method
+fsn(yi, vi, data=dat, type="General", exact=TRUE)
+fsn(yi, vi, data=dat, type="General", target=log(1.05), exact=TRUE)
