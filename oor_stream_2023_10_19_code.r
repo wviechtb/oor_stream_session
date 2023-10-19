@@ -198,5 +198,17 @@ yi.all <- c(dat$yi, rep(0, 202))
 vi.all <- c(dat$vi, rep(1/mean(1/dat$vi), 202))
 rma(yi.all, vi.all, method="EE")
 
-# file drawer analysis using the general approach
+# fit random-effects model
+res <- rma(yi, vi, data=dat)
+res
+predict(res, transf=exp)
+
+# file drawer analysis using the general approach, where we want to determine
+# how many studies it would take to reduce the significance level of the
+# pooled effect size to 0.05 based on a random-effects model
 fsn(yi, vi, data=dat, type="General")
+
+# file drawer analysis using the general approach, where we want to determine
+# how many studies it would take to reduce the significance level of the
+# pooled effect size to 0.05 based on a random-effects model
+fsn(yi, vi, data=dat, type="General", target=log(1.05))
