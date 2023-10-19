@@ -104,3 +104,9 @@ res
 predict(res, transf=exp)
 
 ############################################################################
+
+# create forest plot
+forest(res, header=TRUE)
+
+# create funnel plot
+funnel(res)
