@@ -36,7 +36,21 @@ res
 # average risk ratio with 95% CI
 predict(res, transf=exp)
 
-# create .rmspace
+# create .rmspace object and set it to TRUE
 .rmspace <- TRUE
+
+# re-examine the output
+res
+
+# note that the leading and trailing empty lines are gone now (this can be
+# useful when creating for example Rmarkdown documents with output from
+# metafor, where these empty lines are superfluous)
+
+# remove the .rmspace object
+rm(.rmspace)
+
+# re-examine the output
+res
+
 
 ############################################################################
