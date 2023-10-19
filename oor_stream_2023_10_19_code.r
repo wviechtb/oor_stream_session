@@ -197,3 +197,6 @@ fsn(yi, vi, data=dat, type="Rosenberg")
 yi.all <- c(dat$yi, rep(0, 202))
 vi.all <- c(dat$vi, rep(1/mean(1/dat$vi), 202))
 rma(yi.all, vi.all, method="EE")
+
+# file drawer analysis using the general approach
+fsn(yi, vi, data=dat, type="General")
