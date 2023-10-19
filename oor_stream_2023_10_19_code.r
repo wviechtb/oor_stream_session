@@ -186,3 +186,14 @@ fsn(yi, vi, data=dat, type="Orwin", target=log(1.05))
 yi.all <- c(dat$yi, rep(0, 104))
 vi.all <- c(dat$vi, rep(1/mean(1/dat$vi), 104))
 rma(yi.all, vi.all, method="EE")
+
+# file drawer analysis using the Rosenberg approach
+fsn(yi, vi, data=dat, type="Rosenberg")
+
+# demonstrate that if we add 202 studies with null results that have sampling
+# variances equal to the harmonic mean of the sampling variances of the
+# original studies, then we indeed get a pooled effect size whose p-value is
+# equal to 0.05 (or rather, as close above 0.05 as possible)
+yi.all <- c(dat$yi, rep(0, 202))
+vi.all <- c(dat$vi, rep(1/mean(1/dat$vi), 202))
+rma(yi.all, vi.all, method="EE")
