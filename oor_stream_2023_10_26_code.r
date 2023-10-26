@@ -88,6 +88,9 @@ hist(props, main="Sampling Distribution of the Proportion", breaks=50)
 sd(props)
 
 # repeat the same as above, but allow the probability of support to differ
-# across individuals; say these probabilities themselves come from a normal
-# distribution with mean 0.52 and standard deviation 0.04
-props <- replicate(10000, mean(rbinom(60000, 1, rnorm(60000,mean=0.52,sd=0.04))))
+# across individuals; say these probabilities themselves come from a uniform
+# distribution with bounds 0.32 and 0.72 (on average, their mean is still 0.52)
+props <- replicate(10000, mean(rbinom(60000, 1, runif(60000,0.32,0.72))))
+
+# look at the sampling distribution of the proportion
+hist(props, main="Sampling Distribution of the Proportion", breaks=50)
