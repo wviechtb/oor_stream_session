@@ -74,8 +74,8 @@ mean(means)
 ## Adjusting inferences to account for bias and unmodeled uncertainty
 
 # simulate the observed proportion of support for the candidate under a
-# binomial model 100000 times
-props <- replicate(100000, mean(rbinom(1, 60000, 0.525))) / 60000
+# binomial model 100000 times, assuming that the true proportion is 0.52
+props <- replicate(100000, mean(rbinom(1, 60000, 0.52))) / 60000
 
 # look at the sampling distribution of the proportion
 hist(props, main="Sampling Distribution of the Proportion", breaks=50)
