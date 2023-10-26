@@ -92,7 +92,7 @@ sd(props)
 # still 0.52); in the end, we still compute an overall proportion across these
 # 100 polls
 props <- replicate(10000, {
-   props <- replicate(100, mean(rbinom(600, 1, runif(1,0.32,0.72))))
+   props <- replicate(100, mean(rbinom(600, 1, runif(1,0.17,0.87))))
    mean(props)
 })
 
