@@ -15,7 +15,7 @@
 
 ### 4.3: Bias and unmodeled uncertainty
 
-# Bias in estimation
+## Bias in estimation
 
 # according to recent data, men in the US watch around 3 hours, women around
 # 2.5 hours per day of television; hence, in the population, the mean number
@@ -56,6 +56,7 @@ mean(means)
 means <- replicate(100000, {
    hrs.m <- rnorm( 50, mean=3.0, sd=0.5)
    hrs.w <- rnorm(150, mean=2.5, sd=0.5)
+   #0.5 * mean(hrs.m) + 0.5 * mean(hrs.w)
    mean(c(4/1*0.5*hrs.m, 4/3*0.5*hrs.w))
 })
 
@@ -68,4 +69,20 @@ abline(v=pop.mean, lwd=5)
 # show that the sample mean is a biased estimator of the population mean
 mean(means)
 
+############################################################################
+
+## Adjusting inferences to account for bias and unmodeled uncertainty
+
+# simulate the observed proportion of support for the candidate under a
+# binomial model 100000 times
+props <- replicate(100000, mean(rbinom(1, 60000, 0.525))) / 60000
+
+# look at the sampling distribution of the proportion
+hist(props, main="Sampling Distribution of the Proportion", breaks=50)
+
+# as we can see, under this model, there is virtually no chance of seeing a
+# proportion that is below 0.5
+
+# compute the standard error of these proportions
+sd(props)
 
