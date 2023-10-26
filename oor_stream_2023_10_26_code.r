@@ -45,3 +45,14 @@ abline(v=pop.mean, lwd=5)
 # show that the sample mean is a biased estimator of the population mean
 mean(means)
 
+# in fact, given the above, we know that the mean of the means in the sampling
+# distribution is equal to the following weighted mean
+(50 * 3.0 + 150 * 2.5) / 200
+
+hrs.m <- rnorm( 50, mean=3.0, sd=0.5)
+hrs.w <- rnorm(150, mean=2.5, sd=0.5)
+4/1 * mean(hrs.m) + 4/3 * mean(hrs.w)
+
+1/4
+3/4
+
