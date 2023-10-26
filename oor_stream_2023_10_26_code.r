@@ -87,11 +87,12 @@ hist(props, main="Sampling Distribution of the Proportion", breaks=50)
 sd(props)
 
 # now suppose we do 100 polls with n=600, where the true probability of
-# support varies across polls; these probabilities come from a normal
-# distribution with mean 0.52 and standard deviation 0.12; in the end, we
-# still compute an overall proportion across these 100 polls
+# support varies across polls; say these probabilities come from a uniform
+# distribution with bounds 0.32 and 0.72 (so on average, the probability is
+# still 0.52); in the end, we still compute an overall proportion across these
+# 100 polls
 props <- replicate(10000, {
-   props <- replicate(100, mean(rbinom(600, 1, rnorm(1,mean=0.52,sd=0.12))))
+   props <- replicate(100, mean(rbinom(600, 1, runif(1,0.32,0.72))))
    mean(props)
 })
 
@@ -99,4 +100,5 @@ props <- replicate(10000, {
 hist(props, main="Sampling Distribution of the Proportion", breaks=50)
 
 # now we see additional variability in the proportions
+sd(props)
 
