@@ -37,6 +37,11 @@ means <- replicate(100000, {
 })
 
 # look at the sampling distribution of the mean
-hist(means, main="Sampling Distribution of the Mean")
+hist(means, main="Sampling Distribution of the Mean", breaks=50)
+
+# add the population mean as a vertical line to the histogram
 abline(v=pop.mean, lwd=5)
+
+# show that the sample mean is a biased estimator of the population mean
+mean(means)
 
