@@ -17,3 +17,7 @@
 
 # Bias in estimation
 
+# according to recent data, men in the US watch around 3 hours, women around
+# 2.5 hours per day of telvision (and let's assume a standard deviation of 0.5)
+hrs.m <- rnorm(50, mean=3.0, sd=0.5)
+hrs.w <- rnorm(50, mean=2.5, sd=0.5)
