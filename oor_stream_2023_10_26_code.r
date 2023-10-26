@@ -49,10 +49,23 @@ mean(means)
 # distribution is equal to the following weighted mean
 (50 * 3.0 + 150 * 2.5) / 200
 
-hrs.m <- rnorm( 50, mean=3.0, sd=0.5)
-hrs.w <- rnorm(150, mean=2.5, sd=0.5)
-4/1 * mean(hrs.m) + 4/3 * mean(hrs.w)
+# if we weight the values of the men and women appropriately (i.e., by the
+# inverse of the sampling probabilities times the known proportions in the
+# population), then the mean of these weighted values provides an unbiased
+# estimate of the population mean
+means <- replicate(100000, {
+   hrs.m <- rnorm( 50, mean=3.0, sd=0.5)
+   hrs.w <- rnorm(150, mean=2.5, sd=0.5)
+   mean(c(4/1*0.5*hrs.m, 4/3*0.5*hrs.w))
+})
 
-1/4
-3/4
+# look at the sampling distribution of the mean
+hist(means, main="Sampling Distribution of the Mean", breaks=50)
+
+# add the population mean as a vertical line to the histogram
+abline(v=pop.mean, lwd=5)
+
+# show that the sample mean is a biased estimator of the population mean
+mean(means)
+
 
