@@ -91,9 +91,9 @@ sd(props)
 # distribution with bounds 0.32 and 0.72 (so on average, the probability is
 # still 0.52); in the end, we still compute an overall proportion across these
 # 100 polls and also the SD of these proportions
-res <- replicate(10000, {
+props <- replicate(10000, {
    props <- replicate(100, mean(rbinom(600, 1, runif(1,0.17,0.87))))
-   c(mean(props), sd(props))
+   mean(props)
 })
 
 # examine the sampling distribution
@@ -105,3 +105,5 @@ sd(props)
 # note: to make the SD of these proportions to be even larger, one might have
 # to simulate the probabilities above under an even more extreme scenario,
 # where the true probability is close to 0 or 1 in some polls
+
+############################################################################
