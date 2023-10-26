@@ -86,9 +86,11 @@ hist(props, main="Sampling Distribution of the Proportion", breaks=50)
 # compute the standard error of these proportions
 sd(props)
 
-
+# now suppose we do 100 polls with n=600, where the true probability of
+# support varies across polls; these probabilities come from a normal
+# distribution with mean 0.52 and standard deviation 0.12
 props <- replicate(10000, {
-   props <- replicate(100, mean(rbinom(600, 1, rnorm(1,mean=0.52,sd=0.04))))
+   props <- replicate(100, mean(rbinom(600, 1, rnorm(1,mean=0.52,sd=0.12))))
    mean(props)
 })
 
