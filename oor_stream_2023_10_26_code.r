@@ -107,3 +107,6 @@ sd(props)
 # where the true probability is close to 0 or 1 in some polls
 
 ############################################################################
+
+### 4.4: Statistical significance, hypothesis testing, and statistical errors
+
