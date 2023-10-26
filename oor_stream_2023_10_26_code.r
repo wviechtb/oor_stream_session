@@ -85,3 +85,12 @@ hist(props, main="Sampling Distribution of the Proportion", breaks=50)
 
 # compute the standard error of these proportions
 sd(props)
+
+
+props <- replicate(10000, {
+   props <- replicate(100, mean(rbinom(600, 1, rnorm(1,mean=0.52,sd=0.04))))
+   mean(props)
+})
+
+hist(props, main="Sampling Distribution of the Proportion", breaks=50)
+
