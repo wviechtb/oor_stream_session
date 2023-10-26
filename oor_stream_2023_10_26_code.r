@@ -87,6 +87,7 @@ hist(props, main="Sampling Distribution of the Proportion", breaks=50)
 # compute the standard error of these proportions
 sd(props)
 
-# simulate the observed proportion of support for the candidate under a
-# binomial model 10000 times, assuming that the true proportion is 0.52
-props <- replicate(10000, mean(rbinom(60000, 1, 0.52)))
+# repeat the same as above, but allow the probability of support to differ
+# across individuals; say these probabilities themselves come from a normal
+# distribution with mean 0.52 and standard deviation 0.04
+props <- replicate(10000, mean(rbinom(60000, 1, rnorm(60000,mean=0.52,sd=0.04))))
