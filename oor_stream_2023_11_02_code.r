@@ -72,7 +72,8 @@ plot(res)
 # fitted values versus the square-root of the absolute value of the
 # standardized residuals, and the fourth is a plot of the 'leverage' of the
 # points versus the standardized residuals; these different plots have
-# different diagnostic purposes
-
+# different diagnostic purposes; to read a bit more about these plots (and
+# others that can be created with plot() here), see:
+help(plot.lm)
 
 ############################################################################
