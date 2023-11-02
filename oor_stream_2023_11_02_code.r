@@ -187,5 +187,8 @@ summary(res)
 # complex; a nice package that can simplify the fitting of such models is the
 # 'ez' package: https://cran.r-project.org/package=ez
 
+# sidenote: we'll skip some of the other points being raised here
+
 ############################################################################
 
+## 11.5: Updating fitted models
