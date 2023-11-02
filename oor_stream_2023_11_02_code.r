@@ -93,7 +93,9 @@ predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1))
 # look at the documentation of the predict method for lm objects
 help(predict.lm)
 
-predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1))
+# we see that we can get confidence intervals for the predictions by setting
+# the 'interval' argument to "confidence" (with 95% CIs being the default)
+predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1), interval="confidence")
 
 
 ############################################################################
