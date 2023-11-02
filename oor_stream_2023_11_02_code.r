@@ -166,7 +166,11 @@ res <- lm(mpg ~ hp + am + factor(cyl) + wt, data=mtcars)
 summary(res)
 
 # when we use anova() just on a single model like the one above, then we get a
-# sequence of tests
+# sequence of tests, so testing if adding hp to the model improves the fit
+# (yes), testing if adding am to the model when hp is already included
+# improves the fit (yes), testing if adding factor(cyl) improves the fit when
+# hp and am are already included (yes), and finally whether adding wt improves
+# the fit when all other predictors are already included
 anova(res)
 
 ############################################################################
