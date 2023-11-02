@@ -42,5 +42,17 @@ unclass(res)
 # to get more information about the fitted model, use summary()
 summary(res)
 
+# we can extract the coefficients with coef()
+coef(res)
+
+# so we could manually compute the predicted mpg for cars with hp=100 and am=1
+# (i.e., manual transmission)
+b <- coef(res)
+b[[1]] + b[[2]]*100 + b[[3]]*1
+
+# as we saw earlier, res has an element called 'coefficients' and this is
+# really just what coef() is extracting from res
+res$coefficients
+
 
 ############################################################################
