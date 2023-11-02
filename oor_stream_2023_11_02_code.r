@@ -101,7 +101,12 @@ predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1), interval="confidenc
 res0 <- lm(mpg ~ hp, data=mtcars)
 res1 <- lm(mpg ~ hp + am, data=mtcars)
 
-# model comparison
+# model comparison (this is identical to testing the slope of 'am')
 anova(res0, res1)
+summary(res1)
+
+# fit two models, one with just the intercept and one with both predictors
+res0 <- lm(mpg ~ 1, data=mtcars)
+res1 <- lm(mpg ~ hp + am, data=mtcars)
 
 ############################################################################
