@@ -192,3 +192,14 @@ summary(res)
 ############################################################################
 
 ## 11.5: Updating fitted models
+
+# fit a model
+res1 <- lm(mpg ~ hp + am, data=mtcars)
+summary(res1)
+
+# update the model by adding some additional predictors
+res2 <- update(res1, . ~ . + factor(cyl) + wt)
+summary(res2)
+
+############################################################################
+
