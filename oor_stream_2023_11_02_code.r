@@ -67,5 +67,12 @@ abline(h=0, lty="dotted")
 # we can also directly call plot() on the model object
 plot(res)
 
+# this gives four different plots, the first is the fitted-versus-residuals
+# plot, the second is a qq-plot of the residuals, the third is a plot of the
+# fitted values versus the square-root of the absolute value of the
+# standardized residuals, and the fourth is a plot of the 'leverage' of the
+# points versus the standardized residuals; these different plots have
+# different diagnostic purposes
+
 
 ############################################################################
