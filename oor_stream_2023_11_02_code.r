@@ -135,5 +135,27 @@ res0 <- lm(mpg ~ hp, data=mtcars)
 res1 <- lm(mpg ~ poly(hp, degree=3), data=mtcars)
 anova(res0, res1)
 
+# plot the data and add the regression lines from the two models to the plot
+plot(mpg ~ hp, data=mtcars, pch=21, bg="lightgray")
+abline(res0, lwd=3)
+hps <- 40:350
+pred <- predict(res1, newdata=data.frame(hp=hps))
+lines(hps, pred, lwd=3, col="red")
+
+# treat hp as a categorical predictor
+res1 <- lm(mpg ~ factor(hp), data=mtcars)
+summary(res1)
+
+# this model gives the best fit among all models that only take hp into
+# consideration for making predictions about gas mileage
+
+# add the predicted values of this model to the plot
+hps <- sort(unique(mtcars$hp))
+pred <- predict(res1, newdata=data.frame(hp=hps))
+lines(hps, pred, lwd=3, col="blue")
+
+# now test if this model gives a significantly better fit than the model that
+# assumes that the relationship is linear
+anova(res0, res1)
 
 ############################################################################
