@@ -90,5 +90,10 @@ predict(res, newdata=data.frame(hp=100, am=1))
 # with this, we can easily compute multiple predicted values simultaneously
 predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1))
 
+# look at the documentation of the predict method for lm objects
+help(predict.lm)
+
+predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1))
+
 
 ############################################################################
