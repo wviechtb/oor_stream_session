@@ -109,4 +109,8 @@ summary(res1)
 res0 <- lm(mpg ~ 1, data=mtcars)
 res1 <- lm(mpg ~ hp + am, data=mtcars)
 
+# model comparison (this is identical to the omnibus F-test of the res1 model)
+anova(res0, res1)
+summary(res1)
+
 ############################################################################
