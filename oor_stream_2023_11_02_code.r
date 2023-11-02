@@ -170,6 +170,8 @@ res <- aov(mpg ~ factor(cyl), data=mtcars)
 summary(res)
 
 # using aov(), one can also fit more complex ANOVA-type models (e.g., with
-# multiple between- and/or within-subject factors)
-
+# multiple between- and/or within-subject factors); depending on the model,
+# this requires the use of Error() in the mode formula and can get more
+# complex; a nice package that can simplify the fitting of such models is the
+# 'ez' package: https://cran.r-project.org/package=ez
 
