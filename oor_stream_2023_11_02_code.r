@@ -54,6 +54,13 @@ b[[1]] + b[[2]]*100 + b[[3]]*1
 # really just what coef() is extracting from res
 res$coefficients
 
+# extract the variance-covariance matrix of the coefficients
+vcov(res)
+
+# the square-root of the diagonal elements of this matrix are the standard
+# errors of the estimated regression coefficients
+sqrt(diag(vcov(res)))
+
 # extract the residuals
 resid(res)
 
