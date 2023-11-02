@@ -201,5 +201,14 @@ summary(res1)
 res2 <- update(res1, . ~ . + factor(cyl) + wt)
 summary(res2)
 
+# update the model by removing some predictor
+res3 <- update(res2, . ~ . - factor(cyl))
+summary(res3)
+
+# careful: outside of update(), the period in a formula has a different
+# meaning, typically to stand for all variables (except for the outcome)
+res <- lm(mpg ~ ., data=mtcars)
+summary(res)
+
 ############################################################################
 
