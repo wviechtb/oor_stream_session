@@ -83,4 +83,12 @@ plot(res)
 # others that can be created with plot() here), see:
 help(plot.lm)
 
+# above, we computed a predicted value manually; but we can use predict() to
+# do the computations more conveniently
+predict(res, newdata=data.frame(hp=100, am=1))
+
+# with this, we can easily compute multiple predicted values simultaneously
+predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1))
+
+
 ############################################################################
