@@ -97,5 +97,4 @@ help(predict.lm)
 # the 'interval' argument to "confidence" (with 95% CIs being the default)
 predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1), interval="confidence")
 
-
 ############################################################################
