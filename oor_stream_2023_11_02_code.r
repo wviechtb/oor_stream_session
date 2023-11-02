@@ -16,4 +16,12 @@
 
 ## 11.3 Generic functions for extracting model information
 
+# inspect the mtcars dataset again
+mtcars
+
+# fit a linear regression model predicting miles per gallon from horsepower
+# and whether it is an automatic or manual transmission
+res <- lm(mpg ~ hp + am, data=mtcars)
+summary(res)
+
 ############################################################################
