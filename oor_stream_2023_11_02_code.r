@@ -101,5 +101,7 @@ predict(res, newdata=data.frame(hp=seq(60,200,by=20), am=1), interval="confidenc
 res0 <- lm(mpg ~ hp, data=mtcars)
 res1 <- lm(mpg ~ hp + am, data=mtcars)
 
+# model comparison
+anova(res0, res1)
 
 ############################################################################
