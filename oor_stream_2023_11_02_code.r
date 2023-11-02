@@ -119,6 +119,11 @@ res1 <- lm(mpg ~ hp + am, data=mtcars)
 anova(res0, res1)
 summary(res1)
 
+# compare two more models, one with just hp and the other one with number of
+# cylinders (as a factor / categorical predictor)
+res0 <- lm(mpg ~ hp, data=mtcars)
+res1 <- lm(mpg ~ hp + factor(cyl), data=mtcars)
+anova(res0, res1)
 
 
 ############################################################################
