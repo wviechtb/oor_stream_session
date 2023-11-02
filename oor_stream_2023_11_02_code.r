@@ -162,3 +162,14 @@ anova(res0, res1)
 # Fisher, 1922; https://doi.org/10.1111/j.2397-2335.1922.tb00832.x)
 
 ############################################################################
+
+## 11.4: Analysis of variance and model comparison
+
+# a simple example of aov(): one-way analysis of variance (ANOVA)
+res <- aov(mpg ~ factor(cyl), data=mtcars)
+summary(res)
+
+# using aov(), one can also fit more complex ANOVA-type models (e.g., with
+# multiple between- and/or within-subject factors)
+
+
