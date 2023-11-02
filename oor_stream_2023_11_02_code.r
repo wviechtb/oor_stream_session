@@ -125,5 +125,7 @@ res0 <- lm(mpg ~ hp, data=mtcars)
 res1 <- lm(mpg ~ hp + factor(cyl), data=mtcars)
 anova(res0, res1)
 
+# this is testing whether the cylinders factor as a whole is significant
+# (while controlling for the horsepower of the cars)
 
 ############################################################################
