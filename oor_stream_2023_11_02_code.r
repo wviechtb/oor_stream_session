@@ -54,5 +54,12 @@ b[[1]] + b[[2]]*100 + b[[3]]*1
 # really just what coef() is extracting from res
 res$coefficients
 
+# extract the residuals
+resid(res)
+
+# extract the fitted values
+fitted(res)
+
+
 
 ############################################################################
