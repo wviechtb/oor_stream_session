@@ -60,6 +60,12 @@ resid(res)
 # extract the fitted values
 fitted(res)
 
+# fitted values versus residuals plot
+plot(fitted(res), resid(res), pch=19)
+abline(h=0, lty="dotted")
+
+# we can also directly call plot() on the model object
+plot(res)
 
 
 ############################################################################
