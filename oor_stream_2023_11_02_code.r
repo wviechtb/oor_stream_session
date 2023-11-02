@@ -109,8 +109,16 @@ summary(res1)
 res0 <- lm(mpg ~ 1, data=mtcars)
 res1 <- lm(mpg ~ hp + am, data=mtcars)
 
+# sidenote: res0 is a model that doesn't take any of the characteristics of
+# the cars into consideration when making a prediction about their gas
+# mileage; or in other words, the estimated intercept of this model is equal
+# to the average mpg of the 32 cars in the dataset, and hence it predicts the
+# same gas mileage for all 32 cars
+
 # model comparison (this is identical to the omnibus F-test of the res1 model)
 anova(res0, res1)
 summary(res1)
+
+
 
 ############################################################################
