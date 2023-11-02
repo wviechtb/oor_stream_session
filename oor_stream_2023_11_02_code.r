@@ -158,4 +158,7 @@ lines(hps, pred, lwd=3, col="blue")
 # assumes that the relationship is linear
 anova(res0, res1)
 
+# this is sometimes called the 'lack of linearity test' (which goes back to
+# Fisher, 1922; https://doi.org/10.1111/j.2397-2335.1922.tb00832.x)
+
 ############################################################################
