@@ -22,6 +22,25 @@ mtcars
 # fit a linear regression model predicting miles per gallon from horsepower
 # and whether it is an automatic or manual transmission
 res <- lm(mpg ~ hp + am, data=mtcars)
+
+# print the 'res' object
+res
+
+# the above is the same as calling print() directly on the object
+print(res)
+
+# as we can see, just printing the 'res' object is rather uninformative; all
+# this gives us is the model that was fitted and the model coefficients
+
+# the lm() function returns an object of class 'lm'
+class(res)
+
+# if we just want to see what is inside of this object (which is really just a
+# list), we can remove the class and just print the list contents
+unclass(res)
+
+# to get more information about the fitted model, use summary()
 summary(res)
+
 
 ############################################################################
