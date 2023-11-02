@@ -128,4 +128,12 @@ anova(res0, res1)
 # this is testing whether the cylinders factor as a whole is significant
 # (while controlling for the horsepower of the cars)
 
+# compare two more models, one assuming a linear relationship between hp and
+# gas mileage and one assuming a non-linear relationship (of the form of a
+# cubic polynomial)
+res0 <- lm(mpg ~ hp, data=mtcars)
+res1 <- lm(mpg ~ poly(hp, degree=3), data=mtcars)
+anova(res0, res1)
+
+
 ############################################################################
