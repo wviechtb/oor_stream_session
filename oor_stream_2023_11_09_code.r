@@ -46,6 +46,14 @@ sum(tab[props >= 0.7])
 # compute the chances of observing a proportion of 0.75 or higher
 sum(tab[props >= 0.75])
 
+# compute the chances of observing a proportion of 0.25 or lower
+sum(tab[props <= 0.25])
+
+# now imagine you do the experiment (flipping the coin 20 times and observing
+# the proportion of heads) once and you get the following result
+heads <- c(T, F, F, F, F, T, F, F, T, T, F, F, T, F, T, T, F, F, T, F)
+length(heads)
+mean(heads)
 
 ############################################################################
 
