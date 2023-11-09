@@ -186,4 +186,6 @@ teststat
 # conclude that the treatment does affect the mean cholesterol value of the
 # treatment group
 
+# in practice, we do not have sd(meandiff)
+
 ############################################################################
