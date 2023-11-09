@@ -122,4 +122,13 @@ pnorm(z)
 # normal approximation is not exact (it works better when we have a larger
 # sample sizes, that is, we flip the coin more often)
 
+# to get the p-value for our two-sided test, we have to multiple this
+# probability by 2 (to get the two-sided p-value)
+2 * pnorm(z)
+
+# or more generally, since z might be negative or positive, we take the
+# absolute value of the test statistic and then compute twice the probability
+# of observing this result or an even more positive one
+2 * pnorm(abs(z), lower.tail=FALSE)
+
 ############################################################################
