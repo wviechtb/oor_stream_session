@@ -66,7 +66,13 @@ mean(heads)
 # distribution of a proportion for a fair coin
 sum(tab[props == mean(heads)])
 
-sum(tab[props == mean(heads)])
+# compute the probability of observing this result or an even more extreme
+# deviation from 0.5 under the sampling distribution of a proportion for a
+# fair coin
+sum(tab[props <= mean(heads)])
+
+# this is not an unusual event to happen if the coin is really fair
+
 
 
 ############################################################################
