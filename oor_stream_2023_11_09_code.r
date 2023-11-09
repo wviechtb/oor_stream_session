@@ -73,7 +73,8 @@ sum(tab[props <= mean(heads)])
 
 # this is not an unusual event to happen if the coin is really fair
 
-
+# the probability computed above is the (one-sided) p-value of our observed
+# result for testing the null hypothesis H0: the coin is fair
 
 ############################################################################
 
