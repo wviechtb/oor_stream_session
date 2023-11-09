@@ -177,7 +177,9 @@ z
 2 * pnorm(abs(z), lower.tail=FALSE)
 
 # these are not exactly the same because we only simulated 100000 values under
-# the sampling distribution, but in principle, these are the same
+# the sampling distribution; also, strictly speaking, we should use a
+# t-distribution to compute the p-value based on the test statistic
+2 * pt(abs(z), df=100+100-2, lower.tail=FALSE)
 
 # since the two-sided p-value is below .05, we reject the null hypothesis and
 # conclude that the treatment does affect the mean cholesterol value of the
