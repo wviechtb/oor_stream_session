@@ -96,7 +96,8 @@ se
 
 # compute the test statistic (how far away is the observed result from the
 # value under the null hypothesis, relative to the standard error of the
-# statistic)
+# statistic); if this is large (say, +-2), then again we are going to reject
+# the null hypothesis
 (mean(heads) - 0.5) / se
 
 ############################################################################
