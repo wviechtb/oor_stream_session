@@ -76,6 +76,12 @@ sum(tab[props <= mean(heads)])
 # the probability computed above is the (one-sided) p-value of our observed
 # result for testing the null hypothesis H0: the coin is fair
 
+# but say we had observed the following result
+heads <- c(F, F, F, F, F, T, F, F, F, T, F, F, F, F, F, T, F, F, F, F)
+mean(heads)
+
+
+
 ############################################################################
 
 
