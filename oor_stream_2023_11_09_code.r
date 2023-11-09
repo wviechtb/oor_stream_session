@@ -169,17 +169,18 @@ mean(meandiff <= mean(x.t) - mean(x.c))
 # twice this probability is the two-sided p-value
 2 * (mean(meandiff <= mean(x.t) - mean(x.c)))
 
-# compute the test statistic
-z <- (mean(x.t) - mean(x.c)) / sd(meandiff)
-z
+# compute the test statistic (note: the null hypothesis here says that the
+# true mean difference is 0, so let's add this part also to the numerator)
+teststat <- ((mean(x.t) - mean(x.c)) - 0) / sd(meandiff)
+teststat
 
 # compute the two-sided p-value using the test statistic
-2 * pnorm(abs(z), lower.tail=FALSE)
+2 * pnorm(abs(teststat), lower.tail=FALSE)
 
 # these are not exactly the same because we only simulated 100000 values under
 # the sampling distribution; also, strictly speaking, we should use a
 # t-distribution to compute the p-value based on the test statistic
-2 * pt(abs(z), df=100+100-2, lower.tail=FALSE)
+2 * pt(abs(teststat), df=100+100-2, lower.tail=FALSE)
 
 # since the two-sided p-value is below .05, we reject the null hypothesis and
 # conclude that the treatment does affect the mean cholesterol value of the
