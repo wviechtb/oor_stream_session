@@ -132,3 +132,18 @@ pnorm(z)
 2 * pnorm(abs(z), lower.tail=FALSE)
 
 ############################################################################
+
+## Hypothesis testing for simple comparisons
+
+# simulate data for a study as described in this section, where we have 100
+# people in each group, assuming that the true means are the same in the two
+# groups (i.e., the null hypothesis is true that the treatment does not affect
+# the mean cholesterol level of those in the treatment group)
+meandiff <- replicate(100000, {
+   x.t <- rnorm(100, mean=225, sd=10)
+   x.c <- rnorm(100, mean=225, sd=10)
+   mean(x.t) - mean(x.c)
+}
+
+
+############################################################################
