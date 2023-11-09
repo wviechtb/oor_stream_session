@@ -77,7 +77,7 @@ sum(tab[props <= mean(heads)])
 # result for testing the null hypothesis H0: the coin is fair
 
 # but say we had observed the following result
-heads <- c(F, F, F, F, F, T, F, F, F, T, F, F, F, F, F, T, F, F, F, F)
+heads <- c(T, F, F, F, F, T, F, F, T, T, F, F, F, F, F, T, F, F, F, F)
 mean(heads)
 
 # the probability of observing this result or an even more extreme one is very
@@ -101,17 +101,14 @@ se
 (mean(heads) - 0.5) / se
 
 # where does the +-2 come from? under a normal sampling distribution, the
-# probability of observing a statistic that is is 2 or more standard errors
-# away from the center is about 5% (strictly, it would be +-1.96 SEs); so if
-# the coin is really fair, then it is possible to see such an extreme
-# deviation from the value under the null hypothesis, but it is unlikely
-
-
-so, if
-# the test statistic is +-2 (or larger), then we know that the one-sided
-# p-value is small (i.e., it would be 0.025 or smaller), but since we don't
-# care if the result
-
+# probability of observing a statistic that is 2 or more standard errors to
+# the right of the center is about 2.5% (strictly, it is 1.96 SEs); so, the
+# probability of either observing a test statistic of +2 (or more positive) or
+# -2 (or more negative) is 5% (due to the symmetry of a normal distribution);
+# in a two-sided test, we don't care if the deviation is to the left or right
+# of the center, so then we use the rule that the one-sided p-value must be
+# smaller 0.025 or smaller (or twice the one-sided p-value must be 0.05 or
+# smaller)
 
 ############################################################################
 
