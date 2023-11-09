@@ -100,6 +100,19 @@ se
 # the null hypothesis
 (mean(heads) - 0.5) / se
 
+# where does the +-2 come from? under a normal sampling distribution, the
+# probability of observing a statistic that is is 2 or more standard errors
+# away from the center is about 5% (strictly, it would be +-1.96 SEs); so if
+# the coin is really fair, then it is possible to see such an extreme
+# deviation from the value under the null hypothesis, but it is unlikely
+
+
+so, if
+# the test statistic is +-2 (or larger), then we know that the one-sided
+# p-value is small (i.e., it would be 0.025 or smaller), but since we don't
+# care if the result
+
+
 ############################################################################
 
 
