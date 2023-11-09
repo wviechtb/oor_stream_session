@@ -139,7 +139,8 @@ pnorm(z)
 # people in each group, assuming that the true means are the same in the two
 # groups (i.e., the null hypothesis is true that the treatment does not affect
 # the mean cholesterol level of those in the treatment group)
-meandiff <- replicate(1000000, {
+set.seed(1234)
+meandiff <- replicate(100000, {
    x.t <- rnorm(100, mean=225, sd=10)
    x.c <- rnorm(100, mean=225, sd=10)
    mean(x.t) - mean(x.c)
@@ -150,9 +151,13 @@ meandiff <- replicate(1000000, {
 # study is run
 
 # examine the sampling distribution of the mean difference
-hist(meandiff, xlab="Mean Difference", bty="l",
+hist(meandiff, breaks=50, xlab="Mean Difference", bty="l",
      main="Sampling Distribution of the Mean Difference")
 
+# now imagine we actually run the study and get these results
+x.t <- round(rnorm(100, mean=215, sd=10))
+x.c <- round(rnorm(100, mean=225, sd=10))
+mean(x.t) - mean(x.c)
 
 
 ############################################################################
