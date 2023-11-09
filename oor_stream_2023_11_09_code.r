@@ -30,3 +30,8 @@ tab
 plot(tab, type="h", lwd=3, bty="l", xlab="Proportion", ylab="Frequency",
      main="Sampling Distribution of the Proportion")
 
+# we don't actually need to simulate these proportions to construct the
+# sampling distribution in this example, since we know based on statistical
+# theory that the probabilities of observing these different proportions can
+# be computed based on a binomial distribution
+dbinom(0:20, size=20, prob=0.5)
