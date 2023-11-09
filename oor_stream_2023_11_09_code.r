@@ -166,4 +166,21 @@ abline(v = mean(x.t) - mean(x.c), lwd=3)
 # one under the sampling distribution
 mean(meandiff <= mean(x.t) - mean(x.c))
 
+# twice this probability is the two-sided p-value
+2 * (mean(meandiff <= mean(x.t) - mean(x.c)))
+
+# compute the test statistic
+z <- (mean(x.t) - mean(x.c)) / sd(meandiff)
+z
+
+# compute the two-sided p-value using the test statistic
+2 * pnorm(abs(z), lower.tail=FALSE)
+
+# these are not exactly the same because we only simulated 100000 values under
+# the sampling distribution, but in principle, these are the same
+
+# since the two-sided p-value is below .05, we reject the null hypothesis and
+# conclude that the treatment does affect the mean cholesterol value of the
+# treatment group
+
 ############################################################################
