@@ -36,6 +36,15 @@ plot(tab, type="h", lwd=3, bty="l", xlab="Proportion", ylab="Frequency",
 tab <- tab / 10000000
 tab
 
+# extract from 'tab' the actually observed proportions (as a numeric vector)
+props <- as.numeric(names(tab))
+props
+
+# compute the chances of observing a proportion of 0.7 or higher
+sum(tab[props >= 0.7])
+
+# compute the chances of observing a proportion of 0.75 or higher
+sum(tab[props >= 0.75])
 
 
 ############################################################################
