@@ -155,12 +155,15 @@ hist(meandiff, breaks=50, xlab="Mean Difference", bty="l",
      main="Sampling Distribution of the Mean Difference")
 
 # now imagine we actually run the study and get these results
-x.t <- round(rnorm(100, mean=221, sd=10))
+x.t <- round(rnorm(100, mean=222, sd=10))
 x.c <- round(rnorm(100, mean=225, sd=10))
 mean(x.t) - mean(x.c)
 
 # add the observed mean difference as a vertical line to the histogram
 abline(v = mean(x.t) - mean(x.c), lwd=3)
 
+# compute the probability of the observed mean difference or a more extreme
+# one under the sampling distribution
+mean(meandiff <= mean(x.t) - mean(x.c))
 
 ############################################################################
