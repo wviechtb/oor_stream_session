@@ -87,6 +87,18 @@ sum(tab[props <= mean(heads)])
 # this may make use question whether the coin is really fair; conventionally,
 # we are going to reject the null hypothesis if the p-value is .05 or smaller
 
+# we know that the standard error of a proportion based on a sample size of 20
+# (if the true proportion is 0.5) is given by the following equation (see
+# section 4.2: Standard errors and confidence intervals for averages and
+# proportions)
+se <- sqrt(0.5 * 0.5 / 20)
+se
+
+# compute the test statistic (how far away is the observed result from the
+# value under the null hypothesis, relative to the standard error of the
+# statistic)
+(mean(heads) - 0.5) / se
+
 ############################################################################
 
 
