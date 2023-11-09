@@ -110,9 +110,16 @@ se
 # 0.025 or smaller (or twice the one-sided p-value must be 0.05 or smaller)
 
 # the sampling distribution of the proportion we saw above is not normal (it
-# cannot really be, since it is a discrete distribution), but we can still use
-# a normal distribution as an approximation
+# cannot really be, since it is a discrete distribution, while a normal
+# distribution assumes that the statistic is continuous), but we can still use
+# a normal distribution as an approximation; compute the probability of
+# observing the test statistic we have observed or a more extreme one under a
+# standard normal distribution
 z <- (mean(heads) - 0.5) / se
 pnorm(z)
+
+# this is not the same as what we computed earlier (0.0207125), since the
+# normal approximation is not exact (it works better when we have a larger
+# sample sizes, that is, we flip the coin more often)
 
 ############################################################################
