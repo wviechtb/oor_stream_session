@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 4.4 - ?
+# - Section(s): 4.4 - 4.5
 #
 # last updated: 2023-11-09
 
@@ -195,5 +195,11 @@ teststat <- ((mean(x.t) - mean(x.c)) - 0) / se
 # since the two-sided p-value is below .05, we reject the null hypothesis and
 # conclude that the treatment does affect the mean cholesterol value of the
 # treatment group
+
+############################################################################
+
+### 4.5: Problems with the concept of statistical significance
+
+# not really anything to put into code from this section
 
 ############################################################################
