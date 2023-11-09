@@ -84,6 +84,8 @@ mean(heads)
 # small (i.e., the p-value is very small)
 sum(tab[props <= mean(heads)])
 
+# this may make use question whether the coin is really fair; conventionally,
+# we are going to reject the null hypothesis if the p-value is .05 or smaller
 
 ############################################################################
 
