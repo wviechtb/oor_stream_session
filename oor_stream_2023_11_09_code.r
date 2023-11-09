@@ -107,22 +107,6 @@ se
 # -2 (or more negative) is 5% (due to the symmetry of a normal distribution);
 # in a two-sided test, we don't care if the deviation is to the left or right
 # of the center, so then we use the rule that the one-sided p-value must be
-# smaller 0.025 or smaller (or twice the one-sided p-value must be 0.05 or
-# smaller)
+# 0.025 or smaller (or twice the one-sided p-value must be 0.05 or smaller)
 
 ############################################################################
-
-
-
-
-
-# we don't actually need to simulate these proportions to construct the
-# sampling distribution in this example, since we know based on statistical
-# theory that the probabilities of observing these different proportions can
-# be computed based on a binomial distribution
-pr <- dbinom(0:20, size=20, prob=0.5)
-pr
-
-# examine the sampling distribution of the proportions
-plot((0:20)/20, pr, type="h", lwd=3, bty="l", xlab="Proportion", ylab="Frequency",
-     main="Sampling Distribution of the Proportion")
