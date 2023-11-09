@@ -20,7 +20,8 @@
 # say we flip a coin 20 times and it is a fair coin (so 50% chance for heads
 # and 50% chance for tails); then we can construct the sampling distribution
 # of the proportion of heads observed in the 20 flips through simulation
-props <- rbinom(100000, size=20, prob=0.5) / 20
+set.seed(1234)
+props <- rbinom(10000000, size=20, prob=0.5) / 20
 
 # frequency table of the observed proportions
 tab <- table(props)
@@ -30,8 +31,26 @@ tab
 plot(tab, type="h", lwd=3, bty="l", xlab="Proportion", ylab="Frequency",
      main="Sampling Distribution of the Proportion")
 
+# convert the frequency table of the observed proportions into the
+# corresponding probabilities of observing the proportions
+tab <- tab / 10000000
+tab
+
+
+
+############################################################################
+
+
+
+
+
 # we don't actually need to simulate these proportions to construct the
 # sampling distribution in this example, since we know based on statistical
 # theory that the probabilities of observing these different proportions can
 # be computed based on a binomial distribution
-dbinom(0:20, size=20, prob=0.5)
+pr <- dbinom(0:20, size=20, prob=0.5)
+pr
+
+# examine the sampling distribution of the proportions
+plot((0:20)/20, pr, type="h", lwd=3, bty="l", xlab="Proportion", ylab="Frequency",
+     main="Sampling Distribution of the Proportion")
