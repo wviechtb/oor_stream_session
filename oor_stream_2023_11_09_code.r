@@ -109,4 +109,10 @@ se
 # of the center, so then we use the rule that the one-sided p-value must be
 # 0.025 or smaller (or twice the one-sided p-value must be 0.05 or smaller)
 
+# the sampling distribution of the proportion we saw above is not normal (it
+# cannot really be, since it is a discrete distribution), but we can still use
+# a normal distribution as an approximation
+z <- (mean(heads) - 0.5) / se
+pnorm(z)
+
 ############################################################################
