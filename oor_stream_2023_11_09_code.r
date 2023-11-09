@@ -182,10 +182,18 @@ teststat
 # t-distribution to compute the p-value based on the test statistic
 2 * pt(abs(teststat), df=100+100-2, lower.tail=FALSE)
 
+# in practice, we do not have sd(meandiff), but we can estimate the standard
+# error using the observed data
+se <- sqrt(sd(x.t)^2 / 100 + sd(x.c)^2 / 100)
+se
+
+# so we then compute the test statistic using the estimated standard error and
+# the corresponding two-sided p-value
+teststat <- ((mean(x.t) - mean(x.c)) - 0) / se
+2 * pt(abs(teststat), df=100+100-2, lower.tail=FALSE)
+
 # since the two-sided p-value is below .05, we reject the null hypothesis and
 # conclude that the treatment does affect the mean cholesterol value of the
 # treatment group
-
-# in practice, we do not have sd(meandiff)
 
 ############################################################################
