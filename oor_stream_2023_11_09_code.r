@@ -40,19 +40,19 @@ tab
 props <- as.numeric(names(tab))
 props
 
-# compute the chances of observing a proportion of 0.7
+# compute the probability of observing a proportion of 0.7
 sum(tab[props == 0.7])
 
-# compute the chances of observing a proportion of 0.7 or higher
+# compute the probability of observing a proportion of 0.7 or higher
 sum(tab[props >= 0.7])
 
-# compute the chances of observing a proportion of 0.75 or higher
+# compute the probability of observing a proportion of 0.75 or higher
 sum(tab[props >= 0.75])
 
-# compute the chances of observing a proportion of 0.25
+# compute the probability of observing a proportion of 0.25
 sum(tab[props == 0.25])
 
-# compute the chances of observing a proportion of 0.25 or lower
+# compute the probability of observing a proportion of 0.25 or lower
 sum(tab[props <= 0.25])
 
 # now imagine you do the experiment (flipping the coin 20 times and observing
@@ -80,6 +80,9 @@ sum(tab[props <= mean(heads)])
 heads <- c(F, F, F, F, F, T, F, F, F, T, F, F, F, F, F, T, F, F, F, F)
 mean(heads)
 
+# the probability of observing this result or an even more extreme one is very
+# small (i.e., the p-value is very small)
+sum(tab[props <= mean(heads)])
 
 
 ############################################################################
