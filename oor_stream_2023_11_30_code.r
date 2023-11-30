@@ -253,18 +253,12 @@ forest(res, header=TRUE, xlim=c(-5,3), atransf=exp, digits=c(2L,4L),
 forest(res, header=TRUE, xlim=c(-16,7))
 
 # with ilab, one can add additional variables to the plot; one also has to
-# specify where to put these additional variables with the ilab.xpos argument
+# specify where to put these additional variables with the ilab.xpos argument;
+# also save what forest() returns in an object
 forest(res, header=TRUE, xlim=c(-16,7), ilab=cbind(tpos, tneg, cpos, cneg),
-       ilab.xpos=c(-9.5,-8,-6,-4.5))
-
-
-       cex=0.75)
-text(c(-9.5,-8,-6,-4.5), res$k+2, c("TB+", "TB-", "TB+", "TB-"), cex=0.75, font=2)
-text(c(-8.75,-5.25),     res$k+3, c("Vaccinated", "Control"),    cex=0.75, font=2)
-
-############################################################################
-
-
+       ilab.xpos=c(-9.5,-8,-6,-4.5), cex=0.9)
+text(c(-9.5,-8,-6,-4.5), 15, c("TB+", "TB-", "TB+", "TB-"), cex=0.9, font=2)
+text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 ############################################################################
 
