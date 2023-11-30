@@ -208,6 +208,15 @@ forest(res, header=TRUE, atransf=exp)
 # same magnitude as exp(-1), but of course in different directions; the x-axis
 # is now said to be on a 'log scale'
 
+# but the position of the back-transformed tick marks is not ideal; instead,
+# we want to use more meaningful values, such as twice the risk (2) or half
+# the risk (0.5), so we specify the log risk ratio tick mark positions, which
+# are then exponentiated via the axis transformation
+forest(res, header=TRUE, atransf=exp, digits=c(2L,4L),
+       at=log(c(0.0625, 0.125, 0.25, 0.5, 1, 2, 4)))
+
+# note that some tick mark labels may not show up because there is not enough
+# space to show them without labels overlapping; we will deal with this later
 
 
 ############################################################################
