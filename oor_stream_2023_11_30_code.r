@@ -25,8 +25,6 @@ library(metafor)
 dat <- dat.bcg
 dat
 
-dat$tpos[2] <- NA
-
 # calculate log risk ratios and corresponding sampling variances
 dat <- escalc(measure="RR", ai=tpos, bi=tneg,
                             ci=cpos, di=cneg, data=dat,
@@ -81,6 +79,13 @@ forest(res, header=TRUE, xlab="Log Relative Risk")
 # can also label the endpoints of the x-axis limits (or also the center)
 forest(res, header=TRUE, xlab=c("(favors treatment)", "(favors control)"))
 forest(res, header=TRUE, xlab=c("(favors treatment)", "Log Risk Ratio", "(favors control)"))
+
+# one can also specify study labels directly when using the forest() function
+forest(res, slab=paste("Study", 1:13))
+
+# but generally, it is better to specify the study labels when using escalc()
+# or when fitting the model (so, in rma(), there is also the possibility to
+# specify study labels via the 'slab' argument)
 
 ############################################################################
 
