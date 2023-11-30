@@ -120,6 +120,14 @@ forest(res, header=TRUE, colout=ifelse(year > 1970, "red", "black"))
 # or for something very colorful
 forest(res, header=TRUE, colout=rainbow(13))
 
+# change the color of the summary polygon and/or its border color
+forest(res, header=TRUE, col="gray")
+forest(res, header=TRUE, col="gray", border="darkgray")
+
+# change the line type for the confidence intervals to dashed lines
+forest(res, header=TRUE, lty="dashed")
+
+# see help(par) for the line type options
 
 ############################################################################
 
