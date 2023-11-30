@@ -153,6 +153,35 @@ forest(res, header=TRUE, psize=1.2)
 # with the point sizes, making use of the plim argument; see the documentation
 # for further details
 
+# shade the rows of the forest plot zebra-style
+forest(res, header=TRUE, shade=TRUE)
+forest(res, header=TRUE, shade="zebra")
+
+# shade starting with the second study
+forest(res, header=TRUE, shade="zebra2")
+
+# shade all rows
+forest(res, header=TRUE, shade="all")
+
+# can adjust the color for the shaded rows
+forest(res, header=TRUE, shade=TRUE, colshade="lightblue")
+
+# shade rows where the estimate is significantly different from 0
+forest(res, header=TRUE, shade=summary(dat)$pval <= 0.05)
+
+# shade rows 1, 5, and 10
+forest(res, header=TRUE, shade=c(1,5,10))
+
+# order the studies by the size of the observed outcomes
+forest(res, header=TRUE, order="obs")
+
+# order the studies by their precision
+forest(res, header=TRUE, order="prec")
+
+# can also specify a variable for 'order' based on which the studies are sorted
+forest(res, header=TRUE, order=year)
+
+
 
 ############################################################################
 
