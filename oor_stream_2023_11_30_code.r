@@ -260,6 +260,15 @@ forest(res, header=TRUE, xlim=c(-16,7), ilab=cbind(tpos, tneg, cpos, cneg),
 text(c(-9.5,-8,-6,-4.5), 15, c("TB+", "TB-", "TB+", "TB-"), cex=0.9, font=2)
 text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
+png("forest_plot.png", width=2000, height=1500, pointsize=10, res=300)
+
+forest(res, header=TRUE, xlim=c(-16,6), ilab=cbind(tpos, tneg, cpos, cneg),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), cex=0.75)
+text(c(-9.5,-8,-6,-4.5), 15, c("TB+", "TB-", "TB+", "TB-"), cex=0.75, font=2)
+text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.75, font=2)
+
+dev.off()
+
 ############################################################################
 
 # discussion points:
