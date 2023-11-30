@@ -187,6 +187,14 @@ forest(res, header=TRUE, cex=1.5)
 # for further control over the size of the x-axis title and the x-axis tick
 # mark labels, can use the cex.lab and cex.axis arguments
 
+# do the back-transformation via an x-axis transformation
+forest(res, header=TRUE, atransf=exp)
+
+# so the values from the x-axis (-3, -2, -1, 0, 1, 2) are exponentiated; the
+# values given then reflect risk ratios, where for example exp(1) is of the
+# same magnitude as exp(-1), but of course in different directions; the x-axis
+# is now said to be on a 'log scale'
+
 ############################################################################
 
 
