@@ -60,6 +60,13 @@ forest(res, header=TRUE, addpred=TRUE)
 # show the weights
 forest(res, header=TRUE, showweights=TRUE)
 
+# the header argument can also be a string or a two-element character vector
+forest(res, header="Author, Year")
+forest(res, header=c("Author, Year", "Log Risk Ratio [95% CI]"))
+
+############################################################################
+
+
 forest(res, addpred=TRUE, xlim=c(-16,7), at=seq(-3,2,by=1), shade="zebra",
        ilab=cbind(tpos, tneg, cpos, cneg), ilab.xpos=c(-9.5,-8,-6,-4.5),
        cex=0.75, header="Author(s) and Year")
