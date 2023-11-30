@@ -218,6 +218,15 @@ forest(res, header=TRUE, atransf=exp, digits=c(2L,4L),
 # note that some tick mark labels may not show up because there is not enough
 # space to show them without labels overlapping; we will deal with this later
 
+# alternatively, we can transform all values in the plot directly
+forest(res, header=TRUE, transf=exp)
+
+# this does not look so nice; we can make this look a bit nicer if we specify
+# narrow x-axis limits, closer to 1
+forest(res, header=TRUE, transf=exp, alim=c(0,2))
+
+# move the reference line to 1
+forest(res, header=TRUE, transf=exp, alim=c(0,2), refline=1)
 
 ############################################################################
 
