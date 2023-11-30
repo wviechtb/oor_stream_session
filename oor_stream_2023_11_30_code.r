@@ -141,6 +141,18 @@ forest(res, header=TRUE, digits=3)
 # can specify a different number of digits for the annotations and x-axis labels
 forest(res, header=TRUE, digits=c(3,1))
 
+# change the vertical expansion factor for the CI limits and the summary polygon
+forest(res, header=TRUE, efac=1.5)
+forest(res, header=TRUE, efac=0.5)
+forest(res, header=TRUE, efac=c(0,1))
+
+# make all point sizes equal
+forest(res, header=TRUE, psize=1.2)
+
+# there is some more advanced functionality that is available in connection
+# with the point sizes, making use of the plim argument; see the documentation
+# for further details
+
 
 ############################################################################
 
