@@ -187,6 +187,19 @@ forest(res, header=TRUE, cex=1.5)
 # for further control over the size of the x-axis title and the x-axis tick
 # mark labels, can use the cex.lab and cex.axis arguments
 
+# adjust the x-axis limits to -3 and 3
+forest(res, header=TRUE, alim=c(-3,3))
+
+# also adjust the number of x-axis tick marks to 7
+forest(res, header=TRUE, alim=c(-3,3), steps=7)
+
+# with the at argument, we can specify the exact position of the tick marks
+forest(res, header=TRUE, at=c(-3,-1,0,1,3))
+
+# note: if a CI bound falls outside of the range of the x-axis, this is
+# indicated with an arrow symbol
+forest(res, header=TRUE, alim=c(-3,1))
+
 # do the back-transformation via an x-axis transformation
 forest(res, header=TRUE, atransf=exp)
 
@@ -194,6 +207,8 @@ forest(res, header=TRUE, atransf=exp)
 # values given then reflect risk ratios, where for example exp(1) is of the
 # same magnitude as exp(-1), but of course in different directions; the x-axis
 # is now said to be on a 'log scale'
+
+
 
 ############################################################################
 
