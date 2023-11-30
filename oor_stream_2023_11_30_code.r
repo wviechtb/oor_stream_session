@@ -239,6 +239,15 @@ forest(res, header=TRUE, xlim=c(-6,5))
 # before the annotations
 forest(res, header=TRUE, xlim=c(-6,4))
 
+# coming back to the axis transformation, we can make use of xlim in this way
+# to create more space for the forest part of the plot and avoid the x-axis
+# tick marks labels are suppressed because of overlap; compare these plots
+forest(res, header=TRUE, atransf=exp, digits=c(2L,4L),
+       at=log(c(0.0625, 0.125, 0.25, 0.5, 1, 2, 4)))
+forest(res, header=TRUE, xlim=c(-6,4), atransf=exp, digits=c(2L,4L),
+       at=log(c(0.0625, 0.125, 0.25, 0.5, 1, 2, 4)))
+forest(res, header=TRUE, xlim=c(-5,3), atransf=exp, digits=c(2L,4L),
+       at=log(c(0.0625, 0.125, 0.25, 0.5, 1, 2, 4)))
 
 ############################################################################
 
