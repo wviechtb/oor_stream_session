@@ -129,6 +129,15 @@ forest(res, header=TRUE, lty="dashed")
 
 # see help(par) for the line type options
 
+# adjust the number of digits to which the annotations and x-axis tick labels
+# are rounded (the default is 2L, where L declares 2 to be an integer)
+forest(res, header=TRUE, digits=3L)
+
+# when specifying an integer for digits, trailing zeros are dropped; when not
+# explicitly declaring the number to be an integer, trailing zeros are not
+# dropped
+forest(res, header=TRUE, digits=3)
+
 ############################################################################
 
 
