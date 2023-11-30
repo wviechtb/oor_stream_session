@@ -181,7 +181,11 @@ forest(res, header=TRUE, order="prec")
 # can also specify a variable for 'order' based on which the studies are sorted
 forest(res, header=TRUE, order=year)
 
+# adjust the size of the elements in the plot
+forest(res, header=TRUE, cex=1.5)
 
+# for further control over the size of the x-axis title and the x-axis tick
+# mark labels, can use the cex.lab and cex.axis arguments
 
 ############################################################################
 
