@@ -43,6 +43,9 @@ predict(res, transf=exp, digits=2)
 help(forest.rma)
 
 # create a very simple forest plot based on the results from the model
+forest(res)
+
+# add a study header and a header for the annotations
 forest(res, header=TRUE)
 
 # suppress the annotations on the right-hand side
