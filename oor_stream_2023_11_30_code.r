@@ -25,6 +25,8 @@ library(metafor)
 dat <- dat.bcg
 dat
 
+dat$tpos[2] <- NA
+
 # calculate log risk ratios and corresponding sampling variances
 dat <- escalc(measure="RR", ai=tpos, bi=tneg,
                             ci=cpos, di=cneg, data=dat,
@@ -76,7 +78,8 @@ forest(res, header=TRUE, refline=c(0, coef(res)))
 # adjust the x-axis label
 forest(res, header=TRUE, xlab="Log Relative Risk")
 
-# can also label the endpoints of the x-axis limits
+# can also label the endpoints of the x-axis limits (or also the center)
+forest(res, header=TRUE, xlab=c("(favors treatment)", "(favors control)"))
 forest(res, header=TRUE, xlab=c("(favors treatment)", "Log Risk Ratio", "(favors control)"))
 
 ############################################################################
@@ -92,6 +95,7 @@ text(c(-8.75,-5.25),     res$k+3, c("Vaccinated", "Control"),    cex=0.75, font=
 
 # discussion points:
 # - talk about the alignment of the annotations
+# - how to show studies with missings
 # - explain difference between the different forest functions in metafor
 # - forest plots for models with moderators
 # - use of forest plots outside of meta-analysis
