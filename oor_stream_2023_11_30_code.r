@@ -93,6 +93,9 @@ forest(res, header=TRUE, mlab="Summary")
 # change the symbol for the observed outcomes to circles
 forest(res, header=TRUE, pch=19)
 
+# can specify the background color of 'open' plot symbols with the bg argument
+forest(res, header=TRUE, pch=21, bg="gray")
+
 # change the color for the observed outcomes to gray
 forest(res, header=TRUE, colout="blue")
 
@@ -110,6 +113,12 @@ ifelse(summary(dat)$pval <= 0.05, "red", "black")
 
 # which we then use as the input to the colout argument
 forest(res, header=TRUE, colout=ifelse(summary(dat)$pval <= 0.05, "red", "black"))
+
+# or we could color the more recent studies differently
+forest(res, header=TRUE, colout=ifelse(year > 1970, "red", "black"))
+
+# or for something very colorful
+forest(res, header=TRUE, colout=rainbow(13))
 
 
 ############################################################################
