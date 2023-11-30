@@ -81,11 +81,23 @@ forest(res, header=TRUE, xlab=c("(favors treatment)", "(favors control)"))
 forest(res, header=TRUE, xlab=c("(favors treatment)", "Log Risk Ratio", "(favors control)"))
 
 # one can also specify study labels directly when using the forest() function
-forest(res, slab=paste("Study", 1:13))
+forest(res, header=TRUE, slab=paste("Study", 1:13))
 
 # but generally, it is better to specify the study labels when using escalc()
 # or when fitting the model (so, in rma(), there is also the possibility to
 # specify study labels via the 'slab' argument)
+
+# adjust the label given to the summary estimate
+forest(res, header=TRUE, mlab="Summary")
+
+# change the symbol for the studies to circles
+forest(res, header=TRUE, pch=19)
+
+
+
+
+forest(res, header=TRUE, pch=21)
+
 
 ############################################################################
 
