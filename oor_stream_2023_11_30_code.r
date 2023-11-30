@@ -228,6 +228,18 @@ forest(res, header=TRUE, transf=exp, alim=c(0,2))
 # move the reference line to 1
 forest(res, header=TRUE, transf=exp, alim=c(0,2), refline=1)
 
+# look at the defaults chosen by forest() for the plot region limits (xlim)
+print(forest(res, header=TRUE))
+
+# decrease the left-hand side limit of the plot region; as a result, the
+# forest part of the plot is moving to the left
+forest(res, header=TRUE, xlim=c(-6,5))
+
+# by decreasing the right-hand side limit, we can reduce the wasted space
+# before the annotations
+forest(res, header=TRUE, xlim=c(-6,4))
+
+
 ############################################################################
 
 
