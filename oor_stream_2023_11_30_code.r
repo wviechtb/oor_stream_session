@@ -41,10 +41,23 @@ predict(res, transf=exp, digits=2)
 # create a very simple forest plot based on the results from the model
 forest(res, header=TRUE)
 
+# suppress the annotations on the right-hand side
+forest(res, header=TRUE, annotate=FALSE)
+
+
+forest(res, header=TRUE, addpred=TRUE)
+
+forest(res, addpred=TRUE, xlim=c(-16,7), at=seq(-3,2,by=1), shade="zebra",
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.xpos=c(-9.5,-8,-6,-4.5),
+       cex=0.75, header="Author(s) and Year")
+text(c(-9.5,-8,-6,-4.5), res$k+2, c("TB+", "TB-", "TB+", "TB-"), cex=0.75, font=2)
+text(c(-8.75,-5.25),     res$k+3, c("Vaccinated", "Control"),    cex=0.75, font=2)
+
 ############################################################################
 
 # discussion points:
 # - explain difference between the different forest functions in metafor
+# - forest plots for models with moderators
 # - use of forest plots outside of meta-analysis
 
 ############################################################################
