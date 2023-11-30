@@ -133,10 +133,14 @@ forest(res, header=TRUE, lty="dashed")
 # are rounded (the default is 2L, where L declares 2 to be an integer)
 forest(res, header=TRUE, digits=3L)
 
-# when specifying an integer for digits, trailing zeros are dropped; when not
-# explicitly declaring the number to be an integer, trailing zeros are not
-# dropped
+# when specifying an integer for digits, trailing zeros on the x-axis tick
+# labels are dropped; when not explicitly declaring the number to be an
+# integer, trailing zeros are not dropped
 forest(res, header=TRUE, digits=3)
+
+# can specify a different number of digits for the annotations and x-axis labels
+forest(res, header=TRUE, digits=c(3,1))
+
 
 ############################################################################
 
