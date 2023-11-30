@@ -35,6 +35,11 @@ dat
 res <- rma(yi, vi, data=dat)
 res
 
+# average risk ratio with 95% confidence and prediction interval
+predict(res, transf=exp, digits=2)
+
+
+
 ############################################################################
 
 # discussion points:
