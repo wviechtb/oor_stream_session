@@ -21,7 +21,9 @@ library(metafor)
 
 ############################################################################
 
-
+# copy the BCG dataset to 'dat' and examine the data
+dat <- dat.bcg
+dat
 
 
 
