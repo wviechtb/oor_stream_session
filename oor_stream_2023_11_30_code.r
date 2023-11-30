@@ -250,10 +250,14 @@ forest(res, header=TRUE, xlim=c(-5,3), atransf=exp, digits=c(2L,4L),
        at=log(c(0.0625, 0.125, 0.25, 0.5, 1, 2, 4)))
 
 # this can also be used to create space for further annotations in the plot
-forest(res, header="Author(s) and Year", addpred=TRUE, at=seq(-3,2,by=1), shade="zebra",
-       xlim=c(-16,7))
+forest(res, header=TRUE, xlim=c(-16,7))
 
-       ilab=cbind(tpos, tneg, cpos, cneg), ilab.xpos=c(-9.5,-8,-6,-4.5),
+# with ilab, one can add additional variables to the plot; one also has to
+# specify where to put these additional variables with the ilab.xpos argument
+forest(res, header=TRUE, xlim=c(-16,7), ilab=cbind(tpos, tneg, cpos, cneg),
+       ilab.xpos=c(-9.5,-8,-6,-4.5))
+
+
        cex=0.75)
 text(c(-9.5,-8,-6,-4.5), res$k+2, c("TB+", "TB-", "TB+", "TB-"), cex=0.75, font=2)
 text(c(-8.75,-5.25),     res$k+3, c("Vaccinated", "Control"),    cex=0.75, font=2)
