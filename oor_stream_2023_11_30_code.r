@@ -38,11 +38,13 @@ res
 # average risk ratio with 95% confidence and prediction interval
 predict(res, transf=exp, digits=2)
 
-
+# create a very simple forest plot based on the results from the model
+forest(res, header=TRUE)
 
 ############################################################################
 
 # discussion points:
+# - explain difference between the different forest functions in metafor
 # - use of forest plots outside of meta-analysis
 
 ############################################################################
