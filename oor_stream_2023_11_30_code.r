@@ -38,14 +38,24 @@ res
 # average risk ratio with 95% confidence and prediction interval
 predict(res, transf=exp, digits=2)
 
+# look at the documentation of the forest() function (when passing a model
+# object to forest(), the forest.rma() function is used)
+help(forest.rma)
+
 # create a very simple forest plot based on the results from the model
 forest(res, header=TRUE)
 
 # suppress the annotations on the right-hand side
 forest(res, header=TRUE, annotate=FALSE)
 
+# suppress the summary estimate on the bottom
+forest(res, header=TRUE, addfit=FALSE)
 
+# show the prediction interval around the summary polygon as a dotted line
 forest(res, header=TRUE, addpred=TRUE)
+
+# show the weights
+forest(res, header=TRUE, showweights=TRUE)
 
 forest(res, addpred=TRUE, xlim=c(-16,7), at=seq(-3,2,by=1), shade="zebra",
        ilab=cbind(tpos, tneg, cpos, cneg), ilab.xpos=c(-9.5,-8,-6,-4.5),
