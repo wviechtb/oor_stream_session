@@ -64,6 +64,21 @@ forest(res, header=TRUE, showweights=TRUE)
 forest(res, header="Author, Year")
 forest(res, header=c("Author, Year", "Log Risk Ratio [95% CI]"))
 
+# suppress the reference line at 0
+forest(res, header=TRUE, refline=NA)
+
+# put the reference line at the pooled estimate
+forest(res, header=TRUE, refline=coef(res))
+
+# refline can even be a vector to add multiple reference lines
+forest(res, header=TRUE, refline=c(0, coef(res)))
+
+# adjust the x-axis label
+forest(res, header=TRUE, xlab="Log Relative Risk")
+
+# can also label the endpoints of the x-axis limits
+forest(res, header=TRUE, xlab=c("(favors treatment)", "Log Risk Ratio", "(favors control)"))
+
 ############################################################################
 
 
@@ -76,6 +91,7 @@ text(c(-8.75,-5.25),     res$k+3, c("Vaccinated", "Control"),    cex=0.75, font=
 ############################################################################
 
 # discussion points:
+# - talk about the alignment of the annotations
 # - explain difference between the different forest functions in metafor
 # - forest plots for models with moderators
 # - use of forest plots outside of meta-analysis
