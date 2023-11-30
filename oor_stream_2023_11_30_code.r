@@ -90,13 +90,26 @@ forest(res, header=TRUE, slab=paste("Study", 1:13))
 # adjust the label given to the summary estimate
 forest(res, header=TRUE, mlab="Summary")
 
-# change the symbol for the studies to circles
+# change the symbol for the observed outcomes to circles
 forest(res, header=TRUE, pch=19)
 
+# change the color for the observed outcomes to gray
+forest(res, header=TRUE, colout="blue")
 
+# colout can also be a vector, giving a color to each individual study; for
+# example, we could use a different color for studies where the estimate is
+# significantly different from 0 versus those where it is not; we can get the
+# p-values for testing H0: log(RR) = 0 for each study with summary()
+summary(dat)
 
+# these we can extract and compare against alpha = 0.05
+summary(dat)$pval <= 0.05
 
-forest(res, header=TRUE, pch=21)
+# based on this logical vector, we can create a color vector
+ifelse(summary(dat)$pval <= 0.05, "red", "black")
+
+# which we then use as the input to the colout argument
+forest(res, header=TRUE, colout=ifelse(summary(dat)$pval <= 0.05, "red", "black"))
 
 
 ############################################################################
