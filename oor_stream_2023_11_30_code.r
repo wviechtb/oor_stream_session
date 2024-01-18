@@ -312,27 +312,14 @@ forest(res, header=TRUE, mlab=expression(paste("Q(df=12) = 152.23, p < .001; ", 
 # extraction of the relevant pieces of information from the model object
 forest(res, header=TRUE, mlab=paste0("Q(df=", res$k-1, ") = ", fmtx(res$QE, digits=2),
                                      fmtp(res$QEp, digits=3, pname=", p", sep=TRUE),
-                                     "; I^2 = ", fmtx(res$I2, digits=1),
+                                     "; I^2 = ", fmtx(res$I2, digits=1), "%",
                                      ", tau^2 = ", fmtx(res$tau2, digits=2)))
 
 # and now we want to combine this with a math expression
 forest(res, header=TRUE, mlab=bquote(paste("Q(df=", .(res$k-1), ") = ", .(fmtx(res$QE, digits=2)),
                                      .(fmtp(res$QEp, digits=3, pname=", p", sep=TRUE)),
-                                     "; ", I^2, " = ", .(fmtx(res$I2, digits=1)),
+                                     "; ", I^2, " = ", .(fmtx(res$I2, digits=1)), "%",
                                      ", ", tau^2, " = ", .(fmtx(res$tau2, digits=2)))))
-
-
-
-
-### a little helper function to add Q-test, I^2, and tau^2 estimate info
-mlabfun <- function(text, x) {
-   list(bquote(paste(.(text),
-      " (Q = ", .(fmtx(x$QE, digits=2)),
-      ", df = ", .(x$k - x$p), ", ",
-      .(fmtp(x$QEp, digits=3, pname="p", add0=TRUE, sep=TRUE, equal=TRUE)), "; ",
-      I^2, " = ", .(fmtx(x$I2, digits=1)), "%, ",
-      tau^2, " = ", .(fmtx(x$tau2, digits=2)), ")")))}
-
 
 ############################################################################
 
