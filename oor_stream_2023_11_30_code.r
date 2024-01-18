@@ -304,7 +304,7 @@ res
 # so we could in principle manually add this information via mlab
 forest(res, header=TRUE, mlab="Q(df=12) = 152.23, p < .001; I^2 = 92.2%, tau^2=0.31")
 
-# to plot proper math equations, see help(plotmath)
+# to plot proper math equations, see help(plotmath); can do this in various ways
 forest(res, header=TRUE, mlab=expression("Q(df=12) = 152.23, p < .001;" ~ I^2 == 92.2*"%," ~ tau^2 == 0.31))
 forest(res, header=TRUE, mlab=expression(paste("Q(df=12) = 152.23, p < .001; ", I^2 == 92.2, "%, ", tau^2 == 0.31)))
 
