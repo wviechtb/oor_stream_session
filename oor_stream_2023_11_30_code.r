@@ -333,6 +333,7 @@ forest(res, header=TRUE, mlab=bquote(paste("Q(df=", .(res$k-1), ") = ", .(fmtx(r
 
 # some additional topics to be discussed:
 # - talk about the alignment of the annotations (fonts argument)
+
 # - how to show studies with missings
 # - explain difference between the different forest functions in metafor
 # - forest plots for models with moderators
