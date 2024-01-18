@@ -304,12 +304,14 @@ res
 # so we could in principle manually add this information via mlab
 forest(res, header=TRUE, mlab="Q(df=12) = 152.23, p < .001; I^2 = 92.2%, tau^2=0.31")
 
-# to plot proper math equations, see help(plotmath); can do this in various ways
+# to plot math equations, see help(plotmath); can do this in various ways
 forest(res, header=TRUE, mlab=expression("Q(df=12) = 152.23, p < .001;" ~ I^2 == 92.2*"%," ~ tau^2 == 0.31))
 forest(res, header=TRUE, mlab=expression(paste("Q(df=12) = 152.23, p < .001; ", I^2 == 92.2, "%, ", tau^2 == 0.31)))
 
 # instead of copy-pasting values from the output, we can automate the
-# extraction of the relevant pieces of information from the model object
+# extraction of the relevant pieces of information from the model object (the
+# fmtx() and fmtp() functions from the metafor package are useful for
+# formatting statistics and p-values)
 forest(res, header=TRUE, mlab=paste0("Q(df=", res$k-1, ") = ", fmtx(res$QE, digits=2),
                                      fmtp(res$QEp, digits=3, pname=", p", sep=TRUE),
                                      "; I^2 = ", fmtx(res$I2, digits=1), "%",
