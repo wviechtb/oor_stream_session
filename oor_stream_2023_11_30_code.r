@@ -307,6 +307,8 @@ forest(res, header=TRUE, mlab="Q(df=12) = 152.23, p < .001; I^2 = 92.2%, tau^2=0
 # to plot proper math equations, see help(plotmath)
 forest(res, header=TRUE, mlab=expression("Q(df=12) = 152.23, p < .001;" ~ I^2 == 92.2*"%," ~ tau^2 == 0.31))
 
+# instead of copy-pasting values from the output, we can automate the
+# extraction of the relevant pieces of information from the model object
 
 ### a little helper function to add Q-test, I^2, and tau^2 estimate info
 mlabfun <- function(text, x) {
