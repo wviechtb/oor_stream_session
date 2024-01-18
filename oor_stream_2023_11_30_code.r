@@ -284,7 +284,8 @@ dev.off()
 ############################################################################
 
 # ylim, rows,
-# width, ilab.pos
+# width
+# fonts
 
 # some additional topics to be discussed:
 # - talk about the alignment of the annotations
