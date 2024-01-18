@@ -306,6 +306,7 @@ forest(res, header=TRUE, mlab="Q(df=12) = 152.23, p < .001; I^2 = 92.2%, tau^2=0
 
 # to plot proper math equations, see help(plotmath)
 forest(res, header=TRUE, mlab=expression("Q(df=12) = 152.23, p < .001;" ~ I^2 == 92.2*"%," ~ tau^2 == 0.31))
+forest(res, header=TRUE, mlab=expression(paste("Q(df=12) = 152.23, p < .001; ", I^2 == 92.2, "%, ", tau^2 == 0.31)))
 
 # instead of copy-pasting values from the output, we can automate the
 # extraction of the relevant pieces of information from the model object
@@ -314,7 +315,13 @@ forest(res, header=TRUE, mlab=paste0("Q(df=", res$k-1, ") = ", fmtx(res$QE, digi
                                      "; I^2 = ", fmtx(res$I2, digits=1),
                                      ", tau^2 = ", fmtx(res$tau2, digits=2)))
 
+# and now we want to combine this with a math expression
+forest(res, header=TRUE, mlab=paste0("Q(df=", res$k-1, ") = ", fmtx(res$QE, digits=2),
+                                     fmtp(res$QEp, digits=3, pname=", p", sep=TRUE),
+                                     "; I^2 = ", fmtx(res$I2, digits=1),
+                                     ", tau^2 = ", fmtx(res$tau2, digits=2)))
 
+forest(res, header=TRUE, mlab=as.expression(paste("Q(df=", res$k-1, sep="")))
 
 
 ### a little helper function to add Q-test, I^2, and tau^2 estimate info
