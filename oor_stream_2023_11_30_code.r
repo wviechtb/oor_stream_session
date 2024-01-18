@@ -292,6 +292,26 @@ dev.off()
 
 ############################################################################
 
+# more advanced use of the 'mlab' argument; we saw earlier that we can use
+# 'mlab' to adjust the text for the row that includes the summary polygon;
+# often, we want to add additional information in this row (e.g., statistics
+# about the amount of heterogeneity, like the Q-test, I^2, and tau^2)
+
+forest(res, header=TRUE, mlab="Summary")
+
+
+### a little helper function to add Q-test, I^2, and tau^2 estimate info
+mlabfun <- function(text, x) {
+   list(bquote(paste(.(text),
+      " (Q = ", .(fmtx(x$QE, digits=2)),
+      ", df = ", .(x$k - x$p), ", ",
+      .(fmtp(x$QEp, digits=3, pname="p", add0=TRUE, sep=TRUE, equal=TRUE)), "; ",
+      I^2, " = ", .(fmtx(x$I2, digits=1)), "%, ",
+      tau^2, " = ", .(fmtx(x$tau2, digits=2)), ")")))}
+
+
+############################################################################
+
 # ylim, rows,
 # width
 # fonts
