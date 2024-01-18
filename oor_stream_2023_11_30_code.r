@@ -292,12 +292,19 @@ dev.off()
 
 ############################################################################
 
-# more advanced use of the 'mlab' argument; we saw earlier that we can use
-# 'mlab' to adjust the text for the row that includes the summary polygon;
-# often, we want to add additional information in this row (e.g., statistics
-# about the amount of heterogeneity, like the Q-test, I^2, and tau^2)
-
+# we saw earlier that we can use 'mlab' to adjust the text for the row that
+# includes the summary polygon
 forest(res, header=TRUE, mlab="Summary")
+
+# often, we want to add additional information in this row, such as statistics
+# about the amount of heterogeneity, like the Q-test, I^2, and tau^2; this
+# information we can find in the model output
+res
+
+# so we could in principle manually add this information via mlab
+forest(res, header=TRUE, mlab="Q(df=12) = 152.23, p < .001; I^2 = 92.2%, tau^2=0.31")
+
+
 
 
 ### a little helper function to add Q-test, I^2, and tau^2 estimate info
