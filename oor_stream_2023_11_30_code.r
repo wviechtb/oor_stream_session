@@ -283,6 +283,9 @@ dev.off()
 
 ############################################################################
 
+# ylim, rows,
+# width, ilab.pos
+
 # some additional topics to be discussed:
 # - talk about the alignment of the annotations
 # - how to show studies with missings
