@@ -270,6 +270,15 @@ forest(res, header=TRUE, xlim=c(-16,6), ilab=cbind(tpos, tneg, cpos, cneg),
 text(c(-9.5,-8,-6,-4.5), 15, c("TB+", "TB-", "TB+", "TB-"), cex=0.9, font=2)
 text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
+# with ilab.pos, can change the alignment of the variables that are added; for
+# example, we can use ilab.pos=2 to right-align them (have to adjust the
+# position of the text headers that are added to make things line up more
+# nicely)
+forest(res, header=TRUE, xlim=c(-16,6), ilab=cbind(tpos, tneg, cpos, cneg),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), ilab.pos=2, cex=0.9)
+text(c(-9.5,-8,-6,-4.5)-0.5, 15, c("TB+", "TB-", "TB+", "TB-"), cex=0.9, font=2)
+text(c(-8.75,-5.25)-0.5, 16, c("Vaccinated", "Control"), cex=0.9, font=2)
+
 # save the plot as a png file
 
 png("forest_plot.png", width=2500, height=1800, pointsize=10, res=300)
