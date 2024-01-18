@@ -323,10 +323,10 @@ forest(res, header=TRUE, mlab=paste0("Q(df=", res$k-1, ") = ", fmtx(res$QE, digi
 
 
 
-forest(res, header=TRUE, mlab=paste0("Q(df==", res$k-1, ") == ", fmtx(res$QE, digits=2),
+forest(res, header=TRUE, mlab=as.expression(paste0("Q(df==", res$k-1, ") == ", fmtx(res$QE, digits=2),
                                      fmtp(res$QEp, digits=3, pname=", p", sep=TRUE),
                                      "; I^2 == ", fmtx(res$I2, digits=1),
-                                     ", tau^2 == ", fmtx(res$tau2, digits=2)))
+                                     ", tau^2 == ", fmtx(res$tau2, digits=2))))
 
 
 
