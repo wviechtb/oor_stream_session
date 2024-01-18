@@ -310,9 +310,9 @@ forest(res, header=TRUE, mlab=expression("Q(df=12) = 152.23, p < .001;" ~ I^2 ==
 # instead of copy-pasting values from the output, we can automate the
 # extraction of the relevant pieces of information from the model object
 forest(res, header=TRUE, mlab=paste0("Q(df=", res$k-1, ") = ", fmtx(res$QE, digits=2),
-                                     fmtp(res$QEp, digits=3, pname="p", sep=TRUE),
-                                     "I^2 = ", fmtx(res$I2, digits=1),
-                                     "tau^2 = ", fmtx(res$tau2, digits=2)
+                                     fmtp(res$QEp, digits=3, pname=", p", sep=TRUE),
+                                     "; I^2 = ", fmtx(res$I2, digits=1),
+                                     ", tau^2 = ", fmtx(res$tau2, digits=2)))
 
 
 
