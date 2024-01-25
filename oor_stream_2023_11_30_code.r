@@ -364,10 +364,17 @@ text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 ############################################################################
 
+#png("forestplot.png", width=2500, height=1800, res=300, type="cairo", family="Calibri")
+#dev.off()
+
+############################################################################
+
+
 # further topics to be discussed at the next session:
 
 # - arguments ylim and rows
 # - argument width
+# - annosym argument / tabfig argument
 # - the alignment of the annotations (and the fonts argument)
 # - how to show studies with missings
 # - the difference between the different forest functions
