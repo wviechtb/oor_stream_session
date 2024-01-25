@@ -399,16 +399,28 @@ forest(res.re, header=TRUE, ylim=c(-3.5,16), mlab="RE Model (REML Estimator)")
 addpoly(res.dl, mlab="RE Model (DL Estimator)")
 addpoly(res.ee, row=-3)
 
+############################################################################
+
 # let's consider another case where we want to subgroup the studies and show
 # the results from models fitted to the subgroups in addition to the overall
 # result; for example, say we want to subgroup by whether participants were
 # randomly assigned to the treatment or not
-
 dat$random <- ifelse(dat$alloc == "random", 1, 0)
 
-# fit random-effects model in the two subgroups
+# fit a random-effects model to all studies
+res.re <- rma(yi, vi, data=dat)
+
+# fit random-effects models in the two subgroups
 res.0 <- rma(yi, vi, subset=(random==0), data=dat)
 res.1 <- rma(yi, vi, subset=(random==1), data=dat)
+
+# create the forest plot showing the result from all studies combined and
+# order the studies by whether they did not or did use random assignment
+forest(res.re, header=TRUE, order=random)
+
+forest(res.re, header=TRUE, order=random, ylim=c(-1.5,20))
+
+
 
 ############################################################################
 
