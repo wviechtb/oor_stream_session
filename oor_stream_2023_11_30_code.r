@@ -584,16 +584,12 @@ library(palmerpenguins)
 res <- lm(body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm, data=penguins)
 summary(res)
 
-forest(coef(res), diag(vcov(res)), subset=-1, slab=names(coef(res)), header="Predictor", xlab="Regression Coefficient Estimate")
+forest(coef(res), diag(vcov(res)), subset=-1, slab=names(coef(res)),
+       header="Predictor", xlab="Regression Coefficient Estimate", psize=1)
 
 ############################################################################
 
-# to be discussed at the next session:
-# - use of forest plots outside of meta-analysis
-
 # maybe if there is time:
 # - IVhet model
-
-# https://board.net/p/r.d8f73b62aec429151a3c22d418fb1080
 
 ############################################################################
