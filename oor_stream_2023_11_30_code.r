@@ -448,6 +448,10 @@ rect(-8, 11.5, 5, 20.5, lty="dotted")
 forest(res, header=TRUE)
 forest(res, header=TRUE, annosym=c(" (", " to ", ")"))
 
+# annosym can include a 4th element for the minus symbol (the hyphen symbol
+# that is used by default is not actually a 'proper' minus sign)
+forest(res, header=TRUE, annosym=c(" (", " to ", ")", "−"))
+
 
 ############################################################################
 
