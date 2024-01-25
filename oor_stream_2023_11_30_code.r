@@ -453,7 +453,6 @@ forest(res, header=TRUE, annosym=c(" (", " to ", ")"))
 # https://en.wikipedia.org/wiki/Dash#Unicode for all kinds of different
 # unicode symbols for dashes; a proper minus sign is U+2212, which in R we can
 # choose using the \u syntax
-
 forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212"))
 
 
