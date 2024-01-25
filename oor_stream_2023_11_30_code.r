@@ -365,9 +365,23 @@ text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 ############################################################################
 
+# creating more complex layouts
+
+# fit a random-effects model
+res <- rma(yi, vi, data=dat)
+
+# create the corresponding forest plot
+forest(res, header=TRUE)
+
+# fit an equal-effects model
+res <- rma(yi, vi, data=dat, method="EE")
+addpoly(res)
+
+
+
+
 # further topics to be discussed at the next session:
 
-# - argument width
 # - arguments ylim and rows
 # - annosym argument / tabfig argument
 # - the alignment of the annotations (and the fonts argument)
@@ -375,6 +389,9 @@ text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 # - the difference between the different forest functions
 # - forest plots for models with moderators
 # - use of forest plots outside of meta-analysis
+
+# maybe if there is time:
+# - IVhet model
 
 #png("forestplot.png", width=2500, height=1800, res=300, type="cairo", family="Calibri")
 #dev.off()
