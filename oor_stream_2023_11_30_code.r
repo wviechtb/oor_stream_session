@@ -443,7 +443,10 @@ rect(-8, 11.5, 5, 20.5, lty="dotted")
 
 ############################################################################
 
-#
+# we can adjust the left bracket, separation, and right bracket symbols for
+# the annotations using the 'annosym' argument
+forest(res, header=TRUE)
+forest(res, header=TRUE, annosym=c(" (", " to ", ")"))
 
 
 ############################################################################
