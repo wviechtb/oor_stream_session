@@ -367,8 +367,8 @@ text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 # further topics to be discussed at the next session:
 
-# - arguments ylim and rows
 # - argument width
+# - arguments ylim and rows
 # - annosym argument / tabfig argument
 # - the alignment of the annotations (and the fonts argument)
 # - how to show studies with missings
