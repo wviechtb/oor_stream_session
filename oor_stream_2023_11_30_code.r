@@ -527,7 +527,9 @@ dev.off()
 
 ############################################################################
 
-# a few additional topics
+### a few additional topics
+
+############################################################################
 
 # suppose for one of the studies the effect size is missing; the study then
 # also does not show up in the forest plot by default
@@ -555,6 +557,25 @@ forest(dat$yi, dat$vi, showweights=T)
 options(na.action="na.omit")
 
 ############################################################################
+
+# forest plots based on meta-regression models
+
+# copy the BCG dataset to 'dat' and examine the data
+dat <- dat.bcg
+dat <- escalc(measure="RR", ai=tpos, bi=tneg,
+                            ci=cpos, di=cneg, data=dat,
+                            slab=paste0(author, ", ", year))
+res <- rma(yi, vi, mods = ~ ablat, data=dat)
+res
+
+# draw the forest plot
+forest(res, header=TRUE)
+
+# for meta-regression models (i.e., models involving moderators), the fitted
+# value for each study is added as a polygon to the plot
+
+############################################################################
+
 
 # to be discussed at the next session:
 # - forest plots for models with moderators
