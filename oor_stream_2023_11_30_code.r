@@ -480,13 +480,12 @@ forest(res, header=TRUE, tabfig=1)
 dev.off()
 
 
+
 ############################################################################
 
 
 # further topics to be discussed at the next session:
 
-# - tabfig argument, font argument
-# - the alignment of the annotations (and the fonts argument)
 # - the rowadj argument
 # - how to show studies with missings
 # - the difference between the different forest functions
