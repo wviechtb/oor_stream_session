@@ -449,8 +449,13 @@ forest(res, header=TRUE)
 forest(res, header=TRUE, annosym=c(" (", " to ", ")"))
 
 # annosym can include a 4th element for the minus symbol (the hyphen symbol
-# that is used by default is not actually a 'proper' minus sign)
-forest(res, header=TRUE, annosym=c(" (", " to ", ")", "−"))
+# that is used by default is not actually a 'proper' minus sign); see
+# https://en.wikipedia.org/wiki/Dash#Unicode for all kinds of different
+# unicode symbols for dashes; a proper minus sign is U+2212, which in R we can
+# choose using the \u syntax
+
+forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212"))
+
 
 
 ############################################################################
