@@ -470,8 +470,14 @@ forest(res, header=TRUE, font="mono")
 # but this doesn't look so nice; instead, we can use a font that has 'tabular
 # figures' (https://en.wikipedia.org/wiki/Typeface#Typesetting_numbers) and
 # where there is a dash symbol that has the exact same width as a whitespace
-# character
+# character; then we need to switch annosym to use these symbols and then
+# everything will align perfectly; the 'tabfig' argument helps to select
+# appropriate symbols for certain fonts (see help(forest.rma) and the section
+# 'Additional Optional Arguments')
 
+png("forest_plot.png", width=2500, height=1800, res=300, type="cairo", family="Calibri")
+forest(res, header=TRUE, tabfig=1)
+dev.off()
 
 
 ############################################################################
@@ -490,8 +496,6 @@ forest(res, header=TRUE, font="mono")
 # maybe if there is time:
 # - IVhet model
 
-#png("forestplot.png", width=2500, height=1800, res=300, type="cairo", family="Calibri")
-#dev.off()
 
 # https://board.net/p/r.d8f73b62aec429151a3c22d418fb1080
 
