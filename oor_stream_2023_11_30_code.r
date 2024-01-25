@@ -399,11 +399,22 @@ forest(res.re, header=TRUE, ylim=c(-3.5,16), mlab="RE Model (REML Estimator)")
 addpoly(res.dl, mlab="RE Model (DL Estimator)")
 addpoly(res.ee, row=-3)
 
+# let's consider another case where we want to subgroup the studies and show
+# the results from models fitted to the subgroups in addition to the overall
+# result; for example, say we want to subgroup by whether participants were
+# randomly assigned to the treatment or not
+
+dat$random <- ifelse(dat$alloc == "random", 1, 0)
+
+# fit random-effects model in the two subgroups
+res.0 <- rma(yi, vi, subset=(random==0), data=dat)
+res.1 <- rma(yi, vi, subset=(random==1), data=dat)
+
 ############################################################################
 
 # further topics to be discussed at the next session:
 
-# - arguments ylim and rows
+# - arguments rows
 # - annosym argument / tabfig argument
 # - the alignment of the annotations (and the fonts argument)
 # - how to show studies with missings
