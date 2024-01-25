@@ -549,6 +549,8 @@ options("na.action")
 options(na.action="na.pass")
 forest(res, header=TRUE)
 
+forest(dat$yi, dat$vi, showweights=T)
+
 # switch back to na.omit
 options(na.action="na.omit")
 
