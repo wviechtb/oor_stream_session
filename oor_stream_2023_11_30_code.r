@@ -557,7 +557,6 @@ options(na.action="na.omit")
 ############################################################################
 
 # to be discussed at the next session:
-# - the difference between the different forest functions
 # - forest plots for models with moderators
 # - use of forest plots outside of meta-analysis
 
