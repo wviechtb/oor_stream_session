@@ -593,9 +593,4 @@ forest(coef(res), diag(vcov(res)), subset=-1, slab=names(coef(res)),
 # the meta-analysis task view (https://cran.r-project.org/view=MetaAnalysis)
 # for a list of such packages (see the 'Graphical methods' section)
 
-# maybe if there is time:
-# - IVhet model
-
-
-
 ############################################################################
