@@ -455,6 +455,13 @@ forest(res, header=TRUE, annosym=c(" (", " to ", ")"))
 # choose using the \u syntax
 forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212"))
 
+# annosym can include a 5th element for the space symbol; there are actually
+# different whitespace characters of different widths; see
+# https://en.wikipedia.org/wiki/Whitespace_character#Unicode for all kinds of
+# different whitespace characters; a 'en quad' symbol is U+2000, which is more
+# similar in width to the proper minus symbol we are using
+forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212", "\u2000"))
+
 
 ############################################################################
 
