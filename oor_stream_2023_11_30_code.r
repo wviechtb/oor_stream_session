@@ -417,19 +417,25 @@ res.1 <- rma(yi, vi, subset=(random==1), data=dat)
 # create the forest plot showing the result from all studies combined and
 # order the studies by whether they did not or did use random assignment; also
 # fix xlim to some round numbers (which becomes relevant further below)
-forest(res.re, header=TRUE, xlim=c(-8,5), order=random)
+forest(res.re, header=TRUE, order=random, xlim=c(-8,5))
 
 # now increase ylim, so we have more vertical space in the plot
-forest(res.re, header=TRUE, xlim=c(-8,5), order=random, ylim=c(-1.5,23))
+forest(res.re, header=TRUE, order=random, xlim=c(-8,5), ylim=c(-1.5,23))
 
+# just for illustration, add the row numbers to the plot as text
 text(-4, 1:23, 1:23, cex=0.8)
 
 # now specify with the rows argument in which rows to place the studies
-forest(res.re, header=TRUE, xlim=c(-8,5), order=random, ylim=c(-1.5,23),
+forest(res.re, header=TRUE, order=random, xlim=c(-8,5), ylim=c(-1.5,23),
        rows=c(3:9,14:19))
+
+# add the polygons from the two subset models
 addpoly(res.0, row=12.5)
 addpoly(res.1, row= 1.5)
-text(-8, 20, "Without Random Assignment", pos=4)
+
+# add text for the subgroups
+text(-8, 20, "Without Random Assignment", pos=4, font=4)
+text(-8, 10, "With Random Assignment",    pos=4, font=4)
 
 ############################################################################
 
