@@ -368,15 +368,21 @@ text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 # creating more complex layouts
 
 # fit a random-effects model
-res <- rma(yi, vi, data=dat)
+res.re <- rma(yi, vi, data=dat)
 
 # create the corresponding forest plot
-forest(res, header=TRUE)
+forest(res.re, header=TRUE)
 
 # fit an equal-effects model
-res <- rma(yi, vi, data=dat, method="EE")
-addpoly(res)
+res.ee <- rma(yi, vi, data=dat, method="EE")
+addpoly(res.ee)
 
+# the summary polygon for the equal-effects model is stuck to the x-axis,
+# which doesn't look nice; we need to leave some additional space at the
+# bottom for adding additional polygons
+
+# create the corresponding forest plot
+forest(res.re, header=TRUE)
 
 
 
