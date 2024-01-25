@@ -375,13 +375,15 @@ forest(res.re, header=TRUE)
 
 # fit an equal-effects model
 res.ee <- rma(yi, vi, data=dat, method="EE")
+
+# add the polygon from the equal-effects model to the forest plot
 addpoly(res.ee)
 
 # the summary polygon for the equal-effects model is stuck to the x-axis,
 # which doesn't look nice; we need to leave some additional space at the
-# bottom for adding additional polygons
+# bottom for adding additional polygons; this can be done by adjusting 'ylim'
 
-# create the forest plot again
+# create the forest plot again and add the polygon
 forest(res.re, header=TRUE, ylim=c(-2.5,16))
 addpoly(res.ee)
 
@@ -391,10 +393,13 @@ addpoly(res.ee)
 
 # fit a random-effects model using the DL estimator
 res.dl <- rma(yi, vi, data=dat, method="DL")
+
+# create the forest plot again and add two polygons
 forest(res.re, header=TRUE, ylim=c(-3.5,16), mlab="RE Model (REML Estimator)")
 addpoly(res.dl, mlab="RE Model (DL Estimator)")
 addpoly(res.ee, row=-3)
 
+############################################################################
 
 # further topics to be discussed at the next session:
 
