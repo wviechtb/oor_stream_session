@@ -381,9 +381,19 @@ addpoly(res.ee)
 # which doesn't look nice; we need to leave some additional space at the
 # bottom for adding additional polygons
 
-# create the corresponding forest plot
-forest(res.re, header=TRUE)
+# create the forest plot again
+forest(res.re, header=TRUE, ylim=c(-2.5,16))
+addpoly(res.ee)
 
+# by default, the additional polygon is added in row -2 (see help(addpoly.rma)
+# for details); we can add even more polygons, but now we need to start
+# thinking about their placement, which is controlled by the 'row' argument
+
+# fit a random-effects model using the DL estimator
+res.dl <- rma(yi, vi, data=dat, method="DL")
+forest(res.re, header=TRUE, ylim=c(-3.5,16), mlab="RE Model (REML Estimator)")
+addpoly(res.dl, mlab="RE Model (DL Estimator)")
+addpoly(res.ee, row=-3)
 
 
 # further topics to be discussed at the next session:
