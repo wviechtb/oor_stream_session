@@ -459,8 +459,13 @@ forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212"))
 # different whitespace characters of different widths; see
 # https://en.wikipedia.org/wiki/Whitespace_character#Unicode for all kinds of
 # different whitespace characters; a 'en quad' symbol is U+2000, which is more
-# similar in width to the proper minus symbol we are using
+# similar in width to the proper minus symbol we are using; this helps to
+# align the annotations
 forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212", "\u2000"))
+
+# one way of solving problems with the alignment of the annotations is to
+# switch to a mono-type font, which we can do with the 'font' argument
+forest(res, header=TRUE, font="mono")
 
 
 ############################################################################
@@ -468,7 +473,7 @@ forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212", "\u2000"))
 
 # further topics to be discussed at the next session:
 
-# - annosym argument / tabfig argument
+# - tabfig argument, font argument
 # - the alignment of the annotations (and the fonts argument)
 # - the rowadj argument
 # - how to show studies with missings
