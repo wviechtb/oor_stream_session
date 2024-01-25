@@ -467,6 +467,12 @@ forest(res, header=TRUE, annosym=c(" (", " to ", ")", "\u2212", "\u2000"))
 # switch to a mono-type font, which we can do with the 'font' argument
 forest(res, header=TRUE, font="mono")
 
+# but this doesn't look so nice; instead, we can use a font that has 'tabular
+# figures' (https://en.wikipedia.org/wiki/Typeface#Typesetting_numbers) and
+# where there is a dash symbol that has the exact same width as a whitespace
+# character
+
+
 
 ############################################################################
 
