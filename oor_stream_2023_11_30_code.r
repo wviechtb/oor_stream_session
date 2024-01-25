@@ -527,9 +527,35 @@ dev.off()
 
 ############################################################################
 
-# further topics to be discussed at the next session:
+# a few additional topics
 
-# - how to show studies with missings
+# suppose for one of the studies the effect size is missing; the study then
+# also does not show up in the forest plot by default
+
+dat <- dat.bcg
+dat$tpos[4] <- dat$tneg[4] <- dat$cpos[4] <- dat$cneg[4] <- NA
+dat <- escalc(measure="RR", ai=tpos, bi=tneg,
+                            ci=cpos, di=cneg, data=dat,
+                            slab=paste0(author, ", ", year))
+res <- rma(yi, vi, data=dat)
+forest(res, header=TRUE)
+
+# but we may want to still show that the study exists; we can do this by
+# adjusting how missings (NAs) are treated via options(); the default way of
+# treating missings is to omit them
+options("na.action")
+
+# we can switch this to na.pass
+options(na.action="na.pass")
+forest(res, header=TRUE)
+
+# switch back to na.omit
+options(na.action="na.omit")
+
+############################################################################
+
+
+# to be discussed at the next session:
 # - the difference between the different forest functions
 # - forest plots for models with moderators
 # - use of forest plots outside of meta-analysis
