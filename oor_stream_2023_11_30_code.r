@@ -423,11 +423,11 @@ forest(res.re, header=TRUE, order=random, xlim=c(-8,5))
 forest(res.re, header=TRUE, order=random, xlim=c(-8,5), ylim=c(-1.5,23))
 
 # just for illustration, add the row numbers to the plot as text
-text(-4, 1:23, 1:23, cex=0.8)
+text(-3, 1:23, 1:23, cex=0.8)
 
 # now specify with the rows argument in which rows to place the studies
 forest(res.re, header=TRUE, order=random, xlim=c(-8,5), ylim=c(-1.5,23),
-       rows=c(3:9,14:19))
+       rows=c(3:9,14:19), mlab="RE Model (all studies combined)", refline=NA)
 
 # add the polygons from the two subset models
 addpoly(res.0, row=12.5)
@@ -436,6 +436,10 @@ addpoly(res.1, row= 1.5)
 # add text for the subgroups
 text(-8, 20, "Without Random Assignment", pos=4, font=4)
 text(-8, 10, "With Random Assignment",    pos=4, font=4)
+
+# now we can add additional graphical elements to the figure as we like
+rect(-8,  0.5, 5, 10.5, lty="dotted")
+rect(-8, 11.5, 5, 20.5, lty="dotted")
 
 ############################################################################
 
