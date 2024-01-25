@@ -483,11 +483,24 @@ dev.off()
 
 # in the resulting figure, the annotations should be perfectly aligned
 
+# try this with a more complex figure
 
+png("forest_plot.png", width=2500, height=1800, res=300, type="cairo", family="Calibri")
+
+forest(res, header=TRUE, xlim=c(-16,6), ilab=cbind(tpos, tneg, cpos, cneg),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), cex=0.9,
+       mlab=bquote(paste("RE Model (Q = ", .(fmtx(res$QE, digits=2)),
+                         ", df = ", .(res$k-1), ", ",
+                         .(fmtp(res$QEp, digits=3, pname="p", sep=TRUE)),
+                         "; ", I^2, " = ", .(fmtx(res$I2, digits=1)), "%",
+                         ", ", tau^2, " = ", .(fmtx(res$tau2, digits=2)), ")")))
+text(c(-9.5,-8,-6,-4.5), 15, c("TB+", "TB-", "TB+", "TB-"), cex=0.9, font=2)
+text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
+
+dev.off()
 
 
 ############################################################################
-
 
 # further topics to be discussed at the next session:
 
