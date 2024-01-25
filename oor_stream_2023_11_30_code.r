@@ -443,11 +443,17 @@ rect(-8, 11.5, 5, 20.5, lty="dotted")
 
 ############################################################################
 
+#
+
+
+############################################################################
+
+
 # further topics to be discussed at the next session:
 
-# - arguments rows
 # - annosym argument / tabfig argument
 # - the alignment of the annotations (and the fonts argument)
+# - the rowadj argument
 # - how to show studies with missings
 # - the difference between the different forest functions
 # - forest plots for models with moderators
