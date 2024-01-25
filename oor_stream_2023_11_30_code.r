@@ -473,11 +473,16 @@ forest(res, header=TRUE, font="mono")
 # character; then we need to switch annosym to use these symbols and then
 # everything will align perfectly; the 'tabfig' argument helps to select
 # appropriate symbols for certain fonts (see help(forest.rma) and the section
-# 'Additional Optional Arguments')
+# 'Additional Optional Arguments'); we can then save the plot using png(),
+# specifying the desired font, with the corresponding appropriate 'tabfig'
+# value
 
 png("forest_plot.png", width=2500, height=1800, res=300, type="cairo", family="Calibri")
 forest(res, header=TRUE, tabfig=1)
 dev.off()
+
+# in the resulting figure, the annotations should be perfectly aligned
+
 
 
 
