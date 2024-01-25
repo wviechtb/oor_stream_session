@@ -418,8 +418,14 @@ res.1 <- rma(yi, vi, subset=(random==1), data=dat)
 # order the studies by whether they did not or did use random assignment
 forest(res.re, header=TRUE, order=random)
 
-forest(res.re, header=TRUE, order=random, ylim=c(-1.5,20))
+# now increase ylim, so we have more vertical space in the plot
+forest(res.re, header=TRUE, order=random, ylim=c(-1.5,21))
 
+text(-4, 1:20, 1:20, cex=0.8)
+
+# now specify with the rows argument in which rows to place the studies
+forest(res.re, header=TRUE, order=random, ylim=c(-1.5,21),
+       rows=c(3:9,13:18))
 
 
 ############################################################################
