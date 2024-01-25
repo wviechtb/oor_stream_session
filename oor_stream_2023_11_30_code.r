@@ -521,6 +521,8 @@ text(c(-8.75,-5.25), 16, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 abline(h=1) # add a horizontal line in row 1
 
+abline(v=seq(-16, 6, by=0.2))
+
 dev.off()
 
 # now all of the numbers are perfectly aligned
