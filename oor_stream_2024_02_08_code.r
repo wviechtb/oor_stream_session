@@ -283,19 +283,32 @@ plot(xs, pred1*50, type="l", lwd=2, ylim=c(0,50))
 lines(xs, pred2, type="l", lwd=2, col="red")
 points(dat$x, dat$y, pch=19)
 
-############################################################################
+res3 <- glm(y ~ x, family=poisson(link=sqrt), data=dat)
+summary(res3)
+pred3 <- predict(res3, newdata=data.frame(x=xs), type="response")
+lines(xs, pred3, type="l", lwd=2, col="blue")
 
+############################################################################
 
 res1 <- glm(cbind(y,n-y) ~ x, family=binomial(link=log), data=dat)
 summary(res1)
 
+
+
+log(p|x+1) - log(p|x) = log(p1) - log(p0) = log(p1/p0)
+
+res4 <- glm(cbind(y,n-y) ~ x, family=binomial(link="identity"), data=dat)
+summary(res4)
+
+(p|x+1) - (p|x) = p1 - p0
+
+
 res3 <- glm(y ~ x + offset(log(n)), family=poisson, data=dat)
 summary(res3)
 
-log(mean) = beta0 + beta1*x + log(n)
-log(mean) - log(n) = beta0 + beta1*x
-log(mean/n) = beta0 + beta1*x
-
+# log(mean) = beta0 + beta1*x + log(n)
+# log(mean) - log(n) = beta0 + beta1*x
+# log(mean/n) = beta0 + beta1*x
 
 ############################################################################
 
