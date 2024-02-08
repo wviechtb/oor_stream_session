@@ -118,6 +118,13 @@ plogis(coef(res)[1])
 # the range of our data (one could center 'hp' at some more meaningful value,
 # so that the intercept is also more sensible)
 
+# now let's look at the coefficient for hp
+
+coef(res)[2]
+
+# this estimates how the log odds of high mpg changes for a one-unit increase
+# in hp (i.e., what is the difference in log odds when hp = x + 1 versus when
+# hp = x)
 
 
 ############################################################################
