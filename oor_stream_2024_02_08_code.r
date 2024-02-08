@@ -60,6 +60,11 @@ summary(res)
 # hence log(p/(1-p)) are the so-called 'log odds'); so here, the default link
 # function is the logit transformation
 
+# we can see what the default link is for a particular 'family' under the
+# following help file
+
+help(family)
+
 # to illustrate, say p=0.7, then the logit-transformed value is as follows
 
 log(0.7 / (1 - 0.7))
@@ -219,10 +224,13 @@ dat <- InsectSprays
 dat
 
 # the count variable indicates the number of inspects on 'agricultural
-# experimental units' treated with different types of insecticides
+# experimental units' treated with different types of insecticides (spray)
+
+# fit a Poisson regression model using spray as a categorical predictor
 
 res <- glm(count ~ spray, family=poisson, data=dat)
 summary(res)
+
 
 
 ############################################################################
