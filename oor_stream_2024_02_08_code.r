@@ -154,6 +154,7 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
 
+
 coef(res)[[1]] + coef(res)[[2]] * 101
 
 
