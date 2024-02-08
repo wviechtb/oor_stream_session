@@ -235,6 +235,14 @@ summary(res)
 # modeling the mean of the Poisson distribution (which is often denoted as
 # lambda) as log(lambda) = beta0 + beta1*x1 + beta2*x2 + ...
 
+# the estimated log-transformed mean for spray type A is just the intercept
+
+coef(res)[[1]]
+
+# hence, the estimated mean count for spray type A is
+
+exp(coef(res)[[1]])
+
 
 ############################################################################
 
