@@ -213,8 +213,13 @@ exp(coef(res)[[3]])
 # of something; then we might assume that the variable follows a Poisson
 # distribution (https://en.wikipedia.org/wiki/Poisson_distribution)
 
+# consider the following dataset
+
 dat <- InsectSprays
 dat
+
+# the count variable indicates the number of inspects on 'agricultural
+# experimental units' treated with different types of insecticides
 
 res <- glm(count ~ spray, family=poisson, data=dat)
 summary(res)
