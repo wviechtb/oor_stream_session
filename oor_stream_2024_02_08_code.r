@@ -177,7 +177,7 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 4) - plogis(coef(res)[[1]] + coef(res)[
 p3 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 3)
 p3 / (1 - p3)
 
-# and the odds of high mpg for a car hp=2 is as follows
+# and the odds of high mpg for a car wt=2 is as follows
 
 p2 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
 p2 / (1 - p2)
