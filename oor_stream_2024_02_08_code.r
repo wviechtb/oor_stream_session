@@ -290,10 +290,17 @@ lines(xs, pred3, type="l", lwd=2, col="blue")
 
 ############################################################################
 
+# relative risk regression
 res1 <- glm(cbind(y,n-y) ~ x, family=binomial(link=log), data=dat)
 summary(res1)
 
+# estimated risk ratio
+exp(coef(res1)[[2]])
 
+predict(res1, newdata=data.frame(x=21:70), type="response") / predict(res1, newdata=data.frame(x=20:69), type="response")
+
+res2 <- glm(cbind(y,n-y) ~ x, family=binomial, data=dat)
+predict(res2, newdata=data.frame(x=21:70), type="response") / predict(res2, newdata=data.frame(x=20:69), type="response")
 
 log(p|x+1) - log(p|x) = log(p1) - log(p0) = log(p1/p0)
 
