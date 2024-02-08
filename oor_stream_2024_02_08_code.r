@@ -182,11 +182,15 @@ p3 / (1 - p3)
 p2 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
 p2 / (1 - p2)
 
-# the ratio of these two odds is
+# the ratio of these two odds is the odds ratio
 
 (p3 / (1 - p3)) / (p2 / (1 - p2))
 
-# it turns out that we can
+# it turns out that we can get this odds ratio is we exponentiate the
+# coefficient for wt
+
+exp(coef(res)[[2]])
+
 
 # we could do the same thing for the coefficient for 'am',
 
