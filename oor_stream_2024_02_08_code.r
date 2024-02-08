@@ -243,6 +243,10 @@ coef(res)[[1]]
 
 exp(coef(res)[[1]])
 
+# the estimated log-transformed mean for spray type B is the intercept plus
+# the coefficient for sprayB
+
+coef(res)[[1]] + coef(res)[[2]]
 
 ############################################################################
 
