@@ -293,8 +293,12 @@ mean(tab$ratio)
 # note that the coefficients have not changed, since we still want to get the
 # same predicted mean counts (which match the observed means); however, the
 # standard errors are now larger, to reflect the increased uncertainty in the
-# estimates due to the larger variances
+# estimates due to the larger variances; in fact, the standard errors are
+# increased by a factor that is equal to the square root of the overdispersion
+# parameter
 
+coef(summary(res2))[,"Std. Error"] / coef(summary(res))[,"Std. Error"]
+sqrt(mean(tab$ratio))
 
 ############################################################################
 
