@@ -107,12 +107,12 @@ predict(res, newdata=data.frame(hp=100, vs=1), type="response")
 
 # let's start with the intercept
 
-coef(res)[1]
+coef(res)[[1]]
 
 # the intercept is the estimated log odds of high mpg when hp=0 and when vs=0,
 # which we can turn into the predicted probability again with plogis()
 
-plogis(coef(res)[1])
+plogis(coef(res)[[1]])
 
 # but of course a car with hp=0 doesn't exist, so this is extrapolation beyond
 # the range of our data (one could center 'hp' at some more meaningful value,
@@ -120,11 +120,17 @@ plogis(coef(res)[1])
 
 # now let's look at the coefficient for hp
 
-coef(res)[2]
+coef(res)[[2]]
 
 # this estimates how the log odds of high mpg changes for a one-unit increase
 # in hp (i.e., what is the difference in log odds when hp = x + 1 versus when
-# hp = x)
+# hp = x); for example, say we compare two cars where one has hp=101 and the
+# other has hp=100, then the predicted log odds are as follows
+
+coef(res)[[1]] + coef(res)[[2]] * 101
+coef(res)[[1]] + coef(res)[[2]] * 100
+
+# and the difference between those two is the coefficient for hp
 
 
 ############################################################################
