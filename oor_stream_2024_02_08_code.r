@@ -161,34 +161,30 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
 
 # and the difference between these two probabilities is
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 2) - plogis(coef(res)[[1]] + coef(res)[[2]] * 1)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 3) - plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
 
 # however, now it *does* matter what the absolute wt values are
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 3) - plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 4) - plogis(coef(res)[[1]] + coef(res)[[2]] * 3)
 
 # even though the difference in wt is 1 in both of these two examples
 
-
-
-
-
 # what is typically reported in logistic regression is not the difference in
-# probabilities, but the ratio is the odds (i.e., the odds ratio)
+# probabilities, but the ratio of the odds (i.e., the odds ratio)
 
-# consider a car with hp=110, then the odds of high mpg is as follows
+# consider a car with wt=3, then the odds of high mpg is as follows
 
-p110 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
-p110 / (1 - p110)
+p3 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 3)
+p3 / (1 - p3)
 
-# and the odds of high mpg for a car hp=100 is as follows
+# and the odds of high mpg for a car hp=2 is as follows
 
-p100 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
-p100 / (1 - p100)
+p2 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
+p2 / (1 - p2)
 
 # the ratio of these two odds is
 
-(p110 / (1 - p110)) / (p100 / (1 - p100))
+(p3 / (1 - p3)) / (p2 / (1 - p2))
 
 # it turns out that we can
 
