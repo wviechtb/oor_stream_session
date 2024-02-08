@@ -248,6 +248,17 @@ exp(coef(res)[[1]])
 
 coef(res)[[1]] + coef(res)[[2]]
 
+# hence, the estimated mean count for spray type B is
+
+exp(coef(res)[[1]] + coef(res)[[2]])
+
+# we can again use the predict function to compute these predicted mean counts
+# (for all spray types) as follows
+
+predict(res, newdata=data.frame(spray=c("A","B","C","D","E","F")), type="response")
+
+
+
 ############################################################################
 
 # - regression model with log transformed outcome
