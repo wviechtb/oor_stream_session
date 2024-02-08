@@ -265,6 +265,25 @@ anova(res0, res, test="Chisq")
 
 ############################################################################
 
+dat <- data.frame(x = c(20,35,45,55,70), n = rep(50,5), y = c(6,17,26,37,44))
+dat
+
+xs <- 20:70
+
+res1 <- glm(cbind(y,n-y) ~ x, family=binomial, data=dat)
+summary(res1)
+pred1 <- predict(res1, newdata=data.frame(x=xs), type="response")
+pred1
+
+res2 <- glm(y ~ x, family=poisson, data=dat)
+summary(res2)
+pred2 <- predict(res2, newdata=data.frame(x=xs), type="response")
+
+plot(xs, pred1*50, type="l", lwd=2)
+lines(xs, pred2, type="l", lwd=2, col="red")
+
+############################################################################
+
 # - regression model with log transformed outcome
 # - ZIP (zero-inflated Poisson model)
 
