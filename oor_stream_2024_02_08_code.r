@@ -146,6 +146,9 @@ coef(res)[[2]]
 
 coef(res)[[2]] * 10
 
+# again, it does not matter if we are talking 110 versus 100 or 120 versus
+# 110, this is always the difference in the log odds for a difference in 10 hp
+
 # what does this imply about the difference in probabilities? the predicted
 # probabilities of high mpg when hp=110 versus hp=100 (when vs=0) are
 
@@ -156,9 +159,9 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
 plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
-#
+# however, now it *does* matter what the absolute hp values are
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 120) - plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
 
 
 coef(res)[[1]] + coef(res)[[2]] * 101
