@@ -127,18 +127,18 @@ coef(res)[[2]]
 
 # this estimates how the log odds of high mpg changes for a one-unit increase
 # in wt (i.e., what is the difference in log odds when wt = x + 1 versus when
-# wt = x); for example, say we compare two cars where one has wt=2 (2000
-# pounds) and the other has wt=1 (1000 pounds), then the predicted log odds
+# wt = x); for example, say we compare two cars where one has wt=3 (3000
+# pounds) and the other has wt=2 (2000 pounds), then the predicted log odds
 # are as follows
 
+coef(res)[[1]] + coef(res)[[2]] * 3
 coef(res)[[1]] + coef(res)[[2]] * 2
-coef(res)[[1]] + coef(res)[[2]] * 1
 
 # and the difference between those two is the coefficient for wt
 
-(coef(res)[[1]] + coef(res)[[2]] * 2) - (coef(res)[[1]] + coef(res)[[2]] * 1)
-(coef(res)[[2]] * 2) - (coef(res)[[2]] * 1)
-coef(res)[[2]] * (2 - 1)
+(coef(res)[[1]] + coef(res)[[2]] * 3) - (coef(res)[[1]] + coef(res)[[2]] * 2)
+(coef(res)[[2]] * 3) - (coef(res)[[2]] * 2)
+coef(res)[[2]] * (3 - 2)
 coef(res)[[2]] * 1
 coef(res)[[2]]
 
@@ -154,10 +154,10 @@ coef(res)[[2]] * 3
 # is always the difference in the log odds for a difference in 3 wt
 
 # what does this imply about the difference in probabilities? the predicted
-# probabilities of high mpg when wt=2 versus wt=1 (when am=0) are
+# probabilities of high mpg when wt=3 versus wt=2 (when am=0) are
 
+plogis(coef(res)[[1]] + coef(res)[[2]] * 3)
 plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
-plogis(coef(res)[[1]] + coef(res)[[2]] * 1)
 
 # and the difference between these two probabilities is
 
