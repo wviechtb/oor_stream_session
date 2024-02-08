@@ -257,11 +257,18 @@ exp(coef(res)[[1]] + coef(res)[[2]])
 
 predict(res, newdata=data.frame(spray=c("A","B","C","D","E","F")), type="response")
 
+# note that these are the same as the observed mean counts for the different
+# spray types as observed in our data
+
+by(dat$count, dat$spray, mean)
+
 # fit the reduced model that assumes that the mean count does not depend on
 # the spray type and then compare this model against the one above
 
 res0 <- glm(count ~ 1, family=poisson, data=dat)
 anova(res0, res, test="Chisq")
+
+
 
 ############################################################################
 
