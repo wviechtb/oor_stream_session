@@ -163,6 +163,8 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res
 
 plogis(coef(res)[[1]] + coef(res)[[2]] * 120) - plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
 
+# even though the difference in hp is 10 in both of these two examples
+
 
 coef(res)[[1]] + coef(res)[[2]] * 101
 
