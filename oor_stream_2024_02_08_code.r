@@ -115,7 +115,9 @@ coef(res)[1]
 plogis(coef(res)[1])
 
 # but of course a car with hp=0 doesn't exist, so this is extrapolation beyond
-# the range of our data
+# the range of our data (one could center 'hp' at some more meaningful value,
+# so that the intercept is also more sensible)
+
 
 
 ############################################################################
