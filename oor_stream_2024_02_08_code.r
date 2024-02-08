@@ -65,6 +65,17 @@ log(0.7 / (1 - 0.7))
 
 qlogis(0.7)
 
+# note that qlogis() maps probabilities between 0 and 1 to the real line
+# (i.e., to minus to plus infinity); for example
+
+qlogis(0)
+qlogis(0.00000000001)
+qlogis(0.5)
+qlogis(0.99999999999)
+qlogis(1)
+
+
+
 ############################################################################
 
 # - regression model with log transformed outcome
