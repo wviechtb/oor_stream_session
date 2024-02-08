@@ -231,6 +231,9 @@ dat
 res <- glm(count ~ spray, family=poisson, data=dat)
 summary(res)
 
+# the default link for family=poisson is the log link; so in this case, we are
+# modeling the mean of the Poisson distribution (which is often denoted as
+# lambda) as log(lambda) = beta0 + beta1*x1 + beta2*x2 + ...
 
 
 ############################################################################
