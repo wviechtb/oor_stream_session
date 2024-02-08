@@ -40,8 +40,8 @@ dat
 res <- lm(highmpg ~ hp + vs, data=dat)
 summary(res)
 
-# fit a logistic regression model predicting highmpg from the same predictors
-# as above
+# fit a logistic regression model predicting highmpg (but see below) from the
+# same predictors as above
 
 res <- glm(highmpg ~ hp + vs, family=binomial, data=dat)
 summary(res)
@@ -75,7 +75,21 @@ qlogis(0.5)
 qlogis(0.99999999999)
 qlogis(1)
 
-# so based on the
+# so based on the the model, we can get the predicted log odds (of high mpg)
+
+predict(res, newdata=data.frame(hp = 100, vs = 1))
+
+# in the notation explained in this section, this value is eta (or more
+# precisely, eta with a hat on top of it, since it is a predicted value); if
+# we want the (estimated/predicted) probability of high mpg, we need to
+# back-transform this, so we need to apply m() to this value, which we can do
+# using the plogis() function
+
+plogis(predict(res, newdata=data.frame(hp = 100, vs = 1)))
+
+
+
+
 
 ############################################################################
 
