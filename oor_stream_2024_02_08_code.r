@@ -23,12 +23,12 @@ dat
 
 # fit a linear regression model using lm()
 
-res <- lm(mpg ~ hp + vs, data=dat)
+res <- lm(mpg ~ wt + vs, data=dat)
 summary(res)
 
 # fit the same model using glm()
 
-res <- glm(mpg ~ hp + vs, family=gaussian, data=dat)
+res <- glm(mpg ~ wt + vs, family=gaussian, data=dat)
 summary(res)
 
 # do a median split on the mpg variable (1 = high mpg, 0 = low mpg), so that
@@ -37,13 +37,13 @@ summary(res)
 dat$highmpg <- ifelse(dat$mpg > median(dat$mpg), 1, 0)
 dat
 
-res <- lm(highmpg ~ hp + vs, data=dat)
+res <- lm(highmpg ~ wt + vs, data=dat)
 summary(res)
 
 # fit a logistic regression model predicting highmpg (but see below) from the
 # same predictors as above
 
-res <- glm(highmpg ~ hp + vs, family=binomial, data=dat)
+res <- glm(highmpg ~ wt + vs, family=binomial, data=dat)
 summary(res)
 
 # the dependent variable here is a 0/1 variable, which is assumed to have a
@@ -77,7 +77,7 @@ qlogis(1)
 
 # so based on the the model, we can get the predicted log odds (of high mpg)
 
-predict(res, newdata=data.frame(hp=100, vs=1))
+predict(res, newdata=data.frame(wt=2, vs=1))
 
 # in the notation explained in this section, this value is eta (or more
 # precisely, eta with a hat on top of it, since it is a predicted value); if
@@ -85,7 +85,7 @@ predict(res, newdata=data.frame(hp=100, vs=1))
 # back-transform this, so we need to apply m() to this value, which we can do
 # using the plogis() function (so then we are getting p = m(eta))
 
-plogis(predict(res, newdata=data.frame(hp=100, vs=1)))
+plogis(predict(res, newdata=data.frame(wt=2, vs=1)))
 
 # note: plogis() maps values between minus and plus infinity to 0 and 1)
 
@@ -97,7 +97,7 @@ plogis(Inf)
 
 # we can do this directly with predict
 
-predict(res, newdata=data.frame(hp=100, vs=1), type="response")
+predict(res, newdata=data.frame(wt=2, vs=1), type="response")
 
 # so, by using the logit link, we are guaranteed that the predicted
 # probability is always a value between 0 and 1 (which is good, since that is
@@ -109,61 +109,65 @@ predict(res, newdata=data.frame(hp=100, vs=1), type="response")
 
 coef(res)[[1]]
 
-# the intercept is the estimated log odds of high mpg when hp=0 and when vs=0,
+# the intercept is the estimated log odds of high mpg when wt=0 and when vs=0,
 # which we can turn into the predicted probability again with plogis()
 
 plogis(coef(res)[[1]])
 
-# but of course a car with hp=0 doesn't exist, so this is extrapolation beyond
-# the range of our data (one could center 'hp' at some more meaningful value,
+# but of course a car with wt=0 doesn't exist, so this is extrapolation beyond
+# the range of our data (one could center 'wt' at some more meaningful value,
 # so that the intercept is also more sensible)
 
-# now let's look at the coefficient for hp
+# now let's look at the coefficient for wt
 
 coef(res)[[2]]
 
 # this estimates how the log odds of high mpg changes for a one-unit increase
-# in hp (i.e., what is the difference in log odds when hp = x + 1 versus when
-# hp = x); for example, say we compare two cars where one has hp=101 and the
-# other has hp=100, then the predicted log odds are as follows
+# in wt (i.e., what is the difference in log odds when wt = x + 1 versus when
+# wt = x); for example, say we compare two cars where one has wt=2 and the
+# other has wt=1, then the predicted log odds are as follows
 
-coef(res)[[1]] + coef(res)[[2]] * 101
-coef(res)[[1]] + coef(res)[[2]] * 100
+coef(res)[[1]] + coef(res)[[2]] * 2
+coef(res)[[1]] + coef(res)[[2]] * 1
 
-# and the difference between those two is the coefficient for hp
+# and the difference between those two is the coefficient for wt
 
-(coef(res)[[1]] + coef(res)[[2]] * 101) - (coef(res)[[1]] + coef(res)[[2]] * 100)
-(coef(res)[[2]] * 101) - (coef(res)[[2]] * 100)
-coef(res)[[2]] * (101 - 100)
+(coef(res)[[1]] + coef(res)[[2]] * 2) - (coef(res)[[1]] + coef(res)[[2]] * 1)
+(coef(res)[[2]] * 2) - (coef(res)[[2]] * 1)
+coef(res)[[2]] * (2 - 1)
 coef(res)[[2]] * 1
 coef(res)[[2]]
 
-# note that it does not matter what the hp values above are, as long as the
+# note that it does not matter what the wt values above are, as long as the
 # difference between them is one unit, we will always get coef(res)[[2]]
 
-# of course cars can differ not just by 1 hp, but say by 10 hp, so then we
-# just take 10 times the slope to figure what the difference is
+# of course cars can differ not just by 1 wt, but say by 3 wt, so then we
+# just take 3 times the slope to figure what the difference is
 
-coef(res)[[2]] * 10
+coef(res)[[2]] * 3
 
-# again, it does not matter if we are talking 110 versus 100 or 120 versus
-# 110, this is always the difference in the log odds for a difference in 10 hp
+# again, it does not matter if we are talking 4 versus 1 or 5 versus 2, this
+# is always the difference in the log odds for a difference in 3 wt
 
 # what does this imply about the difference in probabilities? the predicted
-# probabilities of high mpg when hp=101 versus hp=100 (when vs=0) are
+# probabilities of high mpg when wt=2 versus wt=1 (when vs=0) are
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 101)
-plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 1)
 
 # and the difference between these two probabilities is
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 101) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 2) - plogis(coef(res)[[1]] + coef(res)[[2]] * 1)
 
-# however, now it *does* matter what the absolute hp values are
+# however, now it *does* matter what the absolute wt values are
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 120) - plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 3) - plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
 
-# even though the difference in hp is 10 in both of these two examples
+# even though the difference in wt is 1 in both of these two examples
+
+
+
+
 
 # what is typically reported in logistic regression is not the difference in
 # probabilities, but the ratio is the odds (i.e., the odds ratio)
