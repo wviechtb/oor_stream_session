@@ -31,10 +31,12 @@ summary(res)
 res <- glm(mpg ~ wt + am, family=gaussian, data=dat)
 summary(res)
 
-# do a median split on the mpg variable (1 = high mpg, 0 = low mpg), so that
-# we have a dichotomous outcome variable for doing logistic regression
+# do a split on the mpg variable (1 = high (>22) mpg, 0 = low (<= 22) mpg), so
+# that we have a dichotomous outcome variable for doing logistic regression
+# (note: 22 miles per gallon is of course horrible gas mileage by today's
+# standards, but these are old cars, so ...)
 
-dat$highmpg <- ifelse(dat$mpg > 15, 1, 0)
+dat$highmpg <- ifelse(dat$mpg > 22, 1, 0)
 dat
 
 # fit a logistic regression model predicting high mpg (but see below) from the
@@ -74,7 +76,7 @@ qlogis(1)
 
 # so based on the the model, we can get the predicted log odds (of high mpg)
 
-predict(res, newdata=data.frame(wt=2, vs=1))
+predict(res, newdata=data.frame(wt=2, am=1))
 
 # in the notation explained in this section, this value is eta (or more
 # precisely, eta with a hat on top of it, since it is a predicted value); if
@@ -82,7 +84,7 @@ predict(res, newdata=data.frame(wt=2, vs=1))
 # back-transform this, so we need to apply m() to this value, which we can do
 # using the plogis() function (so then we are getting p = m(eta))
 
-plogis(predict(res, newdata=data.frame(wt=2, vs=1)))
+plogis(predict(res, newdata=data.frame(wt=2, am=1)))
 
 # note: plogis() maps values between minus and plus infinity to 0 and 1)
 
@@ -94,7 +96,7 @@ plogis(Inf)
 
 # we can do this directly with predict
 
-predict(res, newdata=data.frame(wt=2, vs=1), type="response")
+predict(res, newdata=data.frame(wt=2, am=1), type="response")
 
 # so, by using the logit link, we are guaranteed that the predicted
 # probability is always a value between 0 and 1 (which is good, since that is
@@ -106,7 +108,7 @@ predict(res, newdata=data.frame(wt=2, vs=1), type="response")
 
 coef(res)[[1]]
 
-# the intercept is the estimated log odds of high mpg when wt=0 and when vs=0,
+# the intercept is the estimated log odds of high mpg when wt=0 and when am=0,
 # which we can turn into the predicted probability again with plogis()
 
 plogis(coef(res)[[1]])
@@ -147,7 +149,7 @@ coef(res)[[2]] * 3
 # is always the difference in the log odds for a difference in 3 wt
 
 # what does this imply about the difference in probabilities? the predicted
-# probabilities of high mpg when wt=2 versus wt=1 (when vs=0) are
+# probabilities of high mpg when wt=2 versus wt=1 (when am=0) are
 
 plogis(coef(res)[[1]] + coef(res)[[2]] * 2)
 plogis(coef(res)[[1]] + coef(res)[[2]] * 1)
@@ -185,7 +187,7 @@ p100 / (1 - p100)
 
 # it turns out that we can
 
-# we could do the same thing for the coefficient for 'vs',
+# we could do the same thing for the coefficient for 'am',
 
 ############################################################################
 
