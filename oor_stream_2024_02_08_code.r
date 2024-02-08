@@ -74,7 +74,8 @@ qlogis(0.5)
 qlogis(0.99999999999)
 qlogis(1)
 
-# so based on the the model, we can get the predicted log odds (of high mpg)
+# so based on the model, we can get the predicted log odds (of high mpg) when
+# wt=2 and am=1 as follows
 
 predict(res, newdata=data.frame(wt=2, am=1))
 
