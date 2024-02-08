@@ -53,7 +53,8 @@ res <- glm(highmpg ~ hp + wt + am, family=binomial, data=dat)
 # is this function m() and its inverse m^{-1}()? by default, it is the logit
 # function, which is given by log(p/(1-p)), so the model says that the
 # logit-transformed probability of a 1 is a linear function of one or multiple
-# predictors
+# predictors (sidenote: p/(1-p) is the so-called 'odds' of seeing a 1 and
+# hence log(p/(1-p)) are the so-called 'log odds')
 
 
 ############################################################################
