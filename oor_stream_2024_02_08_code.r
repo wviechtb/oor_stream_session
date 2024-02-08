@@ -37,10 +37,7 @@ summary(res)
 dat$highmpg <- ifelse(dat$mpg > median(dat$mpg), 1, 0)
 dat
 
-res <- lm(highmpg ~ wt + vs, data=dat)
-summary(res)
-
-# fit a logistic regression model predicting highmpg (but see below) from the
+# fit a logistic regression model predicting high mpg (but see below) from the
 # same predictors as above
 
 res <- glm(highmpg ~ wt + vs, family=binomial, data=dat)
