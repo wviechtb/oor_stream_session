@@ -103,6 +103,19 @@ predict(res, newdata=data.frame(hp=100, vs=1), type="response")
 # probability is always a value between 0 and 1 (which is good, since that is
 # the range for probabilities)
 
+# so how can we interpret the estimated model coefficients?
+
+# let's start with the intercept
+
+coef(res)[1]
+
+# the intercept is the estimated log odds of high mpg when hp=0 and when vs=0,
+# which we can turn into the predicted probability again with plogis()
+
+plogis(coef(res)[1])
+
+# but of course a car with hp=0 doesn't exist, so this is extrapolation beyond
+# the range of our data
 
 
 ############################################################################
