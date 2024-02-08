@@ -132,6 +132,21 @@ coef(res)[[1]] + coef(res)[[2]] * 100
 
 # and the difference between those two is the coefficient for hp
 
+(coef(res)[[1]] + coef(res)[[2]] * 101) - (coef(res)[[1]] + coef(res)[[2]] * 100)
+(coef(res)[[2]] * 101) - (coef(res)[[2]] * 100)
+coef(res)[[2]] * (101 - 100)
+coef(res)[[2]] * 1
+coef(res)[[2]]
+
+# of course cars can differ not just by 1 hp, but say by 10 hp, so then we
+# just take 10 times the slope to figure what the difference is
+
+coef(res)[[2]] * 10
+
+
+
+
+# we could do the same thing for the coefficient for 'vs',
 
 ############################################################################
 
