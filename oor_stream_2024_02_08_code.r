@@ -21,6 +21,9 @@
 dat <- mtcars
 dat
 
+# note: wt is given per 1000 pounds and am=1 for manual transmission and am=0
+# for automatic transmission
+
 # fit a linear regression model using lm()
 
 res <- lm(mpg ~ wt + am, data=dat)
@@ -75,7 +78,7 @@ qlogis(0.99999999999)
 qlogis(1)
 
 # so based on the model, we can get the predicted log odds (of high mpg) when
-# wt=2 and am=1 as follows
+# wt=2 (so 2000 pounds) and am=1 (manual transmission) as follows
 
 predict(res, newdata=data.frame(wt=2, am=1))
 
