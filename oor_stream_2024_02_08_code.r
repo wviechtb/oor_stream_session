@@ -127,8 +127,9 @@ coef(res)[[2]]
 
 # this estimates how the log odds of high mpg changes for a one-unit increase
 # in wt (i.e., what is the difference in log odds when wt = x + 1 versus when
-# wt = x); for example, say we compare two cars where one has wt=2 and the
-# other has wt=1, then the predicted log odds are as follows
+# wt = x); for example, say we compare two cars where one has wt=2 (2000
+# pounds) and the other has wt=1 (1000 pounds), then the predicted log odds
+# are as follows
 
 coef(res)[[1]] + coef(res)[[2]] * 2
 coef(res)[[1]] + coef(res)[[2]] * 1
