@@ -77,7 +77,7 @@ qlogis(1)
 
 # so based on the the model, we can get the predicted log odds (of high mpg)
 
-predict(res, newdata=data.frame(hp = 100, vs = 1))
+predict(res, newdata=data.frame(hp=100, vs=1))
 
 # in the notation explained in this section, this value is eta (or more
 # precisely, eta with a hat on top of it, since it is a predicted value); if
@@ -85,11 +85,11 @@ predict(res, newdata=data.frame(hp = 100, vs = 1))
 # back-transform this, so we need to apply m() to this value, which we can do
 # using the plogis() function
 
-plogis(predict(res, newdata=data.frame(hp = 100, vs = 1)))
+plogis(predict(res, newdata=data.frame(hp=100, vs=1)))
 
 # we can do this directly with predict
 
-predict(res, newdata=data.frame(hp = 100, vs = 1), type="response")
+predict(res, newdata=data.frame(hp=100, vs=1), type="response")
 
 
 
