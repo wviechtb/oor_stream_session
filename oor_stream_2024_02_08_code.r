@@ -138,6 +138,9 @@ coef(res)[[2]] * (101 - 100)
 coef(res)[[2]] * 1
 coef(res)[[2]]
 
+# note that it does not matter what the hp values above are, as long as the
+# difference between them is one unit, we will always get coef(res)[[2]]
+
 # of course cars can differ not just by 1 hp, but say by 10 hp, so then we
 # just take 10 times the slope to figure what the difference is
 
@@ -153,6 +156,9 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
 plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
+#
+
+plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
 
 coef(res)[[1]] + coef(res)[[2]] * 101
