@@ -271,7 +271,7 @@ by(dat$count, dat$spray, mean)
 # in a Poisson distribution, the mean is equal to the variance (see the
 # Wikipedia link above); but if we compute the variances of the counts for the
 # different spray types, we see that the variances are consistently above the
-# means (except for type E)
+# means (except for type E); this is called 'overdispersion'
 
 tab <- data.frame(mean     = by(dat$count, dat$spray, mean),
                   variance = by(dat$count, dat$spray, var))
@@ -289,6 +289,12 @@ summary(res2)
 # ratios we saw above
 
 mean(tab$ratio)
+
+# note that the coefficients have not changed, since we still want to get the
+# same predicted mean counts (which match the observed means); however, the
+# standard errors are now larger, to reflect the increased uncertainty in the
+# estimates due to the larger variances
+
 
 ############################################################################
 
