@@ -87,7 +87,9 @@ predict(res, newdata=data.frame(hp = 100, vs = 1))
 
 plogis(predict(res, newdata=data.frame(hp = 100, vs = 1)))
 
+# we can do this directly with predict
 
+predict(res, newdata=data.frame(hp = 100, vs = 1), type="response")
 
 
 
