@@ -36,3 +36,6 @@ summary(res)
 ############################################################################
 
 # - regression model with log transformed outcome
+# - ZIP (zero-inflated Poisson model)
+
+############################################################################
