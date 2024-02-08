@@ -16,7 +16,22 @@
 
 ## 11.6 Generalized linear models
 
-#
+# copy the mtcars dataset to dat and inspect the dataset
+
+dat <- mtcars
+dat
+
+# fit a linear regression model using lm()
+
+res <- lm(mpg ~ hp + wt + am, data=dat)
+summary(res)
+
+# fit the same model using glm()
+
+res <- glm(mpg ~ hp + wt + am, family=gaussian, data=dat)
+summary(res)
+
+
 
 ############################################################################
 
