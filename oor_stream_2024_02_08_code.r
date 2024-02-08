@@ -150,14 +150,14 @@ coef(res)[[2]] * 10
 # 110, this is always the difference in the log odds for a difference in 10 hp
 
 # what does this imply about the difference in probabilities? the predicted
-# probabilities of high mpg when hp=110 versus hp=100 (when vs=0) are
+# probabilities of high mpg when hp=101 versus hp=100 (when vs=0) are
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 101)
 plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
 # and the difference between these two probabilities is
 
-plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 101) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
 
 # however, now it *does* matter what the absolute hp values are
 
@@ -168,6 +168,21 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 120) - plogis(coef(res)[[1]] + coef(res
 # what is typically reported in logistic regression is not the difference in
 # probabilities, but the ratio is the odds (i.e., the odds ratio)
 
+# consider a car with hp=110, then the odds of high mpg is as follows
+
+p110 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
+p110 / (1 - p110)
+
+# and the odds of high mpg for a car hp=100 is as follows
+
+p100 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+p100 / (1 - p100)
+
+# the ratio of these two odds is
+
+(p110 / (1 - p110)) / (p100 / (1 - p100))
+
+# it turns out that we can
 
 # we could do the same thing for the coefficient for 'vs',
 
