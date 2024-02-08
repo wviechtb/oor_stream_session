@@ -279,8 +279,11 @@ res2 <- glm(y ~ x, family=poisson, data=dat)
 summary(res2)
 pred2 <- predict(res2, newdata=data.frame(x=xs), type="response")
 
-plot(xs, pred1*50, type="l", lwd=2)
+plot(xs, pred1*50, type="l", lwd=2, ylim=c(0,50))
 lines(xs, pred2, type="l", lwd=2, col="red")
+points(dat$x, dat$y, pch=19)
+
+
 
 ############################################################################
 
