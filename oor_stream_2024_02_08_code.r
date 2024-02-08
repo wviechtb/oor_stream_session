@@ -143,6 +143,18 @@ coef(res)[[2]]
 
 coef(res)[[2]] * 10
 
+# what does this imply about the difference in probabilities? the predicted
+# probabilities of high mpg when hp=110 versus hp=100 (when vs=0) are
+
+plogis(coef(res)[[1]] + coef(res)[[2]] * 110)
+plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+
+# and the difference between these two probabilities is
+
+plogis(coef(res)[[1]] + coef(res)[[2]] * 110) - plogis(coef(res)[[1]] + coef(res)[[2]] * 100)
+
+
+coef(res)[[1]] + coef(res)[[2]] * 101
 
 
 
