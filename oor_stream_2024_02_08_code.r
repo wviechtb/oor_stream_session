@@ -191,6 +191,15 @@ p2 / (1 - p2)
 
 exp(coef(res)[[2]])
 
+# for such an odds ratio, the absolute wt values do not matter
+
+p4 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 4)
+p3 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 3)
+(p4 / (1 - p4)) / (p3 / (1 - p3))
+
+
+
+
 
 # we could do the same thing for the coefficient for 'am',
 
