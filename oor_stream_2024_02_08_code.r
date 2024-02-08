@@ -273,10 +273,24 @@ by(dat$count, dat$spray, mean)
 # different spray types, we see that the variances are consistently above the
 # means (except for type E)
 
-data.frame(mean     = by(dat$count, dat$spray, mean),
-           variance = by(dat$count, dat$spray, var))
+tab <- data.frame(mean     = by(dat$count, dat$spray, mean),
+                  variance = by(dat$count, dat$spray, var))
+tab$ratio <- tab$variance / tab$mean
+tab
 
-# this violates an assumption of the Poisson distribution
+# this violates an assumption of the Poisson distribution; we can relax this
+# assumption with the quasi-Poisson family, which allows the variance of the
+# counts to differ from the means by a multiplicative factor
+
+res2 <- glm(count ~ spray, family=quasipoisson, data=dat)
+summary(res2)
+
+# in this simple case, this factor (1.507713) is just the average of the
+# ratios we saw above
+
+mean(tab$ratio)
+
+
 
 ############################################################################
 
