@@ -205,6 +205,18 @@ exp(coef(res)[[3]])
 # of the odds of high mpg for cars with an automatic transmission (am=0)
 # (leaving aside that the difference is not actually significant)
 
+# we will skip the example given in this section (the "small, artificial
+# example, from Silvey")
+
+# instead, let's do a different type of GLM, namely a Poisson regression model
+
+dat <- InsectSprays
+head(dat)
+
+res <- glm(count ~ spray, family=poisson, data=dat)
+summary(res)
+
+
 ############################################################################
 
 # - regression model with log transformed outcome
