@@ -67,7 +67,7 @@ log(0.7 / (1 - 0.7))
 qlogis(0.7)
 
 # note that qlogis() maps probabilities between 0 and 1 to the real line
-# (i.e., to minus to plus infinity); for example
+# (i.e., to minus to plus infinity); for example:
 
 qlogis(0)
 qlogis(0.00000000001)
@@ -87,11 +87,21 @@ predict(res, newdata=data.frame(hp=100, vs=1))
 
 plogis(predict(res, newdata=data.frame(hp=100, vs=1)))
 
+# note: plogis() maps values between minus and plus infinity to 0 and 1)
+
+plogis(-Inf)
+plogis(-3)
+plogis(0)
+plogis(3)
+plogis(Inf)
+
 # we can do this directly with predict
 
 predict(res, newdata=data.frame(hp=100, vs=1), type="response")
 
-
+# so, by using the logit link, we are guaranteed that the predicted
+# probability is always a value between 0 and 1 (which is good, since that is
+# the range for probabilities)
 
 ############################################################################
 
