@@ -23,24 +23,24 @@ dat
 
 # fit a linear regression model using lm()
 
-res <- lm(mpg ~ wt + vs, data=dat)
+res <- lm(mpg ~ wt + am, data=dat)
 summary(res)
 
 # fit the same model using glm()
 
-res <- glm(mpg ~ wt + vs, family=gaussian, data=dat)
+res <- glm(mpg ~ wt + am, family=gaussian, data=dat)
 summary(res)
 
 # do a median split on the mpg variable (1 = high mpg, 0 = low mpg), so that
 # we have a dichotomous outcome variable for doing logistic regression
 
-dat$highmpg <- ifelse(dat$mpg > median(dat$mpg), 1, 0)
+dat$highmpg <- ifelse(dat$mpg > 15, 1, 0)
 dat
 
 # fit a logistic regression model predicting high mpg (but see below) from the
 # same predictors as above
 
-res <- glm(highmpg ~ wt + vs, family=binomial, data=dat)
+res <- glm(highmpg ~ wt + am, family=binomial, data=dat)
 summary(res)
 
 # the dependent variable here is a 0/1 variable, which is assumed to have a
