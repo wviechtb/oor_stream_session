@@ -62,7 +62,7 @@ summary(res)
 
 log(0.7 / (1 - 0.7))
 
-# which can also be computed with qlogis()
+# which can also be computed with qlogis() (i.e., eta = m^{-1}() = qlogis())
 
 qlogis(0.7)
 
@@ -83,7 +83,7 @@ predict(res, newdata=data.frame(hp=100, vs=1))
 # precisely, eta with a hat on top of it, since it is a predicted value); if
 # we want the (estimated/predicted) probability of high mpg, we need to
 # back-transform this, so we need to apply m() to this value, which we can do
-# using the plogis() function
+# using the plogis() function (so then we are getting p = m(eta))
 
 plogis(predict(res, newdata=data.frame(hp=100, vs=1)))
 
@@ -102,6 +102,8 @@ predict(res, newdata=data.frame(hp=100, vs=1), type="response")
 # so, by using the logit link, we are guaranteed that the predicted
 # probability is always a value between 0 and 1 (which is good, since that is
 # the range for probabilities)
+
+
 
 ############################################################################
 
