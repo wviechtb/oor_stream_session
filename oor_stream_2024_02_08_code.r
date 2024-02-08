@@ -197,11 +197,13 @@ p4 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 4)
 p3 <- plogis(coef(res)[[1]] + coef(res)[[2]] * 3)
 (p4 / (1 - p4)) / (p3 / (1 - p3))
 
+# we could do the same thing for the coefficient for 'am'
 
+exp(coef(res)[[3]])
 
-
-
-# we could do the same thing for the coefficient for 'am',
+# so the odds of high mpg for cars with a manual transmission (am=1) is ~ 1/10
+# of the odds of high mpg for cars with an automatic transmission (am=0)
+# (leaving aside that the difference is not actually significant)
 
 ############################################################################
 
