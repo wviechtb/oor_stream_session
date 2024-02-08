@@ -75,7 +75,6 @@ qlogis(0.99999999999)
 qlogis(1)
 
 
-
 ############################################################################
 
 # - regression model with log transformed outcome
