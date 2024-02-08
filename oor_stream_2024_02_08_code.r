@@ -165,9 +165,8 @@ plogis(coef(res)[[1]] + coef(res)[[2]] * 120) - plogis(coef(res)[[1]] + coef(res
 
 # even though the difference in hp is 10 in both of these two examples
 
-
-coef(res)[[1]] + coef(res)[[2]] * 101
-
+# what is typically reported in logistic regression is not the difference in
+# probabilities, but the ratio is the odds (i.e., the odds ratio)
 
 
 # we could do the same thing for the coefficient for 'vs',
