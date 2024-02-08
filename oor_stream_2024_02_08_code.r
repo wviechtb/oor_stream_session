@@ -50,12 +50,20 @@ res <- glm(highmpg ~ hp + wt + am, family=binomial, data=dat)
 # distribution (https://en.wikipedia.org/wiki/Bernoulli_distribution); the
 # mean of such a distribution is p, where p is the probability of seeing a 1;
 # the model says that m^{-1}(p) = beta0 + beta1*x1 + beta2*x2 + ..., but what
-# is this function m() and its inverse m^{-1}()? by default, it is the logit
-# function, which is given by log(p/(1-p)), so the model says that the
+# is this function m() and its inverse m^{-1}()? by default, m^{-1}() is the
+# logit function, which is given by log(p/(1-p)), so the model says that the
 # logit-transformed probability of a 1 is a linear function of one or multiple
 # predictors (sidenote: p/(1-p) is the so-called 'odds' of seeing a 1 and
-# hence log(p/(1-p)) are the so-called 'log odds')
+# hence log(p/(1-p)) are the so-called 'log odds'); so here, the default link
+# function is the logit transformation
 
+# to illustrate, say p=0.7, then the logit-transformed value is as follows
+
+log(0.7 / (1 - 0.7))
+
+# which can also be computed with qlogis()
+
+qlogis(0.7)
 
 ############################################################################
 
