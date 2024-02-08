@@ -31,6 +31,12 @@ summary(res)
 res <- glm(mpg ~ hp + wt + am, family=gaussian, data=dat)
 summary(res)
 
+# do a median split on the mpg variable (1 = high mpg, 0 = low mpg), so that
+# we have a dichotomous outcome variable for doing logistic regression
+
+dat$highmpg <- ifelse(dat$mpg > median(dat$mpg), 1, 0)
+dat
+
 
 
 ############################################################################
