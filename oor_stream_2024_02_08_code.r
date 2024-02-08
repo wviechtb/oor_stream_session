@@ -208,10 +208,13 @@ exp(coef(res)[[3]])
 # we will skip the example given in this section (the "small, artificial
 # example, from Silvey")
 
-# instead, let's do a different type of GLM, namely a Poisson regression model
+# instead, let's do a different type of GLM, namely a Poisson regression
+# model; this is often used when we have an outcome variable that is a count
+# of something; then we might assume that the variable follows a Poisson
+# distribution (https://en.wikipedia.org/wiki/Poisson_distribution)
 
 dat <- InsectSprays
-head(dat)
+dat
 
 res <- glm(count ~ spray, family=poisson, data=dat)
 summary(res)
