@@ -283,6 +283,18 @@ plot(xs, pred1*50, type="l", lwd=2, ylim=c(0,50))
 lines(xs, pred2, type="l", lwd=2, col="red")
 points(dat$x, dat$y, pch=19)
 
+############################################################################
+
+
+res1 <- glm(cbind(y,n-y) ~ x, family=binomial(link=log), data=dat)
+summary(res1)
+
+res3 <- glm(y ~ x + offset(log(n)), family=poisson, data=dat)
+summary(res3)
+
+log(mean) = beta0 + beta1*x + log(n)
+log(mean) - log(n) = beta0 + beta1*x
+log(mean/n) = beta0 + beta1*x
 
 
 ############################################################################
