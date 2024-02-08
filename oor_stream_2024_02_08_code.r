@@ -23,12 +23,12 @@ dat
 
 # fit a linear regression model using lm()
 
-res <- lm(mpg ~ hp + wt + am, data=dat)
+res <- lm(mpg ~ hp + vs, data=dat)
 summary(res)
 
 # fit the same model using glm()
 
-res <- glm(mpg ~ hp + wt + am, family=gaussian, data=dat)
+res <- glm(mpg ~ hp + vs, family=gaussian, data=dat)
 summary(res)
 
 # do a median split on the mpg variable (1 = high mpg, 0 = low mpg), so that
@@ -37,13 +37,14 @@ summary(res)
 dat$highmpg <- ifelse(dat$mpg > median(dat$mpg), 1, 0)
 dat
 
-res <- lm(highmpg ~ hp + wt + am, data=dat)
+res <- lm(highmpg ~ hp + vs, data=dat)
 summary(res)
 
 # fit a logistic regression model predicting highmpg from the same predictors
 # as above
 
-res <- glm(highmpg ~ hp + wt + am, family=binomial, data=dat)
+res <- glm(highmpg ~ hp + vs, family=binomial, data=dat)
+summary(res)
 
 # the dependent variable here is a 0/1 variable, which is assumed to have a
 # binomial distribution, which, as a special case, is actually a Bernoulli
@@ -74,6 +75,7 @@ qlogis(0.5)
 qlogis(0.99999999999)
 qlogis(1)
 
+# so based on the
 
 ############################################################################
 
