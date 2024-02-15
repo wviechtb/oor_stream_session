@@ -47,6 +47,9 @@ dat <- dat[order(dat$propend, decreasing=TRUE),]
 # reset the row names to increasing integers
 rownames(dat) <- NULL
 
+# inspect the dataset one more time
+dat
+
 # Figure 4.5
 
 par(mfrow=c(2,4), mar=c(3,4,2,2))
