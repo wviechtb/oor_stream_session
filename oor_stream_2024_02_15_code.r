@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 4.6 - ?
+# - Section(s): 4.6 - 4.8
 #
 # last updated: 2024-02-15
 
@@ -119,5 +119,11 @@ qqline(qnorm(pvals))
 
 # conduct a chi-square test on the entire table of votes received over time
 chisq.test(votes)
+
+############################################################################
+
+### 4.7: Moving beyond hypothesis testing
+
+# nothing to replicate here
 
 ############################################################################
