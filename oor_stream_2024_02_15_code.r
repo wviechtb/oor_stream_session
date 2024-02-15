@@ -81,6 +81,26 @@ hist(sds)
 
 
 
-means <- replicate(100000, mean(rnorm(30, 10, 2)))
-2 / sqrt(30)
-sd(means)
+res <- replicate(100000, {
+   x <- rnorm(30, 10, 2)
+   c(mean(x), var(x))
+})
+
+4 / 30
+var(res[1,])
+mean(res[2,] / 30)
+
+
+
+res <- replicate(1000000, {
+   n <- 10 + round(rchisq(1, 1)) * 5
+   x <- rnorm(n, 10, 2)
+   c(mean(x), var(x), n)
+})
+
+var(res[1,])
+mean(res[2,] / res[3,])
+
+
+
+4 / 30
