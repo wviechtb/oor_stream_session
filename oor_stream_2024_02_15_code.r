@@ -106,5 +106,6 @@ points(dat$propend, sds.theory, pch=19)
 # by each candidate at the 6 time points
 pvals <- apply(votes, 1, function(x) chisq.test(rbind(x, voters - x))$p.value)
 
-
-
+# proportion of p-values below 0.1 and above 0.9
+mean(pvals < 0.1)
+mean(pvals > 0.9)
