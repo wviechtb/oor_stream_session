@@ -18,5 +18,11 @@
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Coop/data/Riverbay.csv", destfile="riverbay.csv")
 
-dat <- read.csv("riverbay.csv")
+# read in the data and inspect the dataset
+dat <- read.csv("riverbay.csv", header=FALSE)
+dat
+
+names(dat) <- c("candidate", paste0("tally", 1:6), "
+
+
 
