@@ -76,12 +76,19 @@ for (i in 1:8) {
 
 # matrix with the proportions of votes received at each tally
 propmat <- t(t(dat[1:6] - cbind(0,dat[1:5])) / voters)
+propmat
 
 # compute the standard deviation of those proportions within each row
 sds <- apply(propmat, 1, sd)
+sds
 
-propmat * (1 - propmat)
+# matrix with the estimated sampling variances (i.e., the square of the
+# standard errors) for each of the 27*6 proportions
+varmat <- t(t(propmat * (1 - propmat)) / voters)
+varmat
 
+# compute the average of these sampling variances across rows
+apply(varmat, 1, mean)
 
 par(mfrow=c(1,1), mar=c(5,4,2,2))
 hist(sds)
