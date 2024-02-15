@@ -67,3 +67,11 @@ for (i in 1:8) {
 
 }
 
+# matrix with the proportions of votes received at each tally
+propmat <- t(t(dat[1:6] - cbind(0,dat[1:5])) / (voters - c(0,voters[1:5])))
+
+# compute the standard deviation of those proportions within each row
+sds <- apply(propmat, 1, sd)
+
+par(mfrow=c(1,1), mar=c(5,4,2,2))
+hist(sds)
