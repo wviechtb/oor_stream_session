@@ -49,9 +49,9 @@ par(mfrow=c(2,4), mar=c(3,4,2,2))
 
 for (i in 1:8) {
 
-   plot(voters, dat[i,1:6]/voters, type="o", pch=21, bg="gray",
-        xlim=c(0,6000), ylim=c(0,0.6), xlab="", ylab="")
-   title(dat$candidate[i])
+   plot(voters, dat[i,1:6]/voters,
+        type="o", pch=21, bg="gray", xlim=c(0,6000), ylim=c(0,0.6),
+        xlab="", ylab="", main=dat$candidate[i])
 
 }
 
@@ -61,8 +61,9 @@ par(mfrow=c(2,4), mar=c(3,4,2,2))
 
 for (i in 1:8) {
 
-   plot(voters, dat[i,1:6]/voters, type="o", pch=21, bg="gray",
-        xlim=c(0,6000), ylim=c(0,0.6), xlab="", ylab="")
-   title(dat$candidate[i])
+   plot(voters, (dat[i,1:6] - cbind(0,dat[i,1:5])) / (voters - c(0,voters[1:5])),
+        type="o", pch=21, bg="gray", xlim=c(0,6000), ylim=c(0,0.6),
+        xlab="", ylab="", main=dat$candidate[i])
 
 }
+
