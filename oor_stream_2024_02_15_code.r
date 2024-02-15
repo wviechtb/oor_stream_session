@@ -117,3 +117,7 @@ mean(pvals > 0.9)
 qqnorm(qnorm(pvals), pch=19)
 qqline(qnorm(pvals))
 
+# conduct a chi-square test on the entire table of votes received over time
+chisq.test(votes)
+
+############################################################################
