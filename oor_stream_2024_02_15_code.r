@@ -109,3 +109,11 @@ pvals <- apply(votes, 1, function(x) chisq.test(rbind(x, voters - x))$p.value)
 # proportion of p-values below 0.1 and above 0.9
 mean(pvals < 0.1)
 mean(pvals > 0.9)
+
+# we can check if the p-values come from a uniform distribution (which they
+# should if the null hypothesis is true for all 27 candidates) by applying the
+# inverse cumulative distribution function for a normal distribution to the
+# p-values and then using a Q-Q plot to check for normality
+qqnorm(qnorm(pvals), pch=19)
+qqline(qnorm(pvals))
+
