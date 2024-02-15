@@ -40,6 +40,9 @@ voters
 # proportion of votes received at the very end
 dat$propend <- dat$tally6 / cumulvoters[6]
 
+# matrix with votes received at each tally for the 27 candidates
+votes <- (dat[,1:6] - cbind(0,dat[,1:5]))
+
 # sort the dataset by proportion of votes received (in decreasing order, so
 # the first row is the person who received the most votes)
 dat <- dat[order(dat$propend, decreasing=TRUE),]
@@ -68,14 +71,14 @@ par(mfrow=c(2,4), mar=c(3,4,2,2))
 
 for (i in 1:8) {
 
-   plot(cumulvoters, (dat[i,1:6] - cbind(0,dat[i,1:5])) / voters,
+   plot(cumulvoters, votes[i,] / voters,
         type="o", pch=21, bg="gray", xlim=c(0,6000), ylim=c(0,0.6),
         xlab="", ylab="", main=dat$candidate[i])
 
 }
 
 # matrix with the proportions of votes received at each tally
-propmat <- t(t(dat[1:6] - cbind(0,dat[1:5])) / voters)
+propmat <- t(t(votes) / voters)
 propmat
 
 # compute the standard deviation of those proportions within each row (these
@@ -98,4 +101,6 @@ sds.theory <- sqrt(apply(varmat, 1, mean))
 plot(dat$propend, sds.obs, pch=21, xlab="proportion # of votes for the candidate",
      ylab="sd of separate vote proportions")
 points(dat$propend, sds.theory, pch=19)
+
+
 
