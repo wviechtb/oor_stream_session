@@ -43,7 +43,21 @@ dat <- dat[order(dat$propend, decreasing=TRUE),]
 # reset the row names to increasing integers
 rownames(dat) <- NULL
 
-par(mfrow=c(2,4))
+# Figure 4.5
+
+par(mfrow=c(2,4), mar=c(3,4,2,2))
+
+for (i in 1:8) {
+
+   plot(voters, dat[i,1:6]/voters, type="o", pch=21, bg="gray",
+        xlim=c(0,6000), ylim=c(0,0.6), xlab="", ylab="")
+   title(dat$candidate[i])
+
+}
+
+# Figure 4.6
+
+par(mfrow=c(2,4), mar=c(3,4,2,2))
 
 for (i in 1:8) {
 
