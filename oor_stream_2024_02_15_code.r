@@ -85,42 +85,17 @@ sds.obs
 
 # matrix with the estimated sampling variances (i.e., the square of the
 # standard errors) for each of the 27*6 proportions
-varmat <- t(t(propmat * (1 - propmat)) / voters)
+varmat <- t(sapply(dat$propend, function(p) p * (1-p) / voters))
 varmat
 
 # compute the average of these sampling variances across rows and take the
 # square root thereof (these are the T_i^theory values as on page 64)
 sds.theory <- sqrt(apply(varmat, 1, mean))
 
+# Figure 4.7 (except that we directly put the proportions on the x-axis and
+# not the total number of votes, since this is clearer)
 
+plot(dat$propend, sds.obs, pch=21, xlab="proportion # of votes for the candidate",
+     ylab="sd of separate vote proportions")
+points(dat$propend, sds.theory, pch=19)
 
-
-par(mfrow=c(1,1), mar=c(5,4,2,2))
-hist(sds)
-
-
-
-
-res <- replicate(100000, {
-   x <- rnorm(30, 10, 2)
-   c(mean(x), var(x))
-})
-
-4 / 30
-var(res[1,])
-mean(res[2,] / 30)
-
-
-
-res <- replicate(1000000, {
-   n <- 10 + round(rchisq(1, 1) * 5)
-   x <- rnorm(n, 10, 2)
-   c(mean(x), var(x), n)
-})
-
-var(res[1,])
-mean(res[2,] / res[3,])
-
-
-
-4 / 30
