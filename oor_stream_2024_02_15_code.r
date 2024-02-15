@@ -102,5 +102,9 @@ plot(dat$propend, sds.obs, pch=21, xlab="proportion # of votes for the candidate
      ylab="sd of separate vote proportions")
 points(dat$propend, sds.theory, pch=19)
 
+# run a chi-square test of independence of the votes received / not received
+# by each candidate at the 6 time points
+pvals <- apply(votes, 1, function(x) chisq.test(rbind(x, voters - x))$p.value)
+
 
 
