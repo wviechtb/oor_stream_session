@@ -78,17 +78,22 @@ for (i in 1:8) {
 propmat <- t(t(dat[1:6] - cbind(0,dat[1:5])) / voters)
 propmat
 
-# compute the standard deviation of those proportions within each row
-sds <- apply(propmat, 1, sd)
-sds
+# compute the standard deviation of those proportions within each row (these
+# are the T_i values on page 64)
+sds.obs <- apply(propmat, 1, sd)
+sds.obs
 
 # matrix with the estimated sampling variances (i.e., the square of the
 # standard errors) for each of the 27*6 proportions
 varmat <- t(t(propmat * (1 - propmat)) / voters)
 varmat
 
-# compute the average of these sampling variances across rows
-apply(varmat, 1, mean)
+# compute the average of these sampling variances across rows and take the
+# square root thereof (these are the T_i^theory values as on page 64)
+sds.theory <- sqrt(apply(varmat, 1, mean))
+
+
+
 
 par(mfrow=c(1,1), mar=c(5,4,2,2))
 hist(sds)
