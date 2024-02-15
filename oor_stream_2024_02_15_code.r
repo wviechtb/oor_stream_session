@@ -13,3 +13,7 @@
 
 ############################################################################
 
+### 4.6: Example of hypothesis testing: 55,000 residents need your help!
+
+https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Coop/data/Riverbay.csv
+
