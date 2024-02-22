@@ -58,6 +58,9 @@ pred <- predict(res3, newdata=data.frame(x=xs))
 # add the regression line based on the predicted values to the plot
 lines(xs, pred, lwd=3, col="red")
 
+
+# https://en.wikipedia.org/wiki/Nonlinear_regression
+
 # non-linear function that defines the shape of the relationship between x and y
 predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
 
@@ -121,6 +124,11 @@ plot(x, y, pch=21, bg="gray", cex=1.5, ylim=c(40,220))
 # the regression 'line' to the plot
 pred <- predfun(beta=res$estimate, x=xs)
 lines(xs, pred, lwd=3, col="green")
+
+
+res <- optim(c(200, 0.1), fn, hessian=TRUE, x=x, y=y)
+res
+
 
 ############################################################################
 
