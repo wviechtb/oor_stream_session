@@ -62,12 +62,14 @@ lines(xs, pred, lwd=3, col="red")
 # corresponding predictors and hence is of the following general form:
 #
 # y = beta0 + beta1 * x1 + beta2 * x2 + beta3 * x3 + ... + error
+#
+# where error ~ N(0, sigma^2)
 
 # https://en.wikipedia.org/wiki/Nonlinear_regression
 
 # suppose we assume that y is a non-linear function of x of the following form:
 #
-# y = beta1 * x / (beta2 + x) + error
+# y = beta1 * x / (beta2 + x) + error, where error ~ N(0, sigma^2)
 
 # non-linear function that defines the shape of the relationship between x and y
 predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
@@ -220,6 +222,16 @@ options(scipen=0)
 ############################################################################
 
 # 11.7.2: Maximum likelihood
+
+# for now, let's stick to the model above; so as noted, the model is given by:
+#
+# y = beta1 * x / (beta2 + x) + error, where error ~ N(0, sigma^2)
+#
+# so E(y|x) = beta1 * x / (beta2 + x) = mu and Var(y|x) = Var(error) = sigma^2
+# and the distribution of y|x is normal
+
+
+
 
 ############################################################################
 ############################################################################
