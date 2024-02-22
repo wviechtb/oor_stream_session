@@ -264,8 +264,13 @@ res <- optim(par=c(200,0.1,1), fnml, method="L-BFGS-B", lower=c(-Inf,-Inf,0),
              upper=c(Inf,Inf,Inf), hessian=TRUE, x=x, y=y)
 res
 
+# the square root of the estimated error variance is like the 'residual
+# standard error' we saw in the output from nls() earlier
 sqrt(res$par[3])
 
+# the inverse of the Hessian directly gives an estimate of the
+# variance-covariance matrix of the parameter estimates
+V <- solve(res$hessian)
 
 
 
