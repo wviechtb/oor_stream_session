@@ -106,6 +106,19 @@ fn(beta=c(171.4286, 0.07142857), x=x, y=y)
 
 # try out some other rough estimates for beta[1] and beta[2]
 fn(beta=c(200, 0.1), x=x, y=y)
+fn(beta=c(200, 0.08), x=x, y=y)
+fn(beta=c(200, 0.05), x=x, y=y)
+# ...
 
-#
-res <- nlm(fn, p = c(200, 0.1), hessian = TRUE)
+# use nlm() to find the values for beta[1] and beta[2] that give the best fit
+res <- nlm(fn, p=c(200, 0.1), hessian=TRUE, x=x, y=y)
+res
+
+# redraw the scatterplot of x versus y
+plot(x, y, pch=21, bg="gray", cex=1.5, ylim=c(40,220))
+
+# compute the predicted values based on the parameter estimates found and add
+# the regression 'line' to the plot
+pred <- predfun(beta=res$estimate, x=xs)
+lines(xs, pred, lwd=3, col="green")
+
