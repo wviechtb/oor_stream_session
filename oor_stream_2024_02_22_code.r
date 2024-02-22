@@ -307,6 +307,8 @@ tab <- data.frame(par = res$par, se = se)
 tab$zval <- tab$par / tab$se
 round(tab, 3)
 
+############################################################################
+
 
 
 
