@@ -63,30 +63,35 @@ predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
 
 # looking at the scatterplot, we see that y should be around 60 when x=0
 
-# when x=0.1, then y should be around 100
+# when x=0.1, then y should be around 125
 # when x=1.0, then y should be around 200
 #
 # therefore:
 #
-# beta[1] * 0.1 / (beta[2] + 0.1) =~ 100
+# beta[1] * 0.1 / (beta[2] + 0.1) =~ 125
 # beta[1] * 1.0 / (beta[2] + 1.0) =~ 200
 #
-# beta[1] * 0.1 = 100 * (beta[2] + 0.1)
-# beta[1] = 100 * (beta[2] + 0.1) / 0.1
+# beta[1] * 0.1 = 125 * (beta[2] + 0.1)
+# beta[1] = 125 * (beta[2] + 0.1) / 0.1
+# beta[1] = 1250 * (beta[2] + 0.1)
 #
-# 100 * (beta[2] + 0.1) / 0.1 * 1.0 / (beta[2] + 1.0) = 200
-# 1000 * (beta[2] + 0.1) / (beta[2] + 1.0) = 200
-# (beta[2] + 0.1) / (beta[2] + 1.0) = 0.2
-# (beta[2] + 0.1) = 0.2 * (beta[2] + 1.0)
-# beta[2] + 0.1 = 0.2 * beta[2] + 0.2
-# beta[2] - 0.2 * beta[2] = 0.2 - 0.1
-# 0.8 * beta[2] = 0.1
-# beta[2] = 0.1 / 0.8
-# beta[2] = 0.125
+# 125 * (beta[2] + 0.1) / 0.1 * 1.0 / (beta[2] + 1.0) = 200
+# 1250 * (beta[2] + 0.1) / (beta[2] + 1.0) = 200
+# (beta[2] + 0.1) / (beta[2] + 1.0) = 0.16
+# (beta[2] + 0.1) = 0.16 * (beta[2] + 1.0)
+# beta[2] + 0.1 = 0.16 * beta[2] + 0.16
+# beta[2] - 0.16 * beta[2] = 0.16 - 0.1
+# 0.8 * beta[2] = 0.06
+# beta[2] = 0.06 / 0.8
+# beta[2] = 0.075
 #
-# beta[1] * 0.1 / (0.1 / 0.8 + 0.1) = 100
-# beta[1] = 100 / 0.1 * (0.1 / 0.8 + 0.1)
-# beta[1] = 225
+# beta[1] * 0.1 / (0.075 + 0.1) = 100
+# beta[1] = 100 / 0.1 * (0.075 + 0.1)
+# beta[1] = 175
+
+pred <- predfun(beta=c(175, 0.075), x=xs)
+lines(xs, pred, lwd=3, col="green")
+
 
 
 
