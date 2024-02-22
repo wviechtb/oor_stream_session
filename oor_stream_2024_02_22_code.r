@@ -23,7 +23,7 @@ x <- c(0.02, 0.02, 0.06, 0.06, 0.11, 0.11, 0.22, 0.22, 0.56, 0.56, 1.10, 1.10)
 y <- c(76, 47, 97, 107, 123, 139, 159, 152, 191, 201, 207, 200)
 
 # scatterplot of x versus y
-plot(x, y, pch=21, bg="gray", cex=1.2, ylim=c(40,220))
+plot(x, y, pch=21, bg="gray", cex=1.5, ylim=c(40,220))
 
 # naive fit a simple linear regression model
 res1 <- lm(y ~ x)
@@ -58,3 +58,5 @@ pred <- predict(res3, newdata=data.frame(x=xs))
 # add the regression line based on the predicted values to the plot
 lines(xs, pred, lwd=3, col="red")
 
+# fit function
+fn <- function(beta, x, y) sum((y - (beta[1] * x)/(beta[2] + x))^2)
