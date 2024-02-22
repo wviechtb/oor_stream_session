@@ -122,3 +122,19 @@ plot(x, y, pch=21, bg="gray", cex=1.5, ylim=c(40,220))
 pred <- predfun(beta=res$estimate, x=xs)
 lines(xs, pred, lwd=3, col="green")
 
+############################################################################
+
+predfun <- function(beta, x) beta[1] + beta[2] * x / (beta[3] + x)
+
+fn <- function(beta, x, y) {
+   pred <- beta[1] + (beta[2] * x) / (beta[3] + x)
+   sum((y - pred)^2)
+}
+
+res <- nlm(fn, p=c(0, 200, 0.1), hessian=TRUE, x=x, y=y)
+res
+
+pred <- predfun(beta=res$estimate, x=xs)
+lines(xs, pred, lwd=3, col="purple")
+
+############################################################################
