@@ -272,6 +272,12 @@ sqrt(res$par[3])
 # variance-covariance matrix of the parameter estimates
 V <- solve(res$hessian)
 
+# the square root of the diagonal elements are therefore standard errors
+se <- sqrt(diag(V))
+
+tab <- data.frame(par = res$par, se = se)
+tab$zval <- tab$par / tab$se
+tab
 
 
 
