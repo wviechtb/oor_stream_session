@@ -124,8 +124,8 @@ lines(xs, pred, lwd=3, col="green")
 
 ############################################################################
 
-beta1s <- seq(170, 220, length=100)
-beta2s <- seq(0.02, 0.10, length=100)
+beta1s <- seq(170, 250, length=100)
+beta2s <- seq(0.05, 0.10, length=100)
 
 ssemat <- matrix(NA, nrow=length(beta1s), ncol=length(beta2s))
 
@@ -135,7 +135,7 @@ for (i in 1:length(beta1s)) {
    }
 }
 
-persp(ssemat, xlab="beta1", ylab="beta2", zlab="SSE",
+persp(x=beta1s, y=beta2s, z=ssemat, xlab="beta1", ylab="beta2", zlab="SSE",
       col="gray80", border="gray50", ticktype="detailed",
       theta=135, phi=25, shade=0.7, ltheta=60)
 
