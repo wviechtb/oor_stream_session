@@ -255,12 +255,12 @@ fnml <- function(par, x, y) {
    -sum(dnorm(y, mean=mean, sd=sqrt(var), log=TRUE))
 }
 
-fnml(c(200, 0.1, 1), x=x, y=y)
-fnml(c(200, 0.05, 1), x=x, y=y)
+fnml(c(200, 0.1, 100), x=x, y=y)
+fnml(c(200, 0.05, 100), x=x, y=y)
 
 #
 
-res <- optim(par=c(200,0.1,1), fnml, method="L-BFGS-B", lower=c(-Inf,-Inf,0),
+res <- optim(par=c(200,0.1,100), fnml, method="L-BFGS-B", lower=c(-Inf,-Inf,0),
              upper=c(Inf,Inf,Inf), hessian=TRUE, x=x, y=y)
 res
 
@@ -278,6 +278,34 @@ se <- sqrt(diag(V))
 tab <- data.frame(par = res$par, se = se)
 tab$zval <- tab$par / tab$se
 tab
+
+############################################################################
+
+# let's replicate the example from the manual
+
+x <- c(1.6907, 1.7242, 1.7552, 1.7842, 1.8113, 1.8369, 1.8610, 1.8839)
+y <- c( 6, 13, 18, 28, 52, 53, 61, 60)
+n <- c(59, 60, 62, 56, 63, 59, 62, 60)
+
+# as discussed in the session on 2024-02-08, we could fit a logistic
+# regression model to such data
+res <- glm(cbind(y,n-y) ~ x, family=binomial)
+summary(res)
+logLik(res)
+
+fnml <- function(par, x, y, n) {
+   prob <- plogis(par[1] + par[2] * x)
+   -sum(dbinom(y, n, prob, log=TRUE))
+}
+
+res <- optim(par=c(0,0), fnml, hessian=TRUE, x=x, y=y, n=n)
+res
+
+V <- solve(res$hessian)
+se <- sqrt(diag(V))
+tab <- data.frame(par = res$par, se = se)
+tab$zval <- tab$par / tab$se
+round(tab, 3)
 
 
 
