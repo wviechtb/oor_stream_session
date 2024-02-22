@@ -172,9 +172,12 @@ beta2s[loc[2]]
 cords <- trans3d(x=beta1s[loc[1]], y=beta2s[loc[2]], z=min(ssemat), pmat=tmp)
 points(cords$x, cords$y, pch=19, cex=2)
 
-# taking the inverse of the Hessian matrix gives an estimate of the
-# variance-covariance matrix of the parameter estimates
-V <- solve(res$hessian)
+# the inverse of the Hessian matrix is proportional to the variance-covariance
+# matrix of the parameter estimates; for least squares estimation, we need to
+# multiply the inverse by 2 * the estimated error variance; the latter we can
+# get from SSE / (n-p), where SSE is the sum of squares at the estimated
+# parameter estimates, n is the sample size, and p is the number of parameters
+V <- 2* res$minimum / (length(y) - 2) * solve(res$hessian)
 V
 
 # the square root of the diagonal elements are the standard errors of the estimates
@@ -186,6 +189,8 @@ tab$zval <- tab$beta / tab$se
 tab
 
 # https://en.wikipedia.org/wiki/Observed_information
+
+
 
 ############################################################################
 
