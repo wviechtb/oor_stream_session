@@ -249,19 +249,23 @@ options(scipen=0)
 # the function we will use below for finding the parameter estimates does
 # 'minimization', we will multiply the log likelihood by -1
 
-fn <- function(par, x, y) {
+fnml <- function(par, x, y) {
    mean <- par[1] * x / (par[2] + x)
    var  <- par[3]
    -sum(dnorm(y, mean=mean, sd=sqrt(var), log=TRUE))
 }
 
-fn(c(200, 0.1, 1), x=x, y=y)
-fn(c(200, 0.05, 1), x=x, y=y)
+fnml(c(200, 0.1, 1), x=x, y=y)
+fnml(c(200, 0.05, 1), x=x, y=y)
 
 #
 
-res <- optim(par=c(200,0.1,1), fn, method="L-BFGS-B", lower=c(-Inf,-Inf,0),
+res <- optim(par=c(200,0.1,1), fnml, method="L-BFGS-B", lower=c(-Inf,-Inf,0),
              upper=c(Inf,Inf,Inf), hessian=TRUE, x=x, y=y)
+res
+
+sqrt(res$par[3])
+
 
 
 
