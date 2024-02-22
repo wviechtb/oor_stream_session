@@ -198,9 +198,17 @@ res <- nls(y ~ beta1 * x / (beta2 + x), start=c(beta1=200,beta2=0.1), data=dat)
 
 options(scipen=100)
 summary(res)
-options(scipen=0)
 
 # note: the SEs are just slightly different to what we obtained above
+
+# for commonly used non-linear models, there are so-called 'self-starting'
+# functions that can be used instead of writing out the model as we did above;
+# then we also do not have to specify starting values
+res <- nls(y ~ SSmicmen(x, beta1, beta2), data=dat)
+
+
+options(scipen=0)
+
 
 ############################################################################
 
