@@ -231,15 +231,18 @@ options(scipen=0)
 # and the distribution of y|x is normal
 
 # so for a given value of x (and given values of beta1, beta2, and sigma^2),
-# we can compute the density of the corresponding observed value of y
+# we can compute the density of the corresponding observed value of y; we can
+# call these f(y_i | x_i)
 
 # we can do this for all of the data and then multiply these densities to
 # obtain the 'joint density' of observing a particular set of y values given
 # their corresponding x values (this assumes that the observed values of y are
-# independent)
+# independent); so f(y_1 | x_1) * f(y_2 | x_2) * ... * f(y_n | x_n)
 
 # in maximum likelihood estimation, we want to find the values of the
-# parameters that maximize this joint density
+# parameters (in the case above, beta1, beta2, and sigma^2) that maximize this
+# joint density; however, for numerical reasons, we will take the log of the
+# density values and take their sum (the parameters values that maximize
 
 fn <- function(par, x, y) {
    mean <- par[1] * x / (par[2] + x)
