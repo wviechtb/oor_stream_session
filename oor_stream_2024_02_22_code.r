@@ -154,8 +154,16 @@ points(cords$x, cords$y, pch=19, cex=2)
 
 # taking the inverse of the Hessian matrix gives an estimate of the
 # variance-covariance matrix of the parameter estimates
-solve(res$hessian)
+V <- solve(res$hessian)
+V
 
+# the square root of the diagonal elements are the standard errors of the estimates
+se <- sqrt(diag(V))
+se
+
+tab <- data.frame(beta = res$estimate, se = se)
+tab$zval <- tab$beta / tab$se
+tab
 
 ############################################################################
 
