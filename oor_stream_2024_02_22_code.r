@@ -237,12 +237,14 @@ options(scipen=0)
 # we can do this for all of the data and then multiply these densities to
 # obtain the 'joint density' of observing a particular set of y values given
 # their corresponding x values (this assumes that the observed values of y are
-# independent); so f(y_1 | x_1) * f(y_2 | x_2) * ... * f(y_n | x_n)
+# independent); so f(y_1 | x_1) * f(y_2 | x_2) * ... * f(y_n | x_n), which we
+# call the 'likelihood'
 
 # in maximum likelihood estimation, we want to find the values of the
-# parameters (in the case above, beta1, beta2, and sigma^2) that maximize this
-# joint density; however, for numerical reasons, we will take the log of the
-# density values and take their sum (the parameters values that maximize
+# parameters (in the case above, beta1, beta2, and sigma^2) that maximize the
+# likelihood; however, for numerical reasons, we will maximize the log
+# likelihood, that is, log(f(y_1 | x_1) * f(y_2 | x_2) * ... * f(y_n | x_n)),
+# which is identical to log(f(y_1 | x_1)) + log(f(y_2 | x_2)) + ... + log(f(y_n | x_n))
 
 fn <- function(par, x, y) {
    mean <- par[1] * x / (par[2] + x)
