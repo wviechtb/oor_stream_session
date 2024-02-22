@@ -165,6 +165,8 @@ tab <- data.frame(beta = res$estimate, se = se)
 tab$zval <- tab$beta / tab$se
 tab
 
+# https://en.wikipedia.org/wiki/Observed_information
+
 ############################################################################
 
 predfun <- function(beta, x) beta[1] + beta[2] * x / (beta[3] + x)
