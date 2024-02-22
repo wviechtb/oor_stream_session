@@ -281,6 +281,20 @@ tab
 
 ############################################################################
 
+# local approximating regressions
+
+# scatterplot of x versus y
+plot(x, y, pch=21, bg="gray", cex=1.5, ylim=c(40,220))
+
+res <- loess(y ~ x)
+res
+
+pred <- predict(res, newdata=data.frame(x=xs))
+lines(xs, pred, lwd=3, col="orange")
+
+
+############################################################################
+
 # let's replicate the example from the manual
 
 x <- c(1.6907, 1.7242, 1.7552, 1.7842, 1.8113, 1.8369, 1.8610, 1.8839)
@@ -309,6 +323,7 @@ round(tab, 3)
 
 ############################################################################
 
+## 11.8: Some non-standard models
 
 
 
