@@ -244,12 +244,15 @@ options(scipen=0)
 # parameters (in the case above, beta1, beta2, and sigma^2) that maximize the
 # likelihood; however, for numerical reasons, we will maximize the log
 # likelihood, that is, log(f(y_1 | x_1) * f(y_2 | x_2) * ... * f(y_n | x_n)),
-# which is identical to log(f(y_1 | x_1)) + log(f(y_2 | x_2)) + ... + log(f(y_n | x_n))
+# which is identical to log(f(y_1 | x_1)) + log(f(y_2 | x_2)) + ... +
+# log(f(y_n | x_n)); this is the so-called 'log likelihood'; finally, because
+# the function we will use below for finding the parameter estimates does
+# 'minimization', we will multiply the log likelihood by -1
 
 fn <- function(par, x, y) {
    mean <- par[1] * x / (par[2] + x)
    var  <- par[3]
-   sum(dnorm(y, mean=mean, sd=sqrt(var), log=TRUE))
+   -sum(dnorm(y, mean=mean, sd=sqrt(var), log=TRUE))
 }
 
 fn(c(200, 0.1, 1), x=x, y=y)
