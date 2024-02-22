@@ -58,5 +58,22 @@ pred <- predict(res3, newdata=data.frame(x=xs))
 # add the regression line based on the predicted values to the plot
 lines(xs, pred, lwd=3, col="red")
 
+# non-linear function that defines the shape of the relationship between x and y
+predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
+
+# looking at the scatterplot, we see that y should be around 60 when x=0
+
+# when x=0.1, then y should be around 100
+# when x=1.0, then y should be around 200
+#
+# therefore:
+#
+# beta[1] * 0.1 / (beta[2] + 0.1) =~ 100
+# beta[1] * 1.0 / (beta[2] + 1.0) =~ 200
+#
+
+
+
+
 # fit function
-fn <- function(beta, x, y) sum((y - (beta[1] * x)/(beta[2] + x))^2)
+fn <- function(beta, x, y) sum((y - (beta[1] * x) / (beta[2] + x))^2)
