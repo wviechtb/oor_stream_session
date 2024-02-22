@@ -292,6 +292,9 @@ res
 pred <- predict(res, newdata=data.frame(x=xs))
 lines(xs, pred, lwd=3, col="orange")
 
+res <- loess(y ~ x, span=1.5)
+pred <- predict(res, newdata=data.frame(x=xs))
+lines(xs, pred, lwd=3, col="yellow")
 
 ############################################################################
 
