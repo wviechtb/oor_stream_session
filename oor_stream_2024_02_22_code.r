@@ -195,7 +195,6 @@ tab
 
 dat <- data.frame(x=x, y=y)
 res <- nls(y ~ beta1 * x / (beta2 + x), start=c(beta1=200,beta2=0.1), data=dat)
-
 options(scipen=100)
 summary(res)
 
@@ -204,11 +203,14 @@ summary(res)
 # for commonly used non-linear models, there are so-called 'self-starting'
 # functions that can be used instead of writing out the model as we did above;
 # then we also do not have to specify starting values
-res <- nls(y ~ SSmicmen(x, beta1, beta2), data=dat)
 
+res <- nls(y ~ SSmicmen(x, beta1, beta2), data=dat)
+summary(res)
+
+# the results are just slightly different because when using SSmicmen(),
+# analytic gradients are used for the model fitting instead of numerical ones
 
 options(scipen=0)
-
 
 ############################################################################
 
