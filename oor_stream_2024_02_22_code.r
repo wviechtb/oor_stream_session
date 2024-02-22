@@ -235,9 +235,10 @@ options(scipen=0)
 
 # we can do this for all of the data and then multiply these densities to
 # obtain the 'joint density' of observing a particular set of y values given
-# their corresponding x values (and given beta1, beta2, and sigma^2)
+# their corresponding x values (this assumes that the observed values of y are
+# independent)
 
-# in maximum likelihood estimation, we want to find those values of the
+# in maximum likelihood estimation, we want to find the values of the
 # parameters that maximize this joint density
 
 fn <- function(par, x, y) {
