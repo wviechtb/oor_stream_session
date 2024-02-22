@@ -129,18 +129,16 @@ lines(xs, pred, lwd=3, col="green")
 
 ############################################################################
 
-fn <- function(beta, x, y) {
+fnreg <- function(beta, x, y) {
    pred <- beta[1] + beta[2] * x
    sum((y - pred)^2)
 }
 
-res <- nlm(fn, p=c(100, 0), hessian=TRUE, x=x, y=y)
-res
-sqrt(diag(2*res$minimum/(length(y) - 2) * solve(res$hessian)))
+res1nlm <- nlm(fnreg, p=c(100, 0), hessian=TRUE, x=x, y=y)
+res1nlm
+sqrt(diag(2*res1nlm$minimum/(length(y) - 2) * solve(res1nlm$hessian)))
 
 summary(res1)
-
-
 
 ############################################################################
 
