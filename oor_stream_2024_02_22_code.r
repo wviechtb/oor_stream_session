@@ -65,11 +65,12 @@ lines(xs, pred, lwd=3, col="red")
 
 # https://en.wikipedia.org/wiki/Nonlinear_regression
 
+# suppose we assume that y is a non-linear function of x of the following form:
+#
+# y = beta1 * x / (beta2 + x) + error
+
 # non-linear function that defines the shape of the relationship between x and y
 predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
-
-
-# looking at the scatterplot, we see that y should be around 60 when x=0
 
 # when x=0.1, then y should be around 125
 # when x=1.0, then y should be around 200
