@@ -111,7 +111,7 @@ fn(beta=c(200, 0.05), x=x, y=y)
 # ...
 
 # use nlm() to find the values for beta[1] and beta[2] that give the best fit
-res <- nlm(fn, p=c(200, 0.1), hessian=TRUE, x=x, y=y)
+res <- nlm(fn, p=c(200, 0.1), hessian=TRUE, x=x, y=y, print.level=2)
 res
 
 # redraw the scatterplot of x versus y
@@ -125,7 +125,7 @@ lines(xs, pred, lwd=3, col="green")
 ############################################################################
 
 beta1s <- seq(170, 250, length=100)
-beta2s <- seq(0.05, 0.10, length=100)
+beta2s <- seq(0.05, 0.1, length=100)
 
 ssemat <- matrix(NA, nrow=length(beta1s), ncol=length(beta2s))
 
@@ -135,10 +135,22 @@ for (i in 1:length(beta1s)) {
    }
 }
 
-persp(x=beta1s, y=beta2s, z=ssemat, xlab="beta1", ylab="beta2", zlab="SSE",
-      col="gray80", border="gray50", ticktype="detailed",
-      theta=135, phi=25, shade=0.7, ltheta=60)
+tmp <- persp(x=beta1s, y=beta2s, z=ssemat, xlab="beta1", ylab="beta2", zlab="SSE",
+             col="gray80", border="gray50", ticktype="detailed",
+             theta=135, phi=25, shade=0.7, ltheta=60)
 
+cords <- trans3d(x=200, y=0.1, z=fn(beta=c(200, 0.1), x=x, y=y), pmat=tmp)
+points(cords$x, cords$y, pch=19, cex=2)
+
+# find the row and column number for the smallest value in the matrix
+loc <- which(ssemat == min(ssemat), arr.ind = TRUE)
+loc
+
+beta1s[loc[1]]
+beta2s[loc[2]]
+
+cords <- trans3d(x=beta1s[loc[1]], y=beta2s[loc[2]], z=min(ssemat), pmat=tmp)
+points(cords$x, cords$y, pch=19, cex=2)
 
 ############################################################################
 
