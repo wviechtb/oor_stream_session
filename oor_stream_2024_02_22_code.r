@@ -200,6 +200,7 @@ options(scipen=100)
 summary(res)
 options(scipen=0)
 
+# note: the SEs are just slightly different to what we obtained above
 
 ############################################################################
 
