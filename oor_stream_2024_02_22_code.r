@@ -190,6 +190,15 @@ tab
 
 # https://en.wikipedia.org/wiki/Observed_information
 
+# instead of doing the model fitting manually using nlm() as we have done
+# above, one can use the nls() function
+
+dat <- data.frame(x=x, y=y)
+res <- nls(y ~ beta1 * x / (beta2 + x), start=c(beta1=200,beta2=0.1), data=dat)
+
+options(scipen=100)
+summary(res)
+options(scipen=0)
 
 
 ############################################################################
