@@ -184,7 +184,7 @@ points(cords$x, cords$y, pch=19, cex=2)
 # multiply the inverse by 2 * the estimated error variance; the latter we can
 # get from SSE / (n-p), where SSE is the sum of squares at the estimated
 # parameter estimates, n is the sample size, and p is the number of parameters
-V <- 2* res$minimum / (length(y) - 2) * solve(res$hessian)
+V <- 2 * res$minimum / (length(y) - 2) * solve(res$hessian)
 V
 
 # the square root of the diagonal elements are the standard errors of the estimates
@@ -229,6 +229,14 @@ options(scipen=0)
 #
 # so E(y|x) = beta1 * x / (beta2 + x) = mu and Var(y|x) = Var(error) = sigma^2
 # and the distribution of y|x is normal
+
+fn <- function(par, x, y) {
+   mean <- par[1] * x / (par[2] + x)
+   var  <- par[3]
+}
+
+
+dnorm(y | x, mean = beta1 * x / (beta2 + x), sd = sqrt(sigma^2))
 
 
 
