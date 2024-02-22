@@ -152,6 +152,11 @@ beta2s[loc[2]]
 cords <- trans3d(x=beta1s[loc[1]], y=beta2s[loc[2]], z=min(ssemat), pmat=tmp)
 points(cords$x, cords$y, pch=19, cex=2)
 
+# taking the inverse of the Hessian matrix gives an estimate of the
+# variance-covariance matrix of the parameter estimates
+solve(res$hessian)
+
+
 ############################################################################
 
 predfun <- function(beta, x) beta[1] + beta[2] * x / (beta[3] + x)
