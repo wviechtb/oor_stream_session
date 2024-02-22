@@ -255,6 +255,11 @@ fn <- function(par, x, y) {
 fn(c(200, 0.1, 1), x=x, y=y)
 fn(c(200, 0.05, 1), x=x, y=y)
 
+#
+
+res <- optim(par=c(200,0.1,1), fn, method="L-BFGS-B", lower=c(-Inf,-Inf,0),
+             upper=c(Inf,Inf,Inf), hessian=TRUE)
+
 
 
 
