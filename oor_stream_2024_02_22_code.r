@@ -58,10 +58,16 @@ pred <- predict(res3, newdata=data.frame(x=xs))
 # add the regression line based on the predicted values to the plot
 lines(xs, pred, lwd=3, col="red")
 
+# in all of the models above, y is a linear function of parameters and
+# corresponding predictors and hence is of the following general form:
+#
+# y = beta0 + beta1 * x1 + beta2 * x2 + beta3 * x3 + ... + error
+
 # https://en.wikipedia.org/wiki/Nonlinear_regression
 
 # non-linear function that defines the shape of the relationship between x and y
 predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
+
 
 # looking at the scatterplot, we see that y should be around 60 when x=0
 
