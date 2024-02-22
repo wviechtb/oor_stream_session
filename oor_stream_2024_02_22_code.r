@@ -230,13 +230,20 @@ options(scipen=0)
 # so E(y|x) = beta1 * x / (beta2 + x) = mu and Var(y|x) = Var(error) = sigma^2
 # and the distribution of y|x is normal
 
+# so for a given value of x (and given values of beta1, beta2, and sigma^2),
+# we can compute the density of the corresponding observed value of y
+
+
 fn <- function(par, x, y) {
    mean <- par[1] * x / (par[2] + x)
    var  <- par[3]
+   sum(dnorm(y, mean=mean, sd=sqrt(var), log=TRUE))
 }
 
+fn(c(200, 0.1, 1), x=x, y=y)
+fn(c(200, 0.05, 1), x=x, y=y)
 
-dnorm(y | x, mean = beta1 * x / (beta2 + x), sd = sqrt(sigma^2))
+
 
 
 
