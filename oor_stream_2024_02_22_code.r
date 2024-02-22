@@ -89,8 +89,11 @@ predfun <- function(beta, x) beta[1] * x / (beta[2] + x)
 # beta[1] = 100 / 0.1 * (0.07142857 + 0.1)
 # beta[1] = 171.4286
 
-pred <- predfun(beta=c(175, 0.075), x=xs)
+### DOUBLE CHECK THE ABOVE!!!
+
+pred <- predfun(beta=c(171.4286, 0.07142857), x=xs)
 lines(xs, pred, lwd=3, col="green")
+
 
 
 
