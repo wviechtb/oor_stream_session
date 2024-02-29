@@ -32,7 +32,9 @@ for (i in 1:n_sims) {
 hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 # we don't really need a for-loop to do the above; we can directly simulate
-# 1000 values from the binomial distribution
+# 1000 values from the binomial distribution; to make the simulated values
+# reproducible, we also set the seed of the random number generator
+set.seed(1234)
 n_girls <- rbinom(n_sims, 400, 0.488)
 n_girls
 
