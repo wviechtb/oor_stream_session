@@ -47,9 +47,12 @@ hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 # simulate the process of 400 births where there is a certain chance of twins
 # being born and save how many of the babies born on each birth are girls
+
 birth_type <- sample(c("fraternal twin","identical twin","single birth"),
                      size=400, replace=TRUE, prob=c(1/125, 1/300, 1-1/125-1/300))
+
 girls <- rep(NA, 400)
+
 for (i in 1:400) {
    if (birth_type[i] == "single birth") {
       girls[i] <- rbinom(1, 1, 0.488)
@@ -59,14 +62,17 @@ for (i in 1:400) {
       girls[i] <- rbinom(1, 2, 0.495)
    }
 }
+
 n_girls <- sum(girls)
 n_girls
 
 # can also use a doubly-nested ifelse() construction to do the above
+
 girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
                 ifelse(birth_type=="identical twins", 2*rbinom(400, 1, 0.495),
                        rbinom(400, 2, 0.495)))
-
+n_girls <- sum(girls)
+n_girls
 
 # simulate the process above 1000 times
 
@@ -76,7 +82,9 @@ for (s in 1:1000) {
 
    birth_type <- sample(c("fraternal twin","identical twin","single birth"),
                         size=400, replace=TRUE, prob=c(1/125, 1/300, 1-1/125-1/300))
+
    girls <- rep(NA, 400)
+
    for (i in 1:400) {
       if (birth_type[i] == "single birth") {
          girls[i] <- rbinom(1, 1, 0.488)
@@ -86,6 +94,7 @@ for (s in 1:1000) {
          girls[i] <- rbinom(1, 2, 0.495)
       }
    }
+
    n_girls[s] <- sum(girls)
 
 }
@@ -93,10 +102,6 @@ for (s in 1:1000) {
 # create a histogram of the simulated values
 hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
-
-girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
-  ifelse(birth_type=="identical twins", 2*rbinom(400, 1, 0.495),
-  rbinom(400, 2, 0.495)))
 
 
 ############################################################################
