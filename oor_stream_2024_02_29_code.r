@@ -252,7 +252,7 @@ sd(stats["sd",])
 2 / sqrt(2*N)
 
 # standard deviation of the madsd values (= standard error of the median
-# absolute deviation from the median, scaled by 1.4826)
+# absolute deviation from the median, scaled by 1.483)
 sd(stats["madsd",])
 
 
