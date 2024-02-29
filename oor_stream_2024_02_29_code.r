@@ -20,28 +20,28 @@
 # simulate a single draw from a binomial distribution with 400 'trials'
 # (births) and a probability of .488 that the event of interest occurs on a
 # single trial (i.e., that the baby is a girl)
-girls <- rbinom(1, 400, 0.488)
-girls
+n_girls <- rbinom(1, 400, 0.488)
+n_girls
 
 # repeat this process 1000 times and score the simulated values in a vector
 sims <- 1000
-girls <- rep(NA, sims)
+n_girls <- rep(NA, sims)
 for (i in 1:sims) {
-   girls[i] <- rbinom(1, 400, 0.488)
+   n_girls[i] <- rbinom(1, 400, 0.488)
 }
 
 # create a histogram of the simulated values
-hist(girls, main="", xlab="Number of Girls (out of 400)")
+hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 # we don't really need a for-loop to do the above; we can directly simulate
 # 1000 values from the binomial distribution; to make the simulated values
 # reproducible, we also set the seed of the random number generator
 set.seed(1234)
-girls <- rbinom(sims, 400, 0.488)
-girls
+n_girls <- rbinom(sims, 400, 0.488)
+n_girls
 
 # create a histogram of the simulated values
-hist(girls, main="", xlab="Number of Girls (out of 400)")
+hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 ## Accounting for twins
 
@@ -51,14 +51,15 @@ birth_type <- sample(c("fraternal twin","identical twin","single birth"),
                      size=400, replace=TRUE, prob=c(1/125, 1/300, 1-1/125-1/300))
 girls <- rep(NA, 400)
 for (i in 1:400) {
-   if (birth_type[i]=="single birth") {
+   if (birth_type[i] == "single birth") {
       girls[i] <- rbinom(1, 1, 0.488)
-   } else if (birth_type[i]=="identical twin") {
+   } else if (birth_type[i] == "identical twin") {
       girls[i] <- 2*rbinom(1, 1, 0.495)
-   } else if (birth_type[i]=="fraternal twin") {
-    girls[i] <- rbinom(1, 2, 0.495)
+   } else {
+      girls[i] <- rbinom(1, 2, 0.495)
    }
 }
+girls
 n_girls <- sum(girls)
 
 girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
