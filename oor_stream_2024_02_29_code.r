@@ -24,9 +24,9 @@ n_girls <- rbinom(1, 400, 0.488)
 n_girls
 
 # repeat this process 1000 times and score the simulated values in a vector
-sims <- 1000
-n_girls <- rep(NA, sims)
-for (s in 1:sims) {
+n_sims <- 1000
+n_girls <- rep(NA, n_sims)
+for (s in 1:n_sims) {
    n_girls[s] <- rbinom(1, 400, 0.488)
 }
 
@@ -37,7 +37,7 @@ hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 # 1000 values from the binomial distribution; to make the simulated values
 # reproducible, we also set the seed of the random number generator
 set.seed(1234)
-n_girls <- rbinom(sims, 400, 0.488)
+n_girls <- rbinom(n_sims, 400, 0.488)
 n_girls
 
 # create a histogram of the simulated values
@@ -76,7 +76,7 @@ n_girls
 
 # simulate the process above 1000 times
 
-n_girls <- rep(NA, sims)
+n_girls <- rep(NA, n_sims)
 
 for (s in 1:1000) {
 
@@ -101,6 +101,16 @@ for (s in 1:1000) {
 
 # create a histogram of the simulated values
 hist(n_girls, main="", xlab="Number of Girls (out of 400)")
+
+############################################################################
+
+### 5.2: Simulation of continuous and mixed discrete/continuous models
+
+n_sims <- 1000
+y1 <- rnorm(n_sims, 3, 0.5)
+y2 <- exp(y1)
+y3 <- rbinom(n_sims, 20, 0.6)
+y4 <- rpois(n_sims, 5)
 
 
 
