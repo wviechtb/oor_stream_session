@@ -107,10 +107,10 @@ hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 ### 5.2: Simulation of continuous and mixed discrete/continuous models
 
 n_sims <- 1000
-y1 <- rnorm(n_sims, 3, 0.5)
-y2 <- exp(y1)
-y3 <- rbinom(n_sims, 20, 0.6)
-y4 <- rpois(n_sims, 5)
+y1 <- rnorm(n_sims, mean=3, sd=0.5)
+y2 <- rlnorm(n_sims, meanlog=3, sdlog=0.5)
+y3 <- rbinom(n_sims, size=20, prob=0.6)
+y4 <- rpois(n_sims, lambda=5)
 
 
 
