@@ -209,9 +209,13 @@ z <- rnorm(10000, mean=5, sd=2)
 cat("mean = ", mean(z), ", median = ", median(z),
     ",\nsd = ", sd(z), ", mad sd = ", mad(z), sep="")
 
+# install the pbapply package (only need to do this once) and load it
+#install.packages("pbapply")
+library(pbapply)
+
 # repeat the above 100000 times
 
-stats <- replicate(1000, {
+stats <- pbreplicate(1000, {
    z <- rnorm(10000, mean=5, sd=2)
    c(mean = mean(z), median = median(z), sd = sd(z), madsd = mad(z))
 })
