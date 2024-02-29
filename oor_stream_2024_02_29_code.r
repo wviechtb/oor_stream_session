@@ -50,13 +50,14 @@ hist(girls, main="", xlab="Number of Girls (out of 400)")
 birth_type <- sample(c("fraternal twin","identical twin","single birth"),
                      size=400, replace=TRUE, prob=c(1/125, 1/300, 1-1/125-1/300))
 girls <- rep(NA, 400)
-for (i in 1:400){
-  if (birth_type[i]=="single birth"){
-    girls[i] <- rbinom(1, 1, 0.488)}
-  else if (birth_type[i]=="identical twin"){
-    girls[i] <- 2*rbinom(1, 1, 0.495)}
-  else if (birth_type[i]=="fraternal twin"){
-    girls[i] <- rbinom(1, 2, 0.495)}
+for (i in 1:400) {
+   if (birth_type[i]=="single birth") {
+      girls[i] <- rbinom(1, 1, 0.488)
+   } else if (birth_type[i]=="identical twin") {
+      girls[i] <- 2*rbinom(1, 1, 0.495)
+   } else if (birth_type[i]=="fraternal twin") {
+    girls[i] <- rbinom(1, 2, 0.495)
+   }
 }
 n_girls <- sum(girls)
 
