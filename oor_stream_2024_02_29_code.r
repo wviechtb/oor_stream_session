@@ -205,7 +205,8 @@ height_stats[,1:5]
 
 # simulate 10000 values from a normal distribution and compute various summary
 # statistics based on these values
-z <- rnorm(10000, mean=5, sd=2)
+N <- 10000
+z <- rnorm(N, mean=5, sd=2)
 cat("mean = ", mean(z), ", median = ", median(z),
     ",\nsd = ", sd(z), ", mad sd = ", mad(z), sep="")
 
@@ -216,33 +217,29 @@ library(pbapply)
 # repeat the above 5000 times and use pbreplicate() to get a progress bar
 
 stats <- pbreplicate(5000, {
-   z <- rnorm(10000, mean=5, sd=2)
+   z <- rnorm(N, mean=5, sd=2)
    c(mean = mean(z), median = median(z), sd = sd(z), madsd = mad(z))
 })
 
 stats[,1:5]
 
 # standard deviation of the means (= standard error of the mean) and compare
-# this to the known theoretical value
+# this to the theoretical value
 sd(stats["mean",])
-2 / sqrt(10000)
+2 / sqrt(N)
 
 # standard deviation of the medians (= standard error of the median) and
-# compare this to the known theoretical value (asymptotically, but with
-# N=10000, this is surely sufficiently large for this equation to hold);
-# for the distribution of the sample median, see:
-# https://en.wikipedia.org/wiki/Median#Sampling_distribution
+# compare this to the asymptotic theoretical value (with N=10000, this is
+# surely sufficiently large for this equation to hold); for the distribution
+# of the sample median, see: https://en.wikipedia.org/wiki/Median#Sampling_distribution
 sd(stats["median",])
-sqrt(1 / (4 * 10000 * dnorm(5, mean=5, sd=2)^2))
-sqrt(pi/2 * 2^2 / 10000) # simplified version of the previous line
+sqrt(1 / (4 * N * dnorm(5, mean=5, sd=2)^2))
+sqrt(pi/2 * 2^2 / N) # simplified version of the previous line
 
 # standard deviation of the standard deviations (= standard error of the
-# standard deviation)
-
-# https://en.wikipedia.org/wiki/Variance#Distribution_of_the_sample_variance
-
+# standard deviation) and compare this to the asymptotic theoretical value
 sd(stats["sd",])
-
+2 / sqrt(2*N)
 
 
 
