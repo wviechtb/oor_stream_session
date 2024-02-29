@@ -139,10 +139,10 @@ height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
 avg_height <- mean(height)
 avg_height
 
-# repeat the above 1000 times to generate 1000 means (and also save the
+# repeat the above 100000 times to generate 1000 means (and also save the
 # maximum height of the 10 adults in each iteration)
 
-n_sims <- 1000
+n_sims <- 100000
 avg_height <- rep(NA, n_sims)
 max_height <- rep(NA, n_sims)
 N <- 10
@@ -154,11 +154,29 @@ for (s in 1:n_sims) {
    max_height[s] <- max(height)
 }
 
-# create a histogram of the simulated means
-hist(avg_height, main="Dist of avg height of 10 adults", xlab="Average Height")
+# create a histogram of the simulated means (using density on the y-axis)
+hist(avg_height, main="Dist of avg height of 10 adults", xlab="Average Height",
+     breaks=100, freq=FALSE)
+
+# superimpose a normal distribution on top of the histogram
+curve(dnorm(x, mean=mean(avg_height), sd=sd(avg_height)), lwd=3, add=TRUE)
 
 # create a histogram of the simulated maximums
-hist(max_height, main="Dist of the max height of 10 adults", xlab="Max Height")
+hist(max_height, main="Dist of max height of 10 adults", xlab="Maximum Height",
+     breaks=100, freq=FALSE)
 
+# superimpose a normal distribution on top of the histogram
+curve(dnorm(x, mean=mean(max_height), sd=sd(max_height)), lwd=3, add=TRUE)
+
+## Simulation in R using custom-made functions
+
+height_sim <- function(N) {
+   male <- rbinom(N, 1, 0.48)
+   height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 63.7, 2.7))
+   mean(height)
+}
+
+avg_height <- replicate(100000, height_sim(N=10))
+hist(avg_height, main="Dist of avg height of 10 adults", xlab="Average Height", breaks=100)
 
 ############################################################################
