@@ -220,6 +220,23 @@ stats <- pbreplicate(5000, {
    c(mean = mean(z), median = median(z), sd = sd(z), madsd = mad(z))
 })
 
+stats[,1:5]
+
+# standard deviation of the means (= standard error of the means) and compare
+# this to the known theoretical value
+sd(stats["mean",])
+2 / sqrt(10000)
+
+# standard deviation of the medians (= standard error of the medians) and
+# compare this to the known theoretical value; for the distribution of the
+# sample median, see: https://en.wikipedia.org/wiki/Median#Sampling_distribution
+sd(stats["median",])
+sqrt(1 / (4 * 10000 * dnorm(5, mean=5, sd=2)^2))
+sqrt(pi/2 * 2^2 / 10000) # simplified version of the previous line
+
+
+
+sd(stats["sd",])
 
 
 ############################################################################
