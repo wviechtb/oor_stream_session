@@ -223,6 +223,11 @@ stats <- pbreplicate(5000, {
 
 stats[,1:5]
 
+# the sample mean and median are both unbiased estimates of the true center of
+# the distribution (which is 5 here)
+mean(stats["mean",])
+mean(stats["median",])
+
 # standard deviation of the means (= standard error of the mean) and compare
 # this to the theoretical value
 sd(stats["mean",])
@@ -240,6 +245,10 @@ sqrt(pi/2 * 2^2 / N) # simplified version of the previous line
 # standard deviation) and compare this to the asymptotic theoretical value
 sd(stats["sd",])
 2 / sqrt(2*N)
+
+# standard deviation of the madsd values (= standard error of the median
+# absolute deviation from the median, scaled by 1.4826)
+sd(stats["madsd",])
 
 
 
