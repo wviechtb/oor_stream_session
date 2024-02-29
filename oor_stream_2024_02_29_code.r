@@ -258,12 +258,11 @@ sd(stats["madsd",])
 sqrt(2/pi) * 2 / sqrt(N) * 1.483
 
 # we see that the sample mean has a lower standard error than the sample
-# median here and the sample SD has a lower standard error than the sample
-# MAD SD;
-
- this is always true when the data are normally distributed even
-# when N is small (so the statement in the book about the median being a more
-# 'stable' summary for low sample sizes is not true in general; however, this )
+# median and the sample SD has a lower standard error than the sample MAD SD;
+# this is always true when the data are normally distributed even when N is
+# small; so the statement in the book about the median and MAD SD being more
+# 'stable' summaries for low sample sizes is not true in general; however, for
+# other distributions, this is indeed the case
 
 
 
