@@ -184,7 +184,7 @@ hist(avg_height, main="Dist of avg height of 10 adults", xlab="Average Height", 
 height_sim <- function(N) {
    male <- rbinom(N, 1, 0.48)
    height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 63.7, 2.7))
-   c(mean=mean(height), max=max(height))
+   c(mean = mean(height), max = max(height))
 }
 
 height_stats <- replicate(100000, height_sim(N=10))
@@ -196,8 +196,19 @@ height_stats[,1:5]
 
 ### 5.3: Summarizing a set of simulations using median and median absolute deviation
 
+# simulate 10000 values from a normal distribution and compute various summary
+# statistics based on these values
 z <- rnorm(10000, mean=5, sd=2)
 cat("mean = ", mean(z), ", median = ", median(z),
     ",\nsd = ", sd(z), ", mad sd = ", mad(z), sep="")
+
+# repeat the above 100000 times
+
+stats <- replicate(100000, {
+   z <- rnorm(10000, mean=5, sd=2)
+   c(mean = mean(z), median = median(z), sd = sd(z), madsd = mad(z))
+})
+
+
 
 ############################################################################
