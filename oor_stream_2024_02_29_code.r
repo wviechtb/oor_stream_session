@@ -26,8 +26,8 @@ n_girls
 # repeat this process 1000 times and score the simulated values in a vector
 sims <- 1000
 n_girls <- rep(NA, sims)
-for (i in 1:sims) {
-   n_girls[i] <- rbinom(1, 400, 0.488)
+for (s in 1:sims) {
+   n_girls[s] <- rbinom(1, 400, 0.488)
 }
 
 # create a histogram of the simulated values
@@ -53,7 +53,7 @@ girls <- rep(NA, 400)
 for (i in 1:400) {
    if (birth_type[i] == "single birth") {
       girls[i] <- rbinom(1, 1, 0.488)
-   } else if (birth_type[i] == "identical twin") {
+   } else if (birth_type[j] == "identical twin") {
       girls[i] <- 2*rbinom(1, 1, 0.495)
    } else {
       girls[i] <- rbinom(1, 2, 0.495)
@@ -61,6 +61,31 @@ for (i in 1:400) {
 }
 n_girls <- sum(girls)
 n_girls
+
+# simulate the process above 1000 times
+
+n_girls <- rep(NA, sims)
+
+for (s in 1:1000) {
+
+   birth_type <- sample(c("fraternal twin","identical twin","single birth"),
+                        size=400, replace=TRUE, prob=c(1/125, 1/300, 1-1/125-1/300))
+   girls <- rep(NA, 400)
+   for (i in 1:400) {
+      if (birth_type[i] == "single birth") {
+         girls[i] <- rbinom(1, 1, 0.488)
+      } else if (birth_type[j] == "identical twin") {
+         girls[i] <- 2*rbinom(1, 1, 0.495)
+      } else {
+         girls[i] <- rbinom(1, 2, 0.495)
+      }
+   }
+   n_girls <- sum(girls)
+
+
+}
+
+
 
 girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
   ifelse(birth_type=="identical twins", 2*rbinom(400, 1, 0.495),
