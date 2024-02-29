@@ -223,10 +223,15 @@ stats <- pbreplicate(5000, {
 
 stats[,1:5]
 
-# the sample mean and median are both unbiased estimates of the true center of
-# the distribution (which is 5 here)
+# the sample mean and median are both unbiased estimates of the true
+# mean/median of the data (which is 5 here)
 mean(stats["mean",])
 mean(stats["median",])
+
+# while the sample sd and madsd are not unbiased estimates of the true SD of
+# the data, they are asymptotically unbiased, so these are both essentially 2
+mean(stats["sd",])
+mean(stats["madsd",])
 
 # standard deviation of the means (= standard error of the mean) and compare
 # this to the theoretical value
