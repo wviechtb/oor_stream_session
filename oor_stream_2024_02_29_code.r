@@ -246,21 +246,25 @@ sd(stats["median",])
 sqrt(1 / (4 * N * dnorm(5, mean=5, sd=2)^2))
 sqrt(pi/2) * 2 / sqrt(N) # simplified version of the previous line
 
-# we see that the sample mean has a lower standard error than the sample
-# median here; this is always true when the data are normally distributed even
-# when N is small (so the statement in the book about the median being a more
-# 'stable' summary for low sample sizes is not true in general; however, this )
-
-# standard deviation of the standard deviations (= standard error of the
-# standard deviation) and compare this to the asymptotic theoretical value
+# standard deviation of the SD values (= standard error of the standard
+# deviation) and compare this to the asymptotic theoretical value
 sd(stats["sd",])
 2 / sqrt(2*N)
 
-# standard deviation of the madsd values (= standard error of the median
+# standard deviation of the MAD SD values (= standard error of the median
 # absolute deviation from the median, scaled by 1.483) and compare this to the
 # asymptotic theoretical value
 sd(stats["madsd",])
 sqrt(2/pi) * 2 / sqrt(N) * 1.483
+
+# we see that the sample mean has a lower standard error than the sample
+# median here and the sample SD has a lower standard error than the sample
+# MAD SD;
+
+ this is always true when the data are normally distributed even
+# when N is small (so the statement in the book about the median being a more
+# 'stable' summary for low sample sizes is not true in general; however, this )
+
 
 
 
