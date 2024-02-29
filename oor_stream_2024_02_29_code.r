@@ -222,21 +222,28 @@ stats <- pbreplicate(5000, {
 
 stats[,1:5]
 
-# standard deviation of the means (= standard error of the means) and compare
+# standard deviation of the means (= standard error of the mean) and compare
 # this to the known theoretical value
 sd(stats["mean",])
 2 / sqrt(10000)
 
-# standard deviation of the medians (= standard error of the medians) and
-# compare this to the known theoretical value; for the distribution of the
-# sample median, see: https://en.wikipedia.org/wiki/Median#Sampling_distribution
+# standard deviation of the medians (= standard error of the median) and
+# compare this to the known theoretical value (asymptotically, but with
+# N=10000, this is surely sufficiently large for this equation to hold);
+# for the distribution of the sample median, see:
+# https://en.wikipedia.org/wiki/Median#Sampling_distribution
 sd(stats["median",])
 sqrt(1 / (4 * 10000 * dnorm(5, mean=5, sd=2)^2))
 sqrt(pi/2 * 2^2 / 10000) # simplified version of the previous line
 
+# standard deviation of the standard deviations (= standard error of the
+# standard deviation)
 
+# https://en.wikipedia.org/wiki/Variance#Distribution_of_the_sample_variance
 
 sd(stats["sd",])
+
+
 
 
 ############################################################################
