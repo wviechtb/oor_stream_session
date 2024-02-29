@@ -125,5 +125,17 @@ hist(y2, breaks=seq(0, ceiling(max(y2)) + 5, 5), main="lognormal dist with logme
 hist(y3, breaks=seq(-0.5, 20.5, 1), main="binomial dist with 20 tries and probability 0.6")
 hist(y4, breaks=seq(-0.5, max(y4) + 1, 1), main="Poisson dist with mean 5")
 
+# generate the height of one randomly chosen adult
+
+male <- rbinom(1, 1, 0.48)
+height <- ifelse(male==1, rnorm(1, 69.1, 2.9), rnorm(1, 64.5, 2.7))
+
+# repeat the above 10 times and take the mean of the 10 simulated heights
+
+N <- 10
+male <- rbinom(N, 1, 0.48)
+height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
+avg_height <- mean(height)
+print(avg_height)
 
 ############################################################################
