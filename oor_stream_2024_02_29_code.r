@@ -213,7 +213,7 @@ cat("mean = ", mean(z), ", median = ", median(z),
 #install.packages("pbapply")
 library(pbapply)
 
-# repeat the above 100000 times
+# repeat the above 100000 times and use pbreplicate() to get a progress bar
 
 stats <- pbreplicate(1000, {
    z <- rnorm(10000, mean=5, sd=2)
