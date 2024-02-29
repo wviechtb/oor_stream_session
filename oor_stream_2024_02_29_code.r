@@ -262,8 +262,21 @@ sqrt(2/pi) * 2 / sqrt(N) * 1.483
 # this is always true when the data are normally distributed even when N is
 # small; so the statement in the book about the median and MAD SD being more
 # 'stable' summaries for low sample sizes is not true in general; however, for
-# other distributions, this is indeed the case
+# other distributions, this is indeed the case; for example, for a
+# t-distribution with low degrees of freedom, even though the mean and median
+# are the same (i.e., 0) and both statistics are unbiased estimators, the
+# sample median now has a lower standard error than the sample mean
 
+N <- 100
+stats <- pbreplicate(100000, {
+   z <- rt(N, df=3)
+   c(mean = mean(z), median = median(z), sd = sd(z), madsd = mad(z))
+})
+
+mean(stats["mean",])
+mean(stats["median",])
+sd(stats["mean",])
+sd(stats["median",])
 
 
 
