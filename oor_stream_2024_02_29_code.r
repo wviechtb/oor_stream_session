@@ -15,6 +15,8 @@
 
 ### 5.1: Simulation of discrete probability models
 
+## How many girls in 400 births?
+
 # simulate a single draw from a binomial distribution with 400 'trials'
 # (births) and a probability of .488 that the event of interest occurs on a
 # single trial (i.e., that the baby is a girl)
@@ -41,7 +43,10 @@ girls
 # create a histogram of the simulated values
 hist(girls, main="", xlab="Number of Girls (out of 400)")
 
-#
+## Accounting for twins
+
+# simulate the process of 400 births where there is a certain chance of twins
+# being born and save how many of the babies born on each birth are girls
 birth_type <- sample(c("fraternal twin","identical twin","single birth"),
                      size=400, replace=TRUE, prob=c(1/125, 1/300, 1-1/125-1/300))
 girls <- rep(NA, 400)
