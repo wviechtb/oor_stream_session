@@ -246,6 +246,11 @@ sd(stats["median",])
 sqrt(1 / (4 * N * dnorm(5, mean=5, sd=2)^2))
 sqrt(pi/2) * 2 / sqrt(N) # simplified version of the previous line
 
+# we see that the sample mean has a lower standard error than the sample
+# median here; this is always true when the data are normally distributed even
+# when N is small (so the statement in the book about the median being a more
+# 'stable' summary for low sample sizes is not true in general; however, this )
+
 # standard deviation of the standard deviations (= standard error of the
 # standard deviation) and compare this to the asymptotic theoretical value
 sd(stats["sd",])
