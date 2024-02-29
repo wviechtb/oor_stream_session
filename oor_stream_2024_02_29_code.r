@@ -62,6 +62,12 @@ for (i in 1:400) {
 n_girls <- sum(girls)
 n_girls
 
+# can also use a doubly-nested ifelse() construction to do the above
+girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
+                ifelse(birth_type=="identical twins", 2*rbinom(400, 1, 0.495),
+                       rbinom(400, 2, 0.495)))
+
+
 # simulate the process above 1000 times
 
 n_girls <- rep(NA, sims)
@@ -74,7 +80,7 @@ for (s in 1:1000) {
    for (i in 1:400) {
       if (birth_type[i] == "single birth") {
          girls[i] <- rbinom(1, 1, 0.488)
-      } else if (birth_type[j] == "identical twin") {
+      } else if (birth_type[i] == "identical twin") {
          girls[i] <- 2*rbinom(1, 1, 0.495)
       } else {
          girls[i] <- rbinom(1, 2, 0.495)
@@ -84,6 +90,8 @@ for (s in 1:1000) {
 
 }
 
+# create a histogram of the simulated values
+hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 
 girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
