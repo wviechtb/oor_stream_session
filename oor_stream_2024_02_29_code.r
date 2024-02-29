@@ -124,6 +124,7 @@ hist(y1, breaks=seq(floor(min(y1)), ceiling(max(y1)), 0.2), main="normal dist wi
 hist(y2, breaks=seq(0, ceiling(max(y2)) + 5, 5), main="lognormal dist with logmean 3 and logsd 0.5")
 hist(y3, breaks=seq(-0.5, 20.5, 1), main="binomial dist with 20 tries and probability 0.6")
 hist(y4, breaks=seq(-0.5, max(y4) + 1, 1), main="Poisson dist with mean 5")
+par(mfrow=c(1,1))
 
 # generate the height of one randomly chosen adult
 
@@ -145,12 +146,12 @@ avg_height <- rep(NA, n_sims)
 N <- 10
 
 for (s in 1:n_sims) {
-
    male <- rbinom(N, 1, 0.48)
    height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
    avg_height[s] <- mean(height)
 }
-hist(avg_height, main="Dist of avg height of 10 adults")
 
+# create a histogram of the simulated values
+hist(avg_height, main="Dist of avg height of 10 adults", xlab="Average Height")
 
 ############################################################################
