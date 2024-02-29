@@ -53,7 +53,7 @@ girls <- rep(NA, 400)
 for (i in 1:400) {
    if (birth_type[i] == "single birth") {
       girls[i] <- rbinom(1, 1, 0.488)
-   } else if (birth_type[j] == "identical twin") {
+   } else if (birth_type[i] == "identical twin") {
       girls[i] <- 2*rbinom(1, 1, 0.495)
    } else {
       girls[i] <- rbinom(1, 2, 0.495)
@@ -80,8 +80,7 @@ for (s in 1:1000) {
          girls[i] <- rbinom(1, 2, 0.495)
       }
    }
-   n_girls <- sum(girls)
-
+   n_girls[s] <- sum(girls)
 
 }
 
