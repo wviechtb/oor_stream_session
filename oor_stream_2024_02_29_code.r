@@ -131,7 +131,7 @@ par(mfrow=c(1,1))
 male <- rbinom(1, 1, 0.48)
 height <- ifelse(male==1, rnorm(1, 69.1, 2.9), rnorm(1, 64.5, 2.7))
 
-# repeat the above 10 times and take the mean of the 10 simulated values
+# generate the heights of 10 adults and take the mean of the 10 simulated values
 
 N <- 10
 male <- rbinom(N, 1, 0.48)
@@ -139,19 +139,26 @@ height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
 avg_height <- mean(height)
 avg_height
 
-# repeat the above 1000 times to generate 1000 means
+# repeat the above 1000 times to generate 1000 means (and also save the
+# maximum height of the 10 adults in each iteration)
 
 n_sims <- 1000
 avg_height <- rep(NA, n_sims)
+max_height <- rep(NA, n_sims)
 N <- 10
 
 for (s in 1:n_sims) {
    male <- rbinom(N, 1, 0.48)
    height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
    avg_height[s] <- mean(height)
+   max_height[s] <- max(height)
 }
 
-# create a histogram of the simulated values
+# create a histogram of the simulated means
 hist(avg_height, main="Dist of avg height of 10 adults", xlab="Average Height")
+
+# create a histogram of the simulated maximums
+hist(max_height, main="Dist of the max height of 10 adults", xlab="Max Height")
+
 
 ############################################################################
