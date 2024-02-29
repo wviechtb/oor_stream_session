@@ -130,12 +130,27 @@ hist(y4, breaks=seq(-0.5, max(y4) + 1, 1), main="Poisson dist with mean 5")
 male <- rbinom(1, 1, 0.48)
 height <- ifelse(male==1, rnorm(1, 69.1, 2.9), rnorm(1, 64.5, 2.7))
 
-# repeat the above 10 times and take the mean of the 10 simulated heights
+# repeat the above 10 times and take the mean of the 10 simulated values
 
 N <- 10
 male <- rbinom(N, 1, 0.48)
 height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
 avg_height <- mean(height)
-print(avg_height)
+avg_height
+
+# repeat the above 1000 times to generate 1000 means
+
+n_sims <- 1000
+avg_height <- rep(NA, n_sims)
+N <- 10
+
+for (s in 1:n_sims) {
+
+   male <- rbinom(N, 1, 0.48)
+   height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
+   avg_height[s] <- mean(height)
+}
+hist(avg_height, main="Dist of avg height of 10 adults")
+
 
 ############################################################################
