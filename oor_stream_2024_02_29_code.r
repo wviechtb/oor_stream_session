@@ -25,7 +25,18 @@ n_girls
 n_sims <- 1000
 n_girls <- rep(NA, n_sims)
 for (i in 1:n_sims) {
-  n_girls[i] <- rbinom(1, 400, 0.488)
+   n_girls[i] <- rbinom(1, 400, 0.488)
 }
+
+# create a histogram of the simulated values
+hist(n_girls, main="", xlab="Number of Girls (out of 400)")
+
+# we don't really need a for-loop to do the above; we can directly simulate
+# 1000 values from the binomial distribution
+n_girls <- rbinom(n_sims, 400, 0.488)
+n_girls
+
+# create a histogram of the simulated values
+hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 ############################################################################
