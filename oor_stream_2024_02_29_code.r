@@ -244,7 +244,7 @@ sd(stats["mean",])
 # of the sample median, see: https://en.wikipedia.org/wiki/Median#Sampling_distribution
 sd(stats["median",])
 sqrt(1 / (4 * N * dnorm(5, mean=5, sd=2)^2))
-sqrt(pi/2 * 2^2 / N) # simplified version of the previous line
+sqrt(pi/2) * 2 / sqrt(N) # simplified version of the previous line
 
 # standard deviation of the standard deviations (= standard error of the
 # standard deviation) and compare this to the asymptotic theoretical value
