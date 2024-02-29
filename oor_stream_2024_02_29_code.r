@@ -252,8 +252,10 @@ sd(stats["sd",])
 2 / sqrt(2*N)
 
 # standard deviation of the madsd values (= standard error of the median
-# absolute deviation from the median, scaled by 1.483)
+# absolute deviation from the median, scaled by 1.483) and compare this to the
+# asymptotic theoretical value
 sd(stats["madsd",])
+sqrt(2/pi) * 2 / sqrt(N) * 1.483
 
 
 
