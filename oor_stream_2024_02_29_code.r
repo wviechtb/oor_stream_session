@@ -59,8 +59,8 @@ for (i in 1:400) {
       girls[i] <- rbinom(1, 2, 0.495)
    }
 }
-girls
 n_girls <- sum(girls)
+n_girls
 
 girls <- ifelse(birth_type=="single birth", rbinom(400, 1, 0.488),
   ifelse(birth_type=="identical twins", 2*rbinom(400, 1, 0.495),
