@@ -193,3 +193,11 @@ height_stats[,1:5]
 # the rows correspond to the mean and maximum and the columns to the replicates
 
 ############################################################################
+
+### 5.3: Summarizing a set of simulations using median and median absolute deviation
+
+z <- rnorm(10000, mean=5, sd=2)
+cat("mean = ", mean(z), ", median = ", median(z),
+    ",\nsd = ", sd(z), ", mad sd = ", mad(z), sep="")
+
+############################################################################
