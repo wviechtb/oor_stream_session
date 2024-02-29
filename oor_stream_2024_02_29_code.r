@@ -140,14 +140,21 @@ avg_height <- mean(height)
 avg_height
 
 # repeat the above 100000 times to generate 1000 means (and also save the
-# maximum height of the 10 adults in each iteration)
+# maximum height of the 10 adults in each iteration) and also use a progress
+# bar to get an indication for how much longer we have to wait for the loop to
+# finish
 
 n_sims <- 100000
 avg_height <- rep(NA, n_sims)
 max_height <- rep(NA, n_sims)
 N <- 10
 
+pbar <- txtProgressBar(min=0, max=n_sims, style=3)
+
 for (s in 1:n_sims) {
+
+   setTxtProgressBar(pbar, s)
+
    male <- rbinom(N, 1, 0.48)
    height <- ifelse(male==1, rnorm(N, 69.1, 2.9), rnorm(N, 64.5, 2.7))
    avg_height[s] <- mean(height)
@@ -204,7 +211,7 @@ cat("mean = ", mean(z), ", median = ", median(z),
 
 # repeat the above 100000 times
 
-stats <- replicate(100000, {
+stats <- replicate(1000, {
    z <- rnorm(10000, mean=5, sd=2)
    c(mean = mean(z), median = median(z), sd = sd(z), madsd = mad(z))
 })
