@@ -106,12 +106,22 @@ hist(n_girls, main="", xlab="Number of Girls (out of 400)")
 
 ### 5.2: Simulation of continuous and mixed discrete/continuous models
 
+# https://en.wikipedia.org/wiki/Normal_distribution
+# https://en.wikipedia.org/wiki/Log_normal_distribution
+# https://en.wikipedia.org/wiki/Binomial_distribution
+# https://en.wikipedia.org/wiki/Poisson_distribution
+
 n_sims <- 1000
 y1 <- rnorm(n_sims, mean=3, sd=0.5)
 y2 <- rlnorm(n_sims, meanlog=3, sdlog=0.5)
 y3 <- rbinom(n_sims, size=20, prob=0.6)
 y4 <- rpois(n_sims, lambda=5)
 
+par(mfrow=c(2,2))
+hist(y1, breaks=seq(floor(min(y1)), ceiling(max(y1)), 0.2), main="1000 draws from normal dist with dist. with mean 3, sd 0.5")
+hist(y2, breaks=seq(0, ceiling(max(y2)) + 5, 5),  main="1000 draws from corresponding lognormal dist.")
+hist(y3, breaks=seq(-0.5, 20.5, 1), main="1000 draws from binomial dist. with 20 tries, probability 0.6")
+hist(y4, breaks=seq(-0.5, max(y4) + 1, 1), main="1000 draws from Poisson dist. with mean 5")
 
 
 ############################################################################
