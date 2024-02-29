@@ -117,11 +117,13 @@ y2 <- rlnorm(n_sims, meanlog=3, sdlog=0.5)
 y3 <- rbinom(n_sims, size=20, prob=0.6)
 y4 <- rpois(n_sims, lambda=5)
 
+# Figure 5.2
+
 par(mfrow=c(2,2))
-hist(y1, breaks=seq(floor(min(y1)), ceiling(max(y1)), 0.2), main="1000 draws from normal dist with mean 3 and sd 0.5")
-hist(y2, breaks=seq(0, ceiling(max(y2)) + 5, 5), main="1000 draws from a lognormal dist with logmean 3 and logsd 0.5")
-hist(y3, breaks=seq(-0.5, 20.5, 1), main="1000 draws from binomial dist with 20 tries and probability 0.6")
-hist(y4, breaks=seq(-0.5, max(y4) + 1, 1), main="1000 draws from Poisson dist with mean 5")
+hist(y1, breaks=seq(floor(min(y1)), ceiling(max(y1)), 0.2), main="normal dist with mean 3 and sd 0.5")
+hist(y2, breaks=seq(0, ceiling(max(y2)) + 5, 5), main="lognormal dist with logmean 3 and logsd 0.5")
+hist(y3, breaks=seq(-0.5, 20.5, 1), main="binomial dist with 20 tries and probability 0.6")
+hist(y4, breaks=seq(-0.5, max(y4) + 1, 1), main="Poisson dist with mean 5")
 
 
 ############################################################################
