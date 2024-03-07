@@ -96,6 +96,7 @@ coplot(mpg ~ hp | wt, data=dat, number=4, panel=panel.smooth)
 
 # can write a custom panel function, for example one that shows the points and
 # adds the regression line from a simple linear regression model
+
 panel.reg <- function(x, y, ...) {
    points(x, y)
    res <- lm(y ~ x)
@@ -104,6 +105,15 @@ panel.reg <- function(x, y, ...) {
 
 coplot(mpg ~ hp | wt, data=dat, number=4, panel=panel.reg)
 
+# 12.1.3: Display graphics
+
+# fit a linear regression model predicting mpg from hp
+res <- lm(mpg ~ hp, data=dat)
+
+# extract the residuals and create a normal QQ-plot based on them
+resids <- resid(res)
+qqnorm(resids)
+qqline(resids)
 
 ############################################################################
 
