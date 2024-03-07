@@ -165,9 +165,10 @@ persp(wts, hps, pred, xlab="Weight", ylab="Horse Power", theta=135, phi=25,
 
 # 12.1.4: Arguments to high-level plotting functions
 
-#
+# draw a boxplot of mpg for each level of cyl and add the raw data on top
+# using the stripchart() function with add=TRUE
 boxplot(mpg ~ cyl, data=dat)
-
+stripchart(mpg ~ cyl, data=dat, pch=19, vertical=TRUE, add=TRUE)
 
 
 ############################################################################
