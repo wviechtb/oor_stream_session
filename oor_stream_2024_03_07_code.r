@@ -230,10 +230,10 @@ plot(NA, type="n", xlim=c(0,10), ylim=c(0,10), xlab="", ylab="")
 polygon(c(1,4,8,3), c(2,3,9,7), col="gray")
 
 # this can be useful for shading regions of densities
-xs <- seq(-3, 3, length=1000)
+xs <- seq(-3.4, 3.4, length=1000)
 ys <- dnorm(xs)
 plot(xs, ys, type="l", bty="l")
-xs <- seq(1.96, 3, length=1000)
+xs <- seq(1.96, 3.4, length=1000)
 ys <- dnorm(xs)
 polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
 
@@ -242,6 +242,27 @@ segments(0, 0, 0, dnorm(0))
 
 # 12.2.1: Mathematical annotation
 text(0, dnorm(0), expression(mu==0), pos=3)
+
+# 12.2.2: Hershey vector fonts
+
+text(1.96, dnorm(1.96), pos=4, "Upper Critical Region",
+     vfont=c("serif","plain"), cex=0.8)
+
+## 12.3: Interacting with graphics
+
+plot(mpg ~ hp, data=dat, pch=21, bg="gray")
+pos <- locator()
+pos
+
+# now can left-click on a bunch of locations; then right-click to stop and the
+# output gives the x and y locations of where we left-clicked
+
+
+############################################################################
+
+
+# fonts?
+
 
 ############################################################################
 
