@@ -115,6 +115,18 @@ resids <- resid(res)
 qqnorm(resids)
 qqline(resids)
 
+# create a histogram of the residuals
+hist(resids)
+
+# can specify the number of breaks via the 'breaks' argument (same as nclass);
+# this is a bit silly here with such a small number of datapoints
+hist(resids, breaks=20)
+
+# can also specify the exact location of the break points
+hist(resids, breaks=seq(floor(min(resids)),ceiling(max(resids)),by=1))
+
+
+
 ############################################################################
 
 
