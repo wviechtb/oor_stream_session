@@ -170,6 +170,12 @@ persp(wts, hps, pred, xlab="Weight", ylab="Horse Power", theta=135, phi=25,
 boxplot(mpg ~ cyl, data=dat)
 stripchart(mpg ~ cyl, data=dat, pch=19, vertical=TRUE, add=TRUE)
 
+# show some further possibilities of customizing the look of a plot
+plot(mpg ~ wt, data=dat, xlab="Weight", ylab="Mile per Gallon",
+     main="Gas Consumption as a Function of Weight", xlim=c(1,5), axes=FALSE)
+axis(side=1, at=c(1,3,5), labels=c("light", "medium", "heavy"))
+axis(side=2, at=c(10,20,30))
+
 
 ############################################################################
 
