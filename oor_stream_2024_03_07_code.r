@@ -85,6 +85,12 @@ coplot(mpg ~ hp | factor(cyl), data=dat, show.given=FALSE, rows=1, pch=19)
 # could also condition on the combination of two variables
 coplot(mpg ~ hp | factor(cyl) + factor(gear), data=dat)
 
+# condition on a quantitative variable; then the function creates (by default,
+# somewhat overlapping) intervals for the conditioning variable (number is
+# used to control how many such intervals are created; 6 by default)
+coplot(mpg ~ hp | wt, data=dat, number=4)
+
+
 
 ############################################################################
 
