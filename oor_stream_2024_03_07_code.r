@@ -222,15 +222,16 @@ res <- lm(mpg ~ hp, data=dat)
 abline(res, lwd=3)
 
 # illustrate how the polygon() function works
-plot(NA, type="n", xlim=c(0,10), ylim=c(0,10))
-polygon(c(1,4,8,5), c(2,3,9,7), col="gray")
+plot(NA, type="n", xlim=c(0,10), ylim=c(0,10), xlab="", ylab="")
+polygon(c(1,4,8,3), c(2,3,9,7), col="gray")
 
-
+# this can be useful for shading regions of densities
 xs <- seq(-3, 3, length=1000)
 ys <- dnorm(xs)
 plot(xs, ys, type="l")
-polygon(xs, ys, col="gray")
-
+xs <- seq(1.96, 3, length=1000)
+ys <- dnorm(xs)
+polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
 
 ############################################################################
 
