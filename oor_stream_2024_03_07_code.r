@@ -79,6 +79,9 @@ pairs(dat)
 # create a conditioning plot of mpg versus hp for every cyl level
 coplot(mpg ~ hp | factor(cyl), data=dat)
 
+# do not show the 'single bars' at the top, use a single row, and filled circles
+coplot(mpg ~ hp | factor(cyl), data=dat, show.given=FALSE, rows=1, pch=19)
+
 # could also condition on the combination of two variables
 coplot(mpg ~ hp | factor(cyl) + factor(gear), data=dat)
 
