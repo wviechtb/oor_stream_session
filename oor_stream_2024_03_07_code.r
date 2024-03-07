@@ -47,6 +47,14 @@ plot(AirPassengers)
 # plot a single numeric vector (then the x-axis is the index of the points)
 plot(dat$mpg)
 
+# when the variable is a factor, then a bar plot is produced (of the
+# frequencies of the various levels of the factor)
+plot(factor(dat$cyl))
+
+# if we pass a factor and a numeric variable to plot(), we get a boxplot for
+# each level of the factor
+plot(factor(dat$cyl), dat$mpg)
+
 
 ############################################################################
 
