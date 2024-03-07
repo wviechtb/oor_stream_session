@@ -70,7 +70,11 @@ plot(mpg ~ hp + wt, data=dat)
 
 # 12.1.2: Displaying multivariate data
 
+# can also use the pairs() function to create a scatterplot matrix
+pairs(dat)
 
+# the pairs() function provides some additional functionality for customizing
+# such plots; see help(pairs) for details and examples
 
 ############################################################################
 
