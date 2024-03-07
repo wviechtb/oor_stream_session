@@ -232,12 +232,16 @@ polygon(c(1,4,8,3), c(2,3,9,7), col="gray")
 # this can be useful for shading regions of densities
 xs <- seq(-3, 3, length=1000)
 ys <- dnorm(xs)
-plot(xs, ys, type="l")
+plot(xs, ys, type="l", bty="l")
 xs <- seq(1.96, 3, length=1000)
 ys <- dnorm(xs)
 polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
 
+# add a line going from (0, 0) to (0, density at x=0)
+segments(0, 0, 0, dnorm(0))
+
 # 12.2.1: Mathematical annotation
+text(0, dnorm(0), expression(mu==0), pos=3)
 
 ############################################################################
 
