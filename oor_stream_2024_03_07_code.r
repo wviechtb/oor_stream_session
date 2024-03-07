@@ -213,7 +213,23 @@ lines(newdat$hp, pred, lwd=3)
 plot(mpg ~ hp, data=dat, pch=21, bg="gray", xlim=c(50,400))
 text(dat$hp, dat$mpg, rownames(dat), pos=4, cex=0.8)
 
+# add a horizontal and vertical line to the plot
+abline(h=25, lty="dotted")
+abline(v=220, lty="dotted")
 
+# fit a simple regression model and add the regression line to the plot
+res <- lm(mpg ~ hp, data=dat)
+abline(res, lwd=3)
+
+# illustrate how the polygon() function works
+plot(NA, type="n", xlim=c(0,10), ylim=c(0,10))
+polygon(c(1,4,8,5), c(2,3,9,7), col="gray")
+
+
+xs <- seq(-3, 3, length=1000)
+ys <- dnorm(xs)
+plot(xs, ys, type="l")
+polygon(xs, ys, col="gray")
 
 
 ############################################################################
