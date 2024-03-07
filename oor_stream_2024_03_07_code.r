@@ -186,13 +186,14 @@ plot(AirPassengers, type="o", pch=19) # maybe use filled circles instead
 plot(AirPassengers, type="h") # to show vertical lines
 plot(AirPassengers, type="s") # to show the points as a step function
 
+# illustrate type="n" (back to the mtcars dataset)
+plot(mpg ~ wt, data=dat, type="n")
+points(mpg ~ wt, data=dat, pch=19, subset=cyl==4, col="dodgerblue")
+points(mpg ~ wt, data=dat, pch=19, subset=cyl==6, col="firebrick")
+points(mpg ~ wt, data=dat, pch=19, subset=cyl==8, col="forestgreen")
 
-
-
-res <- lm(mpg ~ hp + I(hp^2), data=dat)
-newdat <- data.frame(hp=seq(40,350,by=1))
-pred <- predict(res, newdata=newdat)
-points(newdat$hp, pred)
+#
+plot(mpg ~ wt, data=dat, pch=19, col=c("dodgerblue","firebrick","forestgreen")[factor(cyl)])
 
 ############################################################################
 
