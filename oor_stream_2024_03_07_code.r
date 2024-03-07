@@ -202,11 +202,15 @@ plot(mpg ~ wt, data=dat, pch=19, col=c("dodgerblue","firebrick","forestgreen")[f
 
 # illustrate the use of lines() for adding regression lines
 plot(mpg ~ hp, data=dat, pch=21, bg="gray")
-res <- lm(mpg ~ hp + I(hp^2), data=dat)
-summary(res)
 newdat <- data.frame(hp=seq(30,350,by=1))
+res <- lm(mpg ~ hp, data=dat)
 pred <- predict(res, newdata=newdat)
-lines(newdat$hp, pred, lwd=3)
+lines(newdat$hp, pred, lwd=3, col="firebrick")
+res <- lm(mpg ~ hp + I(hp^2), data=dat)
+pred <- predict(res, newdata=newdat)
+lines(newdat$hp, pred, lwd=3, col="dodgerblue")
+legend("topright", lty="solid", lwd=3, col=c("firebrick","dodgerblue"),
+       legend=c("Linear Model", "Qudaratic Model"))
 
 # illustrate the use of text() for adding labels (some of the labels overlap;
 # avoiding this either requires manual label placement or clever algorithms)
