@@ -192,7 +192,8 @@ points(mpg ~ wt, data=dat, pch=19, subset=cyl==4, col="dodgerblue")
 points(mpg ~ wt, data=dat, pch=19, subset=cyl==6, col="firebrick")
 points(mpg ~ wt, data=dat, pch=19, subset=cyl==8, col="forestgreen")
 
-#
+# one could do the above with some clever trickery using factors, but this is
+# less transparent than the code above (although quite a bit shorter)
 plot(mpg ~ wt, data=dat, pch=19, col=c("dodgerblue","firebrick","forestgreen")[factor(cyl)])
 
 ############################################################################
