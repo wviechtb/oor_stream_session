@@ -128,6 +128,24 @@ hist(resids, breaks=seq(floor(min(resids)),ceiling(max(resids)),by=1))
 # dotchart of the mpg values (with the car names added as labels)
 dotchart(dat$mpg, labels=rownames(dat))
 
+# fit a regression model predicting mpg from wt and hp and also use quadratic
+# terms for each predictor
+res <- lm(mpg ~ wt + I(wt^2) + hp + I(hp^2), data=dat)
+summary(res)
+
+# compute the predicted mpg value for combinations of wt and hp (within the
+# range of the observed data)
+
+wts <- seq(min(dat$wt), max(dat$wt), length=100)
+hps <- seq(min(dat$hp), max(dat$hp), length=100)
+
+pred <- outer(wts, hps, function(x, y) {
+   coef(res)[1] + coef(res)[2]*x + coef(res)[3]*x^2 + coef(res)[4]*y + coef(res)[5]*y^2
+})
+
+# create a contour plot showing the predicted mpg as a function of wt and hp
+contour(wts, hps, pred, xlab="Weight", ylab="Horse Power")
+
 ############################################################################
 
 
