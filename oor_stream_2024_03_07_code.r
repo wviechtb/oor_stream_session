@@ -35,7 +35,14 @@ plot(cbind(dat$hp, dat$mpg))
 # can also provide a two variable data frame
 plot(dat[c("hp", "mpg")])
 
+# examine the AirPassengers dataset
+AirPassengers
 
+# this is a time series dataset (class 'ts')
+class(AirPassengers)
+
+# plot the time series
+plot(AirPassengers)
 
 ############################################################################
 
