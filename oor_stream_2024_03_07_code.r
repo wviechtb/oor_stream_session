@@ -176,6 +176,16 @@ plot(mpg ~ wt, data=dat, xlab="Weight", ylab="Mile per Gallon",
 axis(side=1, at=c(1,3,5), labels=c("light", "medium", "heavy"))
 axis(side=2, at=c(10,20,30))
 
+# illustrate the 'type' argument (using the AirPassengers dataset)
+plot(AirPassengers)
+plot(AirPassengers, type="p") # to show the points
+plot(AirPassengers, type="l") # to show the lines (default when plotting 'ts' objects)
+
+
+res <- lm(mpg ~ hp + I(hp^2), data=dat)
+newdat <- data.frame(hp=seq(40,350,by=1))
+pred <- predict(res, newdata=newdat)
+points(newdat$hp, pred)
 
 ############################################################################
 
