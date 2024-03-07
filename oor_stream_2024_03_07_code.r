@@ -268,6 +268,10 @@ text(locator(2), "Outlier")
 plot(mpg ~ hp, data=dat, pch=21, bg="gray")
 identify(dat$hp, dat$mpg, rownames(dat))
 
+# now left-click on a point and the corresponding label is shown (if one
+# clicks just below the point, the label is shown below, if one clicks just
+# right of the point, the labels is shown to the right, and so on);
+# right-click to stop labeling points
 
 ############################################################################
 
