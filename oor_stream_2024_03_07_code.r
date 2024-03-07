@@ -55,6 +55,22 @@ plot(factor(dat$cyl))
 # each level of the factor
 plot(factor(dat$cyl), dat$mpg)
 
+# when passing an entire data frame, we get a scatterplot matrix
+plot(dat)
+
+# we can pick out the variables we want to plot against each other
+plot(~ mpg + hp + wt, data=dat)
+
+# we can also create a scatterplot using this kind of formula notation
+plot(mpg ~ wt, data=dat)
+
+# if we have multiple variables on the right-hand side of the formula, then R
+# prompts us to hit return to see each plot in turn
+plot(mpg ~ hp + wt, data=dat)
+
+# 12.1.2: Displaying multivariate data
+
+
 
 ############################################################################
 
