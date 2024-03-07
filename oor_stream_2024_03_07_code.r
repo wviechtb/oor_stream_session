@@ -146,6 +146,12 @@ pred <- outer(wts, hps, function(x, y) {
 # create a contour plot showing the predicted mpg as a function of wt and hp
 contour(wts, hps, pred, xlab="Weight", ylab="Horse Power")
 
+# filled contour plot, using the 'viridis' color palette (a better choice than
+# the default 'heat' colors)
+filled.contour(wts, hps, pred, xlab="Weight", ylab="Horse Power",
+               color.palette=hcl.colors)
+
+
 ############################################################################
 
 
