@@ -183,6 +183,10 @@ plot(AirPassengers, type="l") # to show the lines (default when plotting 'ts' ob
 plot(AirPassengers, type="b") # to show points connected by lines
 plot(AirPassengers, type="o") # to show points overlaid by lines
 plot(AirPassengers, type="o", pch=19) # maybe use filled circles instead
+plot(AirPassengers, type="h") # to show vertical lines
+plot(AirPassengers, type="s") # to show the points as a step function
+
+
 
 
 res <- lm(mpg ~ hp + I(hp^2), data=dat)
