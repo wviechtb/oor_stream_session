@@ -125,7 +125,8 @@ hist(resids, breaks=20)
 # can also specify the exact location of the break points
 hist(resids, breaks=seq(floor(min(resids)),ceiling(max(resids)),by=1))
 
-
+# dotchart of the mpg values (with the car names added as labels)
+dotchart(dat$mpg, labels=rownames(dat))
 
 ############################################################################
 
