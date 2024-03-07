@@ -90,6 +90,19 @@ coplot(mpg ~ hp | factor(cyl) + factor(gear), data=dat)
 # used to control how many such intervals are created; 6 by default)
 coplot(mpg ~ hp | wt, data=dat, number=4)
 
+# use a different function for the panels; 'panel.smooth' shows the points and
+# then uses a smoother to show the relationship between x and y
+coplot(mpg ~ hp | wt, data=dat, number=4, panel=panel.smooth)
+
+# can write a custom panel function, for example one that shows the points and
+# adds the regression line from a simple linear regression model
+panel.reg <- function(x, y, ...) {
+   points(x, y)
+   res <- lm(y ~ x)
+   abline(res, lwd=3)
+}
+
+coplot(mpg ~ hp | wt, data=dat, number=4, panel=panel.reg)
 
 
 ############################################################################
