@@ -209,7 +209,7 @@ lines(newdat$hp, pred, lwd=3, col="firebrick")
 res <- lm(mpg ~ hp + I(hp^2), data=dat)
 pred <- predict(res, newdata=newdat)
 lines(newdat$hp, pred, lwd=3, col="dodgerblue")
-legend("topright", lty="solid", lwd=3, col=c("firebrick","dodgerblue"),
+legend("topright", inset=.02, lty="solid", lwd=3, col=c("firebrick","dodgerblue"),
        legend=c("Linear Model", "Qudaratic Model"))
 
 # illustrate the use of text() for adding labels (some of the labels overlap;
