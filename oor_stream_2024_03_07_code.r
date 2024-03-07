@@ -44,6 +44,10 @@ class(AirPassengers)
 # plot the time series
 plot(AirPassengers)
 
+# plot a single numeric vector (then the x-axis is the index of the points)
+plot(dat$mpg)
+
+
 ############################################################################
 
 
