@@ -148,9 +148,16 @@ contour(wts, hps, pred, xlab="Weight", ylab="Horse Power")
 
 # filled contour plot, using the 'viridis' color palette (a better choice than
 # the default 'heat' colors)
-filled.contour(wts, hps, pred, xlab="Weight", ylab="Horse Power",
-               color.palette=hcl.colors)
+filled.contour(wts, hps, pred, xlab="Weight", ylab="Horse Power", color.palette=hcl.colors)
 
+# perspective plot
+persp(wts, hps, pred, xlab="Weight", ylab="Horse Power")
+
+# perspective plot with some tweaks
+persp(wts, hps, pred, xlab="Weight", ylab="Horse Power", theta=135, phi=25,
+      col="gray", shade=0.7, ltheta=45, ticktype="detailed")
+
+# 12.1.4: Arguments to high-level plotting functions
 
 ############################################################################
 
