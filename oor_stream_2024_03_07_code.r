@@ -237,6 +237,8 @@ xs <- seq(1.96, 3, length=1000)
 ys <- dnorm(xs)
 polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
 
+# 12.2.1: Mathematical annotation
+
 ############################################################################
 
 
