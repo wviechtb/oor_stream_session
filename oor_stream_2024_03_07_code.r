@@ -196,6 +196,23 @@ points(mpg ~ wt, data=dat, pch=19, subset=cyl==8, col="forestgreen")
 # less transparent than the code above (although quite a bit shorter)
 plot(mpg ~ wt, data=dat, pch=19, col=c("dodgerblue","firebrick","forestgreen")[factor(cyl)])
 
+## 12.2: Low-level plotting commands
+
+# already saw points() above
+
+# illustrate the use of lines() for adding regression lines
+plot(mpg ~ hp, data=dat, pch=21, bg="gray")
+res <- lm(mpg ~ hp + I(hp^2), data=dat)
+summary(res)
+newdat <- data.frame(hp=seq(30,350,by=1))
+pred <- predict(res, newdata=newdat)
+lines(newdat$hp, pred, lwd=3)
+
+# illustrate the use of text() for adding labels (
+plot(mpg ~ hp, data=dat, pch=21, bg="gray", xlim=c(50,400))
+text(dat$hp, dat$mpg, rownames(dat), pos=4, cex=0.8)
+
+
 ############################################################################
 
 
