@@ -180,6 +180,9 @@ axis(side=2, at=c(10,20,30))
 plot(AirPassengers)
 plot(AirPassengers, type="p") # to show the points
 plot(AirPassengers, type="l") # to show the lines (default when plotting 'ts' objects)
+plot(AirPassengers, type="b") # to show points connected by lines
+plot(AirPassengers, type="o") # to show points overlaid by lines
+plot(AirPassengers, type="o", pch=19) # maybe use filled circles instead
 
 
 res <- lm(mpg ~ hp + I(hp^2), data=dat)
