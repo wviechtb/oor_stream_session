@@ -208,9 +208,12 @@ newdat <- data.frame(hp=seq(30,350,by=1))
 pred <- predict(res, newdata=newdat)
 lines(newdat$hp, pred, lwd=3)
 
-# illustrate the use of text() for adding labels (
+# illustrate the use of text() for adding labels (some of the labels overlap;
+# avoiding this either requires manual label placement or clever algorithms)
 plot(mpg ~ hp, data=dat, pch=21, bg="gray", xlim=c(50,400))
 text(dat$hp, dat$mpg, rownames(dat), pos=4, cex=0.8)
+
+
 
 
 ############################################################################
