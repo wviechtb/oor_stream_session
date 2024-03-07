@@ -20,6 +20,23 @@
 
 ## 12.1: High-level plotting commands
 
+# 12.1.1: The plot() function
+
+# copy the mtcars dataset to dat and inspect it
+dat <- mtcars
+dat
+
+# create a scatterplot of mpg (y-axis) versus hp (x-axis)
+plot(dat$hp, dat$mpg)
+
+# can also provide a matrix with two colums to create the same plot
+plot(cbind(dat$hp, dat$mpg))
+
+# can also provide a two variable data frame
+plot(dat[c("hp", "mpg")])
+
+
+
 ############################################################################
 
 
