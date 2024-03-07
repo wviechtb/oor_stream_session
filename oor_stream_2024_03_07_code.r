@@ -62,7 +62,7 @@ plot(dat)
 plot(~ mpg + hp + wt, data=dat)
 
 # we can also create a scatterplot using this kind of formula notation
-plot(mpg ~ wt, data=dat)
+plot(mpg ~ hp, data=dat)
 
 # if we have multiple variables on the right-hand side of the formula, then R
 # prompts us to hit return to see each plot in turn
@@ -75,6 +75,13 @@ pairs(dat)
 
 # the pairs() function provides some additional functionality for customizing
 # such plots; see help(pairs) for details and examples
+
+# create a conditioning plot of mpg versus hp for every cyl level
+coplot(mpg ~ hp | factor(cyl), data=dat)
+
+# could also condition on the combination of two variables
+coplot(mpg ~ hp | factor(cyl) + factor(gear), data=dat)
+
 
 ############################################################################
 
