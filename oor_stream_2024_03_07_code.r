@@ -55,6 +55,12 @@ plot(factor(dat$cyl))
 # each level of the factor
 plot(factor(dat$cyl), dat$mpg)
 
+# can also create this plot using a formula
+plot(mpg ~ factor(cyl), data=dat)
+
+# can also directly use the boxplot() function for this
+boxplot(mpg ~ cyl, data=dat)
+
 # when passing an entire data frame, we get a scatterplot matrix
 plot(dat)
 
@@ -158,6 +164,11 @@ persp(wts, hps, pred, xlab="Weight", ylab="Horse Power", theta=135, phi=25,
       col="gray", shade=0.7, ltheta=45, ticktype="detailed")
 
 # 12.1.4: Arguments to high-level plotting functions
+
+#
+boxplot(mpg ~ cyl, data=dat)
+
+
 
 ############################################################################
 
