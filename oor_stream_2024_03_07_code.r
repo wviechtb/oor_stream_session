@@ -250,12 +250,23 @@ text(1.96, dnorm(1.96), pos=4, "Upper Critical Region",
 
 ## 12.3: Interacting with graphics
 
+# scatterplot of mpg versus hp
 plot(mpg ~ hp, data=dat, pch=21, bg="gray")
 pos <- locator()
-pos
 
 # now can left-click on a bunch of locations; then right-click to stop and the
 # output gives the x and y locations of where we left-clicked
+
+# the coordinates are saved in pos
+pos
+
+# now left-click on two points and the text "Outlier" will be added at the
+# location where we left-clicked
+text(locator(2), "Outlier")
+
+# redraw the scatterplot
+plot(mpg ~ hp, data=dat, pch=21, bg="gray")
+identify(dat$hp, dat$mpg, rownames(dat))
 
 
 ############################################################################
