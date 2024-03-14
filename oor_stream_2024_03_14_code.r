@@ -183,4 +183,8 @@ res
 # these values ourselves
 sd(res$t)
 
+# note: using boot.ci(res), we can then obtain various types of confidence
+# intervals for the true ratio, but this is now really beyond the discussion
+# in the book, so let's skip this
+
 ############################################################################
