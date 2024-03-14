@@ -143,5 +143,16 @@ dat <- read.csv("earnings.csv")
 # compute the ratio of the median earnings of women versus the median earnings of men
 with(dat, median(earn[male==0]) / median(earn[male==1]))
 
+# since we do not know the theoretical equation for computing the standard
+# error of the ratio of two medians, we will use bootstrapping to estimate it
+
+n <- nrow(dat)
+
+ratios <- replicate(10000, {
+   dat.boot <- dat[sample(n, replace=TRUE),]
+   with(dat.boot, median(earn[male==0]) / median(earn[male==1]))
+})
+
+
 
 ############################################################################
