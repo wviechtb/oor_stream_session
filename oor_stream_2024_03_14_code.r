@@ -197,7 +197,14 @@ sd(res$t)
 # load the rstanarm package
 library(rstanarm)
 
-
+# simulate data as described in the book
+x <- 1:20
+n <- length(x)
+a <- 0.2
+b <- 0.3
+sigma <- 0.5
+set.seed(2141)
+y <- a + b*x + sigma*rnorm(n)
 
 ############################################################################
 
