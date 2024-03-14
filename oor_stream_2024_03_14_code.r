@@ -259,9 +259,12 @@ res
 # the seed of the random number generator before the model fitting, which we
 # can do with set.seed(<put your favorite number here>)
 
-# compute R^2 (how much of the variance in the earnings is accounted for based
-# on the regression model)
+# compute R^2, that is, how much of the variance in the earnings is accounted
+# for based on the regression model; can also think of this as the proportional
+# reduction in the variance when explain some of the variation in the earnings
+# based on the regression model
 (sd(dat$earnk)^2 - sigma(res)^2) / sd(dat$earnk)^2
+1 - sigma(res)^2 / sd(dat$earnk)^2
 
 ############################################################################
 
