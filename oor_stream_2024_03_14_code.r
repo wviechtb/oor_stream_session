@@ -126,9 +126,11 @@ abline(v=15/sqrt(n), lty="dotted")
 # so we can see that the SE based on bootstrapping is a quite close
 # approximation to the SE based on theory (although if we look closely, we see
 # that the bootstrap SEs tend to slightly underestimate the theoretical SEs)
-
-15/sqrt(n)
 mean(se.thry)
 mean(se.boot)
+
+# and we can compare the two above with the true SE
+15/sqrt(n)
+
 
 ############################################################################
