@@ -188,3 +188,16 @@ sd(res$t)
 # in the book, so let's skip this
 
 ############################################################################
+
+### 6.2: Fitting a simple regression to fake data
+
+# install the rstanarm package (need to do this once)
+#install.packages("rstanarm")
+
+# load the rstanarm package
+library(rstanarm)
+
+
+
+############################################################################
+
