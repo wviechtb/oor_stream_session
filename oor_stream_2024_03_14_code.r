@@ -112,5 +112,10 @@ for (s in 1:iters) {
 
 }
 
+plot(se.thry, se.boot, pch=19, cex=0.5, xlab="SE Based on Theory",
+     ylab="SE Based on Bootstrapping")
+
+
+
 
 ############################################################################
