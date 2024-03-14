@@ -266,5 +266,24 @@ res
 (sd(dat$earnk)^2 - sigma(res)^2) / sd(dat$earnk)^2
 1 - sigma(res)^2 / sd(dat$earnk)^2
 
+# to illustrate the point that is being made here about terminology, let's
+# consider an even simpler model where we just use height as predictor
+res <- stan_glm(earnk ~ height, data=dat)
+res
+
+# so, based on this model, we would say that individuals that differ from each
+# other by one inch, the taller person earns on average 1.6k more
+
+# suppose we randomly select two individuals from the dataset and compute the
+# difference in their earnings and the difference their heights
+sel <- dat[c(536,1258),]
+sel$earnk[1] - sel$earnk[2]
+sel$height[1] - sel$height[2]
+
+# then for these individuals, we can compute how big the difference in their
+# earnings is per one-unit difference in inches
+(sel$earnk[1] - sel$earnk[2]) / (sel$height[1] - sel$height[2])
+
+
 ############################################################################
 
