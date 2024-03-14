@@ -134,9 +134,11 @@ mean(se.boot)
 
 # now let's go to the example from the book
 
-# download the dataset
-download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Earnings/data/earnings.csv", destfile="earnings.csv")
+# download the dataset (only need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Earnings/data/earnings.csv", destfile="earnings.csv")
 
+# read in the dataset
+dat <- read.csv("earnings.csv")
 
 
 ############################################################################
