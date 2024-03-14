@@ -161,6 +161,22 @@ sd(ratios)
 # of unique values)
 hist(ratios)
 
+# let's do the bootstrapping using the boot package
+
+# load the package
+library(boot)
+
+# function that takes the original data as input and a vector of indices that
+# define the bootstrap sample and that then computes the statistic of interest
+# based on the bootstrap sample
+compratio <- function(x, idx) {
+   dat.boot <- x[idx,]
+   with(dat.boot, median(earn[male==0]) / median(earn[male==1]))
+}
+
+# run the bootstrapping
+res <- boot(dat, statistic=compratio, R=10000)
+
 
 
 ############################################################################
