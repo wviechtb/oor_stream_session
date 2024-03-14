@@ -75,8 +75,18 @@ means <- replicate(100000, {
    mean(x)
 })
 
-hist(means)
+# inspect the bootstrap distribution of our statistic of interest
+hist(means, breaks=100)
 
+# note that it is *not* centered around the true mean, but it is centered
+# around the observed mean; so we cannot use this distribution to magically
+# recover what the true mean is; however, we can use the standard deviation of
+# the bootstrap means to get an estimate of the standard error of our observed
+# mean
+sd(means)
+
+# this is quite close to the standard error we computed above based on the
+# theoretical equation
 
 
 ############################################################################
