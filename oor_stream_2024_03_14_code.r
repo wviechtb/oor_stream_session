@@ -242,3 +242,16 @@ mean(isin)
 
 ############################################################################
 
+### 6.3: Interpret coefficients as comparisons, not effects
+
+# read in the dataset
+dat <- read.csv("earnings.csv")
+
+# fit a regression model predicting earnings (in thousands of dollars) from
+# the height of the individual and whether the person is male (1) or not (0)
+res <- stan_glm(earnk ~ height + male, data=dat)
+res
+
+
+############################################################################
+
