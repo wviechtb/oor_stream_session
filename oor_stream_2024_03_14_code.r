@@ -280,9 +280,28 @@ sel <- dat[c(536,1258),]
 sel$earnk[1] - sel$earnk[2]
 sel$height[1] - sel$height[2]
 
-# then for these individuals, we can compute how big the difference in their
-# earnings is per one-unit difference in inches
+# then for these two individuals, we can compute how big the difference in
+# their earnings is per one-unit difference in inches
 (sel$earnk[1] - sel$earnk[2]) / (sel$height[1] - sel$height[2])
+
+# now let's repeat the above many times
+
+n <- nrow(dat)
+diffperinch <- replicate(10000, {
+   sel <- dat[sample(n, 2),]
+   (sel$earnk[1] - sel$earnk[2]) / (sel$height[1] - sel$height[2])
+})
+
+# then when we compute the mean of these values (and here we unfortunately
+# have to filter out infinity and missing values that can arise due to
+# division by zero), then we essentially get the same value as the slope
+mean(diffperinch[!is.infinite(diffperinch) & !is.na(diffperinch)])
+
+# this illustrates that the slopes reflects the comparison between people
+
+############################################################################
+
+
 
 
 ############################################################################
