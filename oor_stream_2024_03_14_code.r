@@ -153,11 +153,14 @@ ratios <- replicate(10000, {
    with(dat.boot, median(earn[male==0]) / median(earn[male==1]))
 })
 
-# examine the bootstrap distribution of the statistic of interest (looks a bit
-# weird here, but so be it ...)
+sd(ratios)
+
+# we can also examine the bootstrap distribution of the statistic of interest
+# (since the earnings only take on a relatively small number of unique values,
+# the ratio of the two medians can also only take on a relatively small number
+# of unique values)
 hist(ratios)
 
-sd(ratios)
 
 
 ############################################################################
