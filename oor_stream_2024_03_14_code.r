@@ -252,6 +252,12 @@ dat <- read.csv("earnings.csv")
 res <- stan_glm(earnk ~ height + male, data=dat)
 res
 
+# note: the results we obtain above may be slightly different than the ones
+# given in the book, because the model fitting as done by stan_glm() involves
+# some stochastic properties (to be discussed in more detail later on); to
+# make the results obtained at least fully reproducible, we should always set
+# the seed of the random number generator before the model fitting, which we
+# can do with set.seed(<put your favorite number here>)
 
 ############################################################################
 
