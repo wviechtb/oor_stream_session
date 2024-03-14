@@ -217,7 +217,7 @@ rm(x, y)
 
 # fit a simple linear regression model using stan_glm()
 res <- stan_glm(y ~ x, data=dat)
-res
+print(res, digits=2)
 
 ############################################################################
 
