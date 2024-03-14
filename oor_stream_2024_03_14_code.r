@@ -130,7 +130,7 @@ mean(se.thry)
 mean(se.boot)
 
 # and we can compare the two above with the true SE
-15/sqrt(n)
+15 / sqrt(n)
 
 # now let's go to the example from the book
 
@@ -139,6 +139,9 @@ mean(se.boot)
 
 # read in the dataset
 dat <- read.csv("earnings.csv")
+
+# compute the ratio of the median earnings of women versus the median earnings of men
+with(dat, median(earn[male==0]) / median(earn[male==1]))
 
 
 ############################################################################
