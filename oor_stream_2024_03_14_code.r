@@ -215,7 +215,9 @@ dat <- data.frame(x, y)
 # remove the x and y vector objects from the workspace
 rm(x, y)
 
-
+# fit a simple linear regression model using stan_glm()
+res <- stan_glm(y ~ x, data=dat)
+res
 
 ############################################################################
 
