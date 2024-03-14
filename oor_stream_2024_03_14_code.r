@@ -176,7 +176,11 @@ compratio <- function(x, idx) {
 
 # run the bootstrapping
 res <- boot(dat, statistic=compratio, R=10000)
+res
 
-
+# note: element 't' of res contains the bootstrap values of the statistic of
+# interest (as a one column matrix), so we could also just compute the SD of
+# these values ourselves
+sd(res$t)
 
 ############################################################################
