@@ -53,7 +53,23 @@ sd(x) / sqrt(n)
 
 # now let's pretend we know nothing about statistical theory and we do not
 # know this equation for computing (or more precisely: estimating) the
-# standard error of the mean
+# standard error of the mean; we can use bootstrapping to obtain an estimate
+# of the standard error of the mean
+
+# take a sample of the same size as our data with replacement
+x.boot <- sample(x, size=n, replace=TRUE)
+x.boot
+
+# compute the statistic of interest in the bootstrap sample
+mean(x.boot)
+
+# in bootstrapping, we repeat this process many times
+
+means <- replicate(100000, {
+   x <- sample(x, size=n, replace=TRUE)
+   mean(x)
+})
+
 
 
 
