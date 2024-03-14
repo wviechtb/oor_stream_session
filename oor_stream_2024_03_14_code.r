@@ -40,5 +40,21 @@ means <- replicate(100000, {
 
 sd(means)
 
+# but in practice, we only have a single sample
+x <- rnorm(n, mean=100, sd=15)
+x
+
+# for which we can compute the mean
+mean(x)
+
+# since we do not know the true SD, we can still estimate the standard error
+# of the mean by dividing the observed SD by the square root of the sample size
+sd(x) / sqrt(n)
+
+# now let's pretend we know nothing about statistical theory and we do not
+# know this equation for computing (or more precisely: estimating) the
+# standard error of the mean
+
+
 
 ############################################################################
