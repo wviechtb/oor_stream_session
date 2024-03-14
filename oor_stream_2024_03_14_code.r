@@ -311,8 +311,21 @@ dat <- read.table("heights.txt", header=TRUE)
 
 # Figure 6.3a: mother's height versus daughter's height (with jittering to
 # avoid that points overlap)
-plot(jitter(daughter_height, amount=0.5) ~ jitter(mother_height, amount=0.5), data=dat, pch=19, cex=0.2,
-     xlab="Mother's height (inches)", ylab="Adult daughter's height (inches)")
+plot(jitter(daughter_height, amount=0.5) ~ jitter(mother_height, amount=0.5),
+     data=dat, pch=19, cex=0.2, xlab="Mother's height (inches)",
+     ylab="Adult daughter's height (inches)", bty="l")
+grid()
+
+# fit a simple linear regression model predicting the daughter's height based
+# on the mother's height
+res <- stan_glm(daughter_height ~ mother_height, data=dat)
+
+# add the regression line to the plot
+abline(res, lwd=5, col="white")
+abline(res, lwd=3)
+
+# add a point at intersection of the two means
+points(mean(dat$mother_height), mean(dat$daughter_height), pch=19, col="white", cex=2)
 
 ############################################################################
 
