@@ -309,8 +309,9 @@ mean(diffperinch[!is.infinite(diffperinch) & !is.na(diffperinch)])
 # read in the data
 dat <- read.table("heights.txt", header=TRUE)
 
-# Figure 6.3a: mother's height versus daughter's height
-plot(daughter_height ~ mother_height, data=dat, pch=19, cex=0.2,
+# Figure 6.3a: mother's height versus daughter's height (with jittering to
+# avoid that points overlap)
+plot(jitter(daughter_height, amount=0.5) ~ jitter(mother_height, amount=0.5), data=dat, pch=19, cex=0.2,
      xlab="Mother's height (inches)", ylab="Adult daughter's height (inches)")
 
 ############################################################################
