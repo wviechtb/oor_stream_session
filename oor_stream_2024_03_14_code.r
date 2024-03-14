@@ -207,7 +207,7 @@ set.seed(2141)
 y <- a + b*x + rnorm(n, mean=0, sd=sigma)
 
 # plot x versus y
-plot(x, y, pch=21, bg="gray")
+plot(x, y, pch=21, bg="gray", main="Data and fitted regression line", bty="l")
 
 # create a data frame with x and y
 dat <- data.frame(x, y)
@@ -218,6 +218,21 @@ rm(x, y)
 # fit a simple linear regression model using stan_glm()
 res <- stan_glm(y ~ x, data=dat)
 print(res, digits=2)
+
+# add the regression line to the plot
+abline(res, lwd=3)
+
+# use lm() to fit the same model using a more classical (frequentist) approach
+res <- lm(y ~ x, data=dat)
+summary(res)
+
+isin <- replicate(10000, {
+   y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+   res <- lm(y ~ x, data=dat)
+   ci <- confint(res)[2,]
+   ci[1] <= b && ci[2] >= b
+}
+
 
 ############################################################################
 
