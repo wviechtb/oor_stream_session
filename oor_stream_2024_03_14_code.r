@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 5.4 - 5.6
+# - Section(s): 5.4 - 6.4
 #
 # last updated: 2024-03-14
 
@@ -319,13 +319,20 @@ grid()
 # fit a simple linear regression model predicting the daughter's height based
 # on the mother's height
 res <- stan_glm(daughter_height ~ mother_height, data=dat)
+res
 
 # add the regression line to the plot
-abline(res, lwd=5, col="white")
-abline(res, lwd=3)
+abline(res, lwd=5)
+
+# also add a diagonal line
+abline(a=0, b=1, lwd=5, lty="dotted")
 
 # add a point at intersection of the two means
-points(mean(dat$mother_height), mean(dat$daughter_height), pch=19, col="white", cex=2)
+points(mean(dat$mother_height), mean(dat$daughter_height), pch=21, bg="white", cex=2)
+
+# refit the model when recentering the mother's heights around 62.5 (which is
+# approximately the mean of the the mother's heights in this sample)
+res <- stan_glm(daughter_height ~ I(mother_height - 62.5), data=dat)
+res
 
 ############################################################################
-
