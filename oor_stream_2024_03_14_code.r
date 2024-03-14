@@ -88,5 +88,29 @@ sd(means)
 # this is quite close to the standard error we computed above based on the
 # theoretical equation
 
+# now let's do a little simulation study to see how similar the standard error
+# is when computed based on the theoretical equation versus bootstrapping
+
+iters <- 1000
+se.thry <- numeric(iters)
+se.boot <- numeric(iters)
+
+pbar <- txtProgressBar(min=0, max=iters, style=3)
+
+for (s in 1:iters) {
+
+   setTxtProgressBar(pbar, s)
+
+   x <- rnorm(n, mean=100, sd=15)
+   se.thry[s] <- sd(x) / sqrt(n)
+
+   means <- replicate(1000, {
+      x <- sample(x, size=n, replace=TRUE)
+      mean(x)
+   })
+   se.boot[s] <- sd(means)
+
+}
+
 
 ############################################################################
