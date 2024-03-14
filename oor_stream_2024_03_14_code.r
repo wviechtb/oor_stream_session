@@ -303,8 +303,15 @@ mean(diffperinch[!is.infinite(diffperinch) & !is.na(diffperinch)])
 
 ### 6.4: Historical origins of regression
 
+# download the dataset (only need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/PearsonLee/data/Heights.txt", destfile="heights.txt")
 
+# read in the data
+dat <- read.table("heights.txt", header=TRUE)
 
+# Figure 6.3a: mother's height versus daughter's height
+plot(daughter_height ~ mother_height, data=dat, pch=19, cex=0.2,
+     xlab="Mother's height (inches)", ylab="Adult daughter's height (inches)")
 
 ############################################################################
 
