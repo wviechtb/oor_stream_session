@@ -204,7 +204,18 @@ a <- 0.2
 b <- 0.3
 sigma <- 0.5
 set.seed(2141)
-y <- a + b*x + sigma*rnorm(n)
+y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+
+# plot x versus y
+plot(x, y, pch=21, bg="gray")
+
+# create a data frame with x and y
+dat <- data.frame(x, y)
+
+# remove the x and y vector objects from the workspace
+rm(x, y)
+
+
 
 ############################################################################
 
