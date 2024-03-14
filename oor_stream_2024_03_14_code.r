@@ -38,6 +38,11 @@ means <- replicate(100000, {
    mean(x)
 })
 
+hist(means, breaks=100)
+abline(v=100, lwd=5)
+
+# this is approximately equal to the true standard error; it only differs from
+# the one we computed above because we only simulated 100,000 means
 sd(means)
 
 # but in practice, we only have a single sample
@@ -70,6 +75,7 @@ means <- replicate(100000, {
    mean(x)
 })
 
+hist(means)
 
 
 
