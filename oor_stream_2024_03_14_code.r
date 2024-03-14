@@ -226,12 +226,17 @@ abline(res, lwd=3)
 res <- lm(y ~ x, data=dat)
 summary(res)
 
-isin <- replicate(10000, {
-   y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+# replicate the above 1000 times and check in each replication whether the
+# 95% confidence interval for the slope actually captures the true slope
+isin <- replicate(1000, {
+   dat$y <- a + b*dat$x + rnorm(n, mean=0, sd=sigma)
    res <- lm(y ~ x, data=dat)
    ci <- confint(res)[2,]
    ci[1] <= b && ci[2] >= b
 }
+
+# check in what proportion of replicates the CI captures the true slope
+mean(isin)
 
 
 ############################################################################
