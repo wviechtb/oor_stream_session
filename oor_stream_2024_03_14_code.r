@@ -301,6 +301,8 @@ mean(diffperinch[!is.infinite(diffperinch) & !is.na(diffperinch)])
 
 ############################################################################
 
+### 6.4: Historical origins of regression
+
 
 
 
