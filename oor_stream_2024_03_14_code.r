@@ -132,5 +132,11 @@ mean(se.boot)
 # and we can compare the two above with the true SE
 15/sqrt(n)
 
+# now let's go to the example from the book
+
+# download the dataset
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Earnings/data/earnings.csv", destfile="earnings.csv")
+
+
 
 ############################################################################
