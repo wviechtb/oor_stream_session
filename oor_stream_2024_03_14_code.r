@@ -238,6 +238,7 @@ isin <- replicate(10000, {
 # check in what proportion of replicates the CI captures the true slope
 mean(isin)
 
+# we see that the CI does in fact capture the true slope is ~95% of the cases
 
 ############################################################################
 
