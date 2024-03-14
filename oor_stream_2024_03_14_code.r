@@ -112,10 +112,23 @@ for (s in 1:iters) {
 
 }
 
+# scatterplot of the SE computed based on the theoretical equation versus the
+# SE computed based on bootstrapping
 plot(se.thry, se.boot, pch=19, cex=0.5, xlab="SE Based on Theory",
      ylab="SE Based on Bootstrapping")
+abline(a=0, b=1, lwd=6, col="darkgray")
+points(se.thry, se.boot, pch=19, cex=0.5)
 
+# also add a horizontal and vertical line at the true SE
+abline(h=15/sqrt(n), lty="dotted")
+abline(v=15/sqrt(n), lty="dotted")
 
+# so we can see that the SE based on bootstrapping is a quite close
+# approximation to the SE based on theory (although if we look closely, we see
+# that the bootstrap SEs tend to slightly underestimate the theoretical SEs)
 
+15/sqrt(n)
+mean(se.thry)
+mean(se.boot)
 
 ############################################################################
