@@ -60,4 +60,16 @@ plot(mpg ~ wt, data=dat, bg="gray", xlab="Weight", ylab="Miles per Gallon")
 par(bty="l", las=1, pch=21, bg="gray")
 plot(mpg ~ hp, data=dat, bg="dodgerblue", xlab="Horsepower", ylab="Miles per Gallon")
 
+# see help(par) for more details on all of the graphical parameters
+
+# as noted there, some graphical parameters can only be set via par() and not
+# within the call to the plotting function; a good example of this is 'mfrow'
+# for splitting up the plotting device into multiple rows and/or columns
+par(mfrow=c(1,2))
+plot(mpg ~ hp, data=dat, bg="dodgerblue", xlab="Horsepower", ylab="Miles per Gallon")
+plot(mpg ~ wt, data=dat, bg="dodgerblue", xlab="Weight", ylab="Miles per Gallon")
+
+
+
+
 ############################################################################
