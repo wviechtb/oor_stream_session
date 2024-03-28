@@ -151,7 +151,7 @@ abline(h=1.4, lwd=5.5)
 
 # illustrate different colors
 plot(1, 1, pch=19, col="red")
-plot(1, 1, pch=19, col="blue")
+points(1.2, 1.2, pch=19, col="blue")
 
 # different colors for the axes and axes labels
 plot(1, 1, pch=19, xlab="x-Axis Label", ylab="y-Axis Label", main="Title",
@@ -162,5 +162,34 @@ text(1, 0.6, "Some text", font=1) # normal font (default)
 text(1, 0.8, "Some text", font=2) # bold font
 text(1, 1.2, "Some text", font=3) # italic font
 text(1, 1.4, "Some text", font=4) # bold and italic font
+
+# can also adjust the font type for the axes and title
+plot(1, 1, pch=19, xlab="x-Axis Label", ylab="y-Axis Label", main="Title",
+     col.axis="dodgerblue", col.lab="gray", col.main="red",
+     font.lab=2, font.axis=3, font.main=4)
+
+# instead of 'adj', illustrate the 'pos argument
+plot(1, 1, pch=19)
+text(1, 1, "on top")
+plot(1, 1, pch=19)
+text(1, 1, "to the bottom", pos=1)
+text(1, 1, "to the left",   pos=2)
+text(1, 1, "to the top",    pos=3)
+text(1, 1, "to the right",  pos=4)
+
+# illustrate the cex argument
+plot(1, 1, pch=19)
+points(1.1, 1, pch=19, cex=2)
+points(1.2, 1, pch=19, cex=0.5)
+
+# note that cex scalings reflect height/width and not area; for example, the
+# first square with cex=10 has 4 times the area as the smaller squares below
+# with cex=5, even though cex=10 is twice as large as cex=5
+plot(1, 1, pch=15, cex=10)
+points(0.98, 0.927, pch=15, cex=5)
+points(1.02, 0.927, pch=15, cex=5)
+points(0.98, 0.883, pch=15, cex=5)
+points(1.02, 0.883, pch=15, cex=5)
+
 
 ############################################################################
