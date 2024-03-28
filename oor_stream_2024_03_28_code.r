@@ -217,4 +217,11 @@ plot(1, 1, pch=19, xlab="x-Axis Label", ylab="y-Axis Label", main="Title",
 
 # 12.5.2: Axes and tick marks
 
+# illustrate the lab argument for increasing/decreasing the number of tick
+# marks on the x- and y-axis (note that these are suggestions; the function
+# still chooses an appropriate number to create nice axis annotations; also
+# note that the third value does not have any effect -- see help(par))
+plot(mpg ~ hp, data=dat, las=1)
+plot(mpg ~ hp, data=dat, las=1, lab=c(3, 10, 10))
+
 ############################################################################
