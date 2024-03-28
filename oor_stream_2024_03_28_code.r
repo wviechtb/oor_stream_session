@@ -88,4 +88,11 @@ plot(mpg ~ factor(cyl), data=dat)
 # in RStudio, can also click on the broom symbol above the plot region to
 # close the plotting device and hence reset adjusted graphical parameters
 
+# the workflow using oldpar <- par(...) and then par(oldpar) is not something
+# that I make use of (this can be relevant when writing plotting functions
+# that adjust graphical parameters to reset things back when the function
+# finishes doing its job, but in standard analysis scripts, using dev.off() or
+# resetting graphical parameters directly as shown above with mfrow is simple
+# enough)
+
 ############################################################################
