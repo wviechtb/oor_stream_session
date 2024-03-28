@@ -69,7 +69,16 @@ par(mfrow=c(1,2))
 plot(mpg ~ hp, data=dat, bg="dodgerblue", xlab="Horsepower", ylab="Miles per Gallon")
 plot(mpg ~ wt, data=dat, bg="dodgerblue", xlab="Weight", ylab="Miles per Gallon")
 
+# note that the adjusted graphics parameters stay in effect for additional
+# plots drawn on the same plotting device
+plot(mpg ~ factor(cyl), data=dat)
 
+# if we did not want two subplots, we set mfrow back to a single row/column
+par(mfrow=c(1,1))
+plot(mpg ~ factor(cyl), data=dat)
 
+# the easiest way to reset of graphics parameters to their defaults is to
+# close the plotting device (i.e., close the window) or via dev.off()
+dev.off()
 
 ############################################################################
