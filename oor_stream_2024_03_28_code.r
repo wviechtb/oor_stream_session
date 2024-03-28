@@ -29,5 +29,10 @@ plot(mpg ~ hp, data=dat)
 plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", xlab="Horsepower",
      ylab="Miles per Gallon")
 
+# by setting the graphics parameters within the plot() function call, we only
+# temporarily change the defaults, so when we create a new graph, it will
+# revert to the defaults
+plot(mpg ~ wt, data=dat)
+
 
 ############################################################################
