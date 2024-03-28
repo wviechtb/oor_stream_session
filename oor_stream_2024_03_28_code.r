@@ -109,4 +109,15 @@ plot(mpg ~ factor(cyl), data=dat)
 
 ## 12.5: Graphics parameters list
 
+# 12.5.1: Graphical elements
+
+# illustrate the pch argument
+plot(1, 1, pch="+")
+
+# not sure why the manual says that the symbol will be 'slightly above or
+# below the appropriate position'; in this example, the + is exactly at the
+# intersection of (1,1)
+abline(h=1, lty="dotted")
+abline(v=1, lty="dotted")
+
 ############################################################################
