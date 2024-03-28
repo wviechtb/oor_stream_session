@@ -240,5 +240,16 @@ plot(mpg ~ hp, data=dat)
 plot(mpg ~ hp, data=dat, tck=-0.008)
 plot(mpg ~ hp, data=dat, tck=0.008, mgp=c(2.5,0.4,0))
 
+# illustrate the xlim and ylim arguments
+plot(mpg ~ hp, data=dat)
+plot(mpg ~ hp, data=dat, xlim=c(0,350), ylim=c(0,40))
+
+# illustrate the xaxs and yaxs arguments (note: by default a bit of space is
+# added below and above the x- and y-axis limits; we can suppress this with
+# xaxs="i" and yaxs="i")
+plot(mpg ~ hp, data=dat, xlim=c(0,350), ylim=c(0,40))
+plot(mpg ~ hp, data=dat, xlim=c(0,350), ylim=c(0,40), xaxs="i", yaxs="i")
+
+# 12.5.3: Figure margins
 
 ############################################################################
