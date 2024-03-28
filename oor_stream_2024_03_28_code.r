@@ -132,4 +132,10 @@ plot(1, 1, pch=21, bg="gray")
 # can also specify the border color
 plot(1, 1, pch=21, bg="gray", col="dodgerblue")
 
+# illustrate different line types
+abline(h=0.6, lty=1) # solid line (default)
+abline(h=0.8, lty=2) # dashed line
+abline(h=1.2, lty=3) # dotted line
+abline(h=1.4, lty=4) # dot-dash line
+
 ############################################################################
