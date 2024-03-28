@@ -34,5 +34,9 @@ plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", xlab="Horsepower",
 # revert to the defaults
 plot(mpg ~ wt, data=dat)
 
+# 12.4.1: Permanent changes: The par() function
+
+# list all graphics parameters (with their current values)
+par()
 
 ############################################################################
