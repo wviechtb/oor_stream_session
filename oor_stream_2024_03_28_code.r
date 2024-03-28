@@ -136,6 +136,6 @@ plot(1, 1, pch=21, bg="gray", col="dodgerblue")
 abline(h=0.6, lty=1) # solid line (default)
 abline(h=0.8, lty=2) # dashed line
 abline(h=1.2, lty=3) # dotted line
-abline(h=1.4, lty=4) # dot-dash line
+abline(h=1.4, lty=4) # dotdash line
 
 ############################################################################
