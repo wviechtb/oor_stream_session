@@ -56,4 +56,8 @@ plot(mpg ~ wt, data=dat, bg="gray", xlab="Weight", ylab="Miles per Gallon")
 # these two things - the graphical parameter and the argument of plot() - are
 # different things)
 
+# to illustrate this distinction
+par(bty="l", las=1, pch=21, bg="gray")
+plot(mpg ~ hp, data=dat, bg="dodgerblue", xlab="Horsepower", ylab="Miles per Gallon")
+
 ############################################################################
