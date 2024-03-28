@@ -95,4 +95,13 @@ plot(mpg ~ factor(cyl), data=dat)
 # resetting graphical parameters directly as shown above with mfrow is simple
 # enough)
 
+# 12.4.2: Temporary changes: Arguments to graphics functions
+
+# changing graphics parameters directly within the function call was
+# illustrated already above; generally, this is also what I do in my workflow
+# (except of course for graphics parameters that can only be set via par())
+
+# as noted, there can be inconsistencies when doing so, as we also saw above
+# with 'bg'
+
 ############################################################################
