@@ -86,6 +86,6 @@ dev.off()
 plot(mpg ~ factor(cyl), data=dat)
 
 # in RStudio, can also click on the broom symbol above the plot region to
-# close the plotting device
+# close the plotting device and hence reset adjusted graphical parameters
 
 ############################################################################
