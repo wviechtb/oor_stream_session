@@ -85,4 +85,7 @@ dev.off()
 # plotting device (if none is already open), then the defaults are used again
 plot(mpg ~ factor(cyl), data=dat)
 
+# in RStudio, can also click on the broom symbol above the plot region to
+# close the plotting device
+
 ############################################################################
