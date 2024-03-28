@@ -304,6 +304,12 @@ plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", las=1,
 
 dev.off()
 
+# 12.6.1: PostScript diagrams for typeset documents
 
+# postscript() is just another plotting device that can be used as shown above
+
+# 12.6.2: Multiple graphics devices
+
+# skipping this because it is rare that one uses multiple devices at the same time
 
 ############################################################################
