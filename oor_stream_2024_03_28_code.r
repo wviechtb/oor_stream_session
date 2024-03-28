@@ -102,6 +102,11 @@ plot(mpg ~ factor(cyl), data=dat)
 # (except of course for graphics parameters that can only be set via par())
 
 # as noted, there can be inconsistencies when doing so, as we also saw above
-# with 'bg'
+# with 'bg' (with par(), it sets the background color of the plotting device,
+# within plot(), it sets the background color of filled plotting symbols)
+
+############################################################################
+
+## 12.5: Graphics parameters list
 
 ############################################################################
