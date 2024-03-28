@@ -32,11 +32,20 @@ plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", xlab="Horsepower",
 # by setting the graphics parameters within the plot() function call, we only
 # temporarily change the defaults, so when we create a new graph, it will
 # revert to the defaults
-plot(mpg ~ wt, data=dat)
+plot(mpg ~ wt, data=dat, xlab="Weight", ylab="Miles per Gallon")
 
 # 12.4.1: Permanent changes: The par() function
 
 # list all graphics parameters (with their current values)
 par()
+
+# list only some selected graphics parameters
+par(c("col", "lty"))
+
+# set some graphics parameters
+par(pch=21, bg="gray", bty="l")
+
+# redraw the two graphs from above
+plot(mpg ~ hp, data=dat, xlab="Horsepower", ylab="Miles per Gallon")
 
 ############################################################################
