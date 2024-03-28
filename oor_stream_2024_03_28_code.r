@@ -290,4 +290,20 @@ dev.off()
 
 ## 12.6: Device drivers
 
+# when working with R interactively, we typically want to immediately see the
+# plot we are creating (as we did above), but in the end we often want to save
+# the plot to a file (like a pdf or tiff)
+
+# the following will save the plot to my_plot.tiff; note the dev.off() at the
+# end; this closes the plotting device and actually saves the plot
+
+tiff("my_plot.tiff", width=2000, height=2000, pointsize=36)
+
+plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", las=1,
+     xlab="Horsepower", ylab="Miles per Gallon")
+
+dev.off()
+
+
+
 ############################################################################
