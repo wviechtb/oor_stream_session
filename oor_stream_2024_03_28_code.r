@@ -165,7 +165,6 @@ text(1, 1.4, "Some text", font=4) # bold and italic font
 
 # can also adjust the font type for the axes and title
 plot(1, 1, pch=19, xlab="x-Axis Label", ylab="y-Axis Label", main="Title",
-     col.axis="dodgerblue", col.lab="gray", col.main="red",
      font.lab=2, font.axis=3, font.main=4)
 
 # instead of 'adj', illustrate the 'pos argument
@@ -212,6 +211,10 @@ plot(res$x, res$y, pch=19, cex=res$number)
 # have to take the square root of the frequencies
 plot(res$x, res$y, pch=19, cex=sqrt(res$number))
 
+# illustrate cex.axis, cex.lab, and cex.main
+plot(1, 1, pch=19, xlab="x-Axis Label", ylab="y-Axis Label", main="Title",
+     cex.axis=1.2, cex.lab=1.4, cex.main=1.8)
 
+# 12.5.2: Axes and tick marks
 
 ############################################################################
