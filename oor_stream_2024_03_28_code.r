@@ -43,12 +43,17 @@ par()
 par(c("col", "lty"))
 
 # set some graphics parameters
-par(bty="l", las=1)
+par(bty="l", las=1, pch=21)
 
 # redraw the two graphs from above
-plot(mpg ~ hp, data=dat, pch=21, bg="gray", xlab="Horsepower", ylab="Miles per Gallon")
-plot(mpg ~ wt, data=dat, pch=21, bg="gray", xlab="Weight", ylab="Miles per Gallon")
+plot(mpg ~ hp, data=dat, bg="gray", xlab="Horsepower", ylab="Miles per Gallon")
+plot(mpg ~ wt, data=dat, bg="gray", xlab="Weight", ylab="Miles per Gallon")
 
-# ...
+# why don't we also use 'bg' above with par() to set the background color of
+# the points? it turns out that the graphical parameter 'bg' is for setting
+# the background color of the plotting device and that plot() *also* has a
+# special argument called 'bg' for setting the background color of points (so
+# these two things - the graphical parameter and the argument of plot() - are
+# different things)
 
 ############################################################################
