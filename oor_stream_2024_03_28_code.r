@@ -221,7 +221,24 @@ plot(1, 1, pch=19, xlab="x-Axis Label", ylab="y-Axis Label", main="Title",
 # marks on the x- and y-axis (note that these are suggestions; the function
 # still chooses an appropriate number to create nice axis annotations; also
 # note that the third value does not have any effect -- see help(par))
+plot(mpg ~ hp, data=dat)
+plot(mpg ~ hp, data=dat, lab=c(3, 10, 10))
+
+# illustrate the las argument
+plot(mpg ~ hp, data=dat)
 plot(mpg ~ hp, data=dat, las=1)
-plot(mpg ~ hp, data=dat, las=1, lab=c(3, 10, 10))
+plot(mpg ~ hp, data=dat, las=2)
+plot(mpg ~ hp, data=dat, las=3)
+
+# illustrate the mgp argument
+plot(mpg ~ hp, data=dat)
+plot(mpg ~ hp, data=dat, mgp=c(2.5,1,0))   # move the axis labels closer to the axis
+plot(mpg ~ hp, data=dat, mgp=c(2.5,0.8,0)) # move the annotations closer to the axis
+
+# illustrate the tck argument
+plot(mpg ~ hp, data=dat)
+plot(mpg ~ hp, data=dat, tck=-0.008)
+plot(mpg ~ hp, data=dat, tck=0.008, mgp=c(2.5,0.4,0))
+
 
 ############################################################################
