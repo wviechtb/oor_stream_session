@@ -322,8 +322,17 @@ dev.off()
 #install.packages("rgl")
 library(rgl)
 
-plot3d(dat$hp, dat$wt, dat$mpg, size=5,
+plot3d(dat$hp, dat$wt, dat$mpg, size=10,
        xlab="Horsepower", ylab="Weight", zlab="Miles per Gallon")
+
+# for dynamic graphics, the plotly package is also really nice
+
+# install the plotly package and load it
+#install.packages("plotly")
+library(plotly)
+
+
+add_surface(plot_ly(x = res$x, y = res$y, z = res$z))
 
 
 ############################################################################
