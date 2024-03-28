@@ -252,4 +252,17 @@ plot(mpg ~ hp, data=dat, xlim=c(0,350), ylim=c(0,40), xaxs="i", yaxs="i")
 
 # 12.5.3: Figure margins
 
+# use the default margin sizes
+plot(mpg ~ hp, data=dat)
+
+# check what the defaults are
+par("mar")
+
+# adjust the margin sizes and redraw the plot
+par(mar=c(5,4,1,1))
+plot(mpg ~ hp, data=dat)
+
+# note: mar is one of those graphical parameters that you can only change via
+# par() and not within the call to the plotting function
+
 ############################################################################
