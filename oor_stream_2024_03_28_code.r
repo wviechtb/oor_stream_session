@@ -265,4 +265,24 @@ plot(mpg ~ hp, data=dat)
 # note: mar is one of those graphical parameters that you can only change via
 # par() and not within the call to the plotting function
 
+# close the plotting device to reset 'mar' to the defaults
+dev.off()
+
+# 12.5.4: Multiple figure environment
+
+# illustrate the use of 'mfrow'
+par(mfrow=c(2,2))
+plot(mpg ~ hp, data=dat)
+plot(mpg ~ wt, data=dat)
+plot(mpg ~ factor(cyl), data=dat)
+plot(mpg ~ factor(gear), data=dat)
+
+dev.off()
+
+# adding subfigures within figures via the 'fig' graphical parameter
+plot(mpg ~ hp, data=dat)
+par(fig=c(50,98,50,98)/100, new=TRUE, cex=0.8, mgp=c(1.8,0.7,0))
+plot(mpg ~ wt, data=dat)
+
+
 ############################################################################
