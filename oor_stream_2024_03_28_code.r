@@ -191,5 +191,27 @@ points(1.02, 0.927, pch=15, cex=5)
 points(0.98, 0.883, pch=15, cex=5)
 points(1.02, 0.883, pch=15, cex=5)
 
+# this is actually relevant when we want the size of points to reflect how
+# often certain combinations of values occurred; for example, say we plot the
+# number of gears of the cars versus the number of carburetors
+plot(dat$gear, dat$carb, pch=19)
+
+# at certain points, there may be multiple cars with the same combination of x
+# and y values; we can use xyTable() to determine this
+res <- xyTable(dat$gear, dat$carb)
+res
+
+# this gives all unique combinations of x and y values that occurred and for
+# each how often it occurred in the dataset; we can use these values to create
+# a scatterplot where the point sizes reflect the frequency of how often the
+# various combinations occurred in the data
+plot(res$x, res$y, pch=19, cex=res$number)
+
+# however, the point sizes are not scaled in their area to the frequency when
+# we do this; if we want the area of the points to reflect the frequency, we
+# have to take the square root of the frequencies
+plot(res$x, res$y, pch=19, cex=sqrt(res$number))
+
+
 
 ############################################################################
