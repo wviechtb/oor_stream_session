@@ -81,4 +81,8 @@ plot(mpg ~ factor(cyl), data=dat)
 # close the plotting device (i.e., close the window) or via dev.off()
 dev.off()
 
+# now if we call a high-level plotting function that automatically opens a new
+# plotting device (if none is already open), then the defaults are used again
+plot(mpg ~ factor(cyl), data=dat)
+
 ############################################################################
