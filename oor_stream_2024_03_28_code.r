@@ -120,4 +120,16 @@ plot(1, 1, pch="+")
 abline(h=1, lty="dotted")
 abline(v=1, lty="dotted")
 
+# can also use numbers for pch
+plot(1, 1, pch=19)
+
+# see help(points) for details on what the numbers mean
+help(points)
+
+# with the filled symbols, we can specify the background color
+plot(1, 1, pch=21, bg="gray")
+
+# can also specify the border color
+plot(1, 1, pch=21, bg="gray", col="dodgerblue")
+
 ############################################################################
