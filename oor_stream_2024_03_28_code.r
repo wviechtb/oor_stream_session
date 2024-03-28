@@ -43,11 +43,11 @@ par()
 par(c("col", "lty"))
 
 # set some graphics parameters
-par(bty="l")
+par(bty="l", las=1)
 
 # redraw the two graphs from above
-plot(mpg ~ hp, data=dat, xlab="Horsepower", ylab="Miles per Gallon")
-plot(mpg ~ wt, data=dat, xlab="Weight", ylab="Miles per Gallon")
+plot(mpg ~ hp, data=dat, pch=21, bg="gray", xlab="Horsepower", ylab="Miles per Gallon")
+plot(mpg ~ wt, data=dat, pch=21, bg="gray", xlab="Weight", ylab="Miles per Gallon")
 
 # ...
 
