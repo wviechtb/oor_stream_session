@@ -331,6 +331,8 @@ plot3d(dat$hp, dat$wt, dat$mpg, size=10,
 #install.packages("plotly")
 library(plotly)
 
+plot_ly(x=dat$hp, y=dat$wt, z=dat$mpg)
+
 # fit a regression model predicting mpg from wt and hp and also use quadratic
 # terms for each predictor, then compute the predicted mpg value for
 # combinations of wt and hp (within the range of the observed data)
@@ -341,7 +343,7 @@ pred <- outer(wts, hps, function(x, y) {
    coef(res)[1] + coef(res)[2]*x + coef(res)[3]*x^2 + coef(res)[4]*y + coef(res)[5]*y^2
 })
 
-add_surface(plot_ly(x = wts, y = hps, z = pred))
+add_surface(plot_ly(x=wts, y=hps, z=pred))
 
 
 ############################################################################
