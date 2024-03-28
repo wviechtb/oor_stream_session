@@ -313,3 +313,17 @@ dev.off()
 # skipping this because it is rare that one uses multiple devices at the same time
 
 ############################################################################
+
+## 12.7: Dynamic graphics
+
+# an illustration of a 3d scatterplot
+
+# install the rgl package and load it
+#install.packages("rgl")
+library(rgl)
+
+plot3d(dat$hp, dat$wt, dat$mpg, size=5,
+       xlab="Horsepower", ylab="Weight", zlab="Miles per Gallon")
+
+
+############################################################################
