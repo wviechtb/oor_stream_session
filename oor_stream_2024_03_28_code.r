@@ -23,11 +23,11 @@ dat
 # a default looking scatterplot
 plot(mpg ~ hp, data=dat)
 
-# change the plotting symbol to a filled circle and use gray as the background
-# color of the circles, use only an L-shape around the plot, and add proper
-# x-axis and y-axis labels
-plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", xlab="Horsepower",
-     ylab="Miles per Gallon")
+# change the plotting symbol to a filled circle, use gray as the background
+# color of the circles, use only an L-shape around the plot, use horizontal
+# axis labels, and add proper x-axis and y-axis labels
+plot(mpg ~ hp, data=dat, pch=21, bg="gray", bty="l", las=1,
+     xlab="Horsepower", ylab="Miles per Gallon")
 
 # by setting the graphics parameters within the plot() function call, we only
 # temporarily change the defaults, so when we create a new graph, it will
@@ -43,9 +43,12 @@ par()
 par(c("col", "lty"))
 
 # set some graphics parameters
-par(pch=21, bg="gray", bty="l")
+par(bty="l")
 
 # redraw the two graphs from above
 plot(mpg ~ hp, data=dat, xlab="Horsepower", ylab="Miles per Gallon")
+plot(mpg ~ wt, data=dat, xlab="Weight", ylab="Miles per Gallon")
+
+# ...
 
 ############################################################################
