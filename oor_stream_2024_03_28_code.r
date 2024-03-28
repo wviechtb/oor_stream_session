@@ -138,4 +138,9 @@ abline(h=0.8, lty=2) # dashed line
 abline(h=1.2, lty=3) # dotted line
 abline(h=1.4, lty=4) # dotdash line
 
+# can also write out the line types ("solid", "dashed", "dotted", "dotdash");
+# there are even more types -- see help(par)
+
+
+
 ############################################################################
