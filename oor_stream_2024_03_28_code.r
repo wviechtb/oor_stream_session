@@ -8,7 +8,7 @@
 # Topic(s):
 # - An Introduction to R
 #   https://cran.r-project.org/doc/manuals/r-release/R-intro.html
-# - Section(s): 12.4 - ?
+# - Section(s): 12.4 - 12.7
 #
 # last updated: 2024-03-28
 
@@ -344,6 +344,5 @@ pred <- outer(wts, hps, function(x, y) {
 })
 
 add_surface(plot_ly(x=wts, y=hps, z=pred))
-
 
 ############################################################################
