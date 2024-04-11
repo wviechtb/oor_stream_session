@@ -224,11 +224,14 @@ cover_95
 
 ## Step 4: Embedding the simulation in a loop
 
+set.seed(1234)
 n_fake <- 1000
 cover_68 <- rep(NA, n_fake)
 cover_95 <- rep(NA, n_fake)
 
 pbar <- txtProgressBar(min=0, max=n_fake, style=3)
+
+# note: the loop below can take around ~10 minutes to finish
 
 for (s in 1:n_fake) {
 
