@@ -64,7 +64,7 @@ set.seed(1234)
 
 heights <- rnorm(5000, mean=62.5, sd=2.3)
 
-generations <- 1000
+generations <- 100
 
 means <- rep(NA, generations)
 sds   <- rep(NA, generations)
@@ -88,3 +88,4 @@ abline(h=60, lty="dotted")
 # Var[heights_t] = Var[slope * heights_(t-1)] + sigma^2
 # Var[heights_t] = slope^2 * Var[heights_(t-1)] + sigma^2
 
+############################################################################
