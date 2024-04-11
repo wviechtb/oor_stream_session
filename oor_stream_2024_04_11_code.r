@@ -253,9 +253,6 @@ mean(cover_95)
 
 # rerun the simulation using critical t-values
 
-cover_68 <- rep(NA, n_fake)
-cover_95 <- rep(NA, n_fake)
-
 # note: for a 68% CI, we need the value, say t_crit, from a t-distribution
 # under which 84% of the area falls, since that leaves 16% above and since we
 # construct a two-sided CI, a total of 32% will fall outside the interval
@@ -263,6 +260,9 @@ cover_95 <- rep(NA, n_fake)
 # 97.5% of the area falls
 t_68 <- qt(0.84,  df=n-2)
 t_95 <- qt(0.975, df=n-2)
+
+cover_68 <- rep(NA, n_fake)
+cover_95 <- rep(NA, n_fake)
 
 for (s in 1:n_fake) {
 
@@ -283,5 +283,48 @@ mean(cover_68)
 mean(cover_95)
 
 ############################################################################
+
+set.seed(1234)
+x <- runif(20, -1, 1)
+y <- 1*x - 4*x^2 + rnorm(20, 0, 0.4)
+plot(x, y, pch=21, bg="gray")
+
+res <- lm(y ~ x)
+summary(res)
+abline(res, lwd=3)
+
+a <- coef(res)[1]
+b <- coef(res)[2]
+sigma <- sigma(res)
+n <- length(x)
+
+t_68 <- qt(0.84,  df=n-2)
+t_95 <- qt(0.975, df=n-2)
+
+n_fake <- 1000
+
+cover_68 <- rep(NA, n_fake)
+cover_95 <- rep(NA, n_fake)
+
+for (s in 1:n_fake) {
+
+   setTxtProgressBar(pbar, s)
+
+   y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+   res <- lm(y ~ x)
+   b_hat <- coef(res)["x"]
+   b_se  <- se(res)["x"]
+   cover_68[s] <- (b_hat - t_68*b_se) < b && (b_hat + t_68*b_se > b)
+   cover_95[s] <- (b_hat - t_95*b_se) < b && (b_hat + t_95*b_se > b)
+
+}
+
+# check the coverage of the 68% and 95% CIs
+mean(cover_68)
+mean(cover_95)
+
+
+############################################################################
+
 
 ### 7.3: Formulating comparisons as regression models
