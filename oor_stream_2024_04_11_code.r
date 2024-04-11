@@ -79,13 +79,13 @@ plot(1:generations, means, type="o", pch=21, bg="gray")
 
 # it can be shown that the means converge to intercept / (1 - slope)
 30 / (1 - 0.5)
-abline(h=30 / (1 - 0.5), lty="dotted")
+abline(h = 30 / (1 - 0.5), lty="dotted")
 
 plot(1:generations, sds, type="o", pch=21, bg="gray")
 
 # it can be shown that the SDs converge to sigma / sqrt(1 - slope^2)
 2.3 / sqrt(1 - 0.5^2)
-abline(h=2.3 / sqrt(1 - 0.5^2), lty="dotted")
+abline(h = 2.3 / sqrt(1 - 0.5^2), lty="dotted")
 
 ############################################################################
 
