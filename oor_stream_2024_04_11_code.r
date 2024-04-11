@@ -219,5 +219,6 @@ b_se  <- se(res)["x"]
 # check whether the 68% and 95% CIs include the true slope
 cover_68 <- (b_hat - 1*b_se) < b && (b_hat + 1*b_se > b)
 cover_95 <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
-
+cover_68
+cover_95
 
