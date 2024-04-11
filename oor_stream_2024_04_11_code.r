@@ -250,3 +250,34 @@ for (s in 1:n_fake) {
 # check the coverage of the 68% and 95% CIs
 mean(cover_68)
 mean(cover_95)
+
+# rerun the simulation using critical t-values
+
+cover_68 <- rep(NA, n_fake)
+cover_95 <- rep(NA, n_fake)
+
+# note: for a 68% CI, we need the value, say t_crit, from a t-distribution
+# under which 84% of the area falls, since that leaves 16% above and since we
+# construct a two-sided CI, a total of 32% will fall outside the interval
+# (-t_crit, t_crit); similarly, for the 95% CI, we need the value under which
+# 97.5% of the area falls
+t_68 <- qt(0.84,  df=n-2)
+t_95 <- qt(0.975, df=n-2)
+
+for (s in 1:n_fake) {
+
+   setTxtProgressBar(pbar, s)
+
+   y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+   fake <- data.frame(x, y)
+   res <- stan_glm(y ~ x, data=fake, refresh=0) # suppress output on console
+   b_hat <- coef(res)["x"]
+   b_se  <- se(res)["x"]
+   cover_68[s] <- (b_hat - 1*b_se) < b && (b_hat + 1*b_se > b)
+   cover_95[s] <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
+
+}
+
+# check the coverage of the 68% and 95% CIs
+mean(cover_68)
+mean(cover_95)
