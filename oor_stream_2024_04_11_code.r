@@ -106,4 +106,8 @@ res
 
 plot(final ~ midterm, data=dat, pch=21, bg="gray",
      xlab="Midterm exam score", ylab="Final exam score")
-abline(res, lwd=3)
+grid()
+abline(res, lwd=5)
+abline(a=0, b=1, lwd=5, lty="dotted")
+
+############################################################################
