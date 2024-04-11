@@ -30,6 +30,13 @@ dat <- read.table("heights.txt", header=TRUE)
 # inspect the dataset
 head(dat)
 
+# Figure 6.3a: mother's height versus daughter's height (with jittering to
+# avoid points that overlap)
+plot(jitter(daughter_height, amount=0.5) ~ jitter(mother_height, amount=0.5),
+     data=dat, pch=19, cex=0.2, xlab="Mother's height (inches)",
+     ylab="Adult daughter's height (inches)", bty="l")
+grid()
+
 # fit a simple linear regression model predicting the daughter's height based
 # on the mother's height
 res <- stan_glm(daughter_height ~ mother_height, data=dat)
@@ -37,5 +44,11 @@ res
 
 # extract the coefficients (rounded to two decimal places)
 round(coef(res), digits=2)
+
+# add the regression line to the plot
+abline(res, lwd=5)
+
+# also add a diagonal line with a slope of 1
+abline(a=0, b=1, lwd=5, lty="dotted")
 
 ############################################################################
