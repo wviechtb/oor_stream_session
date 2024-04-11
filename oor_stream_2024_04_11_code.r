@@ -110,3 +110,69 @@ abline(res, lwd=5)
 abline(a=0, b=1, lwd=5, lty="dotted")
 
 ############################################################################
+
+### 7.1: Example: predicting presidential vote share from the economy
+
+# download the dataset (only need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
+
+# read in the data
+dat <- read.table("hibbs.dat", header=TRUE)
+
+# look at the data
+dat
+
+# plot growth on the x-axis versus vote on the y-axis (Figure 1.1a)
+plot(vote ~ growth, data=dat, xlab="Average recent growth in personal income",
+     ylab="Incumbent party's vote share", pch=NA, xaxt="n", yaxt="n",
+     xlim=c(-0.5,4.5), ylim=c(43,62), bty="l")
+abline(h=50, col="gray")
+with(dat, text(growth, vote, year, pos=4))
+axis(side=1, at=0:4, labels=paste0(0:4, "%"))
+axis(side=2, at=c(45,50,55,60), labels=paste0(c(45,50,55,60), "%"))
+title("Forecasting the election from the economy")
+
+# fit regression model (using the method of least squares)
+res <- lm(vote ~ growth, data=dat)
+summary(res)
+
+# plot growth versus vote and add the regression line (Figure 1.1b)
+plot(vote ~ growth, data=dat, xlab="Average recent growth in personal income",
+     ylab="Incumbent party's vote share", pch=19, xaxt="n", yaxt="n",
+     xlim=c(-0.5,4.5), ylim=c(43,62), bty="l")
+abline(h=50, col="gray")
+points(vote ~ growth, data=dat, pch=19)
+axis(side=1, at=0:4, labels=paste0(0:4, "%"))
+axis(side=2, at=c(45,50,55,60), labels=paste0(c(45,50,55,60), "%"))
+title("Data and linear fit")
+abline(res, lwd=3)
+text(3, coef(res)[1] + coef(res)[2]*3, pos=4, offset=2,
+     paste0("y = ", round(coef(res)[1], 1), " + ", round(coef(res)[2], 1), " x"))
+
+# install the rstanarm package
+#install.packages("rstanarm")
+
+# load the rstanarm package
+library(rstanarm)
+
+# fit the model using stan_glm() (first setting the seed of the random number
+# generator to make the results fully reproducible)
+set.seed(1234)
+res <- stan_glm(vote ~ growth, data=hibbs)
+res
+
+# get more detailed information about the fitted model
+summary(res)
+
+# extract the posterior samples
+post <- as.data.frame(res)
+head(post)
+
+# histogram of the posterior distribution for the slope
+hist(post$growth, xlab="Slope", main="")
+
+# median of the posterior distribution for the slope
+median(post$growth)
+
+# 95% credible interval
+quantile(post$growth, probs=c(.025,.975))
