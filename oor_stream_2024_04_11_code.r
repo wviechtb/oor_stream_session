@@ -59,3 +59,28 @@ var(dat$daughter_height)
 # larger) than the variation in mothers' heights
 
 ############################################################################
+
+set.seed(1234)
+
+heights <- rnorm(5000, mean=62.5, sd=2.3)
+
+generations <- 1000
+
+means <- rep(NA, generations)
+sds   <- rep(NA, generations)
+
+for (i in 1:generations) {
+   means[i] <- mean(heights)
+   sds[i]   <- sd(heights)
+   heights <- 30 + 0.5 * heights + rnorm(5000, mean=0, sd=2.3)
+}
+
+plot(1:generations, means, type="o", pch=21, bg="gray")
+abline(h=60, lty="dotted")
+
+# the means converge to intercept / (1 - slope), which is 60 here
+
+plot(1:generations, sds, type="o", pch=21, bg="gray")
+abline(h=60, lty="dotted")
+
+# what's the equation for the value to which the SDs converge?
