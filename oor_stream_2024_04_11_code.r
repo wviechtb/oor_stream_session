@@ -211,3 +211,7 @@ fake <- data.frame(x, y)
 ## Step 3: Fitting the model and comparing fitted to assumed values
 res <- stan_glm(y ~ x, data=fake)
 res
+
+# extract the coefficients and standard errors
+b_hat <- coef(res)
+b_se <- se(res)
