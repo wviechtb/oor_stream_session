@@ -180,11 +180,13 @@ text(dat$growth[dat$year==2008], dat$vote[dat$year==2008], "2008", pos=1, cex=0.
 # Figure 7.3
 xs <- seq(35, 70, length=1000)
 ys <- dnorm(xs, mean=52.3, sd=3.9)
-plot(xs, ys, type="l", bty="n", lwd=3, xaxt="i", yaxt="n",
-     xlab="Clinton share of the two-party vote")
-xs <- seq(50, 70, length=1000)
-ys <- dnorm(xs, mean=52.3, sd=3.9)
-polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
+plot(xs, ys, type="l", bty="n", lwd=3, yaxs="i", yaxt="n",
+     xlab="Clinton share of the two-party vote", ylab="")
+xs.sub <- seq(50, 70, length=1000)
+ys.sub <- dnorm(xs.sub, mean=52.3, sd=3.9)
+polygon(c(xs.sub,rev(xs.sub)), c(ys.sub,rep(0,length(xs.sub))), col="gray")
+text(50, dnorm(50, mean=52.3, sd=3.9)/3, "Predicted\n72% chance\nof Clinton victory", pos=4)
+lines(xs, ys, lwd=3)
 
 # add a line going from (0, 0) to (0, density at x=0)
 segments(0, 0, 0, dnorm(0))
