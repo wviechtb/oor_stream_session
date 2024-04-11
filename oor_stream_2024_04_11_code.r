@@ -196,3 +196,18 @@ pnorm(50, mean=52.3, sd=3.9, lower.tail=FALSE)
 
 ### 7.2: Checking the model-fitting procedure using fake-data simulation
 
+## Step 1: Creating the pretend world
+a <- 46.3
+b <- 3.0
+sigma <- 3.9
+x <- dat$growth
+n <- length(x)
+
+## Step 2: Simulating fake data
+set.seed(1234)
+y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+fake <- data.frame(x, y)
+
+## Step 3: Fitting the model and comparing fitted to assumed values
+res <- stan_glm(y ~ x, data=fake)
+res
