@@ -216,6 +216,8 @@ res
 b_hat <- coef(res)["x"]
 b_se  <- se(res)["x"]
 
-# check
-cover_68 <- abs(b - b_hat) < b_se
-cover_95 <- abs(b - b_hat) < 2*b_se
+# check whether the 68% and 95% CIs include the true slope
+cover_68 <- (b_hat - 1*b_se) < b && (b_hat + 1*b_se > b)
+cover_95 <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
+
+
