@@ -345,6 +345,14 @@ diff <- mean(y_1) - mean(y_0)
 se_0 <- sd(y_0) / sqrt(n_0)
 se_1 <- sd(y_1) / sqrt(n_1)
 se   <- sqrt(se_0^2 + se_1^2) # recall eq. 4.1
+diff
+se
+
+y <- c(y_0, y_1)
+x <- c(rep(0, n_0), rep(1, n_1))
+fake <- data.frame(x, y)
+res <- stan_glm(y ~ x, data=fake, prior_intercept=NULL, prior=NULL, prior_aux=NULL)
+res
 
 
 ############################################################################
