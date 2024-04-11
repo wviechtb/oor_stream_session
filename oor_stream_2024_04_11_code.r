@@ -84,3 +84,7 @@ plot(1:generations, sds, type="o", pch=21, bg="gray")
 abline(h=60, lty="dotted")
 
 # what's the equation for the value to which the SDs converge?
+
+# Var[heights_t] = Var[slope * heights_(t-1)] + sigma^2
+# Var[heights_t] = slope^2 * Var[heights_(t-1)] + sigma^2
+
