@@ -138,7 +138,12 @@ set.seed(1234)
 res <- stan_glm(vote ~ growth, data=dat)
 res
 
-# plot growth versus vote and add the regression line (Figure 1.1b)
+# model fitting with stan_glm() involves some aspects that are random (to be
+# discussed in further detail later on in the book); since the authors did not
+# set the seed in the book, we cannot exactly reproduce their results, but the
+# results we obtain are essentially the same
+
+# plot growth versus vote and add the regression line (Figure 7.2b)
 plot(vote ~ growth, data=dat, xlab="Average recent growth in personal income",
      ylab="Incumbent party's vote share", pch=19, xaxt="n", yaxt="n",
      xlim=c(-0.5,4.5), ylim=c(43,62), bty="l")
@@ -151,6 +156,10 @@ abline(res, lwd=3)
 text(3, coef(res)[1] + coef(res)[2]*3, pos=4, offset=2,
      paste0("y = ", round(coef(res)[1], 1), " + ", round(coef(res)[2], 1), " x"))
 
+
+############################################################################
+############################################################################
+############################################################################
 
 
 
