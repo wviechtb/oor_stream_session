@@ -213,5 +213,9 @@ res <- stan_glm(y ~ x, data=fake)
 res
 
 # extract the coefficients and standard errors
-b_hat <- coef(res)
-b_se <- se(res)
+b_hat <- coef(res)["x"]
+b_se  <- se(res)["x"]
+
+# check
+cover_68 <- abs(b - b_hat) < b_se
+cover_95 <- abs(b - b_hat) < 2*b_se
