@@ -175,14 +175,15 @@ text(dat$growth[dat$year==2008], dat$vote[dat$year==2008], "2008", pos=1, cex=0.
 
 # based on our results we obtained above, the predicted vote share for Clinton
 # in 2016 was as follows (based on growth =~ 2% for the second term of Obama)
-46.2 + 2*3.1
+46.3 + 2*3.0
 
 # Figure 7.3
 xs <- seq(35, 70, length=1000)
-ys <- dnorm(xs, mean=52.4)
-plot(xs, ys, type="l", bty="l")
-xs <- seq(1.96, 3.4, length=1000)
-ys <- dnorm(xs)
+ys <- dnorm(xs, mean=52.3, sd=3.9)
+plot(xs, ys, type="l", bty="n", lwd=3, xaxt="i", yaxt="n",
+     xlab="Clinton share of the two-party vote")
+xs <- seq(50, 70, length=1000)
+ys <- dnorm(xs, mean=52.3, sd=3.9)
 polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
 
 # add a line going from (0, 0) to (0, density at x=0)
