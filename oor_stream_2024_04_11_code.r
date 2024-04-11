@@ -156,13 +156,16 @@ abline(res, lwd=3)
 text(3, coef(res)[1] + coef(res)[2]*3, pos=4, offset=2,
      paste0("y = ", round(coef(res)[1], 1), " + ", round(coef(res)[2], 1), " x"))
 
+# note: we can just do abline(res) as shown above, so we do not have to use
+# abline(coef(res)) as described in the book
+
 # estimated slope plus/minus one standard error and two standard errors
 round(coef(res)[2] + c(-1,1) * 1 * res$ses[2], digits=1)
 round(coef(res)[2] + c(-1,1) * 2 * res$ses[2], digits=1)
 
 # highlight the point for the 2008 election
 points(vote ~ growth, data=dat, subset=year==2008, pch=19, cex=2, col="red")
-text(dat$growth[dat$year==2008], dat$vote[dat$year==2008], "2008", pos=1)
+text(dat$growth[dat$year==2008], dat$vote[dat$year==2008], "2008", pos=1, cex=0.8)
 
 ############################################################################
 ############################################################################
