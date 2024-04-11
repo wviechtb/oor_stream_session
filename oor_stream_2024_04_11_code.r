@@ -192,27 +192,7 @@ lines(xs, ys, lwd=3)
 # standard deviation 3.9
 pnorm(50, mean=52.3, sd=3.9, lower.tail=FALSE)
 
-
-
-
-
-
-
-############################################################################
-############################################################################
 ############################################################################
 
+### 7.2: Checking the model-fitting procedure using fake-data simulation
 
-
-# extract the posterior samples
-post <- as.data.frame(res)
-head(post)
-
-# histogram of the posterior distribution for the slope
-hist(post$growth, xlab="Slope", main="")
-
-# median of the posterior distribution for the slope
-median(post$growth)
-
-# 95% credible interval
-quantile(post$growth, probs=c(.025,.975))
