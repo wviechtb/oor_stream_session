@@ -13,4 +13,13 @@
 
 ############################################################################
 
+### 6.5: The paradox of regression to the mean
+
+# download the dataset (only need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/PearsonLee/data/Heights.txt", destfile="heights.txt")
+
+# read in the data
+dat <- read.table("heights.txt", header=TRUE)
+
+
 ############################################################################
