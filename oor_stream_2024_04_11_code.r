@@ -335,7 +335,7 @@ y_0
 mean(y_0)
 sd(y_0) / sqrt(n_0)
 
-res0 <- stan_glm(y_0 ~ 1, data=fake_0, prior_intercept=NULL, prior=NULL, prior_aux=NULL)
+res0 <- stan_glm(y_0 ~ 1, data=fake_0, prior_intercept=NULL, prior=NULL, prior_aux=NULL, refresh=0)
 res0
 
 n_1 <- 30
@@ -349,9 +349,9 @@ diff
 se
 
 y <- c(y_0, y_1)
-x <- c(rep(0, n_0), rep(1, n_1))
+x <- rep(c(0,1), times=c(n_0, n_1))
 fake <- data.frame(x, y)
-res <- stan_glm(y ~ x, data=fake, prior_intercept=NULL, prior=NULL, prior_aux=NULL)
+res <- stan_glm(y ~ x, data=fake, prior_intercept=NULL, prior=NULL, prior_aux=NULL, refresh=0)
 res
 
 
