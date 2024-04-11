@@ -301,7 +301,7 @@ n <- length(x)
 t_68 <- qt(0.84,  df=n-2)
 t_95 <- qt(0.975, df=n-2)
 
-n_fake <- 1000
+n_fake <- 10000
 
 cover_68 <- rep(NA, n_fake)
 cover_95 <- rep(NA, n_fake)
@@ -313,7 +313,7 @@ for (s in 1:n_fake) {
    y <- a + b*x + rnorm(n, mean=0, sd=sigma)
    res <- lm(y ~ x)
    b_hat <- coef(res)["x"]
-   b_se  <- se(res)["x"]
+   b_se  <- sqrt(vcov(res)[2,2])
    cover_68[s] <- (b_hat - t_68*b_se) < b && (b_hat + t_68*b_se > b)
    cover_95[s] <- (b_hat - t_95*b_se) < b && (b_hat + t_95*b_se > b)
 
@@ -322,7 +322,6 @@ for (s in 1:n_fake) {
 # check the coverage of the 68% and 95% CIs
 mean(cover_68)
 mean(cover_95)
-
 
 ############################################################################
 
