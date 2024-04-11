@@ -246,3 +246,7 @@ for (s in 1:n_fake) {
    cover_95[s] <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
 
 }
+
+# check the coverage of the 68% and 95% CIs
+mean(cover_68)
+mean(cover_95)
