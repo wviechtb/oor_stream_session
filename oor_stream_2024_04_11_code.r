@@ -222,3 +222,18 @@ cover_95 <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
 cover_68
 cover_95
 
+## Step 4: Embedding the simulation in a loop
+
+n_fake <- 1000
+cover_68 <- rep(NA, n_fake)
+cover_95 <- rep(NA, n_fake)
+
+for (s in 1:n_fake) {
+   y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+   fake <- data.frame(x, y)
+   fit <- stan_glm(y ~ x, data=fake, refresh=0) # suppress output on console
+   b_hat <- coef(fit)["x"]
+   b_se <- se(fit)["x"]
+   cover_68[s] <- abs(b - b_hat) < b_se
+   cover_95[s] <- abs(b - b_hat) < 2*b_se
+}
