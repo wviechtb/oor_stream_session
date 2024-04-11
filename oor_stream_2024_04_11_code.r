@@ -77,18 +77,15 @@ for (i in 1:generations) {
 
 plot(1:generations, means, type="o", pch=21, bg="gray")
 
-# the means converge to intercept / (1 - slope)
+# it can be shown that the means converge to intercept / (1 - slope)
 30 / (1 - 0.5)
 abline(h=30 / (1 - 0.5), lty="dotted")
 
 plot(1:generations, sds, type="o", pch=21, bg="gray")
 
-# the SDs converge to sigma / sqrt(1 - slope^2), which is
+# it can be shown that the SDs converge to sigma / sqrt(1 - slope^2)
 2.3 / sqrt(1 - 0.5^2)
 abline(h=2.3 / sqrt(1 - 0.5^2), lty="dotted")
-
-# Var[heights_t] = Var[slope * heights_(t-1)] + sigma^2
-# Var[heights_t] = slope^2 * Var[heights_(t-1)] + sigma^2
 
 ############################################################################
 
