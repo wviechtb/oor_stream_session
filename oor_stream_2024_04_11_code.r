@@ -134,14 +134,15 @@ title("Forecasting the election from the economy")
 
 # fit the model using stan_glm() (first setting the seed of the random number
 # generator to make the results fully reproducible)
-set.seed(1234)
+set.seed(1237)
 res <- stan_glm(vote ~ growth, data=dat)
 res
 
 # model fitting with stan_glm() involves some aspects that are random (to be
 # discussed in further detail later on in the book); since the authors did not
-# set the seed in the book, we cannot exactly reproduce their results, but the
-# results we obtain are essentially the same
+# set the seed in the book, we cannot exactly reproduce their results, but by
+# trying out different seed values, we can get the same results at least when
+# rounded to a single digit
 
 # plot growth versus vote and add the regression line (Figure 7.2b)
 plot(vote ~ growth, data=dat, xlab="Average recent growth in personal income",
@@ -154,7 +155,8 @@ axis(side=2, at=c(45,50,55,60), labels=paste0(c(45,50,55,60), "%"))
 title("Data and linear fit")
 abline(res, lwd=3)
 text(3, coef(res)[1] + coef(res)[2]*3, pos=4, offset=2,
-     paste0("y = ", round(coef(res)[1], 1), " + ", round(coef(res)[2], 1), " x"))
+     paste0("y = ", formatC(coef(res)[1], digits=1, format="f"),
+            " + ", formatC(coef(res)[2], digits=1, format="f"), " x"))
 
 # estimated slope plus/minus one standard error and two standard errors
 round(coef(res)[2] + c(-1,1) * 1 * res$ses[2], digits=1)
@@ -174,6 +176,21 @@ text(dat$growth[dat$year==2008], dat$vote[dat$year==2008], "2008", pos=1, cex=0.
 # based on our results we obtained above, the predicted vote share for Clinton
 # in 2016 was as follows (based on growth =~ 2% for the second term of Obama)
 46.2 + 2*3.1
+
+# Figure 7.3
+xs <- seq(35, 70, length=1000)
+ys <- dnorm(xs, mean=52.4)
+plot(xs, ys, type="l", bty="l")
+xs <- seq(1.96, 3.4, length=1000)
+ys <- dnorm(xs)
+polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
+
+# add a line going from (0, 0) to (0, density at x=0)
+segments(0, 0, 0, dnorm(0))
+
+# 12.2.1: Mathematical annotation
+text(0, dnorm(0), expression(mu==0), pos=3)
+
 
 
 
