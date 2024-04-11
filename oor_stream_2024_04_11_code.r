@@ -273,11 +273,15 @@ for (s in 1:n_fake) {
    res <- stan_glm(y ~ x, data=fake, refresh=0) # suppress output on console
    b_hat <- coef(res)["x"]
    b_se  <- se(res)["x"]
-   cover_68[s] <- (b_hat - 1*b_se) < b && (b_hat + 1*b_se > b)
-   cover_95[s] <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
+   cover_68[s] <- (b_hat - t_68*b_se) < b && (b_hat + t_68*b_se > b)
+   cover_95[s] <- (b_hat - t_95*b_se) < b && (b_hat + t_95*b_se > b)
 
 }
 
 # check the coverage of the 68% and 95% CIs
 mean(cover_68)
 mean(cover_95)
+
+############################################################################
+
+### 7.3: Formulating comparisons as regression models
