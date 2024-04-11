@@ -51,4 +51,11 @@ abline(res, lwd=5)
 # also add a diagonal line with a slope of 1
 abline(a=0, b=1, lwd=5, lty="dotted")
 
+# compare the variance of mothers' and daughters' heights
+var(dat$mother_height)
+var(dat$daughter_height)
+
+# so the variation in daughers' heights is still as large (or even a bit
+# larger) than the variation in mothers' heights
+
 ############################################################################
