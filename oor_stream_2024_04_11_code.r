@@ -156,6 +156,10 @@ abline(res, lwd=3)
 text(3, coef(res)[1] + coef(res)[2]*3, pos=4, offset=2,
      paste0("y = ", round(coef(res)[1], 1), " + ", round(coef(res)[2], 1), " x"))
 
+# estimated slope plus/minus one standard error and two standard errors
+round(coef(res)[2] + c(-1,1) * 1 * res$ses[2], digits=1)
+round(coef(res)[2] + c(-1,1) * 2 * res$ses[2], digits=1)
+
 
 ############################################################################
 ############################################################################
