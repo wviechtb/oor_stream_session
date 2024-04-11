@@ -89,3 +89,21 @@ abline(h=60, lty="dotted")
 # Var[heights_t] = slope^2 * Var[heights_(t-1)] + sigma^2
 
 ############################################################################
+
+## How regression to the mean can confuse people about causal inference;
+## demonstration using fake data
+
+set.seed(1234)
+ability <- rnorm(1000, mean=50, sd=10)
+midterm <- ability + rnorm(1000, mean=0, sd=10)
+final   <- ability + rnorm(1000, mean=0, sd=10)
+
+dat <- data.frame(midterm, final)
+rm(ability, midterm, final)
+
+res <- stan_glm(final ~ midterm, data=dat)
+res
+
+plot(final ~ midterm, data=dat, pch=21, bg="gray",
+     xlab="Midterm exam score", ylab="Final exam score")
+abline(res, lwd=3)
