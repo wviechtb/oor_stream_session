@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 6.5 - ?
+# - Section(s): 6.5 - 7.4
 #
 # last updated: 2024-04-11
 
@@ -327,6 +327,8 @@ mean(cover_95)
 
 ### 7.3: Formulating comparisons as regression models
 
+set.seed(1235)
+
 n_0 <- 20
 y_0 <- rnorm(n_0, mean=2.0, sd=5.0)
 fake_0 <- data.frame(y_0)
@@ -354,5 +356,14 @@ fake <- data.frame(x, y)
 res <- stan_glm(y ~ x, data=fake, prior_intercept=NULL, prior=NULL, prior_aux=NULL, refresh=0)
 res
 
+# Figure 7.4
+plot(x, y, pch=19, cex=0.5, bty="l", xlab="Indicator x", xaxp=c(0,1,1))
+abline(h=tapply(y, x, mean), lty="dashed")
+abline(res, lwd=3)
+text(0.01, 1.5, expression(bar(y)[0] == 2.44), pos=4)
+text(0.99, 7.9, expression(bar(y)[1] == 7.31), pos=2)
+text(0.5, 3.9,
+     paste0("y = ", formatC(coef(res)[1], digits=1, format="f"),
+            " + ", formatC(coef(res)[2], digits=1, format="f"), " x"))
 
 ############################################################################
