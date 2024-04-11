@@ -122,7 +122,7 @@ dat <- read.table("hibbs.dat", header=TRUE)
 # look at the data
 dat
 
-# plot growth on the x-axis versus vote on the y-axis (Figure 1.1a)
+# plot growth on the x-axis versus vote on the y-axis (Figure 7.2a)
 plot(vote ~ growth, data=dat, xlab="Average recent growth in personal income",
      ylab="Incumbent party's vote share", pch=NA, xaxt="n", yaxt="n",
      xlim=c(-0.5,4.5), ylim=c(43,62), bty="l")
@@ -132,9 +132,11 @@ axis(side=1, at=0:4, labels=paste0(0:4, "%"))
 axis(side=2, at=c(45,50,55,60), labels=paste0(c(45,50,55,60), "%"))
 title("Forecasting the election from the economy")
 
-# fit regression model (using the method of least squares)
-res <- lm(vote ~ growth, data=dat)
-summary(res)
+# fit the model using stan_glm() (first setting the seed of the random number
+# generator to make the results fully reproducible)
+set.seed(1234)
+res <- stan_glm(vote ~ growth, data=dat)
+res
 
 # plot growth versus vote and add the regression line (Figure 1.1b)
 plot(vote ~ growth, data=dat, xlab="Average recent growth in personal income",
@@ -149,20 +151,8 @@ abline(res, lwd=3)
 text(3, coef(res)[1] + coef(res)[2]*3, pos=4, offset=2,
      paste0("y = ", round(coef(res)[1], 1), " + ", round(coef(res)[2], 1), " x"))
 
-# install the rstanarm package
-#install.packages("rstanarm")
 
-# load the rstanarm package
-library(rstanarm)
 
-# fit the model using stan_glm() (first setting the seed of the random number
-# generator to make the results fully reproducible)
-set.seed(1234)
-res <- stan_glm(vote ~ growth, data=hibbs)
-res
-
-# get more detailed information about the fitted model
-summary(res)
 
 # extract the posterior samples
 post <- as.data.frame(res)
