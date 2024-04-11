@@ -228,12 +228,18 @@ n_fake <- 1000
 cover_68 <- rep(NA, n_fake)
 cover_95 <- rep(NA, n_fake)
 
+pbar <- txtProgressBar(min=0, max=n_fake, style=3)
+
 for (s in 1:n_fake) {
+
+   setTxtProgressBar(pbar, s)
+
    y <- a + b*x + rnorm(n, mean=0, sd=sigma)
    fake <- data.frame(x, y)
-   fit <- stan_glm(y ~ x, data=fake, refresh=0) # suppress output on console
-   b_hat <- coef(fit)["x"]
-   b_se <- se(fit)["x"]
-   cover_68[s] <- abs(b - b_hat) < b_se
-   cover_95[s] <- abs(b - b_hat) < 2*b_se
+   res <- stan_glm(y ~ x, data=fake, refresh=0) # suppress output on console
+   b_hat <- coef(res)["x"]
+   b_se  <- se(res)["x"]
+   cover_68[s] <- (b_hat - 1*b_se) < b && (b_hat + 1*b_se > b)
+   cover_95[s] <- (b_hat - 2*b_se) < b && (b_hat + 2*b_se > b)
+
 }
