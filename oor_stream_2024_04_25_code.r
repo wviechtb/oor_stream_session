@@ -124,5 +124,13 @@ library(lavaan)
 # unlink()      - remove a file or directory
 # list.files()  - list the files in a particular directory
 # list.dirs()   - list the directories
+# file.exists() - check if a file exists
+# file.copy()   - copy a file
+
+## 14.2: Filepaths
+
+# a couple recommendations:
+# - use relative (not absolute) file paths
+# - when specifying a file path, use forward slashes
 
 ############################################################################
