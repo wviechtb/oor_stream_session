@@ -114,4 +114,14 @@ library(lavaan)
 
 ############################################################################
 
+### 14: OS facilities
 
+## 14.1: Files and directories
+
+# file.create() - create an empty file
+# dir.create()  - create a directory (folder)
+# file.remove() - remove a file
+# unlink()      - remove a file or directory
+# list.files()  - list the files in a particular directory
+
+############################################################################
