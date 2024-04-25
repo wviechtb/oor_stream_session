@@ -147,3 +147,13 @@ library(lavaan)
 # archives (such as .gzip, .tar, and .zip files)
 
 ############################################################################
+
+### B.4 Scripting with R
+
+# sometimes, we want to run an entire R script from the command line and
+# capture all output that is generated in an output file; this can be done
+# with 'R CMD BATCH input.txt output.txt'
+
+
+############################################################################
+
