@@ -112,8 +112,6 @@ library(lavaan)
 # - to avoid the headaches that this can create, only load packages at the
 #   beginning of your script that you really need
 
-
-
 ############################################################################
 
 
