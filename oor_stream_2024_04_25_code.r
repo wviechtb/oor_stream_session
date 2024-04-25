@@ -68,8 +68,10 @@ install.packages("lme4")
 # alternatively, if one has the appropriate tools installed, one can also
 # install packages from the 'source version'
 
-
-
+# to get a list of help topics of an installed package, one can do as
+# described in the manual using help.start(), but more directly, we can do the
+# following
+help(package="lme4")
 
 # name clashes (masking)
 
