@@ -137,6 +137,8 @@ library(lavaan)
 
 ## 14.3: System commands
 
-
+# it is good to know about the possibility to run system commands from within
+# R with system() and system2(), but these are really more advanced use cases,
+# so we won't get into specifics here
 
 ############################################################################
