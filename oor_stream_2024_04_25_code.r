@@ -73,11 +73,23 @@ install.packages("lme4")
 # following
 help(package="lme4")
 
-# name clashes (masking)
+############################################################################
+
+## 13.1: Standard packages
+
+# as discussed above, these are the packages that come with R
+
+############################################################################
+
+## 13.2: Contributed packages and CRAN
+
+# the 'recommended' packages also come with R; everything else are additional
+# packages installed by the user
 
 ############################################################################
 
 
 
-## 13.1: Standard packages
 
+
+# name clashes (masking)
