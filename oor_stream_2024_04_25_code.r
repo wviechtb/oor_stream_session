@@ -34,18 +34,17 @@ library()
 installed.packages()
 
 # only show where installed, version, and the 'priority'
-
 installed.packages()[,c("LibPath", "Version", "Priority")]
 
 # the 'base' and 'recommended' packages (see 'Priority' column) are installed
 # with R automatically; it is also possible to install an updated version of
 # recommended packages (if there is an update)
 
-# in RStudio, there is also the 'Packages' pane (bottom-right)
-
 # list loaded packages (have to explicitly use print())
-
 print(.packages())
+
+# load the 'boot' package
+library(boot)
 
 
 
