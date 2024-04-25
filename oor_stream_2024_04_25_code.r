@@ -117,16 +117,3 @@ library(lavaan)
 ############################################################################
 
 
-ff <- function(x) {
-   x <- as.character(substitute(x))
-   res <- sapply(loadedNamespaces(), function(ns) {
-      if (exists(x, envir=asNamespace(ns), inherit=FALSE))
-         return(ns)
-      })
-   res[sapply(res, is.null)] <- NULL
-   res <- unname(unlist(res))
-   return(res)
-}
-
-
-
