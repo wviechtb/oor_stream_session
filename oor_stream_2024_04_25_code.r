@@ -123,5 +123,6 @@ library(lavaan)
 # file.remove() - remove a file
 # unlink()      - remove a file or directory
 # list.files()  - list the files in a particular directory
+# list.dirs()   - list the directories
 
 ############################################################################
