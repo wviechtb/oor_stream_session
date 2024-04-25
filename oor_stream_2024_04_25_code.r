@@ -24,6 +24,12 @@ library()
 # - library = place where you store books
 # (don't say you are using the 'xyz library' for your analysis!)
 
+# typically, there are (at least) two libraries:
+
+# 1) the 'system library' into which the packages are installed that come with
+#    R by default (e.g., the 'base', 'stats', 'utils' packages)
+
+# 2) the 'user library' into which additional packages are installed
 
 # another way
 
