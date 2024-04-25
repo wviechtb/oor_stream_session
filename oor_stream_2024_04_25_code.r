@@ -126,11 +126,17 @@ library(lavaan)
 # list.dirs()   - list the directories
 # file.exists() - check if a file exists
 # file.copy()   - copy a file
+# file.path()   - construct file paths in a platform indepedent way
 
 ## 14.2: Filepaths
 
 # a couple recommendations:
 # - use relative (not absolute) file paths
 # - when specifying a file path, use forward slashes
+# - assume file names are case-sensitive
+
+## 14.3: System commands
+
+
 
 ############################################################################
