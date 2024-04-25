@@ -46,7 +46,13 @@ print(.packages())
 # load the 'boot' package
 library(boot)
 
+# check which packages are loaded now
+print(.packages())
 
+# install the 'lme4' package (https://cran.r-project.org/package=lme4)
+install.packages("lme4")
+
+# when
 
 # name clashes (masking)
 
