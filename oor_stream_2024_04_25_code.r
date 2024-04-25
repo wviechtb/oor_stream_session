@@ -8,7 +8,7 @@
 # Topic(s):
 # - An Introduction to R
 #   https://cran.r-project.org/doc/manuals/r-release/R-intro.html
-# - Section(s): 13.1 - ?
+# - Section(s): 13.1 - 14.4
 #
 # last updated: 2024-04-25
 
@@ -126,7 +126,7 @@ library(lavaan)
 # list.dirs()   - list the directories
 # file.exists() - check if a file exists
 # file.copy()   - copy a file
-# file.path()   - construct file paths in a platform indepedent way
+# file.path()   - construct file paths in a platform independent way
 
 ## 14.2: Filepaths
 
@@ -140,5 +140,10 @@ library(lavaan)
 # it is good to know about the possibility to run system commands from within
 # R with system() and system2(), but these are really more advanced use cases,
 # so we won't get into specifics here
+
+## 14.4: Compression and Archives
+
+# as described, R comes with a whole bunch of functionality for dealing with
+# archives (such as .gzip, .tar, and .zip files)
 
 ############################################################################
