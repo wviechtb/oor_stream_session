@@ -30,8 +30,7 @@ library()
 #    R by default (e.g., the 'base', 'stats', 'utils' packages)
 # 2) the 'user library' into which additional packages are installed
 
-# another way
-
+# to get more information about installed packages
 installed.packages()
 
 # only show where installed, version, and the 'priority'
