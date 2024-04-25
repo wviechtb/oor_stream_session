@@ -53,9 +53,6 @@ mtcars
 # then R is going through the search path to find an object with that name
 # (which happens to be part of the 'datasets' package)
 
-# load the 'boot' package
-library(boot)
-
 # check which packages are loaded now
 print(.packages())
 
@@ -67,6 +64,9 @@ install.packages("lme4")
 # code); this will typically be the case under Windows and macOS;
 # alternatively, if one has the appropriate tools installed, one can also
 # install packages from the 'source version'
+
+# load the 'lme4' package
+library(lme4)
 
 # to get a list of help topics of an installed package, one can do as
 # described in the manual using help.start(), but more directly, we can do the
@@ -88,8 +88,33 @@ help(package="lme4")
 
 ############################################################################
 
+## 13.3: Namespaces
+
+# install the 'psych' and 'lavaan' packages
+install.packages("psych")
+install.packages("lavaan")
+
+# a note about 'masking' (or name clashes): different packages may contain
+# functions that have the same name; for example:
+
+library(psych)
+library(lavaan)
+
+# - note that it says that function 'cor2cov' has been masked
+# - what has happened is that both packages have a function called 'cor2cov'
+# - so when you now use the cor2cov function, the one from the lavaan package
+#   will be used (i.e., always the one from the package loaded last)
+# - but what if you want to use the 'cor2cov' function from the psych package?
+# - then you can use psych::cor2cov() to explicitly tell R to use the cor2cov
+#   function from the psych package
+# - the more packages you load, the more likely it is that two packages will
+#   contain functions with the same name and hence that masking will occur
+# - to avoid the headaches that this can create, only load packages at the
+#   beginning of your script that you really need
 
 
 
+############################################################################
 
-# name clashes (masking)
+
+
