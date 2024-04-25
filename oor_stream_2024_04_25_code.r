@@ -43,6 +43,16 @@ installed.packages()[,c("LibPath", "Version", "Priority")]
 # list loaded packages (have to explicitly use print())
 print(.packages())
 
+# can also use search(), but strictly speaking, this is showing the 'search
+# path', that is, the locations where R is looking for an object
+search()
+
+# for example, when we type
+mtcars
+
+# then R is going through the search path to find an object with that name
+# (which happens to be part of the 'datasets' package)
+
 # load the 'boot' package
 library(boot)
 
@@ -52,7 +62,14 @@ print(.packages())
 # install the 'lme4' package (https://cran.r-project.org/package=lme4)
 install.packages("lme4")
 
-# when
+# if possible, R will install a package from the 'binary version', which
+# avoids having to compile C/C++/Fortan code (if the package makes use of such
+# code); this will typically be the case under Windows and macOS;
+# alternatively, if one has the appropriate tools installed, one can also
+# install packages from the 'source version'
+
+
+
 
 # name clashes (masking)
 
