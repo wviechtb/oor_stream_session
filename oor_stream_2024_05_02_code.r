@@ -33,7 +33,7 @@
 ## Least squares
 
 # simulate some data based on a simple regression model
-set.seed(1234)
+set.seed(1239)
 n <- 50
 x <- runif(n, 0, 10)
 y <- 2 + 0.5 * x + rnorm(n, mean=0, sd=1)
@@ -67,6 +67,17 @@ betahat
 b <- sum((x - mean(x)) * y) / sum((x - mean(x))^2)
 a <- mean(y) - b * mean(x)
 rbind(a, b)
+
+# add the estimated regression line to the plot
+abline(a, b, lwd=3, lty="dotted")
+
+# fit the model using lm()
+res <- lm(y ~ x)
+res
+
+# aside from being tedious, it should be noted that the 'manual' computations
+# above are not the best way of computing the estimates of the intercept and
+# slope
 
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
