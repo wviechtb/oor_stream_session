@@ -63,6 +63,9 @@ y
 betahat <- solve(t(X) %*% X) %*% t(X) %*% y
 betahat
 
+# change y back to a vector
+y <- c(y)
+
 # double-check that this gives the same estimates as (8.3) and (8.4)
 b <- sum((x - mean(x)) * y) / sum((x - mean(x))^2)
 a <- mean(y) - b * mean(x)
@@ -80,7 +83,7 @@ coef(res)
 # lm() internally uses equations that are numerically more stable
 
 # compute the residuals
-resid <- c(y - (a + b * x))
+resid <- y - (a + b * x)
 resid
 
 # check that the mean of the residuals is zero (note: due to numerical
@@ -138,6 +141,26 @@ optim(c(0,0), rss, x=x, y=y)
 # we essentially get the same estimates (although there are minor numerical
 # differences that arise because of the use of an iterative procedure for
 # finding the estimates)
+
+## Maximum likelihood
+
+# if we set the intercept, slope, and sigma value, we can compute the density of
+# the observed data as follows; say we assume that the intercept is 2.2, the
+# slope is 0.4, and sigma is 1.2, then we get the following density values for
+# the data under a normal distribution
+dnorm(y, mean=2.2 + 0.4 * x, sd=1.2)
+
+
+
+
+
+
+
+
+
+
+############################################################################
+
 
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
