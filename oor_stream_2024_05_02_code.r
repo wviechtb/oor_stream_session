@@ -246,6 +246,10 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
                   points(a, b, pch=19, col="red")
                })
 
+# if we move away from the peak (red dot), then the drop in the likelihood is
+# not so severe if an increase in the intercept value is paired with a decrease
+# in the slope value (and vice-versa); this is due to the negative correlation
+# between these two estimates
 
 
 
