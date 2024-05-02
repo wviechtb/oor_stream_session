@@ -218,16 +218,21 @@ for (i in 1:length(as)) {
 # except that we are using the simulated data from above)
 persp(as, bs, ll)
 
+# extract the standard errors from the regression model that we fitted earlier
+# using lm()
+se <- coef(summary(res))[,2]
+se
+
 # instead of perspective plot, we can visualize the surface using a contour plot
 # with colors indicating the height; we also indicate the peak with a red dot
-# and lines extending from that dot +- one standard error from the regression
-# model that we fitted with lm()
+# and lines extending from that dot +- one standard error for each coefficient
+# from the regression model that we fitted with lm()
 filled.contour(as, bs, ll, color.palette=hcl.colors,
                xlab="Intercept", ylab="Slope",
                plot.axes = {
                   axis(side=1)
                   axis(side=2)
-                  abline(v=a, lwd=2, col="red")
+                  segments(b, a-, lwd=2, col="red")
                   abline(h=b, lwd=2, col="red")
                   points(a, b, pch=19, col="red")
                })
