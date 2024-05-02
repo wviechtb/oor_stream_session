@@ -159,18 +159,24 @@ prod(p)
 # find those parameter values (estimates) that are most likely given the data;
 # those are the maximum likelihood estimates
 
-# function that computes the likelihood
+# for numerical reasons, instead of maximizing the product of the density
+# values, we will maximize the sum of the log-transformed values
+sum(log(p))
+
+# this is the log likelihood given the parameter estimates we assumed
+
+# function that computes the log likelihood
 mle <- function(par, x, y) {
    a <- par[1]
    b <- par[2]
    sigma <- par[3]
    p <- dnorm(y, mean = a + b * x, sd = sigma)
-   l <- prod(p)
+   ll <- sum(log(p))
    cat("a =", formatC(a, format="f", digits=6),
        "b =", formatC(b, format="f", digits=6),
        "sigma =", formatC(sigma, format="f", digits=6),
-       "l =", formatC(l, format="f", digits=6), "\n")
-   return(rss)
+       "ll =", formatC(l, format="f", digits=6), "\n")
+   return(l)
 }
 
 optim(c(0,0,2), mle, x=x, y=y, control=list(fnscale=-1))
