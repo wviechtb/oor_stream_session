@@ -275,7 +275,9 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
 # load the numDeriv package
 library(numDeriv)
 
-H <- hessian(mle, x=c(a,b), xvals=x, yvals=y)
+H <- hessian(mle, x=c(a,b), xvals=x, yvals=y, log=TRUE)
+solve(-H)
+vcoef
 
 ############################################################################
 
