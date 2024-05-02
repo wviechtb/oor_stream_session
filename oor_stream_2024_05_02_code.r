@@ -93,6 +93,20 @@ sum(resid^2)
 
 # you cannot make this any smaller with other values of 'a' and 'b'
 
+# function to compute the RSS for given values of 'a' and 'b'
+rss <- function(x, y, a, b) {
+   resid <- y - (a + b*x)
+   return(sum(resid^2))
+}
+
+# double-check that we get the same RSS as above
+rss(x, y, a, b)
+
+# try a few other values for 'a' and 'b'
+rss(x, y, a=2.3, b=0.41)
+rss(x, y, a=2.1, b=0.41)
+rss(x, y, a=2.1, b=0.40)
+
 ## Estimation of residual standard deviation sigma
 
 # we know that the true sigma is equal to 1 (since we simulated the data), but
