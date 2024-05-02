@@ -18,7 +18,12 @@
 
 ############################################################################
 
+# - version R 4.4-0 released a week ago
 # - security vulnerability in older version of R
+#   - https://hiddenlayer.com/research/r-bitrary-code-execution/
+#   - https://www.kb.cert.org/vuls/id/238194
+#   - https://nvd.nist.gov/vuln/detail/CVE-2024-27322
+#   - https://stat.ethz.ch/pipermail/r-help/2024-May/479281.html
 # - sort_by() function
 
 ############################################################################
