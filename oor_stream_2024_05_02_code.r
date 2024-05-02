@@ -76,7 +76,7 @@ abline(a, b, lwd=3, lty="dotted")
 
 # fit the model using lm()
 res <- lm(y ~ x)
-coef(res)
+summary(res)
 
 # aside from being tedious, it should be noted that the 'manual' computations
 # above are not how the estimates of the intercept and slope should be computed;
@@ -219,7 +219,9 @@ for (i in 1:length(as)) {
 persp(as, bs, ll)
 
 # instead of perspective plot, we can visualize the surface using a contour plot
-# with colors indicating the height
+# with colors indicating the height; we also indicate the peak with a red dot
+# and lines extending from that dot +- one standard error from the regression
+# model that we fitted with lm()
 filled.contour(as, bs, ll, color.palette=hcl.colors,
                xlab="Intercept", ylab="Slope",
                plot.axes = {
