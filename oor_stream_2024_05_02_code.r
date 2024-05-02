@@ -279,14 +279,23 @@ library(numDeriv)
 # precision with which we have estimated the regression coefficients; if the
 # drop around the peak is very steep, then we should have higher confidence in
 # the estimates we have obtained; the steepness around the peak can be measured
-# based on the second derivative of the (log) likelihood function;
+# based on the second derivative of the (log) likelihood function; a high second
+# derivative indicates high acceleration (high precision) and hence the inverse
+# of the second derivative indicates imprecision
 
+but we want the opposite
+
+it turns out
+# that the inverse of the
 
 
 H <- hessian(mle, x=c(a,b), xvals=x, yvals=y, log=TRUE)
 solve(-H)
 
 vcoef
+
+solve(-H) / vcoef
+6/8
 
 ############################################################################
 
