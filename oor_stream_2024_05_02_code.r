@@ -228,7 +228,8 @@ vcoef
 se <- sqrt(diag(vcoef))
 se
 
-# turn the variance-covariance matrix into a correlation matrix
+# turn the variance-covariance matrix into a correlation matrix; we see that the
+# estimate of the intercept and slope are negatively correlated
 cov2cor(vcoef)
 
 # instead of a perspective plot, we can visualize the surface using a contour
