@@ -118,7 +118,18 @@ sqrt(1/n * sum(resid^2))
 # regression coefficients of the model)
 sqrt(1/(n-2) * sum(resid^2))
 
+# re-write the function so that it takes a vector with the intercept and slope
+# as input
+rss <- function(par, x, y) {
+   a <- par[1]
+   b <- par[2]
+   resid <- y - (a + b*x)
+   return(sum(resid^2))
+}
 
+# now use numerical optimization to iteratively find the intercept and slope
+# values that minimize the RSS
+optim(c(0,0), rss, x=x, y=y)
 
 
 # download the dataset (only need to do this once)
