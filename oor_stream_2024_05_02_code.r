@@ -30,4 +30,13 @@
 
 ### 8.1: Least squares, maximum likelihood, and Bayesian inference
 
+## Least squares
+
+# download the dataset (only need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
+
+# read in the data and inspect it
+dat <- read.table("hibbs.dat", header=TRUE)
+dat
+
 ############################################################################
