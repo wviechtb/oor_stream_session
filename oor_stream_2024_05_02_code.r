@@ -232,6 +232,12 @@ se
 # estimate of the intercept and slope are negatively correlated
 cov2cor(vcoef)
 
+# install the ellipse package
+#install.packages("ellipse")
+
+# load the ellipse package
+library(ellipse)
+
 # instead of a perspective plot, we can visualize the surface using a contour
 # plot with colors indicating the height; we also indicate the peak with a red
 # dot and lines extending from that dot +- one standard error for each
@@ -250,6 +256,7 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
 # not so severe if an increase in the intercept value is paired with a decrease
 # in the slope value (and vice-versa); this is due to the negative correlation
 # between these two estimates
+
 
 
 
