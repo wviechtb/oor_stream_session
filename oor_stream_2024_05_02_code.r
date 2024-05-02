@@ -32,6 +32,21 @@
 
 ## Least squares
 
+# simulate some data based on a simple regression model
+set.seed(1234)
+n <- 50
+x <- runif(n, 0, 10)
+y <- 2 + 0.5 * x + rnorm(n, mean=0, sd=1)
+
+# plot the data
+plot(x, y, pch=21, bg="gray")
+
+# add the true regression line to the plot
+abline(a=2, b=0.5, lwd=3)
+
+# since we know the true regression line here, we can compute the errors
+y - (2 + 0.5 * x)
+
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
 
