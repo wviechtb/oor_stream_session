@@ -275,8 +275,17 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
 # load the numDeriv package
 library(numDeriv)
 
+# the steepness of the likelihood surface around the peak is an indicator of the
+# precision with which we have estimated the regression coefficients; if the
+# drop around the peak is very steep, then we should have higher confidence in
+# the estimates we have obtained; the steepness around the peak can be measured
+# based on the second derivative of the (log) likelihood function;
+
+
+
 H <- hessian(mle, x=c(a,b), xvals=x, yvals=y, log=TRUE)
 solve(-H)
+
 vcoef
 
 ############################################################################
