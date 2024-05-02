@@ -247,6 +247,8 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
                plot.axes = {
                   axis(side=1)
                   axis(side=2)
+                  xy <- ellipse(vcoef, centre=c(a,b), level=0.68)
+                  lines(xy[,1],xy[,2], col="red")
                   segments(a-se[1], b, a+se[1], b, lwd=2, col="red")
                   segments(a, b-se[2], a, b+se[2], lwd=2, col="red")
                   points(a, b, pch=19, col="red")
