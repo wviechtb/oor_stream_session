@@ -232,8 +232,8 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
                plot.axes = {
                   axis(side=1)
                   axis(side=2)
-                  segments(b, a-, lwd=2, col="red")
-                  abline(h=b, lwd=2, col="red")
+                  segments(b, a-se[1], b, a+se[1], lwd=2, col="red")
+                  segments(a, b-se[2], a, b+se[2], lwd=2, col="red")
                   points(a, b, pch=19, col="red")
                })
 
