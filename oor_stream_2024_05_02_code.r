@@ -241,14 +241,16 @@ library(ellipse)
 # instead of a perspective plot, we can visualize the surface using a contour
 # plot with colors indicating the height; we also indicate the peak with a red
 # dot and lines extending from that dot +- one standard error for each
-# coefficient
+# coefficient (recall that this encompasses 68% of the distribution of a normal
+# distribution); we also add the contour ellipse that encompasses 68% of the
+# joint distribution of the two coefficients assuming bivariate normality
 filled.contour(as, bs, ll, color.palette=hcl.colors,
                xlab="Intercept", ylab="Slope",
                plot.axes = {
                   axis(side=1)
                   axis(side=2)
                   xy <- ellipse(vcoef, centre=c(a,b), level=0.68)
-                  lines(xy[,1],xy[,2], lwd=3, col="red")
+                  lines(xy[,1], xy[,2], lwd=3, col="red")
                   segments(a-se[1], b, a+se[1], b, lwd=3, col="red")
                   segments(a, b-se[2], a, b+se[2], lwd=3, col="red")
                   points(a, b, pch=19, col="red")
