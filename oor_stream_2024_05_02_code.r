@@ -192,17 +192,25 @@ sqrt(1/n * sum(resid^2))
 ## assess uncertainty in the parameter estimates
 
 # re-write the mle() function so that sigma is directly computed from the
-# intercept and slope parameters and that it returns the likelihood (not the log
-# likelihood)
-mle <- function(par, x, y) {
+# intercept and slope parameters and that it optionally either returns the
+# likelihood or the log likelihood (with the former being the default)
+mle <- function(par, xvals, yvals, log=FALSE) {
    a <- par[1]
    b <- par[2]
-   n <- length(y)
-   sigma <- sqrt(1/n * sum((y - (a + b*x))^2)) # MLE of sigma
-   p <- dnorm(y, mean = a + b * x, sd = sigma)
-   ll <- prod(p)
-   return(ll)
+   n <- length(yvals)
+   sigma <- sqrt(1/n * sum((yvals - (a + b*xvals))^2)) # MLE of sigma
+   if (log) {
+      logp <- dnorm(yvals, mean = a + b * xvals, sd = sigma, log=TRUE)
+      ll <- sum(logp)
+      return(ll)
+   } else {
+      p <- dnorm(yvals, mean = a + b * xvals, sd = sigma)
+      l <- prod(p)
+      return(l)
+   }
 }
+
+# compute the likelihood for various combinations of intercept and slope values
 
 as <- seq(1.4, 3.2, length=100)
 bs <- seq(0.2, 0.7, length=100)
@@ -210,7 +218,7 @@ ll <- matrix(NA, nrow=length(as), ncol=length(bs))
 
 for (i in 1:length(as)) {
    for (j in 1:length(bs)) {
-      ll[i,j] <- mle(c(as[i], bs[j]), x=x, y=y)
+      ll[i,j] <- mle(c(as[i], bs[j]), xvals=x, yvals=y)
    }
 }
 
@@ -261,8 +269,13 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
 # in the slope value (and vice-versa); this is due to the negative correlation
 # between these two estimates
 
+# install the numDeriv package
+#install.packages("numDeriv")
 
+# load the numDeriv package
+library(numDeriv)
 
+H <- hessian(mle, x=c(a,b), xvals=x, yvals=y)
 
 ############################################################################
 
