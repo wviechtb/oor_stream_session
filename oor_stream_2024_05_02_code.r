@@ -76,8 +76,8 @@ res <- lm(y ~ x)
 res
 
 # aside from being tedious, it should be noted that the 'manual' computations
-# above are not the best way of computing the estimates of the intercept and
-# slope
+# above are not how the estimates of the intercept and slope should be computed;
+# lm() internally uses equations that are numerically more stable
 
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
