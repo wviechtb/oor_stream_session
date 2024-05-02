@@ -124,7 +124,11 @@ rss <- function(par, x, y) {
    a <- par[1]
    b <- par[2]
    resid <- y - (a + b*x)
-   return(sum(resid^2))
+   rss <- sum(resid^2)
+   cat("a = ", formatC(a, format="f", digits=6),
+       " b = ", formatC(b, format="f", digits=6),
+       " rss = ", formatC(rss, format="f", digits=6), "\n")
+   return(rss)
 }
 
 # now use numerical optimization to iteratively find the intercept and slope
