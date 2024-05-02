@@ -220,7 +220,15 @@ persp(as, bs, ll)
 
 # instead of perspective plot, we can visualize the surface using a contour plot
 # with colors indicating the height
-filled.contour(as, bs, ll, color.palette=hcl.colors)
+filled.contour(as, bs, ll, color.palette=hcl.colors,
+               xlab="Intercept", ylab="Slope",
+               plot.axes = {
+                  axis(side=1)
+                  axis(side=2)
+                  abline(v=a, lwd=2, col="red")
+                  abline(h=b, lwd=2, col="red")
+                  points(a, b, pch=19, col="red")
+               })
 
 
 
