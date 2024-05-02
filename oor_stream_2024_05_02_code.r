@@ -128,8 +128,8 @@ rss <- function(par, x, y) {
    b <- par[2]
    resid <- y - (a + b*x)
    rss <- sum(resid^2)
-   cat("a =", formatC(a, format="f", digits=6),
-       "b =", formatC(b, format="f", digits=6),
+   cat("a =", formatC(a, format="f", flag=" ", digits=6),
+       "b =", formatC(b, format="f", flag=" ", digits=6),
        "rss =", formatC(rss, format="f", digits=6), "\n")
    return(rss)
 }
@@ -170,15 +170,17 @@ mle <- function(par, x, y) {
    a <- par[1]
    b <- par[2]
    sigma <- par[3]
-   p <- dnorm(y, mean = a + b * x, sd = sigma)
-   ll <- sum(log(p))
-   cat("a =", formatC(a, format="f", digits=6),
-       "b =", formatC(b, format="f", digits=6),
-       "sigma =", formatC(sigma, format="f", digits=6),
-       "ll =", formatC(l, format="f", digits=6), "\n")
-   return(l)
+   logp <- dnorm(y, mean = a + b * x, sd = sigma, log=TRUE)
+   ll <- sum(logp)
+   cat("a =", formatC(a, format="f", flag=" ", digits=6),
+       "b =", formatC(b, format="f", flag=" ", digits=6),
+       "sigma =", formatC(sigma, format="f", flag=" ", digits=6),
+       "ll =", formatC(ll, format="f", digits=6), "\n")
+   return(ll)
 }
 
+# again use numerical optimization to iteratively find the intercept, slope, and
+# sigma values that maximize the log likelihood
 optim(c(0,0,2), mle, x=x, y=y, control=list(fnscale=-1))
 
 
