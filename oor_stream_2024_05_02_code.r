@@ -286,16 +286,22 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
 # load the numDeriv package
 library(numDeriv)
 
-# that the inverse of the
-
-
+# obtain the Hessian matrix
 H <- hessian(mle, x=c(a,b), xvals=x, yvals=y, log=TRUE)
+
+# take the inverse of the negative Hessian
 solve(-H)
 
+# compare this to the variance-covariance matrix we obtained earlier from
+# least-squares estimation
 vcoef
 
+# the discrepancy is due to the way sigma is estimated by least squares versus
+# maximum likelihood estimation; the ratio of the two variance-covariance
+# matrices is equal to the (n-2) / n (which reflects the different ways of
+# estimating sigma)
 solve(-H) / vcoef
-6/8
+48 / 50
 
 ############################################################################
 
