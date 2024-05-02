@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 8.1 - ?
+# - Section(s): 8.1
 #
 # last updated: 2024-05-02
 
@@ -301,16 +301,6 @@ vcoef
 # matrices is equal to the (n-2) / n (which reflects the different ways of
 # estimating sigma)
 solve(-H) / vcoef
-48 / 50
-
-############################################################################
-
-
-# download the dataset (only need to do this once)
-#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
-
-# read in the data and inspect it
-dat <- read.table("hibbs.dat", header=TRUE)
-dat
+(n-2) / n
 
 ############################################################################
