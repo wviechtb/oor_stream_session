@@ -95,9 +95,14 @@ sum(resid^2)
 
 ## Estimation of residual standard deviation sigma
 
-# we know that the true sigma is equal to 1 (since we simulated the data);
+# we know that the true sigma is equal to 1 (since we simulated the data), but
+# in practice, we would not know this; instead, we can estimate sigma based on
+# the residuals; we can do this by computing the square root of 1/n * RSS
+sqrt(1/n * sum(resid^2))
 
-sd(y - (a + b * x))
+# but a better estimate is to divide by n-2 (where the 2 is the number of
+# regression coefficients of the model)
+sqrt(1/(n-2) * sum(resid^2))
 
 
 
