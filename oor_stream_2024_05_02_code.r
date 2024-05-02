@@ -223,10 +223,10 @@ persp(as, bs, ll)
 se <- coef(summary(res))[,2]
 se
 
-# instead of perspective plot, we can visualize the surface using a contour plot
-# with colors indicating the height; we also indicate the peak with a red dot
-# and lines extending from that dot +- one standard error for each coefficient
-# from the regression model that we fitted with lm()
+# instead of a perspective plot, we can visualize the surface using a contour
+# plot with colors indicating the height; we also indicate the peak with a red
+# dot and lines extending from that dot +- one standard error for each
+# coefficient
 filled.contour(as, bs, ll, color.palette=hcl.colors,
                xlab="Intercept", ylab="Slope",
                plot.axes = {
