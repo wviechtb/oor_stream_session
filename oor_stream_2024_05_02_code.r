@@ -191,16 +191,17 @@ sqrt(1/n * sum(resid^2))
 ## Where do the standard errors come from? Using the likelihood surface to
 ## assess uncertainty in the parameter estimates
 
-# function that computes the log likelihood
-mle <- function(par, x, y) {
-   a <- par[1]
-   b <- par[2]
+# re-write the mle() function so that it takes the intercept and slope values as
+# two separate arguments as input and where we make use of the fact that the MLE
+# of sigma can be directly computed from these two other parameters
+mle <- function(a, b, x, y) {
    n <- length(y)
    sigma <- sqrt(1/n * sum(y - (a + b*x))^2) # MLE of sigma
    logp <- dnorm(y, mean = a + b * x, sd = sigma, log=TRUE)
    ll <- sum(logp)
    return(ll)
 }
+
 
 
 
