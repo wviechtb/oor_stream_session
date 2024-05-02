@@ -204,7 +204,7 @@ mle <- function(par, x, y) {
    return(ll)
 }
 
-as <- seq(1.4, 3.0, length=100)
+as <- seq(1.4, 3.2, length=100)
 bs <- seq(0.2, 0.8, length=100)
 ll <- matrix(NA, nrow=length(as), ncol=length(bs))
 
@@ -214,7 +214,7 @@ for (i in 1:length(as)) {
    }
 }
 
-persp(as, bs, ll)
+persp(as, bs, ll, col="lightgray")
 
 
 ############################################################################
