@@ -188,6 +188,9 @@ optim(c(0,0,2), mle, x=x, y=y, control=list(fnscale=-1))
 # squares estimates, except for sigma, where the MLE is identical to
 sqrt(1/n * sum(resid^2))
 
+## Where do the standard errors come from? Using the likelihood surface to
+## assess uncertainty in the parameter estimates
+
 
 
 
