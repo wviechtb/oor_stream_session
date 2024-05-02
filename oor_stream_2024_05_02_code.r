@@ -47,6 +47,27 @@ abline(a=2, b=0.5, lwd=3)
 # since we know the true regression line here, we can compute the errors
 y - (2 + 0.5 * x)
 
+# create the X and y matrices
+X <- cbind(1, x)
+X
+y <- cbind(y)
+y
+
+# the regression model can then be written in matrix notation as:
+#
+# y = X %*% beta + e
+#
+# where beta is a column vector with the true intercept and slope
+
+# now apply equation (8.2) to compute the estimated intercept and slope
+betahat <- solve(t(X) %*% X) %*% t(X) %*% y
+betahat
+
+# double-check that this gives the same estimates as (8.3) and (8.4)
+b <- sum((x - mean(x)) * y) / sum((x - mean(x))^2)
+a <- mean(y) - b * mean(x)
+rbind(a, b)
+
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
 
