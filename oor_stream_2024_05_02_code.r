@@ -148,9 +148,16 @@ optim(c(0,0), rss, x=x, y=y)
 # the observed data as follows; say we assume that the intercept is 2.2, the
 # slope is 0.4, and sigma is 1.2, then we get the following density values for
 # the data under a normal distribution
-dnorm(y, mean=2.2 + 0.4 * x, sd=1.2)
+p <- dnorm(y, mean=2.2 + 0.4 * x, sd=1.2)
+p
 
+# we can multiply these values to get the joint density
+prod(p)
 
+# but since the parameters (i.e., the intercept, slope, and sigma) are unknown,
+# we call this the likelihood of the parameters given the data and we want to
+# find those parameter values (estimates) that are most likely given the data;
+# those are the maximum likelihood estimates
 
 
 
