@@ -269,23 +269,23 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
 # in the slope value (and vice-versa); this is due to the negative correlation
 # between these two estimates
 
-# install the numDeriv package
-#install.packages("numDeriv")
-
-# load the numDeriv package
-library(numDeriv)
-
 # the steepness of the likelihood surface around the peak is an indicator of the
 # precision with which we have estimated the regression coefficients; if the
 # drop around the peak is very steep, then we should have higher confidence in
 # the estimates we have obtained; the steepness around the peak can be measured
 # based on the second derivative of the (log) likelihood function; a high second
 # derivative indicates high acceleration (high precision) and hence the inverse
-# of the second derivative indicates imprecision
+# of the second derivative indicates imprecision; since we are dealing with two
+# parameters, we are dealing with a 2x2 matrix of second derivatives, which is
+# called the 'Hessian' matrix; it turns out that the inverse of the negative
+# Hessian corresponds to the variance-covariance matrix of the estimates
 
-but we want the opposite
+# install the numDeriv package
+#install.packages("numDeriv")
 
-it turns out
+# load the numDeriv package
+library(numDeriv)
+
 # that the inverse of the
 
 
