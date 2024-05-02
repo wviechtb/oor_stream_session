@@ -214,7 +214,9 @@ for (i in 1:length(as)) {
    }
 }
 
-persp(as, bs, ll, col="lightgray")
+# create a perspective plot of the likelihood surface (like Figure 8.1(a),
+# except that we are using the simulated data from above)
+persp(as, bs, ll)
 
 
 ############################################################################
