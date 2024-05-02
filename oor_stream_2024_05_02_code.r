@@ -218,10 +218,18 @@ for (i in 1:length(as)) {
 # except that we are using the simulated data from above)
 persp(as, bs, ll)
 
-# extract the standard errors from the regression model that we fitted earlier
-# using lm()
-se <- coef(summary(res))[,2]
+# extract the variance-covariance matrix of the parameter estimates from the
+# regression model that we fitted earlier using lm()
+vcoef <- vcov(res)
+vcoef
+
+# the values along the diagonal of this matrix are the squared standard errors;
+# so the square root of the diagonal elements are the standard errors
+se <- sqrt(diag(vcoef))
 se
+
+# turn the variance-covariance matrix into a correlation matrix
+cov2cor(vcoef)
 
 # instead of a perspective plot, we can visualize the surface using a contour
 # plot with colors indicating the height; we also indicate the peak with a red
@@ -236,6 +244,7 @@ filled.contour(as, bs, ll, color.palette=hcl.colors,
                   segments(a, b-se[2], a, b+se[2], lwd=2, col="red")
                   points(a, b, pch=19, col="red")
                })
+
 
 
 
