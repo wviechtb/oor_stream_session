@@ -184,7 +184,9 @@ mle <- function(par, x, y) {
 # by default, so we have to tell it to maximize)
 optim(c(0,0,2), mle, x=x, y=y, control=list(fnscale=-1))
 
-
+# again for minor numerical differences, the MLEs are identical to the least
+# squares estimates, except for sigma, where the MLE is identical to
+sqrt(1/n * sum(resid^2))
 
 
 
