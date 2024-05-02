@@ -148,7 +148,7 @@ optim(c(0,0), rss, x=x, y=y)
 # the observed data as follows; say we assume that the intercept is 2.2, the
 # slope is 0.4, and sigma is 1.2, then we get the following density values for
 # the data under a normal distribution
-p <- dnorm(y, mean=2.2 + 0.4 * x, sd=1.2)
+p <- dnorm(y, mean = 2.2 + 0.4 * x, sd = 1.2)
 p
 
 # we can multiply these values to get the joint density
@@ -159,7 +159,21 @@ prod(p)
 # find those parameter values (estimates) that are most likely given the data;
 # those are the maximum likelihood estimates
 
+# function that computes the likelihood
+mle <- function(par, x, y) {
+   a <- par[1]
+   b <- par[2]
+   sigma <- par[3]
+   p <- dnorm(y, mean = a + b * x, sd = sigma)
+   l <- prod(p)
+   cat("a =", formatC(a, format="f", digits=6),
+       "b =", formatC(b, format="f", digits=6),
+       "sigma =", formatC(sigma, format="f", digits=6),
+       "l =", formatC(l, format="f", digits=6), "\n")
+   return(rss)
+}
 
+optim(c(0,0,2), mle, x=x, y=y, control=list(fnscale=-1))
 
 
 
