@@ -205,7 +205,7 @@ mle <- function(par, x, y) {
 }
 
 as <- seq(1.4, 3.2, length=100)
-bs <- seq(0.2, 0.8, length=100)
+bs <- seq(0.2, 0.7, length=100)
 ll <- matrix(NA, nrow=length(as), ncol=length(bs))
 
 for (i in 1:length(as)) {
@@ -217,6 +217,11 @@ for (i in 1:length(as)) {
 # create a perspective plot of the likelihood surface (like Figure 8.1(a),
 # except that we are using the simulated data from above)
 persp(as, bs, ll)
+
+# instead of perspective plot, we can visualize the surface using a contour plot
+# with colors indicating the height
+filled.contour(as, bs, ll, color.palette=hcl.colors)
+
 
 
 ############################################################################
