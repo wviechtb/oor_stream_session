@@ -73,11 +73,34 @@ abline(a, b, lwd=3, lty="dotted")
 
 # fit the model using lm()
 res <- lm(y ~ x)
-res
+coef(res)
 
 # aside from being tedious, it should be noted that the 'manual' computations
 # above are not how the estimates of the intercept and slope should be computed;
 # lm() internally uses equations that are numerically more stable
+
+# compute the residuals
+resid <- c(y - (a + b * x))
+resid
+
+# check that the mean of the residuals is zero (note: due to numerical
+# imprecision, this value is not exactly equal to 0, but practically
+# indistinguishable from zero)
+mean(resid)
+
+# compute the RSS
+sum(resid^2)
+
+# you cannot make this any smaller with other values of 'a' and 'b'
+
+## Estimation of residual standard deviation sigma
+
+# we know that the true sigma is equal to 1 (since we simulated the data);
+
+sd(y - (a + b * x))
+
+
+
 
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
