@@ -192,19 +192,20 @@ sqrt(1/n * sum(resid^2))
 ## assess uncertainty in the parameter estimates
 
 # re-write the mle() function so that sigma is directly computed from the
-# intercept and slope parameters
+# intercept and slope parameters and that it returns the likelihood (not the log
+# likelihood)
 mle <- function(par, x, y) {
    a <- par[1]
    b <- par[2]
    n <- length(y)
-   sigma <- sqrt(1/n * sum(y - (a + b*x))^2) # MLE of sigma
-   logp <- dnorm(y, mean = a + b * x, sd = sigma, log=TRUE)
-   ll <- sum(logp)
+   sigma <- sqrt(1/n * sum((y - (a + b*x))^2)) # MLE of sigma
+   p <- dnorm(y, mean = a + b * x, sd = sigma)
+   ll <- prod(p)
    return(ll)
 }
 
-as <- seq(1.8, 2.4, length=100)
-bs <- seq(0.4, 0.6, length=100)
+as <- seq(1.4, 3.0, length=100)
+bs <- seq(0.2, 0.8, length=100)
 ll <- matrix(NA, nrow=length(as), ncol=length(bs))
 
 for (i in 1:length(as)) {
@@ -213,7 +214,7 @@ for (i in 1:length(as)) {
    }
 }
 
-
+persp(as, bs, ll)
 
 
 ############################################################################
