@@ -180,7 +180,8 @@ mle <- function(par, x, y) {
 }
 
 # again use numerical optimization to iteratively find the intercept, slope, and
-# sigma values that maximize the log likelihood
+# sigma values that maximize the log likelihood (note: optim() does minimization
+# by default, so we have to tell it to maximize)
 optim(c(0,0,2), mle, x=x, y=y, control=list(fnscale=-1))
 
 
