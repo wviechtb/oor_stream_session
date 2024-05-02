@@ -125,9 +125,9 @@ rss <- function(par, x, y) {
    b <- par[2]
    resid <- y - (a + b*x)
    rss <- sum(resid^2)
-   cat("a = ", formatC(a, format="f", digits=6),
-       " b = ", formatC(b, format="f", digits=6),
-       " rss = ", formatC(rss, format="f", digits=6), "\n")
+   cat("a =", formatC(a, format="f", digits=6),
+       "b =", formatC(b, format="f", digits=6),
+       "rss =", formatC(rss, format="f", digits=6), "\n")
    return(rss)
 }
 
@@ -135,6 +135,9 @@ rss <- function(par, x, y) {
 # values that minimize the RSS
 optim(c(0,0), rss, x=x, y=y)
 
+# we essentially get the same estimates (although there are minor numerical
+# differences that arise because of the use of an iterative procedure for
+# finding the estimates)
 
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
