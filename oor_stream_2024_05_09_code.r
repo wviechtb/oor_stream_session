@@ -129,12 +129,18 @@ res3 <- stan_glm(y ~ x, data=dat, refresh=0,
                  prior_intercept=NULL, prior=NULL, prior_aux=NULL)
 summary(res3, digits=4)
 
+# extract the samples from the posterior distributions for the three parameters
 posterior <- as.data.frame(res3)
 head(posterior)
+
+# plot the kernel density estimates of the three distributions
 par(mfrow=c(3,1))
-plot(density(posterior[,1]), main="Intercept")
-plot(density(posterior[,2]), main="Slope")
-plot(density(posterior[,3]), main="Sigma")
+d1 <- density(posterior[,1])
+d2 <- density(posterior[,2])
+d3 <- density(posterior[,3])
+plot(d1, main="Intercept")
+plot(d2, main="Slope")
+plot(d3, main="Sigma")
 
 
 
