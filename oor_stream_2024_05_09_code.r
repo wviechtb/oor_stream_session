@@ -19,12 +19,14 @@
 #
 # b = sum(h * y),
 #
-# where h = (x - mean(x)) / sum((x - mean(x)(^2)
+# where h = (x - mean(x)) / sum((x - mean(x))^2)
 #
 # so we see that the slope is a linear combination of the y values and if we
 # change a particular value of y, then the slope is change accordingly, but
 # how much it changes depends on the corresponding h value
-
+#
+# if the corresponding x value is equal to mean(x), then h = 0, and no matter
+# how much we change the y value, b is not affected
 
 # first simulate the same data as we did last time
 set.seed(1239)
