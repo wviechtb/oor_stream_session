@@ -73,6 +73,21 @@ abline(res, lwd=3, lty="dashed")
 
 ### 8.3: Least squares slope as a weighted average of slopes of pairs
 
+# create a dataset where we also have some repeated x values
+dat <- data.frame(x = c(1,2,3,3,4,6,7,7,8,9), y = c(3,1,3,5,7,6,7,8,5,9))
+dat
+
+# plot the data
+plot(dat$x, dat$y, pch=19, bty="l", panel.first=grid(), xlab="x", ylab="y")
+
+# add the regression line
+res <- lm(y ~ x, data=dat)
+abline(res, lwd=3)
+
+# compute the slope for every pair of observations
+
+
+
 ############################################################################
 
 
