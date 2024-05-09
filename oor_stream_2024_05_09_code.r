@@ -85,6 +85,11 @@ res <- lm(y ~ x, data=dat)
 abline(res, lwd=3)
 
 # compute the slope for every pair of observations
+slopes <- outer(dat$y, dat$y, "-") / outer(dat$x, dat$x, "-")
+slopes
+
+# but note that we get some NaN values (when 0 / 0) or when +-Inf when
+# dividing something non-zero by zero
 
 
 
