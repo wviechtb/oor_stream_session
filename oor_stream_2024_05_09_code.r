@@ -125,9 +125,18 @@ set.seed(1234)
 res2 <- stan_glm(y ~ x, data=dat, refresh=0)
 summary(res2, digits=4)
 
-res2 <- stan_glm(y ~ x, data=dat, refresh=0,
+res3 <- stan_glm(y ~ x, data=dat, refresh=0,
                  prior_intercept=NULL, prior=NULL, prior_aux=NULL)
-summary(res2, digits=4)
+summary(res3, digits=4)
+
+posterior <- as.data.frame(res3)
+head(posterior)
+par(mfrow=c(3,1))
+plot(density(posterior[,1]), main="Intercept")
+plot(density(posterior[,2]), main="Slope")
+plot(density(posterior[,3]), main="Sigma")
+
+
 
 ############################################################################
 
