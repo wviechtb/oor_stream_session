@@ -7,13 +7,24 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 8.2
+# - Section(s): 8.2 - ?
 #
 # last updated: 2024-05-09
 
 ############################################################################
 
 ### 8.2 Influence of individual points in a fitted regression
+
+# we can rewrite equation (8.3) as follows:
+#
+# b = sum(h * y),
+#
+# where h = (x - mean(x)) / sum((x - mean(x)(^2)
+#
+# so we see that the slope is a linear combination of the y values and if we
+# change a particular value of y, then the slope is change accordingly, but
+# how much it changes depends on the corresponding h value
+
 
 # first simulate the same data as we did last time
 set.seed(1239)
