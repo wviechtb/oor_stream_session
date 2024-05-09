@@ -111,6 +111,10 @@ coef(res)[[2]]
 
 ### 8.4: Comparing two fitting functions: lm and stan_glm
 
+# create a dataset where we also have some repeated x values
+dat <- data.frame(x = c(1,2,3,3,4,6,7,7,8,9), y = c(3,1,3,5,7,6,7,8,5,9))
+dat
+
 # refit the model with lm() and inspect the results
 res1 <- lm(y ~ x, data=dat)
 summary(res1)
