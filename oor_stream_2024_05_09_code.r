@@ -26,7 +26,8 @@
 # how much it changes depends on the corresponding h value
 #
 # if the corresponding x value is equal to mean(x), then h = 0, and no matter
-# how much we change the y value, b is not affected
+# how much we change the y value, b is not affected; for points where h is
+# large, changes in y have a bigger impact on the slope
 
 # create a dataset like in Figure 8.3
 dat <- data.frame(x = 2:12, y = c(11,1,12,11,8,24,19,25,11,28,19))
@@ -43,15 +44,20 @@ abline(res, lwd=3)
 # add lines extending from the regression line to each observed value
 segments(dat$x, fitted(res), dat$x, dat$y)
 
-# compute the h values
+# compute the h values and examine them
 h <- with(dat, (x - mean(x)) / sum((x - mean(x))^2))
+h
 
 # show that the slope is a linear combination of the y values
 coef(res)[[2]]
 sum(h * dat$y)
 
-
-
+# show that the slope is unaffected when the 6th point (for which x = mean(x))
+# is changed
+dat$y[6] <- 5
+points(dat$x[6], dat$y[6], pch=21)
+res <- lm(y ~ x, data=dat)
+abline(res, lwd=3, lty="dotted")
 
 
 ############################################################################
