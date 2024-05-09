@@ -158,12 +158,26 @@ sigma(res1)
 # skewed distribution like for sigma, the mode should correspond more closely
 # to the classical estimate
 
+# get 95% CIs for the intercept and slope from the least squares fit
+confint(res1)
+
+# get corresponding intervals from the posterior distributions
+quantile(posterior[,1], probs=c(.025, .975))
+quantile(posterior[,2], probs=c(.025, .975))
+
+# we can also get easily such an interval for sigma
+quantile(posterior[,3], probs=c(.025, .975))
+
+# one can in principle also get a CI for the residual standard deviation from
+# the least squares fit, but this takes extra work
+n <- nrow(dat)
+sqrt(sigma(res1)^2 * (n-2) / qchisq(0.975, df=n-2))
+sqrt(sigma(res1)^2 * (n-2) / qchisq(0.025, df=n-2))
+
 # refit the model using optimization (instead of sampling)
 res4 <- stan_glm(y ~ x, data=dat, refresh=0,
                  prior_intercept=NULL, prior=NULL, prior_aux=NULL,
                  algorithm="optimizing")
 summary(res4, digits=4)
-
-
 
 ############################################################################
