@@ -152,6 +152,10 @@ coef(res1)[[1]]
 coef(res1)[[2]]
 sigma(res1)
 
+# for symmetric posterior distributions, the mean (or median) is a better
+# summary, so for the intercept and slope, let's stick to these, but for a
+# skewed distribution like for sigma, the mode should correspond more closely
+# to the classical estimate
 
 
 
