@@ -50,8 +50,7 @@ h <- with(dat, (x - mean(x)) / sum((x - mean(x))^2))
 coef(res)[[2]]
 sum(h * dat$y)
 
-# note: the h values are also called 'leverages'; for more details, see:
-# https://en.wikipedia.org/wiki/Leverage_(statistics)
+
 
 
 
