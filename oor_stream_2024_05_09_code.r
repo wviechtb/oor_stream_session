@@ -99,9 +99,13 @@ weights
 # weight for the pair is 0; so when we multiply the values in the two matrices
 # with each other (pairwise), then all such values will be NaN (since 0 * NaN
 # = NaN and 0 * Inf = NaN)
+weights * slopes
 
-coef(res)[[2]]
+# now sum of up these values (removing the NaN values)
 sum(weights * slopes, na.rm=TRUE)
+
+# and this is in fact identical to the slope
+coef(res)[[2]]
 
 ############################################################################
 
