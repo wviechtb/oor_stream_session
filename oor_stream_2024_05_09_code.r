@@ -60,14 +60,18 @@ res <- lm(y ~ x, data=dat)
 abline(res, lwd=3, lty="dotted")
 
 # change the y value back to the original one for the 6th point
-dat$y[6] <- 8
+dat$y[6] <- 24
 
 # show that the slope becomes steeper when y value for the 11th point (for
 # which h > 0) is increased
-dat$y[11] <- 26
+dat$y[11] <- 30
 points(dat$x[11], dat$y[11], pch=21)
 res <- lm(y ~ x, data=dat)
 abline(res, lwd=3, lty="dashed")
+
+############################################################################
+
+### 8.3: Least squares slope as a weighted average of slopes of pairs
 
 ############################################################################
 
