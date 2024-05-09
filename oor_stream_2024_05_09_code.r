@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 8.1
+# - Section(s): 8.2
 #
 # last updated: 2024-05-09
 
