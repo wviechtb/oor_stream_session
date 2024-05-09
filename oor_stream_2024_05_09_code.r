@@ -15,3 +15,11 @@
 
 ### 8.1: Least squares, maximum likelihood, and Bayesian inference
 
+## Bayesian inference
+
+# first simulate the same data as we did last time
+set.seed(1239)
+n <- 50
+x <- runif(n, 0, 10)
+y <- 2 + 0.5 * x + rnorm(n, mean=0, sd=1)
+
