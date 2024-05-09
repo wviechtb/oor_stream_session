@@ -13,9 +13,7 @@
 
 ############################################################################
 
-### 8.1: Least squares, maximum likelihood, and Bayesian inference
-
-## Bayesian inference
+### 8.2 Influence of individual points in a fitted regression
 
 # first simulate the same data as we did last time
 set.seed(1239)
