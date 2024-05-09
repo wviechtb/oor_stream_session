@@ -91,7 +91,17 @@ slopes
 # but note that we get some NaN values (when 0 / 0) or when +-Inf when
 # dividing something non-zero by zero
 
+weights <- outer(dat$x, dat$x, "-")^2
+weights <- weights / sum(weights)
+weights
 
+# we see that when we get a case of NaN or +-Inf, then the corresponding
+# weight for the pair is 0; so when we multiply the values in the two matrices
+# with each other (pairwise), then all such values will be NaN (since 0 * NaN
+# = NaN and 0 * Inf = NaN)
+
+coef(res)[[2]]
+sum(weights * slopes, na.rm=TRUE)
 
 ############################################################################
 
