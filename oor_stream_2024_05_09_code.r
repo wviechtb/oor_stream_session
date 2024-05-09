@@ -164,14 +164,6 @@ res4 <- stan_glm(y ~ x, data=dat, refresh=0,
                  algorithm="optimizing")
 summary(res4, digits=4)
 
-summary(res1)
+
 
 ############################################################################
-
-
-# first simulate the same data as we did last time
-set.seed(1239)
-n <- 50
-x <- runif(n, 0, 10)
-y <- 2 + 0.5 * x + rnorm(n, mean=0, sd=1)
-
