@@ -142,6 +142,17 @@ plot(d1, main="Intercept")
 plot(d2, main="Slope")
 plot(d3, main="Sigma")
 
+# get the mode of each of these distributions
+d1$x[which.max(d1$y)]
+d2$x[which.max(d2$y)]
+d3$x[which.max(d3$y)]
+
+# compare these to the least squares estimates
+coef(res1)[[1]]
+coef(res1)[[2]]
+sigma(res1)
+
+
 
 
 ############################################################################
