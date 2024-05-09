@@ -125,6 +125,7 @@ set.seed(1234)
 res2 <- stan_glm(y ~ x, data=dat, refresh=0)
 summary(res2, digits=4)
 
+# refit the model using flat priors for all parameters
 res3 <- stan_glm(y ~ x, data=dat, refresh=0,
                  prior_intercept=NULL, prior=NULL, prior_aux=NULL)
 summary(res3, digits=4)
@@ -157,7 +158,13 @@ sigma(res1)
 # skewed distribution like for sigma, the mode should correspond more closely
 # to the classical estimate
 
+# refit the model using optimization (instead of sampling)
+res4 <- stan_glm(y ~ x, data=dat, refresh=0,
+                 prior_intercept=NULL, prior=NULL, prior_aux=NULL,
+                 algorithm="optimizing")
+summary(res4, digits=4)
 
+summary(res1)
 
 ############################################################################
 
