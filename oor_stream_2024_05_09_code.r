@@ -109,6 +109,10 @@ coef(res)[[2]]
 
 ############################################################################
 
+### 8.4: Comparing two fitting functions: lm and stan_glm
+
+############################################################################
+
 
 # first simulate the same data as we did last time
 set.seed(1239)
