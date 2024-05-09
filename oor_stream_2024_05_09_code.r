@@ -28,6 +28,31 @@
 # if the corresponding x value is equal to mean(x), then h = 0, and no matter
 # how much we change the y value, b is not affected
 
+# create a dataset like in Figure 8.3
+dat <- data.frame(x = 2:12, y = c(11,1,12,11,8,24,19,25,11,28,19))
+dat
+
+# plot the data
+plot(dat$x, dat$y, pch=19, bty="l", panel.first=grid(),
+     xlab="x", ylab="y", ylim=c(0,30))
+
+# add the regression line
+res <- lm(y ~ x, data=dat)
+abline(res, lwd=3)
+
+# add lines extending from the regression line to each observed value
+segments(dat$x, fitted(res), dat$x, dat$y)
+
+# compute the h values
+h <- with(dat, (x - mean(x)) / sum((x - mean(x))^2))
+
+# show that the slope is a linear combination of the y values
+coef(res)[[2]]
+sum(h * dat$y)
+
+############################################################################
+
+
 # first simulate the same data as we did last time
 set.seed(1239)
 n <- 50
