@@ -106,3 +106,14 @@ plot(density(adivb), xlim=c(0,50))
 
 ### 9.2: Prediction and uncertainty: predict, posterior_linpred, and posterior_predict
 
+xnew <- data.frame(growth=2.0)
+y_point_pred <- predict(res, newdata=xnew)
+y_point_pred
+
+# note that coef() gives the median of the intercept and slope and this is
+# also what is used by predict() to make the point prediction
+coef(res)
+tab
+
+# so we can make the point prediction manually as follows
+coef(res)[[1]] + coef(res)[[2]] * 2.0
