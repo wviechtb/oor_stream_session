@@ -187,5 +187,21 @@ table(y_pred[,1] > 50)
 # and this distribution we can again summarize
 mean(y_pred[,1] > 50)
 
-# so the chances of winning (by popular vote) is around 71% when x=2.0
+# so the chances of winning the election is around 71% when x=2.0; this was in
+# fact the economic growth value leading up to the 2016 presidential election
+# when Hillary Clinton (as the incumbent candidate) ran against Donald Trump;
+# according to the model, she had high chances of winning, but we all know how
+# that one turned out
 
+## Prediction given a range of input values
+
+# predictions for x = -2.0, -1.5, ..., 4.0
+new_grid <- data.frame(growth=seq(-2.0, 4.0, 0.5))
+y_point_pred_grid <- predict(res, newdata=new_grid)
+y_linpred_grid    <- posterior_linpred(res, newdata=new_grid)
+y_pred_grid       <- posterior_predict(res, newdata=new_grid)
+
+# examine the predicted values
+y_point_pred_grid
+head(y_linpred_grid)
+head(y_pred_grid)
