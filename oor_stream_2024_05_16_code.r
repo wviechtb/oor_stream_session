@@ -45,3 +45,10 @@ head(post)
 
 # compute the median and mad values for the three columns
 cbind(median = sapply(post, median), mad = sapply(post, mad))
+
+# plot kernel density estimates of the three posterior distributions
+par(mfrow=c(3,1))
+plot(density(post[[1]]), main="Intercept")
+plot(density(post[[2]]), main="Slope")
+plot(density(post[[3]]), main="Sigma")
+
