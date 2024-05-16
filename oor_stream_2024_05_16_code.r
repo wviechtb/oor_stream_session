@@ -106,6 +106,8 @@ plot(density(adivb), xlim=c(0,50))
 
 ### 9.2: Prediction and uncertainty: predict, posterior_linpred, and posterior_predict
 
+## Point prediction using predict
+
 xnew <- data.frame(growth=2.0)
 y_point_pred <- predict(res, newdata=xnew)
 y_point_pred
@@ -117,3 +119,9 @@ tab
 
 # so we can make the point prediction manually as follows
 coef(res)[[1]] + coef(res)[[2]] * 2.0
+
+# but what predict() is actually doing
+mean(apply(post, 1, function(x) x[1] + x[2] * 2.0))
+
+## Linear predictor with uncertainty using posterior_linpred or posterior_epred
+
