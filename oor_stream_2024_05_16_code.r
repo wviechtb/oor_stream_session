@@ -210,7 +210,7 @@ head(y_pred_grid)
 
 # simulate the uncertainty in economic growth values (note: we use much more
 # uncertainty here compared to the value in the book)
-x_new  <- rnorm(nrow(post), mean=2.0, sd=0.9)
+x_new <- rnorm(nrow(post), mean=2.0, sd=0.9)
 
 # and make use of these in making a prediction of y
 y_pred <- post[[1]] + post[[2]] * x_new + rnorm(nrow(post), mean=0, sd=post[[3]])
@@ -221,3 +221,18 @@ lines(density(y_pred), col="orange", lwd=3)
 # note: we really have to bump of the SD for x_new to actually see this
 # increase in uncertainty (with an SD of 0.3 as in the book, the difference is
 # not really noticeable)
+
+## Simulating uncertainty for the linear predictor and new observations
+
+# instead of using the earnings dataset, we stick to the same dataset above
+# and illustrate the part that is new, namely equations 9.1 and 9.2, which are
+# used when fitting a model with lm()
+res2 <- lm(vote ~ growth, data=dat)
+summary(res2)
+
+# we can make the two different types of predictions using predict()
+x_new <- data.frame(growth=2.0)
+predict(res2, newdata=x_new, interval="confidence") # this uses (9.1)
+predict(res2, newdata=x_new, interval="prediction") # this uses (9.2)
+
+############################################################################
