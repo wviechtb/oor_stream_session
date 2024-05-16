@@ -44,16 +44,26 @@ post <- as.data.frame(res)
 head(post)
 
 # compute the median and mad values for the three columns
-cbind(median = sapply(post, median), mad = sapply(post, mad))
+tab <- cbind(median = sapply(post, median), mad = sapply(post, mad))
+tab
 
 # plot histograms and superimposed kernel density estimates of the three
-# posterior distributions
+# posterior distributions (similar to Figure 9.1)
 par(mfrow=c(3,1))
-hist(post[[1]], main="Intercept", freq=FALSE, breaks="FD")
+hist(post[[1]], main="Intercept", freq=FALSE, breaks=80)
+abline(v=median(post[[1]]), lwd=6)
+arrows(tab[1,1] - 1*tab[1,2], par("usr")[4]*.40, tab[1,1] + 1*tab[1,2], par("usr")[4]*.40, code=3, length=0.15, lwd=2)
+arrows(tab[1,1] - 2*tab[1,2], par("usr")[4]*.20, tab[1,1] + 2*tab[1,2], par("usr")[4]*.20, code=3, length=0.15, lwd=2)
 lines(density(post[[1]]), lwd=3)
-hist(post[[2]], main="Slope", freq=FALSE, breaks="FD")
+hist(post[[2]], main="Slope", freq=FALSE, breaks=80)
+abline(v=median(post[[2]]), lwd=6)
+arrows(tab[2,1] - 1*tab[2,2], par("usr")[4]*.40, tab[2,1] + 1*tab[2,2], par("usr")[4]*.40, code=3, length=0.15, lwd=2)
+arrows(tab[2,1] - 2*tab[2,2], par("usr")[4]*.20, tab[2,1] + 2*tab[2,2], par("usr")[4]*.20, code=3, length=0.15, lwd=2)
 lines(density(post[[2]]), lwd=3)
-hist(post[[3]], main="Sigma", freq=FALSE, breaks="FD")
+hist(post[[3]], main="Sigma", freq=FALSE, breaks=80)
+abline(v=median(post[[3]]), lwd=6)
+arrows(tab[3,1] - 1*tab[3,2], par("usr")[4]*.40, tab[3,1] + 1*tab[3,2], par("usr")[4]*.40, code=3, length=0.15, lwd=2)
+arrows(tab[3,1] - 2*tab[3,2], par("usr")[4]*.20, tab[3,1] + 2*tab[3,2], par("usr")[4]*.20, code=3, length=0.15, lwd=2)
 lines(density(post[[3]]), lwd=3)
 
 ## Uncertainty in the regression coefficients and implied uncertainty in the regression line
