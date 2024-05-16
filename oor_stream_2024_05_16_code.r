@@ -208,8 +208,9 @@ head(y_pred_grid)
 
 ## Propagating uncertainty
 
-# simulate the uncertainty in economic growth values
-x_new  <- rnorm(nrow(post), 2.0, 0.3)
+# simulate the uncertainty in economic growth values (note: we use more
+# uncertainty here compared to the value in the book)
+x_new  <- rnorm(nrow(post), 2.0, 0.6)
 
 # and make use of these in making a prediction of y
 y_pred <- post[[1]] + post[[2]] * x_new + rnorm(nrow(post), mean=0, sd=post[[3]])
