@@ -23,3 +23,17 @@ dat <- read.table("hibbs.dat", header=TRUE)
 
 # inspect the dataset
 dat
+
+# plot the data
+plot(dat$growth, dat$vote, pch=21, bg="gray",
+     xlab="Average recent growth in personal income",
+     ylab="Incumbent party's vote share", bty="l",
+      panel.first=grid())
+
+# load the rstanarm package
+library(rstanarm)
+
+# fit a linear regression model
+set.seed(1237)
+res <- stan_glm(vote ~ growth, data=dat, refresh=0)
+res
