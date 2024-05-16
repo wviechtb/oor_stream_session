@@ -297,7 +297,7 @@ summary(res)
 # on (n-1), while we divided by n above in computing se_data)
 
 # now we fit the same model using stan_glm(), specifying the prior as we did above
-res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=theta_hat_prior, scale=se_prior))
+res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=theta_hat_prior, scale=se_prior), refresh=0)
 res
 
 # extract the sampled values for the posterior of the intercept (and sigma)
@@ -317,5 +317,16 @@ theta_hat_bayes
 sd(post[,1])
 mad(post[,1])
 se_bayes
+
+# ...
+res <- stan_glm(y ~ 1, data=dat, refresh=0)
+res
+post <- as.data.frame(res)
+
+mean(post[,1])
+theta_hat_data
+
+sd(post[,1])
+se_data
 
 ############################################################################
