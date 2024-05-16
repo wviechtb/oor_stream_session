@@ -15,3 +15,11 @@
 
 ### 9.1: Propagating uncertainty in inference using posterior simulations
 
+# download the dataset for the example
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
+
+# read in the data
+dat <- read.table("hibbs.dat", header=TRUE)
+
+# inspect the dataset
+dat
