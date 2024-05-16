@@ -161,6 +161,13 @@ mad(y_pred[,1])
 # mean and the predicted value of an individual election, the uncertainty in
 # predicting an individual election is much larger
 
-# but now we can also visualize the posterior for the predicted value
-plot(density(y_linpred[,1]))
+# visualize the posterior for the predicted value of an individual election
+# and also add the posterior for the mean
+plot(density(y_pred[,1]), col="dodgerblue", lwd=3, ylim=c(0,.40), main="", bty="l")
+lines(density(y_linpred[,1]), col="firebrick", lwd=3)
+legend("topright", inset=.02, lwd=3, col=c("dodgerblue", "firebrick"),
+       legend=c("Posterior for E(y|x=2.0)", "Posterior for y|x=2.0"))
 
+# do the prediction of y|x=2.0 manually
+
+y_pred_manual <- post[[1]] + post[[2]] * 2.0 + rnorm(nrow(post), mean=0, sd=post[[3]])
