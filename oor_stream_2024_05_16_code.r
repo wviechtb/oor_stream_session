@@ -87,3 +87,10 @@ points(dat$growth, dat$vote, pch=21, bg="black", col="white", lwd=3)
 
 ## Using the matrix of posterior simulations to express uncertainty about a
 ## parameter estimate or function of parameter estimates
+
+# for illustration purposes only, compute the ratio of intercept over slope
+adivb <- post[[1]] / post[[2]]
+
+# this yields the posterior distribution for this derived parameter, which we
+# can again summarize via the median and mad
+c(median = median(adivb), mad = mad(adivb))
