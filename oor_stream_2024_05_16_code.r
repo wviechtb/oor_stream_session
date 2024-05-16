@@ -208,5 +208,11 @@ head(y_pred_grid)
 
 ## Propagating uncertainty
 
-x_new <- rnorm(n_sims, 2.0, 0.3)
-y_pred <- rnorm(n_sims, a + b*x_new, sigma)
+# simulate the uncertainty in economic growth values
+x_new  <- rnorm(nrow(post), 2.0, 0.3)
+
+# and make use of these in making a prediction of y
+y_pred <- post[[1]] + post[[2]] * x_new + rnorm(nrow(post), mean=0, sd=post[[3]])
+
+# show that this adds additional uncertainty to the posterior distribution
+lines(density(y_pred), col="orange", lwd=3)
