@@ -238,3 +238,8 @@ predict(res2, newdata=x_new, interval="prediction") # this uses (9.2)
 ############################################################################
 
 ### 9.3: Prior information and Bayesian synthesis
+
+## Expressing data and prior information on the same scale
+
+# note: we already touched on this in section 1.5 (which we discussed during
+# the stream on 2023-03-23)
