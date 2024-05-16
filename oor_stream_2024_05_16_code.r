@@ -46,9 +46,15 @@ head(post)
 # compute the median and mad values for the three columns
 cbind(median = sapply(post, median), mad = sapply(post, mad))
 
-# plot kernel density estimates of the three posterior distributions
+# plot histograms and superimposed kernel density estimates of the three
+# posterior distributions
 par(mfrow=c(3,1))
-plot(density(post[[1]]), main="Intercept")
-plot(density(post[[2]]), main="Slope")
-plot(density(post[[3]]), main="Sigma")
+hist(post[[1]], main="Intercept", freq=FALSE, breaks="FD")
+lines(density(post[[1]]), lwd=3)
+hist(post[[2]], main="Slope", freq=FALSE, breaks="FD")
+lines(density(post[[2]]), lwd=3)
+hist(post[[3]], main="Sigma", freq=FALSE, breaks="FD")
+lines(density(post[[3]]), lwd=3)
+
+## Uncertainty in the regression coefficients and implied uncertainty in the regression line
 
