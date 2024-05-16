@@ -302,12 +302,20 @@ res
 
 # extract the sampled values for the posterior of the intercept (and sigma)
 post <- as.data.frame(res)
+
+# plot the posterior distribution for the intercept (this looks very much like
+# the posterior we have drawn above in Figure 9.3)
 plot(density(post[,1]))
 
+# in fact, the mean (or median) corresponds very closely to our manual
+# calculation
 mean(post[,1])
 median(post[,1])
+theta_hat_bayes
+
+# similarly, the SD (or MAD) is very to the SE we computed above
 sd(post[,1])
 mad(post[,1])
-
+se_bayes
 
 ############################################################################
