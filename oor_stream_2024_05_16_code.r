@@ -296,9 +296,11 @@ summary(res)
 # is the same as we calculate above (except that here the SE is computed based
 # on (n-1), while we divided by n above in computing se_data)
 
-res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=0.524, scale=0.041))
+# now we fit the same model using stan_glm(), specifying the prior as we did above
+res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=theta_hat_prior, scale=se_prior))
 res
 
+# extract the sampled values for the posterior of the intercept (and sigma)
 post <- as.data.frame(res)
 plot(density(post[,1]))
 
