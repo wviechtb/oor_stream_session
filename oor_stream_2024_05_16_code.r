@@ -157,5 +157,10 @@ sd(y_pred[,1])
 median(y_pred[,1])
 mad(y_pred[,1])
 
+# while the mean (or median) values are essentially the same for the predicted
+# mean and the predicted value of an individual election, the uncertainty in
+# predicting an individual election is much larger
 
+# but now we can also visualize the posterior for the predicted value
+plot(density(y_linpred[,1]))
 
