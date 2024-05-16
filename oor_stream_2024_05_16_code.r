@@ -46,7 +46,8 @@ head(post)
 tab <- cbind(median = sapply(post, median), mad = sapply(post, mad))
 tab
 
-## Uncertainty in the regression coefficients and implied uncertainty in the regression line
+## Uncertainty in the regression coefficients and implied uncertainty in the
+## regression line
 
 # plot histograms and superimposed kernel density estimates of the three
 # posterior distributions (similar to Figure 9.1)
@@ -78,6 +79,18 @@ pairs(post, pch=19, cex=0.2)
 plot(dat$growth, dat$vote, type="n",
      xlab="Average recent growth in personal income",
      ylab="Incumbent party's vote share", bty="l")
-apply(post[1:100,], 1, function(x) abline(a=x[1], b=x[2]))
-abline(a=tab[1,1], b=tab[2,1], lwd=3)
+apply(post[1:100,], 1, function(x) abline(a=x[1], b=x[2], col="gray40"))
+abline(a=tab[1,1], b=tab[2,1], lwd=6)
 points(dat$growth, dat$vote, pch=21, bg="black", col="white", lwd=3)
+
+# we can also draw all 4000 lines, using alpha blending (i.e., making the
+# lines semi-transparent) to indicate what lines are more or less plausible
+plot(dat$growth, dat$vote, type="n",
+     xlab="Average recent growth in personal income",
+     ylab="Incumbent party's vote share", bty="l")
+apply(post, 1, function(x) abline(a=x[1], b=x[2], col=rgb(0,0,0,.05)))
+abline(a=tab[1,1], b=tab[2,1], lwd=6)
+points(dat$growth, dat$vote, pch=21, bg="black", col="white", lwd=3)
+
+## Using the matrix of posterior simulations to express uncertainty about a
+## parameter estimate or function of parameter estimates
