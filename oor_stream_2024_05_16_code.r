@@ -148,5 +148,14 @@ mad(y_linpred[,1])
 # but now we want to make a prediction for an individual election; we can do
 # so with the posterior_predict() function
 y_pred <- posterior_predict(res, newdata=xnew)
-y_pred
+head(y_pred)
+
+# so this yields the posterior distribution for the predicted value of y for
+# an individual election, which we can again summarize in various ways
+mean(y_pred[,1])
+sd(y_pred[,1])
+median(y_pred[,1])
+mad(y_pred[,1])
+
+
 
