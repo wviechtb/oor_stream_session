@@ -42,3 +42,6 @@ res
 # intercept, slope, and error standard deviation as a data frame
 post <- as.data.frame(res)
 head(post)
+
+# compute the median and mad values for the three columns
+cbind(median = sapply(post, median), mad = sapply(post, mad))
