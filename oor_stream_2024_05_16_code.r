@@ -275,14 +275,27 @@ library(metafor)
 res <- rma(c(theta_hat_prior,theta_hat_data), sei=c(se_prior,se_data), method="EE")
 print(res, digits=3)
 
-
+# we can do the same as above using stan_glm(); first we create our dataset as
+# if we had done a poll in 400 people, where y = 1 indicates that a person
+# will vote for the Democratic candidate and y = 0 for the Republican
+# candidate
 
 dat <- data.frame(y = sample(rep(c(1,0), times=c(190,210))))
+table(dat$y)
+
 res <- lm(y ~ 1, data=dat)
 summary(res)
 
 res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=0.524, scale=0.041))
 res
+
+post <- as.data.frame(res)
+plot(density(post[,1]))
+
+mean(post[,1])
+median(post[,1])
+sd(post[,1])
+mad(post[,1])
 
 
 ############################################################################
