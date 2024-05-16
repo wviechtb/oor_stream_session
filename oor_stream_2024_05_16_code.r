@@ -121,13 +121,23 @@ xnew <- data.frame(growth=2.0)
 y_point_pred <- predict(res, newdata=xnew)
 y_point_pred
 
-
-# but what predict() is actually doing
+# predict() actually computes the predicted values based on all regression
+# lines and then takes the mean of those values
 mean(post[[1]] + post[[2]] * 2.0)
 
 ## Linear predictor with uncertainty using posterior_linpred or posterior_epred
 
+# posterior_linpred() does the same thing, but gives the individual predictions
 y_linpred <- posterior_linpred(res, newdata=xnew)
+head(y_linpred)
 
-plot(density(y_linpred[,1]))
+# taking their mean again gives the same value
 mean(y_linpred[,1])
+
+# but now we can also visualize the posterior for the predicted value
+plot(density(y_linpred[,1]))
+
+# and compute other summary statistics
+median(y_linpred[,1])
+sd(y_linpred[,1])
+mad(y_linpred[,1])
