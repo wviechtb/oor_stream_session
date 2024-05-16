@@ -241,5 +241,9 @@ predict(res2, newdata=x_new, interval="prediction") # this uses (9.2)
 
 ## Expressing data and prior information on the same scale
 
-# note: we already touched on this in section 1.5 (which we discussed during
-# the stream on 2023-03-23)
+# note: we already touched on the concepts of this section in section 1.5
+# (which we discussed during the stream on 2023-03-23)
+
+## Bayesian information aggregation
+
+############################################################################
