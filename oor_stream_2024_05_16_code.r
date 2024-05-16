@@ -275,4 +275,14 @@ library(metafor)
 res <- rma(c(theta_hat_prior,theta_hat_data), sei=c(se_prior,se_data), method="EE")
 print(res, digits=3)
 
+
+
+dat <- data.frame(y = sample(rep(c(1,0), times=c(190,210))))
+res <- lm(y ~ 1, data=dat)
+summary(res)
+
+res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=0.524, scale=0.041))
+res
+
+
 ############################################################################
