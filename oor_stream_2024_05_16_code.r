@@ -178,3 +178,14 @@ lines(density(y_pred_manual), col="forestgreen", lwd=3)
 # we see that this is essentially identical to what posterior_predict() is
 # doing, but because the additional uncertainly in predicting y is random,
 # there are minor discrepancies
+
+# we can derive further quantities from the posterior of the predicted value
+# of y when x=2.0; for example, the posterior distribution for y being greater
+# than 50% (which is of course a dichotomous variable)
+table(y_pred[,1] > 50)
+
+# and this distribution we can again summarize
+mean(y_pred[,1] > 50)
+
+# so the chances of winning (by popular vote) is around 71% when x=2.0
+
