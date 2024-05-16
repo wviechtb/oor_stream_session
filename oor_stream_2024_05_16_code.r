@@ -37,3 +37,8 @@ library(rstanarm)
 set.seed(1237)
 res <- stan_glm(vote ~ growth, data=dat, refresh=0)
 res
+
+# extract the simulated draws from the posterior distributions for the
+# intercept, slope, and error standard deviation as a data frame
+post <- as.data.frame(res)
+head(post)
