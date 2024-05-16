@@ -117,8 +117,8 @@ tab
 coef(res)[[1]] + coef(res)[[2]] * 2.0
 
 # but this is not exactly what predict() does
-xnew <- data.frame(growth=2.0)
-y_point_pred <- predict(res, newdata=xnew)
+x_new <- data.frame(growth=2.0)
+y_point_pred <- predict(res, newdata=x_new)
 y_point_pred
 
 # predict() actually computes the predicted values based on all regression
@@ -128,7 +128,7 @@ mean(post[[1]] + post[[2]] * 2.0)
 ## Linear predictor with uncertainty using posterior_linpred or posterior_epred
 
 # posterior_linpred() does the same thing, but gives the individual predictions
-y_linpred <- posterior_linpred(res, newdata=xnew)
+y_linpred <- posterior_linpred(res, newdata=x_new)
 head(y_linpred)
 
 # taking their mean again gives the same value
@@ -147,7 +147,7 @@ mad(y_linpred[,1])
 # note that above, we are making a prediction for the mean of y when x = 2.0,
 # but now we want to make a prediction for an individual election; we can do
 # so with the posterior_predict() function
-y_pred <- posterior_predict(res, newdata=xnew)
+y_pred <- posterior_predict(res, newdata=x_new)
 head(y_pred)
 
 # so this yields the posterior distribution for the predicted value of y for
@@ -205,3 +205,8 @@ y_pred_grid       <- posterior_predict(res, newdata=new_grid)
 y_point_pred_grid
 head(y_linpred_grid)
 head(y_pred_grid)
+
+## Propagating uncertainty
+
+x_new <- rnorm(n_sims, 2.0, 0.3)
+y_pred <- rnorm(n_sims, a + b*x_new, sigma)
