@@ -141,3 +141,12 @@ plot(density(y_linpred[,1]))
 median(y_linpred[,1])
 sd(y_linpred[,1])
 mad(y_linpred[,1])
+
+## Predictive distribution for a new observation using posterior_predict
+
+# note that above, we are making a prediction for the mean of y when x = 2.0,
+# but now we want to make a prediction for an individual election; we can do
+# so with the posterior_predict() function
+y_pred <- posterior_predict(res, newdata=xnew)
+y_pred
+
