@@ -47,6 +47,8 @@ head(post)
 tab <- cbind(median = sapply(post, median), mad = sapply(post, mad))
 tab
 
+## Uncertainty in the regression coefficients and implied uncertainty in the regression line
+
 # plot histograms and superimposed kernel density estimates of the three
 # posterior distributions (similar to Figure 9.1)
 par(mfrow=c(3,1))
@@ -65,6 +67,10 @@ abline(v=median(post[[3]]), lwd=6)
 arrows(tab[3,1] - 1*tab[3,2], par("usr")[4]*.40, tab[3,1] + 1*tab[3,2], par("usr")[4]*.40, code=3, length=0.15, lwd=2)
 arrows(tab[3,1] - 2*tab[3,2], par("usr")[4]*.20, tab[3,1] + 2*tab[3,2], par("usr")[4]*.20, code=3, length=0.15, lwd=2)
 lines(density(post[[3]]), lwd=3)
+par(mfrow=c(1,1))
 
-## Uncertainty in the regression coefficients and implied uncertainty in the regression line
+# Figure 9.2(a)
+plot(post[[1]], post[[2]], pch=19, cex=0.2, xlab="Intercept", ylab="Slope", bty="l")
 
+# we can also plot the draws for all three parameters against each other
+pairs(post, pch=19, cex=0.2)
