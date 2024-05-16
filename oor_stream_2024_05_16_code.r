@@ -236,3 +236,5 @@ predict(res2, newdata=x_new, interval="confidence") # this uses (9.1)
 predict(res2, newdata=x_new, interval="prediction") # this uses (9.2)
 
 ############################################################################
+
+### 9.3: Prior information and Bayesian synthesis
