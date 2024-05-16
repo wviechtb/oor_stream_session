@@ -101,3 +101,8 @@ plot(density(adivb))
 # there are a few very extreme values, so zoom in on where most of the mass of
 # the posterior distribution is
 plot(density(adivb), xlim=c(0,50))
+
+############################################################################
+
+### 9.2: Prediction and uncertainty: predict, posterior_linpred, and posterior_predict
+
