@@ -257,6 +257,16 @@ se_bayes <- sqrt(1/(1/se_prior^2 + 1/se_data^2))
 theta_hat_bayes
 se_bayes
 
+# Figure 9.3
+xs <- seq(0.35, 0.7, length=1000)
+plot(xs, dnorm(xs, mean=theta_hat_prior, sd=se_prior), type="l", lty="dotted",
+     bty="n", yaxt="n", yaxs="i", xlab=expression(theta), ylab="", ylim=c(0,20))
+lines(xs, dnorm(xs, mean=theta_hat_data, sd=se_data), lty="dashed")
+lines(xs, dnorm(xs, mean=theta_hat_bayes, sd=se_bayes))
+text(0.44, dnorm(0.44, mean=theta_hat_data, sd=se_data), pos=2, "Likelihood")
+text(0.58, dnorm(0.58, mean=theta_hat_prior, sd=se_prior), pos=4, "Prior")
+text(0.50, dnorm(0.50, mean=theta_hat_bayes, sd=se_bayes), pos=4, "Posterior")
+
 
 
 ############################################################################
