@@ -74,9 +74,10 @@ plot(post[[1]], post[[2]], pch=19, cex=0.2, xlab="Intercept", ylab="Slope", bty=
 # we can also plot the draws for all three parameters against each other
 pairs(post, pch=19, cex=0.2)
 
-# Figure 9.2(b)
+# Figure 9.2(b) but also highlight the regression line based on the median intercept and slope
 plot(dat$growth, dat$vote, type="n",
      xlab="Average recent growth in personal income",
      ylab="Incumbent party's vote share", bty="l")
 apply(post[1:100,], 1, function(x) abline(a=x[1], b=x[2]))
+abline(a=tab[1,1], b=tab[2,1], lwd=3)
 points(dat$growth, dat$vote, pch=21, bg="black", col="white", lwd=3)
