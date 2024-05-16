@@ -246,4 +246,17 @@ predict(res2, newdata=x_new, interval="prediction") # this uses (9.2)
 
 ## Bayesian information aggregation
 
+theta_hat_prior <- 0.524
+se_prior <- 0.041
+n <- 400
+y <- 190
+theta_hat_data <- y/n
+se_data <- sqrt(theta_hat_data*(1-theta_hat_data)/n)
+theta_hat_bayes <- (theta_hat_prior/se_prior^2 + theta_hat_data/se_data^2) / (1/se_prior^2 + 1/se_data^2)
+se_bayes <- sqrt(1/(1/se_prior^2 + 1/se_data^2))
+theta_hat_bayes
+se_bayes
+
+
+
 ############################################################################
