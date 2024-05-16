@@ -94,3 +94,10 @@ adivb <- post[[1]] / post[[2]]
 # this yields the posterior distribution for this derived parameter, which we
 # can again summarize via the median and mad
 c(median = median(adivb), mad = mad(adivb))
+
+# plot the kernel density estimate of the posterior for this derived parameter
+plot(density(adivb))
+
+# there are a few very extreme values, so zoom in on where most of the mass of
+# the posterior distribution is
+plot(density(adivb), xlim=c(0,50))
