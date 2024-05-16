@@ -283,6 +283,13 @@ print(res, digits=3)
 dat <- data.frame(y = sample(rep(c(1,0), times=c(190,210))))
 table(dat$y)
 
+# we can analyze the data using a linear regression model (which may appear a
+# bit unusual for a dichotomous outcome, but such a 'linear probability model'
+# (https://en.wikipedia.org/wiki/Linear_probability_model) often yields
+# similar results as a logistic regression model and by using this model, we
+# directly model the proportion of voting for the Democratic candidate as is
+# done in the example above
+
 res <- lm(y ~ 1, data=dat)
 summary(res)
 
