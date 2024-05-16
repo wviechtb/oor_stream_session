@@ -27,8 +27,7 @@ dat
 # plot the data
 plot(dat$growth, dat$vote, pch=21, bg="gray",
      xlab="Average recent growth in personal income",
-     ylab="Incumbent party's vote share", bty="l",
-      panel.first=grid())
+     ylab="Incumbent party's vote share", bty="l", panel.first=grid())
 
 # load the rstanarm package
 library(rstanarm)
@@ -74,3 +73,10 @@ plot(post[[1]], post[[2]], pch=19, cex=0.2, xlab="Intercept", ylab="Slope", bty=
 
 # we can also plot the draws for all three parameters against each other
 pairs(post, pch=19, cex=0.2)
+
+# Figure 9.2(b)
+plot(dat$growth, dat$vote, type="n",
+     xlab="Average recent growth in personal income",
+     ylab="Incumbent party's vote share", bty="l")
+apply(post[1:100,], 1, function(x) abline(a=x[1], b=x[2]))
+points(dat$growth, dat$vote, pch=21, bg="black", col="white", lwd=3)
