@@ -169,5 +169,12 @@ legend("topright", inset=.02, lwd=3, col=c("dodgerblue", "firebrick"),
        legend=c("Posterior for E(y|x=2.0)", "Posterior for y|x=2.0"))
 
 # do the prediction of y|x=2.0 manually
-
 y_pred_manual <- post[[1]] + post[[2]] * 2.0 + rnorm(nrow(post), mean=0, sd=post[[3]])
+head(y_pred_manual)
+
+# also add the posterior based on our manual calculations
+lines(density(y_pred_manual), col="forestgreen", lwd=3)
+
+# we see that this is essentially identical to what posterior_predict() is
+# doing, but because the additional uncertainly in predicting y is random,
+# there are minor discrepancies
