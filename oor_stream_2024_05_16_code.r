@@ -263,10 +263,16 @@ plot(xs, dnorm(xs, mean=theta_hat_prior, sd=se_prior), type="l", lty="dotted",
      bty="n", yaxt="n", yaxs="i", xlab=expression(theta), ylab="", ylim=c(0,20))
 lines(xs, dnorm(xs, mean=theta_hat_data, sd=se_data), lty="dashed")
 lines(xs, dnorm(xs, mean=theta_hat_bayes, sd=se_bayes))
-text(0.44, dnorm(0.44, mean=theta_hat_data, sd=se_data), pos=2, "Likelihood")
+text(0.44, dnorm(0.44, mean=theta_hat_data, sd=se_data),   pos=2, "Likelihood")
 text(0.58, dnorm(0.58, mean=theta_hat_prior, sd=se_prior), pos=4, "Prior")
 text(0.50, dnorm(0.50, mean=theta_hat_bayes, sd=se_bayes), pos=4, "Posterior")
 
+# this is identical to what happens in a meta-analysis if we treat the prior
+# as if it was a study; we can do this for example with the metafor package
 
+# install.packages("metafor")
+library(metafor)
+res <- rma(c(theta_hat_prior,theta_hat_data), sei=c(se_prior,se_data), method="EE")
+print(res, digits=3)
 
 ############################################################################
