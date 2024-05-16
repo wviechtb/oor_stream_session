@@ -289,9 +289,12 @@ table(dat$y)
 # similar results as a logistic regression model and by using this model, we
 # directly model the proportion of voting for the Democratic candidate as is
 # done in the example above
-
 res <- lm(y ~ 1, data=dat)
 summary(res)
+
+# note that the intercept is equal to the proportion and the standard errors
+# is the same as we calculate above (except that here the SE is computed based
+# on (n-1), while we divided by n above in computing se_data)
 
 res <- stan_glm(y ~ 1, data=dat, prior_intercept=normal(location=0.524, scale=0.041))
 res
