@@ -121,7 +121,7 @@ tab
 coef(res)[[1]] + coef(res)[[2]] * 2.0
 
 # but what predict() is actually doing
-mean(apply(post, 1, function(x) x[1] + x[2] * 2.0))
+mean(post[[1]] + post[[2]] * 2.0)
 
 ## Linear predictor with uncertainty using posterior_linpred or posterior_epred
 
