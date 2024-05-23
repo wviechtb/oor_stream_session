@@ -20,6 +20,12 @@ install.package("rstan")
 # install some additional packages needed
 install.packages(c("coda","mvtnorm","remotes","dagitty"))
 
+# install the cmdstanr package
+install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
+
+# install CmdStan via the cmdstanr package
+cmdstanr::install_cmdstan()
+
 # install the rethinking package
 remotes::install_github("rmcelreath/rethinking")
 
