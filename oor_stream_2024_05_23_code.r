@@ -13,6 +13,17 @@
 
 ############################################################################
 
+# install rstan package (note: need to install a C++ compiler for this to
+# work; for details, see: https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started)
+install.package("rstan")
+
+# install some additional packages needed
+install.packages(c("coda","mvtnorm","remotes","dagitty"))
+
+# install the rethinking package
+remotes::install_github("rmcelreath/rethinking")
+
+
 
 
 ############################################################################
