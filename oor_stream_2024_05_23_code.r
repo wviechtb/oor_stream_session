@@ -48,5 +48,14 @@ addmargins(table(sleep$group, sleep$extra > 0))
 chisq.test(table(sleep$group, sleep$extra > 0))
 fisher.test(table(sleep$group, sleep$extra > 0))
 
+res1 <- lm(mpg ~ 0 + factor(am), data=mtcars)
+summary(res1)
+
+library(nlme)
+
+res2 <- lme(mpg ~ 1, random = ~ 1 | am, data=mtcars)
+summary(res2)
+coef(res2)
+
 ############################################################################
 
