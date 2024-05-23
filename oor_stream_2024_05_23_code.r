@@ -29,7 +29,21 @@ cmdstanr::install_cmdstan()
 # install the rethinking package
 remotes::install_github("rmcelreath/rethinking")
 
+############################################################################
 
+### 1: The Golem of Prague
 
+#                      tea added first      milk added first
+# "tea added first"          a                      b             n/2
+# "milk added first"         c                      d             n/2
+#                            n/2                    n/2           n
+
+addmargins(table(mtcars$am, mtcars$vs))
+
+addmargins(table(sleep$group, sleep$extra > 0))
+
+chisq.test(table(sleep$group, sleep$extra > 0))
+fisher.test(table(sleep$group, sleep$extra > 0))
 
 ############################################################################
+
