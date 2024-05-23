@@ -33,6 +33,8 @@ remotes::install_github("rmcelreath/rethinking")
 
 ### 1: The Golem of Prague
 
+# https://en.wikipedia.org/wiki/Fisher's_exact_test
+
 #                      tea added first      milk added first
 # "tea added first"          a                      b             n/2
 # "milk added first"         c                      d             n/2
