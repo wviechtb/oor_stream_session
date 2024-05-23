@@ -39,9 +39,10 @@ remotes::install_github("rmcelreath/rethinking")
 #                            n/2                    n/2           n
 
 addmargins(table(mtcars$am, mtcars$vs))
+chisq.test(table(mtcars$am, mtcars$vs))
+fisher.test(table(mtcars$am, mtcars$vs))
 
 addmargins(table(sleep$group, sleep$extra > 0))
-
 chisq.test(table(sleep$group, sleep$extra > 0))
 fisher.test(table(sleep$group, sleep$extra > 0))
 
