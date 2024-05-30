@@ -110,9 +110,6 @@ post <- as.data.frame(res)
 # plot the posterior distribution for the slope
 plot(density(post[,2]))
 
-# plot the posterior values for the intercept and slope against each other
-plot(post[,1], post[,2], pch=19, cex=0.2, xlab="Intercept", ylab="Slope")
-
 # draw all 4000 regression lines, using alpha blending (i.e., making the
 # lines semi-transparent) to indicate what lines are more or less plausible
 plot(NA, xlim=c(0,1), ylim=c(0.4,0.6), xaxt="n",
@@ -121,13 +118,22 @@ axis(side=1, at=c(0,1), labels=c("Not High", "High"))
 apply(post, 1, function(x) abline(a=x[1], b=x[2], col=rgb(0,0,0,.05)))
 abline(a=median(post[,1]), b=median(post[,2]), lwd=6)
 
-
-
 # if we use the default priors, then the median of the posterior of the slope
 # is almost 8% points, so again we see how important it is to carefully think
 # about the prior
 res <- stan_glm(girl ~ attracthigh, data=dat, refresh=0)
 coef(res) * 100
+
+# extract the sampled values for the posterior of the intercept, slope, and sigma
+post <- as.data.frame(res)
+
+# draw all 4000 regression lines, using alpha blending (i.e., making the
+# lines semi-transparent) to indicate what lines are more or less plausible
+plot(NA, xlim=c(0,1), ylim=c(0.4,0.6), xaxt="n",
+     xlab="Attractiveness Group", ylab="Proportion of Girls", bty="l")
+axis(side=1, at=c(0,1), labels=c("Not High", "High"))
+apply(post, 1, function(x) abline(a=x[1], b=x[2], col=rgb(0,0,0,.05)))
+abline(a=median(post[,1]), b=median(post[,2]), lwd=6)
 
 ############################################################################
 
