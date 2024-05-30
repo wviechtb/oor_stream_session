@@ -78,14 +78,21 @@ table(dat$attractiveness, dat$girl)
 prop.table(table(dat$attractiveness, dat$girl), margin=1) * 100
 
 # construct a high versus low attractiveness dummy variable
-dat$attacthigh <- ifelse(dat$attractiveness == 2, 1, 0)
+dat$attracthigh <- ifelse(dat$attractiveness == 2, 1, 0)
 
 # check that we get an estimated difference (between the proportions) of .08
 # for the high versus not high attractiveness categories based on a standard
 # linear regression model (using a 'linear probability model' to be precise)
-res <- lm(girl ~ attacthigh, data=dat)
+res <- lm(girl ~ attracthigh, data=dat)
 summary(res)
 
 library(rstanarm)
+
+# now we fit the same model using stan_glm(), specifying appropriate priors
+# for the intercept and slope (using the default prior for the error SD)
+res <- stan_glm(girl ~ attracthigh, data=dat,
+                prior_intercept=normal(location=0.49, scale=0.02),
+                prior=normal(location=0, scale=0.0025), refresh=0)
+res
 
 
