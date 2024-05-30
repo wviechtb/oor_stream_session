@@ -150,6 +150,7 @@ d3 <- density(posterior[,3])
 plot(d1, main="Intercept")
 plot(d2, main="Slope")
 plot(d3, main="Sigma")
+par(mfrow=c(1,1))
 
 # get the mode of each of these distributions
 d1$x[which.max(d1$y)]
