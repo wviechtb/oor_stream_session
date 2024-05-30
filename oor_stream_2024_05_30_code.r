@@ -20,3 +20,8 @@ dat <- structure(list(x = c(-2, -1, 0, 1, 2), y = c(50, 44, 50, 47, 56)),
                  row.names = c(NA, -5L), class = "data.frame")
 dat
 
+# proportion of girls of parents in the lower attactiveness categories versus
+# the highest attractiveness category
+mean(dat$y[1:4])
+dat$y[5]
+
