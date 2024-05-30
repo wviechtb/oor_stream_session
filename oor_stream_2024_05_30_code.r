@@ -190,6 +190,16 @@ coef(res)
 
 ############################################################################
 
+## Weakly informative prior distribution based on subject-matter knowledge
+
+res <- stan_glm(vote ~ growth, data=dat,
+                prior=normal(5, 5), prior_intercept=normal(50, 10), refresh=0)
+coef(res)
+
+
+############################################################################
+
+
 # fit the model with least squares regression
 res1 <- lm(vote ~ growth, data=dat)
 summary(res1)
@@ -214,6 +224,3 @@ tab <- rbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
 round(tab, digits=3)
 
 ############################################################################
-
-## Weakly informative prior distribution based on subject-matter knowledge
-
