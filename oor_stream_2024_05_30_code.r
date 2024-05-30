@@ -264,4 +264,27 @@ round(tab, digits=3)
 # (shrinkage penalty value), then we get essentially the same results as what
 # we get from the Bayesian regression model
 
+# fit the Bayesian model with a laplace prior for the slope that is again much
+# more narrowly centered around 0 (i.e., a much more informative prior)
+set.seed(1237)
+res2 <- stan_glm(vote ~ growth, data=dat,
+                 prior=laplace(0,sqrt(1/2)), refresh=0)
+coef(res2)
+
+# objective functions for lasso regression
+fitlasso <- function(beta, y, x, lambda)
+   sum((y - beta[1] - beta[2]*x)^2) + lambda * abs(beta[2])
+
+# do lasso regression with lambda=17.5
+res3 <- optim(c(50,0), fitlasso, y=dat$vote, x=dat$growth, lambda=47)
+res3$par
+
+# put all results into a table
+tab <- rbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
+round(tab, digits=3)
+
+# again, we see that if we do lasso regression with an appropriately chosen
+# lambda (shrinkage penalty value), then we get essentially the same results
+# as what we get from the Bayesian regression model
+
 ############################################################################
