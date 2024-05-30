@@ -30,10 +30,23 @@ p2
 # difference between the two percentages
 p2 - p1
 
-# about 90% of the 3000 participants fell into the first four categories and
-# 10% in the highest category
+# about 90% of the 3000 participants of the survey fell into the first four
+# categories and 10% in the highest category
 n1 <- 90/100 * 3000
 n2 <- 10/100 * 3000
 
 # standard error of the difference between the two percentages
-sqrt(p1 * (100 - p1) / n1 + p2 * (100 - p2) / n2)
+se <- sqrt(p1 * (100 - p1) / n1 + p2 * (100 - p2) / n2)
+se
+
+# mean and SE for the prior (for the difference between the two percentages)
+theta_hat_prior <- 0
+se_prior <- 0.5
+
+# combine the prior with the data using equation (9.3) and (9.4)
+theta_hat_data <- p2 - p1
+se_data <- se
+theta_hat_bayes <- (theta_hat_prior/se_prior^2 + theta_hat_data/se_data^2) / (1/se_prior^2 + 1/se_data^2)
+se_bayes <- sqrt(1/(1/se_prior^2 + 1/se_data^2))
+theta_hat_bayes
+se_bayes
