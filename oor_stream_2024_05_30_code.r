@@ -17,7 +17,8 @@
 
 # create the dataset for the example and examine it (the n values are based on
 # guestimates of how many people fell into the various categories)
-dat <- structure(list(x = c(-2, -1, 0, 1, 2), y = c(50, 44, 50, 47, 56),
+dat <- structure(list(x = c(-2, -1, 0, 1, 2),
+                      y = c(50, 44, 50, 47, 56),
                       n = c(300, 600, 1200, 600, 300)),
                  row.names = c(NA, -5L), class = "data.frame")
 dat
@@ -118,4 +119,58 @@ coef(res) * 100
 ############################################################################
 
 ### 9.5: Uniform, weakly informative, and informative priors in regression
+
+## Uniform prior distribution
+
+# download the dataset for the example (run once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/ElectionsEconomy/data/hibbs.dat", destfile="hibbs.dat")
+
+# read in and inspect the data
+dat <- read.table("hibbs.dat", header=TRUE)
+dat
+
+# fit the model with lm() and inspect the results
+res1 <- lm(vote ~ growth, data=dat)
+summary(res1)
+
+# fit a linear regression model using flat priors for all parameters
+set.seed(1234)
+res2 <- stan_glm(vote ~ growth, data=dat,
+                 prior_intercept=NULL, prior=NULL, prior_aux=NULL, refresh=0)
+
+# extract the samples from the posterior distributions for the three parameters
+posterior <- as.data.frame(res2)
+head(posterior)
+
+# plot kernel density estimates of the three distributions
+par(mfrow=c(3,1))
+d1 <- density(posterior[,1])
+d2 <- density(posterior[,2])
+d3 <- density(posterior[,3])
+plot(d1, main="Intercept")
+plot(d2, main="Slope")
+plot(d3, main="Sigma")
+
+# get the mode of each of these distributions
+d1$x[which.max(d1$y)]
+d2$x[which.max(d2$y)]
+d3$x[which.max(d3$y)]
+
+# compare these to the least squares estimates
+coef(res1)[[1]]
+coef(res1)[[2]]
+sigma(res1)
+
+# for symmetric posterior distributions, the mean (or median) is a better
+# summary, so for the intercept and slope, let's stick to these, but for a
+# skewed distribution like for sigma, the mode should correspond more closely
+# to the classical estimate
+
+# compare the estimates
+tab <- data.frame(lm = c(coef(res1), sigma(res1)),
+                  stan_glm = c(mean(posterior[,1]), mean(posterior[,2]), d3$x[which.max(d3$y)]))
+rownames(tab) <- c("Intercept", "Slope", "Sigma")
+round(tab, 3)
+
+## Default prior distribution
 
