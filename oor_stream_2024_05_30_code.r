@@ -109,3 +109,13 @@ post <- as.data.frame(res)
 # plot the posterior distribution for the slope
 plot(density(post[,2]))
 
+# if we use the default priors, then the median of the posterior of the slope
+# is almost 8% points, so again we see how important it is to carefully think
+# about the prior
+res <- stan_glm(girl ~ attracthigh, data=dat, refresh=0)
+coef(res) * 100
+
+############################################################################
+
+### 9.5: Uniform, weakly informative, and informative priors in regression
+
