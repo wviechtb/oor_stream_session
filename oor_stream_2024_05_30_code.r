@@ -172,6 +172,8 @@ tab <- data.frame(lm = c(coef(res1), sigma(res1)),
 rownames(tab) <- c("Intercept", "Slope", "Sigma")
 round(tab, 3)
 
+############################################################################
+
 ## Default prior distribution
 
 set.seed(1237)
@@ -192,9 +194,12 @@ coef(res)
 
 ## Weakly informative prior distribution based on subject-matter knowledge
 
+# fit the model using the priors as explained in this section
+set.seed(1237)
 res <- stan_glm(vote ~ growth, data=dat,
                 prior=normal(5, 5), prior_intercept=normal(50, 10), refresh=0)
 coef(res)
+
 
 
 ############################################################################
