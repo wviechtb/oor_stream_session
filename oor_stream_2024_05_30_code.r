@@ -187,3 +187,22 @@ M1a <- stan_glm(vote ~ growth, data=dat,
                 prior_intercept=normal(mean_y, 2.5*sd_y),
                 prior_aux=exponential(1/sd_y), refresh=0)
 coef(res)
+
+############################################################################
+
+# do least squares regression (with a smaller number of predictors and also
+# standardize the outcome variable so the intercept must be 0)
+res <- lm(vote ~ growth, data=dat)
+summary(res)
+
+# objective functions for ridge regression
+fitridge <- function(beta, y, x, lambda)
+   sum((y - beta[1] - beta[2]*x)^2) + lambda * beta[2]^2
+
+# say we do ridge regression with lambda=10
+sav <- optim(c(50,0), fitridge, y=dat$vote, x=dat$growth, lambda=0.2)
+round(cbind(lm=coef(res), fitridge=sav$par), digits=3)
+
+
+
+############################################################################
