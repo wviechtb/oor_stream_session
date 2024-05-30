@@ -65,10 +65,11 @@ legend("topright", lty=c("dotted", "dashed", "solid"),
 # this plot demonstrates how little information there is in the actual data,
 # relative to the prior information we have
 
-dat <- data.frame(attractiveness = rep(c(-2:2), times=c(3000 * c(0.1, 0.2, 0.4, 0.2, 0.1))))
+# create a dataset with raw data like the survey dataset
 
-dat$girl <- rep(c(0,1), times=3000 * 0.1 * c(.50, .50))
+dat <- lapply(split(dat, dat$x), function(x) cbind(attractiveness = rep(x$x, x$n),
+                                                   girl = rep(c(0,1), times=round(c(1-x$y/100, x$y/100) * x$n))))
+dat <- do.call(rbind, dat)
+dat <- data.frame(dat)
 
-
-
-c(50, 44, 50, 47, 56)
+table(dat$attractiveness, dat$girl)
