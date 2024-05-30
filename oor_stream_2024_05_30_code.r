@@ -194,6 +194,8 @@ coef(res)
 res1 <- lm(vote ~ growth, data=dat)
 summary(res1)
 
+# fit the Bayesian model with a prior for the slope that is much narrowly
+# centered around 0
 set.seed(1237)
 res2 <- stan_glm(vote ~ growth, data=dat,
                  prior=normal(0,1), refresh=0)
@@ -203,7 +205,7 @@ coef(res2)
 fitridge <- function(beta, y, x, lambda)
    sum((y - beta[1] - beta[2]*x)^2) + lambda * beta[2]^2
 
-# say we do ridge regression with lambda=10
+# do ridge regression with lambda=17.5
 res3 <- optim(c(50,0), fitridge, y=dat$vote, x=dat$growth, lambda=17.5)
 res3$par
 
@@ -212,3 +214,6 @@ tab <- rbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
 round(tab, digits=3)
 
 ############################################################################
+
+## Weakly informative prior distribution based on subject-matter knowledge
+
