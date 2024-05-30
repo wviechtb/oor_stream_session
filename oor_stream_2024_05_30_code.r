@@ -15,7 +15,8 @@
 
 ### 9.4: Example of Bayesian inference: beauty and sex ratio
 
-# create the dataset for the example
+# create the dataset for the example and examine it
 dat <- structure(list(x = c(-2, -1, 0, 1, 2), y = c(50, 44, 50, 47, 56)),
                  row.names = c(NA, -5L), class = "data.frame")
+dat
 
