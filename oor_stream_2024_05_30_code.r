@@ -41,12 +41,24 @@ se
 
 # mean and SE for the prior (for the difference between the two percentages)
 theta_hat_prior <- 0
-se_prior <- 0.5
+se_prior <- 0.25
 
 # combine the prior with the data using equation (9.3) and (9.4)
 theta_hat_data <- p2 - p1
 se_data <- se
 theta_hat_bayes <- (theta_hat_prior/se_prior^2 + theta_hat_data/se_data^2) / (1/se_prior^2 + 1/se_data^2)
 se_bayes <- sqrt(1/(1/se_prior^2 + 1/se_data^2))
-theta_hat_bayes
-se_bayes
+round(theta_hat_bayes, 2)
+round(se_bayes, 2)
+
+# plot the distributions for the prior, data, and posterior
+xs <- seq(-2, 16, length=1000)
+plot(xs, dnorm(xs, mean=theta_hat_prior, sd=se_prior), type="l", lty="dotted",
+     bty="n", yaxt="n", yaxs="i", xlab=expression(theta), ylab="", ylim=c(0,1.6))
+lines(xs, dnorm(xs, mean=theta_hat_data, sd=se_data), lty="dashed")
+lines(xs, dnorm(xs, mean=theta_hat_bayes, sd=se_bayes))
+legend("topright", lty=c("dotted", "dashed", "solid"),
+       legend=c("Prior", "Data", "Posterior"))
+
+# this plot demonstrates how little information there is in the actual data,
+# relative to the prior information we have
