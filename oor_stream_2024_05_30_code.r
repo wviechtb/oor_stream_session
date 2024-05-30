@@ -260,4 +260,8 @@ res3$par
 tab <- rbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
 round(tab, digits=3)
 
+# we see that if we do ridge regression with an appropriately chosen lambda
+# (shrinkage penalty value), then we get essentially the same results as what
+# we get from the Bayesian regression model
+
 ############################################################################
