@@ -95,4 +95,15 @@ res <- stan_glm(girl ~ attracthigh, data=dat,
                 prior=normal(location=0, scale=0.0025), refresh=0)
 res
 
+# extract the median of the posterior for the intercept and slope and multiple
+# by 100 to turn these values into percentages
+coef(res) * 100
 
+# compare the value for the slope to the value we calculated above manually
+theta_hat_bayes
+
+# extract the sampled values for the posterior of the intercept, slope, and sigma
+post <- as.data.frame(res)
+
+# plot the posterior distribution for the slope
+plot(density(post[,2]))
