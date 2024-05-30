@@ -240,6 +240,14 @@ res2 <- stan_glm(vote ~ growth, data=dat,
                  prior=normal(0,1), refresh=0)
 coef(res2)
 
+# in 2022-2023, we discussed the book 'An Introduction to Statistical
+# Learning', where we covered techniques such as ridge regression and the
+# Lasso (see the code from the session on 2022-06-24); as discussed in that
+# book, there is a direct connection between these methods and using a
+# Bayesian model with informative priors on the regression coefficients (see
+# the section 'Bayesian Interpretation for Ridge Regression and the Lasso' in
+# chapter 6 of that book); we can demonstrate this as follows
+
 # objective functions for ridge regression
 fitridge <- function(beta, y, x, lambda)
    sum((y - beta[1] - beta[2]*x)^2) + lambda * beta[2]^2
