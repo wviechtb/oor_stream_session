@@ -264,6 +264,13 @@ round(tab, digits=3)
 # (shrinkage penalty value), then we get essentially the same results as what
 # we get from the Bayesian regression model
 
+# it can be shown that the lambda value that makes these results essentially
+# identical is given by sigma^2 / tau^2, where sigma^2 is the error variance
+# of the regression model and tau^2 is the variance of the normal prior; in
+# the case above, this is roughly equal to 17.5 and hence we get essentially
+# equivalent results
+sigma(res2)^2 / 1^2
+
 # fit the Bayesian model with a laplace prior for the slope that is again much
 # more narrowly centered around 0 (i.e., a much more informative prior)
 set.seed(1237)
