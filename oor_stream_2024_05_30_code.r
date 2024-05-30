@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Regression and Other Stories (https://avehtari.github.io/ROS-Examples/)
-# - Section(s): 9.4 - ?
+# - Section(s): 9.4 - 9.6
 #
 # last updated: 2024-05-30
 
@@ -262,7 +262,10 @@ round(tab, digits=3)
 
 # we see that if we do ridge regression with an appropriately chosen lambda
 # (shrinkage penalty value), then we get essentially the same results as what
-# we get from the Bayesian regression model
+# we get from the Bayesian regression model (to be precise, the mode of the
+# posteriors should match the results from ridge regression; above, coef(res2)
+# gives us the median values, but the posterior distributions are fairly
+# symmetric, so the equivalence still holds)
 
 # it can be shown that the lambda value that makes these results essentially
 # identical is given by sigma^2 / tau^2, where sigma^2 is the error variance
@@ -283,7 +286,7 @@ fitlasso <- function(beta, y, x, lambda)
    sum((y - beta[1] - beta[2]*x)^2) + lambda * abs(beta[2])
 
 # do lasso regression with lambda=47
-res3 <- optim(c(50,0), fitlasso, y=dat$vote, x=dat$growth, lambda=2*sigma(res2)^2 / sqrt(1/2))
+res3 <- optim(c(50,0), fitlasso, y=dat$vote, x=dat$growth, lambda=47)
 res3$par
 
 # put all results into a table
@@ -293,5 +296,12 @@ round(tab, digits=3)
 # again, we see that if we do lasso regression with an appropriately chosen
 # lambda (shrinkage penalty value), then we get essentially the same results
 # as what we get from the Bayesian regression model
+
+# it can be shown that the lambda value that makes these results essentially
+# identical is given by 2 * sigma^2 / b, where sigma^2 is the error variance
+# of the regression model and b is the scale parameter of the laplace prior;
+# in the case above, this is roughly equal to 47 and hence we get essentially
+# equivalent results
+2*sigma(res2)^2 / sqrt(1/2)
 
 ############################################################################
