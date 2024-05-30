@@ -24,7 +24,7 @@ dat
 
 # percentage of girls of parents in the lower attactiveness categories versus
 # the highest attractiveness category
-p1 <- mean(dat$y[1:4])
+p1 <- weighted.mean(dat$y[1:4], dat$n[1:4])
 p2 <- dat$y[5]
 p1
 p2
@@ -76,3 +76,12 @@ table(dat$attractiveness, dat$girl)
 
 # or compute percentages of the counts across rows
 prop.table(table(dat$attractiveness, dat$girl), margin=1) * 100
+
+# construct a high versus low attractiveness dummy variable
+dat$attacthigh <- ifelse(dat$attractiveness == 2, 1, 0)
+
+library(rstanarm)
+
+res <- lm(girl ~ attacthigh, data=dat)
+summary(res)
+
