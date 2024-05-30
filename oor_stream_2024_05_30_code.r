@@ -208,9 +208,7 @@ res3 <- optim(c(50,0), fitridge, y=dat$vote, x=dat$growth, lambda=17.5)
 res3$par
 
 # put all results into a table
-tab <- cbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
+tab <- rbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
 round(tab, digits=3)
-
-
 
 ############################################################################
