@@ -90,6 +90,7 @@ library(rstanarm)
 
 # now we fit the same model using stan_glm(), specifying appropriate priors
 # for the intercept and slope (using the default prior for the error SD)
+set.seed(1241)
 res <- stan_glm(girl ~ attracthigh, data=dat,
                 prior_intercept=normal(location=0.49, scale=0.02),
                 prior=normal(location=0, scale=0.0025), refresh=0)
@@ -107,3 +108,4 @@ post <- as.data.frame(res)
 
 # plot the posterior distribution for the slope
 plot(density(post[,2]))
+
