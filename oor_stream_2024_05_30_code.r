@@ -23,7 +23,7 @@ dat <- structure(list(x = c(-2, -1, 0, 1, 2),
                  row.names = c(NA, -5L), class = "data.frame")
 dat
 
-# percentage of girls of parents in the lower attactiveness categories versus
+# percentage of girls of parents in the lower attractiveness categories versus
 # the highest attractiveness category
 p1 <- weighted.mean(dat$y[1:4], dat$n[1:4])
 p2 <- dat$y[5]
