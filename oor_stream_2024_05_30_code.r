@@ -66,10 +66,13 @@ legend("topright", lty=c("dotted", "dashed", "solid"),
 # relative to the prior information we have
 
 # create a dataset with raw data like the survey dataset
-
 dat <- lapply(split(dat, dat$x), function(x) cbind(attractiveness = rep(x$x, x$n),
                                                    girl = rep(c(0,1), times=round(c(1-x$y/100, x$y/100) * x$n))))
 dat <- do.call(rbind, dat)
 dat <- data.frame(dat)
 
+# check that the counts are as expected
 table(dat$attractiveness, dat$girl)
+
+# or compute percentages of the counts across rows
+prop.table(table(dat$attractiveness, dat$girl), margin=1) * 100
