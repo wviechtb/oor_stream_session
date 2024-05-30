@@ -217,20 +217,24 @@ coef(res)
 # fit the model using the priors as explained in this section
 set.seed(1237)
 res <- stan_glm(vote ~ growth, data=dat,
-                prior=normal(5, 5), prior_intercept=normal(50, 10), refresh=0)
+                prior=normal(5,5), prior_intercept=normal(50,10), refresh=0)
 coef(res)
-
-
 
 ############################################################################
 
+## Example where an informative prior makes a difference: Beauty and sex ratio
+
+# in the book, the authors switch back to the beauty and sex ratio example,
+# but we essentially already did the analysis of these data using more
+# informative priors above (when we created the raw dataset and used
+# stan_glm() to fit the model); here, we will stick to the election dataset
 
 # fit the model with least squares regression
 res1 <- lm(vote ~ growth, data=dat)
 summary(res1)
 
-# fit the Bayesian model with a prior for the slope that is much narrowly
-# centered around 0
+# fit the Bayesian model with a prior for the slope that is much more narrowly
+# centered around 0 (i.e., a much more informative prior)
 set.seed(1237)
 res2 <- stan_glm(vote ~ growth, data=dat,
                  prior=normal(0,1), refresh=0)
