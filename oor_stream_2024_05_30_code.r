@@ -182,7 +182,7 @@ set.seed(1237)
 sd_x <- sd(dat$growth)
 sd_y <- sd(dat$vote)
 mean_y <- mean(dat$vote)
-M1a <- stan_glm(vote ~ growth, data=dat,
+res <- stan_glm(vote ~ growth, data=dat,
                 prior=normal(0, 2.5*sd_y/sd_x),
                 prior_intercept=normal(mean_y, 2.5*sd_y),
                 prior_aux=exponential(1/sd_y), refresh=0)
@@ -190,18 +190,26 @@ coef(res)
 
 ############################################################################
 
-# do least squares regression (with a smaller number of predictors and also
-# standardize the outcome variable so the intercept must be 0)
-res <- lm(vote ~ growth, data=dat)
-summary(res)
+# fit the model with least squares regression
+res1 <- lm(vote ~ growth, data=dat)
+summary(res1)
+
+set.seed(1237)
+res2 <- stan_glm(vote ~ growth, data=dat,
+                 prior=normal(0,1), refresh=0)
+coef(res2)
 
 # objective functions for ridge regression
 fitridge <- function(beta, y, x, lambda)
    sum((y - beta[1] - beta[2]*x)^2) + lambda * beta[2]^2
 
 # say we do ridge regression with lambda=10
-sav <- optim(c(50,0), fitridge, y=dat$vote, x=dat$growth, lambda=0.2)
-round(cbind(lm=coef(res), fitridge=sav$par), digits=3)
+res3 <- optim(c(50,0), fitridge, y=dat$vote, x=dat$growth, lambda=17.5)
+res3$par
+
+# put all results into a table
+tab <- cbind(lm=coef(res1), stan_glm=coef(res2), fitridge=res3$par)
+round(tab, digits=3)
 
 
 
