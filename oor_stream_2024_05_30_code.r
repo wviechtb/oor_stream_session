@@ -174,3 +174,16 @@ round(tab, 3)
 
 ## Default prior distribution
 
+set.seed(1237)
+res <- stan_glm(vote ~ growth, data=dat, refresh=0)
+coef(res)
+
+set.seed(1237)
+sd_x <- sd(dat$growth)
+sd_y <- sd(dat$vote)
+mean_y <- mean(dat$vote)
+M1a <- stan_glm(vote ~ growth, data=dat,
+                prior=normal(0, 2.5*sd_y/sd_x),
+                prior_intercept=normal(mean_y, 2.5*sd_y),
+                prior_aux=exponential(1/sd_y), refresh=0)
+coef(res)
