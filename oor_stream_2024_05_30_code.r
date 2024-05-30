@@ -304,4 +304,6 @@ round(tab, digits=3)
 # equivalent results
 2*sigma(res2)^2 / sqrt(1/2)
 
+# https://ekamperi.github.io/mathematics/2020/08/02/bayesian-connection-to-lasso-and-ridge-regression.html
+
 ############################################################################
