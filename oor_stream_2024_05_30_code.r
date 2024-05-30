@@ -18,3 +18,4 @@
 # create the dataset for the example
 dat <- structure(list(x = c(-2, -1, 0, 1, 2), y = c(50, 44, 50, 47, 56)),
                  row.names = c(NA, -5L), class = "data.frame")
+
