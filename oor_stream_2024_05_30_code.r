@@ -30,11 +30,10 @@ p2
 # difference between the two percentages
 p2 - p1
 
-# assume that 4/5th of the respondents are in the first group and the other
-# 1/5th in the other group
-n1 <- 4/5 * 3000
-n2 <- 1/5 * 3000
+# about 90% of the 3000 participants fell into the first four categories and
+# 10% in the highest category
+n1 <- 90/100 * 3000
+n2 <- 10/100 * 3000
 
-# standard error of the difference between the two percentages (in the book,
-# this is given as 3 percentage points)
+# standard error of the difference between the two percentages
 sqrt(p1 * (100 - p1) / n1 + p2 * (100 - p2) / n2)
