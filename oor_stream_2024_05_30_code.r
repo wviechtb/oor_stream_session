@@ -282,8 +282,8 @@ coef(res2)
 fitlasso <- function(beta, y, x, lambda)
    sum((y - beta[1] - beta[2]*x)^2) + lambda * abs(beta[2])
 
-# do lasso regression with lambda=17.5
-res3 <- optim(c(50,0), fitlasso, y=dat$vote, x=dat$growth, lambda=47)
+# do lasso regression with lambda=47
+res3 <- optim(c(50,0), fitlasso, y=dat$vote, x=dat$growth, lambda=2*sigma(res2)^2 / sqrt(1/2))
 res3$par
 
 # put all results into a table
