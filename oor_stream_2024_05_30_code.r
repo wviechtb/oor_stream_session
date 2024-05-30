@@ -16,5 +16,7 @@
 ### 9.4: Example of Bayesian inference: beauty and sex ratio
 
 # download the dataset for the example (run once)
-#download.file("https://github.com/avehtari/ROS-Examples/blob/master/SexRatio/data/sexratio.rda", destfile="sexratio.rda")
+#download.file("https://github.com/avehtari/ROS-Examples/raw/master/SexRatio/data/sexratio.rda", destfile="sexratio.rda")
 
+# read in the data
+dat <- readRDS("sexratio.rda")
