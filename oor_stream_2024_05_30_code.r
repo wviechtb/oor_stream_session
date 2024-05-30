@@ -110,6 +110,20 @@ post <- as.data.frame(res)
 # plot the posterior distribution for the slope
 plot(density(post[,2]))
 
+# plot the posterior values for the intercept and slope against each other
+plot(post[,1], post[,2], pch=19, cex=0.2, xlab="Intercept", ylab="Slope")
+
+#
+
+# we can also draw all 4000 lines, using alpha blending (i.e., making the
+# lines semi-transparent) to indicate what lines are more or less plausible
+plot(NA, xlim=c(0,1), ylim=c(0.4,0.6),
+     xlab="Attractiveness Group", ylab="Proportion of Girls", bty="l")
+apply(post, 1, function(x) abline(a=x[1], b=x[2], col=rgb(0,0,0,.05)))
+abline(a=median(post[,1]), b=median(post[,2]), lwd=6)
+
+
+
 # if we use the default priors, then the median of the posterior of the slope
 # is almost 8% points, so again we see how important it is to carefully think
 # about the prior
