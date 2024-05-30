@@ -80,8 +80,12 @@ prop.table(table(dat$attractiveness, dat$girl), margin=1) * 100
 # construct a high versus low attractiveness dummy variable
 dat$attacthigh <- ifelse(dat$attractiveness == 2, 1, 0)
 
-library(rstanarm)
-
+# check that we get an estimated difference (between the proportions) of .08
+# for the high versus not high attractiveness categories based on a standard
+# linear regression model (using a 'linear probability model' to be precise)
 res <- lm(girl ~ attacthigh, data=dat)
 summary(res)
+
+library(rstanarm)
+
 
