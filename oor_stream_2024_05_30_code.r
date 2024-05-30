@@ -22,6 +22,13 @@ dat
 
 # proportion of girls of parents in the lower attactiveness categories versus
 # the highest attractiveness category
-mean(dat$y[1:4])
-dat$y[5]
+p1 <- mean(dat$y[1:4])
+p2 <- dat$y[5]
+p1
+p2
+
+# assume that 4/5th of the respondents are in the first group and the other
+# 1/5th in the other group
+n1 <- 4/5 * 3000
+n2 <- 1/5 * 3000
 
