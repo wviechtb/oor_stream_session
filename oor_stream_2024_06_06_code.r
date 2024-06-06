@@ -22,9 +22,8 @@ obs <- c("B","W","B")
 conj1 <- expand.grid(replicate(3, c("W","W","W","W"), simplify=FALSE))
 conj2 <- expand.grid(replicate(3, c("B","W","W","W"), simplify=FALSE))
 conj3 <- expand.grid(replicate(3, c("B","B","W","W"), simplify=FALSE))
-conj4 <- expand.grid(replicate(3, c("B","B","W","W"), simplify=FALSE))
-conj5 <- expand.grid(replicate(3, c("B","B","B","W"), simplify=FALSE))
-conj6 <- expand.grid(replicate(3, c("B","B","B","B"), simplify=FALSE))
+conj4 <- expand.grid(replicate(3, c("B","B","B","W"), simplify=FALSE))
+conj5 <- expand.grid(replicate(3, c("B","B","B","B"), simplify=FALSE))
 
 # examine the one for the second conjecture
 conj2
@@ -40,8 +39,8 @@ sum(rowSums(obs == conj5) == 3)
 obs <- c("B","W","B","B")
 
 # compute the number of paths in each conjecture that match the data
-sum(rowSums(obs == conj1) == 3)
-sum(rowSums(obs == conj2) == 3)
-sum(rowSums(obs == conj3) == 3)
-sum(rowSums(obs == conj4) == 3)
-sum(rowSums(obs == conj5) == 3)
+sum(colSums(obs == t(conj1)) == 3)
+sum(colSums(obs == t(conj2)) == 3)
+sum(colSums(obs == t(conj3)) == 3)
+sum(colSums(obs == t(conj4)) == 3)
+sum(colSums(obs == t(conj5)) == 3)
