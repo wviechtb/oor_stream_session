@@ -34,33 +34,19 @@ count <- function(conj, obs) {
    sum(colSums(obs == t(conj)) == n)
 }
 
-obs <- c("B","W","B")
-sapply(conjs, function(x) count(x, obs))
+# check that this returns the correct value (3) for conjecture 2
+count(conjs[[2]], obs)
 
-obs <- c("B","W","B","B")
-sapply(conjs, function(x) count(x, obs))
-
-
-
-
-# write out the possible paths for each conjecture
-conj1 <- expand.grid(replicate(3, c("W","W","W","W"), simplify=FALSE))
-conj2 <- expand.grid(replicate(3, c("B","W","W","W"), simplify=FALSE))
-conj3 <- expand.grid(replicate(3, c("B","B","W","W"), simplify=FALSE))
-conj4 <- expand.grid(replicate(3, c("B","B","B","W"), simplify=FALSE))
-conj5 <- expand.grid(replicate(3, c("B","B","B","B"), simplify=FALSE))
-
-# examine the one for the second conjecture
-conj2
-
-# compute the number of paths in each conjecture that match the data
-sum(colSums(obs == t(conj1)) == 3)
-sum(colSums(obs == t(conj2)) == 3)
-sum(colSums(obs == t(conj3)) == 3)
-sum(colSums(obs == t(conj4)) == 3)
-sum(colSums(obs == t(conj5)) == 3)
+# now apply the function to all five conjectures
+sapply(conjs, count, obs)
 
 # now we draw another marble and it is blue
+obs <- c("B","W","B","B")
+
+# again compute the number of paths for each conjecture
+sapply(conjs, count, obs)
+
+
 obs <- c("B","W","B","B")
 
 # write out the possible paths for each conjecture
