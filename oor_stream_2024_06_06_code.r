@@ -196,4 +196,19 @@ ps[which.max(ls)]
 
 6 / 9
 
+# now we introduce the prior for p; we just need to multiply the likelihood
+# values with the prior values, and *boom*, we have the posterior values
+
+# for example, we could assume that every value of p is equally plausible to
+# begin with; then the posterior values are essentially just the likelihood
+# values, just rescaled
+
+post <- ls * 1/1000
+post
+
+# which we can plot again to see the posterior distributions
+
+plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Posterior")
+
+
 ############################################################################
