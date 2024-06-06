@@ -153,9 +153,15 @@ like * c(1/5, 1/5, 1/5, 1/5, 1/5)
 
 like * c(0, 1, 2, 3, 0)
 
-# note: the prior plausibilities do not have to add up to 1
+# note: the prior plausibilities do not have to add up to 1; so whether we
+# compute these posterior values
 
+like * c(0/6, 1/6, 2/6, 3/6, 0/6)
 
+# or the ones above does not make a difference, since in the end, we just care
+# about which posterior plausibility is largest
+
+### 2.2: Building a model
 
 ### 2.3: Components of the model
 
