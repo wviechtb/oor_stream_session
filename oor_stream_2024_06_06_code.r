@@ -46,22 +46,13 @@ obs <- c("B","W","B","B")
 # again compute the number of paths for each conjecture
 sapply(conjs, count, obs)
 
+# now make these counts the prior
+prior <- sapply(conjs, count, obs)
 
-obs <- c("B","W","B","B")
+# vector with the factory count data
+factory <- c(0, 3, 2, 1, 0)
 
-# write out the possible paths for each conjecture
-conj1 <- expand.grid(replicate(4, c("W","W","W","W"), simplify=FALSE))
-conj2 <- expand.grid(replicate(4, c("B","W","W","W"), simplify=FALSE))
-conj3 <- expand.grid(replicate(4, c("B","B","W","W"), simplify=FALSE))
-conj4 <- expand.grid(replicate(4, c("B","B","B","W"), simplify=FALSE))
-conj5 <- expand.grid(replicate(4, c("B","B","B","B"), simplify=FALSE))
-
-# compute the number of paths in each conjecture that match the data
-sum(colSums(obs == t(conj1)) == 4)
-sum(colSums(obs == t(conj2)) == 4)
-sum(colSums(obs == t(conj3)) == 4)
-sum(colSums(obs == t(conj4)) == 4)
-sum(colSums(obs == t(conj5)) == 4)
+# the final count is the product of the two
+prior * factory
 
 ############################################################################
-
