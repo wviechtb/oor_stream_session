@@ -129,7 +129,17 @@ like <- c(dbinom(2, size=3, prob=0/4),
           dbinom(2, size=3, prob=4/4))
 like
 
+# when the data are 'fixed' and we compute these probabilities under different
+# values of the unknown parameter p, then these values are called
+# 'likelihoods' since they denote how likely the observed data are under the 5
+# different conjectures; we do not typically care about the absolute values,
+# but only the relative likelihoods, which we can compute by dividing each
+# likelihood value by their sum
+
 d / sum(d)
+
+# note that these are exactly identical to the plausibility values we computed
+# earlier by going through the garden of forking data
 
 ### 2.3: Components of the model
 
