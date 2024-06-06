@@ -80,4 +80,23 @@ obs <- c("B","W","B")
 ways <- sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 data.frame(p = 0:4 / 4, ways = ways, plausibility = ways / sum(ways))
 
+# as will be discussed in the next section, the kind of process that is
+# described by the marble example is actually the process underlying the
+# so-called binomial distribution; we can think of our observation as a count
+# of the number of blue marbles in the three 'trials' where, on each draw,
+# there is a given probability of seeing a blue marble according to a certain
+# conjecture
+
+
+
+d <- c(dbinom(2, size=3, prob=0/4),
+       dbinom(2, size=3, prob=1/4),
+       dbinom(2, size=3, prob=2/4),
+       dbinom(2, size=3, prob=3/4),
+       dbinom(2, size=3, prob=4/4))
+d / sum(d)
+
+### 2.3: Components of the model
+
+
 ############################################################################
