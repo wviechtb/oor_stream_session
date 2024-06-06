@@ -173,7 +173,13 @@ post / sum(post)
 
 ### 2.3: Components of the model
 
-# now let's do these computations in the context of the globe throwing example
+# now let's do these computations in the context of the globe throwing
+# example, where we see 6 W's in 9 trials; if the true probability of seeing a
+# W on a single trial is 0.5, then the probability of seeing these data is
+
+dbinom(6, size=9, prob=0.5)
+
+
 
 
 
