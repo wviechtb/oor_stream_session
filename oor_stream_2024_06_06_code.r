@@ -55,4 +55,16 @@ factory <- c(0, 3, 2, 1, 0)
 # the final count is the product of the two
 prior * factory
 
+# note: the count() function above creates a large data frame (conj) that can
+# get very large when 'obs' is a long sequence, to the point that your
+# computer can easily run out of memory
+
+# we can do the same calculation as explained on page 23 by computing for each
+# element in obs how many marbles match up in color for each element in a
+# particular conjecture and then take the product term of these values
+obs <- sample(c("B","W"), 50, replace=TRUE)
+sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
+
+
+
 ############################################################################
