@@ -22,10 +22,13 @@ conj <- expand.grid(replicate(3, c("B","B","W","W"), simplify=FALSE))
 conj[conj[,1] == obs[1] & conj[,2] == obs[2] & conj[,3] == obs[3],]
 
 conj <- expand.grid(replicate(3, c("B","B","W","W"), simplify=FALSE))
+conj <- expand.grid(replicate(3, c("B","B","B","W"), simplify=FALSE))
 
 sel <- conj
 for (i in 1:3) {
    sel <- sel[sel[,i] == obs[i],]
 }
 sel
+
+sum(rowSums(obs == conj) == 3)
 
