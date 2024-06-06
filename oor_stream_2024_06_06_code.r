@@ -115,12 +115,20 @@ factorial(2 + 1) / (factorial(2)*factorial(1)) * 0.25^2 * (1-0.25)^1
 
 dbinom(2, size=3, prob=1/4)
 
+# now we can also already introduce the concept of 'likelihood' (which
+# formally appears in section 2.3); the data we have (namely seeing 2 blue
+# marbles in the 3 trials) are now given, but what we do not know if the value
+# of p (the true probability of drawing a blue marble on a single trial);
+# let's compute the probability of seeing the data we have under the 5
+# possible conjectures
 
-d <- c(dbinom(2, size=3, prob=0/4),
-       dbinom(2, size=3, prob=1/4),
-       dbinom(2, size=3, prob=2/4),
-       dbinom(2, size=3, prob=3/4),
-       dbinom(2, size=3, prob=4/4))
+like <- c(dbinom(2, size=3, prob=0/4),
+          dbinom(2, size=3, prob=1/4),
+          dbinom(2, size=3, prob=2/4),
+          dbinom(2, size=3, prob=3/4),
+          dbinom(2, size=3, prob=4/4))
+like
+
 d / sum(d)
 
 ### 2.3: Components of the model
