@@ -136,10 +136,26 @@ like
 # but only the relative likelihoods, which we can compute by dividing each
 # likelihood value by their sum
 
-d / sum(d)
+like / sum(like)
 
-# note that these are exactly identical to the plausibility values we computed
+# note that these are exactly identical to the plausibilities we computed
 # earlier by going through the garden of forking data
+
+# now the one piece missing is the prior plausibilities of the different
+# conjectures; we just multiply the likelihoods by these prior plausibilities
+# to get the posterior plausibilities; for example, if we assume they are all
+# equally likely a priori (i.e., 1/5th), then we get these values
+
+like * c(1/5, 1/5, 1/5, 1/5, 1/5)
+
+# on the other hand, if we know a priori the information that is given at the
+# bottom of page 25, then we would get these values
+
+like * c(0, 1, 2, 3, 0)
+
+# note: the prior plausibilities do not have to add up to 1
+
+
 
 ### 2.3: Components of the model
 
