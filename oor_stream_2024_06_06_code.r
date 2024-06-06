@@ -61,10 +61,13 @@ prior * factory
 
 # we can do the same calculation as explained on page 23 by computing for each
 # element in obs how many marbles match up in color for each element in a
-# particular conjecture and then take the product term of these values
-obs <- sample(c("B","W"), 50, replace=TRUE)
+# particular conjecture and then take the product term of these values; let's
+# try this for the four observations above
 sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 
-
+# this will also work for longer observation sequences (although the counts
+# themselves get very large) without things blowing up
+obs <- sample(c("B","W"), 50, replace=TRUE)
+sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 
 ############################################################################
