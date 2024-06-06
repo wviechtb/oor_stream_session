@@ -169,7 +169,7 @@ post / sum(post)
 
 ### 2.2: Building a model
 
-
+# we will do what is shown in this section in the following part
 
 ### 2.3: Components of the model
 
@@ -209,6 +209,10 @@ post
 # which we can plot again to see the posterior distributions
 
 plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Posterior")
+
+# here, we have gone straight from the flat/uniform prior plus the data to the
+# posterior as shown in the bottom right of Figure 2.5; but now let's recreate
+# the entire figure, one data point at a time
 
 
 ############################################################################
