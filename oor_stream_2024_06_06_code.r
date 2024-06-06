@@ -179,8 +179,21 @@ post / sum(post)
 
 dbinom(6, size=9, prob=0.5)
 
+# now again, since the true probability is unknown, we can compute this
+# probability for every possible value between 0 and 1 and then create a plot
+# of this likelihood function
 
+ps <- seq(0, 1, length=1000)
+ls <- dbinom(6, size=9, prob=ps)
+plot(ps, ls, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Likelihood")
 
+# find the value of p that is most likely given the data
 
+ps[which.max(ls)]
+
+# sidenote: this is the maximum likelihood estimator, which, not entirely
+# surprisingly is equal to number of W's divided by the number of trials
+
+6 / 9
 
 ############################################################################
