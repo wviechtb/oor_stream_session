@@ -85,8 +85,35 @@ data.frame(p = 0:4 / 4, ways = ways, plausibility = ways / sum(ways))
 # so-called binomial distribution; we can think of our observation as a count
 # of the number of blue marbles in the three 'trials' where, on each draw,
 # there is a given probability of seeing a blue marble according to a certain
-# conjecture
+# conjecture; for example, say 1 out of the 4 marbles in the bad are blue,
+# then there is a 1/4 = 0.25 probability of drawing a blue marble on a single
+# trial and hence a 1-0.25=0.75 probability of drawing a white marble; if we
+# see the sequence above (blue, white, blue), then the corresponding
+# probabilities are 0.25, 0.75, and 0.25 and since the draws are independent,
+# the probability of seeing this specific sequence is just the product of
+# these probabilities, namely:
 
+0.25 * 0.75 * 0.25
+
+# however, there are other sequences that lead to two blue marbles in the
+# three trials, namely (white, blue, blue) and (blue, blue, white) and these
+# sequences have the following probabilities:
+
+0.75 * 0.25 * 0.25
+0.25 * 0.25 * 0.75
+
+# so there are 3 sequences leading to 2 blue marbles and so the probability of
+# seeing any one of these three sequences is just the sum of their probabilities, namely:
+
+0.25 * 0.75 * 0.25 + 0.75 * 0.25 * 0.25 + 0.25 * 0.25 * 0.75
+
+# this is in fact what is computed by the equation on page 33, namely:
+
+factorial(2 + 1) / (factorial(2)*factorial(1)) * 0.25^2 * (1-0.25)^1
+
+# which is what dbinom() computes
+
+dbinom(2, size=3, prob=1/4)
 
 
 d <- c(dbinom(2, size=3, prob=0/4),
