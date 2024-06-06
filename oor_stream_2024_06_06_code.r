@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 2.1 - ?
+# - Section(s): 2.1 - 2.3
 #
 # last updated: 2024-06-06
 
