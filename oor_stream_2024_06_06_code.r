@@ -214,5 +214,26 @@ plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Posterio
 # posterior as shown in the bottom right of Figure 2.5; but now let's recreate
 # the entire figure, one data point at a time
 
+obs <- c("W", "L", "W", "W", "W", "L", "W", "L", "W")
+prior <- rep(1/1000, 1000)
+
+par(mfrow=c(3,3))
+
+for (i in 1:9) {
+
+   ls <- dbinom(obs[i] == "W", 1, prob=ps)
+   post <- ls * prior
+   post <- post / sum(post)
+
+   plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
+        ylab="Posterior", ylim=c(0,.003))
+   lines(ps, prior, lty="dashed")
+   text(0, .003, paste0("n = ", i))
+
+   prior <- post
+
+}
+
+
 
 ############################################################################
