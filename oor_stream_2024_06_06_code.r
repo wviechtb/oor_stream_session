@@ -206,9 +206,15 @@ ps[which.max(ls)]
 post <- ls * 1/1000
 post
 
-# which we can plot again to see the posterior distributions
+# again, to get posterior probabilities, we rescale them so they add up to 1
 
-plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Posterior")
+post <- post / sum(post)
+post
+
+# which we can plot again to see the posterior distribution
+
+plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
+     ylab="Posterior Probability")
 
 # here, we have gone straight from the flat/uniform prior plus the data to the
 # posterior as shown in the bottom right of Figure 2.5; but now let's recreate
@@ -226,9 +232,9 @@ for (i in 1:9) {
    post <- post / sum(post)
 
    plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
-        ylab="Posterior", ylim=c(0,.003))
+        ylab="Posterior Probability", ylim=c(0,.003))
    lines(ps, prior, lty="dashed")
-   text(0, .003, paste0("n = ", i))
+   text(0, .003, paste0("n = ", i), pos=4)
 
    prior <- post
 
