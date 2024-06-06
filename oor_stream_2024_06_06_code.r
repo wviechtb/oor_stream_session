@@ -80,6 +80,4 @@ obs <- c("B","W","B")
 ways <- sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 data.frame(p = 0:4 / 4, ways = ways, plausibility = ways / sum(ways))
 
-
-
 ############################################################################
