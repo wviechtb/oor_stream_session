@@ -70,4 +70,9 @@ sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 obs <- sample(c("B","W"), 50, replace=TRUE)
 sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 
+# these counts get very large and their absolute values are not relevant;
+# instead, we just care about the relative sizes
+ways <- sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
+round(ways / sum(ways), 4)
+
 ############################################################################
