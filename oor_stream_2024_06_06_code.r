@@ -75,4 +75,11 @@ sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 ways <- sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
 round(ways / sum(ways), 4)
 
+# let's go back to the short sequence of three marbles
+obs <- c("B","W","B")
+ways <- sapply(conjs, function(conj) prod(sapply(obs, function(x) sum(x == conj))))
+data.frame(p = 0:4 / 4, ways = ways, plausibility = ways / sum(ways))
+
+
+
 ############################################################################
