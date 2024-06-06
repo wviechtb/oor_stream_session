@@ -161,9 +161,20 @@ like * c(0/6, 1/6, 2/6, 3/6, 0/6)
 # or the ones above does not make a difference, since in the end, we just care
 # about which posterior plausibility is largest
 
+# however, if we want to think of the posterior plausibilities as
+# probabilities, then we need to rescale them in the end so they sum up to 1
+
+post <- like * c(0/6, 1/6, 2/6, 3/6, 0/6)
+post / sum(post)
+
 ### 2.2: Building a model
 
+
+
 ### 2.3: Components of the model
+
+# now let's do these computations in the context of the globe throwing example
+
 
 
 ############################################################################
