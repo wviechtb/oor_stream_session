@@ -223,7 +223,8 @@ for (i in 2:n_samples) {
    p[i] <- ifelse(runif(1) < q1/q0, p_new, p[i-1])
 }
 
-#
+# compare the exact posterior distribution with a kernel density estimate
+# based on the samples of the posterior we obtained from MCMC
 
 post1.exact <- dbeta(ps, 1+6, 1+3)
 plot(ps, post1.exact, type="l", lwd=5, bty="l", xlab="True Probability",
