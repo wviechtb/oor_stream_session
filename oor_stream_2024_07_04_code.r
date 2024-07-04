@@ -15,6 +15,8 @@
 
 ### 2.4: Making the model go
 
+## 2.4.1. Bayes’ theorem.
+
 # as we saw last time, the likelihood function for seeing 6 times water out of
 # 9 globe tosses can be computed based on a binomial distribution where the
 # data are fixed and we change the true probability (p) to various values
