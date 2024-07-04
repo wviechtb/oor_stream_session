@@ -209,7 +209,7 @@ res1$sd
 
 ## 2.4.5: Markov chain Monte Carlo
 
-n_samples <- 1000
+n_samples <- 100000
 p <- rep(NA , n_samples)
 p[1] <- 0.5
 W <- 6
@@ -223,6 +223,11 @@ for (i in 2:n_samples) {
    p[i] <- ifelse(runif(1) < q1/q0, p_new, p[i-1])
 }
 
-## R code 2.9
-dens( p , xlim=c(0,1) )
-curve( dbeta( x , W+1 , L+1 ) , lty=2 , add=TRUE )
+#
+
+post1.exact <- dbeta(ps, 1+6, 1+3)
+plot(ps, post1.exact, type="l", lwd=5, bty="l", xlab="True Probability",
+     ylab="Posterior Probability", col="dodgerblue")
+lines(density(p, from=0, to=1), lwd=5, main="", bty="l")
+legend("topleft", inset=.02, legend=c("Exact Posterior", "MCMC"),
+       lwd=5, col=c("dodgerblue","black"))
