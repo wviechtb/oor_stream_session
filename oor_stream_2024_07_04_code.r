@@ -183,7 +183,9 @@ postfun <- function(p, W, L) {
    likelihood <- dbinom(W, size=W+L, prob=p)
    prior <- dunif(p, 0, 1)
    posterior <- likelihood * prior
-   log(posterior)
+   logposterior <- log(posterior)
+   cat("p = ", round(p, 3), "logposterior" = round(logposterior, 3), "\n")
+   logposterior
 
 }
 
