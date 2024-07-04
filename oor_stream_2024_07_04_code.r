@@ -159,5 +159,5 @@ plot(ps, post1.exact, type="l", lwd=5, bty="l", xlab="True Probability",
      ylab="Posterior Probability", col="dodgerblue")
 post1.qa <- dnorm(ps, mean=res$mean, sd=res$sd)
 lines(ps, post1.qa, lwd=5)
-legend("topleft", inset=.02, legend=c("Grid Approximation", "Quadratic Approximation"),
+legend("topleft", inset=.02, legend=c("Exact Posterior", "Quadratic Approximation"),
        lwd=5, col=c("dodgerblue","black"))
