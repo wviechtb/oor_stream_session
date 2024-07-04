@@ -187,6 +187,12 @@ postfun <- function(p, W, L) {
 
 }
 
-res2 <- optim(par=0.5, postfun, method="L-BFGS-B", lower=0.001, upper=0.999, control=list(fnscale=-1), W=6, L=3)
+# now optimize postfun() over p (i.e., find the peak of the posterior)
+
+res2 <- optim(par=0.5, postfun, method="L-BFGS-B", lower=0.001, upper=0.999,
+              control=list(fnscale=-1), W=6, L=3, hessian=TRUE)
 res2
 
+# we see that the peak is at p = 0.666666 = 6/9
+
+sqrt(-1/res2$hessian[1,1])
