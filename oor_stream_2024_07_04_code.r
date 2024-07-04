@@ -109,6 +109,7 @@ res <- precis(globe.qa)
 res
 
 # plot the posterior for a uniform prior from our grid approximation above
+
 plot(ps, post1, type="l", lwd=5, bty="l", xlab="True Probability",
      ylab="Posterior Probability", col="dodgerblue")
 post1.qa <- dnorm(ps, mean=res$mean, sd=res$sd)
@@ -150,6 +151,7 @@ globe.qa <- quap(
 ), data=list(W=4*6,L=4*3))
 
 # display summary of quadratic approximation
+
 res <- precis(globe.qa)
 res
 
@@ -169,6 +171,19 @@ globe.qa <- quap(
 ), data=list(W=6,L=3))
 
 # display summary of quadratic approximation
+
 res <- precis(globe.qa)
 res
+
+# function that computes the posterior for a given value of p, using a uniform
+# prior distribution
+
+postfun <- function(p, W, L) {
+
+   likelihood <- dbinom(W, size=W+L, prob=p)
+   prior <- dunif(p, 0, 1)
+   posterior <- likelihood * prior
+   log(posterior)
+
+}
 
