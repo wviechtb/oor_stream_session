@@ -153,7 +153,6 @@ globe.qa <- quap(
 res <- precis(globe.qa)
 res
 
-
 post1.exact <- dbeta(ps, 1+4*6, 1+4*3)
 plot(ps, post1.exact, type="l", lwd=5, bty="l", xlab="True Probability",
      ylab="Posterior Probability", col="dodgerblue")
@@ -161,3 +160,15 @@ post1.qa <- dnorm(ps, mean=res$mean, sd=res$sd)
 lines(ps, post1.qa, lwd=5)
 legend("topleft", inset=.02, legend=c("Exact Posterior", "Quadratic Approximation"),
        lwd=5, col=c("dodgerblue","black"))
+
+# let's go back to the smaller dataset
+
+globe.qa <- quap(
+   alist(W ~ dbinom(W+L, p), # binomial likelihood
+   p ~ dunif(0,1)            # uniform prior
+), data=list(W=6,L=3))
+
+# display summary of quadratic approximation
+res <- precis(globe.qa)
+res
+
