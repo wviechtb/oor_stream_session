@@ -232,3 +232,5 @@ plot(ps, post1.exact, type="l", lwd=5, bty="l", xlab="True Probability",
 lines(density(p, from=0, to=1), lwd=5, main="", bty="l")
 legend("topleft", inset=.02, legend=c("Exact Posterior", "MCMC"),
        lwd=5, col=c("dodgerblue","black"))
+
+############################################################################
