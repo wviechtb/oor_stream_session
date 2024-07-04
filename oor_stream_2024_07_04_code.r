@@ -97,3 +97,11 @@ plot(ps, post3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 ## 2.4.4: Quadratic approximation.
 
 library(rethinking)
+
+globe.qa <- quap(
+   alist(W ~ dbinom(W+L, p), # binomial likelihood
+   p ~ dunif(0,1)            # uniform prior
+), data=list(W=6,L=3))
+
+# display summary of quadratic approximation
+precis(globe.qa)
