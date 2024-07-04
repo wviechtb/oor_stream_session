@@ -195,4 +195,8 @@ res2
 
 # we see that the peak is at p = 0.666666 = 6/9
 
+# the Hessian matrix gives the second derivative around this peak; as noted in
+# 'Overthinking' box, -1 * the inverse of this Hessian matrix is an estimate
+# of the variance and so the square-root of this is the standard deviation
+
 sqrt(-1/res2$hessian[1,1])
