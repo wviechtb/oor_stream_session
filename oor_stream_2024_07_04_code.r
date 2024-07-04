@@ -25,10 +25,15 @@ ls <- dbinom(6, size=9, prob=ps)
 plot(ps, ls, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Likelihood")
 
 # if we assume each value of p is equally plausible to begin with, then the
-# prior distribution for p is flat and we get the following posterior
-# distribution for p
+# prior distribution for p is flat
 
-prior <- rep(1/1000, 1000)
+prior <- rep(1, 1000)
+prior <- prior / sum(prior)
+plot(ps, prior, type="l", lwd=3, bty="l", xlab="True Probability",
+     ylab="Prior Probability")
+
+#and we get the following posterior distribution for p
+
 post <- ls * prior
 post <- post / sum(post)
 plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
@@ -39,6 +44,9 @@ plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
 # plausible; then the posterior will look as follows
 
 prior <- c(rep(0,500), rep(1,500))
+prior <- prior / sum(prior)
+
+
 post <- ls * prior
 post <- post / sum(post)
 plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
