@@ -28,16 +28,22 @@ plot(ps, ls, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Likelihood
 # prior distribution for p is flat and we get the following posterior
 # distribution for p
 
-post <- ls * 1/1000
+prior <- rep(1/1000, 1000)
+post <- ls * prior
 post <- post / sum(post)
 plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
      ylab="Posterior Probability")
 
 # however, we could also think that values of p between 0 and 0.5 are
 # completely impossible, but every value between 0.5 and 1 is equally
-# plausible
+# plausible; then the posterior will look as follows
 
-post <- ls * c(rep(0,500), rep(1,500))
+prior <- c(rep(0,500), rep(1,500))
+post <- ls * prior
 post <- post / sum(post)
 plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
      ylab="Posterior Probability")
+
+# finally, we might think that values of p around 0.5 are more plausible than
+# values close to 0 or 1; we
+
