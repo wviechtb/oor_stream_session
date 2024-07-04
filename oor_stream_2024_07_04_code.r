@@ -27,31 +27,62 @@ plot(ps, ls, type="l", lwd=3, bty="l", xlab="True Probability", ylab="Likelihood
 # if we assume each value of p is equally plausible to begin with, then the
 # prior distribution for p is flat
 
-prior <- rep(1, 1000)
-prior <- prior / sum(prior)
-plot(ps, prior, type="l", lwd=3, bty="l", xlab="True Probability",
+prior1 <- rep(1, 1000)
+prior1 <- prior1 / sum(prior1)
+plot(ps, prior1, type="l", lwd=3, bty="l", xlab="True Probability",
      ylab="Prior Probability")
 
-#and we get the following posterior distribution for p
+# then we get the following posterior distribution for p
 
-post <- ls * prior
-post <- post / sum(post)
-plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
+post1 <- ls * prior1
+post1 <- post1 / sum(post1)
+plot(ps, post1, type="l", lwd=3, bty="l", xlab="True Probability",
      ylab="Posterior Probability")
 
 # however, we could also think that values of p between 0 and 0.5 are
 # completely impossible, but every value between 0.5 and 1 is equally
-# plausible; then the posterior will look as follows
+# plausible
 
-prior <- c(rep(0,500), rep(1,500))
-prior <- prior / sum(prior)
+prior2 <- c(rep(0,500), rep(1,500))
+prior2 <- prior2 / sum(prior2)
+plot(ps, prior2, type="l", lwd=3, bty="l", xlab="True Probability",
+     ylab="Prior Probability")
 
+# then the posterior will look as follows
 
-post <- ls * prior
-post <- post / sum(post)
-plot(ps, post, type="l", lwd=3, bty="l", xlab="True Probability",
+post2 <- ls * prior2
+post2 <- post2 / sum(post2)
+plot(ps, post2, type="l", lwd=3, bty="l", xlab="True Probability",
      ylab="Posterior Probability")
 
 # finally, we might think that values of p around 0.5 are more plausible than
-# values close to 0 or 1; we
+# values close to 0 or 1; we could express this in terms of the following
+# equation
 
+prior3 <- 1/(0.2*2) * exp(-abs(ps-0.5)/0.2)
+prior3 <- prior3 / sum(prior3)
+plot(ps, prior3, type="l", lwd=3, bty="l", xlab="True Probability",
+     ylab="Prior Probability")
+
+# then the posterior will look as follows
+
+post3 <- ls * prior3
+post3 <- post3 / sum(post3)
+plot(ps, post3, type="l", lwd=3, bty="l", xlab="True Probability",
+     ylab="Posterior Probability")
+
+# let's put all of this into a single figure (Figure 2.6)
+
+par(mfrow=c(3,3))
+plot(ps, prior1, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+mtext("prior", side=3, line=2, font=2)
+plot(ps, ls, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+mtext("likelihood", side=3, line=2, font=2)
+plot(ps, post1, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+mtext("posterior", side=3, line=2, font=2)
+plot(ps, prior2, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+plot(ps, ls, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+plot(ps, post2, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+plot(ps, prior3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+plot(ps, ls, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+plot(ps, post3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
