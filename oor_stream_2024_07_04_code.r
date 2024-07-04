@@ -200,3 +200,8 @@ res2
 # of the variance and so the square-root of this is the standard deviation
 
 sqrt(-1/res2$hessian[1,1])
+
+# this is exactly identical to what we get for the SD from quap()
+
+res1$sd
+
