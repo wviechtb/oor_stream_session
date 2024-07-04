@@ -93,3 +93,7 @@ plot(ps, post3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 
 # we actually did the grid approximation above (using 1000 grid points), so no
 # need to repeat all of this here
+
+## 2.4.4: Quadratic approximation.
+
+library(rethinking)
