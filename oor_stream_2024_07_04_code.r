@@ -140,3 +140,24 @@ lines(ps, post1.exact, lwd=5, col="firebrick")
 
 # we see no difference between the blue and red lines, so the grid
 # approximation is essentially perfect here
+
+# say now that we have observed 4*6 successes and 4*3 failures (so we get the
+# same peak for the likelihood, but we have four times as much data)
+
+globe.qa <- quap(
+   alist(W ~ dbinom(W+L, p), # binomial likelihood
+   p ~ dunif(0,1)            # uniform prior
+), data=list(W=4*6,L=4*3))
+
+# display summary of quadratic approximation
+res <- precis(globe.qa)
+res
+
+
+post1.exact <- dbeta(ps, 1+4*6, 1+4*3)
+plot(ps, post1.exact, type="l", lwd=5, bty="l", xlab="True Probability",
+     ylab="Posterior Probability", col="dodgerblue")
+post1.qa <- dnorm(ps, mean=res$mean, sd=res$sd)
+lines(ps, post1.qa, lwd=5)
+legend("topleft", inset=.02, legend=c("Grid Approximation", "Quadratic Approximation"),
+       lwd=5, col=c("dodgerblue","black"))
