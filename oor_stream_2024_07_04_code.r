@@ -88,13 +88,14 @@ plot(ps, post2, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 plot(ps, prior3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 plot(ps, ls, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 plot(ps, post3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+par(mfrow=c(1,1))
 
 ## 2.4.3: Grid approximation
 
 # we actually did the grid approximation above (using 1000 grid points), so no
 # need to repeat all of this here
 
-## 2.4.4: Quadratic approximation.
+## 2.4.4: Quadratic approximation
 
 library(rethinking)
 
@@ -104,4 +105,14 @@ globe.qa <- quap(
 ), data=list(W=6,L=3))
 
 # display summary of quadratic approximation
-precis(globe.qa)
+res <- precis(globe.qa)
+res
+
+# plot the posterior for a uniform prior from our grid approximation above
+plot(ps, post1, type="l", lwd=5, bty="l", xlab="True Probability",
+     ylab="Posterior Probability", col="dodgerblue")
+post1.qa <- dnorm(ps, mean=res$mean, sd=res$sd)
+post1.qa <- post1.qa / sum(post1.qa)
+lines(ps, post1.qa, lwd=5)
+legend("topleft", inset=.02, legend=c("Grid Approximation", "Quadratic Approximation"),
+       lwd=5, col=c("dodgerblue","black"))
