@@ -127,3 +127,16 @@ legend("topleft", inset=.02, legend=c("Grid Approximation", "Quadratic Approxima
 # beta distribution with parameters B(alpha + s, beta + f), where 's' is the
 # number of successes and 'f' is the number of failures (in the present
 # example, these are the number of times we see water and land, respectively)
+
+# note" a uniform prior is actually a Beta(1, 1) distribution, so the exact
+# posterior distribution in our example is Beta(1+6, 1+3)
+
+# let's check that we get essentially the same posterior as what we found
+# using the grid approximation; we plot the exact posterior on top in red
+
+post1.exact <- dbeta(ps, 1+6, 1+3)
+post1.exact <- post1.exact / sum(post1.exact)
+lines(ps, post1.exact, lwd=5, col="firebrick")
+
+# we see no difference between the blue and red lines, so the grid
+# approximation is essentially perfect here
