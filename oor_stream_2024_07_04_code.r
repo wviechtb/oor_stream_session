@@ -172,8 +172,8 @@ globe.qa <- quap(
 
 # display summary of quadratic approximation
 
-res <- precis(globe.qa)
-res
+res1 <- precis(globe.qa)
+res1
 
 # function that computes the posterior for a given value of p, using a uniform
 # prior distribution
@@ -187,3 +187,4 @@ postfun <- function(p, W, L) {
 
 }
 
+res2 <- optim(par=0.5, postfun, method="L-BFGS-B", lower=0, upper=1, control=list(fnscale=-1), W=6, L=3)
