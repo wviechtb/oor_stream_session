@@ -61,7 +61,7 @@ plot(ps, post2, type="l", lwd=3, bty="l", xlab="True Probability",
 # values close to 0 or 1; we could express this in terms of the following
 # equation
 
-prior3 <- 1/(0.2*2) * exp(-abs(ps-0.5)/0.2)
+prior3 <- exp(-5 * abs(ps-0.5))
 prior3 <- prior3 / sum(prior3)
 plot(ps, prior3, type="l", lwd=3, bty="l", xlab="True Probability",
      ylab="Prior Probability")
@@ -88,3 +88,8 @@ plot(ps, post2, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 plot(ps, prior3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 plot(ps, ls, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
 plot(ps, post3, type="l", lwd=3, bty="l", xlab="", ylab="", yaxt="n")
+
+## 2.4.3: Grid approximation
+
+# we actually did the grid approximation above (using 1000 grid points), so no
+# need to repeat all of this here
