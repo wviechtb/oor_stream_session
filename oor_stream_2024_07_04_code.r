@@ -116,3 +116,14 @@ post1.qa <- post1.qa / sum(post1.qa)
 lines(ps, post1.qa, lwd=5)
 legend("topleft", inset=.02, legend=c("Grid Approximation", "Quadratic Approximation"),
        lwd=5, col=c("dodgerblue","black"))
+
+# if we use a beta distribution to define our prior plausibilities for the
+# different values of p, then for a binomial likelihood function, it turns out
+# that there is a nice analytic derivation of the posterior distribution; see:
+# https://en.wikipedia.org/wiki/Beta_distribution#Effect_of_different_prior_probability_choices_on_the_posterior_beta_distribution
+
+# so let's say we use Beta(alpha, beta) to describe the prior distribution;
+# then it turns out that in this case, the posterior distribution is also a
+# beta distribution with parameters B(alpha + s, beta + f), where 's' is the
+# number of successes and 'f' is the number of failures (in the present
+# example, these are the number of times we see water and land, respectively)
