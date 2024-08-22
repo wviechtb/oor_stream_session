@@ -25,5 +25,6 @@ head(dat)
 # load the rstanarm package
 library(rstanarm)
 
-
-res <- stan_glm(kid_score ~ mom_hs, data=kidiq)
+# fit linear regression model predicting the kids' IQ from the dummy variable
+# mom_hs (1/0 = mom did or did not graduate from high-school)
+res <- stan_glm(kid_score ~ mom_hs, data=dat, refresh=0)
