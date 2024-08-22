@@ -60,3 +60,16 @@ plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=1
      xlab="Mother IQ score", ylab="Child test score", cex=0.5)
 abline(res, lwd=4)
 
+diff.kids <- outer(dat$kid_score, dat$kid_score, "-")
+diff.moms <- outer(dat$mom_iq,    dat$mom_iq, "-")
+
+diff.kids[1:10,1:10]
+diff.moms[1:10,1:10]
+
+ratios <- (diff.kids / diff.moms)
+ratios[1:10, 1:10]
+
+ratios <- ratios[upper.tri(ratios)]
+ratios
+mean(ratios[!is.infinite(ratios)], na.rm=TRUE)
+
