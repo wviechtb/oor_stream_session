@@ -126,10 +126,15 @@ head(dat)
 res <- stan_glm(weight ~ height, data=dat, refresh=0)
 res
 
-# compute the predicted average weight for individuals who are 66 inches tall
+# compute the predicted average weight for persons who are 66 inches tall
 coef(res)[[1]] + coef(res)[[2]] * 66
 
-# using posterior_predict() for the same purpose
+# recall from chapter 9: we can predict the average weight of persons or the
+# weight of individual persons; using posterior_predict(), we get the latter
+# (or more precisely, we get draws from the posterior distribution, which we
+# can then summarize with mean() and sd())
 newdat <- data.frame(height=66)
 pred <- posterior_predict(res, newdata=newdat)
 mean(pred)
+sd(pred)
+
