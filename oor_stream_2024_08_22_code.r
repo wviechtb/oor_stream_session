@@ -86,18 +86,21 @@ abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3], lwd=4, col="gray")
 res <- stan_glm(kid_score ~ mom_hs + mom_iq + mom_hs:mom_iq, data=dat, refresh=0)
 res
 
-# Figure 10.4
+# Figure 10.4a
 plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=19,
      col=ifelse(mom_hs==1, "gray", "black"), xlab="Mother IQ score",
      ylab="Child test score", cex=0.5)
 abline(a=coef(res)[1],                b=coef(res)[3],                lwd=4)
 abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3] + coef(res)[4], lwd=4, col="gray")
 
+# another way to draw the regression lines is to compute predicted values for
+# mom IQ scores between let's say 70 and 140 when mom_hs is equal to 0 or 1
+# and then add the corresponding lines to the plot
 iqs <- 70:140
 pred <- coef(res)[1] + coef(res)[2]*0 + coef(res)[3]*iqs + coef(res)[4]*0*iqs
-lines(iqs, pred)
+lines(iqs, pred, lwd=4)
 pred <- coef(res)[1] + coef(res)[2]*1 + coef(res)[3]*iqs + coef(res)[4]*1*iqs
-lines(iqs, pred)
+lines(iqs, pred, lwd=4, col="gray")
 
 
 ############################################################################
