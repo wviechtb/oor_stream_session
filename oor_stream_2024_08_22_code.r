@@ -15,4 +15,15 @@
 
 ### 10.1: Adding predictors to a model
 
-download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
+# download the dataset (need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("kidiq.csv")
+head(dat)
+
+# load the rstanarm package
+library(rstanarm)
+
+
+res <- stan_glm(kid_score ~ mom_hs, data=kidiq)
