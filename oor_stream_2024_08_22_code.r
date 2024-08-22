@@ -152,3 +152,6 @@ res
 # include the dummy variable male in the model
 res <- stan_glm(weight ~ c_height + male, data=dat, refresh=0)
 res
+
+# computed the predicted average weight of 70-inch tall women
+coef(res)[[1]] + coef(res)[[2]]*4.0 + coef(res)[[3]]*0
