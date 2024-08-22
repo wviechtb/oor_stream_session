@@ -28,7 +28,9 @@ head(dat)
 library(rstanarm)
 
 # fit linear regression model predicting the kids' test score from the dummy
-# variable mom_hs (1/0 = mom did or did not graduate from high-school)
+# variable mom_hs (1/0 = mom did or did not graduate from high-school) (note:
+# we set the seed of the random number generator to make results fully
+# reproducible)
 set.seed(1234)
 res <- stan_glm(kid_score ~ mom_hs, data=dat, refresh=0)
 res
@@ -65,3 +67,7 @@ abline(res, lwd=4)
 # now include both predictors in the model
 res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
 res
+
+# note: the results we obtain differ slightly from those given in the book
+# because of the randomness when sampling a finite number of values from the
+# posterior distributions of the model parameters
