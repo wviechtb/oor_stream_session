@@ -27,4 +27,12 @@ library(rstanarm)
 
 # fit linear regression model predicting the kids' IQ from the dummy variable
 # mom_hs (1/0 = mom did or did not graduate from high-school)
+set.seed(1234)
 res <- stan_glm(kid_score ~ mom_hs, data=dat, refresh=0)
+res
+
+# Figure 10.1
+plot(jitter(kid_score, amount=0.5) ~ jitter(mom_hs, amount=0.05), data=dat, pch=19, xlim=c(-0.2, 1.2),
+     xlab="Mother completed high school", xaxt="n", ylab="Child test score", cex=0.5)
+axis(side=1, at=c(0,1), labels=c("No (0)", "Yes (1)"))
+abline(res, lwd=4)
