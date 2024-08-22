@@ -15,6 +15,8 @@
 
 ### 10.1: Adding predictors to a model
 
+## Starting with a binary predictor
+
 # download the dataset (need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
 
@@ -37,5 +39,14 @@ plot(jitter(kid_score, amount=0.5) ~ jitter(mom_hs, amount=0.05), data=dat, pch=
 axis(side=1, at=c(0,1), labels=c("No (0)", "Yes (1)"))
 abline(res, lwd=4)
 
+# compute the observed means of the two groups
+means <- with(dat, by(kid_score, mom_hs, mean))
+means
+
+# the slope of the regression model is really the difference between the two groups
+means[2] - means[1]
+
 # also add the observed means of the two groups as red points to the figure
-points(c(0,1), with(dat, by(kid_score, mom_hs, mean)), pch=19, cex=2, col="red")
+points(c(0,1), means, pch=19, cex=2, col="red")
+
+## A single continuous predictor
