@@ -262,3 +262,5 @@ dat
 # structure of our data
 res <- stan_glm(outcome ~ trt + factor(center), data=dat, refresh=0)
 print(res, digits=2)
+
+############################################################################
