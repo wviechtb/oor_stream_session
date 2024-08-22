@@ -185,3 +185,33 @@ dat$eth <- factor(dat$ethnicity), levels=c("White", "Black", "Hispanic", "Other"
 # without having to specify the order of the other levels (which will be in
 # alphabetical order anyway)
 dat$eth <- relevel(factor(dat$ethnicity), ref="White")
+
+# refit the model
+res <- stan_glm(weight ~ c_height + male + eth, data=dat, refresh=0)
+res
+
+############################################################################
+
+### 10.5: Formulating paired or blocked designs as a regression problem
+
+## Completely randomized experiment
+
+# create a dataset corresponding to this discussion
+dat <- data.frame(trt=rep(c(0,1), times=c(22,26)))
+dat$outcome <- round(4 + dat$trt * 2 + rnorm(nrow(dat)))
+
+# compute the means, SDs, and group sizes for the control and treatment group
+means <- with(dat, by(outcome, trt, mean))
+sds   <- with(dat, by(outcome, trt, sd))
+ns    <- with(dat, by(outcome, trt, length))
+
+# compute the mean difference and corresponding standard error
+means[[2]] - means[[1]]
+sqrt(sds[[2]]^2 / ns[[2]] + sds[[1]]^2 / ns[[1]])
+
+# fit the corresponding regression model
+res <- stan_glm(outcome ~ trt, data=dat, refresh=0)
+res
+
+## Paired design
+
