@@ -131,4 +131,5 @@ coef(res)[[1]] + coef(res)[[2]] * 66
 
 # using posterior_predict() for the same purpose
 newdat <- data.frame(height=66)
-pred <- posterior_predict(fit_1, newdata=newdat)
+pred <- posterior_predict(res, newdata=newdat)
+mean(pred)
