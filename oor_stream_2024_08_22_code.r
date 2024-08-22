@@ -102,5 +102,20 @@ lines(iqs, pred, lwd=4)
 pred <- coef(res)[1] + coef(res)[2]*1 + coef(res)[3]*iqs + coef(res)[4]*1*iqs
 lines(iqs, pred, lwd=4, col="gray")
 
+# Figure 10.4b
+plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=19,
+     col=ifelse(mom_hs==1, "gray", "black"), xlab="Mother IQ score",
+     ylab="Child test score", cex=0.5, xlim=c(0,150), ylim=c(-20,150))
+abline(a=coef(res)[1],                b=coef(res)[3],                lwd=4)
+abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3] + coef(res)[4], lwd=4, col="gray")
 
 ############################################################################
+
+# download the dataset (only need to do this once)
+#download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Earnings/data/earnings.csv", destfile="earnings.csv")
+
+# read in the dataset
+dat <- read.csv("earnings.csv")
+
+# inspect the dataset
+head(dat)
