@@ -169,3 +169,8 @@ newdat <- data.frame(c_height=4, male=1)
 pred <- posterior_predict(res, newdata=newdat)
 mean(pred)
 sd(pred)
+
+## Using indicator variables for multiple levels of a categorical predictor
+
+res <- stan_glm(weight ~ c_height + male + factor(ethnicity), data=dat, refresh=0)
+res
