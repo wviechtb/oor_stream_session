@@ -154,4 +154,8 @@ res <- stan_glm(weight ~ c_height + male, data=dat, refresh=0)
 res
 
 # computed the predicted average weight of 70-inch tall women
-coef(res)[[1]] + coef(res)[[2]]*4.0 + coef(res)[[3]]*0
+coef(res)[[1]] + coef(res)[[2]]*4 + coef(res)[[3]]*0
+
+
+newdat <- data.frame(c_height=4.0, male=0)
+pred <- posterior_predict(res, newdata=newdat)
