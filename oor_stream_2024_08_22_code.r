@@ -50,3 +50,7 @@ means[2] - means[1]
 points(c(0,1), means, pch=19, cex=2, col="red")
 
 ## A single continuous predictor
+
+# fit linear regression model predicting the kids' IQ from the mothers' IQ
+res <- stan_glm(kid_score ~ mom_iq, data=dat, refresh=0)
+res
