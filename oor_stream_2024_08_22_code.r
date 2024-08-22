@@ -71,3 +71,10 @@ res
 # note: the results we obtain differ slightly from those given in the book
 # because of the randomness when sampling a finite number of values from the
 # posterior distributions of the model parameters
+
+# Figure 10.3
+plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=19,
+     col=ifelse(mom_hs==1, "gray", "black"), xlab="Mother IQ score",
+     ylab="Child test score", cex=0.5)
+abline(a=coef(res)[1],                b=coef(res)[3], lwd=4)
+abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3], lwd=4, col="gray")
