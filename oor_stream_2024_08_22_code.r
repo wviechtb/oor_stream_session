@@ -78,3 +78,9 @@ plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=1
      ylab="Child test score", cex=0.5)
 abline(a=coef(res)[1],                b=coef(res)[3], lwd=4)
 abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3], lwd=4, col="gray")
+
+############################################################################
+
+### 10.2 Interpreting regression coefficients
+
+############################################################################
