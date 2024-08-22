@@ -129,10 +129,11 @@ res
 # compute the predicted average weight for persons who are 66 inches tall
 coef(res)[[1]] + coef(res)[[2]] * 66
 
-# recall from chapter 9: we can predict the average weight of persons or the
-# weight of individual persons; using posterior_predict(), we get the latter
-# (or more precisely, we get draws from the posterior distribution, which we
-# can then summarize with mean() and sd())
+# recall from chapter 9: we can predict the average weight of persons who are
+# 66 inches tall or the weight of individual persons who are 66 inches tall;
+# using posterior_predict(), we get the latter (or more precisely, we get
+# draws from the posterior distribution, which we can then summarize with
+# mean() and sd())
 newdat <- data.frame(height=66)
 pred <- posterior_predict(res, newdata=newdat)
 mean(pred)
@@ -156,6 +157,15 @@ res
 # computed the predicted average weight of 70-inch tall women
 coef(res)[[1]] + coef(res)[[2]]*4 + coef(res)[[3]]*0
 
-
-newdat <- data.frame(c_height=4.0, male=0)
+# use posterior_predict() to make predictions of the weight of individual
+# women who are 70 inches tall
+newdat <- data.frame(c_height=4, male=0)
 pred <- posterior_predict(res, newdata=newdat)
+mean(pred)
+sd(pred)
+
+# do the same prediction for individual men
+newdat <- data.frame(c_height=4, male=1)
+pred <- posterior_predict(res, newdata=newdat)
+mean(pred)
+sd(pred)
