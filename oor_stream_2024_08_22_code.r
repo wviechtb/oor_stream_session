@@ -15,3 +15,4 @@
 
 ### 10.1: Adding predictors to a model
 
+download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
