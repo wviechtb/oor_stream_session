@@ -27,8 +27,8 @@ head(dat)
 # load the rstanarm package
 library(rstanarm)
 
-# fit linear regression model predicting the kids' IQ from the dummy variable
-# mom_hs (1/0 = mom did or did not graduate from high-school)
+# fit linear regression model predicting the kids' test score from the dummy
+# variable mom_hs (1/0 = mom did or did not graduate from high-school)
 set.seed(1234)
 res <- stan_glm(kid_score ~ mom_hs, data=dat, refresh=0)
 res
@@ -51,6 +51,12 @@ points(c(0,1), means, pch=19, cex=2, col="red")
 
 ## A single continuous predictor
 
-# fit linear regression model predicting the kids' IQ from the mothers' IQ
+# fit linear regression model predicting the kids' test score from the mothers' IQ
 res <- stan_glm(kid_score ~ mom_iq, data=dat, refresh=0)
 res
+
+# Figure 10.2
+plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=19,
+     xlab="Mother IQ score", xaxt="n", ylab="Child test score", cex=0.5)
+axis(side=1, at=c(0,1), labels=c("No (0)", "Yes (1)"))
+abline(res, lwd=4)
