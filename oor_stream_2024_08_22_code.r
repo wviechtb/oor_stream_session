@@ -172,5 +172,16 @@ sd(pred)
 
 ## Using indicator variables for multiple levels of a categorical predictor
 
+# now add the 4-level categorical ethnicity variable to the model
 res <- stan_glm(weight ~ c_height + male + factor(ethnicity), data=dat, refresh=0)
 res
+
+## Changing the baseline factor level
+
+# could use factor() and specify the order of all levels as shown in the book
+dat$eth <- factor(dat$ethnicity), levels=c("White", "Black", "Hispanic", "Other"))
+
+# or we could use the relevel() function to make 'White' the baseline category
+# without having to specify the order of the other levels (which will be in
+# alphabetical order anyway)
+dat$eth <- relevel(factor(dat$ethnicity), ref="White")
