@@ -242,6 +242,5 @@ rownames(dat) <- NULL
 dat
 
 # fit the corresponding regression model
-res <- stan_glm(outcome ~ trt, data=dat, refresh=0)
-res
-
+res <- stan_glm(outcome ~ trt + factor(pair), data=dat, refresh=0)
+print(res, digits=2)
