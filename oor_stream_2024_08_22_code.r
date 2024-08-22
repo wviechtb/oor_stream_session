@@ -63,5 +63,5 @@ abline(res, lwd=4)
 ## Including both predictors
 
 # now include both predictors in the model
-res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat)
+res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
 res
