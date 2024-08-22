@@ -244,3 +244,12 @@ dat
 # fit the corresponding regression model
 res <- stan_glm(outcome ~ trt + factor(pair), data=dat, refresh=0)
 print(res, digits=2)
+
+## Block design
+
+# a common situation where this type of design arises is in a multicenter
+# study, where individuals are randomized to a treatment versus control
+# condition within each center
+
+# create a dataset corresponding to this discussion
+dat <- data.frame(center = rep(1:6, times=c(6,18,15,9,23,12)))
