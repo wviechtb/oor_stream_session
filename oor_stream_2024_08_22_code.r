@@ -83,6 +83,8 @@ abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3], lwd=4, col="gray")
 
 ### 10.3: Interactions
 
+res <- stan_glm(kid_score ~ mom_hs + mom_iq + mom_hs:mom_iq, data=dat, refresh=0)
+res
 
 
 
