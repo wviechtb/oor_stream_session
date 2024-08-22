@@ -57,6 +57,6 @@ res
 
 # Figure 10.2
 plot(jitter(kid_score, amount=0.5) ~ jitter(mom_iq, amount=0.5), data=dat, pch=19,
-     xlab="Mother IQ score", xaxt="n", ylab="Child test score", cex=0.5)
-axis(side=1, at=c(0,1), labels=c("No (0)", "Yes (1)"))
+     xlab="Mother IQ score", ylab="Child test score", cex=0.5)
 abline(res, lwd=4)
+
