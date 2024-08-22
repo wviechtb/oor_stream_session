@@ -258,6 +258,7 @@ dat$trt <- sample(c(0,1), nrow(dat), replace=TRUE)
 dat$outcome <- round(rep(rnorm(6, mean=5, sd=1), times=ns) + dat$trt * 2 + rnorm(nrow(dat), mean=0, sd=1))
 dat
 
-# fit the corresponding regression model
+# fit a regression model that accounts for the multicenter (or blocked design)
+# structure of our data
 res <- stan_glm(outcome ~ trt + factor(center), data=dat, refresh=0)
 print(res, digits=2)
