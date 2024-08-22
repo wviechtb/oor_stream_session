@@ -111,6 +111,8 @@ abline(a=coef(res)[1] + coef(res)[2], b=coef(res)[3] + coef(res)[4], lwd=4, col=
 
 ############################################################################
 
+### 10.4: Indicator variables
+
 # download the dataset (only need to do this once)
 #download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Earnings/data/earnings.csv", destfile="earnings.csv")
 
@@ -119,3 +121,7 @@ dat <- read.csv("earnings.csv")
 
 # inspect the dataset
 head(dat)
+
+# fit linear regression model predicting weight from height
+res <- stan_glm(weight ~ height, data=dat, refresh=0)
+res
