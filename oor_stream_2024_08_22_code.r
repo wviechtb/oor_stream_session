@@ -252,4 +252,12 @@ print(res, digits=2)
 # condition within each center
 
 # create a dataset corresponding to this discussion
-dat <- data.frame(center = rep(1:6, times=c(6,18,15,9,23,12)))
+ns <- c(6,18,15,9,23,12)
+dat <- data.frame(center = rep(1:6, times=ns))
+dat$trt <- sample(c(0,1), nrow(dat), replace=TRUE)
+dat$outcome <- round(rep(rnorm(6, mean=5, sd=1), times=ns) + dat$trt * 2 + rnorm(nrow(dat), mean=0, sd=1))
+dat
+
+# fit the corresponding regression model
+res <- stan_glm(outcome ~ trt + factor(center), data=dat, refresh=0)
+print(res, digits=2)
