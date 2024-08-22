@@ -36,3 +36,6 @@ plot(jitter(kid_score, amount=0.5) ~ jitter(mom_hs, amount=0.05), data=dat, pch=
      xlab="Mother completed high school", xaxt="n", ylab="Child test score", cex=0.5)
 axis(side=1, at=c(0,1), labels=c("No (0)", "Yes (1)"))
 abline(res, lwd=4)
+
+# also add the observed means of the two groups as red points to the figure
+points(c(0,1), with(dat, by(kid_score, mom_hs, mean)), pch=19, cex=2, col="red")
