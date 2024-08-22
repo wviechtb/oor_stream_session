@@ -138,3 +138,17 @@ pred <- posterior_predict(res, newdata=newdat)
 mean(pred)
 sd(pred)
 
+## Centering a predictor
+
+# center the height variable at 66 inches and refit the model using this
+# centered predictor; then the intercept of the model directly reflects the
+# estimated average weight of individuals who are 66 inches tall
+dat$c_height <- dat$height - 66
+res <- stan_glm(weight ~ c_height, data=dat, refresh=0)
+res
+
+## Including a binary variable in a regression
+
+# include the dummy variable male in the model
+res <- stan_glm(weight ~ c_height + male, data=dat, refresh=0)
+res
