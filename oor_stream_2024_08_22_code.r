@@ -215,3 +215,14 @@ res
 
 ## Paired design
 
+# create a dataset corresponding to this discussion
+dat <- data.frame(person1 = round(rnorm(20, mean=6, sd=1)),
+                  person2 = round(rnorm(20, mean=4, sd=1)))
+
+# compute the difference within pairs
+dat$z <- dat$person1 - dat$person2
+
+# compute the mean of the differences and the corresponding standard error
+mean(dat$z)
+sd(dat$z) / sqrt(nrow(dat))
+
