@@ -199,6 +199,7 @@ res
 # create a dataset corresponding to this discussion
 dat <- data.frame(trt=rep(c(0,1), times=c(22,26)))
 dat$outcome <- round(4 + dat$trt * 2 + rnorm(nrow(dat)))
+dat
 
 # compute the means, SDs, and group sizes for the control and treatment group
 means <- with(dat, by(outcome, trt, mean))
@@ -218,6 +219,10 @@ res
 # create a dataset corresponding to this discussion
 dat <- data.frame(person1 = round(rnorm(20, mean=6, sd=1)),
                   person2 = round(rnorm(20, mean=4, sd=1)))
+dat
+
+# note: people in the person1 column are in the treatment group, people in the
+# person2 column are in the control group
 
 # compute the difference within pairs
 dat$z <- dat$person1 - dat$person2
@@ -225,4 +230,18 @@ dat$z <- dat$person1 - dat$person2
 # compute the mean of the differences and the corresponding standard error
 mean(dat$z)
 sd(dat$z) / sqrt(nrow(dat))
+
+# remove the z variable
+dat$z <- NULL
+
+# restructure the data into a long format
+dat <- reshape(dat, direction="long", varying=c("person1","person2"),
+               v.names="outcome", timevar="trt", times=c(1,0), idvar="pair")
+dat <- sort_by(dat, ~ pair)
+rownames(dat) <- NULL
+dat
+
+# fit the corresponding regression model
+res <- stan_glm(outcome ~ trt, data=dat, refresh=0)
+res
 
