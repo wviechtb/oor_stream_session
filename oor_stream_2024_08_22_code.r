@@ -125,3 +125,6 @@ head(dat)
 # fit linear regression model predicting weight from height
 res <- stan_glm(weight ~ height, data=dat, refresh=0)
 res
+
+# compute the predicted average weight for individuals who are 66 inches tall
+coef(res)[[1]] + coef(res)[[2]] * 66
