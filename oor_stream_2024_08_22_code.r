@@ -73,3 +73,10 @@ ratios <- ratios[upper.tri(ratios)]
 ratios
 mean(ratios[!is.infinite(ratios)], na.rm=TRUE)
 
+reldiff <- rep(NA_real_, 1000)
+for (i in 1:1000) {
+   sub <- dat[sample(nrow(dat), 2),]
+   reldiff[i] <- (sub$kid_score[1] - sub$kid_score[2]) / (sub$mom_iq[1] - sub$mom_iq[2])
+}
+
+mean(reldiff[!is.infinite(reldiff)], na.rm=TRUE)
