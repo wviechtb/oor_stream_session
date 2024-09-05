@@ -55,6 +55,9 @@ Pr_Vampire_Positive
 
 ### 3.1: Sampling from a grid-approximate posterior
 
+# load the rethinking package
+library(rethinking)
+
 p_grid <- seq(from=0, to=1, length.out=1000)
 prob_p <- rep(1, 1000) # prior
 prob_data <- dbinom(6, size=9, prob=p_grid) # likelihood
@@ -66,5 +69,13 @@ plot(p_grid, posterior, type="l") # plot the posterior distribution
 # sample values of p in accordance with how probable the values are (which we
 # have determined above using our grid approximation)
 samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
+
+# Figure 3.1
+par(mfrow=c(1,2))
+plot(samples, pch=19, xlab="sample number",
+     ylab="proportion water (p)", col=rgb(0,0,0.5,0.1))
+dens(samples)
+
+plot(samples, pch=19, cex=0.1, type="o")
 
 ############################################################################
