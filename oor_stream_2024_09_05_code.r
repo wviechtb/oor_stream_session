@@ -160,6 +160,11 @@ plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", l
 # determine the 25th and 75th percentile
 p.25 <- quantile(samples, 0.25)
 p.75 <- quantile(samples, 0.75)
+p.25
+p.75
+
+# use the PI() function to obtain the same values
+PI(samples, 0.5)
 
 # shade this region in the plot above
 sel <- p_grid > p.25 & p_grid < p.75
