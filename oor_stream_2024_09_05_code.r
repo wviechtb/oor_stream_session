@@ -122,8 +122,10 @@ p_grid[min(which(cumsum(posterior) > 0.8))]
 
 # determine under which value of p are 10% of the sampled values and under
 # which value of p are 90% of the sampled values
-p.1.9 <- quantile(samples, c(0.1, 0.9))
-p.1.9
+p.1 <- quantile(samples, 0.1)
+p.9 <- quantile(samples, 0.9)
+p.1
+p.9
 
 # Figure 3.2
 par(mfrow=c(2,2))
@@ -137,7 +139,7 @@ plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
 sel <- p_grid < p.8
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
-sel <- p_grid > p.1.9[1] & p_grid < p.1.9[2]
+sel <- p_grid > p.1 & p_grid < p.9
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 par(mfrow=c(1,1))
 
@@ -152,5 +154,14 @@ posterior <- posterior / sum(posterior)
 par(mfrow=c(1,2))
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", lwd=2)
 
+# using the same trick as above, we can find the value of p based on the grid
+# approximation under which the cumulative sum of the posterior is 0.25 and
+# the same for 0.75
+p.25 <- p_grid[min(which(cumsum(posterior) > 0.25))]
+p.75 <- p_grid[min(which(cumsum(posterior) > 0.75))]
+
+# shade this region in the plot above
+sel <- p_grid > p.25 & p_grid < p.75
+polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 
 ############################################################################
