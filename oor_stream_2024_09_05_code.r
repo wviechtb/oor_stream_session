@@ -219,7 +219,16 @@ dens(samples, xlim=c(0,1), lwd=3, col="blue", xlab="proportion water (p)")
 # dens() uses)
 chainmode(samples, adj=0.5)
 
-abline(v=chainmode(samples))
+# show that this values is indeed the peak in the plot
+abline(v=chainmode(samples, adj=0.5))
+
+# obtain the mean and median of the sampled values
+mean(samples)
+median(samples)
+
+# show these values in the plot
+abline(v=mean(samples))
+abline(v=median(samples))
 
 
 ############################################################################
