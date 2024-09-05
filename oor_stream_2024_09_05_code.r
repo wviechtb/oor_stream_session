@@ -214,7 +214,12 @@ p_grid[which.max(posterior)]
 # based on the sampled values, draw the posterior distribution
 dens(samples, xlim=c(0,1), lwd=3, col="blue", xlab="proportion water (p)")
 
-# the peak of that distribution is the MAP based on the sampled values
-chainmode(samples, adj=0.01)
+# the peak of that distribution is the MAP based on the sampled values (note:
+# instead of adj=0.01, we use adj=0.5, which is the same default value that
+# dens() uses)
+chainmode(samples, adj=0.5)
+
+abline(v=chainmode(samples))
+
 
 ############################################################################
