@@ -103,7 +103,17 @@ sum(samples < 0.5) / 1e4
 # compute the proportion of samples values that are above 0.5 and below 0.75
 sum(samples > 0.5 & samples < 0.75) / 1e4
 
-## 3.2.2: Intervals of defined mass.
+## 3.2.2: Intervals of defined mass
+
+# determine under which values are 80% of the sampled values
+quantile(samples, 0.8)
+
+sum(samples < quantile(samples, 0.8)) / 1e4
+
+
+
+p_grid[min(which(cumsum(posterior) > 0.8))]
+
 
 
 # Figure 3.2
