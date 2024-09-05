@@ -100,4 +100,7 @@ sum(posterior[p_grid < 0.5])
 # compute the proportion of sampled values that are below 0.5
 sum(samples < 0.5) / 1e4
 
+# compute the proportion of samples values that are above 0.5 and below 0.75
+sum(samples > 0.5 & samples < 0.75) / 1e4
+
 ############################################################################
