@@ -25,11 +25,11 @@ Pr_Vampire_Positive
 
 #                  vampire      mortal
 #               +-----------+-----------+
-# test positive | (3) 95    | (5) 999   |
+# test positive | (3)    95 | (5)   999 |   1094 (7)
 #               +-----------+-----------+
-# test negative | (4)  5    | (6) 98901 |
-#               +-----------+-----------+-------
-#               (2) 100      99900  | 100000 (1)
+# test negative | (4)     5 | (6) 98901 |  98906
+#               +-----------+-----------+-----------
+#               (2)     100       99900 | 100000 (1)
 #
 # (1) Let's assume we are looking at a population of 100,000 individuals.
 # (2) Given Pr_Vampire, we can then compute how many of them are vampires and
@@ -40,6 +40,9 @@ Pr_Vampire_Positive
 # (5) Given Pr_Positive_Mortal, we can then compute how many of the mortals
 #     will test positive.
 # (6) We can then also fill in this number.
+# (7) We can now also fill in the row totals.
+# (8) Now that we have completed the table, we can easily compute the
+#     probability that a person is a vampire given that the test is positive.
 
 ### 3.1: Sampling from a grid-approximate posterior
 
