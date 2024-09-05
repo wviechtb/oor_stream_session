@@ -108,6 +108,9 @@ sum(samples > 0.5 & samples < 0.75) / 1e4
 # determine under which values are 80% of the sampled values
 quantile(samples, 0.8)
 
+# check that indeed 80% of the sampled values are below this cutoff (note:
+# this is not exactly 80% because the grid values from which we sampled are
+# discrete and can repeated themselves)
 sum(samples < quantile(samples, 0.8)) / 1e4
 
 
