@@ -97,5 +97,7 @@ plot(samples, pch=19, cex=0, type="o")
 # add up posterior probability where p < 0.5
 sum(posterior[p_grid < 0.5])
 
+# compute the proportion of sampled values that are below 0.5
+sum(samples < 0.5) / 1e4
 
 ############################################################################
