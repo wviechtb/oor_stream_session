@@ -103,4 +103,11 @@ sum(samples < 0.5) / 1e4
 # compute the proportion of samples values that are above 0.5 and below 0.75
 sum(samples > 0.5 & samples < 0.75) / 1e4
 
+# Figure 3.2
+par(mfrow=c(2,2))
+plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
+sel <- p_grid < 0.5
+polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rev(posterior[sel])), col="dodgerblue")
+
+
 ############################################################################
