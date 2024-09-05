@@ -150,15 +150,16 @@ prob_data <- dbinom(3, size=3, prob=p_grid)
 posterior <- prob_data * prob_p
 posterior <- posterior / sum(posterior)
 
+# sample values from the posterior distribution as we did above
+samples <- sample(p_grid, size=1e4, replace=TRUE, prob=posterior)
+
 # plot the posterior
 par(mfrow=c(1,2))
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", lwd=2)
 
-# using the same trick as above, we can find the value of p based on the grid
-# approximation under which the cumulative sum of the posterior is 0.25 and
-# the same for 0.75
-p.25 <- p_grid[min(which(cumsum(posterior) > 0.25))]
-p.75 <- p_grid[min(which(cumsum(posterior) > 0.75))]
+# determine the 25th and 75th percentile
+p.25 <- quantile(samples, 0.25)
+p.75 <- quantile(samples, 0.75)
 
 # shade this region in the plot above
 sel <- p_grid > p.25 & p_grid < p.75
