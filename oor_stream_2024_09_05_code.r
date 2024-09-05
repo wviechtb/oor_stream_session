@@ -106,12 +106,13 @@ sum(samples > 0.5 & samples < 0.75) / 1e4
 ## 3.2.2: Intervals of defined mass
 
 # determine under which values are 80% of the sampled values
-quantile(samples, 0.8)
+p.8 <- quantile(samples, 0.8)
+p.8
 
 # check that indeed 80% of the sampled values are below this cutoff (note:
 # this is not exactly 80% because the grid values from which we sampled are
 # discrete and can repeated themselves)
-sum(samples < quantile(samples, 0.8)) / 1e4
+sum(samples < p.8) / 1e4
 
 # note: we could also do this kind of calculation based on the grid
 # approximation by finding the value of p at which point the cumulative sum of
@@ -127,6 +128,8 @@ sel <- p_grid < 0.5
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
 sel <- p_grid > 0.5 & p_grid < 0.75
+polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
+sel <- p_grid < p.8
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 
 
