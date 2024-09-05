@@ -88,7 +88,14 @@ par(mfrow=c(1,1))
 # but not drawing points but instead connecting them via lines)
 plot(samples, pch=19, cex=0, type="o")
 
+############################################################################
 
+### 3.2: Sampling to summarize
+
+## 3.2.1: Intervals of defined boundaries
+
+# add up posterior probability where p < 0.5
+sum(posterior[p_grid < 0.5])
 
 
 ############################################################################
