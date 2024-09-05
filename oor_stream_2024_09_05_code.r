@@ -42,7 +42,9 @@ Pr_Vampire_Positive
 # (6) We can then also fill in this number.
 # (7) We can now also fill in the row totals.
 # (8) Now that we have completed the table, we can easily compute the
-#     probability that a person is a vampire given that the test is positive.
+#     probability that a person is a vampire given that the test is positive:
+#     namely, 95 / 1094
+95 / 1094
 
 ### 3.1: Sampling from a grid-approximate posterior
 
