@@ -183,6 +183,16 @@ unname(quantile(samples, 0.50) - quantile(samples, 0.00))
 
 # the 50% highest posterior density interval (HPDI) is that interval contains
 # 50% of the sampled values and that is the narrowest
-HPDI(samples , prob=0.5)
+HPDI(samples, prob=0.5)
+
+p.lo <- seq(0, 0.5, by=0.01)
+p.hi <- p.lo + 0.5
+width <- rep(NA, length(p.lo))
+
+for (i in 1:length(p.lo)) {
+   width[i] <- quantile(samples, p.hi[i]) - quantile(samples, p.lo[i])
+}
+which.min(width)
+
 
 ############################################################################
