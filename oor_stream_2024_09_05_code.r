@@ -230,5 +230,15 @@ median(samples)
 abline(v=mean(samples))
 abline(v=median(samples))
 
+# draw the posterior based on the grid approximation and again show these
+# three point summaries in the plot
+plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", lwd=2)
+abline(v=chainmode(samples, adj=0.5))
+abline(v=mean(samples))
+abline(v=median(samples))
+
+# the expected loss based on the posterior distribution when we claim that a
+# proportion of 0.5 of the Earth is covered in water
+sum(posterior*abs(0.5-p_grid))
 
 ############################################################################
