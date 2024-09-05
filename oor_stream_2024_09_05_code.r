@@ -23,15 +23,23 @@ Pr_Positive <- Pr_Positive_Vampire * Pr_Vampire +
 Pr_Vampire_Positive <- Pr_Positive_Vampire * Pr_Vampire / Pr_Positive
 Pr_Vampire_Positive
 
-#                 vampire   mortal
-#               +---------+---------+
-# test positive |         |         |
-#               +---------+---------+
-# test negative |         |         |
-#               +---------+---------+------
-#                                   | 10000
-
-
+#                  vampire      mortal
+#               +-----------+-----------+
+# test positive | (3) 95    | (5) 999   |
+#               +-----------+-----------+
+# test negative | (4)  5    | (6) 98901 |
+#               +-----------+-----------+-------
+#               (2) 100      99900  | 100000 (1)
+#
+# (1) Let's assume we are looking at a population of 100,000 individuals.
+# (2) Given Pr_Vampire, we can then compute how many of them are vampires and
+#     how many are mortals.
+# (3) Given Pr_Positive_Vampire, we can then compute how many of the vampires
+#     will test positive.
+# (4) We can then also fill in this number.
+# (5) Given Pr_Positive_Mortal, we can then compute how many of the mortals
+#     will test positive.
+# (6) We can then also fill in this number.
 
 ### 3.1: Sampling from a grid-approximate posterior
 
