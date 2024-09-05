@@ -207,4 +207,10 @@ polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), co
 
 ## 3.2.3: Point estimates
 
+# get the maximum a posteriori (MAP) estimate from the grid approximation
+p_grid[which.max(posterior)]
+
+#
+chainmode(samples, adj=0.01)
+
 ############################################################################
