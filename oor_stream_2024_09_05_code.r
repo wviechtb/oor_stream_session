@@ -185,17 +185,19 @@ unname(quantile(samples, 0.50) - quantile(samples, 0.00))
 # 50% of the sampled values and that is the narrowest
 HPDI(samples, prob=0.5)
 
+# do a brute-force search across all intervals of the type (p.lo, p.hi) which
+# contain 50% of the sampled values starting at (0, .50) to (0.50, 1) and find
+# the one that is narrowest
 p.lo <- seq(0, 0.5, by=0.01)
 p.hi <- p.lo + 0.5
 width <- rep(NA, length(p.lo))
-
 for (i in 1:length(p.lo)) {
    width[i] <- quantile(samples, p.hi[i]) - quantile(samples, p.lo[i])
 }
-which.min(width)
-p.lo[which.min(width)]
-p.hi[which.min(width)]
 quantile(samples, p.lo[which.min(width)])
 quantile(samples, p.hi[which.min(width)])
+
+# we get essentially the same interval as we got with HPDI() (except due to
+# slightly different definitions of the percentiles)
 
 ############################################################################
