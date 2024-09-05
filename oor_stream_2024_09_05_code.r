@@ -179,6 +179,10 @@ quantile(samples, 0.50)
 unname(quantile(samples, 0.75) - quantile(samples, 0.25))
 unname(quantile(samples, 0.50) - quantile(samples, 0.00))
 
-HPDI( samples , prob=0.5 )
+# the first interval is much narrower than the second
+
+# the 50% highest posterior density interval (HPDI) is that interval contains
+# 50% of the sampled values and that is the narrowest
+HPDI(samples , prob=0.5)
 
 ############################################################################
