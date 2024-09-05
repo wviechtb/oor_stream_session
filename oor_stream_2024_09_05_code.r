@@ -72,9 +72,9 @@ samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 
 # Figure 3.1
 par(mfrow=c(1,2))
-plot(samples, pch=19, xlab="sample number",
+plot(samples, pch=19, ylim=c(0,1), xlab="sample number",
      ylab="proportion water (p)", col=rgb(0,0,0.5,0.1))
-dens(samples, lwd=3, col="blue", xlab="proportion water (p)")
+dens(samples, xlim=c(0,1), lwd=3, col="blue", xlab="proportion water (p)")
 
 # superimpose the posterior grid approximation (note: we have to rescale the
 # posterior values in such a way that the grid approximation can be treated
@@ -84,8 +84,9 @@ dens(samples, lwd=3, col="blue", xlab="proportion water (p)")
 lines(p_grid, 999*posterior)
 par(mfrow=c(1,1))
 
-plot(samples, pch=19, cex=0.1, type="o")
+# another way to visualize the samples (like in the left part of Figure 3.1,
+# but not drawing points but instead connecting them via lines)
+plot(samples, pch=19, cex=0, type="o")
 
-sum(diff(p_grid) * posterior[-1])
 
 ############################################################################
