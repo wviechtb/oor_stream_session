@@ -204,13 +204,17 @@ quantile(samples, p.hi[which.min(width)])
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", lwd=2)
 sel <- p_grid > HPDI(samples, prob=0.5)[1] & p_grid < HPDI(samples, prob=0.5)[2]
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
+par(mfrow=c(1,1))
 
 ## 3.2.3: Point estimates
 
 # get the maximum a posteriori (MAP) estimate from the grid approximation
 p_grid[which.max(posterior)]
 
-#
+# based on the sampled values, draw the posterior distribution
+dens(samples, xlim=c(0,1), lwd=3, col="blue", xlab="proportion water (p)")
+
+# the peak of that distribution is the MAP based on the sampled values
 chainmode(samples, adj=0.01)
 
 ############################################################################
