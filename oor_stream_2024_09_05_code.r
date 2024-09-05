@@ -170,4 +170,15 @@ PI(samples, 0.5)
 sel <- p_grid > p.25 & p_grid < p.75
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 
+# we can construct other intervals that also contain 50% of the sampled
+# values; for example, this one
+quantile(samples, 0.00)
+quantile(samples, 0.50)
+
+# note that these intervals are of different widths
+unname(quantile(samples, 0.75) - quantile(samples, 0.25))
+unname(quantile(samples, 0.50) - quantile(samples, 0.00))
+
+HPDI( samples , prob=0.5 )
+
 ############################################################################
