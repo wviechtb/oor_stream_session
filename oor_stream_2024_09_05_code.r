@@ -29,7 +29,7 @@ Pr_Vampire_Positive
 #               +-----------+-----------+
 # test negative | (4)     5 | (6) 98901 |  98906
 #               +-----------+-----------+-----------
-#               (2)     100       99900 | 100000 (1)
+#                 (2)   100       99900 | 100000 (1)
 #
 # (1) Let's assume we are looking at a population of 100,000 individuals.
 # (2) Given Pr_Vampire, we can then compute how many of them are vampires and
@@ -44,7 +44,10 @@ Pr_Vampire_Positive
 # (8) Now that we have completed the table, we can easily compute the
 #     probability that a person is a vampire given that the test is positive:
 #     namely, 95 / 1094
+
 95 / 1094
+
+
 
 ### 3.1: Sampling from a grid-approximate posterior
 
