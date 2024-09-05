@@ -63,6 +63,8 @@ posterior <- prob_data * prob_p
 posterior <- posterior / sum(posterior)
 plot(p_grid, posterior, type="l") # plot the posterior distribution
 
+# sample values of p in accordance with how probable the values are (which we
+# have determined above using our grid approximation)
 samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 
 ############################################################################
