@@ -23,6 +23,13 @@ Pr_Positive <- Pr_Positive_Vampire * Pr_Vampire +
 Pr_Vampire_Positive <- Pr_Positive_Vampire * Pr_Vampire / Pr_Positive
 Pr_Vampire_Positive
 
+#                 vampire   mortal
+#               +---------+---------+
+# test positive |         |         |
+#               +---------+---------+
+# test negative |         |         |
+#               +---------+---------+------
+#                                   | 10000
 
 
 
