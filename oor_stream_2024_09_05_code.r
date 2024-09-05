@@ -58,6 +58,7 @@ Pr_Vampire_Positive
 # load the rethinking package
 library(rethinking)
 
+# recreate the grid approximation we did in chapter 2
 p_grid <- seq(from=0, to=1, length.out=1000)
 prob_p <- rep(1, 1000) # prior
 prob_data <- dbinom(6, size=9, prob=p_grid) # likelihood
@@ -138,6 +139,18 @@ polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), co
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
 sel <- p_grid > p.1.9[1] & p_grid < p.1.9[2]
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
+par(mfrow=c(1,1))
+
+# grid approximation when we see 3 times land in three tosses
+p_grid <- seq(from=0, to=1, length.out=1000)
+prob_p <- rep(1, 1000) # prior
+prob_data <- dbinom(3, size=3, prob=p_grid)
+posterior <- prob_data * prob_p
+posterior <- posterior / sum(posterior)
+
+# plot the posterior
+par(mfrow=c(1,2))
+plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", lwd=2)
 
 
 ############################################################################
