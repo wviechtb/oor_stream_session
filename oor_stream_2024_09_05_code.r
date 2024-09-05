@@ -193,6 +193,9 @@ for (i in 1:length(p.lo)) {
    width[i] <- quantile(samples, p.hi[i]) - quantile(samples, p.lo[i])
 }
 which.min(width)
-
+p.lo[which.min(width)]
+p.hi[which.min(width)]
+quantile(samples, p.lo[which.min(width)])
+quantile(samples, p.hi[which.min(width)])
 
 ############################################################################
