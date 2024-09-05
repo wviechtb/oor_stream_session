@@ -200,4 +200,11 @@ quantile(samples, p.hi[which.min(width)])
 # we get essentially the same interval as we got with HPDI() (except due to
 # slightly different definitions of the percentiles)
 
+# again plot the posterior and shade this region in the plot
+plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density", lwd=2)
+sel <- p_grid > HPDI(samples, prob=0.5)[1] & p_grid < HPDI(samples, prob=0.5)[2]
+polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
+
+## 3.2.3: Point estimates
+
 ############################################################################
