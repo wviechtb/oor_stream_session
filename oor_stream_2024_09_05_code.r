@@ -251,7 +251,8 @@ p_grid[which.min(loss)]
 # variation)
 median(samples)
 
-
-plot(
+# Figure 3.4 (right)
+plot(p_grid, loss, type="l", xlab="decision", ylab="loss", lwd=3, col="dodgerblue")
+points(p_grid[which.min(loss)], min(loss))
 
 ############################################################################
