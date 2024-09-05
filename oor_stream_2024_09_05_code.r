@@ -63,5 +63,6 @@ posterior <- prob_data * prob_p
 posterior <- posterior / sum(posterior)
 plot(p_grid, posterior, type="l") # plot the posterior distribution
 
+samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 
 ############################################################################
