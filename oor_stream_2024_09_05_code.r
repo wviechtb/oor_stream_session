@@ -113,8 +113,9 @@ quantile(samples, 0.8)
 # discrete and can repeated themselves)
 sum(samples < quantile(samples, 0.8)) / 1e4
 
-
-
+# note: we could also do this kind of calculation based on the grid
+# approximation by finding the value of p at which point the cumulative sum of
+# the posterior probability values add up to 0.8
 p_grid[min(which(cumsum(posterior) > 0.8))]
 
 
