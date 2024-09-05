@@ -51,8 +51,10 @@ Pr_Vampire_Positive
 # all of the numbers in the calculations above can be thought of as
 # probabilities and we can then see how the equation above arises
 
+############################################################################
 
 ### 3.1: Sampling from a grid-approximate posterior
+
 
 
 
