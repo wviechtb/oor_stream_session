@@ -241,4 +241,17 @@ abline(v=median(samples))
 # proportion of 0.5 of the Earth is covered in water
 sum(posterior*abs(0.5-p_grid))
 
+# compute the expected loss for every value between 0 and 1 for d
+loss <- sapply(p_grid, function(d) sum(posterior*abs(d - p_grid)))
+
+# find the value for d for which the expected loss is minimized
+p_grid[which.min(loss)]
+
+# this coincides with the posterior median (minor difference due to sampling
+# variation)
+median(samples)
+
+
+plot(
+
 ############################################################################
