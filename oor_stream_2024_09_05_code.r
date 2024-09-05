@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 3.1 - ?
+# - Section(s): 3.1 - 3.2
 #
 # last updated: 2024-09-05
 
@@ -259,7 +259,5 @@ points(p_grid[which.min(loss)], min(loss))
 loss <- sapply(p_grid, function(d) sum(posterior*(d - p_grid)^2))
 p_grid[which.min(loss)]
 mean(samples)
-
-
 
 ############################################################################
