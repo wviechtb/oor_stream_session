@@ -105,7 +105,7 @@ sum(samples > 0.5 & samples < 0.75) / 1e4
 
 ## 3.2.2: Intervals of defined mass
 
-# determine under which values are 80% of the sampled values
+# determine under which value of p are 80% of the sampled values
 p.8 <- quantile(samples, 0.8)
 p.8
 
@@ -119,7 +119,10 @@ sum(samples < p.8) / 1e4
 # the posterior probability values add up to 0.8
 p_grid[min(which(cumsum(posterior) > 0.8))]
 
-
+# determine under which value of p are 10% of the sampled values and under
+# which value of p are 90% of the sampled values
+p.1.9 <- quantile(samples, c(0.1, 0.9))
+p.1.9
 
 # Figure 3.2
 par(mfrow=c(2,2))
@@ -129,7 +132,11 @@ polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), co
 plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
 sel <- p_grid > 0.5 & p_grid < 0.75
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
+plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
 sel <- p_grid < p.8
+polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
+plot(p_grid, posterior, type="l", xlab="proportion water (p)", ylab="Density")
+sel <- p_grid > p.1.9[1] & p_grid < p.1.9[2]
 polygon(c(p_grid[sel], rev(p_grid[sel])), c(posterior[sel], rep(0,sum(sel))), col="dodgerblue")
 
 
