@@ -63,7 +63,7 @@ prob_p <- rep(1, 1000) # prior
 prob_data <- dbinom(6, size=9, prob=p_grid) # likelihood
 plot(p_grid, prob_data, type="l") # plot the likelihood function
 posterior <- prob_data * prob_p
-posterior <- posterior / sum(posterior)
+#posterior <- posterior / sum(posterior)
 plot(p_grid, posterior, type="l") # plot the posterior distribution
 
 # sample values of p in accordance with how probable the values are (which we
@@ -75,7 +75,7 @@ par(mfrow=c(1,2))
 plot(samples, pch=19, xlab="sample number",
      ylab="proportion water (p)", col=rgb(0,0,0.5,0.1))
 dens(samples, lwd=3, col="blue", xlab="proportion water (p)")
-lines(p_grid, posterior) # superimpose the posteriod grid approximation
+lines(p_grid, posterior) # superimpose the posterior grid approximation
 
 plot(samples, pch=19, cex=0.1, type="o")
 
