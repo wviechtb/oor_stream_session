@@ -77,7 +77,10 @@ plot(samples, pch=19, xlab="sample number",
 dens(samples, lwd=3, col="blue", xlab="proportion water (p)")
 
 # superimpose the posterior grid approximation (note: we have to rescale the
-# posterior values so that the area of the p
+# posterior values in such a way that the grid approximation can be treated
+# like a proper density, which has an area of 1 under the curve; we can
+# accomplish this by multiplying the posterior values by (n-1) where n is the
+# number of values we used in our grid approximation)
 lines(p_grid, 999*posterior)
 par(mfrow=c(1,1))
 
