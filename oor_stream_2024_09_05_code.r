@@ -74,7 +74,8 @@ samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 par(mfrow=c(1,2))
 plot(samples, pch=19, xlab="sample number",
      ylab="proportion water (p)", col=rgb(0,0,0.5,0.1))
-dens(samples)
+dens(samples, lwd=3, col="blue", xlab="proportion water (p)")
+lines(p_grid, posterior) # superimpose the posteriod grid approximation
 
 plot(samples, pch=19, cex=0.1, type="o")
 
