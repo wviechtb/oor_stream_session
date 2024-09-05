@@ -47,6 +47,9 @@ Pr_Vampire_Positive
 
 95 / 1094
 
+# one could then take the additional step of setting N in (1) to 1, since then
+# all of the numbers in the calculations above can be thought of as
+# probabilities and we can then see how the equation above arises
 
 
 ### 3.1: Sampling from a grid-approximate posterior
