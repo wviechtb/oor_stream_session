@@ -118,20 +118,35 @@ sum(pred90.lm > 0.5)
 
 ## Combining simulation and analytic calculations
 
-# suppose there are 1000 people in district 147; then based on the predicted
-# values for the vote share in that district, we can compute the chances of a
-# tied vote (500 for the Democratic candidate, 500 for the Republican one) as
-# follows
-
+# suppose there are 1000 people in district 147
 n147 <- 1000
+
+# then based on the predicted values for the vote share in that district, we
+# can compute the chances of a tied vote (500 for the Democratic candidate,
+# 500 for the Republican one) as follows
+
+# number of cases where the vote is not tied versus tied
 table(round(pred90[,147] * n147) == n147/2)
-prop.table(table(round(pred90[,147] * n147) == n147/2))
+
+# proportion of cases where the vote is tied
 proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
 proptie
 
+# now suppose there are 50 people in district 147; then we get
 n147 <- 50
 proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
-proptie / (.02 * 10000)
+proptie
+
+# based on this, we can compute the chances of a tied vote if the district
+# actually had 1000 people with
+proptie / (.02 * 1000)
+
+# the reason why this differs from what we obtained above is sampling
+# uncertainty; these two would be very similar to each other if had sampled
+# more values from the posterior
+
+
+proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
 
 
 res <- stan_glm(vote ~ past_vote + inc, data=dat88, refresh=0, iter=200000)
