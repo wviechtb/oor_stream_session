@@ -89,3 +89,12 @@ pred90 <- posterior_predict(res, newdata=dat90)
 dim(pred90)
 
 ## Predictive simulation for a nonlinear function of new data
+
+# determine for how many of the 435 districts was the vote share for the
+# Democratic party is above 50% (based on each of the 4000 sampled values)
+dems_pred <- rowSums(pred90 > 0.5)
+
+# compute summary statistics for this count
+mean(dems_pred)
+median(dems_pred)
+sd(dems_pred)
