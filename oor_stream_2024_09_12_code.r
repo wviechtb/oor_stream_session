@@ -15,3 +15,6 @@
 
 ### 10.6: Example: uncertainty in predicting congressional elections
 
+# download the data for the example
+if (!file.exists("congress.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Congress/data/congress.csv", destfile="congress.csv")
+
