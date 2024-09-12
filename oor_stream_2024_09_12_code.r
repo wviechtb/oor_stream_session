@@ -175,14 +175,5 @@ ub <- 0.5 + 1 / (2*750000)
 lb
 ub
 
-xs <- seq(mean147 - 3*sd147, mean147 + 3*sd147, length.out=10000)
-ys <- dnorm(xs, mean=mean147, sd=sd147)
-plot(xs, ys, type="l")
-sel <- xs > lb & xs < ub
-ys <- ys[sel]
-xs <- xs[sel]
-polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
-
-
-pnorm(0.5 + 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
-
+pnorm(0.5 + 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE) -
+pnorm(0.5 - 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
