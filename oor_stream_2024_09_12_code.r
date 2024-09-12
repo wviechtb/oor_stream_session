@@ -55,4 +55,12 @@ res <- stan_glm(v88_adj ~ v86_adj + inc88, data=dat, refresh=0)
 print(res, digits=2)
 
 # extract the sampled values from the posteriors distributions of the parameters
-sims88 <- as.matrix(fit88)
+sims88 <- as.matrix(res)
+
+# histogram of sampled values for each parameter
+par(mfrow=c(2,2))
+hist(sims88[,1], main=colnames(sims88)[1], breaks=30, xlab="")
+hist(sims88[,2], main=colnames(sims88)[2], breaks=30, xlab="")
+hist(sims88[,3], main=colnames(sims88)[3], breaks=30, xlab="")
+hist(sims88[,4], main=colnames(sims88)[4], breaks=30, xlab="")
+par(mfrow=c(1,1))
