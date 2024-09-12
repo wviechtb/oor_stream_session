@@ -51,7 +51,8 @@ library(rstanarm)
 
 # fit the regression model
 set.seed(1234)
-res <- stan_glm(v88_adj ~ v86_adj + inc88, data=dat, refresh=0)
+dat88 <- data.frame(vote=dat$v88_adj, past_vote=dat$v86_adj, inc=dat$inc88)
+res <- stan_glm(vote ~ past_vote + inc, data=dat88, refresh=0)
 print(res, digits=2)
 
 # extract the sampled values from the posteriors distributions of the parameters
@@ -71,5 +72,5 @@ round(apply(sims88, 2, median), digits=3)
 round(apply(sims88, 2, mean), digits=3)
 round(apply(sims88, 2, sd), digits=3)
 
-data90 <- data.frame(past_vote=dat$v88_adj, inc=dat$inc90)
-pred90 <- posterior_predict(res, newdata=data90)
+dat90 <- data.frame(past_vote=dat$v88_adj, inc=dat$inc90)
+pred90 <- posterior_predict(res, newdata=dat90)
