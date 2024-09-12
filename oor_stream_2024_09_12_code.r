@@ -61,6 +61,8 @@ dat88 <- data.frame(vote=dat$v88_adj, past_vote=dat$v86_adj, inc=dat$inc88)
 res <- stan_glm(vote ~ past_vote + inc, data=dat88, refresh=0)
 print(res, digits=2)
 
+## Simulation for inferences and predictions of new data points
+
 # extract the sampled values from the posteriors distributions of the parameters
 sims88 <- as.matrix(res)
 head(sims88)
@@ -86,3 +88,4 @@ pred90 <- posterior_predict(res, newdata=dat90)
 # so we get a 4000x435 matrix
 dim(pred90)
 
+## Predictive simulation for a nonlinear function of new data
