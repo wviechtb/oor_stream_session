@@ -195,3 +195,9 @@ pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
 # nothing to code here
 
 ############################################################################
+
+### 10.8: Weighted regression
+
+# not going to do any specific examples here either
+
+############################################################################
