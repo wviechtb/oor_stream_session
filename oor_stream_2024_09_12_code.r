@@ -202,12 +202,16 @@ pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
 
 ############################################################################
 
+### 10.9: Fitting the same model to many datasets
+
 # download the data for the example
 if (!file.exists("nes.txt")) download.file("https://github.com/avehtari/ROS-Examples/raw/master/NES/data/nes.txt", destfile="nes.txt")
 
 # read in the data and inspect the first 6 rows
 dat <- read.delim("nes.txt", sep="")
 head(dat)
+
+# fit the regression model for 1972, 1976, ..., 2000
 
 years <- seq(1972,2000,4)
 
@@ -242,3 +246,5 @@ for (i in 1:9) {
 }
 
 par(mfrow=c(1,1))
+
+############################################################################
