@@ -149,21 +149,21 @@ proptie / (.02 * 1000)
 # more values from the posterior
 
 # however, the number of people in districts is more around 750,000
-n147 <- 500000
+n147 <- 750000
 table(round(pred90[,147] * n147) == n147/2)
 
 # then we start running into the problem that a tie never happens in the
 # sampled values; we could increase the number of sampled values, but this
 # becomes computationally very demanding; instead, we can use our observation
 # above and estimate the chances of a tied vote with this
-proptie / (.02 * 500000)
+proptie / (.02 * 750000)
 
 # or let's pretend there are 10 people in the district (note then that a vote
 # share just above 0.45 to just below 0.55 is undecided, since 0.45*10 = 4.5
 # and 0.55*10 = 5.5); then we can do the estimation of a tied vote as follows
 n147 <- 10
 proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
-proptie / (.1 * 500000)
+proptie / (.1 * 750000)
 
 # instead, we could assume the proportion of vote shares for the district are
 # normally distributed, with the mean and sd we obtain from the sampled values
@@ -173,13 +173,13 @@ mean147
 sd147
 
 # then we want to know for this distribution what area falls within this interval
-0.5 - 1 / (2*500000)
-0.5 + 1 / (2*500000)
+0.5 - 1 / (2*750000)
+0.5 + 1 / (2*750000)
 
 # we can obtain this as follows, which gives us a very similar estimate for
 # the chances of a tied vote as we obtained above
-pnorm(0.5 + 1 / (2*500000), mean=mean147, sd=sd147, lower.tail=TRUE) -
-pnorm(0.5 - 1 / (2*500000), mean=mean147, sd=sd147, lower.tail=TRUE)
+pnorm(0.5 + 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE) -
+pnorm(0.5 - 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
 
 # note: since n=435 here, whether we use a normal or t-distribution for this
 # calculations makes essentially no difference
