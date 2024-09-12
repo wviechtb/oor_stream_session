@@ -201,3 +201,13 @@ pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
 # not going to do any specific examples here either
 
 ############################################################################
+
+# download the data for the example
+if (!file.exists("nes.txt")) download.file("https://github.com/avehtari/ROS-Examples/raw/master/NES/data/nes.txt", destfile="nes.txt")
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("congress.csv")
+head(dat)
+
+
+
