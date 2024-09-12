@@ -211,7 +211,8 @@ if (!file.exists("nes.txt")) download.file("https://github.com/avehtari/ROS-Exam
 dat <- read.delim("nes.txt", sep="")
 head(dat)
 
-# fit the regression model for 1972, 1976, ..., 2000
+# fit the regression model for 1972, 1976, ..., 2000, and extract the
+# coefficients and corresponding standard errors
 
 years <- seq(1972,2000,4)
 
@@ -224,11 +225,14 @@ res <- lapply(years, function(x) {
 
 })
 
-names(res) <- years
+# examine the resulting object
+res
 
-par(mfrow=c(2,5), mar=c(3,4,4,2))
+# Figure 10.9
 
 coef_names <- c("Intercept", "Ideology", "Black", "Age_30_44", "Age_45_64", "Age_65_up", "Education", "Female", "Income")
+
+par(mfrow=c(2,5), mar=c(3,4,4,2))
 
 for (i in 1:9) {
 
