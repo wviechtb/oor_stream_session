@@ -165,15 +165,21 @@ n147 <- 10
 proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
 proptie / (.1 * 750000)
 
+# instead, we could assume the proportion of vote shares for the district are
+# normally distributed, with the mean and sd we obtain from the sampled values
 mean147 <- mean(pred90[,147])
 sd147 <- sd(pred90[,147])
 mean147
 sd147
 
-lb <- 0.5 - 1 / (2*750000)
-ub <- 0.5 + 1 / (2*750000)
-lb
-ub
+# then we want to know for this distribution what area falls within this interval
+0.5 - 1 / (2*750000)
+0.5 + 1 / (2*750000)
 
+# we can obtain this as follows, which gives us a very similar estimate for
+# the chances of a tied vote as we obtained above
 pnorm(0.5 + 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE) -
 pnorm(0.5 - 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
+
+# note: since n=435 here, whether we use a normal or t-distribution for this
+# calculations makes essentially no difference
