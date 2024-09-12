@@ -18,3 +18,10 @@
 # download the data for the example
 if (!file.exists("congress.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Congress/data/congress.csv", destfile="congress.csv")
 
+# read in the data and inspect the first 6 rows
+dat <- read.csv("congress.csv")
+head(dat)
+
+# Figure 10.5: Proportion of the vote share for the Democratic party in the
+# 435 congressional districts in 1988
+hist(dat$v88, breaks=seq(0,1,by=.05))
