@@ -15,6 +15,8 @@
 
 ### 10.6: Example: uncertainty in predicting congressional elections
 
+## Background
+
 # download the data for the example
 if (!file.exists("congress.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Congress/data/congress.csv", destfile="congress.csv")
 
@@ -39,12 +41,16 @@ plot(jitter(dat$v86, amount=.01), jitter(dat$v88, amount=.01),
      xlab="Democratic vote share in 1986", ylab="Democratic vote share in 1988",
      panel.first=abline(0,1), xlim=c(0,1), ylim=c(0,1), main="Raw Data")
 
+## Data issues
+
 # Figure 10.6b: same plot as above, but using the adjusted data as described
 # in the book (either .25 or .75 for uncontested elections)
 plot(jitter(dat$v86_adj, amount=.01), jitter(dat$v88_adj, amount=.01),
      pch=c(4,1,19)[as.numeric(factor(dat$inc88))],
      xlab="Adjusted Dem. vote share in 1986", ylab="Adjusted Dem. vote share in 1988",
      panel.first=abline(0,1), xlim=c(0,1), ylim=c(0,1), main="Adjusted Data")
+
+## Fitting the model
 
 # load the rstanarm package
 library(rstanarm)
@@ -72,5 +78,11 @@ round(apply(sims88, 2, median), digits=3)
 round(apply(sims88, 2, mean), digits=3)
 round(apply(sims88, 2, sd), digits=3)
 
+# based on the model fitted above, predict the vote in 1990 based on the vote
+# in 1988 using the 4000 sampled parameter values
 dat90 <- data.frame(past_vote=dat$v88_adj, inc=dat$inc90)
 pred90 <- posterior_predict(res, newdata=dat90)
+
+# so we get a 4000x435 matrix
+dim(pred90)
+
