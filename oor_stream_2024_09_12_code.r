@@ -148,8 +148,7 @@ proptie / (.02 * 1000)
 # uncertainty; these two would be very similar to each other if had sampled
 # more values from the posterior
 
-# however, the number of people in districts is more around 750,000 and only
-# about 2/3 of these might turn up for the vote
+# however, the number of people in districts is more around 750,000
 n147 <- 500000
 table(round(pred90[,147] * n147) == n147/2)
 
@@ -186,8 +185,8 @@ pnorm(0.5 - 1 / (2*500000), mean=mean147, sd=sd147, lower.tail=TRUE)
 # calculations makes essentially no difference
 
 # if we would use a t-distribution, then we get essentially the same answer
-pt((0.5 + 1 / (2*500000) - mean147) / sd147, df=435-3, lower.tail=TRUE) -
-pt((0.5 - 1 / (2*500000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
+pt((0.5 + 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE) -
+pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
 
 ############################################################################
 
