@@ -137,6 +137,9 @@ n147 <- 50
 proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
 proptie
 
+# note: with 50 people, a vote share just above 0.49 to just below 0.51 is
+# undecided, since 0.49*50 = 24.5 and 0.51*50 = 25.5
+
 # based on this, we can compute the chances of a tied vote if the district
 # actually had 1000 people with
 proptie / (.02 * 1000)
@@ -155,3 +158,9 @@ table(round(pred90[,147] * n147) == n147/2)
 # above and estimate the chances of a tied vote with this
 proptie / (.02 * 750000)
 
+# or let's pretend there are 10 people in the district (note then that a vote
+# share just above 0.45 to just below 0.55 is undecided, since 0.45*10 = 4.5
+# and 0.55*10 = 5.5); then we can do the estimation of a tied vote as follows
+n147 <- 10
+proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
+proptie / (.1 * 750000)
