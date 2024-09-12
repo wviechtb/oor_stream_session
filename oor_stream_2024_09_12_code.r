@@ -108,9 +108,9 @@ barplot(table(factor(dems_pred, levels=min(dems_pred):max(dems_pred))),
 # we could fit the same model using 'regular' regression and also compute
 # predicted values for the 1990 election based on this model and then count
 # how many of those predicted values are larger than 50%
-res <- lm(vote ~ past_vote + inc, data=dat88)
-pred90 <- predict(res, newdata=dat90)
-sum(pred90 > 0.5)
+res.lm <- lm(vote ~ past_vote + inc, data=dat88)
+pred90.lm <- predict(res.lm, newdata=dat90)
+sum(pred90.lm > 0.5)
 
 # we get essentially the same answer as above, but it would difficult to
 # derive a standard error for this value; using the Bayesian approach we used
