@@ -183,3 +183,7 @@ pnorm(0.5 - 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
 
 # note: since n=435 here, whether we use a normal or t-distribution for this
 # calculations makes essentially no difference
+
+# if we would use a t-distribution, then we get essentially the same answer
+pt((0.5 + 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE) -
+pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
