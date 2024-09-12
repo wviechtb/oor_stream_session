@@ -56,6 +56,7 @@ print(res, digits=2)
 
 # extract the sampled values from the posteriors distributions of the parameters
 sims88 <- as.matrix(res)
+head(sims88)
 
 # histogram of sampled values for each parameter
 par(mfrow=c(2,2))
@@ -64,3 +65,8 @@ hist(sims88[,2], main=colnames(sims88)[2], breaks=30, xlab="")
 hist(sims88[,3], main=colnames(sims88)[3], breaks=30, xlab="")
 hist(sims88[,4], main=colnames(sims88)[4], breaks=30, xlab="")
 par(mfrow=c(1,1))
+
+# summary statistics for the sampled values for each parameter
+apply(sims88, 2, median)
+apply(sims88, 2, mean)
+apply(sims88, 2, sd)
