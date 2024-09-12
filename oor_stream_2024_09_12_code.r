@@ -54,3 +54,5 @@ set.seed(1234)
 res <- stan_glm(v88_adj ~ v86_adj + inc88, data=dat, refresh=0)
 print(res, digits=2)
 
+# extract the sampled values from the posteriors distributions of the parameters
+sims88 <- as.matrix(fit88)
