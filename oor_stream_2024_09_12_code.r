@@ -37,12 +37,20 @@ hist(dat$v88_hist, breaks=seq(0,1,by=.05), main="",
 plot(jitter(dat$v86, amount=.01), jitter(dat$v88, amount=.01),
      pch=c(4,1,19)[as.numeric(factor(dat$inc88))],
      xlab="Democratic vote share in 1986", ylab="Democratic vote share in 1988",
-     panel.first=abline(0,1))
+     panel.first=abline(0,1), xlim=c(0,1), ylim=c(0,1), main="Raw Data")
+
+# Figure 10.6b: same plot as above, but using the adjusted data as described
+# in the book (either .25 or .75 for uncontested elections)
+plot(jitter(dat$v86_adj, amount=.01), jitter(dat$v88_adj, amount=.01),
+     pch=c(4,1,19)[as.numeric(factor(dat$inc88))],
+     xlab="Adjusted Dem. vote share in 1986", ylab="Adjusted Dem. vote share in 1988",
+     panel.first=abline(0,1), xlim=c(0,1), ylim=c(0,1), main="Adjusted Data")
 
 # load the rstanarm package
 library(rstanarm)
 
-set.seed(1236)
-res <- stan_glm(v88 ~ v86 + inc88, data=dat, refresh=0)
+# fit the regression model
+set.seed(1234)
+res <- stan_glm(v88_adj ~ v86_adj + inc88, data=dat, refresh=0)
 print(res, digits=1)
 
