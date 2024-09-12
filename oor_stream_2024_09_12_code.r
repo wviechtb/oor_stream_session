@@ -222,8 +222,17 @@ res <- lapply(years, function(x) {
 
 names(res) <- years
 
-coefs <- sapply(res, function(x) x[1,2])
-ses <- sapply(res, function(x) x[2,2])
-plot(years, coefs, pch=19, xlab="", ylab="Coefficient", bty="l", ylim=range(c(0,coefs)))
-abline(h=0, lty="dashed")
-segments(years, coefs - 0.67*ses, years, coefs + 0.67*ses, lwd=3)
+par(mfrow=c(2,5))
+
+for (i in 2:9) {
+
+   coefs <- sapply(res, function(x) x[1,i])
+   ses   <- sapply(res, function(x) x[2,i])
+   plot(years, coefs, pch=19, xlab="", ylab="Coefficient", bty="l",
+        ylim=range(c(0,coefs)))
+   abline(h=0, lty="dashed")
+   segments(years, coefs - 0.67*ses, years, coefs + 0.67*ses, lwd=3)
+
+}
+
+par(mfrow=c(1,1))
