@@ -98,3 +98,14 @@ dems_pred <- rowSums(pred90 > 0.5)
 mean(dems_pred)
 median(dems_pred)
 sd(dems_pred)
+
+# we could fit the same model using 'regular' regression and also compute
+# predicted values for the 1990 election based on this model and then count
+# how many of those predicted values are larger than 50%
+res <- lm(vote ~ past_vote + inc, data=dat88)
+pred90 <- predict(res, newdata=dat90)
+sum(pred90 > 0.5)
+
+# we get essentially the same answer as above, but it would difficult to
+# derive a standard error for this value; using the Bayesian approach we used
+# above, we automatically get a measure of the uncertainty in this estimate
