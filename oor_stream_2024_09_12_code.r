@@ -222,7 +222,7 @@ res <- lapply(years, function(x) {
 
 names(res) <- years
 
-par(mfrow=c(2,5))
+par(mfrow=c(2,5), mar=c(3,4,4,2))
 
 coef_names <- c("Intercept", "Ideology", "Black", "Age_30_44", "Age_45_64", "Age_65_up", "Education", "Female", "Income")
 
@@ -230,11 +230,13 @@ for (i in 1:9) {
 
    coefs <- sapply(res, function(x) x[1,i])
    ses   <- sapply(res, function(x) x[2,i])
+   lbs   <- coefs - 0.67 * ses
+   ubs   <- coefs + 0.67 * ses
    plot(years, coefs, pch=19, xlab="", ylab="Coefficient", bty="l",
-        ylim=range(c(0,coefs)), xaxt="n")
-   axis(side=1, at=c(1972, 1986, 2000)
+        ylim=range(c(0,c(lbs,ubs))), xaxt="n")
+   axis(side=1, at=c(1972, 1986, 2000))
    abline(h=0, lty="dashed")
-   segments(years, coefs - 0.67*ses, years, coefs + 0.67*ses, lwd=3)
+   segments(years, lbs, years, ubs, lwd=2)
    title(coef_names[i])
 
 }
