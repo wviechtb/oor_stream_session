@@ -187,3 +187,7 @@ pnorm(0.5 - 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
 # if we would use a t-distribution, then we get essentially the same answer
 pt((0.5 + 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE) -
 pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
+
+############################################################################
+
+### 10.7: Mathematical notation and statistical inference
