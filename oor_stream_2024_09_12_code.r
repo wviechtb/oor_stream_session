@@ -145,8 +145,13 @@ proptie / (.02 * 1000)
 # uncertainty; these two would be very similar to each other if had sampled
 # more values from the posterior
 
+# however, the number of people in districts is more around 750,000
+n147 <- 750000
+table(round(pred90[,147] * n147) == n147/2)
 
-proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
+# then we start running into the problem that a tie never happens in the
+# sampled values; we could increase the number of sampled values, but this
+# becomes computationally very demanding; instead, we can use our observation
+# above and estimate the chances of a tied vote with this
+proptie / (.02 * 750000)
 
-
-res <- stan_glm(vote ~ past_vote + inc, data=dat88, refresh=0, iter=200000)
