@@ -116,3 +116,22 @@ sum(pred90.lm > 0.5)
 # derive a standard error for this value; using the Bayesian approach we used
 # above, we automatically get a measure of the uncertainty in this estimate
 
+## Combining simulation and analytic calculations
+
+# suppose there are 1000 people in district 147; then based on the predicted
+# values for the vote share in that district, we can compute the chances of a
+# tied vote (500 for the Democratic candidate, 500 for the Republican one) as
+# follows
+
+n147 <- 1000
+table(round(pred90[,147] * n147) == n147/2)
+prop.table(table(round(pred90[,147] * n147) == n147/2))
+proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
+proptie
+
+n147 <- 50
+proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
+proptie / (.02 * 10000)
+
+
+res <- stan_glm(vote ~ past_vote + inc, data=dat88, refresh=0, iter=200000)
