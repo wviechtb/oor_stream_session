@@ -52,5 +52,5 @@ library(rstanarm)
 # fit the regression model
 set.seed(1234)
 res <- stan_glm(v88_adj ~ v86_adj + inc88, data=dat, refresh=0)
-print(res, digits=1)
+print(res, digits=2)
 
