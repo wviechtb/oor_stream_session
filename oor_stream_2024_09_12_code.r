@@ -164,3 +164,25 @@ proptie / (.02 * 750000)
 n147 <- 10
 proptie <- prop.table(table(round(pred90[,147] * n147) == n147/2))[2]
 proptie / (.1 * 750000)
+
+mean147 <- mean(pred90[,147])
+sd147 <- sd(pred90[,147])
+mean147
+sd147
+
+lb <- 0.5 - 1 / (2*750000)
+ub <- 0.5 + 1 / (2*750000)
+lb
+ub
+
+xs <- seq(mean147 - 3*sd147, mean147 + 3*sd147, length.out=10000)
+ys <- dnorm(xs, mean=mean147, sd=sd147)
+plot(xs, ys, type="l")
+sel <- xs > lb & xs < ub
+ys <- ys[sel]
+xs <- xs[sel]
+polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray")
+
+
+pnorm(0.5 + 1 / (2*750000), mean=mean147, sd=sd147, lower.tail=TRUE)
+
