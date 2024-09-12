@@ -27,8 +27,7 @@ head(dat)
 dat$v88_hist <- ifelse(dat$v88<.1, .0001, ifelse(dat$v88>.9, .9999, dat$v88))
 
 # Figure 10.5: Proportion of the vote share for the Democratic party in the
-# 435 congressional districts in 1988
-
-
-hist(dat$v88, breaks=seq(0,1,by=.05), main="",
+# 435 congressional districts in 1988 (using the v88_hist variable)
+hist(dat$v88_hist, breaks=seq(0,1,by=.05), main="",
      xlab="Democratic share of the two-party vote")
+
