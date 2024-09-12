@@ -67,6 +67,9 @@ hist(sims88[,4], main=colnames(sims88)[4], breaks=30, xlab="")
 par(mfrow=c(1,1))
 
 # summary statistics for the sampled values for each parameter
-apply(sims88, 2, median)
-apply(sims88, 2, mean)
-apply(sims88, 2, sd)
+round(apply(sims88, 2, median), digits=3)
+round(apply(sims88, 2, mean), digits=3)
+round(apply(sims88, 2, sd), digits=3)
+
+data90 <- data.frame(past_vote=dat$v88_adj, inc=dat$inc90)
+pred90 <- posterior_predict(res, newdata=data90)
