@@ -31,3 +31,15 @@ dat$v88_hist <- ifelse(dat$v88<.1, .0001, ifelse(dat$v88>.9, .9999, dat$v88))
 hist(dat$v88_hist, breaks=seq(0,1,by=.05), main="",
      xlab="Democratic share of the two-party vote")
 
+
+
+plot(jitter(dat$v86, amount=.01), jitter(dat$v88, amount=.01),
+     pch=c(4,1,19)[as.numeric(factor(dat$inc88))])
+
+# load the rstanarm package
+library(rstanarm)
+
+set.seed(1236)
+res <- stan_glm(v88 ~ v86 + inc88, data=dat, refresh=0)
+print(res, digits=1)
+
