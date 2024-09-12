@@ -22,6 +22,13 @@ if (!file.exists("congress.csv")) download.file("https://raw.githubusercontent.c
 dat <- read.csv("congress.csv")
 head(dat)
 
+# treat proportions for v88 below 10% or above 90% as 'uncontested' vote
+# shares (i.e., change the proportions to essentially 0 or 1, respectively)
+dat$v88_hist <- ifelse(dat$v88<.1, .0001, ifelse(dat$v88>.9, .9999, dat$v88))
+
 # Figure 10.5: Proportion of the vote share for the Democratic party in the
 # 435 congressional districts in 1988
-hist(dat$v88, breaks=seq(0,1,by=.05))
+
+
+hist(dat$v88, breaks=seq(0,1,by=.05), main="",
+     xlab="Democratic share of the two-party vote")
