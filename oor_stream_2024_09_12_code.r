@@ -206,8 +206,24 @@ pt((0.5 - 1 / (2*750000) - mean147) / sd147, df=435-3, lower.tail=TRUE)
 if (!file.exists("nes.txt")) download.file("https://github.com/avehtari/ROS-Examples/raw/master/NES/data/nes.txt", destfile="nes.txt")
 
 # read in the data and inspect the first 6 rows
-dat <- read.csv("congress.csv")
+dat <- read.delim("nes.txt", sep="")
 head(dat)
 
+years <- seq(1972,2000,4)
 
+res <- lapply(years, function(x) {
 
+   sub <- dat[dat$year == x,]
+   res <- stan_glm(partyid7 ~ real_ideo + race_adj + factor(age_discrete) +
+                   educ1 + female + income, data=sub, refresh=0)
+   rbind(coef=coef(res), se=se(res))
+
+})
+
+names(res) <- years
+
+coefs <- sapply(res, function(x) x[1,2])
+ses <- sapply(res, function(x) x[2,2])
+plot(years, coefs, pch=19, xlab="", ylab="Coefficient", bty="l", ylim=range(c(0,coefs)))
+abline(h=0, lty="dashed")
+segments(years, coefs - 0.67*ses, years, coefs + 0.67*ses, lwd=3)
