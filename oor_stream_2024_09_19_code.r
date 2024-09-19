@@ -136,8 +136,15 @@ tab <- table(sim.maxrun)
 tab <- tab / sum(tab)
 tab
 
-# plot the posterior predictive distribution
-plot(1:9, tab, type="h", lwd=5, xlab="", ylab="probability", xaxt="n", ylim=c(0,0.3))
-axis(side=1, 0:9)
+# Figure 3.7 (left): plot the posterior predictive distribution
+plot(1:9, c(tab), type="h", lwd=5, xlab="", ylab="probability", xaxt="n")
+axis(side=1, 1:9)
 
+# actual sequence observed
+wobs <- c(1,0,1,1,1,0,1,0,1)
 
+# maximum running length observed in the actual sequence
+maxrun <- max(rle(wobs)$lengths)
+
+# make the line in the plot blue
+segments(maxrun, 0, maxrun, tab[maxrun], lwd=8, col="#1e59ae")
