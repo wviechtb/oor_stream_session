@@ -123,8 +123,7 @@ legend("topleft", inset=.01, lty=1, col=c("black","red","blue"), lwd=c(5,3,3),
 # distribution to compute for example a 80% percentile interval
 quantile(w, probs=c(.10,.90))
 
-# simulate values from the posterior predictive distribution of the maximum
-# run lengths
+# simulate values from the PPD of the maximum run lengths
 sim.maxrun <- sapply(samples, function(p) {
    x <- rbinom(9, size=1, prob=p)
    maxrun <- max(rle(x)$lengths)
@@ -148,3 +147,10 @@ maxrun <- max(rle(wobs)$lengths)
 
 # make the line in the plot blue
 segments(maxrun, 0, maxrun, tab[maxrun], lwd=8, col="#1e59ae")
+
+# simulate values from the PPD of the number of switches
+sim.switches <- sapply(samples, function(p) {
+   x <- rbinom(9, size=1, prob=p)
+   switches <- length(rle(x)$lengths) - 1
+   factor(switches, levels=0:8)
+})
