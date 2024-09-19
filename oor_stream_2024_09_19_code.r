@@ -176,7 +176,7 @@ plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="pos1", ylab="pos2", xaxs="i", yaxs="i")
 rect(0, 0, 1, 1, col="#1e59ae")
 rect(0.5, 0.5, 1, 1, col="brown4")
 
-steps <- 5000
+steps <- 100000
 
 water <- rep(NA, steps)
 
@@ -198,7 +198,7 @@ for (i in 1:steps) {
    if (pos[2] < 0)
       pos[2] <- 1 - pos[2]
    #if (draw)
-      #segments(pos.old[1], pos.old[2], pos[1], pos[2])
+   #   segments(pos.old[1], pos.old[2], pos[1], pos[2])
 
    water[i] <- ifelse(pos[2] < 0.5, 1, ifelse(pos[1] < 0.5, 1, 0))
 
