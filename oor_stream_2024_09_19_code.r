@@ -185,6 +185,9 @@ for (i in 1:steps) {
 
    pos.old <- pos
    pos <- pos + runif(2, -.05, .05)
+   draw <- TRUE
+   if (any(pos < 0 | pos > 1))
+      draw <- FALSE
    if (pos[1] > 1)
       pos[1] <- pos[1] - 1
    if (pos[1] < 0)
@@ -193,7 +196,8 @@ for (i in 1:steps) {
       pos[2] <- pos[2] - 1
    if (pos[2] < 0)
       pos[2] <- 1 - pos[2]
-   segments(pos.old[1], pos.old[2], pos[1], pos[2])
+   if (draw)
+      segments(pos.old[1], pos.old[2], pos[1], pos[2])
 
 }
 
