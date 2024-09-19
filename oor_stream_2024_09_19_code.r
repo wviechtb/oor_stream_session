@@ -27,4 +27,14 @@ rbinom(10, size=2, prob=0.7)
 
 # simulate 100,000 values and create a frequency table of the observed values
 dummy_w <- rbinom(1e5, size=2, prob=0.7)
-table(dummy_w)/1e5
+table(dummy_w)
+
+# turn the frequencies into proportions
+table(dummy_w) / 1e5
+
+# simulate 100,000 values when there are 9 tosses
+dummy_w <- rbinom(1e5, size=9, prob=0.7)
+table(dummy_w)
+
+# plot the frequencies
+plot(table(factor(dummy_w, levels=0:9)))
