@@ -96,6 +96,10 @@ samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 w <- rbinom(1e4, size=9, prob=samples)
 head(w)
 
+# turn w into a factor with levels 0:9 (that way, if a particular value never
+# occurs in the simulated data, then the frequency table below will still show
+# this value with 0 frequency)
+
 # create a frequency table of the simulated values
 tab <- table(w)
 tab
@@ -105,7 +109,7 @@ tab <- tab / sum(tab)
 tab
 
 # add these proportions to the figure
-lines(as.numeric(names(tab)) - 0.05, tab, type="h", lwd=3, col="blue")
+lines(0:9 - 0.05, tab, type="h", lwd=3, col="blue")
 
 # add a legend
 legend("topleft", inset=.01, lty=1, col=c("black","red","blue"), lwd=c(5,3,3),
