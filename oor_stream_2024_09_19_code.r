@@ -36,5 +36,11 @@ table(dummy_w) / 1e5
 dummy_w <- rbinom(1e5, size=9, prob=0.7)
 table(dummy_w)
 
-# plot the frequencies
+# Figure 3.5: plot of the frequencies
 plot(table(factor(dummy_w, levels=0:9)))
+
+# load the rethinking package
+library(rethinking)
+
+# could also use the simplehist() function from the rethinking package
+simplehist(dummy_w, xlab="dummy water count")
