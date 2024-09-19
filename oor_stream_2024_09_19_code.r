@@ -71,3 +71,11 @@ mat[,1:5]
 # with the corresponding posterior probability of the value of p
 mat <- t(posterior * t(mat))
 mat[,1:5]
+
+# now take the mean across rows; this gives us the posterior predictive distribution
+ppd <- rowMeans(mat)
+ppd <- ppd / sum(ppd)
+
+# plot this distribution
+plot(0:9, ppd, type="h", lwd=3, xlab="", ylab="probability", xaxt="n")
+axis(side=1, 0:9)
