@@ -66,3 +66,8 @@ plot(p_grid, posterior, type="l", lwd=4) # plot the posterior distribution
 # for every value of p in the grid, construct the binomial distribution
 mat <- sapply(p_grid, function(p) dbinom(0:9, size=9, prob=p))
 mat[,1:5]
+
+# multiple the probabilities of seeing 0:9 times water for a given value of p
+# with the corresponding posterior probability of the value of p
+mat <- t(posterior * t(mat))
+mat[,1:5]
