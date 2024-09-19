@@ -172,12 +172,13 @@ segments(switches, 0, switches, tab[which(switches == names(tab))], lwd=8, col="
 
 ############################################################################
 
-
-plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxs="i", yaxs="i")
+plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="pos1", ylab="pos2", xaxs="i", yaxs="i")
 rect(0, 0, 1, 1, col="#1e59ae")
 rect(0.5, 0.5, 1, 1, col="brown4")
 
-steps <- 1000
+steps <- 10000
+
+water <- rep(NA, steps)
 
 pos <- runif(2)
 
@@ -199,9 +200,11 @@ for (i in 1:steps) {
    if (draw)
       segments(pos.old[1], pos.old[2], pos[1], pos[2])
 
+   water[i] <- ifelse(pos[2] < 0.5, 1, ifelse(pos[1] < 0.5, 1, 0))
+
 }
 
-
+mean(water)
 
 
 ############################################################################
