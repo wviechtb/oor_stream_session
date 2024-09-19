@@ -146,7 +146,7 @@ wobs <- c(1,0,1,1,1,0,1,0,1)
 maxrun <- max(rle(wobs)$lengths)
 
 # make the line in the plot blue
-segments(maxrun, 0, maxrun, tab[maxrun], lwd=8, col="#1e59ae")
+segments(maxrun, 0, maxrun, tab[which(maxrun == names(tab))], lwd=8, col="#1e59ae")
 
 # simulate values from the PPD of the number of switches
 sim.switches <- sapply(samples, function(p) {
@@ -154,3 +154,18 @@ sim.switches <- sapply(samples, function(p) {
    switches <- length(rle(x)$lengths) - 1
    factor(switches, levels=0:8)
 })
+
+# create a frequency table of the simulated values and rescale
+tab <- table(sim.switches)
+tab <- tab / sum(tab)
+tab
+
+# Figure 3.7 (right): plot the posterior predictive distribution
+plot(0:8, c(tab), type="h", lwd=5, xlab="", ylab="probability", xaxt="n")
+axis(side=1, 0:8)
+
+# number of switches observed in the actual sequence
+switches <- length(rle(wobs)$lengths) - 1
+
+# make the line in the plot blue
+segments(switches, 0, switches, tab[which(switches == names(tab))], lwd=8, col="#1e59ae")
