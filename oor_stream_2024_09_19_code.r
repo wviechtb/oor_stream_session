@@ -77,6 +77,10 @@ ppd <- rowMeans(mat)
 ppd <- ppd / sum(ppd)
 
 # Figure 3.6: plot of the posterior predictive distribution
-plot(0:9, ppd, type="h", lwd=3, xlab="", ylab="probability", xaxt="n")
+plot(0:9, ppd, type="h", lwd=3, xlab="", ylab="probability", xaxt="n", ylim=c(0,0.25))
 axis(side=1, 0:9)
 
+# if we ignore the uncertainty as to what p is and just use the most probable
+# value according to the posterior distribution for p, then we would be
+# underestimating the uncertainty for new observations
+lines(0:9 + 0.05, dbinom(0:9, size=9, prob=0.6), type="h", lwd=3, col="red")
