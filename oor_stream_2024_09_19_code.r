@@ -105,7 +105,7 @@ tab <- tab / sum(tab)
 tab
 
 # add these proportions to the figure
-lines(0:9 - 0.05, tab, type="h", lwd=3, col="blue")
+lines(as.numeric(names(tab)) - 0.05, tab, type="h", lwd=3, col="blue")
 
 # add a legend
 legend("topleft", inset=.01, lty=1, col=c("black","red","blue"), lwd=c(5,3,3),
@@ -116,4 +116,20 @@ legend("topleft", inset=.01, lty=1, col=c("black","red","blue"), lwd=c(5,3,3),
 # now we can use the simulated values from the posterior predictive
 # distribution to compute for example a 80% percentile interval
 quantile(w, probs=c(.10,.90))
+
+# simulate values from the posterior predictive distribution of the maximum
+# run lengths
+sim.maxrun <- sapply(samples, function(p) {
+   x <- rbinom(9, size=1, prob=p)
+   max(rle(x)$lengths)
+})
+
+# create a frequency table of the simulated values and rescale
+tab <- table(sim.maxrun)
+tab <- tab / sum(tab)
+tab
+
+plot(1:9, tab, type="h", lwd=5, xlab="", ylab="probability", xaxt="n", ylim=c(0,0.3))
+axis(side=1, 0:9)
+
 
