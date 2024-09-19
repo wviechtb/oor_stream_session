@@ -94,7 +94,7 @@ samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 # now we are going to simulate 10,000 new data points where for each simulated
 # value, we use the corresponding sampled value of p from the posterior
 w <- rbinom(1e4, size=9, prob=samples)
-w
+head(w)
 
 # create a frequency table of the simulated values
 tab <- table(w)
@@ -107,9 +107,9 @@ tab
 # add these proportions to the figure
 lines(0:9 - 0.05, tab, type="h", lwd=3, col="blue")
 
-
-
-
 # add a legend
-legend("topleft", inset=.01, lty=1, col=c("black","red"), lwd=c(5,3),
-       legend=c("posterior predictive distribution", "binomial(size=9, p=6/9)"))
+legend("topleft", inset=.01, lty=1, col=c("black","red","blue"), lwd=c(5,3,3),
+       legend=c("posterior predictive distribution",
+                "binomial(size=9, p=6/9)",
+                "posterior predictive distribution simulations"))
+
