@@ -88,6 +88,28 @@ axis(side=1, 0:9)
 # underestimating the uncertainty for new observations
 lines(0:9 + 0.05, dbinom(0:9, size=9, prob=6/9), type="h", lwd=3, col="red")
 
+# now suppose we just have 10,000 sampled values from the posterior distribution
+samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
+
+# now we are going to simulate 10,000 new data points where for each simulated
+# value, we use the corresponding sampled value of p from the posterior
+w <- rbinom(1e4, size=9, prob=samples)
+w
+
+# create a frequency table of the simulated values
+tab <- table(w)
+tab
+
+# rescale the frequencies to proportions
+tab <- tab / sum(tab)
+tab
+
+# add these proportions to the figure
+lines(0:9 - 0.05, tab, type="h", lwd=3, col="blue")
+
+
+
+
 # add a legend
 legend("topleft", inset=.01, lty=1, col=c("black","red"), lwd=c(5,3),
        legend=c("posterior predictive distribution", "binomial(size=9, p=6/9)"))
