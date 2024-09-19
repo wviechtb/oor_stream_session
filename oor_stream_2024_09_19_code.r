@@ -180,7 +180,8 @@ steps <- 100000
 
 water <- rep(NA, steps)
 
-pos <- runif(2)
+#pos <- runif(2)
+pos <- c(0.5,0.5)
 
 for (i in 1:steps) {
 
@@ -200,8 +201,7 @@ for (i in 1:steps) {
    #if (draw)
    #   segments(pos.old[1], pos.old[2], pos[1], pos[2])
 
-   #water[i] <- ifelse(pos[2] < 0.5, 1, ifelse(pos[1] < 0.5, 1, 0))
-   water[i] <- ifelse(pos[2] > 0.5, 1, ifelse(pos[1] > 0.5, 1, 0))
+   water[i] <- ifelse(pos[2] < 0.5, 1, ifelse(pos[1] < 0.5, 1, 0))
 
 }
 
