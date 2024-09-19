@@ -96,9 +96,11 @@ samples <- sample(p_grid, prob=posterior, size=1e4, replace=TRUE)
 w <- rbinom(1e4, size=9, prob=samples)
 head(w)
 
-# turn w into a factor with levels 0:9 (that way, if a particular value never
+# turn w into a factor with levels 0:9; that way, if a particular value never
 # occurs in the simulated data, then the frequency table below will still show
-# this value with 0 frequency)
+# this value with 0 frequency; this is probably not needed here, but we still
+# do this to be on the safe side
+w <- factor(w, levels=0:9)
 
 # create a frequency table of the simulated values
 tab <- table(w)
@@ -125,7 +127,8 @@ quantile(w, probs=c(.10,.90))
 # run lengths
 sim.maxrun <- sapply(samples, function(p) {
    x <- rbinom(9, size=1, prob=p)
-   max(rle(x)$lengths)
+   maxrun <- max(rle(x)$lengths)
+   factor(maxrun, levels=1:9)
 })
 
 # create a frequency table of the simulated values and rescale
