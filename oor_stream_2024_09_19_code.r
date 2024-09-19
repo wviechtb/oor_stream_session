@@ -176,7 +176,7 @@ plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="pos1", ylab="pos2", xaxs="i", yaxs="i")
 rect(0, 0, 1, 1, col="#1e59ae")
 rect(0.5, 0.5, 1, 1, col="brown4")
 
-steps <- 50000
+steps <- 5000
 
 water <- rep(NA, steps)
 
