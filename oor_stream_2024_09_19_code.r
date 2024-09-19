@@ -13,3 +13,9 @@
 
 ############################################################################
 
+### 3.3: Sampling to simulate prediction
+
+# probabilities of seeing 0, 1, or 2 times water when the true probability is
+# 0.7 based on a binomial distribution
+cbind(W=0:2, prob=dbinom(0:2, size=2, prob=0.7))
+
