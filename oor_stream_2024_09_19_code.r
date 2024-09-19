@@ -136,6 +136,7 @@ tab <- table(sim.maxrun)
 tab <- tab / sum(tab)
 tab
 
+# plot the posterior predictive distribution
 plot(1:9, tab, type="h", lwd=5, xlab="", ylab="probability", xaxt="n", ylim=c(0,0.3))
 axis(side=1, 0:9)
 
