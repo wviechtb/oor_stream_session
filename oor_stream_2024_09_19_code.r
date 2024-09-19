@@ -19,3 +19,12 @@
 # 0.7 based on a binomial distribution
 cbind(W=0:2, prob=dbinom(0:2, size=2, prob=0.7))
 
+# simulate one value of W from this distribution
+rbinom(1, size=2, prob=0.7)
+
+# simulate 10 values of W from this distribution
+rbinom(10, size=2, prob=0.7)
+
+# simulate 100,000 values and create a frequency table of the observed values
+dummy_w <- rbinom(1e5, size=2, prob=0.7)
+table(dummy_w)/1e5
