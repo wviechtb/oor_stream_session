@@ -197,8 +197,8 @@ for (i in 1:steps) {
       pos[2] <- pos[2] - 1
    if (pos[2] < 0)
       pos[2] <- 1 - pos[2]
-   if (draw)
-      segments(pos.old[1], pos.old[2], pos[1], pos[2])
+   #if (draw)
+      #segments(pos.old[1], pos.old[2], pos[1], pos[2])
 
    water[i] <- ifelse(pos[2] < 0.5, 1, ifelse(pos[1] < 0.5, 1, 0))
 
