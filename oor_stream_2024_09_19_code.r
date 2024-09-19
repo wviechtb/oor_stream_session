@@ -63,6 +63,9 @@ posterior <- prob_data * prob_p # compute the posterior values
 posterior <- posterior / sum(posterior) # rescale them so they add up to 1
 plot(p_grid, posterior, type="l", lwd=4) # plot the posterior distribution
 
+# note that the peak of the posterior is at 6/9
+abline(v=6/9)
+
 # for every value of p in the grid, construct the binomial distribution
 mat <- sapply(p_grid, function(p) dbinom(0:9, size=9, prob=p))
 mat[,1:5]
@@ -83,4 +86,4 @@ axis(side=1, 0:9)
 # if we ignore the uncertainty as to what p is and just use the most probable
 # value according to the posterior distribution for p, then we would be
 # underestimating the uncertainty for new observations
-lines(0:9 + 0.05, dbinom(0:9, size=9, prob=0.6), type="h", lwd=3, col="red")
+lines(0:9 + 0.05, dbinom(0:9, size=9, prob=6/9), type="h", lwd=3, col="red")
