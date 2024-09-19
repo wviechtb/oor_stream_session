@@ -76,6 +76,7 @@ mat[,1:5]
 ppd <- rowMeans(mat)
 ppd <- ppd / sum(ppd)
 
-# plot this distribution
+# Figure 3.6: plot of the posterior predictive distribution
 plot(0:9, ppd, type="h", lwd=3, xlab="", ylab="probability", xaxt="n")
 axis(side=1, 0:9)
+
