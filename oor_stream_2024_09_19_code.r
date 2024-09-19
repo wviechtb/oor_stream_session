@@ -113,3 +113,7 @@ legend("topleft", inset=.01, lty=1, col=c("black","red","blue"), lwd=c(5,3,3),
                 "binomial(size=9, p=6/9)",
                 "posterior predictive distribution simulations"))
 
+# now we can use the simulated values from the posterior predictive
+# distribution to compute for example a 80% percentile interval
+quantile(w, probs=c(.10,.90))
+
