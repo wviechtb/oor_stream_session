@@ -169,3 +169,10 @@ switches <- length(rle(wobs)$lengths) - 1
 
 # make the line in the plot blue
 segments(switches, 0, switches, tab[which(switches == names(tab))], lwd=8, col="#1e59ae")
+
+############################################################################
+
+
+
+
+############################################################################
