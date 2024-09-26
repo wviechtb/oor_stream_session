@@ -131,3 +131,11 @@ abline(res, col="red", lwd=5)
 
 ## Displaying using one plot for each input variable
 
+# back to the model where we add mom_hs as a predictor
+res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
+res
+
+# save the sampled values from the posterior distributions
+sims <- as.data.frame(res)
+
+n_sims_3 <- nrow(sims_3)
