@@ -207,3 +207,20 @@ for (i in 0:1) {
 par(mfrow=c(1,1))
 
 ## Forming a linear predictor from a multiple regression
+
+# simulate data based on the model described
+set.seed(1236)
+N <- 100
+K <- 10
+X <- replicate(K, runif(N, 0, 1))
+z <- sample(c(0,1), size=N, replace=TRUE)
+a <- 1
+b <- 1:K
+theta <- 5
+sigma <- 2
+y <- a + X %*% b + theta*z + rnorm(N, mean=0, sd=sigma)
+dat <- data.frame(X=X, y=y, z=z)
+rm(X,y,z)
+
+# fit the model
+res <- stan_glm(y ~ X + z, data=dat, refresh=0)
