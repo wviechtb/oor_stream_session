@@ -105,6 +105,7 @@ res
 
 # save the sampled values from the posterior distributions
 sims <- as.data.frame(res)
+dim(sims)
 head(sims)
 
 # draw a histogram for the sampled values for the slope
@@ -117,6 +118,8 @@ apply(sims, 2, median)
 # plot the data again
 plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
      ylab="Child test score", pch=21, bg="darkgray")
+
+apply(sims, 1, function(x) abline(x[1], x[2], col="gray"))
 
 n_sims_2 <- nrow(sims_2)
 beta_hat_2 <- apply(sims_2, 2, median)
