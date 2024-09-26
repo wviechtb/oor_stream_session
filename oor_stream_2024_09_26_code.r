@@ -32,3 +32,18 @@ hist(e, breaks=100, main="Distribution of the errors")
 
 ### 11.2: Plotting the data and fitted model
 
+# download the dataset (need to do this once)
+if (!file.exists("kidiq.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("kidiq.csv")
+head(dat)
+
+# load the rstanarm package
+library(rstanarm)
+
+# fit a linear regression model predicting the kids' score from the moms' IQ
+res <- stan_glm(kid_score ~ mom_iq, data=dat, refresh=0)
+res
+
+plot(kidiq$mom_iq, kidiq$kid_score, xlab="Mother IQ score", ylab="Child test score") abline(coef(fit_2)[1], coef(fit_2)[2])
