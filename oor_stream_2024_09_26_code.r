@@ -194,12 +194,12 @@ rm(x,y,z)
 res <- stan_glm(y ~ x + z, data=dat, refresh=0)
 res
 
-# plot the data
+# Figure 11.3
 
 par(mfrow=c(1,2))
 
 for (i in 0:1) {
-   plot(y ~ x, data=dat, subset=z==i, main=paste("z =", i),
+   plot(y ~ x, data=dat, xlim=range(x), ylim=range(y), subset=z==i, main=paste("z =", i),
         xlab="Pre-treatment indicator, x", ylab="Outcome, y", pch=20+i)
    abline(coef(res)[1] + coef(res)[3]*i, coef(res)[2], lwd=5)
 }
