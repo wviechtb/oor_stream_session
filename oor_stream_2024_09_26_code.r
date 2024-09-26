@@ -178,12 +178,17 @@ par(mfrow=c(1,2))
 ## Plotting the outcome vs. a continuous predictor
 
 # simulate data based on the model described
-N <- 100
+set.seed(1234)
+N <- 10000
 x <- runif(N, 0, 1)
-z <- sample(c(0, 1), N, replace=TRUE)
+z <- sample(c(0,1), size=N, replace=TRUE)
 a <- 1
 b <- 2
 theta <- 5
 sigma <- 2
-y <- a + b*x + theta*z + rnorm(N, 0, sigma)
-fake <- data.frame(x=x, y=y, z=z)
+y <- a + b*x + theta*z + rnorm(N, mean=0, sd=sigma)
+dat <- data.frame(x=x, y=y, z=z)
+
+# fit the model based on the simulated data
+res <- stan_glm(y ~ x + z, data=dat, refresh=0)
+res
