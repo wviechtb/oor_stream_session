@@ -176,3 +176,14 @@ abline(b_hat[1] + b_hat[3]*mean_mom_iq, b_hat[2], col="red", lwd=5)
 par(mfrow=c(1,2))
 
 ## Plotting the outcome vs. a continuous predictor
+
+# simulate data based on the model described
+N <- 100
+x <- runif(N, 0, 1)
+z <- sample(c(0, 1), N, replace=TRUE)
+a <- 1
+b <- 2
+theta <- 5
+sigma <- 2
+y <- a + b*x + theta*z + rnorm(N, 0, sigma)
+fake <- data.frame(x=x, y=y, z=z)
