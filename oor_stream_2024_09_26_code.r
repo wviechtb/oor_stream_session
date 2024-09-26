@@ -258,9 +258,9 @@ par(mfrow=c(1,1))
 par(mfrow=c(1,2))
 
 for (i in 0:1) {
-   plot(range(y_hat,y), range(y_hat,y), type="n", main=paste("z =", i))
-   points(y_hat[z==i], y[z==i], pch=20+i)
-   abline(0, 1)
+   plot(y_hat[z==i], dat$y[z==i], xlim=range(y_hat,y), ylim=range(y_hat,y), main=paste("z =", i),
+        xlab="Linear predictor, y-hat", ylab="Outcome, y", pch=20+i)
+   abline(0, 1, lwd=5)
 }
 
 par(mfrow=c(1,1))
