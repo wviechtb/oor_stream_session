@@ -188,6 +188,7 @@ theta <- 5
 sigma <- 2
 y <- a + b*x + theta*z + rnorm(N, mean=0, sd=sigma)
 dat <- data.frame(x=x, y=y, z=z)
+rm(x,y,z)
 
 # fit the model based on the simulated data
 res <- stan_glm(y ~ x + z, data=dat, refresh=0)
@@ -198,9 +199,9 @@ res
 par(mfrow=c(1,2))
 
 for (i in 0:1) {
-   plot(NA, xlim=range(x), ylim=range(y), type="n", main=paste("z =", i),
+   plot(NA, xlim=range(dat$x), ylim=range(dat$y), type="n", main=paste("z =", i),
         xlab="Pre-treatment indicator, x", ylab="Outcome, y")
-   points(x[z==i], y[z==i], pch=20+i)
+   points(dat$x[dat$z==i], dat$y[dat$z==i], pch=20+i)
    abline(coef(fit)["(Intercept)"] + coef(fit)["z"]*i, coef(fit)["x"])
 }
 
