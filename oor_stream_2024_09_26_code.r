@@ -258,7 +258,7 @@ par(mfrow=c(1,1))
 par(mfrow=c(1,2))
 
 for (i in 0:1) {
-   plot(y_hat[z==i], dat$y[z==i], xlim=range(y_hat,y), ylim=range(y_hat,y), main=paste("z =", i),
+   plot(y_hat[z==i], y[z==i], xlim=range(y_hat,y), ylim=range(y_hat,y), main=paste("z =", i),
         xlab="Linear predictor, y-hat", ylab="Outcome, y", pch=20+i)
    abline(0, 1, lwd=5)
 }
@@ -268,3 +268,19 @@ par(mfrow=c(1,1))
 ############################################################################
 
 ### 11.3: Residual plots
+
+# compute the residuals
+resid <- y - y_hat
+
+# plot the residuals against y_hat as in Figure 11.5
+
+par(mfrow=c(1,2))
+
+for (i in 0:1) {
+   plot(y_hat[z==i], resid[z==i], xlim=range(y_hat), ylim=range(resid),
+        main=paste("z =", i), xlab="Linear predictor, y-hat", ylab="Residual, r",
+        pch=20+i)
+   abline(h=0, lwd=5)
+}
+
+par(mfrow=c(1,1))
