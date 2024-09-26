@@ -178,8 +178,8 @@ par(mfrow=c(1,2))
 ## Plotting the outcome vs. a continuous predictor
 
 # simulate data based on the model described
-set.seed(1234)
-N <- 10000
+set.seed(1236)
+N <- 100
 x <- runif(N, 0, 1)
 z <- sample(c(0,1), size=N, replace=TRUE)
 a <- 1
