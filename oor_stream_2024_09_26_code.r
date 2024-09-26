@@ -329,3 +329,19 @@ res <- stan_glm(final_fake ~ midterm, data=dat, refresh=0)
 pred  <- predict(res)
 resid <- dat$final_fake - pred
 
+# note: the way the predicted values are computed in the book is slightly
+# different; the way it is done in the book corresponds to using the means of
+# the sampled values from the posterior distributions (as opposed to the
+# median values what predict() uses), but the difference is immaterial here
+
+par(mfrow=c(1,2))
+
+plot(pred, resid, pch=19, main="Fake data: resids vs. predicted",
+     xlab="predicted value", ylab="residual")
+abline(h=0, col="gray", lwd=5)
+
+plot(dat$final_fake, resid, pch=19, main="Fake data: resids vs. observed",
+     xlab="observed value", ylab="residual")
+abline(h=0, col="gray", lwd=5)
+
+par(mfrow=c(1,1))
