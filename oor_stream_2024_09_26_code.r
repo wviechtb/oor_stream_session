@@ -218,9 +218,12 @@ a <- 1
 b <- 1:K
 theta <- 5
 sigma <- 2
-y <- a + X %*% b + theta*z + rnorm(N, mean=0, sd=sigma)
+y <- a + X%*%b + theta*z + rnorm(N, mean=0, sd=sigma)
 dat <- data.frame(X=X, y=y, z=z)
 head(dat)
+rm(X,y,z)
 
 # fit the model
-res <- stan_glm(y ~ X + z, data=dat, refresh=0)
+set.seed(1234)
+res <- stan_glm(y ~ as.matrix(dat[1:10]) + z, data=dat, refresh=0)
+res
