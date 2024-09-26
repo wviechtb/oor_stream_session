@@ -235,3 +235,24 @@ y_hat
 # note: these are based on the medians
 c(cbind(1, X, z) %*% b_hat)
 
+# plot y each predictor
+
+par(mfrow=c(10,2))
+
+for (i in 1:10) {
+   plot(dat[dat$z==0,i], dat$y, pch=19, xlab=paste0("X",i), ylab="Outcome")
+   title("z = 0")
+
+}
+
+par(mfrow=c(1,1))
+
+
+
+
+par(mfrow=c(1,2))
+for (i in 0:1) {
+   plot(range(y_hat,y), range(y_hat,y), type="n", main=paste("z =", i))
+   points(y_hat[z==i], y[z==i], pch=20+i)
+   abline(0, 1)
+}
