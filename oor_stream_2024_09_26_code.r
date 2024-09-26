@@ -28,3 +28,7 @@ hist(y, breaks=100, main="Distribution of y")
 e <- y - (0.2 + 0.5*x)
 hist(e, breaks=100, main="Distribution of the errors")
 
+############################################################################
+
+### 11.2: Plotting the data and fitted model
+
