@@ -135,6 +135,9 @@ abline(res, col="red", lwd=5)
 res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
 res
 
+# save the median of the samples values
+b_hat <- coef(res)
+
 # save the sampled values from the posterior distributions
 sims <- as.data.frame(res)
 
@@ -151,6 +154,9 @@ mean_mom_hs <- mean(dat$mom_hs)
 # regression coefficients holding the value of mom_hs constant at its mean
 apply(sims, 1, function(x) abline(x[1] + x[2]*mean_mom_hs, x[3], col=rgb(0,0,0,.01)))
 
+# add the line based on the median values
+abline(b_hat[1] + b_hat[2]*mean_mom_hs, b_hat[3], col="red", lwd=5)
+
 # plot kid_score versus mom_hs
 plot(jitter(dat$mom_hs, amount=.05), dat$kid_score,
      xlab="Mother completed high school", ylab="Child test score",
@@ -162,7 +168,10 @@ mean_mom_iq <- mean(dat$mom_iq)
 
 # now we again add the regression lines based on the posterior samples of the
 # regression coefficients holding the value of mom_iq constant at its mean
-apply(sims, 1, function(x) abline(x[1] + x[2], x[3]*mean_mom_iq, col=rgb(0,0,0,.01)))
+apply(sims, 1, function(x) abline(x[1] + x[3]*mean_mom_iq, x[2], col=rgb(0,0,0,.01)))
+
+# add the line based on the median values
+abline(b_hat[1] + b_hat[3]*mean_mom_iq, b_hat[2], col="red", lwd=5)
 
 par(mfrow=c(1,2))
 
