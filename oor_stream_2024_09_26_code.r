@@ -138,4 +138,32 @@ res
 # save the sampled values from the posterior distributions
 sims <- as.data.frame(res)
 
-n_sims_3 <- nrow(sims_3)
+par(mfrow=c(1,2))
+
+# plot kid_score versus mom_iq (as before)
+plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
+     ylab="Child test score", pch=21, bg="darkgray")
+
+# compute the mean of mom_hs
+mean_mom_hs <- mean(dat$mom_hs)
+
+# now we again add the regression lines based on the posterior samples of the
+# regression coefficients holding the value of mom_hs constant at its mean
+apply(sims, 1, function(x) abline(x[1] + x[2]*mean_mom_hs, x[3], col=rgb(0,0,0,.01)))
+
+# plot kid_score versus mom_hs
+plot(jitter(dat$mom_hs, amount=.05), dat$kid_score,
+     xlab="Mother completed high school", ylab="Child test score",
+     pch=21, bg="darkgray", xaxt="n")
+axis(side=1, at=c(0,1)
+
+# compute the mean of mom_hs
+mean_mom_hs <- mean(dat$mom_hs)
+
+# now we again add the regression lines based on the posterior samples of the
+# regression coefficients holding the value of mom_hs constant at its mean
+apply(sims, 1, function(x) abline(x[1] + x[2]*mean_mom_hs, x[3], col=rgb(0,0,0,.01)))
+
+
+par(mfrow=c(1,2))
+
