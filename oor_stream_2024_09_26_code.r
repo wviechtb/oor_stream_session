@@ -199,10 +199,9 @@ res
 par(mfrow=c(1,2))
 
 for (i in 0:1) {
-   plot(NA, xlim=range(dat$x), ylim=range(dat$y), type="n", main=paste("z =", i),
-        xlab="Pre-treatment indicator, x", ylab="Outcome, y")
-   points(dat$x[dat$z==i], dat$y[dat$z==i], pch=20+i)
-   abline(coef(fit)["(Intercept)"] + coef(fit)["z"]*i, coef(fit)["x"])
+   plot(y ~ x, data=dat, subset=z==i, main=paste("z =", i),
+        xlab="Pre-treatment indicator, x", ylab="Outcome, y", pch=20+i)
+   abline(coef(res)[1] + coef(res)[3]*i, coef(res)[2], lwd=5)
 }
 
 par(mfrow=c(1,1))
