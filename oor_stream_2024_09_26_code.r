@@ -155,15 +155,14 @@ apply(sims, 1, function(x) abline(x[1] + x[2]*mean_mom_hs, x[3], col=rgb(0,0,0,.
 plot(jitter(dat$mom_hs, amount=.05), dat$kid_score,
      xlab="Mother completed high school", ylab="Child test score",
      pch=21, bg="darkgray", xaxt="n")
-axis(side=1, at=c(0,1)
+axis(side=1, at=c(0,1))
 
-# compute the mean of mom_hs
-mean_mom_hs <- mean(dat$mom_hs)
+# compute the mean of mom_iq
+mean_mom_iq <- mean(dat$mom_iq)
 
 # now we again add the regression lines based on the posterior samples of the
-# regression coefficients holding the value of mom_hs constant at its mean
-apply(sims, 1, function(x) abline(x[1] + x[2]*mean_mom_hs, x[3], col=rgb(0,0,0,.01)))
-
+# regression coefficients holding the value of mom_iq constant at its mean
+apply(sims, 1, function(x) abline(x[1] + x[2], x[3]*mean_mom_iq, col=rgb(0,0,0,.01)))
 
 par(mfrow=c(1,2))
 
