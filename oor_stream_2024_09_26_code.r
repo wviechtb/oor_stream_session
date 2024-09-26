@@ -175,3 +175,4 @@ abline(b_hat[1] + b_hat[3]*mean_mom_iq, b_hat[2], col="red", lwd=5)
 
 par(mfrow=c(1,2))
 
+## Plotting the outcome vs. a continuous predictor
