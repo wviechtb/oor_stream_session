@@ -121,14 +121,13 @@ plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
 
 # add the regression lines based on the posterior samples of the intercept and
 # slope and use 'alpha blending' so that darker regions reflect more commonly
-# observed intercept and slope combinations from the posteriors
+# observed intercept and slope combinations from the posteriors (so instead of
+# drawing 10 randomly chosen lines as was done in the book in Figure 11.1, we
+# show all of them)
 apply(sims, 1, function(x) abline(x[1], x[2], col=rgb(0,0,0,.02)))
 
-n_sims_2 <- nrow(sims_2)
-beta_hat_2 <- apply(sims_2, 2, median)
-plot(kidiq$mom_iq, kidiq$kid_score, xlab="Mother IQ score", ylab="Child test score")
-sims_display <- sample(n_sims_2, 10)
-for (i in sims_display){
-   abline(sims_2[i,1], sims_2[i,2], col="gray")
-}
-abline(coef(fit_2)[1], coef(fit_2)[2], col="black")
+# add the line based on the median intercept and slope values
+abline(res, col="red", lwd=5)
+
+## Displaying using one plot for each input variable
+
