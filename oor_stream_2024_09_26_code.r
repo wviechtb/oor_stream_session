@@ -297,3 +297,7 @@ head(dat)
 # fit the model predicting final exam score from the midterm exam score
 res <- stan_glm(final ~ midterm, data=dat, refresh=0)
 res
+
+# compute the predicted values and residuals
+predicted <- predict(res)
+resid <- dat$final - predicted
