@@ -284,3 +284,6 @@ for (i in 0:1) {
 }
 
 par(mfrow=c(1,1))
+
+## A confusing choice: plot residuals vs. predicted values, or residuals vs. observed values?
+
