@@ -68,3 +68,30 @@ b_hat <- coef(res)
 b_hat
 abline(b_hat[1], b_hat[3],            col="darkgray", lwd=5)
 abline(b_hat[1] + b_hat[2], b_hat[3], col="black", lwd=5)
+
+# an example where the second predictor is continuous
+res <- stan_glm(kid_score ~ mom_age + mom_iq, data=dat, refresh=0)
+res
+
+# plot the data and add the regression line when mom_age=17 and when mom_age=29
+plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
+     ylab="Child test score", pch=21, bg="darkgray")
+b_hat <- coef(res)
+b_hat
+abline(b_hat[1] + b_hat[2]*17, b_hat[3], lwd=5)
+abline(b_hat[1] + b_hat[2]*29, b_hat[3], lwd=5)
+
+# above, we used the minimum and maximum mom_age values observed to draw the lines
+range(dat$mom_age)
+
+# often, people use mean +- one standard deviation
+round(with(dat, mean(mom_age) + c(-1,1)*sd(mom_age)), digits=1)
+
+# now let's go back to the model with mom_hs and mom_iq but with the interaction
+res <- stan_glm(kid_score ~ mom_hs + mom_iq + mom_hs:mom_iq, data=dat, refresh=0)
+colors <- ifelse(kidiq$mom_hs==1, "black", "gray")
+plot(kidiq$mom_iq, kidiq$kid_score, xlab="Mother IQ score",
+     ylab="Child test score", col=colors, pch=20)
+b_hat <- coef(fit_4)
+abline(b_hat[1] + b_hat[2], b_hat[3] + b_hat[4], col="black")
+abline(b_hat[1], b_hat[3], col="gray")
