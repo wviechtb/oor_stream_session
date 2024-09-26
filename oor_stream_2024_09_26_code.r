@@ -252,12 +252,15 @@ for (i in 1:10) {
 
 par(mfrow=c(1,1))
 
-
-
+# but note that this is a lot of graphs, so instead let's plot y against y_hat
+# for z=0 and z=1 as in Figure 11.4
 
 par(mfrow=c(1,2))
+
 for (i in 0:1) {
    plot(range(y_hat,y), range(y_hat,y), type="n", main=paste("z =", i))
    points(y_hat[z==i], y[z==i], pch=20+i)
    abline(0, 1)
 }
+
+par(mfrow=c(1,1))
