@@ -61,9 +61,10 @@ res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
 res
 
 # plot the data and add the regression lines for the two groups created by mom_hs
-colors <- ifelse(kidiq$mom_hs==1, "black", "darkgray")
+colors <- ifelse(kidiq$mom_hs==1, "darkgray", "black") # note: colors switched
 plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
      ylab="Child test score", pch=20, col=colors, cex=1.4)
-b_hat <- coef(fit_3)
-abline(b_hat[1] + b_hat[2], b_hat[3], col="black")
-abline(b_hat[1], b_hat[3], col="gray")
+b_hat <- coef(res)
+b_hat
+abline(b_hat[1], b_hat[3],            col="darkgray", lwd=5)
+abline(b_hat[1] + b_hat[2], b_hat[3], col="black", lwd=5)
