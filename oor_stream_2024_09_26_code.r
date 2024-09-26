@@ -101,3 +101,12 @@ abline(b_hat[1] + b_hat[2], b_hat[3] + b_hat[4], col="darkgray", lwd=5)
 
 # let's go back to the simple regression model
 res <- stan_glm(kid_score ~ mom_iq, data=dat, refresh=0)
+res
+
+# save the sampled values from the posterior distributions
+sims <- as.data.frame(res)
+head(sims)
+
+# draw a histogram for the sampled values for the slope
+hist(sims$mom_iq, breaks=50, main="Histogram of samples from the posterior distribution of the slope")
+
