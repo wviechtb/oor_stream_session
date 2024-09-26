@@ -15,3 +15,16 @@
 
 ### 11.1: Assumptions of regression analysis
 
+# although normality of errors is the least important assumption discussed
+# here, let's reiterate the point made that checking the distribution of y
+# itself is not relevant using the example discussed on page 155
+
+x <- sample(c(0,1,2), size=10000, replace=TRUE)
+y <- 0.2 + 0.5*x + rnorm(10000, mean=0, sd=0.1)
+hist(y, breaks=100, main="Distribution of y")
+
+# obviously, the distribution of y itself is not normal; but the distribution
+# of the errors is
+e <- y - (0.2 + 0.5*x)
+hist(e, breaks=100, main="Distribution of the errors")
+
