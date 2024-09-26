@@ -224,3 +224,14 @@ dat <- data.frame(X=X, y=y, z=z)
 res <- stan_glm(y ~ X + z, data=dat, refresh=0)
 res
 
+# extract the regression coefficients (medians of the posterior samples)
+b_hat <- coef(res)
+b_hat
+
+# get the predicted values
+y_hat <- predict(res)
+y_hat
+
+# note: these are based on the medians
+c(cbind(1, X, z) %*% b_hat)
+
