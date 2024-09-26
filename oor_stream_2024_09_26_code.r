@@ -345,3 +345,4 @@ plot(dat$final_fake, resid, pch=19, main="Fake data: resids vs. observed",
 abline(h=0, col="gray", lwd=5)
 
 par(mfrow=c(1,1))
+
