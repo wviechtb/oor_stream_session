@@ -42,8 +42,11 @@ head(dat)
 # load the rstanarm package
 library(rstanarm)
 
-# fit a linear regression model predicting the kids' score from the moms' IQ
+# fit a linear regression model predicting the kids' test score from the moms' IQ
 res <- stan_glm(kid_score ~ mom_iq, data=dat, refresh=0)
 res
 
-plot(kidiq$mom_iq, kidiq$kid_score, xlab="Mother IQ score", ylab="Child test score") abline(coef(fit_2)[1], coef(fit_2)[2])
+# plot the data and add the regression line
+plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
+     ylab="Child test score", pch=19)
+abline(res, lwd=3)
