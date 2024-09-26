@@ -205,3 +205,5 @@ for (i in 0:1) {
 }
 
 par(mfrow=c(1,1))
+
+## Forming a linear predictor from a multiple regression
