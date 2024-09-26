@@ -32,6 +32,8 @@ hist(e, breaks=100, main="Distribution of the errors")
 
 ### 11.2: Plotting the data and fitted model
 
+## Displaying a regression line as a function of one input variable
+
 # download the dataset (need to do this once)
 if (!file.exists("kidiq.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
 
@@ -48,5 +50,17 @@ res
 
 # plot the data and add the regression line
 plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
-     ylab="Child test score", pch=19)
-abline(res, lwd=3)
+     ylab="Child test score", pch=21, bg="darkgray")
+abline(res, lwd=5)
+
+## Displaying two fitted regression lines
+
+res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat)
+colors <- ifelse(kidiq$mom_hs==1, "black", "gray")
+plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
+     ylab="Child test score", col=colors, pch=20)
+
+
+b_hat <- coef(fit_3)
+abline(b_hat[1] + b_hat[2], b_hat[3], col="black")
+abline(b_hat[1], b_hat[3], col="gray")
