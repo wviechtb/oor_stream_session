@@ -220,7 +220,7 @@ theta <- 5
 sigma <- 2
 y <- a + X %*% b + theta*z + rnorm(N, mean=0, sd=sigma)
 dat <- data.frame(X=X, y=y, z=z)
-rm(X,y,z)
+head(dat)
 
 # fit the model
 res <- stan_glm(y ~ X + z, data=dat, refresh=0)
