@@ -315,3 +315,14 @@ abline(h=0, col="gray", lwd=5)
 par(mfrow=c(1,1))
 
 ## Understanding the choice using fake-data simulation
+
+# simulate new data assuming the parameter values as given in the book
+a <- 64.5
+b <- 0.7
+sigma <- 14.8
+dat$final_fake <- a + b*dat$midterm + rnorm(nrow(dat), mean=0, sd=sigma)
+
+# fit the model to the simulated data
+res <- stan_glm(final_fake ~ midterm, data=dat, refresh=0)
+sims <- as.matrix(fit_fake)
+predicted_fake <- colMeans(sims[,1] + sims[,2] %*% t(introclass$midterm))
