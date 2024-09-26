@@ -192,3 +192,16 @@ dat <- data.frame(x=x, y=y, z=z)
 # fit the model based on the simulated data
 res <- stan_glm(y ~ x + z, data=dat, refresh=0)
 res
+
+# plot the data
+
+par(mfrow=c(1,2))
+
+for (i in 0:1) {
+   plot(NA, xlim=range(x), ylim=range(y), type="n", main=paste("z =", i),
+        xlab="Pre-treatment indicator, x", ylab="Outcome, y")
+   points(x[z==i], y[z==i], pch=20+i)
+   abline(coef(fit)["(Intercept)"] + coef(fit)["z"]*i, coef(fit)["x"])
+}
+
+par(mfrow=c(1,1))
