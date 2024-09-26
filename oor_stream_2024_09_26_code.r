@@ -235,14 +235,19 @@ y_hat
 # note: these are based on the medians
 c(cbind(1, X, z) %*% b_hat)
 
-# plot y each predictor
+# plot y against each predictor as described as the first option
 
-par(mfrow=c(10,2))
+Xmeans <- apply(X, 2, mean)
+
+par(mfrow=c(10,2), mar=c(2,2,2,2))
 
 for (i in 1:10) {
-   plot(dat[dat$z==0,i], dat$y, pch=19, xlab=paste0("X",i), ylab="Outcome")
-   title("z = 0")
-
+   plot(X[z==0,i], y[z==0], pch=19, xlab="", ylab="", xlim=c(0,1), ylim=range(y))
+   title(paste0("Plot of X", i, " for z = 0"))
+   abline(b_hat[1] + Xmeans %*% b_hat[2:11] - Xmeans[i]*b_hat[i+1], b_hat[i+1], lwd=5)
+   plot(X[z==1,i], y[z==1], pch=19, xlab="", ylab="", xlim=c(0,1), ylim=range(y))
+   title(paste0("Plot of X", i, " for z = 1"))
+   abline(b_hat[1] + Xmeans %*% b_hat[2:11] - Xmeans[i]*b_hat[i+1], b_hat[i+1] + b_hat["z"], lwd=5)
 }
 
 par(mfrow=c(1,1))
