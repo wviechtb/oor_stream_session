@@ -105,8 +105,8 @@ res
 
 # save the sampled values from the posterior distributions
 sims <- as.data.frame(res)
-dim(sims)
 head(sims)
+dim(sims)
 
 # draw a histogram for the sampled values for the slope
 hist(sims$mom_iq, breaks=50, main="Histogram of samples from the posterior distribution of the slope")
@@ -119,7 +119,10 @@ apply(sims, 2, median)
 plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
      ylab="Child test score", pch=21, bg="darkgray")
 
-apply(sims, 1, function(x) abline(x[1], x[2], col="gray"))
+# add the regression lines based on the posterior samples of the intercept and
+# slope and use 'alpha blending' so that darker regions reflect more commonly
+# observed intercept and slope combinations from the posteriors
+apply(sims, 1, function(x) abline(x[1], x[2], col=rgb(0,0,0,.02)))
 
 n_sims_2 <- nrow(sims_2)
 beta_hat_2 <- apply(sims_2, 2, median)
