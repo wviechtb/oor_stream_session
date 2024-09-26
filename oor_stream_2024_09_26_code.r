@@ -109,4 +109,3 @@ head(sims)
 
 # draw a histogram for the sampled values for the slope
 hist(sims$mom_iq, breaks=50, main="Histogram of samples from the posterior distribution of the slope")
-
