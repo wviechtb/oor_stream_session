@@ -324,5 +324,8 @@ dat$final_fake <- a + b*dat$midterm + rnorm(nrow(dat), mean=0, sd=sigma)
 
 # fit the model to the simulated data
 res <- stan_glm(final_fake ~ midterm, data=dat, refresh=0)
-sims <- as.matrix(fit_fake)
+
+# extract the sampled values from the posteriors
+sims <- as.data.frame(res)
+
 predicted_fake <- colMeans(sims[,1] + sims[,2] %*% t(introclass$midterm))
