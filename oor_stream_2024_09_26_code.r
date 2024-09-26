@@ -287,3 +287,12 @@ par(mfrow=c(1,1))
 
 ## A confusing choice: plot residuals vs. predicted values, or residuals vs. observed values?
 
+# download the dataset (need to do this once)
+if (!file.exists("gradesW4315.dat")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Introclass/data/gradesW4315.dat", destfile="gradesW4315.dat")
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("kidiq.csv")
+head(dat)
+
+
+
