@@ -291,8 +291,9 @@ par(mfrow=c(1,1))
 if (!file.exists("gradesW4315.dat")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Introclass/data/gradesW4315.dat", destfile="gradesW4315.dat")
 
 # read in the data and inspect the first 6 rows
-dat <- read.csv("kidiq.csv")
+dat <- read.delim("gradesW4315.dat", sep="")
 head(dat)
 
-
-
+# fit the model predicting final exam score from the midterm exam score
+res <- stan_glm(final ~ midterm, data=dat, refresh=0)
+res
