@@ -109,3 +109,20 @@ head(sims)
 
 # draw a histogram for the sampled values for the slope
 hist(sims$mom_iq, breaks=50, main="Histogram of samples from the posterior distribution of the slope")
+
+# note: coef(res) gives us the median of the sampled values
+coef(res)
+apply(sims, 2, median)
+
+# plot the data again
+plot(dat$mom_iq, dat$kid_score, xlab="Mother IQ score",
+     ylab="Child test score", pch=21, bg="darkgray")
+
+n_sims_2 <- nrow(sims_2)
+beta_hat_2 <- apply(sims_2, 2, median)
+plot(kidiq$mom_iq, kidiq$kid_score, xlab="Mother IQ score", ylab="Child test score")
+sims_display <- sample(n_sims_2, 10)
+for (i in sims_display){
+   abline(sims_2[i,1], sims_2[i,2], col="gray")
+}
+abline(coef(fit_2)[1], coef(fit_2)[2], col="black")
