@@ -299,5 +299,19 @@ res <- stan_glm(final ~ midterm, data=dat, refresh=0)
 res
 
 # compute the predicted values and residuals
-predicted <- predict(res)
-resid <- dat$final - predicted
+pred  <- predict(res)
+resid <- dat$final - pred
+
+par(mfrow=c(1,2))
+
+plot(pred, resid, pch=19, main="Residuals vs. predicted values",
+     xlab="predicted value", ylab="residual")
+abline(h=0, col="gray", lwd=5)
+
+plot(dat$final, resid, pch=19, main="Residuals vs. observed values",
+     xlab="observed value", ylab="residual")
+abline(h=0, col="gray", lwd=5)
+
+par(mfrow=c(1,1))
+
+## Understanding the choice using fake-data simulation
