@@ -149,7 +149,23 @@ curve(dnorm(x, mean=mean(log(growth)), sd=sd(log(growth))), lwd=2, add=TRUE, col
 
 ### 4.2: A language for describing models
 
-# we already did the grid approximation described here in chapter 3, so no
-# need to repeat this here
+# draw the posterior distribution based on a direct application of Bayes' theorem
+
+postfun <- function(x, w, n)
+   dbinom(w, size=n, prob=x) * dunif(x, 0, 1)
+
+curve(postfun(x, w=6, n=9) / integrate(postfun, lower=0, upper=1, w=6, n=9)$value,
+      from=0, to=1, xlab="p", ylab="density", lwd=6, col="#1e59ae")
+
+# carry out the grid approximation (for a finer grid than what is described in
+# the book) and add the rescaled values from the grid approximation to the
+# figure; note that we get exactly the same posterior
+
+p_grid <- seq(from=0, to=1, length.out=1000)
+posterior <- dbinom(6, size=9, p_grid) * dunif(p_grid, 0, 1)
+posterior <- posterior / sum(posterior) * 1000
+lines(p_grid, posterior, lwd=2)
+
 
 ############################################################################
+
