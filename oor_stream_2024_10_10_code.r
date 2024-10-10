@@ -113,3 +113,22 @@ curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
 growth <- replicate(10000, prod(1 + runif(12,0,0.01)))
 plot(density(growth), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
+
+# but note: the product is *not* going to converge to a normal distribution
+# when the number of terms in the product increases; for example, take the
+# product of a 100 terms
+growth <- replicate(10000, prod(1 + runif(100,0,0.1)))
+plot(density(growth), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
+
+# and as we increase the number of terms, the distribution will look less and
+# less than a normal distribution
+growth <- replicate(10000, prod(1 + runif(500,0,0.1)))
+plot(density(growth), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
+
+# it turns out that the product converge to a log normal distribution
+curve(dlnorm(x, meanlog=mean(log(growth)), sdlog=sd(log(growth))), lwd=2, add=TRUE, col="red", n=1001)
+
+# see: https://en.wikipedia.org/wiki/Central_limit_theorem#Products_of_positive_random_variables
+# this is also known as Gibrat's law: https://en.wikipedia.org/wiki/Gibrat's_law
