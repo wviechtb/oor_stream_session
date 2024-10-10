@@ -177,3 +177,13 @@ curve(dbeta(x, 1+6, 1+3), add=TRUE, col="red")
 
 ### 4.3: Gaussian model of height
 
+# load the rethinking package
+library(rethinking)
+
+## 4.3.1: The data
+
+# get the Howell1 data and put it into 'dat'
+dat <- get(data(Howell1))
+
+
+############################################################################
