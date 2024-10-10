@@ -132,3 +132,13 @@ curve(dlnorm(x, meanlog=mean(log(growth)), sdlog=sd(log(growth))), lwd=2, add=TR
 
 # see: https://en.wikipedia.org/wiki/Central_limit_theorem#Products_of_positive_random_variables
 # this is also known as Gibrat's law: https://en.wikipedia.org/wiki/Gibrat's_law
+
+## 4.1.3: Normal by log-multiplication
+
+# as discussed above, we get a log normal distribution, so let's plot the log
+# transformed values for one example
+growth <- replicate(10000, prod(1 + runif(12,0,0.5)))
+plot(density(log(growth)), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(log(growth)), sd=sd(log(growth))), lwd=2, add=TRUE, col="gray")
+
+## 4.1.4: Using Gaussian distributions
