@@ -142,3 +142,9 @@ plot(density(log(growth)), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(log(growth)), sd=sd(log(growth))), lwd=2, add=TRUE, col="gray")
 
 ## 4.1.4: Using Gaussian distributions
+
+# nothing to replicate/code here
+
+############################################################################
+
+### 4.2: A language for describing models
