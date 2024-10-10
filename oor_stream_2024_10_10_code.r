@@ -46,10 +46,10 @@ pos <- replicate(1000, sum(runif(16,-1,1)))
 hist(pos, main="", breaks=40)
 
 # plot of a kernel density estimate of the distribution
-plot(density(pos), lwd=4, main="")
+plot(density(pos), lwd=4, main="", col="#1e59ae")
 
 # superimpose a normal distribution with the observed mean and sd of the pos values
-curve(dnorm(x, mean=mean(pos), sd=sd(pos)), lwd=2, add=TRUE, col="red")
+curve(dnorm(x, mean=mean(pos), sd=sd(pos)), lwd=2, add=TRUE, col="gray")
 
 # repeat the simulation but now save the size of each step (instead of their total sum)
 pos <- replicate(1000, runif(16,-1,1))
@@ -85,12 +85,16 @@ par(mfrow=c(1,1))
 
 # simulate the increase in growth for each of 12 loci (each value represents a
 # multiplicative factor for growth, i.e., 1.05 means a 5% increase in growth)
-incr <- 1 + runif(12,0,0.1)
-incr
+growth <- 1 + runif(12,0,0.1)
+growth
 
 # take the product (the different loci interact, so the total growth is the
 # product of these multiplicative factors)
-prod(incr)
+prod(growth)
 
-prod(1 + runif(12,0,0.1))
+# now simulate 10,000 of these values
+growth <- replicate(10000, prod(1 + runif(12,0,0.1)))
 
+# plot of a kernel density estimate of the distribution
+plot(density(growth), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
