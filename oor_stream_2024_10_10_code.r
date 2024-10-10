@@ -166,6 +166,15 @@ posterior <- dbinom(6, size=9, p_grid) * dunif(p_grid, 0, 1)
 posterior <- posterior / sum(posterior) * 1000
 lines(p_grid, posterior, lwd=2)
 
+# note: in the stream on 2024-07-04, we discussed that one can actually write
+# out the equation that Bayes' theorem yields analytically; this turns out to
+# be a beta distribution with parameters alpha=1+w and beta=1+(n-w)
+
+# add this distribution on top of the figure
+curve(dbeta(x, 1+6, 1+3), add=TRUE, col="red")
+
+
+
 
 ############################################################################
 
