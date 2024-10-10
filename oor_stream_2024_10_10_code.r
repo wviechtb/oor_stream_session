@@ -243,3 +243,8 @@ dens(dat$height[dat$male == 0], lwd=4, col="red", adj=1, add=TRUE)
 
 # for now at least, we (and the book) will ignore this
 
+# plot the prior for mu
+curve(dnorm(x, mean=178, sd=20), from=100, to=250, lwd=4, col="#1e59ae")
+
+# plot the prior for sigma
+curve(dunif(x, 0, 50), from=-10, to=60, lwd=4, col="#1e59ae")
