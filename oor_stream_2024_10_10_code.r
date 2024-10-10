@@ -248,3 +248,11 @@ curve(dnorm(x, mean=178, sd=20), from=100, to=250, lwd=4, col="#1e59ae")
 
 # plot the prior for sigma
 curve(dunif(x, 0, 50), from=-10, to=60, lwd=4, col="#1e59ae")
+
+# generate the prior predictive distribution of heights
+sample_mu    <- rnorm(10000, mean=178, sd=20)
+sample_sigma <- runif(10000, 0, 50)
+prior_h      <- rnorm(10000, sample_mu, sample_sigma)
+
+# plot the distribution (and superimpose also a normal distribution on top)
+dens(prior_h, lwd=4, col="#1e59ae", norm.comp=TRUE)
