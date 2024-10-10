@@ -98,3 +98,14 @@ growth <- replicate(10000, prod(1 + runif(12,0,0.1)))
 # plot of a kernel density estimate of the distribution
 plot(density(growth), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
+
+# note that this looks again like a normal distribution
+
+# show that convergence to a normal does not happen if the multiplicative factors are more substantial
+growth <- replicate(10000, prod(1 + runif(12,0,0.5)))
+plot(density(growth), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
+
+growth <- replicate(10000, prod(1 + runif(12,0,0.01)))
+plot(density(growth), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
