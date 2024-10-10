@@ -224,3 +224,13 @@ sd(sav[6,])
 mean((sav[6,] - qnorm(.9))^2)
 
 ############################################################################
+
+# select from dat only those who are 18 years or older
+dat <- dat[dat$age >= 18,]
+
+## 4.3.2: The model
+
+# plot the kernel density estimate of the height variable (note that dens()
+# from the rethinking package defaults to using a lower bandwidth for the
+# kernel density estimate, which results in a more wiggly distribution)
+dens(dat$height)
