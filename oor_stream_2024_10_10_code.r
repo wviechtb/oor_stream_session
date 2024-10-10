@@ -70,7 +70,7 @@ abline(v=c(4,8,16), lty="dashed", lwd=2)
 
 # histogram of the positions after 4, 8, and 16 steps
 par(mfrow=c(3,1))
-
-
-
+plot(density(pos[ 4,], bw=0.5), lwd=4, xlab="position", ylab="density", main="4 Steps")
+plot(density(pos[ 8,], bw=0.5), lwd=4, xlab="position", ylab="density", main="8 Steps")
+plot(density(pos[16,], bw=0.5), lwd=4, xlab="position", ylab="density", main="16 Steps")
 par(mfrow=c(1,1))
