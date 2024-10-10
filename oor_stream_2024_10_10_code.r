@@ -173,8 +173,7 @@ lines(p_grid, posterior, lwd=2)
 # add this distribution on top of the figure
 curve(dbeta(x, 1+6, 1+3), add=TRUE, col="red")
 
-
-
-
 ############################################################################
+
+### 4.3: Gaussian model of height
 
