@@ -41,3 +41,9 @@ mean(pos == -5)
 
 # simulate the sum of 16 random values from a uniform(0,1) distribution 1000 times
 pos <- replicate(1000, sum(runif(16,-1,1)))
+
+# histogram of the positions
+hist(pos, main="", breaks=40)
+
+# plot of a kernel density estimate of the distribution
+plot(density(pos))
