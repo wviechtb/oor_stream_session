@@ -185,5 +185,42 @@ library(rethinking)
 # get the Howell1 data and put it into 'dat'
 dat <- get(data(Howell1))
 
+# examine the structure of the data frame
+str(dat)
+
+# get summary statistics and mini histograms for the variables
+precis(dat)
+
+############################################################################
+
+sav <- replicate(10000, quantile(rnorm(40), probs=c(.025, .975, .055, .945, .10, .90)))
+sav[,1:5]
+
+qnorm(.025)
+mean(sav[1,])
+sd(sav[1,])
+mean((sav[1,] - qnorm(.025))^2)
+qnorm(.975)
+mean(sav[2,])
+sd(sav[2,])
+mean((sav[2,] - qnorm(.975))^2)
+
+qnorm(.055)
+mean(sav[3,])
+sd(sav[3,])
+mean((sav[3,] - qnorm(.055))^2)
+qnorm(.945)
+mean(sav[4,])
+sd(sav[4,])
+mean((sav[4,] - qnorm(.945))^2)
+
+qnorm(.1)
+mean(sav[5,])
+sd(sav[6,])
+mean((sav[5,] - qnorm(.1))^2)
+qnorm(.9)
+mean(sav[6,])
+sd(sav[6,])
+mean((sav[6,] - qnorm(.9))^2)
 
 ############################################################################
