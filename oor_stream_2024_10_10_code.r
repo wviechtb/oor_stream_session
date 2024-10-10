@@ -50,3 +50,15 @@ plot(density(pos), lwd=4, main="")
 
 # superimpose a normal distribution with the observed mean and sd of the pos values
 curve(dnorm(x, mean=mean(pos), sd=sd(pos)), lwd=2, add=TRUE, col="red")
+
+# repeat the simulation but now save the size of each step (instead of their total sum)
+pos <- replicate(1000, runif(16,-1,1))
+
+# examine the results for the first 5 people
+pos[,1:5]
+
+# take the cumulative sum across columns
+pos <- apply(pos, 2, cumsum)
+
+# examine the results for the first 5 people
+pos[,1:5]
