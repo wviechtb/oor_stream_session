@@ -72,4 +72,5 @@ abline(v=c(4,8,16), lty="dashed", lwd=2)
 par(mfrow=c(3,1))
 
 
+
 par(mfrow=c(1,1))
