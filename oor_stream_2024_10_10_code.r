@@ -99,13 +99,17 @@ growth <- replicate(10000, prod(1 + runif(12,0,0.1)))
 plot(density(growth), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
 
-# note that this looks again like a normal distribution
+# note that this looks again like a normal distribution for reasons explained
+# in the book
 
-# show that convergence to a normal does not happen if the multiplicative factors are more substantial
+# show that if the multiplicative factors are more substantial, then the
+# resulting values do not look like a normal distribution
 growth <- replicate(10000, prod(1 + runif(12,0,0.5)))
 plot(density(growth), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
 
+# but if the multiplicative factors are much closer to 1, then it looks even
+# more like a normal distribution
 growth <- replicate(10000, prod(1 + runif(12,0,0.01)))
 plot(density(growth), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(growth), sd=sd(growth)), lwd=2, add=TRUE, col="gray")
