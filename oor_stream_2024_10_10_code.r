@@ -70,7 +70,10 @@ abline(v=c(4,8,16), lty="dashed", lwd=2)
 
 # histogram of the positions after 4, 8, and 16 steps
 par(mfrow=c(3,1))
-plot(density(pos[ 4,], bw=0.5), lwd=4, xlab="position", ylab="density", main="4 Steps")
-plot(density(pos[ 8,], bw=0.5), lwd=4, xlab="position", ylab="density", main="8 Steps")
-plot(density(pos[16,], bw=0.5), lwd=4, xlab="position", ylab="density", main="16 Steps")
+plot(density(pos[4,], bw=0.2), xlim=c(-6,6), lwd=4, col="#1e59ae", xlab="position", ylab="density", main="4 Steps")
+curve(dnorm(x, mean=mean(pos[4,]), sd=sd(pos[4,])), lwd=2, add=TRUE, col="gray")
+plot(density(pos[8,], bw=0.2), xlim=c(-6,6), lwd=4, col="#1e59ae", xlab="position", ylab="density", main="8 Steps")
+curve(dnorm(x, mean=mean(pos[8,]), sd=sd(pos[8,])), lwd=2, add=TRUE, col="gray")
+plot(density(pos[16,], bw=0.2), xlim=c(-6,6), lwd=4, col="#1e59ae", xlab="position", ylab="density", main="16 Steps")
+curve(dnorm(x, mean=mean(pos[16,]), sd=sd(pos[16,])), lwd=2, add=TRUE, col="gray")
 par(mfrow=c(1,1))
