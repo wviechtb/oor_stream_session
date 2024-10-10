@@ -233,4 +233,13 @@ dat <- dat[dat$age >= 18,]
 # plot the kernel density estimate of the height variable (note that dens()
 # from the rethinking package defaults to using a lower bandwidth for the
 # kernel density estimate, which results in a more wiggly distribution)
-dens(dat$height)
+dens(dat$height, lwd=4, col="#1e59ae")
+
+# note: when mixing together men and women in the sample, the distribution of
+# height might actually be bi-modal, because we are mixing together two normal
+# distributions; let's look at the distributions for men and women separately
+dens(dat$height[dat$male == 1], lwd=4, col="#1e59ae", adj=1)
+dens(dat$height[dat$male == 0], lwd=4, col="red", adj=1, add=TRUE)
+
+# for now at least, we (and the book) will ignore this
+
