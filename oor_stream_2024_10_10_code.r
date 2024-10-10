@@ -256,3 +256,11 @@ prior_h      <- rnorm(10000, sample_mu, sample_sigma)
 
 # plot the distribution (and superimpose also a normal distribution on top)
 dens(prior_h, lwd=4, col="#1e59ae", norm.comp=TRUE)
+
+# now repeat the above but using a much larger SD for the prior of mu
+sample_mu    <- rnorm(10000, mean=178, sd=100)
+sample_sigma <- runif(10000, 0, 50)
+prior_h      <- rnorm(10000, sample_mu, sample_sigma)
+dens(prior_h, lwd=4, col="#1e59ae")
+
+############################################################################
