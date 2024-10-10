@@ -24,6 +24,9 @@ pos <- tails * 1 + (16 - tails) * -1
 # frequency table of the positions observed
 table(pos)
 
+# create a barplot of the frequencies
+barplot(table(factor(pos, levels=seq(-16,16,by=2))))
+
 # proportion of people standing on the center line (pos equal to 0)
 mean(pos == 0)
 
@@ -34,3 +37,7 @@ mean(pos == -5)
 # note: for an even number of flips, pos must be a multiple of 2, so it is not
 # possible to stand 5 yards away from the center line
 
+
+
+
+## 4.1.1: Normal by addition.
