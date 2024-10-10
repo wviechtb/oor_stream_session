@@ -80,3 +80,17 @@ par(mfrow=c(1,1))
 
 # what the book discusses here is actually the central limit theorem:
 # https://en.wikipedia.org/wiki/Central_limit_theorem
+
+## 4.1.2: Normal by multiplication
+
+# simulate the increase in growth for each of 12 loci (each value represents a
+# multiplicative factor for growth, i.e., 1.05 means a 5% increase in growth)
+incr <- 1 + runif(12,0,0.1)
+incr
+
+# take the product (the different loci interact, so the total growth is the
+# product of these multiplicative factors)
+prod(incr)
+
+prod(1 + runif(12,0,0.1))
+
