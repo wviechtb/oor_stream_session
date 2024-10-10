@@ -46,4 +46,7 @@ pos <- replicate(1000, sum(runif(16,-1,1)))
 hist(pos, main="", breaks=40)
 
 # plot of a kernel density estimate of the distribution
-plot(density(pos))
+plot(density(pos), lwd=4, main="")
+
+# superimpose a normal distribution with the observed mean and sd of the pos values
+curve(dnorm(x, mean=mean(pos), sd=sd(pos)), lwd=2, add=TRUE, col="red")
