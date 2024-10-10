@@ -62,3 +62,14 @@ pos <- apply(pos, 2, cumsum)
 
 # examine the results for the first 5 people
 pos[,1:5]
+
+# Figure 4.2: plot of the position of the people over time
+plot(NA, xlim=c(0,16), ylim=c(-1,1)*max(abs(pos)), xlab="step number", ylab="position")
+apply(pos, 2, function(y) lines(0:16, c(0,y), col=rgb(30,89,174,50,maxColorValue=255)))
+abline(v=c(4,8,16), lty="dashed", lwd=2)
+
+# histogram of the positions after 4, 8, and 16 steps
+par(mfrow=c(3,1))
+
+
+par(mfrow=c(1,1))
