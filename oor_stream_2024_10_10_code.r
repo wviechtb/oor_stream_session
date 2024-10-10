@@ -148,3 +148,8 @@ curve(dnorm(x, mean=mean(log(growth)), sd=sd(log(growth))), lwd=2, add=TRUE, col
 ############################################################################
 
 ### 4.2: A language for describing models
+
+# we already did the grid approximation described here in chapter 3, so no
+# need to repeat this here
+
+############################################################################
