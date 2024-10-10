@@ -37,7 +37,7 @@ mean(pos == -5)
 # note: for an even number of flips, pos must be a multiple of 2, so it is not
 # possible to stand 5 yards away from the center line
 
+## 4.1.1: Normal by addition
 
-
-
-## 4.1.1: Normal by addition.
+# simulate the sum of 16 random values from a uniform(0,1) distribution 1000 times
+pos <- replicate(1000, sum(runif(16,-1,1)))
