@@ -287,11 +287,12 @@ print(res, digits=2)
 sims <- as.data.frame(res)
 n_sims <- nrow(sims)
 
-
+#
 y_rep <- matrix(NA, nrow=n_sims, ncol=n)
 for (s in 1:n_sims) {
    y_rep[s,1] <- dat$y[1]
    for (t in 2:n) {
-      y_rep[s,t] <- sims[s,"(Intercept)"] + sims[s,"y_lag"] * y_rep[s,t-1] + rnorm(1, 0, sims[s,"sigma"])
+      y_rep[s,t] <- sims[s,"(Intercept)"] + sims[s,"y_lag"] * y_rep[s,t-1] + rnorm(1, mean=0, sd=sims[s,"sigma"])
    }
 }
+
