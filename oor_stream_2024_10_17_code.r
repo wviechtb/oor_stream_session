@@ -283,3 +283,5 @@ print(res, digits=2)
 
 ## Simulating replicated datasets
 
+sims <- as.data.frame(fit_lag)
+n_sims <- nrow(sims)
