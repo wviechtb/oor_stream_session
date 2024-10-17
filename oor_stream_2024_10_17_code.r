@@ -209,7 +209,7 @@ lines(dat$year, dat$y, lwd=3)
 plot(density(resid), lwd=5, main="", xlim=c(-6,6), ylim=c(0,0.35))
 
 # add the kernel density estimate of the residuals from each simulated dataset
-# to the plot
+# to the plot (we'll use a for-loop for this)
 for (i in 1:nrow(y_rep)) {
    lines(density(y_rep[i,] - (sims[i,1] + dat$year*sims[i,2])), col=rgb(0,0,0,.02))
 }
@@ -219,3 +219,12 @@ for (i in 1:nrow(y_rep)) {
 # the normality assumption is not one of the more critical assumptions, so
 # maybe this is not something to worry about that much
 
+# but an assumption that is more important to worry about is the independent
+# of the errors assumption; we will check this by computing the correlation
+# between adjacent residuals (the lag-1 autocorrelation)
+cor(resid[1:(length(resid)-1)], resid[2:length(resid)])
+
+
+for (i in 1:nrow(y_rep)) {
+   lines(density(y_rep[i,] - (sims[i,1] + dat$year*sims[i,2])), col=rgb(0,0,0,.02))
+}
