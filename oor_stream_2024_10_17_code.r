@@ -368,7 +368,6 @@ test_rep <- apply(y_rep, 1, test)
 mean(test_rep > test_y)
 quantile(test_rep, c(.1,.9))
 
-
 ############################################################################
 
 
