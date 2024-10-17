@@ -215,4 +215,7 @@ for (i in 1:nrow(y_rep)) {
 }
 
 # we see that the distribution of the observed residuals is somewhat unusual
-# compared to the distributions based on the simulated data
+# compared to the distributions based on the simulated data; but remember that
+# the normality assumption is not one of the more critical assumptions, so
+# maybe this is not something to worry about that much
+
