@@ -122,14 +122,14 @@ y_rep[1:5,1:6]
 
 # Visual comparison of actual and replicated datasets
 
-# draw the histogram of 20 randomly selected datasets from y_rep
+# Figure 11.10: histogram of 20 randomly selected datasets from y_rep
 par(mfrow=c(5,4), mar=c(3,3,2,2))
 for (s in sample(nrow(y_rep), 20)){
    hist(y_rep[s,], main="", xlab="", ylab="")
 }
 par(mfrow=c(1,1), mar=c(5,4,4,2))
 
-# plot the kernel density estimate of the distribution of y
+# Figure 11.11: plot the kernel density estimate of the distribution of y
 plot(density(dat$y), lwd=5, main="", xlim=c(-50,55))
 
 # add the kernel density estimate of each simulated dataset to the plot
