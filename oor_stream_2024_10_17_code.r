@@ -319,6 +319,9 @@ par(mfrow=c(1,1), mar=c(5,4,4,2))
 # however, as noted in the book, the lines for the simulated data look more
 # 'jagged' than the line for the actual data
 
+# function that computes the number of switches in a time series (starting
+# from the second year); this is different from the code in the book, but
+# accomplishes the same thing in one line of code
 test <- function(y)
    length(rle(sign(y[3:n] - y[2:(n-1)]))$lengths)
 
