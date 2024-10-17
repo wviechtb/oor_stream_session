@@ -266,3 +266,12 @@ print(res, digits=2)
 # very similar estimate
 res <- stan_glm(y ~ y_lag + year, data=dat, refresh=0)
 print(res, digits=2)
+
+# remember that based on the model that ignored the autocorrelation, we were
+# 99.9+% certain the time trend in the unemployment rate is positive; let's
+# see how certain we can be about this when we account for autocorrelation
+sims <- as.data.frame(res)
+mean(sims$year > 0)
+
+# this is around 75%, which is still large, but considerably lower than what
+# we obtained earlier
