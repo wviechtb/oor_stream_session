@@ -195,14 +195,17 @@ abline(h=0, col="gray", lwd=5)
 # simulate new data based on the model using posterior_predict()
 y_rep <- posterior_predict(res)
 
-# plot the observed data and add the lines for 10 randomly chosen simulated datasets
-plot(dat$year, dat$y, type="l", xlab="Year", ylab="Unemployment rate",
-     ylim=c(0,12), bty="l", lwd=3)
-apply(y_rep[sample(nrow(y_rep), 10),], 1, function(x) lines(dat$year, x, col="gray70"))
-lines(dat$year, dat$y, lwd=3)
+# plot the unemployment rate over time based on the actual data and based on
+# 14 randomly chosen simulated datasets
+par(mfrow=c(3,5), mar=c(3,4,2,2))
+plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main="Actual data")
+invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
+par(mfrow=c(1,1), mar=c(5,4,4,2))
 
-# while of course the lines from the simulated datasets are different from the
-# actually observed line, we cannot easily see here if something is amiss
+#
+
+
+
 
 # let's try plotting a kernel density estimate of the observed residuals
 plot(density(resid), lwd=5, main="", xlim=c(-6,6), ylim=c(0,0.35))
@@ -299,8 +302,9 @@ for (s in 1:n_sims) {
 
 ## Visual and numerical comparisons of replicated to actual data
 
-# plot the unemployment rate over time based on the actual data
-par(mfrow=c(3,5))
-plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,10), bty="l", lwd=2, main="Actual data")
-invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,10), bty="l", lwd=2, main=paste("Simulation", i))))
+# plot the unemployment rate over time based on the actual data and based on
+# 14 randomly chosen simulated datasets
+par(mfrow=c(3,5), mar=c(3,4,2,2))
+plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main="Actual data")
+invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
 par(mfrow=c(1,1))
