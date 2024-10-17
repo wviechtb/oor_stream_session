@@ -340,3 +340,35 @@ mean(test_rep > test_y)
 quantile(test_rep, c(.1,.9))
 
 ############################################################################
+
+dat$y_lag2 <- c(NA, NA, dat$y[1:(n-2)])
+res <- stan_glm(y ~ year + y_lag + y_lag2, data=dat, refresh=0)
+print(res, digits=2)
+sims <- as.data.frame(res)
+n_sims <- nrow(sims)
+
+y_rep <- matrix(NA, nrow=n_sims, ncol=n)
+for (s in 1:n_sims) {
+   y_rep[s,1] <- dat$y[1]
+   y_rep[s,2] <- dat$y[2]
+   for (t in 3:n) {
+      y_rep[s,t] <- sims[s,"(Intercept)"] + sims[s,"year"] * dat$year + sims[s,"y_lag"] * y_rep[s,t-1] + sims[s,"y_lag2"] * y_rep[s,t-2] + rnorm(1, mean=0, sd=sims[s,"sigma"])
+   }
+}
+
+par(mfrow=c(3,5), mar=c(3,4,2,2))
+plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main="Actual data")
+invisible(sapply(sample(n_sims, 14),
+                 function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="",
+                                  ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
+par(mfrow=c(1,1), mar=c(5,4,4,2))
+
+test_rep <- apply(y_rep, 1, test)
+
+mean(test_rep > test_y)
+quantile(test_rep, c(.1,.9))
+
+
+############################################################################
+
+
