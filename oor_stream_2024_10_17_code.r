@@ -150,8 +150,6 @@ abline(v=min(dat$y), lwd=5)
 
 ############################################################################
 
-### 11.5: Example: predictive simulation to check the fit of a time-series model
-
 # before we get to the type of model discussed in the book, we will first do
 # another illustration of the principle discussed at the end of section 11.4
 
@@ -235,5 +233,14 @@ for (i in 1:nrow(y_rep)) {
 
 # plot the kernel density estimate of these autocorrelations and add a
 # vertical line at the actually observed autocorrelation
-plot(density(ar1i), lwd=2)
+plot(density(ar1i), lwd=2, xlim=c(-0.5,0.8), main="")
 abline(v=ar1, lwd=5)
+
+# we see that the actually observed autocorrelation is much higher than those
+# observed in the simulated datasets; this shows that our model is wrong (as
+# it assumes that the errors are independent, which is apparently not true for
+# these data)
+
+############################################################################
+
+### 11.5: Example: predictive simulation to check the fit of a time-series model
