@@ -83,3 +83,7 @@ abline(h=0, col="gray", lwd=5)
 ### 11.4: Comparing data to replications from a fitted model
 
 ## Example: simulation-based checking of a fitted normal distribution
+
+# download the dataset (need to do this once)
+if (!file.exists("newcomb.txt")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Newcomb/data/newcomb.txt", destfile="newcomb.txt")
+
