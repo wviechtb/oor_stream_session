@@ -199,7 +199,9 @@ y_rep <- posterior_predict(res)
 # 14 randomly chosen simulated datasets
 par(mfrow=c(3,5), mar=c(3,4,2,2))
 plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main="Actual data")
-invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
+invisible(sapply(sample(n_sims, 14),
+                 function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="",
+                                  ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
 par(mfrow=c(1,1), mar=c(5,4,4,2))
 
 # the lines look quite different for the simulated datasets; the fluctuations
@@ -301,9 +303,14 @@ for (s in 1:n_sims) {
 
 ## Visual and numerical comparisons of replicated to actual data
 
-# plot the unemployment rate over time based on the actual data and based on
-# 14 randomly chosen simulated datasets
+# Figure 11.14: plot the unemployment rate over time based on the actual data
+# and based on 14 randomly chosen simulated datasets
 par(mfrow=c(3,5), mar=c(3,4,2,2))
 plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main="Actual data")
-invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
+invisible(sapply(sample(n_sims, 14),
+                 function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="",
+                                  ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
 par(mfrow=c(1,1), mar=c(5,4,4,2))
+
+# although the trends in the simulated data might be different from what we
+# see in the simulated data, the fluctuations actually look rather similar
