@@ -16,6 +16,8 @@
 # load the rstanarm package
 library(rstanarm)
 
+############################################################################
+
 ### addendum to the last section
 
 # the book doesn't actually give examples of what a 'fitted versus residuals'
@@ -76,5 +78,8 @@ abline(h=0, col="gray", lwd=5)
 # we see that the residuals fluctuate more for low predicted values, which is
 # indicative of heteroscedasticity
 
+############################################################################
+
 ### 11.4: Comparing data to replications from a fitted model
 
+## Example: simulation-based checking of a fitted normal distribution
