@@ -161,6 +161,9 @@ if (!file.exists("unemp.txt")) download.file("https://raw.githubusercontent.com/
 dat <- read.table("unemp.txt", header=TRUE)
 head(dat)
 
+# sample size
+n <- nrow(dat)
+
 # Figure 11:13: unemployment rate over time
 plot(dat$year, dat$y, type="l", xlab="Year", ylab="Unemployment rate",
      ylim=c(0,10), bty="l", lwd=3)
@@ -225,7 +228,6 @@ for (i in 1:nrow(y_rep)) {
 # but an assumption that is more important to worry about is the independent
 # of the errors assumption; we will check this by computing the correlation
 # between adjacent residuals (the lag-1 autocorrelation)
-n <- length(resid)
 ar1 <- cor(resid[1:(n-1)], resid[2:n])
 ar1
 
@@ -313,4 +315,10 @@ invisible(sapply(sample(n_sims, 14),
 par(mfrow=c(1,1), mar=c(5,4,4,2))
 
 # although the trends in the simulated data might be different from what we
-# see in the simulated data, the fluctuations actually look rather similar
+# see in the simulated data, the fluctuations actually look somewhat similar;
+# however, as noted in the book, the lines for the simulated data look more
+# 'jagged' than the line for the actual data
+
+test <- function(y) {
+   y_lag <- c(NA, y[1:(n-1)])
+}
