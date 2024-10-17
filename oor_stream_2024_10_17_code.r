@@ -87,3 +87,17 @@ abline(h=0, col="gray", lwd=5)
 # download the dataset (need to do this once)
 if (!file.exists("newcomb.txt")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Newcomb/data/newcomb.txt", destfile="newcomb.txt")
 
+# read in the data and inspect the first 6 rows
+dat <- read.table("newcomb.txt", header=TRUE)
+head(dat)
+
+# fit a linear regression model without any predictors
+res <- stan_glm(y ~ 1, data=dat, refresh=0)
+
+# extracted the sampled values from the posterior distribution of the
+# intercept and error standard deviation
+sims <- as.data.frame(res)
+head(sims)
+
+
+n_sims <- nrow(sims)
