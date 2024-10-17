@@ -53,14 +53,14 @@ abline(h=0, col="gray", lwd=5)
 set.seed(1234)
 N <- 500
 x <- runif(N, 0, 1)
-y <- 1 + 1*x + rnorm(N, mean=0, sd=(0.1 + 0.5*(1 - x))
+y <- 1 + 1*x + rnorm(N, mean=0, sd=(0.1 + 0.3*(1 - x)))
 dat <- data.frame(x=x, y=y)
 head(dat)
 
 # plot x versus y
 plot(dat$x, dat$y, xlab="x", ylab="y", pch=21, bg="darkgray")
 
-# fit the model that assumes a linear relationship between x and y
+# fit the model that assumes homoscedasticity
 res <- stan_glm(y ~ x, data=dat, refresh=0)
 res
 
@@ -73,9 +73,8 @@ plot(pred, resid, pch=19, main="Residuals vs. predicted values",
      xlab="predicted value", ylab="residual")
 abline(h=0, col="gray", lwd=5)
 
-# we see an upside down U shape in the plot, which is indicative of missing a
-# non-linear relationship
-
+# we see that the residuals fluctuate more for low predicted values, which is
+# indicative of heteroscedasticity
 
 ### 11.4: Comparing data to replications from a fitted model
 
