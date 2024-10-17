@@ -100,10 +100,16 @@ sims <- as.data.frame(res)
 head(sims)
 
 # simulate new data based on the sampled intercept and error SD values
+set.seed(1234)
 y_rep <- apply(sims, 1, function(x) rnorm(nrow(dat), mean=x[1], sd=x[2]))
 
 # so we get 4000 simulated datasets
 dim(y_rep)
 
-# examine the first 5
-y_rep[,1:5]
+# examine the first 6 rows of datasets 1 through 5
+head(y_rep[,1:5])
+
+# we can als
+set.seed(1234)
+y_rep <- posterior_predict(res)
+head(y_rep[,1:5])
