@@ -319,6 +319,12 @@ par(mfrow=c(1,1), mar=c(5,4,4,2))
 # however, as noted in the book, the lines for the simulated data look more
 # 'jagged' than the line for the actual data
 
-test <- function(y) {
-   y_lag <- c(NA, y[1:(n-1)])
-}
+test <- function(y)
+   length(rle(sign(y[3:n] - y[2:(n-1)]))$lengths)
+
+test_y <- test(dat$y)
+
+test(dat$y)
+length(rle(sign(dat$y[3:n] - dat$y[2:(n-1)]))$lengths)
+
+test_rep <- apply(y_rep, 1, test)
