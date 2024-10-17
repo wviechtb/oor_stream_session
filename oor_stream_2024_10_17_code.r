@@ -201,3 +201,9 @@ plot(dat$year, dat$y, type="l", xlab="Year", ylab="Unemployment rate",
      ylim=c(0,12), bty="l", lwd=3)
 apply(y_rep[sample(nrow(y_rep), 10),], 1, function(x) lines(dat$year, x, col="gray70"))
 lines(dat$year, dat$y, lwd=3)
+
+# while of course the lines from the simulated datasets are different from the
+# actually observed line, we cannot easily see here if something is amiss
+
+
+
