@@ -338,3 +338,5 @@ mean(test_rep > test_y)
 
 # 80% of the number of switches in the simulated data fall in this interval
 quantile(test_rep, c(.1,.9))
+
+############################################################################
