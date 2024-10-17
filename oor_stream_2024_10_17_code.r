@@ -325,9 +325,16 @@ par(mfrow=c(1,1), mar=c(5,4,4,2))
 test <- function(y)
    length(rle(sign(y[3:n] - y[2:(n-1)]))$lengths)
 
+# now compute the number of switches in the observed and simulated data
 test_y <- test(dat$y)
-
-test(dat$y)
-length(rle(sign(dat$y[3:n] - dat$y[2:(n-1)]))$lengths)
-
 test_rep <- apply(y_rep, 1, test)
+
+# number of switches in the observed data
+test_y
+
+# how often the number of switches in the simulated data is more extreme than
+# the number of switches in the observed data
+mean(test_rep > test_y)
+
+# 80% of the number of switches in the simulated data fall in this interval
+quantile(test_rep, c(.1,.9))
