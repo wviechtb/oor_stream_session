@@ -165,3 +165,11 @@ head(dat)
 # say we want to model the trend in the unemployment rate as a simple linear
 # model with year as the predictor
 res <- stan_glm(y ~ year, data=dat, refresh=0)
+print(res, digits=3)
+
+# extract the posterior samples
+sims <- as.data.frame(res)
+head(sims)
+
+# we can be 99.9+% certain that the slope is positive
+mean(sims$year > 0)
