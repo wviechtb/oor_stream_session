@@ -248,3 +248,9 @@ abline(v=ar1, lwd=5)
 
 ## Fitting a first-order autoregression to the unemployment series
 
+# add the lagged value of y to the dataset
+dat$y_lag <- c(NA, dat$y[1:(n-1)])
+head(dat)
+
+# fit a linear regression model predicting y from the value from the previous year
+res <- stan_glm(y ~ y_lag, data=dat, refresh=0)
