@@ -202,10 +202,9 @@ plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, 
 invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
 par(mfrow=c(1,1), mar=c(5,4,4,2))
 
-#
-
-
-
+# the lines look quite different for the simulated datasets; the fluctuations
+# are more rapid compared to the actual data; this is already a first
+# indication that our model might be wrong
 
 # let's try plotting a kernel density estimate of the observed residuals
 plot(density(resid), lwd=5, main="", xlim=c(-6,6), ylim=c(0,0.35))
@@ -307,4 +306,4 @@ for (s in 1:n_sims) {
 par(mfrow=c(3,5), mar=c(3,4,2,2))
 plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main="Actual data")
 invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,12), bty="l", lwd=2, main=paste("Simulation", i))))
-par(mfrow=c(1,1))
+par(mfrow=c(1,1), mar=c(5,4,4,2))
