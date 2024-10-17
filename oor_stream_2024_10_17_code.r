@@ -274,4 +274,5 @@ sims <- as.data.frame(res)
 mean(sims$year > 0)
 
 # this is around 75%, which is still large, but considerably lower than what
-# we obtained earlier
+# we obtained earlier; this shows violation of the independence assumption can
+# have a considerable impact on the findings
