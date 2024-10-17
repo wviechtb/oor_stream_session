@@ -213,3 +213,6 @@ plot(density(resid), lwd=5, main="", xlim=c(-6,6), ylim=c(0,0.35))
 for (i in 1:nrow(y_rep)) {
    lines(density(y_rep[i,] - (sims[i,1] + dat$year*sims[i,2])), col=rgb(0,0,0,.02))
 }
+
+# we see that the distribution of the observed residuals is somewhat unusual
+# compared to the distributions based on the simulated data
