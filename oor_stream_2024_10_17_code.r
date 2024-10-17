@@ -276,3 +276,10 @@ mean(sims$year > 0)
 # this is around 75%, which is still large, but considerably lower than what
 # we obtained earlier; this shows violation of the independence assumption can
 # have a considerable impact on the findings
+
+# but let's get back to the model that ignores any time trends
+res <- stan_glm(y ~ y_lag, data=dat, refresh=0)
+print(res, digits=2)
+
+## Simulating replicated datasets
+
