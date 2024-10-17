@@ -109,7 +109,7 @@ dim(y_rep)
 # let's transpose y_rep, so each row corresponds to a dataset
 y_rep <- t(y_rep)
 
-# examine the first 6 datapoints of datasets 1 through 5
+# examine the first 6 data points of datasets 1 through 5
 y_rep[1:5,1:6]
 
 # we can also use posterior_predict() to accomplish the same thing
@@ -119,7 +119,14 @@ y_rep[1:5,1:6]
 
 # Visual comparison of actual and replicated datasets
 
-par(mfrow=c(5,4))
+# draw the histogram of 20 randomly selected datasets from y_rep
+par(mfrow=c(5,4), mar=c(3,3,2,2))
 for (s in sample(nrow(y_rep), 20)){
-   hist(y_rep[s,])
+   hist(y_rep[s,], main="", xlab="", ylab="")
 }
+par(mfrow=c(1,1), mar=c(5,4,4,2))
+
+# plot the kernel density estimate of the distribution of y
+plot(density(dat$y), lwd=5, main="")
+
+apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.01)))
