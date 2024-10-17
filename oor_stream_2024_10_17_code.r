@@ -13,5 +13,13 @@
 
 ############################################################################
 
+### addendum to the last section
+
+# the book doesn't actually give examples of what a 'fitted versus residuals'
+# plot might look like when some of the model assumptions are violated; let's
+# consider a few examples
+
+
+
 ### 11.4: Comparing data to replications from a fitted model
 
