@@ -171,5 +171,16 @@ print(res, digits=3)
 sims <- as.data.frame(res)
 head(sims)
 
-# we can be 99.9+% certain that the slope is positive
+# based on the model, we can be 99.9+% certain that the slope is positive
 mean(sims$year > 0)
+
+# but maybe our model is wrong!
+
+# compute the predicted values and residuals
+pred  <- predict(res)
+resid <- dat$y - pred
+
+# plot the fitted values versus the residuals
+plot(pred, resid, pch=19, main="Residuals vs. predicted values",
+     xlab="predicted value", ylab="residual")
+abline(h=0, col="gray", lwd=5)
