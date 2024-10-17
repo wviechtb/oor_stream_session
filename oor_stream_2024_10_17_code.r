@@ -193,3 +193,11 @@ abline(h=0, col="gray", lwd=5)
 # maybe there is a hint of an upside down U shape in the plot, but let's not
 # overinterpret this
 
+# simulate new data based on the model using posterior_predict()
+y_rep <- posterior_predict(res)
+
+# plot the observed data and add the simulated data
+plot(dat$year, dat$y, type="l", xlab="Year", ylab="Unemployment rate",
+     ylim=c(0,12), bty="l", lwd=3)
+apply(y_rep, 1, function(x) lines(dat$year, x, col=rgb(0,0,0,.01)))
+lines(dat$year, dat$y, lwd=3)
