@@ -196,8 +196,8 @@ abline(h=0, col="gray", lwd=5)
 # simulate new data based on the model using posterior_predict()
 y_rep <- posterior_predict(res)
 
-# plot the observed data and add the simulated data
+# plot the observed data and add the lines for 10 randomly chosen simulated datasets
 plot(dat$year, dat$y, type="l", xlab="Year", ylab="Unemployment rate",
      ylim=c(0,12), bty="l", lwd=3)
-apply(y_rep, 1, function(x) lines(dat$year, x, col=rgb(0,0,0,.01)))
+apply(y_rep[sample(nrow(y_rep), 10),], 1, function(x) lines(dat$year, x, col="gray70"))
 lines(dat$year, dat$y, lwd=3)
