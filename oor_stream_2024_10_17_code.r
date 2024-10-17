@@ -116,3 +116,10 @@ y_rep[1:5,1:6]
 set.seed(1234)
 y_rep <- posterior_predict(res)
 y_rep[1:5,1:6]
+
+# Visual comparison of actual and replicated datasets
+
+par(mfrow=c(5,4))
+for (s in sample(nrow(y_rep), 20)){
+   hist(y_rep[s,])
+}
