@@ -287,7 +287,8 @@ print(res, digits=2)
 sims <- as.data.frame(res)
 n_sims <- nrow(sims)
 
-#
+# simulate new datasets (note: we have to do this manually, that is, not using
+# posterior_predict() as noted in the book)
 y_rep <- matrix(NA, nrow=n_sims, ncol=n)
 for (s in 1:n_sims) {
    y_rep[s,1] <- dat$y[1]
