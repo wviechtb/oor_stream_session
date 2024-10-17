@@ -82,6 +82,9 @@ abline(h=0, col="gray", lwd=5)
 
 ### 11.4: Comparing data to replications from a fitted model
 
+# clean up the workspace
+rm(list=ls())
+
 ## Example: simulation-based checking of a fitted normal distribution
 
 # download the dataset (need to do this once)
@@ -141,6 +144,5 @@ apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.02)))
 test_rep <- apply(y_rep, 1, min)
 
 # Figure 11.12: histogram of these minimum values
-hist(test_rep, xlim=range(test(y), test_rep))
-
-lines(rep(test(y),2), c(0,n))
+hist(test_rep, xlim=range(min(y), test_rep), breaks=40)
+abline(v=min(y), lwd=5)
