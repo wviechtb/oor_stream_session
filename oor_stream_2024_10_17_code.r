@@ -99,5 +99,11 @@ res <- stan_glm(y ~ 1, data=dat, refresh=0)
 sims <- as.data.frame(res)
 head(sims)
 
+# simulate new data based on the sampled intercept and error SD values
+y_rep <- apply(sims, 1, function(x) rnorm(nrow(dat), mean=x[1], sd=x[2]))
 
-n_sims <- nrow(sims)
+# so we get 4000 simulated datasets
+dim(y_rep)
+
+# examine the first 5
+y_rep[,1:5]
