@@ -145,6 +145,23 @@ test_rep <- apply(y_rep, 1, min)
 
 # Figure 11.12: histogram of these minimum values with a vertical line at the
 # minimum value observed in the actual data
-hist(test_rep, xlim=range(min(dat$y), test_rep), breaks=40, main="", xlab="")
+hist(test_rep, xlim=c(-50,20), breaks=40, main="", xlab="")
 abline(v=min(dat$y), lwd=5)
 
+############################################################################
+
+### 11.5: Example: predictive simulation to check the fit of a time-series model
+
+# download the dataset (need to do this once)
+if (!file.exists("unemp.txt")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Unemployment/data/unemp.txt", destfile="unemp.txt")
+
+# read in the data and inspect the first 6 rows
+dat <- read.table("unemp.txt", header=TRUE)
+head(dat)
+
+# before we get to the type of model discussed in the book, we will first do
+# another illustration of the principle discussed at the end of section 11.4
+
+# say we want to model the trend in the unemployment rate as a simple linear
+# model with year as the predictor
+res <- stan_glm(y ~ year, data=dat, refresh=0)
