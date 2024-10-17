@@ -127,6 +127,8 @@ for (s in sample(nrow(y_rep), 20)){
 par(mfrow=c(1,1), mar=c(5,4,4,2))
 
 # plot the kernel density estimate of the distribution of y
-plot(density(dat$y), lwd=5, main="")
+plot(density(dat$y), lwd=5, main="", xlim=c(-50,55))
 
-apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.01)))
+# add the kernel density estimate of each simulated dataset to the plot
+apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.02)))
+
