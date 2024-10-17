@@ -245,3 +245,6 @@ abline(v=ar1, lwd=5)
 ############################################################################
 
 ### 11.5: Example: predictive simulation to check the fit of a time-series model
+
+## Fitting a first-order autoregression to the unemployment series
+
