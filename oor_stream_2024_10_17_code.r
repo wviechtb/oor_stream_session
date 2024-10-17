@@ -252,5 +252,12 @@ abline(v=ar1, lwd=5)
 dat$y_lag <- c(NA, dat$y[1:(n-1)])
 head(dat)
 
+# compute the lag-1 autocorrelation in y (note: not the residuals)
+cor(dat$y, dat$y_lag, use="complete.obs")
+
 # fit a linear regression model predicting y from the value from the previous year
 res <- stan_glm(y ~ y_lag, data=dat, refresh=0)
+print(res, digits=2)
+
+
+res <- stan_glm(y ~ y_lag + year, data=dat, refresh=0)
