@@ -132,3 +132,5 @@ plot(density(dat$y), lwd=5, main="", xlim=c(-50,55))
 # add the kernel density estimate of each simulated dataset to the plot
 apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.02)))
 
+# Checking model fit using a numerical data summary
+
