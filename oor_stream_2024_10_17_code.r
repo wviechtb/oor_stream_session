@@ -297,3 +297,10 @@ for (s in 1:n_sims) {
    }
 }
 
+## Visual and numerical comparisons of replicated to actual data
+
+# plot the unemployment rate over time based on the actual data
+par(mfrow=c(3,5))
+plot(dat$year, dat$y, type="l", xlab="", ylab="", ylim=c(0,10), bty="l", lwd=2, main="Actual data")
+invisible(sapply(sample(n_sims, 14), function(i) plot(dat$year, y_rep[i,], type="l", xlab="", ylab="", ylim=c(0,10), bty="l", lwd=2, main=paste("Simulation", i))))
+par(mfrow=c(1,1))
