@@ -174,7 +174,8 @@ head(sims)
 # based on the model, we can be 99.9+% certain that the slope is positive
 mean(sims$year > 0)
 
-# but maybe our model is wrong!
+# but maybe our model is wrong! let's put some of the ideas we have learned so
+# far in this chapter into practice
 
 # compute the predicted values and residuals
 pred  <- predict(res)
@@ -184,3 +185,6 @@ resid <- dat$y - pred
 plot(pred, resid, pch=19, main="Residuals vs. predicted values",
      xlab="predicted value", ylab="residual")
 abline(h=0, col="gray", lwd=5)
+
+# maybe there is a hint of an upside down U shape in the plot, but let's not
+# overinterpret this
