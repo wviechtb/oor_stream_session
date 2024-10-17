@@ -352,7 +352,7 @@ for (s in 1:n_sims) {
    y_rep[s,1] <- dat$y[1]
    y_rep[s,2] <- dat$y[2]
    for (t in 3:n) {
-      y_rep[s,t] <- sims[s,"(Intercept)"] + sims[s,"year"] * dat$year + sims[s,"y_lag"] * y_rep[s,t-1] + sims[s,"y_lag2"] * y_rep[s,t-2] + rnorm(1, mean=0, sd=sims[s,"sigma"])
+      y_rep[s,t] <- sims[s,"(Intercept)"] + sims[s,"year"] * dat$year[t] + sims[s,"y_lag"] * y_rep[s,t-1] + sims[s,"y_lag2"] * y_rep[s,t-2] + rnorm(1, mean=0, sd=sims[s,"sigma"])
    }
 }
 
