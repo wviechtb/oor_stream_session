@@ -106,10 +106,13 @@ y_rep <- apply(sims, 1, function(x) rnorm(nrow(dat), mean=x[1], sd=x[2]))
 # so we get 4000 simulated datasets
 dim(y_rep)
 
-# examine the first 6 rows of datasets 1 through 5
-head(y_rep[,1:5])
+# let's transpose y_rep, so each row corresponds to a dataset
+y_rep <- t(y_rep)
 
-# we can als
+# examine the first 6 datapoints of datasets 1 through 5
+y_rep[1:5,1:6]
+
+# we can also use posterior_predict() to accomplish the same thing
 set.seed(1234)
 y_rep <- posterior_predict(res)
-head(y_rep[,1:5])
+y_rep[1:5,1:6]
