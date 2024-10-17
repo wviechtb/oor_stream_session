@@ -152,6 +152,7 @@ abline(v=min(dat$y), lwd=5)
 
 # before we get to the type of model discussed in the book, we will first do
 # another illustration of the principle discussed at the end of section 11.4
+# using the dataset from section 11.5
 
 # download the dataset (need to do this once)
 if (!file.exists("unemp.txt")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Unemployment/data/unemp.txt", destfile="unemp.txt")
