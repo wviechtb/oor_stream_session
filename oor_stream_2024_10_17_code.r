@@ -143,6 +143,8 @@ apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.02)))
 # compute the minimum value for each simulated dataset
 test_rep <- apply(y_rep, 1, min)
 
-# Figure 11.12: histogram of these minimum values
-hist(test_rep, xlim=range(min(y), test_rep), breaks=40)
-abline(v=min(y), lwd=5)
+# Figure 11.12: histogram of these minimum values with a vertical line at the
+# minimum value observed in the actual data
+hist(test_rep, xlim=range(min(dat$y), test_rep), breaks=40, main="", xlab="")
+abline(v=min(dat$y), lwd=5)
+
