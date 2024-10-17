@@ -259,5 +259,10 @@ cor(dat$y, dat$y_lag, use="complete.obs")
 res <- stan_glm(y ~ y_lag, data=dat, refresh=0)
 print(res, digits=2)
 
-
+# note that the coefficient for y_lag from the model is actually an estimate
+# of the autocorrelation in the y variable; earlier, we modeled the linear
+# trend in y and computed the autocorrelation in the residuals (~ 0.74); if we
+# add year as a predictor to the autocorrelation model, then we will find a
+# very similar estimate
 res <- stan_glm(y ~ y_lag + year, data=dat, refresh=0)
+print(res, digits=2)
