@@ -91,6 +91,9 @@ if (!file.exists("newcomb.txt")) download.file("https://raw.githubusercontent.co
 dat <- read.table("newcomb.txt", header=TRUE)
 head(dat)
 
+# Figure 11.9: histogram of the y values in the dataset
+hist(dat$y, main="", breaks=40)
+
 # fit a linear regression model without any predictors
 res <- stan_glm(y ~ 1, data=dat, refresh=0)
 
@@ -134,3 +137,10 @@ apply(y_rep, 1, function(x) lines(density(x), col=rgb(0,0,0,.02)))
 
 # Checking model fit using a numerical data summary
 
+# compute the minimum value for each simulated dataset
+test_rep <- apply(y_rep, 1, min)
+
+# Figure 11.12: histogram of these minimum values
+hist(test_rep, xlim=range(test(y), test_rep))
+
+lines(rep(test(y),2), c(0,n))
