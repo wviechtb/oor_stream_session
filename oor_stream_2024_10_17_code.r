@@ -222,9 +222,18 @@ for (i in 1:nrow(y_rep)) {
 # but an assumption that is more important to worry about is the independent
 # of the errors assumption; we will check this by computing the correlation
 # between adjacent residuals (the lag-1 autocorrelation)
-cor(resid[1:(length(resid)-1)], resid[2:length(resid)])
+n <- length(resid)
+ar1 <- cor(resid[1:(n-1)], resid[2:n])
+ar1
 
-
+# compute the lag-1 autocorrelations based on the simulated datasets
+ar1i <- rep(NA, nrow(y_rep))
 for (i in 1:nrow(y_rep)) {
-   lines(density(y_rep[i,] - (sims[i,1] + dat$year*sims[i,2])), col=rgb(0,0,0,.02))
+   r_rep <- y_rep[i,] - (sims[i,1] + dat$year*sims[i,2])
+   ar1i[i] <- cor(r_rep[1:(n-1)], r_rep[2:n])
 }
+
+# plot the kernel density estimate of these autocorrelations and add a
+# vertical line at the actually observed autocorrelation
+plot(density(ar1i), lwd=2)
+abline(v=ar1, lwd=5)
