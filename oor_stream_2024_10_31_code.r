@@ -158,14 +158,18 @@ sd(sample.sigma)
 
 # select a random sample of 20 people from the full dataset, do the grid
 # approximation, sample from it, and draw the kernel density estimate of the
-# posterior distribution for sigma
+# posterior distribution for mu and sigma
 sub <- dat[sample(nrow(dat), 20),]
+mu.list <- seq(from=150, to=170, length.out=200)
+sigma.list <- seq(from=4, to=20, length.out=200)
+post <- expand.grid(mu=mu.list , sigma=sigma.list)
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(sub$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
 post$prod <- post$ll + dnorm(post$mu, mean=178, sd=20, log=TRUE) + dunif(post$sigma, min=0, max=50, log=TRUE)
 post$prob <- exp(post$prod - max(post$prod))
 sample.rows <- sample(1:nrow(post), size=1e4, replace=TRUE, prob=post$prob)
 sample.mu <- post$mu[sample.rows]
 sample.sigma <- post$sigma[sample.rows]
+plot(density(sample.mu), lwd=4, main="", col="#1e59ae")
 plot(density(sample.sigma), lwd=4, main="", col="#1e59ae")
 
 
