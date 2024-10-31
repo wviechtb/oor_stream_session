@@ -102,7 +102,10 @@ head(post)
 post$prod <- post$ll + dnorm(post$mu, 178, 20, log=TRUE) + dunif(post$sigma, 0, 50, log=TRUE)
 head(post)
 
-# in the last step, we just rescal e
+# in the last step, we exponentiate the values to get the posterior
+# plausibilities (before doing so, we subtract the max so that the values we
+# are exponentiating are not quite so negative, again to avoid numerical
+# issues)
 post$prob <- exp(post$prod - max(post$prod))
 
 
