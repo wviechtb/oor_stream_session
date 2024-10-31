@@ -56,16 +56,16 @@ post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(sub$height, mean=
 # and by the prior plausibilities of sigma (where we use a normal distribution
 # to reflect our prior knowledge about mu and a uniform distribution to
 # reflect out prior knowledge about sigma)
-post$prod <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
-head(post)
+post$prob <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
+head(prob)
 
 # this then yields the posterior plausibility of a certain combination of mu
 # and sigma in our grid (i.e., in essence, except for scaling, the posterior
 # joint distribution of mu and sigma)
 
 # determine which combination of mu and sigma in the grid is most plausible
-which.max(post$prod)
-post[which.max(post$prod),]
+which.max(post$prob)
+post[which.max(post$prob),]
 
 # note that what we are doing above is the same as what we did for the globe
 # tossing example in section 2.4.3
@@ -73,7 +73,7 @@ post[which.max(post$prod),]
 # draw the 3-dimensional surface for the posterior plausibilities for each
 # combination of mu and sigma in the grid
 tmp <- split(post, post$sigma)
-tmp <- sapply(tmp, function(x) x$prod)
+tmp <- sapply(tmp, function(x) x$prob)
 rownames(tmp) <- mu.list
 colnames(tmp) <- sigma.list
 tmp[1:5,1:5]
@@ -103,10 +103,17 @@ post$prod <- post$ll + dnorm(post$mu, 178, 20, log=TRUE) + dunif(post$sigma, 0, 
 head(post)
 
 # in the last step, we exponentiate the values to get the posterior
-# plausibilities (before doing so, we subtract the max so that the values we
-# are exponentiating are not quite so negative, again to avoid numerical
-# issues)
+# plausibilities (before doing so, we subtract the maximum value so that the
+# values we are exponentiating are not quite so negative, again to avoid
+# numerical issues)
 post$prob <- exp(post$prod - max(post$prod))
+
+tmp <- split(post, post$sigma)
+tmp <- sapply(tmp, function(x) x$prob)
+rownames(tmp) <- mu.list
+colnames(tmp) <- sigma.list
+persp(mu.list, sigma.list, tmp, theta=25, phi=25, shade=0.2, ticktype="detailed",
+      xlab="mu", ylab="sigma", zlab="posterior plausibility")
 
 
 ############################################################################
