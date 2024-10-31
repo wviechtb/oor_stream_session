@@ -191,10 +191,22 @@ postfun <- function(x, h)
 install.packages("cubature")
 library(cubature)
 
-post$probbt <- apply(post, 1, function(x) postfun(c(x[1], x[2]), sub$height) / cubintegrate(postfun, lower=c(-Inf,0), upper=c(Inf,50), h=sub$height)$integral)
+post$probbt <- apply(post, 1, function(x) postfun(c(x[1], x[2]), sub$height) / cubintegrate(postfun, lower=c(178-3*20,0), upper=c(178+3*20,50), h=sub$height)$integral)
 head(post)
 
+which.max(post$probbt)
+post[which.max(post$probbt),]
+
+
+
+
 plot(post$probsub, post$probbt)
+
+
+library(mvtnorm)
+
+cubintegrate(dmvnorm, mean=c(2,4), sigma=diag(c(1,2)), lower=c(-20,-20), upper=c(20,20))
+
 
 
 ############################################################################
