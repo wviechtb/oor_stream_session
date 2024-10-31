@@ -205,7 +205,7 @@ postfun <- function(x, h) {
 
 res2 <- optim(par=c(mean(dat$height),sd(dat$height)), postfun, method="L-BFGS-B",
               lower=c(150,5), upper=c(160,10),
-              control=list(fnscale=-1), h=dat$height, hessian=TRUE)
+              control=list(fnscale=c(-1), h=dat$height, hessian=TRUE)
 res2
 
 
