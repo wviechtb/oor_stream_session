@@ -35,8 +35,15 @@ sigma.list <- seq(from=7, to=9, length.out=100)
 post <- expand.grid(mu=mu.list , sigma=sigma.list)
 head(post, 10)
 
-# select the first five people from the full dataset
-sub <- dat[58:63,]
+for (i in 1:500) {
+   sub <- dat[i:(i+5),]
+   if (abs(mean(sub$height) - 155) < 2 && abs(sd(sub$height) - 8) < 0.2)
+      stop()
+}
+
+
+# select the five people from the full dataset
+sub <- dat[59:64,]
 
 # compute the likelihood of the data for every combination of mu and sigma in
 # the grid; that is, we compute the density of the observed height values
@@ -63,13 +70,15 @@ post[which.max(post$prod),]
 # note that what we are doing above is the same as what we did for the globe
 # tossing example in section 2.4.3
 
+# draw the 3-dimensional surface for the posterior plausibilities for each
+# combination of mu and sigma in the grid
 tmp <- split(post, post$sigma)
 tmp <- sapply(tmp, function(x) x$prod)
 rownames(tmp) <- mu.list
 colnames(tmp) <- sigma.list
 tmp[1:5,1:5]
-
-persp(mu.list, sigma.list, tmp)
+persp(mu.list, sigma.list, tmp, theta=45, phi=25, shade=0.2, ticktype="detailed",
+      xlab="mu", ylab="sigma", zlab="posterior plausibility")
 
 # compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
