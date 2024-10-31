@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 4.3.3 - ?
+# - Section(s): 4.3.3 - 4.3.6
 #
 # last updated: 2024-10-31
 
@@ -253,6 +253,6 @@ post <- extract.samples(res1, n=1e4)
 head(post)
 
 # get some summary statistics for these sampled values
-precis(post)
+precis(post, prob=0.95)
 
 ############################################################################
