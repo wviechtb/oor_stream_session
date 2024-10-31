@@ -140,4 +140,19 @@ plot(jitter(sample.mu, amount=0.1), jitter(sample.sigma, amount=0.1), cex=0.3, p
 plot(density(sample.mu), lwd=4, main="", col="#1e59ae")
 plot(density(sample.sigma), lwd=4, main="", col="#1e59ae")
 
+# 95% percentile interval for the sampled values of mu
+PI(sample.mu, prob=0.95)
+quantile(sample.mu, prob=c(0.025, 0.975))
+
+# 95% percentile interval for the sampled values of sigma
+PI(sample.sigma, prob=0.95)
+quantile(sample.sigma, prob=c(0.025, 0.975))
+
+# summarize the center and spread of the posterior distributions
+mean(sample.mu)
+mean(sample.sigma)
+sd(sample.mu)
+sd(sample.sigma)
+
+
 ############################################################################
