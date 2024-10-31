@@ -46,7 +46,7 @@ post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(sub$height, mean=
 # and by the prior plausibilities of sigma (where we use a normal distribution
 # to reflect our prior knowledge about mu and a uniform distribution to
 # reflect out prior knowledge about sigma)
-post$prob <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
+post$probsub <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
 head(post)
 
 # this then yields the posterior plausibility of a certain combination of mu
@@ -54,8 +54,8 @@ head(post)
 # joint distribution of mu and sigma)
 
 # determine which combination of mu and sigma in the grid is most plausible
-which.max(post$prob)
-post[which.max(post$prob),]
+which.max(post$probsub)
+post[which.max(post$probsub),]
 
 # note that what we are doing above is the same as what we did for the globe
 # tossing example in section 2.4.3
@@ -63,7 +63,7 @@ post[which.max(post$prob),]
 # draw the 3-dimensional surface for the posterior plausibilities for each
 # combination of mu and sigma in the grid
 tmp <- split(post, post$sigma)
-tmp <- sapply(tmp, function(x) x$prob)
+tmp <- sapply(tmp, function(x) x$probsub)
 rownames(tmp) <- mu.list
 colnames(tmp) <- sigma.list
 tmp[1:5,1:5]
