@@ -92,7 +92,13 @@ post$prod <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigm
 head(post)
 
 # to get around this problem, we will compute the log likelihood values with log(prod(x)) = sum(log(x))
+post$likelihood <- NULL
+post$prod <- NULL
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
+head(post)
+
+# and now instead of computing likelihood * prior-mu * prior-sigma, we compute
+# log(likelihood * prior-mu * prior-sigma) = log(likelihood) + log(prior-mu) + log(prior-sigma)
 
 exp(post$ll) * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
 
