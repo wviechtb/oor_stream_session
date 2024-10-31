@@ -178,35 +178,4 @@ plot(density(sample2.sigma), lwd=4, col="#1e59ae", main="Posterior for sigma")
 curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE, col="gray")
 par(mfrow=c(1,1))
 
-# Overthinking: Model definition to Bayes’ theorem again
-
-# now we are going to jump back to page 84 and directly implement Bayes'
-# theorem for this example (using again the subset of 5 people)
-
-sub <- dat[41:45,]
-
-postfun <- function(x, h)
-   prod(dnorm(h, mean=x[1], sd=x[2]) * dnorm(x[1], mean=178, sd=20) * dunif(x[2], min=0, max=50))
-
-install.packages("cubature")
-library(cubature)
-
-post$probbt <- apply(post, 1, function(x) postfun(c(x[1], x[2]), sub$height) / cubintegrate(postfun, lower=c(178-3*20,0), upper=c(178+3*20,50), h=sub$height)$integral)
-head(post)
-
-which.max(post$probbt)
-post[which.max(post$probbt),]
-
-
-
-
-plot(post$probsub, post$probbt)
-
-
-library(mvtnorm)
-
-cubintegrate(dmvnorm, mean=c(2,4), sigma=diag(c(1,2)), lower=c(-20,-20), upper=c(20,20))
-
-
-
 ############################################################################
