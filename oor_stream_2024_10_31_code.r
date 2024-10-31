@@ -80,6 +80,9 @@ tmp[1:5,1:5]
 persp(mu.list, sigma.list, tmp, theta=45, phi=25, shade=0.2, ticktype="detailed",
       xlab="mu", ylab="sigma", zlab="posterior plausibility")
 
+# instead of drawing this 3d surface, we can use a filled contour plot
+filled.contour(mu.list, sigma.list, tmp, color.palette=hcl.colors, xlab="mu", ylab="sigma")
+
 # compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
 
