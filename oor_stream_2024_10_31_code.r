@@ -191,10 +191,8 @@ postfun <- function(x, h)
 install.packages("cubature")
 library(cubature)
 
-postfun(160, 10, sub$height) / cubintegrate(postfun, lower=c(-Inf,0), upper=c(Inf,50), h=sub$height)
+postfun(c(160, 10), sub$height) / cubintegrate(postfun, lower=c(-Inf,0), upper=c(Inf,50), h=sub$height)$integral
 
-curve(postfun(x, w=6, n=9) / integrate(postfun, lower=0, upper=1, w=6, n=9)$value,
-      from=0, to=1, xlab="p", ylab="density", lwd=6, col="#1e59ae")
 
 
 
