@@ -88,9 +88,10 @@ filled.contour(mu.list, sigma.list, tmp, color.palette=hcl.colors, xlab="mu", yl
 # because the values we are multiplying are close to zero and the resulting
 # value cannot be distinguished from 0 (note: below we now use dat$height)
 post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i])))
+post$prod <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
 head(post)
 
-# compute the log likelihood of the data for every combination of mu and sigma in the grid
+# to get around this problem, we will compute the log likelihood values with log(prod(x)) = sum(log(x))
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
 
 exp(post$ll) * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
