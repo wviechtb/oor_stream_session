@@ -188,6 +188,12 @@ res1 <- quap(flist, data=dat)
 res1
 precis(res1, prob=0.95)
 
+# specify starting values
+
+start <- list(mu=mean(d2$height), sigma=sd(d2$height))
+res1 <- quap(flist, data=dat, start=start)
+
+
 # now we will re-implement what quap() is doing here
 
 postfun <- function(x, h) {
