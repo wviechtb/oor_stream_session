@@ -63,6 +63,14 @@ post[which.max(post$prod),]
 # note that what we are doing above is the same as what we did for the globe
 # tossing example in section 2.4.3
 
+tmp <- split(post, post$sigma)
+tmp <- sapply(tmp, function(x) x$prod)
+rownames(tmp) <- mu.list
+colnames(tmp) <- sigma.list
+tmp[1:5,1:5]
+
+persp(mu.list, sigma.list, tmp)
+
 # compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
 
