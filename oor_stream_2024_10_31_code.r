@@ -191,9 +191,10 @@ postfun <- function(x, h)
 install.packages("cubature")
 library(cubature)
 
-postfun(c(160, 10), sub$height) / cubintegrate(postfun, lower=c(-Inf,0), upper=c(Inf,50), h=sub$height)$integral
+post$probbt <- apply(post, 1, function(x) postfun(c(x[1], x[2]), sub$height) / cubintegrate(postfun, lower=c(-Inf,0), upper=c(Inf,50), h=sub$height)$integral)
+head(post)
 
-
+plot(post$probsub, post$probbt)
 
 
 ############################################################################
