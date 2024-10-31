@@ -44,8 +44,16 @@ dat <- dat[1:5,]
 # compute the product to get the joint density; however, since here we
 # consider mu and sigma as unknown, we call the resulting value a 'likelihood'
 post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i])))
+
+# then we multiple the likelihood values by the prior plausibilities for mu
+# and by the prior plausibilities of sigma (where we use a normal distribution
+# to reflect our prior knowledge about mu and a uniform distribution to
+# reflect out prior knowledge about sigma)
 post$prod <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
 
+# this then yields the posterior plausibility of a certain combination of mu
+# and sigma in our grid (i.e., in essence, except for scaling, the posterior
+# joint distribution of mu and sigma)
 
 # compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
