@@ -83,6 +83,13 @@ persp(mu.list, sigma.list, tmp, theta=45, phi=25, shade=0.2, ticktype="detailed"
 # instead of drawing this 3d surface, we can use a filled contour plot
 filled.contour(mu.list, sigma.list, tmp, color.palette=hcl.colors, xlab="mu", ylab="sigma")
 
+# why did I do all of the above based on only 5 people? because when we
+# compute the product for the likelihood, then we run into numerical problems
+# because the values we are multiplying are close to zero and the resulting
+# value cannot be distinguished from 0 (note: below we now use dat$height)
+post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i])))
+head(post)
+
 # compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
 
