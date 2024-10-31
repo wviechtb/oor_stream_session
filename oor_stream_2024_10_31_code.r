@@ -128,7 +128,9 @@ sample.rows <- sample(1:nrow(post), size=1e4, replace=TRUE, prob=post$prob)
 sample.mu <- post$mu[sample.rows]
 sample.sigma <- post$sigma[sample.rows]
 
-# scatterplot of the samples values of mu and sigma
-plot(sample.mu, sample.sigma, cex=0.5, pch=16, col=col.alpha(rangi2,0.1))
+# Figure 4.4: scatterplot of the samples values of mu and sigma (note that the
+# figure in the book looks slightly different, maybe because a finer grid was
+# used in the grid approximation)
+plot(sample.mu, sample.sigma, cex=0.5, pch=16, col=col.alpha(rangi2,0.2))
 
 ############################################################################
