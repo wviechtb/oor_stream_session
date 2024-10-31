@@ -137,8 +137,10 @@ plot(sample.mu, sample.sigma, cex=1, pch=16, col=col.alpha(rangi2,0.2))
 plot(jitter(sample.mu, amount=0.1), jitter(sample.sigma, amount=0.1), cex=0.3, pch=16, col=rangi2)
 
 # kernel density estimates of the marginal posterior distribution for mu and sigma
-plot(density(sample.mu), lwd=4, main="", col="#1e59ae")
-plot(density(sample.sigma), lwd=4, main="", col="#1e59ae")
+par(mfrow=c(1,2))
+plot(density(sample.mu), lwd=4, col="#1e59ae", main="Posterior for mu")
+plot(density(sample.sigma), lwd=4, col="#1e59ae", main="Posterior for sigma")
+par(mfrow=c(1,1))
 
 # 95% percentile interval for the sampled values of mu
 PI(sample.mu, prob=0.95)
@@ -169,10 +171,12 @@ post2$prob <- exp(post2$prod - max(post2$prod))
 sample2.rows <- sample(1:nrow(post2), size=1e4, replace=TRUE, prob=post2$prob)
 sample2.mu <- post2$mu[sample2.rows]
 sample2.sigma <- post2$sigma[sample2.rows]
-plot(density(sample2.mu), lwd=4, main="", col="#1e59ae")
+par(mfrow=c(1,2))
+plot(density(sample2.mu), lwd=4, col="#1e59ae", main="Posterior for mu")
 curve(dnorm(x, mean=mean(sample2.mu), sd=sd(sample2.mu)), lwd=2, add=TRUE, col="gray")
-plot(density(sample2.sigma), lwd=4, main="", col="#1e59ae")
+plot(density(sample2.sigma), lwd=4, col="#1e59ae", main="Posterior for sigma")
 curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE, col="gray")
+par(mfrow=c(1,1))
 
 # Overthinking: Model definition to Bayes’ theorem again
 
