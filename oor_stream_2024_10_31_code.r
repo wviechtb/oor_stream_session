@@ -99,12 +99,10 @@ head(post)
 
 # and now instead of computing likelihood * prior-mu * prior-sigma, we compute
 # log(likelihood * prior-mu * prior-sigma) = log(likelihood) + log(prior-mu) + log(prior-sigma)
-
-exp(post$ll) * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
-
 post$prod <- post$ll + dnorm(post$mu, 178, 20, log=TRUE) + dunif(post$sigma, 0, 50, log=TRUE)
+head(post)
 
-
+# in the last step, we just rescal e
 post$prob <- exp(post$prod - max(post$prod))
 
 
