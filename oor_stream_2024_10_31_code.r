@@ -23,11 +23,8 @@ library(rethinking)
 # get the Howell1 data and put it into 'dat'
 dat <- get(data(Howell1))
 
-# examine the structure of the data frame
-str(dat)
-
-# get summary statistics and mini histograms for the variables
-precis(dat)
+# back to the dataset; select from dat only those who are 18 years or older
+dat <- dat[dat$age >= 18,]
 
 # create the grid for the grid approximation
 mu.list <- seq(from=150, to=160, length.out=100)
@@ -109,5 +106,7 @@ colnames(tmp) <- sigma.list
 persp(mu.list, sigma.list, tmp, theta=25, phi=25, shade=0.2, ticktype="detailed",
       xlab="mu", ylab="sigma", zlab="posterior plausibility")
 
+# instead of drawing this 3d surface, we can use a filled contour plot
+filled.contour(mu.list, sigma.list, tmp, color.palette=hcl.colors, xlab="mu", ylab="sigma")
 
 ############################################################################
