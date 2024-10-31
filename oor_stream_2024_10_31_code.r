@@ -180,4 +180,12 @@ par(mfrow=c(1,1))
 
 ## 4.3.5: Finding the posterior distribution with quap
 
+flist <- alist(height ~ dnorm(mu, sigma),
+               mu ~ dnorm(178, 20),
+               sigma ~ dunif(0, 50))
+
+res1 <- quap(flist, data=dat)
+res1
+precis(res1, prob=0.95)
+
 ############################################################################
