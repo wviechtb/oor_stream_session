@@ -170,7 +170,9 @@ sample.rows <- sample(1:nrow(post), size=1e4, replace=TRUE, prob=post$prob)
 sample.mu <- post$mu[sample.rows]
 sample.sigma <- post$sigma[sample.rows]
 plot(density(sample.mu), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(sample.mu), sd=sd(sample.mu)), lwd=2, add=TRUE, col="gray")
 plot(density(sample.sigma), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(sample.sigma), sd=sd(sample.sigma)), lwd=2, add=TRUE, col="gray")
 
 
 ############################################################################
