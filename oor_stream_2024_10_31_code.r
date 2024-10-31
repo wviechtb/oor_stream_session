@@ -35,11 +35,11 @@ sigma.list <- seq(from=7, to=9, length.out=100)
 post <- expand.grid(mu=mu.list , sigma=sigma.list)
 head(post, 50)
 
-
+# compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
 
-
-post$prod <- post$LL + dnorm( post$mu , 178 , 20 , TRUE ) + dunif( post$sigma , 0 , 50 , TRUE ) post$prob <- exp( post$prod - max(post$prod) )
+post$prod <- post$ll + dnorm(post$mu, 178, 20, TRUE) + dunif(post$sigma, 0, 50, TRUE)
+post$prob <- exp(post$prod - max(post$prod))
 
 
 ############################################################################
