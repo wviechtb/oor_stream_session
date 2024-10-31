@@ -215,12 +215,38 @@ res2 <- optim(par=c(mean(dat$height),sd(dat$height)), postfun, method="L-BFGS-B"
 res2
 
 # -1 * the inverse of the Hessian yields the estimated variance-covariance
-# matrix of the estimates at the peak, so the square-root of the diagonal
-# elements are the SDs of the parameter estimates
+# matrix of the estimates at the peak
+-solve(res2$hessian)
+
+# so the square-root of the diagonal elements of this matrix are the SDs of
+# the parameter estimates
 sqrt(diag(-solve(res2$hessian)))
 
 # this is identical (within numerical tolerance) to what we get for the SD from quap()
 precis(res1)$sd
+
+# use a much more informative prior for mu
+
+flist <- alist(height ~ dnorm(mu, sigma),
+               mu ~ dnorm(178, 0.1),
+               sigma ~ dunif(0, 50))
+
+res3 <- quap(flist, data=dat)
+res3
+
+## 4.3.6: Sampling from a quap
+
+# with vcov(), we can obtain the variance-covariance matrix of the estimates from quap()
+vcov(res1)
+
+# note how this is essentially the same to what we obtained from the manual approach
+-solve(res2$hessian)
+
+# the diagonal elements are the variances
+diag(vcov(res1))
+
+# and we can transform the var-cov matrix into a correlation matrix
+cov2cor(vcov(res1))
 
 
 ############################################################################
