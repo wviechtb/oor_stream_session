@@ -33,7 +33,7 @@ post <- expand.grid(mu=mu.list , sigma=sigma.list)
 head(post, 10)
 
 # select the five people from the full dataset
-sub <- dat[59:64,]
+sub <- dat[41:46,]
 
 # compute the likelihood of the data for every combination of mu and sigma in
 # the grid; that is, we compute the density of the observed height values
