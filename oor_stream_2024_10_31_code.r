@@ -35,13 +35,6 @@ sigma.list <- seq(from=7, to=9, length.out=100)
 post <- expand.grid(mu=mu.list , sigma=sigma.list)
 head(post, 10)
 
-for (i in 1:500) {
-   sub <- dat[i:(i+5),]
-   if (abs(mean(sub$height) - 155) < 2 && abs(sd(sub$height) - 8) < 0.2)
-      stop()
-}
-
-
 # select the five people from the full dataset
 sub <- dat[59:64,]
 
@@ -57,7 +50,7 @@ post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(sub$height, mean=
 # to reflect our prior knowledge about mu and a uniform distribution to
 # reflect out prior knowledge about sigma)
 post$prob <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
-head(prob)
+head(post)
 
 # this then yields the posterior plausibility of a certain combination of mu
 # and sigma in our grid (i.e., in essence, except for scaling, the posterior
@@ -99,7 +92,7 @@ head(post)
 
 # and now instead of computing likelihood * prior-mu * prior-sigma, we compute
 # log(likelihood * prior-mu * prior-sigma) = log(likelihood) + log(prior-mu) + log(prior-sigma)
-post$prod <- post$ll + dnorm(post$mu, 178, 20, log=TRUE) + dunif(post$sigma, 0, 50, log=TRUE)
+post$prod <- post$ll + dnorm(post$mu, mean=178, sd=20, log=TRUE) + dunif(post$sigma, min=0, max=50, log=TRUE)
 head(post)
 
 # in the last step, we exponentiate the values to get the posterior
@@ -107,6 +100,7 @@ head(post)
 # values we are exponentiating are not quite so negative, again to avoid
 # numerical issues)
 post$prob <- exp(post$prod - max(post$prod))
+head(post)
 
 tmp <- split(post, post$sigma)
 tmp <- sapply(tmp, function(x) x$prob)
