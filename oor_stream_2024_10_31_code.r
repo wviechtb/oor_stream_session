@@ -33,7 +33,7 @@ post <- expand.grid(mu=mu.list , sigma=sigma.list)
 head(post, 10)
 
 # select the five people from the full dataset
-sub <- dat[41:46,]
+sub <- dat[41:45,]
 
 # compute the likelihood of the data for every combination of mu and sigma in
 # the grid; that is, we compute the density of the observed height values
@@ -99,6 +99,11 @@ head(post)
 post$prob <- exp(post$prod - max(post$prod))
 head(post)
 
+# determine which combination of mu and sigma in the grid is most plausible
+which.max(post$prob)
+post[which.max(post$prob),]
+
+# draw the 3-dimensional surface for the posterior plausibilities
 tmp <- split(post, post$sigma)
 tmp <- sapply(tmp, function(x) x$prob)
 rownames(tmp) <- mu.list
