@@ -122,4 +122,10 @@ image_xyz(post$mu, post$sigma, post$prob, col=hcl.colors(100))
 
 ## 4.3.4: Sampling from the posterior
 
+# sample 10,000 values from the grid in accordance with the posterior
+# plausibilities of the various combinations of mu and sigma
+sample.rows <- sample(1:nrow(post), size=1e4, replace=TRUE, prob=post$prob)
+sample.mu <- post$mu[sample.rows]
+sample.sigma <- post$sigma[sample.rows]
+
 ############################################################################
