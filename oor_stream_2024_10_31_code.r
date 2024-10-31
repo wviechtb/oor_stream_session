@@ -195,10 +195,11 @@ postfun <- function(x, h) {
    prior.mu <- dnorm(x[1], mean=178, sd=20, log=TRUE)
    prior.sigma <- dunif(x[2], min=0, max=50, log=TRUE)
    logposterior <- loglik + prior.mu + prior.sigma
+   cat("mu =", formatC(x[1], digits=3, format="f"),
+       "  sigma =", formatC(x[2], digits=3, format="f"),
+       "  logposterior =", round(logposterior, 3), "\n")
    logposterior
 }
-
-postfun(x=c(170,8), h=dat$height)
 
 # now optimize postfun() over x=c(mu,sigma) (i.e., find the peak of the posterior)
 
