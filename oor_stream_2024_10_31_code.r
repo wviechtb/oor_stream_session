@@ -184,12 +184,14 @@ par(mfrow=c(1,1))
 # theorem for this example (using again the subset of 5 people)
 
 sub <- dat[41:45,]
-likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(sub$height, mean=post$mu[i], sd=post$sigma[i])))
-postprob   <- likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
 
+postfun <- function(x, h)
+   prod(dnorm(h, mean=x[1], sd=x[2]) * dnorm(x[1], mean=178, sd=20) * dunif(x[2], min=0, max=50))
 
-postfun <- function(mu, sigma, h)
+install.packages("cubature")
+library(cubature)
 
+postfun(160, 10, sub$height) / cubintegrate(postfun, lower=c(-Inf,0), upper=c(Inf,50), h=sub$height)
 
 curve(postfun(x, w=6, n=9) / integrate(postfun, lower=0, upper=1, w=6, n=9)$value,
       from=0, to=1, xlab="p", ylab="density", lwd=6, col="#1e59ae")
