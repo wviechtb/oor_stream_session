@@ -131,6 +131,13 @@ sample.sigma <- post$sigma[sample.rows]
 # Figure 4.4: scatterplot of the samples values of mu and sigma (note that the
 # figure in the book looks slightly different, maybe because a finer grid was
 # used in the grid approximation)
-plot(sample.mu, sample.sigma, cex=0.5, pch=16, col=col.alpha(rangi2,0.2))
+plot(sample.mu, sample.sigma, cex=1, pch=16, col=col.alpha(rangi2,0.2))
+
+# we could also draw the points with some jittering
+plot(jitter(sample.mu, amount=0.1), jitter(sample.sigma, amount=0.1), cex=0.3, pch=16, col=rangi2)
+
+# kernel density estimates of the marginal posterior distribution for mu and sigma
+plot(density(sample.mu), lwd=4, main="", col="#1e59ae")
+plot(density(sample.sigma), lwd=4, main="", col="#1e59ae")
 
 ############################################################################
