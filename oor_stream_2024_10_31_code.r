@@ -174,6 +174,11 @@ curve(dnorm(x, mean=mean(sample2.mu), sd=sd(sample2.mu)), lwd=2, add=TRUE, col="
 plot(density(sample2.sigma), lwd=4, main="", col="#1e59ae")
 curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE, col="gray")
 
+# Overthinking: Model definition to Bayes’ theorem again
+
+# now we are going to jump back to page 84 and directly implement Bayes'
+# theorem for this example (using again the full dataset)
+
 
 
 
