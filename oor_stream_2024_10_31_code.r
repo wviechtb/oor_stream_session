@@ -33,17 +33,17 @@ precis(dat)
 mu.list <- seq(from=150, to=160, length.out=100)
 sigma.list <- seq(from=7, to=9, length.out=100)
 post <- expand.grid(mu=mu.list , sigma=sigma.list)
-head(post, 50)
+head(post, 10)
 
 # select the first five people from the full dataset
-dat <- dat[1:5,]
+sub <- dat[58:63,]
 
 # compute the likelihood of the data for every combination of mu and sigma in
 # the grid; that is, we compute the density of the observed height values
 # under a normal distribution for given values of mu and sigma and then
 # compute the product to get the joint density; however, since here we
 # consider mu and sigma as unknown, we call the resulting value a 'likelihood'
-post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i])))
+post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(sub$height, mean=post$mu[i], sd=post$sigma[i])))
 
 # then we multiple the likelihood values by the prior plausibilities for mu
 # and by the prior plausibilities of sigma (where we use a normal distribution
