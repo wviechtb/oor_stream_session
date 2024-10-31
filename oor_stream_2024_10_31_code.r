@@ -208,7 +208,13 @@ res2 <- optim(par=c(mean(dat$height),sd(dat$height)), postfun, method="L-BFGS-B"
               control=list(fnscale=-1), h=dat$height, hessian=TRUE)
 res2
 
+# -1 * the inverse of the Hessian yields the estimated variance-covariance
+# matrix of the estimates at the peak, so the square-root of the diagonal
+# elements are the SDs of the parameter estimates
+sqrt(diag(-solve(res2$hessian)))
 
+# this is identical (within numerical tolerance) to what we get for the SD from quap()
+precis(res1)$sd
 
 
 ############################################################################
