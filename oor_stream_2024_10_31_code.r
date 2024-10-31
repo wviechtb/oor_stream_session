@@ -114,4 +114,12 @@ persp(mu.list, sigma.list, tmp, theta=25, phi=25, shade=0.2, ticktype="detailed"
 # instead of drawing this 3d surface, we can use a filled contour plot
 filled.contour(mu.list, sigma.list, tmp, color.palette=hcl.colors, xlab="mu", ylab="sigma")
 
+# using the contour_xyz() and image_xyz() functions from the rethinking
+# package, we can avoid having to do the restructuring of the post data frame
+# as we did above for drawing the (filled) contour plot
+contour_xyz(post$mu, post$sigma, post$prob)
+image_xyz(post$mu, post$sigma, post$prob, col=hcl.colors(100))
+
+## 4.3.4: Sampling from the posterior
+
 ############################################################################
