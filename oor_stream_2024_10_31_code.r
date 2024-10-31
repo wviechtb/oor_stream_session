@@ -50,10 +50,16 @@ post$likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(dat$height, mean=
 # to reflect our prior knowledge about mu and a uniform distribution to
 # reflect out prior knowledge about sigma)
 post$prod <- post$likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
+head(post)
 
 # this then yields the posterior plausibility of a certain combination of mu
 # and sigma in our grid (i.e., in essence, except for scaling, the posterior
 # joint distribution of mu and sigma)
+
+# determine which combination of mu and sigma in the grid is most plausible
+which.max(post$prod)
+post[which.max(post$prod),]
+
 
 # compute the log likelihood of the data for every combination of mu and sigma in the grid
 post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(dat$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
