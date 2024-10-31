@@ -204,7 +204,7 @@ postfun <- function(x, h) {
 # now optimize postfun() over x=c(mu,sigma) (i.e., find the peak of the posterior)
 
 res2 <- optim(par=c(mean(dat$height),sd(dat$height)), postfun, method="L-BFGS-B",
-              lower=c(140,5), upper=c(180,10),
+              lower=c(150,5), upper=c(160,10),
               control=list(fnscale=-1), h=dat$height, hessian=TRUE)
 res2
 
