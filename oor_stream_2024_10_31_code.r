@@ -162,17 +162,19 @@ sd(sample.sigma)
 sub <- dat[sample(nrow(dat), 20),]
 mu.list <- seq(from=150, to=170, length.out=200)
 sigma.list <- seq(from=4, to=20, length.out=200)
-post <- expand.grid(mu=mu.list , sigma=sigma.list)
-post$ll <- sapply(1:nrow(post), function(i) sum(dnorm(sub$height, mean=post$mu[i], sd=post$sigma[i], log=TRUE)))
-post$prod <- post$ll + dnorm(post$mu, mean=178, sd=20, log=TRUE) + dunif(post$sigma, min=0, max=50, log=TRUE)
-post$prob <- exp(post$prod - max(post$prod))
-sample.rows <- sample(1:nrow(post), size=1e4, replace=TRUE, prob=post$prob)
-sample.mu <- post$mu[sample.rows]
-sample.sigma <- post$sigma[sample.rows]
-plot(density(sample.mu), lwd=4, main="", col="#1e59ae")
-curve(dnorm(x, mean=mean(sample.mu), sd=sd(sample.mu)), lwd=2, add=TRUE, col="gray")
-plot(density(sample.sigma), lwd=4, main="", col="#1e59ae")
-curve(dnorm(x, mean=mean(sample.sigma), sd=sd(sample.sigma)), lwd=2, add=TRUE, col="gray")
+post2 <- expand.grid(mu=mu.list , sigma=sigma.list)
+post2$ll <- sapply(1:nrow(post2), function(i) sum(dnorm(sub$height, mean=post2$mu[i], sd=post2$sigma[i], log=TRUE)))
+post2$prod <- post2$ll + dnorm(post2$mu, mean=178, sd=20, log=TRUE) + dunif(post2$sigma, min=0, max=50, log=TRUE)
+post2$prob <- exp(post2$prod - max(post2$prod))
+sample2.rows <- sample(1:nrow(post2), size=1e4, replace=TRUE, prob=post2$prob)
+sample2.mu <- post2$mu[sample2.rows]
+sample2.sigma <- post2$sigma[sample2.rows]
+plot(density(sample2.mu), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(sample2.mu), sd=sd(sample2.mu)), lwd=2, add=TRUE, col="gray")
+plot(density(sample2.sigma), lwd=4, main="", col="#1e59ae")
+curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE, col="gray")
+
+
 
 
 ############################################################################
