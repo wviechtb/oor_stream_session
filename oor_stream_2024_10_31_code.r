@@ -108,7 +108,7 @@ tmp <- split(post, post$sigma)
 tmp <- sapply(tmp, function(x) x$prob)
 rownames(tmp) <- mu.list
 colnames(tmp) <- sigma.list
-persp(mu.list, sigma.list, tmp, theta=25, phi=25, shade=0.2, ticktype="detailed",
+persp(mu.list, sigma.list, tmp, theta=45, phi=25, shade=0.2, ticktype="detailed",
       xlab="mu", ylab="sigma", zlab="posterior plausibility")
 
 # instead of drawing this 3d surface, we can use a filled contour plot
@@ -180,6 +180,9 @@ curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE,
 # theorem for this example (using again the subset of 5 people)
 
 sub <- dat[41:45,]
+likelihood <- sapply(1:nrow(post), function(i) prod(dnorm(sub$height, mean=post$mu[i], sd=post$sigma[i])))
+postprob   <- likelihood * dnorm(post$mu, mean=178, sd=20) * dunif(post$sigma, min=0, max=50)
+
 
 postfun <- function(mu, sigma, h)
 
