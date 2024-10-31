@@ -191,19 +191,20 @@ precis(res1, prob=0.95)
 # now we will re-implement what quap() is doing here
 
 postfun <- function(x, h) {
-
    loglik <- sum(dnorm(h, mean=x[1], sd=x[2]), log=TRUE)
    prior.mu <- dnorm(x[1], mean=178, sd=20, log=TRUE)
    prior.sigma <- dunif(x[2], min=0, max=50, log=TRUE)
    logposterior <- loglik + prior.mu + prior.sigma
    logposterior
-
 }
 
-# now optimize postfun() over p (i.e., find the peak of the posterior)
+postfun(x=c(170,8), h=dat$height)
 
-res2 <- optim(par=0.5, postfun, method="L-BFGS-B", lower=0.001, upper=0.999,
-              control=list(fnscale=-1), W=6, L=3, hessian=TRUE)
+# now optimize postfun() over x=c(mu,sigma) (i.e., find the peak of the posterior)
+
+res2 <- optim(par=c(mean(dat$height),sd(dat$height)), postfun, method="L-BFGS-B",
+              lower=c(140,5), upper=c(180,10),
+              control=list(fnscale=-1), h=dat$height, hessian=TRUE)
 res2
 
 
