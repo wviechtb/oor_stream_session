@@ -178,4 +178,6 @@ plot(density(sample2.sigma), lwd=4, col="#1e59ae", main="Posterior for sigma")
 curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE, col="gray")
 par(mfrow=c(1,1))
 
+## 4.3.5: Finding the posterior distribution with quap
+
 ############################################################################
