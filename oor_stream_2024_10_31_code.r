@@ -177,8 +177,15 @@ curve(dnorm(x, mean=mean(sample2.sigma), sd=sd(sample2.sigma)), lwd=2, add=TRUE,
 # Overthinking: Model definition to Bayes’ theorem again
 
 # now we are going to jump back to page 84 and directly implement Bayes'
-# theorem for this example (using again the full dataset)
+# theorem for this example (using again the subset of 5 people)
 
+sub <- dat[41:45,]
+
+postfun <- function(mu, sigma, h)
+
+
+curve(postfun(x, w=6, n=9) / integrate(postfun, lower=0, upper=1, w=6, n=9)$value,
+      from=0, to=1, xlab="p", ylab="density", lwd=6, col="#1e59ae")
 
 
 
