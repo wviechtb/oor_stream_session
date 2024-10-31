@@ -248,5 +248,11 @@ diag(vcov(res1))
 # and we can transform the var-cov matrix into a correlation matrix
 cov2cor(vcov(res1))
 
+# extract 10,000 samples from the posterior distribution of mu and sigma
+post <- extract.samples(res1, n=1e4)
+head(post)
+
+# get some summary statistics for these sampled values
+precis(post)
 
 ############################################################################
