@@ -190,9 +190,9 @@ precis(res1, prob=0.95)
 
 # specify starting values
 
-start <- list(mu=mean(d2$height), sigma=sd(d2$height))
+start <- list(mu=mean(dat$height), sigma=sd(dat$height))
 res1 <- quap(flist, data=dat, start=start)
-
+res1
 
 # now we will re-implement what quap() is doing here
 
