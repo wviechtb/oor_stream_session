@@ -145,3 +145,14 @@ cor(dat$x1, dat$x2)
 # doesn't work anymore; however, the squared correlation between the predicted
 # values and the outcome is exactly identical to R^2
 cor(pred, dat$y)^2
+
+## Difficulties in interpreting residual standard deviation and explained variance
+
+n <- 1000
+dat <- data.frame(height = round(rnorm(n, 68, 3.2)))
+dat$logweight <- 2.5 + 0.04 * dat$height + rnorm(n, mean=0, sd=0.18)
+plot(logweight ~ jitter(height), data=dat, pch=19,
+     xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
+res <- lm(logweight ~ height, data=dat)
+abline(res, lwd=5)
+sigma(res)
