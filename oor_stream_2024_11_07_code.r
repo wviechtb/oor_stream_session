@@ -286,3 +286,11 @@ abline(v=median(bayes_R2(res2)), lwd=3)
 
 # construct a 95% percentile interval for the R^2 values
 round(quantile(bayes_R2(res2), c(.025, .975)), digits=2)
+
+# compare the calculation of R^2 from lm() with an equation that allows us to
+# compute R^2 from the F-statistic of the model
+summary(res1)$r.squared
+Fval <- summary(res1)$fstatistic[[1]]
+n <- nrow(dat)
+p <- length(coef(res1))
+Fval / (Fval + (n-p)/(p-1))
