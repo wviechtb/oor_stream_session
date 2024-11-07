@@ -232,6 +232,13 @@ round(var(pred) / var(dat$y), digits=2)
 # equation (11.2) gives a value above 1, which is nonsense; while (11.1) does
 # give a reasonable value here, it ignores the uncertainty
 
-bayes_R2(res2)
+# we can use the bayes_R2() function to get the Bayesian R^2 values as
+# described in the book; note that we get 4000 of them, one for each sampled
+# value from the posterior distributions of the intercept, slope, and sigma
+head(bayes_R2(res2))
+
+# compute the median Bayesian R^2 value
 median(bayes_R2(res2))
+
+
 hist(bayes_R2(res2))
