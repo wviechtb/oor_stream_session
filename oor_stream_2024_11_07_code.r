@@ -124,10 +124,14 @@ cor(dat$x, dat$y)^2
 summary(res)$r.squared
 
 # there is actually a generalization of this idea when the model has more than
-# one predictor; let's simulate some data for this, fit the model, and compute R^2
+# one predictor; let's simulate some data for this, fit the model, and compute
+# R^2 (note: here we use n-3 since the model has three coefficients)
 dat <- data.frame(x1 = runif(n, 0, 1), x2 = rnorm(n, 0, 1))
-dat$y <- 5 + 0.1 * dat$x1 + -0.2 * dat$x2 + rnorm(n, mean=0, sd=0.5)
+dat$y <- 5 + 0.6 * dat$x1 + -0.2 * dat$x2 + rnorm(n, mean=0, sd=0.5)
 res <- lm(y ~ x1 + x2, data=dat)
 pred <- predict(res)
 resid <- dat$y - pred
-
+1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-3))
+summary(res)$r.squared
+cor(dat$x1, dat$y)^2
+cor(dat$x2, dat$y)^2
