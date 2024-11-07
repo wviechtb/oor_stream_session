@@ -32,3 +32,20 @@ head(dat)
 res <- stan_glm(kid_score ~ mom_iq + mom_hs, data=dat, refresh=0)
 res
 
+# we see that sigma is estimated to be around 18 (or more precisely, the
+# median value of the sampled values of the posterior distribution of sigma is
+# around 18)
+
+# compute the predicted values (based on the median intercept and median slope
+# values) and the residuals
+pred <- predict(res)
+resid <- dat$kid_score - pred
+
+# we can think of sigma as the average distance of the observations from the
+# corresponding predicted values, but this is just a rough approximation
+mean(abs(resid))
+
+# really, sigma is the square-root of the average squared distance
+sqrt(mean(resid^2))
+
+# but the latter is of course more difficult to think about
