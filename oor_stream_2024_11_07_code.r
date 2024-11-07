@@ -56,6 +56,10 @@ round(1 - var(resid) / var(dat$kid_score), digits=2)
 # we get essentially the same value when using equation (11.2)
 round(var(pred) / var(dat$kid_score), digits=2)
 
+sims <- as.data.frame(res)
+median(sims$sigma)
+sigma(res)
+
 # this doesn't really have anything to do with whether we use least squares or
 # not; in fact, even for least squares estimation, the two equations give
 # slightly different answers
@@ -64,6 +68,8 @@ pred <- predict(res)
 resid <- dat$kid_score - pred
 1 - sigma(res)^2 / var(dat$kid_score)
 var(pred) / var(dat$kid_score)
+
+1 - var(resid) / var(dat$kid_score)
 
 # but the difference is really not relevant
 
