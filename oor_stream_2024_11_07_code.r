@@ -147,9 +147,9 @@ par(mfrow=c(1,1))
 # both models have the same 'deterministic part' but sigma differs greatly
 
 # compute R^2 for dat1
-pred <- predict(res)
-resid <- dat1$y - pred
-R2all <- 1 - sigma(res1)^2 / (var(dat1$logweight) * (n-1)/(n-2))
+pred <- predict(res1)
+resid <- dat1$logweight - pred
+R2all <- 1 - var(resid) / var(dat1$logweight)
 R2all
 
 # fit the model to dat1, but restricted to data where height is between 65 and 70
@@ -157,8 +157,8 @@ sub <- subset(dat1, height >= 65 & height <= 70)
 res3 <- lm(logweight ~ height, data=sub)
 
 # compute R^2 for this model
-pred <- predict(res)
-resid <- sub$y - pred
+pred <- predict(res3)
+resid <- sub$logweight - pred
 R2sub <- 1 - sigma(res3)^2 / (var(sub$logweight) * (n-1)/(n-2))
 R2sub
 
@@ -179,7 +179,6 @@ text(77, 6.2, bquote(R^2 ==.(round(R2sub,2))))
 par(mfrow=c(1,1))
 
 ## Bayesian R^2
-
 
 # load the rstanarm package
 library(rstanarm)
