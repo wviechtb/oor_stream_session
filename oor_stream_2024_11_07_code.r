@@ -314,10 +314,18 @@ round(ncp.hi / (ncp.hi + p-1 + n-p + 1), digits=2)
 # this yields the same interval as we obtained earlier using the Bayesian
 # approach
 
+# we can even use this to draw an entire distribution for the non-centrality
+# parameter, by simply computing the density of an F-distribution for the
+# observed value of the F-statistic with varying non-centrality parameter
+# values and then converting these values to R^2 values (note: since this
+# isn't a proper pdf, the area under that curve is not 1, but we can rescale
+# the densities so that the area is 1)
 ncps <- seq(30, 300, length=1000)
 denFval <- sapply(ncps, function(ncp) df(Fval, df1=2, df2=431, ncp=ncp))
 R2s <- ncps / (ncps + p-1 + n-p + 1)
 
+trapezoid <- function(x,y) sum(diff(x)*(y[-1]+y[-length(y)]))/2
+trapezoid(R2s, denFval)
 
 hist(bayes_R2(res2), main="", breaks=30, xlab="Bayesian R^2", freq=FALSE)
-lines(R2s, 380 * denFval, type="l", lwd=5)
+lines(R2s, denFval/trapezoid(R2s, denFval), type="l", lwd=5)
