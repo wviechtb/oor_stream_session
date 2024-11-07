@@ -152,22 +152,29 @@ cor(pred, dat$y)^2
 
 par(mfrow=c(1,2))
 
-dat <- data.frame(height = round(rnorm(n, 68, 3.2)))
-dat$logweight <- 2.5 + 0.04 * dat$height + rnorm(n, mean=0, sd=0.17)
-plot(logweight ~ jitter(height), data=dat, pch=19, cex=0.5,
+dat1 <- data.frame(height = round(rnorm(n, 68, 3.2)))
+dat1$logweight <- 2.5 + 0.04 * dat1$height + rnorm(n, mean=0, sd=0.17)
+plot(logweight ~ jitter(height), data=dat1, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
-res <- lm(logweight ~ height, data=dat)
-abline(res, lwd=5)
-sigma(res)
-text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res),2))), cex=1)
+res1 <- lm(logweight ~ height, data=dat1)
+abline(res1, lwd=5)
+sigma(res1)
+text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res1),2))), cex=1)
 
-dat <- data.frame(height = round(rnorm(n, 68, 3.2)))
-dat$logweight <- 2.5 + 0.04 * dat$height + rnorm(n, mean=0, sd=0.32)
-plot(logweight ~ jitter(height), data=dat, pch=19, cex=0.5,
+dat2 <- data.frame(height = round(rnorm(n, 68, 3.2)))
+dat2$logweight <- 2.5 + 0.04 * dat2$height + rnorm(n, mean=0, sd=0.32)
+plot(logweight ~ jitter(height), data=dat2, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
-res <- lm(logweight ~ height, data=dat)
-abline(res, lwd=5)
-sigma(res)
-text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res),2))), cex=1)
+res2 <- lm(logweight ~ height, data=dat2)
+abline(res2, lwd=5)
+sigma(res2)
+text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res2),2))), cex=1)
 
 par(mfrow=c(2,2))
+
+# both models have the same 'deterministic part' but sigma differs greatly
+
+# compute R^2 for dat1
+pred <- predict(res)
+resid <- dat$y - pred
+1 - sigma(res1)^2 / (var(dat1$y) * (n-1)/(n-2))
