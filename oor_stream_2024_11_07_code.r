@@ -240,5 +240,8 @@ head(bayes_R2(res2))
 # compute the median Bayesian R^2 value
 median(bayes_R2(res2))
 
+# get the predicted values for each sampled intercept and slope pair
+pred <- posterior_predict(res2)
+pred[1:10,]
 
 hist(bayes_R2(res2))
