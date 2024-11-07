@@ -148,11 +148,26 @@ cor(pred, dat$y)^2
 
 ## Difficulties in interpreting residual standard deviation and explained variance
 
-n <- 1000
+# Figure 11.15 (two simulated datasets for height and log(weight))
+
+par(mfrow=c(1,2))
+
 dat <- data.frame(height = round(rnorm(n, 68, 3.2)))
-dat$logweight <- 2.5 + 0.04 * dat$height + rnorm(n, mean=0, sd=0.18)
-plot(logweight ~ jitter(height), data=dat, pch=19,
+dat$logweight <- 2.5 + 0.04 * dat$height + rnorm(n, mean=0, sd=0.17)
+plot(logweight ~ jitter(height), data=dat, pch=19, cex=0.5,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
 res <- lm(logweight ~ height, data=dat)
 abline(res, lwd=5)
 sigma(res)
+text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res),2))), cex=1)
+
+dat <- data.frame(height = round(rnorm(n, 68, 3.2)))
+dat$logweight <- 2.5 + 0.04 * dat$height + rnorm(n, mean=0, sd=0.32)
+plot(logweight ~ jitter(height), data=dat, pch=19, cex=0.5,
+     xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
+res <- lm(logweight ~ height, data=dat)
+abline(res, lwd=5)
+sigma(res)
+text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res),2))), cex=1)
+
+par(mfrow=c(2,2))
