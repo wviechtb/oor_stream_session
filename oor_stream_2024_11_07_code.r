@@ -314,8 +314,10 @@ round(ncp.hi / (ncp.hi + p-1 + n-p + 1), digits=2)
 # this yields the same interval as we obtained earlier using the Bayesian
 # approach
 
-ncps <- seq(50, 200, length=1000)
+ncps <- seq(30, 300, length=1000)
 denFval <- sapply(ncps, function(ncp) df(Fval, df1=2, df2=431, ncp=ncp))
+R2s <- ncps / (ncps + p-1 + n-p + 1)
+
 
 hist(bayes_R2(res2), main="", breaks=30, xlab="Bayesian R^2", freq=FALSE)
-plot(ncps / (ncps + p-1 + n-p + 1), denFval, type="l", lwd=5)
+lines(R2s, 380 * denFval, type="l", lwd=5)
