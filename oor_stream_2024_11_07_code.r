@@ -313,3 +313,4 @@ round(ncp.hi / (ncp.hi + p-1 + n-p + 1), digits=2)
 
 # this yields the same interval as we obtained earlier using the Bayesian
 # approach
+
