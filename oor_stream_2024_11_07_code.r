@@ -249,7 +249,7 @@ pred <- t(apply(sims, 1, function(b) b[1] + b[2] * dat$x))
 pred[1:10,]
 
 # we can do the same with posterior_predict()
-pred <- posterior_linpred(res2)
+pred <- posterior_epred(res2)
 dimnames(pred) <- NULL
 pred[1:10,]
 
