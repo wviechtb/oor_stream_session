@@ -123,4 +123,11 @@ cor(dat$x, dat$y)^2
 # and this also matches the R^2 value that lm() reports
 summary(res)$r.squared
 
+# there is actually a generalization of this idea when the model has more than
+# one predictor; let's simulate some data for this, fit the model, and compute R^2
+dat <- data.frame(x1 = runif(n, 0, 1), x2 = rnorm(n, 0, 1))
+dat$y <- 5 + 0.1 * dat$x1 + -0.2 * dat$x2 + rnorm(n, mean=0, sd=0.5)
+res <- lm(y ~ x1 + x2, data=dat)
+pred <- predict(res)
+resid <- dat$y - pred
 
