@@ -176,13 +176,25 @@ par(mfrow=c(2,2))
 
 # compute R^2 for dat1
 pred <- predict(res)
-resid <- dat$y - pred
-1 - sigma(res1)^2 / (var(dat1$logweight) * (n-1)/(n-2))
+resid <- dat1$y - pred
+R2all <- 1 - sigma(res1)^2 / (var(dat1$logweight) * (n-1)/(n-2))
+R2all
 
 # fit the model to dat1, but restricted to data where height is between 65 and 70
-res1 <- lm(logweight ~ height, data=dat1, subset=height >= 65 & height <= 70)
+sub <- subset(dat1, height >= 65 & height <= 70)
+res1 <- lm(logweight ~ height, data=sub)
 
 # compute R^2 for this model
 pred <- predict(res)
-resid <- dat$y - pred
-1 - sigma(res1)^2 / (var(dat1$logweight) * (n-1)/(n-2))
+resid <- sub$y - pred
+R2sub <- 1 - sigma(res1)^2 / (var(sub$logweight) * (n-1)/(n-2))
+R2sub
+
+# Figure 11.16
+
+par(mfrow=c(1,2))
+
+plot(logweight ~ jitter(height), data=dat1, pch=19, cex=0.4,
+     xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
+res1 <- lm(logweight ~ height, data=dat1)
+abline(res1, lwd=5)
