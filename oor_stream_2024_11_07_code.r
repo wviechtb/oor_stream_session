@@ -107,4 +107,9 @@ round(1 - sigma(res)^2 / var(dat$y), digits=2)
 # principle, the two R^2 values could differ, but the point here is that R^2
 # is not affect by the scaling of the variables
 
-
+# fit the model with least squares and get R^2
+res <- lm(y ~ x, data=dat)
+pred <- predict(res)
+resid <- dat$y - pred
+1 - sigma(res)^2 / var(dat$y)
+cor(dat$x, dat$y)^2
