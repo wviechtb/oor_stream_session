@@ -260,15 +260,23 @@ R2 <- apply(pred, 1, var) / (apply(pred, 1, var) + sims$sigma^2)
 head(R2)
 head(bayes_R2(res2))
 
+median(R2)
+mean(R2)
+sd(R2)
+
 # now let's go back to the kidiq dataset
 
 # read in the data and inspect the first 6 rows
 dat <- read.csv("kidiq.csv")
 head(dat)
 
-# fit a linear regression model predicting the kids' test score from the
-# moms' IQ and whether the mom graduated from high-school or not
-res <- lm(kid_score ~ mom_iq + mom_hs, data=dat)
-summary(res)
+# least-squares fit
+res1 <- lm(kid_score ~ mom_iq + mom_hs, data=dat)
+summary(res1)
+
+# Bayesian fit
+res2 <- stan_glm(kid_score ~ mom_iq + mom_hs, data=dat, refresh=0)
+res2
 
 
+mean(bayes_R2(res2)
