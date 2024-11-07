@@ -107,10 +107,20 @@ round(1 - sigma(res)^2 / var(dat$y), digits=2)
 # principle, the two R^2 values could differ, but the point here is that R^2
 # is not affect by the scaling of the variables
 
-# fit the model with least squares and get R^2
+# fit the model with least squares and get R^2 and compute the squared
+# correlation between x and y
 res <- lm(y ~ x, data=dat)
 pred <- predict(res)
 resid <- dat$y - pred
-1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-2))
+1 - sigma(res)^2 / var(dat$y)
 cor(dat$x, dat$y)^2
+
+# note that these two are almost identical, but not exactly; but if we compute
+# the variance of the observed data with n-2 in the denominator (which is also
+# what is used for computing sigma), then the two are exactly identical
+1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-2))
+
+# and this also matches the R^2 value that lm() reports
 summary(res)$r.squared
+
+
