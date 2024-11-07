@@ -254,10 +254,21 @@ dimnames(pred) <- NULL
 pred[1:10,]
 
 # compute the Bayesian R^2 values based on equation (11.5)
-R2 <- apply(pred, 1, var) / (apply(pred, 1, var) + sims$sigma)
+R2 <- apply(pred, 1, var) / (apply(pred, 1, var) + sims$sigma^2)
 
+# compare these values with those from bayes_R2() -- they are the same!
 head(R2)
 head(bayes_R2(res2))
 
-median(R2)
-median(bayes_R2(res2))
+# now let's go back to the kidiq dataset
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("kidiq.csv")
+head(dat)
+
+# fit a linear regression model predicting the kids' test score from the
+# moms' IQ and whether the mom graduated from high-school or not
+res <- lm(kid_score ~ mom_iq + mom_hs, data=dat)
+summary(res)
+
+
