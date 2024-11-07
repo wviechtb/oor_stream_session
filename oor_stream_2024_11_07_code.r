@@ -94,3 +94,17 @@ abline(res, lwd=5)
 pred <- predict(res)
 resid <- dat$y - pred
 round(1 - sigma(res)^2 / var(dat$y), digits=2)
+
+# multiply x and y by some constant; R^2 does not change
+dat$x <- dat$x * 4
+dat$y <- dat$y * 0.5
+res <- stan_glm(y ~ x, data=dat, refresh=0)
+pred <- predict(res)
+resid <- dat$y - pred
+round(1 - sigma(res)^2 / var(dat$y), digits=2)
+
+# note: there is some randomness when we fit the model with stan_glm(), so in
+# principle, the two R^2 values could differ, but the point here is that R^2
+# is not affect by the scaling of the variables
+
+
