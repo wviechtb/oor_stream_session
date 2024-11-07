@@ -27,11 +27,8 @@ if (!file.exists("kidiq.csv")) download.file("https://raw.githubusercontent.com/
 dat <- read.csv("kidiq.csv")
 head(dat)
 
-# fit a linear regression model predicting the kids' test score from the moms' IQ
-res <- stan_glm(kid_score ~ mom_iq, data=dat, refresh=0)
-res
-
-# add mom_hs (0/1 for whether a mom completed high-school) as a predictor
-res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
+# fit a linear regression model predicting the kids' test score from the
+# moms' IQ and whether the mom graduated from high-school or not
+res <- stan_glm(kid_score ~ mom_iq + mom_hs, data=dat, refresh=0)
 res
 
