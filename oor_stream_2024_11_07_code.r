@@ -150,7 +150,7 @@ cor(pred, dat$y)^2
 
 # Figure 11.15 (two simulated datasets for height and log(weight))
 
-par(mfrow=c(1,2))
+par(mfrow=c(1,2), mar=c(5,4,2,2))
 
 dat1 <- data.frame(height = round(rnorm(n, 68, 3.2)))
 dat1$logweight <- 2.5 + 0.04 * dat1$height + rnorm(n, mean=0, sd=0.17)
@@ -192,16 +192,16 @@ R2sub
 
 # Figure 11.16
 
-par(mfrow=c(1,2))
+par(mfrow=c(1,2), mar=c(5,4,2,2))
 
 plot(logweight ~ jitter(height), data=dat1, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
 abline(res1, lwd=5)
-text(78, 6, bquote(R^2 ==.(round(R2all,2))))
+text(78, 6.2, bquote(R^2 ==.(round(R2all,2))))
 
 plot(logweight ~ jitter(height), data=sub, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
 abline(res3, lwd=5)
-text(78, 6, bquote(R^2 ==.(round(R2sub,2))))
+text(78, 6.2, bquote(R^2 ==.(round(R2sub,2))))
 
 par(mfrow=c(1,1))
