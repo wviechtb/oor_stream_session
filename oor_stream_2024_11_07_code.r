@@ -280,5 +280,9 @@ summary(res1)
 res2 <- stan_glm(kid_score ~ mom_iq + mom_hs, data=dat, refresh=0)
 res2
 
+# Figure 11.18: posterior distribution of the Bayesian R^2 values
+hist(bayes_R2(res2), main="", breaks=30, xlab="Bayesian R^2", ylab="", yaxt="n")
+abline(v=median(bayes_R2(res2)), lwd=3)
 
-mean(bayes_R2(res2)
+# construct a 95% percentile interval for the R^2 values
+round(quantile(bayes_R2(res2), c(.025, .975)), digits=2)
