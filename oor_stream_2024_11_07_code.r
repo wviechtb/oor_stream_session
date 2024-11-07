@@ -331,3 +331,4 @@ denFval <- denFval / trapezoid(R2s, denFval)
 hist(bayes_R2(res2), main="", breaks=30, xlab="Bayesian R^2", freq=FALSE)
 lines(R2s, denFval, type="l", lwd=5)
 
+############################################################################
