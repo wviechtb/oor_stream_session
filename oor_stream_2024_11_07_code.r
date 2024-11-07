@@ -260,9 +260,11 @@ R2 <- apply(pred, 1, var) / (apply(pred, 1, var) + sims$sigma^2)
 head(R2)
 head(bayes_R2(res2))
 
-median(R2)
-mean(R2)
-sd(R2)
+# median, mean, and SD of the R^2 values (note: due to the randomness of the
+# Bayesian fit, these differ somewhat from what is reported in the book)
+round(median(R2), digits=2)
+round(mean(R2), digits=2)
+round(sd(R2), digits=2)
 
 # now let's go back to the kidiq dataset
 
