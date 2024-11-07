@@ -177,4 +177,12 @@ par(mfrow=c(2,2))
 # compute R^2 for dat1
 pred <- predict(res)
 resid <- dat$y - pred
-1 - sigma(res1)^2 / (var(dat1$y) * (n-1)/(n-2))
+1 - sigma(res1)^2 / (var(dat1$logweight) * (n-1)/(n-2))
+
+# fit the model to dat1, but restricted to data where height is between 65 and 70
+res1 <- lm(logweight ~ height, data=dat1, subset=height >= 65 & height <= 70)
+
+# compute R^2 for this model
+pred <- predict(res)
+resid <- dat$y - pred
+1 - sigma(res1)^2 / (var(dat1$logweight) * (n-1)/(n-2))
