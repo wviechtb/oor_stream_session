@@ -182,14 +182,14 @@ par(mfrow=c(1,1))
 
 # Figure 11.17: plot of the toy dataset
 dat <- data.frame(x = 1:5 - 3, y = c(1.7, 2.6, 2.5, 4.4, 3.8) - 3)
-plot(y ~ x, data=dat, pch=19, xlim=c(-2,2), ylim=c(-2,2), pch=0.8)
+plot(y ~ x, data=dat, pch=19, xlim=c(-2,2), ylim=c(-2,2), cex=0.8, bty="l")
 
 # add the least squared fit
 res1 <- lm(y ~ x, data=dat)
 abline(res1, lwd=3, col="dodgerblue")
 
 # compute R^2
-pred <- predict(res)
+pred <- predict(res1)
 resid <- dat$y - pred
 round(1 - var(resid) / var(dat$y), digits=2)
 
@@ -197,7 +197,22 @@ round(1 - var(resid) / var(dat$y), digits=2)
 library(rstanarm)
 
 # Bayes fit with strong priors as described in the book
-res2 <- stan_glm(y ~ x, data=dat, refresh=0)
+res2 <- stan_glm(y ~ x, data=dat, refresh=0,
+                 prior_intercept=normal(0, 0.2),
+                 prior=normal(1, 0.2))
+res2
+
+# add the prior regression line to the plot
+abline(a=0, b=1, lty="dashed", lwd=3)
+
+# add the regression line based on the Bayes fit
+abline(res2, lwd=3, col="firebrick")
+
+# add a legend
+legend("topleft", inset=0.02, lty=c("solid","solid","dashed"),
+       col=c("dodgerblue","firebrick","black"), lwd=3, bty="n",
+       legend=c("Least-squares fit", "Posterior mean fit", "Prior regression line"))
+
 pred <- predict(res2)
 resid <- dat$y - pred
 round(1 - var(resid) / var(dat$y), digits=2)
