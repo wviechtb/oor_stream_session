@@ -218,6 +218,14 @@ legend("topleft", inset=0.02, lty=c("solid","solid","dashed"),
 # fit is maybe not 100% accurate, but the difference between the mean and
 # median will be very small here
 
+# compute the predicted values and the residuals (note: the predicted values
+# are computed based on the median intercept and median slope)
 pred <- predict(res2)
 resid <- dat$y - pred
+
+# compute R^2 based on equation (11.1)
 round(1 - var(resid) / var(dat$y), digits=2)
+
+# we get the same value when using equation (11.2)
+round(var(pred) / var(dat$y), digits=2)
+
