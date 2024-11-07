@@ -159,7 +159,7 @@ plot(logweight ~ jitter(height), data=dat1, pch=19, cex=0.4,
 res1 <- lm(logweight ~ height, data=dat1)
 abline(res1, lwd=5)
 sigma(res1)
-text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res1),2))), cex=1)
+text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res1),2))))
 
 dat2 <- data.frame(height = round(rnorm(n, 68, 3.2)))
 dat2$logweight <- 2.5 + 0.04 * dat2$height + rnorm(n, mean=0, sd=0.32)
@@ -168,9 +168,9 @@ plot(logweight ~ jitter(height), data=dat2, pch=19, cex=0.4,
 res2 <- lm(logweight ~ height, data=dat2)
 abline(res2, lwd=5)
 sigma(res2)
-text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res2),2))), cex=1)
+text(78, 4.2, bquote(hat(sigma)==.(round(sigma(res2),2))))
 
-par(mfrow=c(2,2))
+par(mfrow=c(1,1))
 
 # both models have the same 'deterministic part' but sigma differs greatly
 
@@ -182,12 +182,12 @@ R2all
 
 # fit the model to dat1, but restricted to data where height is between 65 and 70
 sub <- subset(dat1, height >= 65 & height <= 70)
-res1 <- lm(logweight ~ height, data=sub)
+res3 <- lm(logweight ~ height, data=sub)
 
 # compute R^2 for this model
 pred <- predict(res)
 resid <- sub$y - pred
-R2sub <- 1 - sigma(res1)^2 / (var(sub$logweight) * (n-1)/(n-2))
+R2sub <- 1 - sigma(res3)^2 / (var(sub$logweight) * (n-1)/(n-2))
 R2sub
 
 # Figure 11.16
@@ -196,5 +196,12 @@ par(mfrow=c(1,2))
 
 plot(logweight ~ jitter(height), data=dat1, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
-res1 <- lm(logweight ~ height, data=dat1)
 abline(res1, lwd=5)
+text(78, 6, bquote(R^2 ==.(round(R2all,2))))
+
+plot(logweight ~ jitter(height), data=sub, pch=19, cex=0.4,
+     xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
+abline(res3, lwd=5)
+text(78, 6, bquote(R^2 ==.(round(R2sub,2))))
+
+par(mfrow=c(1,1))
