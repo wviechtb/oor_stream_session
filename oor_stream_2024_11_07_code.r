@@ -67,16 +67,30 @@ var(pred) / var(dat$kid_score)
 
 # but the difference is really not relevant
 
-# simulate from data for the model y = beta0 + beta1 * x + error when beta1 is
+# simulate data for the model y = beta0 + beta1 * x + error when beta1 is
 # around 0, fit the corresponding model, and calculate R^2
 
 set.seed(1234)
 n <- 1000
-x <- runif(n, 0, 1)
-y <- 5 + 0.002 * x + rnorm(n, mean=0, sd=0.5)
+dat <- data.frame(x = runif(n, 0, 1))
+dat$y <- 5 + 0.002 * dat$x + rnorm(n, mean=0, sd=0.5)
 plot(x, y, pch=19, cex=0.5)
-res <- stan_glm(y ~ x, refresh=0)
+res <- stan_glm(y ~ x, data=dat, refresh=0)
 abline(res, lwd=5)
 pred <- predict(res)
-resid <- dat$kid_score - pred
-round(1 - sigma(res)^2 / var(dat$kid_score), digits=2)
+resid <- dat$y - pred
+round(1 - sigma(res)^2 / var(dat$y), digits=2)
+
+# simulate data for the model y = beta0 + beta1 * x + error when beta1 is
+# not 0 and sigma is very small, fit the corresponding model, and calculate R^2
+
+set.seed(1234)
+n <- 1000
+dat <- data.frame(x = runif(n, 0, 1))
+dat$y <- 5 + 0.002 * dat$x + rnorm(n, mean=0, sd=0.5)
+plot(x, y, pch=19, cex=0.5)
+res <- stan_glm(y ~ x, data=dat, refresh=0)
+abline(res, lwd=5)
+pred <- predict(res)
+resid <- dat$y - pred
+round(1 - sigma(res)^2 / var(dat$y), digits=2)
