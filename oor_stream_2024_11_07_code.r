@@ -49,3 +49,20 @@ mean(abs(resid))
 sqrt(mean(resid^2))
 
 # but the latter is of course more difficult to think about
+
+# compute R^2 based on equation (11.1)
+round(1 - sigma(res)^2 / var(dat$kid_score), digits=2)
+
+# we get essentially the same value when using equation (11.2)
+var(pred) / var(dat$kid_score)
+
+# this doesn't really have anything to do with whether we use least squares or
+# not; in fact, even for least squares estimation, the two equations give
+# slightly different answers
+res <- lm(kid_score ~ mom_iq + mom_hs, data=dat)
+pred <- predict(res)
+resid <- dat$kid_score - pred
+1 - sigma(res)^2 / var(dat$kid_score)
+var(pred) / var(dat$kid_score)
+
+# but the difference is really not relevant
