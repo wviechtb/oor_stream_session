@@ -45,25 +45,8 @@ sqrt(mean(resid^2))
 # compute R^2 based on equation (11.1)
 round(1 - var(resid) / var(dat$kid_score), digits=2)
 
-# we get essentially the same value when using equation (11.2)
+# we get the same value when using equation (11.2)
 round(var(pred) / var(dat$kid_score), digits=2)
-
-sims <- as.data.frame(res)
-median(sims$sigma)
-sigma(res)
-
-# this doesn't really have anything to do with whether we use least squares or
-# not; in fact, even for least squares estimation, the two equations give
-# slightly different answers
-res <- lm(kid_score ~ mom_iq + mom_hs, data=dat)
-pred <- predict(res)
-resid <- dat$kid_score - pred
-1 - sigma(res)^2 / var(dat$kid_score)
-var(pred) / var(dat$kid_score)
-
-1 - var(resid) / var(dat$kid_score)
-
-# but the difference is really not relevant
 
 # simulate data for the model y = beta0 + beta1 * x + error when beta1 is
 # around 0, fit the corresponding model, and calculate R^2
@@ -73,11 +56,11 @@ n <- 1000
 dat <- data.frame(x = runif(n, 0, 1))
 dat$y <- 5 + 0.02 * dat$x + rnorm(n, mean=0, sd=0.5)
 plot(y ~ x, data=dat, pch=19, cex=0.5)
-res <- stan_glm(y ~ x, data=dat, refresh=0)
+res <- lm(y ~ x, data=dat)
 abline(res, lwd=5)
 pred <- predict(res)
 resid <- dat$y - pred
-round(1 - sigma(res)^2 / var(dat$y), digits=2)
+round(1 - var(resid) / var(dat$y), digits=2)
 
 # simulate data for the model y = beta0 + beta1 * x + error when beta1 is
 # not 0 and sigma is very small, fit the corresponding model, and calculate R^2
@@ -87,23 +70,19 @@ n <- 1000
 dat <- data.frame(x = runif(n, 0, 1))
 dat$y <- 5 + 0.1 * dat$x + rnorm(n, mean=0, sd=0.005)
 plot(y ~ x, data=dat, pch=19, cex=0.5)
-res <- stan_glm(y ~ x, data=dat, refresh=0)
+res <- lm(y ~ x, data=dat, refresh=0)
 abline(res, lwd=5)
 pred <- predict(res)
 resid <- dat$y - pred
-round(1 - sigma(res)^2 / var(dat$y), digits=2)
+round(1 - var(resid) / var(dat$y), digits=2)
 
 # multiply x and y by some constant; R^2 does not change
 dat$x <- dat$x * 4
 dat$y <- dat$y * 0.5
-res <- stan_glm(y ~ x, data=dat, refresh=0)
+res <- lm(y ~ x, data=dat, refresh=0)
 pred <- predict(res)
 resid <- dat$y - pred
-round(1 - sigma(res)^2 / var(dat$y), digits=2)
-
-# note: there is some randomness when we fit the model with stan_glm(), so in
-# principle, the two R^2 values could differ, but the point here is that R^2
-# is not affect by the scaling of the variables
+round(1 - var(resid) / var(dat$y), digits=2)
 
 # fit the model with least squares and get R^2 and compute the squared
 # correlation between x and y
