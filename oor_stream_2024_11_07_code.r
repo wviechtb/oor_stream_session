@@ -295,9 +295,18 @@ n <- nrow(dat)
 p <- length(coef(res1))
 Fval / (Fval + (n-p)/(p-1))
 
+# however, when we assume that H0 is false, then Fval has a non-central
+# F-distribution, which has a non-centrality parameter; using an iterative
+# root finding search, we can determine the value of the non-centrality
+# parameter so that an area of 0.025 of the F-distribution falls into the
+# lower and upper tail
 ncp.lo <- uniroot(function(ncp) pf(Fval, df1=2, df2=431, lower.tail=FALSE, ncp=ncp) - 0.025,
                   lower=1, upper=100)$root
 ncp.hi <- uniroot(function(ncp) pf(Fval, df1=2, df2=431, lower.tail=TRUE, ncp=ncp) - 0.025,
                   lower=1, upper=1000)$root
+
+# we can then convert these non-centrality parameter values into the bounds of
+# a 95% confidence interval for R^2 (for details, see: Smithson, M. (2003).
+# Confidence intervals. Sage. Section 4.3)
 round(ncp.lo / (ncp.lo + p-1 + n-p + 1), digits=2)
 round(ncp.hi / (ncp.hi + p-1 + n-p + 1), digits=2)
