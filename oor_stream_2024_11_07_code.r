@@ -111,5 +111,6 @@ round(1 - sigma(res)^2 / var(dat$y), digits=2)
 res <- lm(y ~ x, data=dat)
 pred <- predict(res)
 resid <- dat$y - pred
-1 - sigma(res)^2 / var(dat$y)
+1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-2))
 cor(dat$x, dat$y)^2
+summary(res)$r.squared
