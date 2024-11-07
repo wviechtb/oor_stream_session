@@ -229,3 +229,9 @@ round(1 - var(resid) / var(dat$y), digits=2)
 # we get the same value when using equation (11.2)
 round(var(pred) / var(dat$y), digits=2)
 
+# equation (11.2) gives a value above 1, which is nonsense; while (11.1) does
+# give a reasonable value here, it ignores the uncertainty
+
+bayes_R2(res2)
+median(bayes_R2(res2))
+hist(bayes_R2(res2))
