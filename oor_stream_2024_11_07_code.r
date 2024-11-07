@@ -133,5 +133,15 @@ pred <- predict(res)
 resid <- dat$y - pred
 1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-3))
 summary(res)$r.squared
-cor(dat$x1, dat$y)^2
-cor(dat$x2, dat$y)^2
+
+# if x1 and x2 were perfectly uncorrelated, then the sum of the squared
+# correlations of each predictor with the outcome would be identical to R^2
+cor(dat$x1, dat$y)^2 + cor(dat$x2, dat$y)^2
+
+# this actually comes quite close here, since x1 and x2 are almost uncorrelated
+cor(dat$x1, dat$x2)
+
+# however, often the predictors are much more correlated, in which case this
+# doesn't work anymore; however, the squared correlation between the predicted
+# values and the outcome is exactly identical to R^2
+cor(pred, dat$y)^2
