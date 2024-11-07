@@ -180,6 +180,24 @@ par(mfrow=c(1,1))
 
 ## Bayesian R^2
 
+# Figure 11.17: plot of the toy dataset
+dat <- data.frame(x = 1:5 - 3, y = c(1.7, 2.6, 2.5, 4.4, 3.8) - 3)
+plot(y ~ x, data=dat, pch=19, xlim=c(-2,2), ylim=c(-2,2), pch=0.8)
+
+# add the least squared fit
+res <- lm(y ~ x, data=dat)
+abline(res, lwd=3, col="dodgerblue")
+
+# compute R^2
+pred <- predict(res)
+resid <- dat$y - pred
+round(1 - var(resid) / var(dat$y), digits=2)
+
 # load the rstanarm package
 library(rstanarm)
 
+# Bayes fit with strong priors as described in the book
+res <- stan_glm(y ~ x, data=dat, refresh=0)
+pred <- predict(res)
+resid <- dat$y - pred
+round(1 - var(resid) / var(dat$y), digits=2)
