@@ -51,10 +51,10 @@ sqrt(mean(resid^2))
 # but the latter is of course more difficult to think about
 
 # compute R^2 based on equation (11.1)
-round(1 - sigma(res)^2 / var(dat$kid_score), digits=2)
+round(1 - var(resid) / var(dat$kid_score), digits=2)
 
 # we get essentially the same value when using equation (11.2)
-var(pred) / var(dat$kid_score)
+round(var(pred) / var(dat$kid_score), digits=2)
 
 # this doesn't really have anything to do with whether we use least squares or
 # not; in fact, even for least squares estimation, the two equations give
@@ -207,4 +207,5 @@ text(77, 6.2, bquote(R^2 ==.(round(R2sub,2))))
 par(mfrow=c(1,1))
 
 ## Bayesian R^2
+
 
