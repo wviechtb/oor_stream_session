@@ -205,3 +205,5 @@ abline(res3, lwd=5)
 text(77, 6.2, bquote(R^2 ==.(round(R2sub,2))))
 
 par(mfrow=c(1,1))
+
+## Bayesian R2
