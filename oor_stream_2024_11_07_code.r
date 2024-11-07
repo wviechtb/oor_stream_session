@@ -70,7 +70,7 @@ n <- 1000
 dat <- data.frame(x = runif(n, 0, 1))
 dat$y <- 5 + 0.1 * dat$x + rnorm(n, mean=0, sd=0.005)
 plot(y ~ x, data=dat, pch=19, cex=0.5)
-res <- lm(y ~ x, data=dat, refresh=0)
+res <- lm(y ~ x, data=dat)
 abline(res, lwd=5)
 pred <- predict(res)
 resid <- dat$y - pred
@@ -79,7 +79,7 @@ round(1 - var(resid) / var(dat$y), digits=2)
 # multiply x and y by some constant; R^2 does not change
 dat$x <- dat$x * 4
 dat$y <- dat$y * 0.5
-res <- lm(y ~ x, data=dat, refresh=0)
+res <- lm(y ~ x, data=dat)
 pred <- predict(res)
 resid <- dat$y - pred
 round(1 - var(resid) / var(dat$y), digits=2)
@@ -89,13 +89,8 @@ round(1 - var(resid) / var(dat$y), digits=2)
 res <- lm(y ~ x, data=dat)
 pred <- predict(res)
 resid <- dat$y - pred
-1 - sigma(res)^2 / var(dat$y)
+1 - var(resid) / var(dat$y)
 cor(dat$x, dat$y)^2
-
-# note that these two are almost identical, but not exactly; but if we compute
-# the variance of the observed data with n-2 in the denominator (which is also
-# what is used for computing sigma), then the two are exactly identical
-1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-2))
 
 # and this also matches the R^2 value that lm() reports
 summary(res)$r.squared
@@ -108,7 +103,7 @@ dat$y <- 5 + 0.6 * dat$x1 + -0.2 * dat$x2 + rnorm(n, mean=0, sd=0.5)
 res <- lm(y ~ x1 + x2, data=dat)
 pred <- predict(res)
 resid <- dat$y - pred
-1 - sigma(res)^2 / (var(dat$y) * (n-1)/(n-3))
+1 - var(resid) / var(dat$y)
 summary(res)$r.squared
 
 # if x1 and x2 were perfectly uncorrelated, then the sum of the squared
