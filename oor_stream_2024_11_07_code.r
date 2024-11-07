@@ -310,3 +310,6 @@ ncp.hi <- uniroot(function(ncp) pf(Fval, df1=2, df2=431, lower.tail=TRUE, ncp=nc
 # Confidence intervals. Sage. Section 4.3)
 round(ncp.lo / (ncp.lo + p-1 + n-p + 1), digits=2)
 round(ncp.hi / (ncp.hi + p-1 + n-p + 1), digits=2)
+
+# this yields the same interval as we obtained earlier using the Bayesian
+# approach
