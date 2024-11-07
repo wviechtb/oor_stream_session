@@ -197,11 +197,11 @@ par(mfrow=c(1,2), mar=c(5,4,2,2))
 plot(logweight ~ jitter(height), data=dat1, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
 abline(res1, lwd=5)
-text(78, 6.2, bquote(R^2 ==.(round(R2all,2))))
+text(77, 6.2, bquote(R^2 ==.(round(R2all,2))))
 
 plot(logweight ~ jitter(height), data=sub, pch=19, cex=0.4,
      xlim=c(58,81), ylim=c(4,6.3), xlab="height", ylab="log(weight)")
 abline(res3, lwd=5)
-text(78, 6.2, bquote(R^2 ==.(round(R2sub,2))))
+text(77, 6.2, bquote(R^2 ==.(round(R2sub,2))))
 
 par(mfrow=c(1,1))
