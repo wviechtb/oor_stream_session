@@ -258,3 +258,6 @@ R2 <- apply(pred, 1, var) / (apply(pred, 1, var) + sims$sigma)
 
 head(R2)
 head(bayes_R2(res2))
+
+median(R2)
+median(bayes_R2(res2))
