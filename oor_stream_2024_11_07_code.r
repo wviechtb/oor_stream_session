@@ -294,3 +294,11 @@ Fval <- summary(res1)$fstatistic[[1]]
 n <- nrow(dat)
 p <- length(coef(res1))
 Fval / (Fval + (n-p)/(p-1))
+
+u <- p-1
+v <- n-p
+ncp.lo <- uniroot(function(ncp) pf(Fval, df1=2, df2=431, lower.tail=TRUE, ncp=ncp) - 0.025,
+                  lower=1, upper=1000)
+ncp.hi <- uniroot(function(ncp) pf(Fval, df1=2, df2=431, lower.tail=FALSE, ncp=ncp) - 0.025,
+                  lower=1, upper=100)
+
