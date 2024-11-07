@@ -213,6 +213,11 @@ legend("topleft", inset=0.02, lty=c("solid","solid","dashed"),
        col=c("dodgerblue","firebrick","black"), lwd=3, bty="n",
        legend=c("Least-squares fit", "Posterior mean fit", "Prior regression line"))
 
+# note: the fitted line from the Bayesian model is actually based on the
+# *median* value of the intercept and slope, so calling it the posterior mean
+# fit is maybe not 100% accurate, but the difference between the mean and
+# median will be very small here
+
 pred <- predict(res2)
 resid <- dat$y - pred
 round(1 - var(resid) / var(dat$y), digits=2)
