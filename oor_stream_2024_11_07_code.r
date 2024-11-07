@@ -18,3 +18,5 @@ library(rstanarm)
 
 ############################################################################
 
+### 11.6: Residual standard deviation 𝜎 and explained variance R^2
+
