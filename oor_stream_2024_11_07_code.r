@@ -13,11 +13,6 @@
 
 ############################################################################
 
-# load the rstanarm package
-library(rstanarm)
-
-############################################################################
-
 ### 11.6: Residual standard deviation sigma and explained variance R^2
 
 # download the dataset (need to do this once)
@@ -29,15 +24,12 @@ head(dat)
 
 # fit a linear regression model predicting the kids' test score from the
 # moms' IQ and whether the mom graduated from high-school or not
-res <- stan_glm(kid_score ~ mom_iq + mom_hs, data=dat, refresh=0)
-res
+res <- lm(kid_score ~ mom_iq + mom_hs, data=dat)
+summary(res)
 
-# we see that sigma is estimated to be around 18 (or more precisely, the
-# median value of the sampled values of the posterior distribution of sigma is
-# around 18)
+# we see that sigma is estimated to be around 18
 
-# compute the predicted values (based on the median intercept and median slope
-# values) and the residuals
+# compute the predicted values and the residuals
 pred <- predict(res)
 resid <- dat$kid_score - pred
 
@@ -214,4 +206,7 @@ par(mfrow=c(1,1))
 
 ## Bayesian R^2
 
+
+# load the rstanarm package
+library(rstanarm)
 
