@@ -253,6 +253,8 @@ pred <- posterior_linpred(res2)
 dimnames(pred) <- NULL
 pred[1:10,]
 
+# compute the Bayesian R^2 values based on equation (11.5)
+R2 <- apply(pred, 1, var) / (apply(pred, 1, var) + sims$sigma)
 
-
-hist(bayes_R2(res2))
+head(R2)
+head(bayes_R2(res2))
