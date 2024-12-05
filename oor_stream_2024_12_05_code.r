@@ -48,4 +48,3 @@ mtext("b ~ dnorm(0,10)")
 xbar <- mean(dat$weight)
 xs <- seq(min(dat$weight), max(dat$weight))
 invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=col.alpha("black",0.2), lwd=2)))
-
