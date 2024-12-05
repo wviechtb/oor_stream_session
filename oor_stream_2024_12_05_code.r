@@ -69,17 +69,17 @@ invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar
 
 ## 4.4.2: Finding the posterior distribution
 
-res <- quap(alist(height ~ dnorm(mu, sigma),
-                  mu <- a + b*(weight - xbar),
-                  a ~ dnorm(178, 20),
-                  b ~ dlnorm(0, 1),
-                  sigma ~ dunif(0, 50)), data=dat)
-res
-precis(res, prob=0.95)
+res1 <- quap(alist(height ~ dnorm(mu, sigma),
+                   mu <- a + b*(weight - xbar),
+                   a ~ dnorm(178, 20),
+                   b ~ dlnorm(0, 1),
+                   sigma ~ dunif(0, 50)), data=dat)
+res1
+precis(res1, prob=0.95)
 
 ############################################################################
 
-post <- extract.samples(res, n=1e5)
+post <- extract.samples(res1, n=1e5)
 head(post)
 
 post$mu <- apply(post, 1, function(par) par["a"] + par["b"] * (sample(dat$weight, 1) - xbar))
@@ -88,8 +88,8 @@ hist(post$mu, breaks=50, freq=FALSE)
 curve(dnorm(x, mean=mean(post$mu), sd=sd(post$mu)), lwd=5, add=TRUE)
 
 X <- cbind(1, dat$weight - xbar)
-means <- c(X %*% coef(res)[1:2])
-vars <- X %*% vcov(res)[1:2,1:2] %*% t(X)
+means <- c(X %*% coef(res1)[1:2])
+vars <- X %*% vcov(res1)[1:2,1:2] %*% t(X)
 
 heights <- seq(min(dat$height), max(dat$height), length=1000)
 dens <- matrix(NA, nrow=nrow(dat), ncol=1000)
