@@ -250,8 +250,11 @@ height.pi[2,] <- supsmu(weight.seq, height.pi[2,])$y
 lines(weight.seq, height.pi[1,], lty="dotted")
 lines(weight.seq, height.pi[2,], lty="dotted")
 
-############################################################################
+# doing sim() manually
+post <- extract.samples(res1)
+hsimfun <- function(weight) rnorm(nrow(post), mean = post$a + post$b*(weight - xbar), sd = post$sigma)
+weight.seq <- seq(from=25, to=70, by=1)
+sim.height <- sapply(weight.seq, hsimfun)
+height.pi <- apply(sim.height, 2, function(x) quantile(x, prob=c(.025, .975)))
 
-post$height <- apply(post, 1, function(par) rnorm(1, par["a"] + par["b"] * (sample(dat$weight, 1) - xbar), sd=par["sigma"]))
-hist(post$height, breaks=50, freq=FALSE)
-hist(dat$height, breaks=30, freq=FALSE)
+############################################################################
