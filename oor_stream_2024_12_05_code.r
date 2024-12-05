@@ -40,7 +40,7 @@ n <- 100
 sim <- data.frame(a = rnorm(n, mean=178, sd=20),
                   b = rnorm(n, mean=0, sd=10))
 
-# Figure 4.5: plot the regression lines implied by these values
+# Figure 4.5 (left): plot the regression lines implied by these values
 plot(NA, xlim=range(dat$weight), ylim=c(-100,400), xlab="weight", ylab="height", bty="l")
 abline(h=0, lty=2)
 abline(h=272, lty=1)
@@ -49,6 +49,20 @@ xbar <- mean(dat$weight)
 xs <- seq(min(dat$weight), max(dat$weight))
 invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=rgb(0,0,0,0.2), lwd=2)))
 
-# simulate 10000 values from a log-normal distribution with a mean of 0 and an SD of 1
-b <- rlnorm(1e4, mean=0, sd=1)
-plot(density(b, adjust=2), xlim=c(0,5), lwd=2, bty="l")
+# simulate 1,000,000 values from a log-normal distribution with a mean of 0 and an SD of 1
+b <- rlnorm(1e6, mean=0, sd=1)
+plot(density(b, from=-0.1, to=5), lwd=2, bty="l", main="")
+
+# simulate 100 alpha and beta values based on the prior distributions
+set.seed(2971)
+sim <- data.frame(a = rnorm(n, mean=178, sd=20),
+                  b = rlnorm(n, mean=0, sd=1))
+
+# Figure 4.5 (right): plot the regression lines implied by these values
+plot(NA, xlim=range(dat$weight), ylim=c(-100,400), xlab="weight", ylab="height", bty="l")
+abline(h=0, lty=2)
+abline(h=272, lty=1)
+mtext("log(b) ~ dnorm(0,1)")
+xbar <- mean(dat$weight)
+xs <- seq(min(dat$weight), max(dat$weight))
+invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=rgb(0,0,0,0.2), lwd=2)))
