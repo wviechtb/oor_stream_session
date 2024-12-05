@@ -106,3 +106,13 @@ lines(heights, dens, lwd=5, col="red")
 
 ############################################################################
 
+# same model as above, but parameterized in such a way that we get the
+# posterior distribution of log(b)
+res2 <- quap(alist(height ~ dnorm(mu, sigma),
+                   mu <- a + exp(log_b)*(weight - xbar),
+                   a ~ dnorm(178, 20),
+                   log_b ~ dnorm(0, 1),
+                   sigma ~ dunif(0, 50)), data=dat)
+res2
+precis(res2, prob=0.95)
+
