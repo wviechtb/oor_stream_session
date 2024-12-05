@@ -63,8 +63,6 @@ plot(NA, xlim=range(dat$weight), ylim=c(-100,400), xlab="weight", ylab="height",
 abline(h=0, lty=2)
 abline(h=272, lty=1)
 mtext("log(b) ~ dnorm(0,1)")
-xbar <- mean(dat$weight)
-xs <- seq(min(dat$weight), max(dat$weight))
 invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=rgb(0,0,0,0.2), lwd=2)))
 
 ## 4.4.2: Finding the posterior distribution
@@ -88,7 +86,7 @@ hist(post$mu, breaks=50, freq=FALSE)
 
 curve(dnorm(x, mean=mean(post$mu), sd=sd(post$mu)), lwd=5, add=TRUE)
 
-X <- cbind(1, dat$weight - mean(dat$weight))
+X <- cbind(1, dat$weight - xbar)
 means <- c(X %*% coef(res1)[1:2])
 vars <- X %*% vcov(res1)[1:2,1:2] %*% t(X)
 
@@ -216,15 +214,13 @@ lines(weight.seq, mu.mean, lwd=5)
 polygon(c(weight.seq, rev(weight.seq)), c(mu.pi[1,], rev(mu.pi[2,])), col=rgb(0,0,0,0.2), border=NA)
 
 # do the same analytically
-X <- cbind(1, weight.seq - mean(dat$weight))
+X <- cbind(1, weight.seq - xbar)
 means <- c(X %*% coef(res1)[1:2])
 vars <- diag(X %*% vcov(res1)[1:2,1:2] %*% t(X))
-lines(weight.seq, means, lwd=5, col="red")
-
+lines(weight.seq, means, lwd=5, col="#1e59ae")
 pi.lb <- means - 1.96*sqrt(vars)
 pi.ub <- means + 1.96*sqrt(vars)
 polygon(c(weight.seq, rev(weight.seq)), c(pi.lb, rev(pi.ub)), col=rgb(0,0,0.2,0.2), border=NA)
-
 
 ############################################################################
 
