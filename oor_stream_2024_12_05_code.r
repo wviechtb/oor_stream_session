@@ -131,10 +131,13 @@ se(res2)["log_b"] * exp(coef(res2)["log_b"])
 
 ## 4.4.3: Interpreting the posterior distribution
 
+# 4.4.3.1: Tables of marginal distributions
+
+# table with the estimates, their SD, and 95% compatibility (credible) intervals
+precis(res1, prob=0.95)
 
 
-
-
+round( vcov( m4.3 ) , 3 )
 
 
 ############################################################################
