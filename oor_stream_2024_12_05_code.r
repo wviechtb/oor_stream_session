@@ -209,7 +209,9 @@ mu.pi   <- apply(mu, 2, function(x) quantile(x, prob=c(.025, .975)))
 # Figure 4.9: plot of the data with the line based on mu.mean and the
 # compatibility intervals added as a shaded region
 plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
-
+lines(weight.seq, mu.mean, lwd=5)
+#shade(mu.pi, weight.seq)
+polygon(c(weight.seq, rev(weight.seq)), c(mu.pi[1,], rev(mu.pi[2,])), col=rgb(0,0,0,0.2), border=NA)
 
 ############################################################################
 
