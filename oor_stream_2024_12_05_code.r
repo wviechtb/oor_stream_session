@@ -25,4 +25,26 @@ dat <- get(data(Howell1))
 dat <- dat[dat$age >= 18,]
 
 # plot the height of the individuals versus their weight
-plot(height ~ weight, data=dat, pch=21, bg="gray")
+plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
+
+# correlation between height and weight
+cor(dat$height, dat$weight)
+
+## 4.4.1: The linear model strategy
+
+# 4.4.1.3: Priors
+
+# simulate 100 alpha and beta values based on the prior distributions
+set.seed(2971)
+n <- 100
+sim <- data.frame(a = rnorm(n, mean=178, sd=20),
+                  b = rnorm(n, mean=0, sd=10))
+
+# plot the regression lines implied by these values
+plot(NA, xlim=range(dat$weight), ylim=c(-100,400), xlab="weight", ylab="height", bty="l")
+abline(h=0, lty=2)
+abline(h=272, lty=1)
+mtext("b ~ dnorm(0,10)")
+xbar <- mean(dat$weight)
+xs <- seq(min(dat$weight), max(dat$weight))
+apply(sim, 1, function(par) lines(par["a"] + par["b"] * (xs - xbar), col=col.alpha("black",0.2)))
