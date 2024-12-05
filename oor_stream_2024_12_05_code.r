@@ -70,7 +70,7 @@ invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar
 ## 4.4.2: Finding the posterior distribution
 
 model <- alist(height ~ dnorm(mu, sigma),
-               mu <- a + b*(weight - mean(weight)),
+               mu <- a + b*(weight - xbar),
                a ~ dnorm(178, 20),
                b ~ dlnorm(0, 1),
                sigma ~ dunif(0, 50))
@@ -110,7 +110,7 @@ lines(heights, dens, lwd=5, col="red")
 # same model as above, but parameterized in such a way that we get the
 # posterior distribution of log(b)
 res2 <- quap(alist(height ~ dnorm(mu, sigma),
-                   mu <- a + exp(log_b)*(weight - mean(weight)),
+                   mu <- a + exp(log_b)*(weight - xbar),
                    a ~ dnorm(178, 20),
                    log_b ~ dnorm(0, 1),
                    sigma ~ dunif(0, 50)), data=dat)
@@ -168,7 +168,8 @@ curve(a_map + b_map*(x-xbar), lwd=5, add=TRUE)
 # select the first 10 people from the dataset
 sub <- dat[1:10,]
 
-# refit the model based on this subset
+# refit the model based on this subset (note: have to recompute xbar for the subset)
+xbar <- mean(sub$weight)
 res3 <- quap(model, data=sub)
 
 # sample 20 values from the posterior
@@ -178,12 +179,13 @@ post <- extract.samples(res3, n=20)
 # weight for the subset with the 20 regression lines added based on the 20
 # sampled values of the intercept and slope
 plot(height ~ weight, data=sub, pch=21, bg="gray", bty="l")
-invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(sub$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
+invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-xbar), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
 
 # Figure 4.7 (lower right): same plot but based on the full sample
+xbar <- mean(dat$weight)
 plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
 post <- extract.samples(res1, n=20)
-invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(dat$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
+invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-xbar), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
 
 # 4.4.3.4: Plotting regression intervals and contours
 
