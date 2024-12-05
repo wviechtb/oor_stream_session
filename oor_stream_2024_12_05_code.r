@@ -74,4 +74,5 @@ res <- quap(alist(height ~ dnorm(mu, sigma),
                   a ~ dnorm(178, 20),
                   b ~ dlnorm(0, 1),
                   sigma ~ dunif(0, 50)), data=dat)
-
+res
+precis(res, prob=0.95)
