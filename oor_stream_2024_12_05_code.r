@@ -200,7 +200,15 @@ quantile(mu_at_50, prob=c(.025, .975))
 # using link(), we can do the above automatically for many different weight values
 weight.seq <- seq(from=25, to=70, by=1)
 mu <- link(res1, data=data.frame(weight=weight.seq))
-str(mu)
+dim(mu)
+
+# compute the mean and the compatibility interval for each value of weight in weight.seq
+mu.mean <- apply(mu, 2, mean)
+mu.pi   <- apply(mu, 2, function(x) quantile(x, prob=c(.025, .975)))
+
+# Figure 4.9: plot of the data with the line based on mu.mean and the
+# compatibility intervals added as a shaded region
+plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
 
 
 ############################################################################
