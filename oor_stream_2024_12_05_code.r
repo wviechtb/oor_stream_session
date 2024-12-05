@@ -80,8 +80,25 @@ precis(res, prob=0.95)
 post <- extract.samples(res, n=1e4)
 head(post)
 
-hist(apply(post, 1, function(par) par["a"] + par["b"] * (sample(dat$weight, 1) - xbar)), breaks=50)
+post$mu <- apply(post, 1, function(par) par["a"] + par["b"] * (sample(dat$weight, 1) - xbar))
+hist(post$mu, breaks=50, freq=FALSE)
+curve(dnorm(x, mean=mean(post$mu), sd=sd(post$mu)), lwd=5, add=TRUE)
 
-coef(res)
-vcov(res)
+X <- cbind(1, dat$weight - xbar)
+means <- c(X %*% coef(res)[1:2])
+vars <- X %*% vcov(res)[1:2,1:2] %*% t(X)
+
+heights <- seq(min(dat$height), max(dat$height), length=100)
+
+dens <- matrix(NA, nrow=nrow(dat), ncol=100)
+
+for (i in 1:nrow(dat)) {
+   dens[i,] <- dnorm(heights, mean=means[i], sd=sqrt(diag(vars)[i]))
+}
+
+dens <- apply(dens, 2, sum)
+trapezoid <- function(x,y) sum(diff(x)*(y[-1]+y[-length(y)]))/2
+dens <- dens / trapezoid(heights, dens)
+
+lines(heights, dens, lwd=5, col="red")
 
