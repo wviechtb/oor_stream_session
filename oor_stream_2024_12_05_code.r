@@ -116,3 +116,17 @@ res2 <- quap(alist(height ~ dnorm(mu, sigma),
 res2
 precis(res2, prob=0.95)
 
+# https://en.wikipedia.org/wiki/Delta_method
+# delta method:
+# derivative of exp(x) with respect to x is = exp(x)
+# then exp(log_b) ~ N(exp(mean-log_b), sd = sqrt(variance(log_b) * exp(mean-log_b)^2))
+
+coef(res1)["b"]
+exp(coef(res2)["log_b"])
+
+se(res1)["b"]
+se(res2)["log_b"] * exp(coef(res2)["log_b"])
+
+############################################################################
+
+## 4.4.3: Interpreting the posterior distribution
