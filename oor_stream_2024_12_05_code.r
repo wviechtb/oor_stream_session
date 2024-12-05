@@ -230,7 +230,17 @@ mu <- sapply(weight.seq, mu.link)
 mu.mean <- apply(mu, 2, mean)
 mu.pi   <- apply(mu, 2, function(x) quantile(x, prob=c(.025, .975)))
 
+# 4.4.3.5: Prediction intervals
 
+# simulate height values of individuals for the various values of weight in weight.seq
+sim.height <- sim(res1, data=list(weight=weight.seq))
+dim(sim.height)
+
+# compute 95% compatibility intervals for these height values
+height.pi <- apply(sim.height, 2, function(x) quantile(x, prob=c(.025, .975)))
+polygon(c(weight.seq, rev(weight.seq)), c(height.pi[1,], rev(height.pi[2,])), col=rgb(0,0,0,0.1), border=NA)
+
+# this is Figure 4.10
 
 ############################################################################
 
