@@ -105,6 +105,11 @@ dens <- dens / trapezoid(heights, dens)
 
 lines(heights, dens, lwd=5, col="red")
 
+# note to self: can do this in a more intuitive way by generating the normal
+# distributions for weight values from low to high and then summing up these
+# densities
+
+
 ############################################################################
 
 # same model as above, but parameterized in such a way that we get the
@@ -190,6 +195,8 @@ invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(dat$w
 # generate 10^4 sampled values of mu for individuals with weight = 50
 post <- extract.samples(res1)
 mu_at_50 <- post$a + post$b * (50 - xbar)
+
+
 
 ############################################################################
 
