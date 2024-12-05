@@ -222,6 +222,16 @@ pi.lb <- means - 1.96*sqrt(vars)
 pi.ub <- means + 1.96*sqrt(vars)
 polygon(c(weight.seq, rev(weight.seq)), c(pi.lb, rev(pi.ub)), col=rgb(0,0,0.2,0.2), border=NA)
 
+# do what link() does manually
+post <- extract.samples(res1)
+mu.link <- function(weight) post$a + post$b*(weight - xbar)
+weight.seq <- seq(from=25, to=70, by=1)
+mu <- sapply(weight.seq, mu.link)
+mu.mean <- apply(mu, 2, mean)
+mu.pi   <- apply(mu, 2, function(x) quantile(x, prob=c(.025, .975)))
+
+
+
 ############################################################################
 
 post$height <- apply(post, 1, function(par) rnorm(1, par["a"] + par["b"] * (sample(dat$weight, 1) - xbar), sd=par["sigma"]))
