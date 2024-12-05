@@ -197,6 +197,12 @@ plot(density(mu_at_50), col="#1e59ae", lwd=5, xlab="mu|weight=50", main="", bty=
 # 95% compatibility interval
 quantile(mu_at_50, prob=c(.025, .975))
 
+# using link(), we can do the above automatically for many different weight values
+weight.seq <- seq(from=25, to=70, by=1)
+mu <- link(res1, data=data.frame(weight=weight.seq))
+str(mu)
+
+
 ############################################################################
 
 post$height <- apply(post, 1, function(par) rnorm(1, par["a"] + par["b"] * (sample(dat$weight, 1) - xbar), sd=par["sigma"]))
