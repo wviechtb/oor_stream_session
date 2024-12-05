@@ -174,6 +174,9 @@ res3 <- quap(model, data=sub)
 # sample 20 values from the posterior
 post <- extract.samples(res3, n=20)
 
+# Figure 4.6: plot the height of the individuals versus their weight for the subset
+plot(height ~ weight, data=sub, pch=21, bg="gray", bty="l")
+apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(sub$weight)), col=rgb(0,0,0,0.2), add=TRUE))
 
 ############################################################################
 
