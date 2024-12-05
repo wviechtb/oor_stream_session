@@ -213,6 +213,15 @@ lines(weight.seq, mu.mean, lwd=5)
 #shade(mu.pi, weight.seq)
 polygon(c(weight.seq, rev(weight.seq)), c(mu.pi[1,], rev(mu.pi[2,])), col=rgb(0,0,0,0.2), border=NA)
 
+# do the same analytically
+X <- cbind(1, dat$weight - mean(dat$weight))
+means <- c(X %*% coef(res1)[1:2])
+vars <- X %*% vcov(res1)[1:2,1:2] %*% t(X)
+pi.lb <- means - 1.96*sqrt(vars)
+pi.ub <- means + 1.96*sqrt(vars)
+polygon(c(weight.seq, rev(weight.seq)), c(pi.lb, rev(pi.ub)), col=rgb(0,0,0.2,0.2), border=NA)
+
+
 ############################################################################
 
 post$height <- apply(post, 1, function(par) rnorm(1, par["a"] + par["b"] * (sample(dat$weight, 1) - xbar), sd=par["sigma"]))
