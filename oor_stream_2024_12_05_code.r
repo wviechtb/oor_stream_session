@@ -76,3 +76,12 @@ res <- quap(alist(height ~ dnorm(mu, sigma),
                   sigma ~ dunif(0, 50)), data=dat)
 res
 precis(res, prob=0.95)
+
+post <- extract.samples(res, n=1e4)
+head(post)
+
+hist(apply(post, 1, function(par) par["a"] + par["b"] * (sample(dat$weight, 1) - xbar)), breaks=50)
+
+coef(res)
+vcov(res)
+
