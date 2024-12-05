@@ -69,11 +69,12 @@ invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar
 
 ## 4.4.2: Finding the posterior distribution
 
-res1 <- quap(alist(height ~ dnorm(mu, sigma),
-                   mu <- a + b*(weight - xbar),
-                   a ~ dnorm(178, 20),
-                   b ~ dlnorm(0, 1),
-                   sigma ~ dunif(0, 50)), data=dat)
+model <- alist(height ~ dnorm(mu, sigma),
+               mu <- a + b*(weight - mean(weight)),
+               a ~ dnorm(178, 20),
+               b ~ dlnorm(0, 1),
+               sigma ~ dunif(0, 50))
+res1 <- quap(model, data=dat)
 res1
 precis(res1, prob=0.95)
 
@@ -87,7 +88,7 @@ hist(post$mu, breaks=50, freq=FALSE)
 
 curve(dnorm(x, mean=mean(post$mu), sd=sd(post$mu)), lwd=5, add=TRUE)
 
-X <- cbind(1, dat$weight - xbar)
+X <- cbind(1, dat$weight - mean(dat$weight))
 means <- c(X %*% coef(res1)[1:2])
 vars <- X %*% vcov(res1)[1:2,1:2] %*% t(X)
 
@@ -109,7 +110,7 @@ lines(heights, dens, lwd=5, col="red")
 # same model as above, but parameterized in such a way that we get the
 # posterior distribution of log(b)
 res2 <- quap(alist(height ~ dnorm(mu, sigma),
-                   mu <- a + exp(log_b)*(weight - xbar),
+                   mu <- a + exp(log_b)*(weight - mean(weight)),
                    a ~ dnorm(178, 20),
                    log_b ~ dnorm(0, 1),
                    sigma ~ dunif(0, 50)), data=dat)
@@ -139,9 +140,40 @@ precis(res1, prob=0.95)
 # variance-covariance matrix of the estimates
 round(vcov(res1), digits=3)
 
+# corresponding correlation matrix
+round(cov2cor(vcov(res1)), digits=3)
+
 # plot of the marginal posterior distributions based on sampled values and
 # scatterplots of these sampled values against each other
 pairs(res1)
+
+# 4.4.3.2: Plotting posterior inference against the data
+
+# Figure 4.6: plot the height of the individuals versus their weight
+plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
+
+# extract 10^4 samples from the posterior distribution
+post <- extract.samples(res1)
+head(post)
+
+# compute the mean of the intercept and slope samples
+a_map <- mean(post$a)
+b_map <- mean(post$b)
+
+# add the regression line based on these means to the plot
+curve(a_map + b_map*(x-xbar), lwd=5, add=TRUE)
+
+# 4.4.3.3: Adding uncertainty around the mean
+
+# select the first 10 people from the dataset
+sub <- dat[1:10,]
+
+# refit the model based on this subset
+res3 <- quap(model, data=sub)
+
+# sample 20 values from the posterior
+post <- extract.samples(res3, n=20)
+
 
 ############################################################################
 
