@@ -40,7 +40,7 @@ n <- 100
 sim <- data.frame(a = rnorm(n, mean=178, sd=20),
                   b = rnorm(n, mean=0, sd=10))
 
-# plot the regression lines implied by these values
+# Figure 4.5: plot the regression lines implied by these values
 plot(NA, xlim=range(dat$weight), ylim=c(-100,400), xlab="weight", ylab="height", bty="l")
 abline(h=0, lty=2)
 abline(h=272, lty=1)
@@ -48,3 +48,4 @@ mtext("b ~ dnorm(0,10)")
 xbar <- mean(dat$weight)
 xs <- seq(min(dat$weight), max(dat$weight))
 invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=col.alpha("black",0.2), lwd=2)))
+
