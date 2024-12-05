@@ -191,7 +191,11 @@ invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(dat$w
 post <- extract.samples(res1)
 mu_at_50 <- post$a + post$b * (50 - xbar)
 
+# Figure 4.8: kernel density estimate of this distribution
+plot(density(mu_at_50), col="#1e59ae", lwd=5, xlab="mu|weight=50", main="", bty="l")
 
+# 95% compatibility interval
+quantile(mu_at_50, prob=c(.025, .975))
 
 ############################################################################
 
