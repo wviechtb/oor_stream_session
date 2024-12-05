@@ -14,3 +14,15 @@
 ############################################################################
 
 ### 4.4: Linear prediction
+
+# load the rethinking package
+library(rethinking)
+
+# get the Howell1 data and put it into 'dat'
+dat <- get(data(Howell1))
+
+# select only those who are 18 years or older
+dat <- dat[dat$age >= 18,]
+
+# plot the height of the individuals versus their weight
+plot(height ~ weight, data=dat, pch=21, bg="gray")
