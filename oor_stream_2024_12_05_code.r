@@ -178,7 +178,12 @@ post <- extract.samples(res3, n=20)
 # weight for the subset with the 20 regression lines added based on the 20
 # sampled values of the intercept and slope
 plot(height ~ weight, data=sub, pch=21, bg="gray", bty="l")
-apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(sub$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE))
+invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(sub$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
+
+# Figure 4.7 (lower right): same plot but based on the full sample
+plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
+post <- extract.samples(res1, n=20)
+invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(dat$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
 
 ############################################################################
 
