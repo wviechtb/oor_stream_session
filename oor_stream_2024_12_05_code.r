@@ -47,4 +47,8 @@ abline(h=272, lty=1)
 mtext("b ~ dnorm(0,10)")
 xbar <- mean(dat$weight)
 xs <- seq(min(dat$weight), max(dat$weight))
-invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=col.alpha("black",0.2), lwd=2)))
+invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=rgb(0,0,0,0.2), lwd=2)))
+
+# simulate 10000 values from a log-normal distribution with a mean of 0 and an SD of 1
+b <- rlnorm(1e4, mean=0, sd=1)
+plot(density(b, adjust=2), xlim=c(0,5), lwd=2, bty="l")
