@@ -133,12 +133,15 @@ se(res2)["log_b"] * exp(coef(res2)["log_b"])
 
 # 4.4.3.1: Tables of marginal distributions
 
-# table with the estimates, their SD, and 95% compatibility (credible) intervals
+# table with the estimates, their SDs, and 95% compatibility (credible) intervals
 precis(res1, prob=0.95)
 
+# variance-covariance matrix of the estimates
+round(vcov(res1), digits=3)
 
-round( vcov( m4.3 ) , 3 )
-
+# plot of the marginal posterior distributions based on sampled values and
+# scatterplots of these sampled values against each other
+pairs(res1)
 
 ############################################################################
 
