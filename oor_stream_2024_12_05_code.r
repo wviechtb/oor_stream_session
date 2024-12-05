@@ -174,9 +174,11 @@ res3 <- quap(model, data=sub)
 # sample 20 values from the posterior
 post <- extract.samples(res3, n=20)
 
-# Figure 4.6: plot the height of the individuals versus their weight for the subset
+# Figure 4.7 (upper left): plot the height of the individuals versus their
+# weight for the subset with the 20 regression lines added based on the 20
+# sampled values of the intercept and slope
 plot(height ~ weight, data=sub, pch=21, bg="gray", bty="l")
-apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(sub$weight)), col=rgb(0,0,0,0.2), add=TRUE))
+apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(sub$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE))
 
 ############################################################################
 
