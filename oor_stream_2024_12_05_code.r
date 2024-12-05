@@ -66,3 +66,12 @@ mtext("log(b) ~ dnorm(0,1)")
 xbar <- mean(dat$weight)
 xs <- seq(min(dat$weight), max(dat$weight))
 invisible(apply(sim, 1, function(par) lines(xs, par["a"] + par["b"] * (xs - xbar), col=rgb(0,0,0,0.2), lwd=2)))
+
+## 4.4.2: Finding the posterior distribution
+
+res <- quap(alist(height ~ dnorm(mu, sigma),
+                  mu <- a + b*(weight - xbar),
+                  a ~ dnorm(178, 20),
+                  b ~ dlnorm(0, 1),
+                  sigma ~ dunif(0, 50)), data=dat)
+
