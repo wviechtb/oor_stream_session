@@ -185,6 +185,12 @@ plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
 post <- extract.samples(res1, n=20)
 invisible(apply(post, 1, function(par) curve(par["a"] + par["b"] * (x-mean(dat$weight)), col=rgb(0,0,0,0.2), lwd=2, add=TRUE)))
 
+# 4.4.3.4: Plotting regression intervals and contours
+
+# generate 10^4 sampled values of mu for individuals with weight = 50
+post <- extract.samples(res1)
+mu_at_50 <- post$a + post$b * (50 - xbar)
+
 ############################################################################
 
 post$height <- apply(post, 1, function(par) rnorm(1, par["a"] + par["b"] * (sample(dat$weight, 1) - xbar), sd=par["sigma"]))
