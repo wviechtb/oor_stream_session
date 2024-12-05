@@ -105,11 +105,6 @@ dens <- dens / trapezoid(heights, dens)
 
 lines(heights, dens, lwd=5, col="red")
 
-# note to self: can do this in a more intuitive way by generating the normal
-# distributions for weight values from low to high and then summing up these
-# densities
-
-
 ############################################################################
 
 # same model as above, but parameterized in such a way that we get the
