@@ -130,3 +130,15 @@ se(res2)["log_b"] * exp(coef(res2)["log_b"])
 ############################################################################
 
 ## 4.4.3: Interpreting the posterior distribution
+
+
+
+
+
+
+
+############################################################################
+
+post$height <- apply(post, 1, function(par) rnorm(1, par["a"] + par["b"] * (sample(dat$weight, 1) - xbar), sd=par["sigma"]))
+hist(post$height, breaks=50, freq=FALSE)
+hist(dat$height, breaks=30, freq=FALSE)
