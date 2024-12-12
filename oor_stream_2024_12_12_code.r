@@ -230,3 +230,5 @@ elpd.loo <- loo(res2)$pointwise[,"elpd_loo"]
 sum(elpd.all)
 sum(elpd.loo)
 
+# the difference of these two is roughly equal to the number of parameters
+sum(elpd.all) - sum(elpd.loo)
