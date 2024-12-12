@@ -246,7 +246,20 @@ loo4 <- loo(res4)
 loo_compare(loo1, loo4)
 
 # compute the leave-one-out R^2 values for the various models above
-loo_R2(res1)
-loo_R2(res2)
-loo_R2(res3)
-loo_R2(res4)
+round(median(loo_R2(res1)), digits=2)
+round(median(loo_R2(res2)), digits=2)
+round(median(loo_R2(res3)), digits=2)
+round(median(loo_R2(res4)), digits=2)
+
+## Demonstration of K-fold cross validation using simulated data
+
+# load the MASS package
+library(MASS)
+
+# simulate the data
+k <- 30
+rho <- 0.8
+Sigma <- matrix(0.8, nrow=k, ncol=k)
+diag(Sigma) <- 1
+
+X <- mvrnorm(n, rep(0,k), Sigma)
