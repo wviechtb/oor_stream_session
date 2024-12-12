@@ -38,27 +38,27 @@ pred <- posterior_predict(res1, newdata=dat.new)
 # note: pred contains 4000 predicted values for each child, based on the 4000
 # sampled values of the intercept and slope from the posterior distributions;
 # compute the mean predicted value of each child
-meanpred <- colMeans(pred)
-head(meanpred)
+mean.pred <- colMeans(pred)
+head(mean.pred)
 
 # Figure 11.19(a): plot of the mean predicted value of each child against the
 # corresponding actually observed value
-plot(meanpred, dat.new$kid_score, pch=21, bg="gray", bty="l",
+plot(mean.pred, dat.new$kid_score, pch=21, bg="gray", bty="l",
      xlab="Predicted score", ylab="Actual score", panel.first=abline(0,1,lwd=3),
      xlim=c(20,140), ylim=c(20,140))
 
 # same figure but using more natural ranges for the x- and y-axis
-plot(meanpred, dat.new$kid_score, pch=21, bg="gray", bty="l",
+plot(mean.pred, dat.new$kid_score, pch=21, bg="gray", bty="l",
      xlab="Predicted score", ylab="Actual score")
 
 # correlation between predicted and observed scores
-cor(meanpred, dat.new$kid_score)
+cor(mean.pred, dat.new$kid_score)
 
 # compute the residuals
-resid <- dat.new$kid_score - meanpred
+resid <- dat.new$kid_score - mean.pred
 
 # Figure 11.19(b): plot of the predicted values versus the residuals
-plot(meanpred, resid, pch=21, bg="gray", bty="l", xlab="Predicted score",
+plot(mean.pred, resid, pch=21, bg="gray", bty="l", xlab="Predicted score",
      ylab="Prediction error", panel.first={abline(h=0, lwd=3);
      abline(h=c(-1,1) * sd(resid), lty="dashed")})
 
@@ -128,4 +128,10 @@ lines(condpred$x*6+18, condpred$y, lwd=3, bty="l")
 sims <- as.data.frame(res.m18)
 condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
 lines(condpred$x*6+18, condpred$y, lwd=3, bty="l", lty="dashed", col="gray")
+
+
+
+
+mean.pred.all <- colMeans(pred.all)
+resid.all <- dat$y - mean.pred.all
 
