@@ -237,4 +237,5 @@ res3
 loo3 <- loo(res3)
 loo3
 
-loo_compare(res1, res3)
+# compare models 1 and 3 using loo_compare()
+loo_compare(loo1, loo3)
