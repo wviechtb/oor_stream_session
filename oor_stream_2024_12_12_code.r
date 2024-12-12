@@ -73,6 +73,7 @@ mean(dat.new$kid_score >= predint[1,] & dat.new$kid_score <= predint[2,])
 
 ## 11.8: Cross validation
 
+# simulate 20 data points base on a simple regression model
 n <- 20
 x <- 1:n
 a <- 0.2
@@ -82,5 +83,9 @@ set.seed(2141)
 y <- a + b*x + rnorm(n, mean=0, sd=sigma)
 dat <- data.frame(x, y)
 
-# Figure 11.20
+# Figure 11.20: plot of the data
 plot(y ~ x, data=dat, pch=21, bg="gray", bty="l", xlim=c(0,20), ylim=c(0,8))
+
+# fit the model to all data and to the data leaving out the 18th data point
+res_all <- stan_glm(y ~ x, data=dat, refresh=0)
+res_minus_18 <- stan_glm(y ~ x, data=dat[-18,], refresh=0)
