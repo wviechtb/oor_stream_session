@@ -83,7 +83,7 @@ set.seed(2141)
 y <- a + b*x + rnorm(n, mean=0, sd=sigma)
 dat <- data.frame(x, y)
 
-# Figure 11.20: plot of the data
+# Figure 11.20(a): plot of the data
 plot(y ~ x, data=dat, pch=21, bg="gray", bty="l", xlim=c(0,20), ylim=c(0,8))
 
 # fit the model to all data and to the data leaving out the 18th data point
@@ -116,7 +116,7 @@ lines(condpred$y, condpred$x, lwd=3, bty="l", col="firebrick")
 
 # these match up quite closely
 
-# Figure 11.20: plot of the data
+# Figure 11.20(a): plot of the data
 plot(y ~ x, data=dat, pch=21, bg="gray", bty="l", xlim=c(0,20), ylim=c(0,8))
 abline(res.all, lwd=3)
 abline(res.m18, lwd=3, lty="dashed", col="gray")
@@ -128,3 +128,4 @@ lines(condpred$x*6+18, condpred$y, lwd=3, bty="l")
 sims <- as.data.frame(res.m18)
 condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
 lines(condpred$x*6+18, condpred$y, lwd=3, bty="l", lty="dashed", col="gray")
+
