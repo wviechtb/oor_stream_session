@@ -256,10 +256,20 @@ round(median(loo_R2(res4)), digits=2)
 # load the MASS package
 library(MASS)
 
-# simulate the data
+# simulate the data as described in the book
+n <- 60
 k <- 30
 rho <- 0.8
-Sigma <- matrix(0.8, nrow=k, ncol=k)
-diag(Sigma) <- 1
+S <- matrix(0.8, nrow=k, ncol=k)
+diag(S) <- 1
+X <- mvrnorm(n, mu=rep(0,k), Sigma=S)
+b <- c(-1,1,2, rep(0,k-3))
+y <- X %*% b + rnorm(n, mean=0, sd=2)
+dat <- data.frame(X, y)
 
-X <- mvrnorm(n, rep(0,k), Sigma)
+# fit the model predicting y from all other variables in dat
+res1 <- stan_glm(y ~ ., prior=normal(0, 10), data=dat, refresh=0)
+res1
+
+
+loo_1 <- loo(fit_1)
