@@ -188,11 +188,33 @@ sum(-2 * elpd.loo)
 
 # read in the data and fit the model
 dat <- read.csv("kidiq.csv")
-res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
-res
+res1 <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
+res1
 
+# R^2 values based on the two types of residuals
+pred.all <- posterior_predict(res1)
+mean.pred.all <- colMeans(pred.all)
+resid.all <- dat$kid_score - mean.pred.all
+resid.loo <- dat$kid_score - loo_predict(res1)$value
+round(1 - var(resid.all) / var(dat$kid_score), digits=2)
+round(1 - var(resid.loo) / var(dat$kid_score), digits=2)
+
+# simulate 5 noise predictors
 noise <- replicate(5, rnorm(nrow(dat)))
-res <- stan_glm(kid_score ~ mom_hs + mom_iq + noise, data=dat, refresh=0)
+
+# for the model including these predictors
+res2 <- stan_glm(kid_score ~ mom_hs + mom_iq + noise, data=dat, refresh=0)
+res2
+
+# R^2 values based on the two types of residuals
+pred.all <- posterior_predict(res2)
+mean.pred.all <- colMeans(pred.all)
+resid.all <- dat$kid_score - mean.pred.all
+resid.loo <- dat$kid_score - loo_predict(res2)$value
+round(1 - var(resid.all) / var(dat$kid_score), digits=2)
+round(1 - var(resid.loo) / var(dat$kid_score), digits=2)
+
+
 
 
 
