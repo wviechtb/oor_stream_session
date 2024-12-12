@@ -206,9 +206,6 @@ elpd.loo <- loo(res1)$pointwise[,"elpd_loo"]
 sum(elpd.all)
 sum(elpd.loo)
 
-# the difference of these two is roughly equal to the number of parameters
-sum(elpd.all) - sum(elpd.loo)
-
 # simulate 5 noise predictors
 noise <- replicate(5, rnorm(nrow(dat)))
 
@@ -229,6 +226,3 @@ elpd.all <- colMeans(log_lik(res2))
 elpd.loo <- loo(res2)$pointwise[,"elpd_loo"]
 sum(elpd.all)
 sum(elpd.loo)
-
-# the difference of these two is roughly equal to the number of parameters
-sum(elpd.all) - sum(elpd.loo)
