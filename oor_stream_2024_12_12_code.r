@@ -184,5 +184,15 @@ sum(-2 * elpd.all) + 2*2
 # compare this to the deviance of the leave-one-out approach
 sum(-2 * elpd.loo)
 
-# Demonstration of adding pure noise predictors to a model
+## Demonstration of adding pure noise predictors to a model
+
+# read in the data and fit the model
+dat <- read.csv("kidiq.csv")
+res <- stan_glm(kid_score ~ mom_hs + mom_iq, data=dat, refresh=0)
+res
+
+noise <- replicate(5, rnorm(nrow(dat)))
+res <- stan_glm(kid_score ~ mom_hs + mom_iq + noise, data=dat, refresh=0)
+
+
 
