@@ -199,6 +199,12 @@ resid.loo <- dat$kid_score - loo_predict(res1)$value
 round(1 - var(resid.all) / var(dat$kid_score), digits=2)
 round(1 - var(resid.loo) / var(dat$kid_score), digits=2)
 
+# compute the posterior predictive log scores
+elpd.all <- colMeans(log_lik(res1))
+elpd.loo <- loo(res1)$pointwise[,"elpd_loo"]
+sum(elpd.all)
+sum(elpd.loo)
+
 # simulate 5 noise predictors
 noise <- replicate(5, rnorm(nrow(dat)))
 
