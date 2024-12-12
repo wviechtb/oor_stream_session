@@ -167,5 +167,19 @@ head(log_lik(res.all)[,1])
 pred.all <- posterior_linpred(res.all)
 head(dnorm(dat$y[1], pred.all[,1], sd=sims.all$sigma, log=TRUE))
 
-colMeans(log_lik(res.all))
-loo(res.all)$pointwise[,"elpd_loo"]
+# Figure 11.21: plot the expected log predictive density values from the model
+# fitted to all data versus the leave-one-out values
+elpd.all <- colMeans(log_lik(res.all))
+elpd.loo <- loo(res.all)$pointwise[,"elpd_loo"]
+plot(mean.pred.all, elpd.all, pch=19, bty="l",
+     xlab="Predicted Score", ylab="log predictive density", ylim=c(-3.5,-1))
+segments(mean.pred.all, elpd.all, mean.pred.all, elpd.loo)
+points(mean.pred.all, elpd.loo, pch=21)
+
+# Overfitting and AIC
+
+# compute the AIC based on the model fit to all data
+sum(-2 * elpd.all) + 2*2
+
+# compare this to the deviance of the leave-one-out approach
+sum(-2 * elpd.loo)
