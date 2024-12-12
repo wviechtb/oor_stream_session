@@ -38,20 +38,31 @@ pred <- posterior_predict(res1, newdata=dat.new)
 # note: pred contains 4000 predicted values for each child, based on the 4000
 # sampled values of the intercept and slope from the posterior distributions;
 # compute the mean predicted value of each child
-pred <- colMeans(pred)
-head(pred)
+meanpred <- colMeans(pred)
+head(meanpred)
 
-# Figure 11.19: plot of the mean predicted value of each child against the
+# Figure 11.19(a): plot of the mean predicted value of each child against the
 # corresponding actually observed value
-plot(pred, dat.new$kid_score, pch=21, bg="gray", bty="l",
+plot(meanpred, dat.new$kid_score, pch=21, bg="gray", bty="l",
      xlab="Predicted score", ylab="Actual score", panel.first=abline(0,1,lwd=3),
      xlim=c(20,140), ylim=c(20,140))
 
 # same figure but using more natural ranges for the x- and y-axis
-plot(pred, dat.new$kid_score, pch=21, bg="gray", bty="l",
+plot(meanpred, dat.new$kid_score, pch=21, bg="gray", bty="l",
      xlab="Predicted score", ylab="Actual score")
 
 # correlation between predicted and observed scores
-cor(pred, dat.new$kid_score)
+cor(meanpred, dat.new$kid_score)
+
+# compute the residuals
+resid <- dat.new$kid_score - meanpred
+
+# Figure 11.19(b): plot of the predicted values versus the residuals
+plot(meanpred, resid, pch=21, bg="gray", bty="l", xlab="Predicted score",
+     ylab="Prediction error", panel.first={abline(h=0, lwd=3);
+     abline(h=c(-1,1) * sd(resid), lty="dashed")})
+
+
+
 
 
