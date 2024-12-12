@@ -257,6 +257,7 @@ round(median(loo_R2(res4)), digits=2)
 library(MASS)
 
 # simulate the data as described in the book
+set.seed(1754)
 n <- 60
 k <- 30
 rho <- 0.8
@@ -271,5 +272,16 @@ dat <- data.frame(X, y)
 res1 <- stan_glm(y ~ ., prior=normal(0, 10), data=dat, refresh=0)
 res1
 
+# try out leave-one-out estimation, but this generates a warning
+loo1 <- loo(res1)
 
-loo_1 <- loo(fit_1)
+# do 10-fold cross-validation instead
+kfold1 <- kfold(res1, K=10)
+kfold1
+
+# fit the model with regularized horseshoe priors on the coefficients
+res2 <- update(res1, prior=hs())
+kfold2 <- kfold(res2, K=10)
+kfold2
+
+loo_compare(kfold_1, kfold_2)
