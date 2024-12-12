@@ -92,7 +92,7 @@ res.m18 <- stan_glm(y ~ x, data=dat[-18,], refresh=0)
 
 # add the regression lines from these models to the plot
 abline(res.all, lwd=3)
-abline(res.m18, lwd=3, lty="dashed")
+abline(res.m18, lwd=3, lty="dashed", col="gray")
 
 # compute predicted values for the 18th data point based on the model with all
 # data and the model where we left out the 18th data point
@@ -116,3 +116,15 @@ lines(condpred$y, condpred$x, lwd=3, bty="l", col="firebrick")
 
 # these match up quite closely
 
+# Figure 11.20: plot of the data
+plot(y ~ x, data=dat, pch=21, bg="gray", bty="l", xlim=c(0,20), ylim=c(0,8))
+abline(res.all, lwd=3)
+abline(res.m18, lwd=3, lty="dashed", col="gray")
+
+# add the predictive distribution from the model using all data points
+lines(condpred$x*6+18, condpred$y, lwd=3, bty="l")
+
+# add the predictive distribution from the model leaving out the 18th data point
+sims <- as.data.frame(res.m18)
+condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
+lines(condpred$x*6+18, condpred$y, lwd=3, bty="l", lty="dashed", col="gray")
