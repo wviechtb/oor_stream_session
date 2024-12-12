@@ -99,4 +99,19 @@ abline(res.m18, lwd=3, lty="dashed")
 pred.all <- posterior_predict(res.all, newdata=dat[18,])
 pred.m18 <- posterior_predict(res.m18, newdata=dat[18,])
 
-pred.all
+# compute the posterior predictive distribution for the 18th data point based
+# on equation (11.6)
+sims <- as.data.frame(res.all)
+condpred <- data.frame(y=seq(0,9,length.out=100))
+condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
+
+# histogram of the predicted values we obtain above
+hist(pred.all[,1], freq=FALSE, breaks=50, main="", xlab="Score")
+
+# superimpose a kernel density estimate of that distribution
+lines(density(pred.all[,1]), lwd=3, col="dodgerblue")
+
+# superimpose the posterior predictive distribution from equation (11.6)
+lines(condpred$y, condpred$x, lwd=3, bty="l", col="firebrick")
+
+# these should roughly match up
