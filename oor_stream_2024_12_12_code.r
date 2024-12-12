@@ -130,7 +130,23 @@ condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,
 lines(condpred$x*6+18, condpred$y, lwd=3, bty="l", lty="dashed", col="gray")
 
 # Figure 11.20(b)
-pred.all <- posterior_predict(res.all, newdata=dat)
+pred.all <- posterior_predict(res.all)
 mean.pred.all <- colMeans(pred.all)
 resid.all <- dat$y - mean.pred.all
-plot(mean.pred.all, resid.all, pch=19, xlab="Predicted Score", ylab="Residual")
+plot(mean.pred.all, resid.all, pch=19, xlab="Predicted Score", ylab="Residual",
+     bty="l", panel.first=abline(h=0, lty="dashed"))
+
+sims <- as.data.frame(res.all)
+apply(sims, 2, median)
+coef(res.all)
+coef(res.all)[1] + coef(res.all)[2] * 5
+
+predict(res.all, newdata=data.frame(x=5))
+mean(sims[[1]] + sims[[2]] * 5)
+
+
+predict(res.all)
+predict(res.all, newdata=data.frame(x=5))
+
+posterior_linpred(res.all)[1:10,5]
+posterior_linpred(res.all, newdata=data.frame(x=5))[1:10]
