@@ -158,8 +158,14 @@ round(1 - var(resid.loo) / var(dat$y), digits=2)
 
 # Summarizing prediction error using the log score and deviance
 
+# compute the log scores using log_lik() and show the first 6 values for the
+# first observation
 head(log_lik(res.all)[,1])
+
+# this is the same as computing the log density of the first observation using
+# the means from posterior_linpred() and the posterior samples of sigma
 pred.all <- posterior_linpred(res.all)
 head(dnorm(dat$y[1], pred.all[,1], sd=sims.all$sigma, log=TRUE))
 
-
+colMeans(log_lik(res.all))
+loo(res.all)$pointwise[,"elpd_loo"]
