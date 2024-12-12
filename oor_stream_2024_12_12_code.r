@@ -239,3 +239,8 @@ loo3
 
 # compare models 1 and 3 using loo_compare()
 loo_compare(loo1, loo3)
+
+# expand the first model with the interaction
+res4 <- stan_glm(kid_score ~ mom_hs + mom_iq + mom_hs:mom_iq, data=dat, refresh=0)
+loo4 <- loo(res4)
+loo_compare(loo3, loo4)
