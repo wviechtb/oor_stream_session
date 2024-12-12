@@ -69,6 +69,11 @@ predint[,1:5]
 # compute how often the actual score is within the predictive interval
 mean(dat.new$kid_score >= predint[1,] & dat.new$kid_score <= predint[2,])
 
+# note: posterior_predict() makes predictions for single individuals, which is
+# why the coverage is essentially 50%; if we had used posterior_linpred(),
+# then this would make predictions for the mean of individuals and then the
+# coverage would be way too low
+
 ############################################################################
 
 ## 11.8: Cross validation
