@@ -87,5 +87,16 @@ dat <- data.frame(x, y)
 plot(y ~ x, data=dat, pch=21, bg="gray", bty="l", xlim=c(0,20), ylim=c(0,8))
 
 # fit the model to all data and to the data leaving out the 18th data point
-res_all <- stan_glm(y ~ x, data=dat, refresh=0)
-res_minus_18 <- stan_glm(y ~ x, data=dat[-18,], refresh=0)
+res.all <- stan_glm(y ~ x, data=dat, refresh=0)
+res.m18 <- stan_glm(y ~ x, data=dat[-18,], refresh=0)
+
+# add the regression lines from these models to the plot
+abline(res.all, lwd=3)
+abline(res.m18, lwd=3, lty="dashed")
+
+# compute predicted values for the 18th data point based on the model with all
+# data and the model where we left out the 18th data point
+pred.all <- posterior_predict(res.all, newdata=dat[18,])
+pred.m18 <- posterior_predict(res.m18, newdata=dat[18,])
+
+pred.all
