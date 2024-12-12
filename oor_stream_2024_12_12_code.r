@@ -32,11 +32,13 @@ head(dat)
 res1 <- stan_glm(kid_score ~ mom_iq + mom_hs, data=dat, refresh=0, subset=1:98)
 
 # compute predicted values for the other children
-pred <- posterior_predict(res1, newdata=dat[-(1:98),])
+dat.new <- dat[-(1:98),]
+pred <- posterior_predict(res1, newdata=dat.new)
 
 # note: pred contains 4000 predicted values for each child, based on the 4000
 # sampled values of the intercept and slope from the posterior distributions
 
 # Figure 11.19: plot of the mean predicted value of each child against the
 # corresponding actually observed value
-colMeans(pred)
+plot(colMeans(pred), dat.new$kid_score, pch=21, bg="gray", bty="l",
+     xlab="Predicted score", ylab="Actual score", panel.first=abline(0,1,lwd=3))
