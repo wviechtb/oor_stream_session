@@ -114,4 +114,5 @@ lines(density(pred.all[,1]), lwd=3, col="dodgerblue")
 # superimpose the posterior predictive distribution from equation (11.6)
 lines(condpred$y, condpred$x, lwd=3, bty="l", col="firebrick")
 
-# these should roughly match up
+# these match up quite closely
+
