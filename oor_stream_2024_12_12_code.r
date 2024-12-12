@@ -62,7 +62,10 @@ plot(meanpred, resid, pch=21, bg="gray", bty="l", xlab="Predicted score",
      ylab="Prediction error", panel.first={abline(h=0, lwd=3);
      abline(h=c(-1,1) * sd(resid), lty="dashed")})
 
+# compute 50% predictive intervals for each child
+predint <- apply(pred, 2, function(x) quantile(x, prob=c(.25, .75)))
+predint[,1:5]
 
-
-
+# compute how often the actual score is within the predictive interval
+mean(dat.new$kid_score >= predint[1,] & dat.new$kid_score <= predint[2,])
 
