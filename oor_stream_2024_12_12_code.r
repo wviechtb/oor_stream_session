@@ -129,9 +129,8 @@ sims <- as.data.frame(res.m18)
 condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
 lines(condpred$x*6+18, condpred$y, lwd=3, bty="l", lty="dashed", col="gray")
 
-
-
-
+# Figure 11.20(b)
+pred.all <- posterior_predict(res.all, newdata=dat)
 mean.pred.all <- colMeans(pred.all)
 resid.all <- dat$y - mean.pred.all
-
+plot(mean.pred.all, resid.all, pch=19, xlab="Predicted Score", ylab="Residual")
