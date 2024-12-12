@@ -205,11 +205,13 @@ elpd.all <- colMeans(log_lik(res1))
 elpd.loo <- loo(res1)$pointwise[,"elpd_loo"]
 sum(elpd.all)
 sum(elpd.loo)
+loo1 <- loo(res1)
+loo1
 
 # simulate 5 noise predictors
 noise <- replicate(5, rnorm(nrow(dat)))
 
-# for the model including these predictors
+# for the model including these additional predictors
 res2 <- stan_glm(kid_score ~ mom_hs + mom_iq + noise, data=dat, refresh=0)
 res2
 
@@ -226,3 +228,13 @@ elpd.all <- colMeans(log_lik(res2))
 elpd.loo <- loo(res2)$pointwise[,"elpd_loo"]
 sum(elpd.all)
 sum(elpd.loo)
+loo2 <- loo(res2)
+loo2
+
+# fit the model only including the maternal high-school indicator
+res3 <- stan_glm(kid_score ~ mom_hs, data=dat, refresh=0)
+res3
+loo3 <- loo(res3)
+loo3
+
+loo_compare(res1, res3)
