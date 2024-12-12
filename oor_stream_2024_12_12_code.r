@@ -108,9 +108,9 @@ pred.m18 <- posterior_predict(res.m18, newdata=dat[18,])
 
 # compute the posterior predictive distribution for the 18th data point based
 # on equation (11.6)
-sims <- as.data.frame(res.all)
+sims.all <- as.data.frame(res.all)
 condpred <- data.frame(y=seq(0,9,length.out=100))
-condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
+condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims.all[,1] + sims.all[,2]*18, sims.all[,3])))
 
 # histogram of the predicted values we obtain above
 hist(pred.all[,1], freq=FALSE, breaks=50, main="", xlab="Score")
@@ -132,8 +132,8 @@ abline(res.m18, lwd=3, lty="dashed", col="gray")
 lines(condpred$x*6+18, condpred$y, lwd=3, bty="l")
 
 # add the predictive distribution from the model leaving out the 18th data point
-sims <- as.data.frame(res.m18)
-condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims[,1] + sims[,2]*18, sims[,3])))
+sims.m18 <- as.data.frame(res.m18)
+condpred$x <- sapply(condpred$y, FUN=function(y) mean(dnorm(y, sims.m18[,1] + sims.m18[,2]*18, sims.m18[,3])))
 lines(condpred$x*6+18, condpred$y, lwd=3, bty="l", lty="dashed", col="gray")
 
 # Figure 11.20(b): show the residuals from the fitted model when using all
@@ -156,4 +156,10 @@ round(sd(resid.loo), digits=2)
 round(1 - var(resid.all) / var(dat$y), digits=2)
 round(1 - var(resid.loo) / var(dat$y), digits=2)
 
-# Fast leave-one-out cross validation
+# Summarizing prediction error using the log score and deviance
+
+head(log_lik(res.all)[,1])
+pred.all <- posterior_linpred(res.all)
+head(dnorm(dat$y[1], pred.all[,1], sd=sims.all$sigma, log=TRUE))
+
+
