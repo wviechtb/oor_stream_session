@@ -78,6 +78,8 @@ mean(dat.new$kid_score >= predint[1,] & dat.new$kid_score <= predint[2,])
 
 ## 11.8: Cross validation
 
+# Leave-one-out cross validation
+
 # simulate 20 data points base on a simple regression model
 n <- 20
 x <- 1:n
@@ -149,3 +151,9 @@ points(mean.pred.all, resid.loo, pch=21)
 # standard deviation of the two types of residuals
 round(sd(resid.all), digits=2)
 round(sd(resid.loo), digits=2)
+
+# R^2 values based on the two types of residuals
+round(1 - var(resid.all) / var(dat$y), digits=2)
+round(1 - var(resid.loo) / var(dat$y), digits=2)
+
+# Fast leave-one-out cross validation
