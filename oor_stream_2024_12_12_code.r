@@ -243,4 +243,10 @@ loo_compare(loo1, loo3)
 # expand the first model with the interaction
 res4 <- stan_glm(kid_score ~ mom_hs + mom_iq + mom_hs:mom_iq, data=dat, refresh=0)
 loo4 <- loo(res4)
-loo_compare(loo3, loo4)
+loo_compare(loo1, loo4)
+
+# compute the leave-one-out R^2 values for the various models above
+loo_R2(res1)
+loo_R2(res2)
+loo_R2(res3)
+loo_R2(res4)
