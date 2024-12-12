@@ -284,4 +284,7 @@ res2 <- update(res1, prior=hs())
 kfold2 <- kfold(res2, K=10)
 kfold2
 
-loo_compare(kfold_1, kfold_2)
+# compare the two models
+loo_compare(kfold1, kfold2)
+
+############################################################################
