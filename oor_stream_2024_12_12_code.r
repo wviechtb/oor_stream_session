@@ -80,4 +80,7 @@ b <- 0.3
 sigma <- 1
 set.seed(2141)
 y <- a + b*x + rnorm(n, mean=0, sd=sigma)
-fake <- data.frame(x, y)
+dat <- data.frame(x, y)
+
+# Figure 11.20
+plot(y ~ x, data=dat, pch=21, bg="gray", bty="l", xlim=c(0,20), ylim=c(0,8))
