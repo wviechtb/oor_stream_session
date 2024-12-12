@@ -69,3 +69,15 @@ predint[,1:5]
 # compute how often the actual score is within the predictive interval
 mean(dat.new$kid_score >= predint[1,] & dat.new$kid_score <= predint[2,])
 
+############################################################################
+
+## 11.8: Cross validation
+
+n <- 20
+x <- 1:n
+a <- 0.2
+b <- 0.3
+sigma <- 1
+set.seed(2141)
+y <- a + b*x + rnorm(n, mean=0, sd=sigma)
+fake <- data.frame(x, y)
