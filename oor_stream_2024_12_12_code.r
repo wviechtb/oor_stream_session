@@ -76,9 +76,9 @@ mean(dat.new$kid_score >= predint[1,] & dat.new$kid_score <= predint[2,])
 
 ############################################################################
 
-## 11.8: Cross validation
+### 11.8: Cross validation
 
-# Leave-one-out cross validation
+## Leave-one-out cross validation
 
 # simulate 20 data points base on a simple regression model
 n <- 20
@@ -156,7 +156,7 @@ round(sd(resid.loo), digits=2)
 round(1 - var(resid.all) / var(dat$y), digits=2)
 round(1 - var(resid.loo) / var(dat$y), digits=2)
 
-# Summarizing prediction error using the log score and deviance
+## Summarizing prediction error using the log score and deviance
 
 # compute the log scores using log_lik() and show the first 6 values for the
 # first observation
@@ -176,10 +176,13 @@ plot(mean.pred.all, elpd.all, pch=19, bty="l",
 segments(mean.pred.all, elpd.all, mean.pred.all, elpd.loo)
 points(mean.pred.all, elpd.loo, pch=21)
 
-# Overfitting and AIC
+## Overfitting and AIC
 
 # compute the AIC based on the model fit to all data
 sum(-2 * elpd.all) + 2*2
 
 # compare this to the deviance of the leave-one-out approach
 sum(-2 * elpd.loo)
+
+# Demonstration of adding pure noise predictors to a model
+
