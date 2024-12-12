@@ -41,4 +41,12 @@ pred <- posterior_predict(res1, newdata=dat.new)
 # Figure 11.19: plot of the mean predicted value of each child against the
 # corresponding actually observed value
 plot(colMeans(pred), dat.new$kid_score, pch=21, bg="gray", bty="l",
-     xlab="Predicted score", ylab="Actual score", panel.first=abline(0,1,lwd=3))
+     xlab="Predicted score", ylab="Actual score", panel.first=abline(0,1,lwd=3),
+     xlim=c(20,140), ylim=c(20,140))
+
+# same figure but using more natural ranges for the x- and y-axis
+plot(colMeans(pred), dat.new$kid_score, pch=21, bg="gray", bty="l",
+     xlab="Predicted score", ylab="Actual score")
+
+# correlation between predicted and observed scores
+cor(colMeans(pred), dat.new$kid_score)
