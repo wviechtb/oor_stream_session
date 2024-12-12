@@ -178,7 +178,8 @@ points(mean.pred.all, elpd.loo, pch=21)
 
 ## Overfitting and AIC
 
-# compute the AIC based on the model fit to all data
+# compute the AIC based on the model fit to all data (using k = number of
+# regression coefficients fit in the model)
 sum(-2 * elpd.all) + 2*2
 
 # compare this to the deviance of the leave-one-out approach
@@ -204,6 +205,9 @@ elpd.all <- colMeans(log_lik(res1))
 elpd.loo <- loo(res1)$pointwise[,"elpd_loo"]
 sum(elpd.all)
 sum(elpd.loo)
+
+# the difference of these two is roughly equal to the number of parameters
+sum(elpd.all) - sum(elpd.loo)
 
 # simulate 5 noise predictors
 noise <- replicate(5, rnorm(nrow(dat)))
