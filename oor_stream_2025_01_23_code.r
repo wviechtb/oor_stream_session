@@ -119,3 +119,9 @@ plot(doy ~ year, data=dat, pch=21, bg="gray", bty="l")
 
 # same plot but jitter the day values a bit
 plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l")
+
+# subset of the data where doy is not missing
+dat2 <- dat[complete.cases(dat$doy), ]
+
+num_knots <- 15
+knot_list <- quantile(dat2$year, probs=seq(0,1,length.out=num_knots))
