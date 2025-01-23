@@ -114,3 +114,8 @@ shade(height.PI, weight.seq)
 dat <- get(data(cherry_blossoms))
 precis(dat, prob=0.95)
 
+# plot of the day of year of first bloom versus year
+plot(doy ~ year, data=dat, pch=21, bg="gray", bty="l")
+
+# same plot but jitter the day values a bit
+plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l")
