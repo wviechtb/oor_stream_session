@@ -22,3 +22,14 @@ library(rethinking)
 dat <- get(data(Howell1))
 
 ## 4.5.1: Polynomial regression
+
+# plot the height of the individuals versus their weight
+plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
+
+# mu_i = alpha     + beta_1 x_i + beta_2 x^2_i
+#      = alpha     + (beta_1 + beta_2 x_i) * x_i
+#      = intercept + (slope)               * x_i
+#
+# so when x_i = 0, then beta_1 is the slope of the linear relationship between
+# mu_i and x_i, but if x_i is not 0, then the slope is beta_1 + beta_2 x_i and
+# hence the slope depends on x_i itself
