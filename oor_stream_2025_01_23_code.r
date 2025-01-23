@@ -118,14 +118,16 @@ dat <- get(data(cherry_blossoms))
 precis(dat, prob=0.95)
 
 # plot of the day of year of first bloom versus year
-plot(doy ~ year, data=dat, pch=21, bg="gray", bty="l")
+plot(doy ~ year, data=dat, pch=21, bg="gray", bty="l", xlab="year", ylab="day")
 
 # same plot but jitter the day values a bit
-plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l")
+plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l",
+     xlab="year", ylab="day")
 
 # subset of the data where doy is not missing
 dat2 <- dat[complete.cases(dat$doy), ]
 
+# construct the basis functions as shown in Figure 4.12(top)
 num.knots <- 5
 knots <- quantile(dat2$year, probs=seq(0,1,length.out=num.knots))
 B <- bs(dat2$year, knots=knots[-c(1,num.knots)], degree=1, intercept=TRUE)
@@ -137,3 +139,16 @@ plot(NA, xlim=c(min(dat2$year), max(dat2$year)), ylim=c(0,1.05),
 apply(B, 2, function(x) lines(dat2$year, x, lwd=8, col="darkgray"))
 points(knots, rep(1.04, num.knots), pch=3, lwd=3)
 text(knots, 1, 1:num.knots, pos=1, cex=1.2, offset=0.8)
+
+#
+res <- lm(doy ~ 0 + B, data=dat2)
+summary(res)
+
+pred <- predict(res, interval="confidence")
+pred <- data.frame(pred)
+
+plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l", xlab="year", ylab="day")
+abline(h=mean(dat2$doy), lty="dashed", lwd=2)
+lines(dat2$year, pred$fit, lwd=5)
+shade(t(pred[2:3]), dat2$year, col = col.alpha("black", 0.4))
+
