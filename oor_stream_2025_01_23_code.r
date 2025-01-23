@@ -196,3 +196,5 @@ mu.PI <- apply(mu, 2, PI, 0.95)
 plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l", xlab="year", ylab="day")
 abline(h=coef(res)["a"], lty="dashed", lwd=2)
 shade(mu.PI, dat2$year, col = col.alpha("black", 0.4))
+
+############################################################################
