@@ -63,8 +63,8 @@ mu.PI      <- apply(mu, 2, PI, prob=0.95)
 sim.height <- sim(res, data=pred.dat)
 height.PI  <- apply(sim.height, 2, PI, prob=0.95)
 
-
-plot(height ~ weight.s, data=dat, col=col.alpha(rangi2,0.5))
+# plot the data again and add the predicted means and intervals to the plot
+plot(height ~ weight.s, data=dat, col=col.alpha(rangi2,0.5), pch=19)
 lines(weight.seq, mu.mean)
 shade(mu.PI, weight.seq)
 shade(height.PI, weight.seq)
