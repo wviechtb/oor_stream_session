@@ -35,4 +35,16 @@ plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
 # hence the slope depends on x_i itself
 
 # standardize weight (using the scale() function)
-dat$weight.s <- c(scale(dat$weight))
+dat$weight.s  <- c(scale(dat$weight))
+
+# compute the square of the standardized weight values
+dat$weight.s2 <- dat$weight.s^2
+
+# fit the quadratic polynomial regression model
+model <- alist(height ~ dnorm(mu, sigma),
+               mu <- a + b1*weight_s + b2*weight_s2,
+               a  ~ dnorm(178, 20),
+               b1 ~ dlnorm(0, 1),
+               b2 ~ dnorm(0, 1),
+               sigma ~ dunif(0, 50))
+res <- quap(mode, data=dat)
