@@ -48,3 +48,23 @@ model <- alist(height ~ dnorm(mu, sigma),
                b2 ~ dnorm(0, 1),
                sigma ~ dunif(0, 50))
 res <- quap(model, data=dat)
+res
+precis(res)
+
+# compute the predicted mean height as a function of 30 (standardized) weight
+# values between -2.2 and 2 (and the corresponding 95% compatibility intervals)
+weight.seq <- seq(from=-2.2, to=2, length.out=30)
+pred.dat   <- data.frame(weight.s=weight.seq, weight.s2=weight.seq^2)
+mu         <- link(res, data=pred.dat)
+mu.mean    <- apply(mu, 2, mean)
+mu.PI      <- apply(mu, 2, PI, prob=0.95)
+
+# compute corresponding 95% prediction intervals for the height of individuals
+sim.height <- sim(res, data=pred.dat)
+height.PI  <- apply(sim.height, 2, PI, prob=0.95)
+
+
+plot(height ~ weight.s, data=dat, col=col.alpha(rangi2,0.5))
+lines(weight.seq, mu.mean)
+shade(mu.PI, weight.seq)
+shade(height.PI, weight.seq)
