@@ -83,3 +83,30 @@ model <- alist(height ~ dnorm(mu, sigma),
 res <- quap(model, data=dat)
 res
 precis(res)
+
+# compute the predicted means and intervals again based on the cubic model
+pred.dat   <- data.frame(weight.s=weight.seq, weight.s2=weight.seq^2, weight.s3=weight.seq^3)
+mu         <- link(res, data=pred.dat)
+mu.mean    <- apply(mu, 2, mean)
+mu.PI      <- apply(mu, 2, PI, prob=0.95)
+sim.height <- sim(res, data=pred.dat)
+height.PI  <- apply(sim.height, 2, PI, prob=0.95)
+
+# plot the data again and add the predicted means and intervals to the plot
+plot(height ~ weight.s, data=dat, col=col.alpha(rangi2,0.5), pch=19)
+lines(weight.seq, mu.mean)
+shade(mu.PI, weight.seq)
+shade(height.PI, weight.seq)
+
+# same plot as above, but show weight on the x-axis, not standardized weight
+plot(height ~ weight.s, data=dat, col=col.alpha(rangi2,0.5), pch=19,
+     xaxt="n", xlab="weight")
+labels <- seq(5, 65, by=10)
+at <- (labels - mean(dat$weight)) / sd(dat$weight)
+axis(side=1, at=at, labels=round(labels,1))
+lines(weight.seq, mu.mean)
+shade(mu.PI, weight.seq)
+shade(height.PI, weight.seq)
+
+## 4.5.2: Splines
+
