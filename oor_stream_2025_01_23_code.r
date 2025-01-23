@@ -110,3 +110,7 @@ shade(height.PI, weight.seq)
 
 ## 4.5.2: Splines
 
+# load the cherry tree data and examine some summary statistics
+dat <- get(data(cherry_blossoms))
+precis(dat, prob=0.95)
+
