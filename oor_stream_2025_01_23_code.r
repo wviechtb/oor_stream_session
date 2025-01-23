@@ -175,12 +175,8 @@ model <- alist(doy ~ dnorm(mu, sigma),
 res <- quap(model, data=list(doy=dat2$doy, B=B),
             start=list(w=rep(0, ncol(B))))
 res
-logLik(res)
 
-model <- alist(doy ~ dnorm(mu, sigma),
-               mu <- B %*% w,
-               w ~ dnorm(100,10),
-               sigma ~ dexp(1))
-res <- quap(model, data=list(doy=dat2$doy, B=B),
-            start=list(w=rep(0, ncol(B))))
-logLik(res)
+# sidenote: here, including the intercept does work (removing it essentially
+# yields the same fit, but we need to change the priors for w to something
+# like dnorm(100,10))
+
