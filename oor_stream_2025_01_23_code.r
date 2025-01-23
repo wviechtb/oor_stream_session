@@ -33,3 +33,6 @@ plot(height ~ weight, data=dat, pch=21, bg="gray", bty="l")
 # so when x_i = 0, then beta_1 is the slope of the linear relationship between
 # mu_i and x_i, but if x_i is not 0, then the slope is beta_1 + beta_2 x_i and
 # hence the slope depends on x_i itself
+
+# standardize weight (using the scale() function)
+dat$weight.s <- c(scale(dat$weight))
