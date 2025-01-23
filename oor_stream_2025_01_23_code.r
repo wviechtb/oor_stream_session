@@ -188,5 +188,11 @@ plot(NA, xlim=range(dat2$year), ylim=c(-6,6), xlab="year", ylab="basis * weight"
 for (i in 1:ncol(B)) lines(dat2$year, w[i]*B[,i], lwd=6, col="darkgray")
 points(knots, rep(6, num.knots), pch=3, lwd=3)
 
-mu <- link( m4.7 ) mu_PI <- apply(mu,2,PI,0.97) plot( d2$year , d2$doy , col=col.alpha(rangi2,0.3) , pch=16 ) shade( mu_PI , d2$year , col=col.alpha("black",0.5) )
+# compute 95% compatibility intervals for the predicted mean as a function of year
+mu <- link(res)
+mu.PI <- apply(mu, 2, PI, 0.95)
 
+# Figure 3.14(bottom): plot the data again and add the intervals to the plot
+plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l", xlab="year", ylab="day")
+abline(h=coef(res)["a"], lty="dashed", lwd=2)
+shade(mu.PI, dat2$year, col = col.alpha("black", 0.4))
