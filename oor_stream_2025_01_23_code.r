@@ -143,6 +143,8 @@ text(knots, 1, 1:num.knots, pos=1, cex=1.2, offset=0.8)
 res <- lm(doy ~ 0 + B, data=dat2)
 summary(res)
 
+# note: have to remove the intercept, as otherwise the model is overparameterized
+
 # compute predicted values (and corresponding 95% confidence intervals)
 pred <- predict(res, interval="confidence")
 pred <- data.frame(pred)
@@ -172,3 +174,13 @@ model <- alist(doy ~ dnorm(mu, sigma),
                sigma ~ dexp(1))
 res <- quap(model, data=list(doy=dat2$doy, B=B),
             start=list(w=rep(0, ncol(B))))
+res
+logLik(res)
+
+model <- alist(doy ~ dnorm(mu, sigma),
+               mu <- B %*% w,
+               w ~ dnorm(100,10),
+               sigma ~ dexp(1))
+res <- quap(model, data=list(doy=dat2$doy, B=B),
+            start=list(w=rep(0, ncol(B))))
+logLik(res)
