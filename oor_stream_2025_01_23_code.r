@@ -133,7 +133,7 @@ knots <- quantile(dat2$year, probs=seq(0,1,length.out=num.knots))
 B <- bs(dat2$year, knots=knots[-c(1,num.knots)], degree=1, intercept=TRUE)
 
 # Figure 4.12(top): plot of the basis function values
-plot(NA, xlim=c(min(dat2$year), max(dat2$year)), ylim=c(0,1.05),
+plot(NA, xlim=range(dat2$year), ylim=c(0,1.05),
      xlab="year", ylab="basis value", bty="l", las=1)
 apply(B, 2, function(x) lines(dat2$year, x, lwd=8, col="darkgray"))
 points(knots, rep(1.04, num.knots), pch=3, lwd=3)
@@ -161,7 +161,7 @@ knots <- quantile(dat2$year, probs=seq(0,1,length.out=num.knots))
 B <- bs(dat2$year, knots=knots[-c(1,num.knots)], degree=3, intercept=TRUE)
 
 # Figure 4.13(top): plot of the basis function values
-plot(NA, xlim=c(min(dat2$year), max(dat2$year)), ylim=c(0,1.05),
+plot(NA, xlim=range(dat2$year), ylim=c(0,1.05),
      xlab="year", ylab="basis value", bty="l", las=1)
 apply(B, 2, function(x) lines(dat2$year, x, lwd=8, col="darkgray"))
 points(knots, rep(1.04, num.knots), pch=3, lwd=3)
@@ -175,8 +175,12 @@ model <- alist(doy ~ dnorm(mu, sigma),
 res <- quap(model, data=list(doy=dat2$doy, B=B),
             start=list(w=rep(0, ncol(B))))
 res
+precis(res, depth=2)
 
 # sidenote: here, including the intercept does work (removing it essentially
 # yields the same fit, but we need to change the priors for w to something
 # like dnorm(100,10))
 
+post <- extract.samples(res)
+w <- apply(post$w, 2, mean)
+plot(NA, xlim=range(d2$year), ylim=c(-6,6) , xlab="year" , ylab="basis * weight" ) for ( i in 1:ncol(B) ) lines( d2$year , w[i]*B[,i] )
