@@ -181,6 +181,12 @@ precis(res, depth=2)
 # yields the same fit, but we need to change the priors for w to something
 # like dnorm(100,10))
 
+# Figure 4.13(middle): plot of the basis function values times the coefficients
 post <- extract.samples(res)
 w <- apply(post$w, 2, mean)
-plot(NA, xlim=range(d2$year), ylim=c(-6,6) , xlab="year" , ylab="basis * weight" ) for ( i in 1:ncol(B) ) lines( d2$year , w[i]*B[,i] )
+plot(NA, xlim=range(dat2$year), ylim=c(-6,6), xlab="year", ylab="basis * weight", bty="l")
+for (i in 1:ncol(B)) lines(dat2$year, w[i]*B[,i], lwd=6, col="darkgray")
+points(knots, rep(6, num.knots), pch=3, lwd=3)
+
+mu <- link( m4.7 ) mu_PI <- apply(mu,2,PI,0.97) plot( d2$year , d2$doy , col=col.alpha(rangi2,0.3) , pch=16 ) shade( mu_PI , d2$year , col=col.alpha("black",0.5) )
+
