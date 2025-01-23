@@ -169,6 +169,6 @@ model <- alist(doy ~ dnorm(mu, sigma),
                mu <- a + B %*% w,
                a ~ dnorm(100,10),
                w ~ dnorm(0,10),
-               sigma ~ dexp(1) ))
+               sigma ~ dexp(1))
 res <- quap(model, data=list(doy=dat2$doy, B=B),
             start=list(w=rep(0, ncol(B))))
