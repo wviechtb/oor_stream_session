@@ -68,3 +68,18 @@ plot(height ~ weight.s, data=dat, col=col.alpha(rangi2,0.5), pch=19)
 lines(weight.seq, mu.mean)
 shade(mu.PI, weight.seq)
 shade(height.PI, weight.seq)
+
+# compute the cube of the standardized weight values
+dat$weight.s3 <- dat$weight.s^3
+
+# fit the cubic polynomial regression model
+model <- alist(height ~ dnorm(mu, sigma),
+               mu <- a + b1*weight.s + b2*weight.s2 + b3*weight.s3,
+               a  ~ dnorm(178, 20),
+               b1 ~ dlnorm(0, 1),
+               b2 ~ dnorm(0, 1),
+               b3 ~ dnorm(0, 1),
+               sigma ~ dunif(0, 50))
+res <- quap(model, data=dat)
+res
+precis(res)
