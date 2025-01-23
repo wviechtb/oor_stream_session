@@ -110,6 +110,9 @@ shade(height.PI, weight.seq)
 
 ## 4.5.2: Splines
 
+# load the splines package
+library(splines)
+
 # load the cherry tree data and examine some summary statistics
 dat <- get(data(cherry_blossoms))
 precis(dat, prob=0.95)
@@ -123,5 +126,14 @@ plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l")
 # subset of the data where doy is not missing
 dat2 <- dat[complete.cases(dat$doy), ]
 
-num_knots <- 15
-knot_list <- quantile(dat2$year, probs=seq(0,1,length.out=num_knots))
+num.knots <- 5
+knots <- quantile(dat2$year, probs=seq(0,1,length.out=num.knots))
+B <- bs(dat2$year, knots=knots[-c(1,num.knots)], degree=1, intercept=TRUE)
+
+# Figure 4.12(top): plot of the basis function values
+par(mar=c(5,4,2,2))
+plot(NA, xlim=c(min(dat2$year), max(dat2$year)), ylim=c(0,1.05),
+     xlab="year", ylab="basis value", bty="l", las=1)
+apply(B, 2, function(x) lines(dat2$year, x, lwd=8, col="darkgray"))
+points(knots, rep(1.04, num.knots), pch=3, lwd=3)
+text(knots, 1, 1:num.knots, pos=1, cex=1.2, offset=0.8)
