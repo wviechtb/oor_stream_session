@@ -127,28 +127,48 @@ plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l",
 # subset of the data where doy is not missing
 dat2 <- dat[complete.cases(dat$doy), ]
 
-# construct the basis functions as shown in Figure 4.12(top)
+# construct the basis function values as shown in Figure 4.12(top)
 num.knots <- 5
 knots <- quantile(dat2$year, probs=seq(0,1,length.out=num.knots))
 B <- bs(dat2$year, knots=knots[-c(1,num.knots)], degree=1, intercept=TRUE)
 
 # Figure 4.12(top): plot of the basis function values
-par(mar=c(5,4,2,2))
 plot(NA, xlim=c(min(dat2$year), max(dat2$year)), ylim=c(0,1.05),
      xlab="year", ylab="basis value", bty="l", las=1)
 apply(B, 2, function(x) lines(dat2$year, x, lwd=8, col="darkgray"))
 points(knots, rep(1.04, num.knots), pch=3, lwd=3)
 text(knots, 1, 1:num.knots, pos=1, cex=1.2, offset=0.8)
 
-#
+# fit the spline model (using lm() for now for simplicity)
 res <- lm(doy ~ 0 + B, data=dat2)
 summary(res)
 
+# compute predicted values (and corresponding 95% confidence intervals)
 pred <- predict(res, interval="confidence")
 pred <- data.frame(pred)
 
+# plot the data again and add the predicted values and 95% CI bounds
 plot(jitter(doy, amount=0.5) ~ year, data=dat, pch=21, bg="gray", bty="l", xlab="year", ylab="day")
 abline(h=mean(dat2$doy), lty="dashed", lwd=2)
 lines(dat2$year, pred$fit, lwd=5)
 shade(t(pred[2:3]), dat2$year, col = col.alpha("black", 0.4))
 
+# increase the number of knots to 15 and uses degree 3 (cubic) splines
+num.knots <- 15
+knots <- quantile(dat2$year, probs=seq(0,1,length.out=num.knots))
+B <- bs(dat2$year, knots=knots[-c(1,num.knots)], degree=3, intercept=TRUE)
+
+# Figure 4.13(top): plot of the basis function values
+plot(NA, xlim=c(min(dat2$year), max(dat2$year)), ylim=c(0,1.05),
+     xlab="year", ylab="basis value", bty="l", las=1)
+apply(B, 2, function(x) lines(dat2$year, x, lwd=8, col="darkgray"))
+points(knots, rep(1.04, num.knots), pch=3, lwd=3)
+
+# fit the (Bayesian) model
+model <- alist(doy ~ dnorm(mu, sigma),
+               mu <- a + B %*% w,
+               a ~ dnorm(100,10),
+               w ~ dnorm(0,10),
+               sigma ~ dexp(1) ))
+res <- quap(model, data=list(doy=dat2$doy, B=B),
+            start=list(w=rep(0, ncol(B))))
