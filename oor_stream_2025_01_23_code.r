@@ -21,3 +21,4 @@ library(rethinking)
 # get the Howell1 data and put it into 'dat'
 dat <- get(data(Howell1))
 
+## 4.5.1: Polynomial regression
