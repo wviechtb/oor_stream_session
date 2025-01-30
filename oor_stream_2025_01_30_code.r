@@ -270,3 +270,4 @@ plot(density(dat$earn[dat$earn > 0]), lwd=5, bty="n", main="")
 # obtain samples from the posterior distribution of the predicted earnings
 pred <- posterior_predict(res)
 
+apply(pred[sample(nrow(pred), 100),], 1, function(x) lines(density(x), col="gray"))
