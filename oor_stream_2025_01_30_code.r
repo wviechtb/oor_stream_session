@@ -266,7 +266,7 @@ exp(coef(res2)[2])
 #
 # it would be 100% correct to say that exp(beta1) = Median(y|x+1) / Median(y|x)
 
-# Figure 12.5: plot the kernel density estimate of the distribution of earnings
+# Figure 12.5(a): plot the kernel density estimate of the distribution of earnings
 plot(density(dat$earn), lwd=5, bty="n", main="")
 
 # obtain samples from the posterior distribution of the predicted earnings based
@@ -275,4 +275,17 @@ pred1 <- posterior_predict(res1)
 
 # add 100 kernel density estimates from these samples to the plot
 apply(pred1[sample(nrow(pred1), 100),], 1, function(x) lines(density(x), col="gray"))
-lines(density(dat$earn[dat$earn > 0]), lwd=5)
+lines(density(dat$earn), lwd=5)
+
+# Figure 12.5(b): plot the kernel density estimate of the distribution of log(earnings)
+plot(density(log(dat$earn[dat$earn > 0])), lwd=5, bty="n", main="")
+
+# obtain samples from the posterior distribution of the predicted earnings based
+# on the model where we predict log(earnings)
+pred2 <- posterior_predict(res2)
+
+# add 100 kernel density estimates from these samples to the plot
+apply(pred2[sample(nrow(pred2), 100),], 1, function(x) lines(density(x), col="gray"))
+lines(density(log(dat$earn[dat$earn > 0])), lwd=5)
+
+## Why we use natural log rather than log base 10
