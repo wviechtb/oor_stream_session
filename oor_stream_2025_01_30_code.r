@@ -161,6 +161,18 @@ coef(res)
 # 0.5 and force the means to be 0 and the standard deviations to be 1
 library(MASS)
 set.seed(1234)
-n <- 100
+n <- 1000
 dat <- mvrnorm(n, mu=c(0,0), Sigma=matrix(c(1,0.5,0.5,1), nrow=2), empirical=TRUE)
+dat <- as.data.frame(dat)
+names(dat) <- c("x", "y")
+head(dat)
+
+# plot the data and add the diagonal line (which is the line that minimizes the
+# squared perpendicular distance between x and y)
+plot(y ~ x, data=dat, pch=19, cex=0.5, xlim=range(dat), ylim=range(dat))
+abline(0, 1, lwd=3)
+
+# fit the model predicting y from x using least-squares estimation
+res <- lm(y ~ x, data=dat)
+round(coef(res), 4)
 
