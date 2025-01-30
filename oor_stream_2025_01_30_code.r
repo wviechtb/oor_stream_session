@@ -33,7 +33,7 @@ head(dat)
 res <- stan_glm(earn ~ height, data=dat, refresh=0, seed=7783)
 res
 
-# Figure 12.1(a): plot of height versus weight (with some jittering on the height values)
+# Figure 12.1(a): plot of height versus earnings (with some jittering on the height values)
 plot(earn ~ jitter(height, amount=0.2), data=dat, pch=19, cex=0.3,
      xlab="height", bty="l")
 
@@ -210,4 +210,8 @@ dat <- read.csv("earnings.csv")
 
 # fit the model predicting log(earn) from height
 res <- stan_glm(log(earn) ~ height, data=dat, refresh=0, subset=earn>0)
-res
+print(res, digits=2)
+
+# Figure 12.1(a): plot of height versus weight (with some jittering on the height values)
+plot(log(earn) ~ jitter(height, amount=0.2), data=dat, pch=19, cex=0.3,
+     xlab="height", bty="l")
