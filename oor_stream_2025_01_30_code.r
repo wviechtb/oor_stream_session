@@ -231,7 +231,13 @@ plot(earn ~ jitter(height, amount=0.2), data=dat, pch=19, cex=0.3,
 xs <- seq(min(dat$height), max(dat$height), length.out=1000)
 apply(post[1:10,], 1, function(b) lines(xs, exp(b[1] + b[2]*xs)))
 
-# the model we are using is this:
+# exponentiate the coefficient for height
+exp(coef(res)[2])
+
+# this is interpreted in the book as indicating a 6% 'expected positive
+# difference' in earnings for people that differ in height by one inch
+#
+# let's look at this more carefully; the model we are using is this:
 #
 # E[log(y)|x] = beta0 + beta1 * x
 #
