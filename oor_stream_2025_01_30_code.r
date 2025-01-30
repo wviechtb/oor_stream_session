@@ -261,3 +261,6 @@ exp(coef(res)[2])
 # correct, although it often hold as a good approximation
 #
 # it would be 100% correct to say that exp(beta1) = Median(y|x+1) / Median(y|x)
+
+#
+yrep_1 <- posterior_predict(res)
