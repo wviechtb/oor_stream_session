@@ -262,5 +262,11 @@ exp(coef(res)[2])
 #
 # it would be 100% correct to say that exp(beta1) = Median(y|x+1) / Median(y|x)
 
-#
-yrep_1 <- posterior_predict(res)
+# Figure 12.5: plot the kernel density estimate of the distribution of earnings
+# (note: in the book, they include the individuals with 0 earnings, but this is
+# inconsistent with the model that we used where we excluded these individuals)
+plot(density(dat$earn[dat$earn > 0]), lwd=5, bty="n", main="")
+
+# obtain samples from the posterior distribution of the predicted earnings
+pred <- posterior_predict(res)
+
