@@ -318,3 +318,7 @@ quantile(pred70f, c(.16,.84))
 
 # exponentiate the bounds to obtain the interval for the earnings
 round(exp(mean(pred70f) + c(-1,1) * sigma(res)))
+
+# sidenote: the interval given in the book is based on rounded values
+
+# compute the R^2
