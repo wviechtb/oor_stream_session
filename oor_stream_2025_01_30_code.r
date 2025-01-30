@@ -322,3 +322,5 @@ round(exp(mean(pred70f) + c(-1,1) * sigma(res)))
 # sidenote: the interval given in the book is based on rounded values
 
 # compute the R^2
+median(bayes_R2(res))
+
