@@ -193,3 +193,9 @@ sum(resid^2)
 resid <- resid(res)
 sum(resid^2)
 
+## Regression to the mean
+
+# see section 6.5 and the code from oor_stream_2024_04_11_code.r for a
+# simulation of heights over many generations to demonstrate that the heights of
+# daughters do not become more and more similar over time
+
