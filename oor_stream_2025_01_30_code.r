@@ -13,6 +13,9 @@
 
 ############################################################################
 
+# load the rstanarm package
+library(rstanarm)
+
 ### 12.1: Linear transformations
 
 # download the dataset (only need to do this once)
@@ -23,3 +26,7 @@ dat <- read.csv("earnings.csv")
 
 # inspect the first six rows of the dataset
 head(dat)
+
+# fit a model predicting earnings from height
+res <- stan_glm(earn ~ height, data=dat, refresh=0, seed=7783)
+summary(res)
