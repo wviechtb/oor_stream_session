@@ -145,3 +145,14 @@ res
 # the slope is equal to the correlation between the two variables
 coef(res)
 cor(dat$kid_score, dat$mom_iq)
+
+# if we do the same with stan_glm(), then the coefficient is very close to the
+# correlation but not exactly identical due to the fact that we only have 4000
+# sampled values from the posterior distribution of the slope
+res <- stan_glm(scale(kid_score) ~ 0 + scale(mom_iq), data=dat, refresh=0)
+res
+coef(res)
+
+
+
+## The principal component line and the regression line
