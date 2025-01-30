@@ -289,3 +289,11 @@ apply(pred2[sample(nrow(pred2), 100),], 1, function(x) lines(density(x), col="gr
 lines(density(log(dat$earn[dat$earn > 0])), lwd=5)
 
 ## Why we use natural log rather than log base 10
+
+# fit the model predicting log10(earn) from height
+res3 <- stan_glm(log10(earn) ~ height, data=dat, refresh=0, subset=earn>0)
+print(res3, digits=2)
+
+# back-transform the coefficient for height so that it (approximately) reflects
+# the ratio of earnings for people differing in height by one inch
+10^(coef(res3)[2])
