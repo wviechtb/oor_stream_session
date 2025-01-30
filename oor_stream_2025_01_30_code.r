@@ -174,5 +174,19 @@ abline(0, 1, lwd=3)
 
 # fit the model predicting y from x using least-squares estimation
 res <- lm(y ~ x, data=dat)
+
+# the intercept is then 0 and the slope is 0.5
 round(coef(res), 4)
+
+# add the regression line to the plot
+abline(res, lwd=3, col="darkgray")
+
+# compute the sum of the squared residuals based on the diagonal line
+pred  <- 0 + 1*dat$x
+resid <- dat$y - pred
+sum(resid^2)
+
+# compute the sum of the squared residuals based on the regression model
+resid <- resid(res)
+sum(resid^2)
 
