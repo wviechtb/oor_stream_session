@@ -344,3 +344,4 @@ dat$log_height <- log(dat$height)
 res <- stan_glm(log(earn) ~ log_height + male, data=dat, refresh=0, subset=earn>0)
 print(res, digits=2)
 
+############################################################################
