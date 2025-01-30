@@ -208,16 +208,20 @@ sum(resid^2)
 # read in the dataset
 dat <- read.csv("earnings.csv")
 
+# fit the model predicting earn from height
+res1 <- stan_glm(earn ~ height, data=dat, refresh=0, subset=earn>0)
+print(res1, digits=2)
+
 # fit the model predicting log(earn) from height
-res <- stan_glm(log(earn) ~ height, data=dat, refresh=0, subset=earn>0)
-print(res, digits=2)
+res2 <- stan_glm(log(earn) ~ height, data=dat, refresh=0, subset=earn>0)
+print(res2, digits=2)
 
 # Figure 12.3(a): plot of height versus log(earnings) (with some jittering on the height values)
 plot(log(earn) ~ jitter(height, amount=0.2), data=dat, pch=19, cex=0.3,
      xlab="height", bty="l")
 
 # extract the sampled values for the posterior distributions
-post <- as.data.frame(res)
+post <- as.data.frame(res2)
 head(post)
 
 # add 10 lines based on these posterior samples
@@ -232,7 +236,7 @@ xs <- seq(min(dat$height), max(dat$height), length.out=1000)
 apply(post[1:10,], 1, function(b) lines(xs, exp(b[1] + b[2]*xs)))
 
 # exponentiate the coefficient for height
-exp(coef(res)[2])
+exp(coef(res2)[2])
 
 # this is interpreted in the book as indicating a 6% 'expected positive
 # difference' in earnings for people that differ in height by one inch
@@ -268,6 +272,5 @@ exp(coef(res)[2])
 plot(density(dat$earn[dat$earn > 0]), lwd=5, bty="n", main="")
 
 # obtain samples from the posterior distribution of the predicted earnings
-pred <- posterior_predict(res)
-
+pred1 <- posterior_predict(res1)
 apply(pred[sample(nrow(pred), 100),], 1, function(x) lines(density(x), col="gray"))
