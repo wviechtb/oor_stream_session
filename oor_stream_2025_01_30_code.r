@@ -99,3 +99,6 @@ dat$c_mom_iq <- dat$mom_iq - mean(dat$mom_iq)
 # refit the model with these centered predictors
 res <- stan_glm(kid_score ~ c_mom_hs + c_mom_iq + c_mom_hs:c_mom_iq, data=dat, refresh=0)
 res
+
+## Using a conventional centering point
+
