@@ -209,7 +209,7 @@ sum(resid^2)
 dat <- read.csv("earnings.csv")
 
 # fit the model predicting earn from height
-res1 <- stan_glm(earn ~ height, data=dat, refresh=0, subset=earn>0)
+res1 <- stan_glm(earn ~ height, data=dat, refresh=0)
 print(res1, digits=2)
 
 # fit the model predicting log(earn) from height
@@ -267,10 +267,12 @@ exp(coef(res2)[2])
 # it would be 100% correct to say that exp(beta1) = Median(y|x+1) / Median(y|x)
 
 # Figure 12.5: plot the kernel density estimate of the distribution of earnings
-# (note: in the book, they include the individuals with 0 earnings, but this is
-# inconsistent with the model that we used where we excluded these individuals)
-plot(density(dat$earn[dat$earn > 0]), lwd=5, bty="n", main="")
+plot(density(dat$earn), lwd=5, bty="n", main="")
 
-# obtain samples from the posterior distribution of the predicted earnings
+# obtain samples from the posterior distribution of the predicted earnings based
+# on the model where we directly predict earnings
 pred1 <- posterior_predict(res1)
-apply(pred[sample(nrow(pred), 100),], 1, function(x) lines(density(x), col="gray"))
+
+# add 100 kernel density estimates from these samples to the plot
+apply(pred1[sample(nrow(pred1), 100),], 1, function(x) lines(density(x), col="gray"))
+lines(density(dat$earn[dat$earn > 0]), lwd=5)
