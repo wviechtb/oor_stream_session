@@ -13,3 +13,13 @@
 
 ############################################################################
 
+### 12.1: Linear transformations
+
+# download the dataset (only need to do this once)
+if (!file.exists("earnings.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Earnings/data/earnings.csv", destfile="earnings.csv")
+
+# read in the dataset
+dat <- read.csv("earnings.csv")
+
+# inspect the first six rows of the dataset
+head(dat)
