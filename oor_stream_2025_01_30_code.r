@@ -156,3 +156,9 @@ res
 coef(res)
 
 ## The principal component line and the regression line
+
+set.seed(1234)
+n <- 100
+x <- c(scale(rnorm(n)))
+y <- c(scale(rnorm(n)))
+
