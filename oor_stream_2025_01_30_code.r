@@ -172,6 +172,9 @@ head(dat)
 plot(y ~ x, data=dat, pch=19, cex=0.5, xlim=range(dat), ylim=range(dat))
 abline(0, 1, lwd=3)
 
+# sidenote: this relates to Deming regression (https://en.wikipedia.org/wiki/Deming_regression)
+# and orthogonal regression as a special case
+
 # fit the model predicting y from x using least-squares estimation
 res <- lm(y ~ x, data=dat)
 
