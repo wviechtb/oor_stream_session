@@ -86,3 +86,12 @@ if (!file.exists("kidiq.csv")) download.file("https://raw.githubusercontent.com/
 dat <- read.csv("kidiq.csv")
 head(dat)
 
+# model with the interaction between mom_hs and mom_iq
+res <- stan_glm(kid_score ~ mom_hs + mom_iq + mom_hs:mom_iq, data=dat, refresh=0)
+res
+
+## Centering by subtracting the mean of the data
+
+# center each predictor at its mean
+dat$c_mom_hs <- dat$mom_hs - mean(dat$mom_hs)
+dat$c_mom_iq <- dat$mom_iq - mean(dat$mom_iq)
