@@ -71,6 +71,7 @@ res
 
 # fit a model predicting earnings from standardized height
 dat$height_z <- c(scale(dat$height))
+# same as dat$height_z <- (dat$height - mean(dat$height)) / sd(dat$height)
 res <- stan_glm(earn ~ height_z, data=dat, refresh=0, seed=7783)
 res
 
