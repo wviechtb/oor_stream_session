@@ -308,10 +308,13 @@ exp(coef(res)[2:3])
 # obtain samples from the posterior distribution of log(earn) for a 70-inch tall woman
 pred70f <- posterior_predict(res, newdata=data.frame(height=70, male=0))
 
-# obtain the mean and the interval mean +- sigma
+# obtain the mean and the interval mean +- sigma for log(earn)
 mean(pred70f)
 mean(pred70f) + c(-1,1) * sigma(res)
 
 # we could also obtain the 16th and 84th quantile from the posterior
 # distribution, which is essentially the same thing
 quantile(pred70f, c(.16,.84))
+
+# exponentiate the bounds to obtain the interval for the earnings
+round(exp(mean(pred70f) + c(-1,1) * sigma(res)))
