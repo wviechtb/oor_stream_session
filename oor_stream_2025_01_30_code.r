@@ -324,3 +324,7 @@ round(exp(mean(pred70f) + c(-1,1) * sigma(res)))
 # compute the R^2
 median(bayes_R2(res))
 
+# include the interaction term
+res <- stan_glm(log(earn) ~ height + male + height:male, data=dat, refresh=0, subset=earn>0)
+print(res, digits=2)
+
