@@ -212,6 +212,47 @@ dat <- read.csv("earnings.csv")
 res <- stan_glm(log(earn) ~ height, data=dat, refresh=0, subset=earn>0)
 print(res, digits=2)
 
-# Figure 12.1(a): plot of height versus weight (with some jittering on the height values)
+# Figure 12.3(a): plot of height versus log(earnings) (with some jittering on the height values)
 plot(log(earn) ~ jitter(height, amount=0.2), data=dat, pch=19, cex=0.3,
      xlab="height", bty="l")
+
+# extract the sampled values for the posterior distributions
+post <- as.data.frame(res)
+head(post)
+
+# add 10 lines based on these posterior samples
+apply(post[1:10,], 1, function(b) abline(b[1], b[2]))
+
+# Figure 12.3(b): plot of height versus earnings (with some jittering on the height values)
+plot(earn ~ jitter(height, amount=0.2), data=dat, pch=19, cex=0.3,
+     xlab="height", bty="l", ylim=c(0,200000))
+
+# add 10 lines based on these posterior samples
+xs <- seq(min(dat$height), max(dat$height), length.out=1000)
+apply(post[1:10,], 1, function(b) lines(xs, exp(b[1] + b[2]*xs)))
+
+# the model we are using is this:
+#
+# E[log(y)|x] = beta0 + beta1 * x
+#
+# now suppose x is one unit higher, then:
+#
+# E[log(y)|x+1] = beta0 + beta1 * (x+1)
+#
+# so E[log(y)|x+1] - E[log(y)|x] = beta1
+#
+# so exp(beta1) = exp(E[log(y)|x+1] - E[log(y)|x])
+#               = exp(E[log(y)|x+1]) / exp(E[log(y)|x])
+#
+# now, in general, for non-linear transformations, E[f(y)] != f(E[y]) due to
+# Jensen's inequality (https://en.wikipedia.org/wiki/Jensen's_inequality)
+#
+# however, it is quite common to treat exp(beta1) as if it reflects
+#
+# exp(beta1) = E[y|x+1] / E[y|x]
+#
+# and the book essentially does the same thing; strictly speaking, this is not
+# correct, although it might hold as an approximation
+#
+# it would be 100% correct to say that exp(beta1) = Median(y|x+1) / Median(y|x)
+
