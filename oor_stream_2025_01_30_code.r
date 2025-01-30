@@ -328,3 +328,9 @@ median(bayes_R2(res))
 res <- stan_glm(log(earn) ~ height + male + height:male, data=dat, refresh=0, subset=earn>0)
 print(res, digits=2)
 
+# standardize height
+dat$z_height <- (dat$height - mean(dat$height)) / sd(dat$height)
+
+# use z_height in the model
+res <- stan_glm(log(earn) ~ z_height + male + z_height:male, data=dat, refresh=0, subset=earn>0)
+print(res, digits=2)
