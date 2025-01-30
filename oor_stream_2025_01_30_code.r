@@ -128,3 +128,20 @@ res
 
 ### 12.3: Correlation and "regression to the mean"
 
+# predict standardized y from standardized x (here, we use least squares
+# estimation for simplicity and also because then what is stated in the book
+# will be exactly true)
+res <- lm(scale(kid_score) ~ scale(mom_iq), data=dat)
+res
+
+# note that the intercept is essentially 0 (it is not shown as exactly 0 because
+# of the finite precision of the calculations, but we can treat it as 0 for all
+# intents and purposes)
+
+# force the intercept to be exactly 0
+res <- lm(scale(kid_score) ~ 0 + scale(mom_iq), data=dat)
+res
+
+# the slope is equal to the correlation between the two variables
+coef(res)
+cor(dat$kid_score, dat$mom_iq)
