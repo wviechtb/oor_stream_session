@@ -75,3 +75,14 @@ dat$height_z <- c(scale(dat$height))
 res <- stan_glm(earn ~ height_z, data=dat, refresh=0, seed=7783)
 res
 
+############################################################################
+
+### 12.2: Centering and standardizing for models with interactions
+
+# download the dataset if it doesn't already exist
+if (!file.exists("kidiq.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("kidiq.csv")
+head(dat)
+
