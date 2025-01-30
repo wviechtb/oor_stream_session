@@ -297,3 +297,21 @@ print(res3, digits=2)
 # back-transform the coefficient for height so that it (approximately) reflects
 # the ratio of earnings for people differing in height by one inch
 10^(coef(res3)[2])
+
+## Building a regression model on the log scale
+
+# fit the model predicting log(earn) from height and sex
+res <- stan_glm(log(earn) ~ height + male, data=dat, refresh=0, subset=earn>0)
+print(res, digits=2)
+exp(coef(res)[2:3])
+
+# obtain samples from the posterior distribution of log(earn) for a 70-inch tall woman
+pred70f <- posterior_predict(res, newdata=data.frame(height=70, male=0))
+
+# obtain the mean and the interval mean +- sigma
+mean(pred70f)
+mean(pred70f) + c(-1,1) * sigma(res)
+
+# we could also obtain the 16th and 84th quantile from the posterior
+# distribution, which is essentially the same thing
+quantile(pred70f, c(.16,.84))
