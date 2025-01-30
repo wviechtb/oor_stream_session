@@ -123,3 +123,8 @@ dat$z_mom_iq <- (dat$mom_iq - mean(dat$mom_iq)) / (2*sd(dat$mom_iq))
 # refit the model with these standardized predictors
 res <- stan_glm(kid_score ~ z_mom_hs + z_mom_iq + z_mom_hs:z_mom_iq, data=dat, refresh=0)
 res
+
+############################################################################
+
+### 12.3: Correlation and "regression to the mean"
+
