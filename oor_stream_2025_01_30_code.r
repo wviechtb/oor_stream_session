@@ -258,7 +258,6 @@ exp(coef(res)[2])
 # exp(beta1) = E[y|x+1] / E[y|x]
 #
 # and the book essentially does the same thing; strictly speaking, this is not
-# correct, although it might hold as an approximation
+# correct, although it often hold as a good approximation
 #
 # it would be 100% correct to say that exp(beta1) = Median(y|x+1) / Median(y|x)
-
