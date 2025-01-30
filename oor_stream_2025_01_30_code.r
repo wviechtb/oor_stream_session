@@ -102,3 +102,14 @@ res
 
 ## Using a conventional centering point
 
+# center each predictor at a sensible reference point
+kidiq$c2_mom_hs <- kidiq$mom_hs - 0.5
+kidiq$c2_mom_iq <- kidiq$mom_iq - 100
+
+# sidenote: mean(kidiq$mom_iq) is exactly 100 for this dataset, so the mom IQ
+# scores were already rescaled to have exactly this mean (and sd(kidiq$mom_iq)
+# is exactly 15)
+
+# refit the model with these centered predictors
+res <- stan_glm(kid_score ~ c2_mom_hs + c2_mom_iq + c2_mom_hs:c2_mom_iq, data=dat, refresh=0)
+res
