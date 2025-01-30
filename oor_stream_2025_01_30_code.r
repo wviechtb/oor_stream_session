@@ -207,3 +207,7 @@ sum(resid^2)
 
 # read in the dataset
 dat <- read.csv("earnings.csv")
+
+# fit the model predicting log(earn) from height
+res <- stan_glm(log(earn) ~ height, data=dat, refresh=0, subset=earn>0)
+res
