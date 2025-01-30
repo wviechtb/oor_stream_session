@@ -157,8 +157,10 @@ coef(res)
 
 ## The principal component line and the regression line
 
+# simulate some data from a bivariate normal distribution with a correlation of
+# 0.5 and force the means to be 0 and the standard deviations to be 1
+library(MASS)
 set.seed(1234)
 n <- 100
-x <- c(scale(rnorm(n)))
-y <- c(scale(rnorm(n)))
+dat <- mvrnorm(n, mu=c(0,0), Sigma=matrix(c(1,0.5,0.5,1), nrow=2), empirical=TRUE)
 
