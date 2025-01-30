@@ -199,3 +199,11 @@ sum(resid^2)
 # simulation of heights over many generations to demonstrate that the heights of
 # daughters do not become more and more similar over time
 
+############################################################################
+
+### 12.4: Logarithmic transformations
+
+## Earnings and height example
+
+# read in the dataset
+dat <- read.csv("earnings.csv")
