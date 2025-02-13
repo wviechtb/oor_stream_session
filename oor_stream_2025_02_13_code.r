@@ -135,8 +135,8 @@ play <- function() {
    points(x2.pos.new[1], y2.pos.new[1], pch=15, cex=1.5, col="red")
    Sys.sleep(2)
 
-   text(0.25, 1.1, paste("Size: ", size1), col="black")
-   text(0.75, 1.1, paste("Size: ", size2), col="red")
+   text(0.25, 1.05, paste("Size: ", size1), col="black")
+   text(0.75, 1.05, paste("Size: ", size2), col="red")
 
    x.block <- runif(1)
    y.block <- runif(1)
@@ -184,8 +184,8 @@ play <- function() {
          points(x.block, y.block, pch=15, col="white", cex=1.6)
          x.block <<- runif(1)
          y.block <<- runif(1)
-         rect(0.05, 1.05, 0.45, 1.15, col="white", border=NA)
-         text(0.25, 1.1, paste("Size: ", size1), col="black")
+         rect(0.05, 1.02, 0.45, 1.1, col="white", border=NA)
+         text(0.25, 1.05, paste("Size: ", size1), col="black")
       }
 
       if (abs(x2.pos.new[1] - x.block) <= 0.01 && abs(y2.pos.new[1] - y.block) <= 0.01) {
@@ -195,8 +195,8 @@ play <- function() {
          points(x.block, y.block, pch=15, col="white", cex=1.6)
          x.block <<- runif(1)
          y.block <<- runif(1)
-         rect(0.55, 1.05, 0.95, 1.15, col="white", border=NA)
-         text(0.75, 1.1, paste("Size: ", size2), col="red")
+         rect(0.55, 1.02, 0.95, 1.1, col="white", border=NA)
+         text(0.75, 1.05, paste("Size: ", size2), col="red")
       }
 
       x1.pos.old <<- c(x1.pos.new[1], x1.pos.old[1:size1-1])
@@ -239,6 +239,6 @@ play <- function() {
 
 }
 
-par(mar=c(4,4,4,4), xpd=NA)
+par(mar=c(4,4,4,4), xpd=NA, xaxs="i", yaxs="i")
 plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
 play()
