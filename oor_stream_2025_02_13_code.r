@@ -35,9 +35,15 @@ plot(1)
 while (TRUE) {
 
    pressed <- FALSE
+   x.last <- NA_real_
+   y.last <- NA_real_
 
    fun.mousedown <- function(button,x,y) {
       pressed <<- TRUE
+      x <- grconvertX(x, from="ndc", to="user")
+      y <- grconvertY(y, from="ndc", to="user")
+      x.last <<- x
+      y.last <<- y
       return(NULL)
    }
 
@@ -45,7 +51,10 @@ while (TRUE) {
       if (pressed) {
          x <- grconvertX(x, from="ndc", to="user")
          y <- grconvertY(y, from="ndc", to="user")
-         points(x, y, pch=19, cex=0.5)
+         #points(x, y, pch=19, cex=0.5)
+         segments(x.last, x, y.last y)
+         x.last <<- x
+         y.last <<- y
       }
       return(NULL)
    }
