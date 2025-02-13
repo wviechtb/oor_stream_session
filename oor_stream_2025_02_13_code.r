@@ -123,15 +123,28 @@ play <- function() {
    y.pos.new <- y.pos.old
    direction <- 3
 
+   movesize <- 0.01
+
    points(x.pos.new, y.pos.new, pch=19)
    Sys.sleep(1)
 
    idlefun <- function() {
+
       points(x.pos.old, y.pos.old, pch=19, col="white")
+
       if (direction == 1)
-         y.pos.new <<- y.pos.old - 0.01
+         y.pos.new <<- y.pos.old - movesize
+      if (direction == 2)
+         x.pos.new <<- x.pos.old - movesize
+      if (direction == 3)
+         y.pos.new <<- y.pos.old + movesize
+      if (direction == 4)
+         x.pos.new <<- x.pos.old + movesize
 
       points(x.pos.new, y.pos.new, pch=19, col="white")
+
+      x.pos.old <<- x.pos.new
+      y.pos.old <<- y.pos.new
 
    }
 
@@ -151,4 +164,5 @@ play <- function() {
    }
 
 }
+
 
