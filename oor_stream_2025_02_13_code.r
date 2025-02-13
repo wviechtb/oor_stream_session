@@ -84,8 +84,10 @@ draw <- function() {
       if (identical(click, "b"))
          col <- "black"
 
-      if (identical(click, "e"))
+      if (identical(click, "e")) {
          col <- "white"
+         mode <- "line"
+      }
 
       if (identical(click, "m"))
          mode <- ifelse(mode == "line", "box", "line")
