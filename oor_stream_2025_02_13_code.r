@@ -26,5 +26,19 @@ remotes::install_github("wviechtb/chesstrainer")
 library(chesstrainer)
 
 # start playing
-play(sfpath="~/apps/stockfish/src/stockfish")
+play()
 
+############################################################################
+
+plot(1)
+
+while (TRUE) {
+
+   click <- getGraphicsEvent(prompt="", onMouseDown=function(button,x,y) return(c(x,y,button)), onKeybd=function(key) return(key))
+
+   if (identical(click, "q"))
+      break
+
+   print(click)
+
+}
