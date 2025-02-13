@@ -114,18 +114,24 @@ draw()
 
 play <- function() {
 
-   x.pos <- 0.5
-   y.pos <- 0.5
-   direction <- 3
-
    par(mar=c(2,2,2,2))
    plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
 
-   points(x.pos, y.pos, pch=19)
+   x.pos.old <- 0.5
+   y.pos.old <- 0.5
+   x.pos.new <- x.pos.old
+   y.pos.new <- y.pos.old
+   direction <- 3
+
+   points(x.pos.new, y.pos.new, pch=19)
    Sys.sleep(1)
 
    idlefun <- function() {
-      points(x.pos, y.pos, pch=19)
+      points(x.pos.old, y.pos.old, pch=19, col="white")
+      if (direction == 1)
+         y.pos.new <<- y.pos.old - 0.01
+
+      points(x.pos.new, y.pos.new, pch=19, col="white")
 
    }
 
