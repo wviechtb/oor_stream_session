@@ -32,6 +32,7 @@ play()
 
 draw <- function() {
 
+   # set some defaults
    col <- "black"
    mode <- "line"
 
@@ -75,23 +76,29 @@ draw <- function() {
 
       fun.key <- function(key) return(key)
 
-      click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown, onMouseMove=fun.mousemove,
+      click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown,
+                                onMouseMove=fun.mousemove,
                                 onMouseUp=fun.mouseup, onKeybd=fun.key)
 
+      # <r> key to switch color to red
       if (identical(click, "r"))
          col <- "red"
 
+      # <b> key to switch color to black
       if (identical(click, "b"))
          col <- "black"
 
+      # <e> key to switch to eraser
       if (identical(click, "e")) {
          col <- "white"
          mode <- "line"
       }
 
+      # <m> key to toggle between line and box drawin mode
       if (identical(click, "m"))
          mode <- ifelse(mode == "line", "box", "line")
 
+      # <q> key to quit
       if (identical(click, "q"))
          break
 
