@@ -54,7 +54,7 @@ draw <- function() {
             x <- grconvertX(x, from="ndc", to="user")
             y <- grconvertY(y, from="ndc", to="user")
             #points(x, y, pch=19, cex=0.5)
-            segments(x.last, y.last, x, y, lwd=4, col=col)
+            segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
             x.last <<- x
             y.last <<- y
          }
@@ -76,6 +76,9 @@ draw <- function() {
 
       if (identical(click, "b"))
          col <- "black"
+
+      if (identical(click, "e"))
+         col <- "white"
 
       print(col)
 
