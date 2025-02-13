@@ -80,8 +80,6 @@ draw <- function() {
       if (identical(click, "e"))
          col <- "white"
 
-      print(col)
-
       if (identical(click, "q"))
          break
 
