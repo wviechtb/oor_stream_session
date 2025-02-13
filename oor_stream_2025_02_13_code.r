@@ -146,22 +146,29 @@ play <- function() {
       x.pos.old <<- x.pos.new
       y.pos.old <<- y.pos.new
 
-   }
-
-   while (TRUE) {
-
-      click <- getGraphicsEvent(prompt="", onKeybd=function(key) return(key), onIdle=idlefun)
-
-      if (identical(click, "Down"))
-         direction <- 1
-      if (identical(click, "Left"))
-         direction <- 2
-      if (identical(click, "Up"))
-         direction <- 3
-      if (identical(click, "Right"))
-         direction <- 4
+      return(NULL)
 
    }
+
+   keyfun <- function(key) {
+
+      if (identical(key, "Down"))
+         direction <<- 1
+      if (identical(key, "Left"))
+         direction <<- 2
+      if (identical(key, "Up"))
+         direction <<- 3
+      if (identical(key, "Right"))
+         direction <<- 4
+
+      if (identical(key, "q"))
+         return(0)
+
+      return(NULL)
+
+   }
+
+   click <- getGraphicsEvent(prompt="", onKeybd=function(key) return(key), onIdle=idlefun)
 
 }
 
