@@ -36,6 +36,40 @@ draw <- function() {
    col <- "black"
    mode <- "line"
 
+   fun.mousedown <- function(button,x,y) {
+      pressed <<- TRUE
+      x <- grconvertX(x, from="ndc", to="user")
+      y <- grconvertY(y, from="ndc", to="user")
+      x.last <<- x
+      y.last <<- y
+      x.box.start <<- x
+      y.box.start <<- y
+      return(NULL)
+   }
+
+   fun.mousemove <- function(button,x,y) {
+      if (pressed) {
+         x <- grconvertX(x, from="ndc", to="user")
+         y <- grconvertY(y, from="ndc", to="user")
+         if (mode == "line") {
+            points(x, y, pch=19, cex=1)
+            segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
+         }
+         x.last <<- x
+         y.last <<- y
+      }
+      return(NULL)
+   }
+
+   fun.mouseup <- function(button,x,y) {
+      pressed <<- FALSE
+      if (mode == "box")
+         rect(x.box.start, y.box.start, x.last, y.last, lwd=5, border=col)
+      return(NULL)
+   }
+
+   fun.key <- function(key) return(key)
+
    while (TRUE) {
 
       pressed <- FALSE
@@ -43,38 +77,6 @@ draw <- function() {
       y.last <- NA_real_
       x.box.start <- NA_real_
       y.box.start <- NA_real_
-
-      fun.mousedown <- function(button,x,y) {
-         pressed <<- TRUE
-         x <- grconvertX(x, from="ndc", to="user")
-         y <- grconvertY(y, from="ndc", to="user")
-         x.last <<- x
-         y.last <<- y
-         x.box.start <<- x
-         y.box.start <<- y
-         return(NULL)
-      }
-
-      fun.mousemove <- function(button,x,y) {
-         if (pressed) {
-            x <- grconvertX(x, from="ndc", to="user")
-            y <- grconvertY(y, from="ndc", to="user")
-            if (mode == "line")
-               segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
-            x.last <<- x
-            y.last <<- y
-         }
-         return(NULL)
-      }
-
-      fun.mouseup <- function(button,x,y) {
-         pressed <<- FALSE
-         if (mode == "box")
-            rect(x.box.start, y.box.start, x.last, y.last, lwd=5, border=col)
-         return(NULL)
-      }
-
-      fun.key <- function(key) return(key)
 
       click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown,
                                 onMouseMove=fun.mousemove,
@@ -111,3 +113,19 @@ plot(dat$hp, dat$mpg, pch=21, bg="gray", cex=1.5)
 draw()
 
 ############################################################################
+
+draw <- function() {
+
+   x.pos <- 0.5
+   y.pos <- 0.5
+
+   while (TRUE) {
+
+
+
+   }
+
+}
+
+par(mar=c(2,2,2,2))
+plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
