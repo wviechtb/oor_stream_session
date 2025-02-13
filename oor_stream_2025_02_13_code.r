@@ -122,7 +122,7 @@ play <- function() {
 
    movesize <- 0.01
 
-   points(x.pos.new, y.pos.new, pch=19)
+   points(x.pos.new, y.pos.new, pch=19, cex=1.5)
    Sys.sleep(2)
 
    idlefun <- function() {
