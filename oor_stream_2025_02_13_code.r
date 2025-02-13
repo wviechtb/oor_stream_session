@@ -164,6 +164,16 @@ play <- function() {
       if (direction2 == 4)
          x2.pos.new[1] <<- x2.pos.old[1] + movesize
 
+      if (y1.pos.new[1] <= 0 || y1.pos.new[1] >= 1 || x1.pos.new[1] <= 0 || x1.pos.new[1] >= 1) {
+         text(0.5, 0.5, "Player 1 has died")
+         return(1)
+      }
+
+      if (y2.pos.new[1] <= 0 || y2.pos.new[1] >= 1 || x2.pos.new[1] <= 0 || x2.pos.new[1] >= 1) {
+         text(0.5, 0.5, "Player 2 has died")
+         return(1)
+      }
+
       points(x1.pos.new[1], y1.pos.new[1], pch=15, cex=1.5, col="black")
       points(x2.pos.new[1], y2.pos.new[1], pch=15, cex=1.5, col="red")
 
