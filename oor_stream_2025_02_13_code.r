@@ -77,6 +77,8 @@ while (TRUE) {
    if (identical(click, "b"))
       col <- "black"
 
+   print(col)
+
    if (identical(click, "q"))
       break
 
