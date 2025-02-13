@@ -134,6 +134,8 @@ play <- function() {
 
    idlefun <- function() {
 
+      points(x.block, y.block, pch=15, cex=1.5)
+
       points(x.pos.old[size], y.pos.old[size], pch=15, col="white", cex=1.6)
 
       if (direction == 1)
@@ -150,7 +152,11 @@ play <- function() {
       x.pos.old <<- c(x.pos.new[1], x.pos.old[1:size-1])
       y.pos.old <<- c(y.pos.new[1], y.pos.old[1:size-1])
 
+      if (abs(x.pos.new[1] - x.block) <= 0.01 && abs(y.pos.new[1] - y.block) <= 0.01) {
+         size <<- size + 1
 
+
+      }
 
       return(NULL)
 
