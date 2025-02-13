@@ -28,4 +28,3 @@ library(chesstrainer)
 # start playing
 play(sfpath="~/apps/stockfish/src/stockfish")
 
-############################################################################
