@@ -22,3 +22,10 @@
 install.packages("remotes")
 remotes::install_github("wviechtb/chesstrainer")
 
+# load the package
+library(chesstrainer)
+
+# start playing
+play(sfpath="~/apps/stockfish/src/stockfish")
+
+############################################################################
