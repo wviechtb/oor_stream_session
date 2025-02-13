@@ -33,6 +33,7 @@ play()
 draw <- function() {
 
    col <- "black"
+   mode <- "line"
 
    while (TRUE) {
 
@@ -53,8 +54,11 @@ draw <- function() {
          if (pressed) {
             x <- grconvertX(x, from="ndc", to="user")
             y <- grconvertY(y, from="ndc", to="user")
-            #points(x, y, pch=19, cex=0.5)
-            segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
+            if (mode == "line") {
+               segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
+            }
+            if (mode == "box") {
+            }
             x.last <<- x
             y.last <<- y
          }
@@ -79,6 +83,9 @@ draw <- function() {
 
       if (identical(click, "e"))
          col <- "white"
+
+      if (identical(click, "m"))
+         mode <- ifelse(mode == "line", "box", "line")
 
       if (identical(click, "q"))
          break
