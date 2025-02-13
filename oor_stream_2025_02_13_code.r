@@ -152,6 +152,9 @@ play <- function() {
          x.pos.new <<- c(x.pos.new, x.pos.new[size])
          y.pos.new <<- c(y.pos.new, y.pos.new[size])
          size <<- size + 1
+         points(x.block, y.block, pch=15, col="white", cex=1.6)
+         x.block <<- runif(1)
+         y.block <<- runif(1)
       }
 
       x.pos.old <<- c(x.pos.new[1], x.pos.old[1:size-1])
