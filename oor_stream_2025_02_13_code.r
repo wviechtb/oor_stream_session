@@ -45,7 +45,7 @@ while (TRUE) {
       if (pressed) {
          x <- grconvertX(x, from="ndc", to="user")
          y <- grconvertY(y, from="ndc", to="user")
-         points(x, y, pch=19, cex=1)
+         points(x, y, pch=19, cex=0.5)
       }
       return(NULL)
    }
