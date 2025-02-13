@@ -114,6 +114,9 @@ draw()
 
 play <- function() {
 
+   par(mar=c(4,4,4,4), xpd=NA, xaxs="i", yaxs="i")
+   plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
+
    size1 <- 4
    size2 <- 4
 
@@ -239,6 +242,6 @@ play <- function() {
 
 }
 
-par(mar=c(4,4,4,4), xpd=NA, xaxs="i", yaxs="i")
-plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
 play()
+
+############################################################################
