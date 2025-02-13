@@ -51,10 +51,8 @@ draw <- function() {
       if (pressed) {
          x <- grconvertX(x, from="ndc", to="user")
          y <- grconvertY(y, from="ndc", to="user")
-         if (mode == "line") {
-            points(x, y, pch=19, cex=1)
+         if (mode == "line")
             segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
-         }
          x.last <<- x
          y.last <<- y
       }
