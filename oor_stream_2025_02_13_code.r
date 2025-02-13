@@ -127,7 +127,7 @@ play <- function() {
 
    idlefun <- function() {
 
-      points(x.pos.old, y.pos.old, pch=19, col="white")
+      points(x.pos.old, y.pos.old, pch=19, col="white", cex=1.6)
 
       if (direction == 1)
          y.pos.new <<- y.pos.old - movesize
@@ -138,7 +138,7 @@ play <- function() {
       if (direction == 4)
          x.pos.new <<- x.pos.old + movesize
 
-      points(x.pos.new, y.pos.new, pch=19)
+      points(x.pos.new, y.pos.new, pch=19, cex=1.5)
 
       x.pos.old <<- x.pos.new
       y.pos.old <<- y.pos.new
