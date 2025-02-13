@@ -32,9 +32,6 @@ play()
 
 plot(1)
 
-for(tp in c("in", "dev", "ndc", "nfc", "npc", "nic", "lines", "chars"))
-    print(grconvertX(c(0.5, 0.5), "user", tp))
-
 while (TRUE) {
 
    fun.mousedown <- function(button,x,y) {
@@ -43,6 +40,7 @@ while (TRUE) {
 
    fun.mousemove <- function(button,x,y) {
       print(c(x,y))
+      return(NULL)
    }
 
    fun.mouseup <- function(button,x,y) {
@@ -52,7 +50,7 @@ while (TRUE) {
    fun.key <- function(key) return(key)
 
    click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown, onMouseMove=fun.mousemove,
-                             onMouseUp=fun.mouseup onKeybd=fun.key)
+                             onMouseUp=fun.mouseup, onKeybd=fun.key)
 
    if (identical(click, "q"))
       break
