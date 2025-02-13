@@ -114,17 +114,25 @@ draw()
 
 play <- function() {
 
-   size <- 4
+   size1 <- 4
+   size2 <- 4
 
-   x.pos.old <- rep(0.5, size)
-   y.pos.old <- rep(0.5, size)
-   x.pos.new <- x.pos.old
-   y.pos.new <- y.pos.old
-   direction <- 3
+   x1.pos.old <- rep(0.25, size1)
+   y1.pos.old <- rep(0.25, size1)
+   x1.pos.new <- x1.pos.old
+   y1.pos.new <- y1.pos.old
+   direction1 <- 3
+
+   x2.pos.old <- rep(0.75, size2)
+   y2.pos.old <- rep(0.75, size2)
+   x2.pos.new <- x2.pos.old
+   y2.pos.new <- y2.pos.old
+   direction2 <- 1
 
    movesize <- 0.01
 
-   points(x.pos.new[1], y.pos.new[1], pch=15, cex=1.5)
+   points(x1.pos.new[1], y1.pos.new[1], pch=15, cex=1.5, col="black")
+   points(x2.pos.new[1], y2.pos.new[1], pch=15, cex=1.5, col="red")
    Sys.sleep(2)
 
    x.block <- runif(1)
@@ -135,15 +143,16 @@ play <- function() {
    idlefun <- function() {
 
       points(x.block, y.block, pch=15, cex=1.5)
-      points(x.pos.old[size], y.pos.old[size], pch=15, col="white", cex=1.6)
+      points(x1.pos.old[size1], y1.pos.old[size1], pch=15, col="white", cex=1.6)
+      points(x2.pos.old[size2], y2.pos.old[size2], pch=15, col="white", cex=1.6)
 
-      if (direction == 1)
+      if (direction1 == 1)
          y.pos.new[1] <<- y.pos.old[1] - movesize
-      if (direction == 2)
+      if (direction1 == 2)
          x.pos.new[1] <<- x.pos.old[1] - movesize
-      if (direction == 3)
+      if (direction1 == 3)
          y.pos.new[1] <<- y.pos.old[1] + movesize
-      if (direction == 4)
+      if (direction1 == 4)
          x.pos.new[1] <<- x.pos.old[1] + movesize
 
       points(x.pos.new[1], y.pos.new[1], pch=15, cex=1.5)
