@@ -34,16 +34,24 @@ plot(1)
 
 while (TRUE) {
 
+   pressed <- FALSE
+
    fun.mousedown <- function(button,x,y) {
+      pressed <<- TRUE
       return(NULL)
    }
 
    fun.mousemove <- function(button,x,y) {
-      print(c(x,y))
+      if (pressed) {
+         x <- grconvertX(x, from="ndc", to="user")
+         y <- grconvertY(y, from="ndc", to="user")
+         points(x, y, pch=19, cex=1)
+      }
       return(NULL)
    }
 
    fun.mouseup <- function(button,x,y) {
+      pressed <<- FALSE
       return(NULL)
    }
 
@@ -55,10 +63,6 @@ while (TRUE) {
    if (identical(click, "q"))
       break
 
-   x <- grconvertX(click[1], from="ndc", to="user")
-   y <- grconvertY(click[2], from="ndc", to="user")
-
-   points(x, y, pch=19, cex=1)
 
 }
 
