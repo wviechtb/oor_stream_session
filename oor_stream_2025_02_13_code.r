@@ -52,7 +52,7 @@ while (TRUE) {
          x <- grconvertX(x, from="ndc", to="user")
          y <- grconvertY(y, from="ndc", to="user")
          #points(x, y, pch=19, cex=0.5)
-         segments(x.last, x, y.last y)
+         segments(x.last, y.last, x, y, lwd=2)
          x.last <<- x
          y.last <<- y
       }
