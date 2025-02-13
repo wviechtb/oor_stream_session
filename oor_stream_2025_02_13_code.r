@@ -138,11 +138,9 @@ play <- function() {
    x.block <- runif(1)
    y.block <- runif(1)
 
-   points(x.block, y.block, pch=15, cex=1.5)
-
    idlefun <- function() {
 
-      points(x.block, y.block, pch=15, cex=1.5)
+      points(x.block, y.block, pch=15, cex=1.5, col="blue")
       points(x1.pos.old[size1], y1.pos.old[size1], pch=15, col="white", cex=1.6)
       points(x2.pos.old[size2], y2.pos.old[size2], pch=15, col="white", cex=1.6)
 
@@ -166,7 +164,7 @@ play <- function() {
       points(x1.pos.new[1], y1.pos.new[1], pch=15, cex=1.5, col="black")
       points(x2.pos.new[1], y2.pos.new[1], pch=15, cex=1.5, col="red")
 
-      if (abs(x1.pos.new[1] - x1.block) <= 0.01 && abs(y1.pos.new[1] - y1.block) <= 0.01) {
+      if (abs(x1.pos.new[1] - x.block) <= 0.01 && abs(y1.pos.new[1] - y.block) <= 0.01) {
          x1.pos.new <<- c(x1.pos.new, x1.pos.new[size1])
          y1.pos.new <<- c(y1.pos.new, y1.pos.new[size1])
          size1 <<- size1 + 1
@@ -175,7 +173,7 @@ play <- function() {
          y.block <<- runif(1)
       }
 
-      if (abs(x2.pos.new[1] - x2.block) <= 0.01 && abs(y2.pos.new[1] - y2.block) <= 0.01) {
+      if (abs(x2.pos.new[1] - x.block) <= 0.01 && abs(y2.pos.new[1] - y.block) <= 0.01) {
          x2.pos.new <<- c(x2.pos.new, x2.pos.new[size2])
          y2.pos.new <<- c(y2.pos.new, y2.pos.new[size2])
          size2 <<- size2 + 1
