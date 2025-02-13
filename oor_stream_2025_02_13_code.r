@@ -147,27 +147,47 @@ play <- function() {
       points(x2.pos.old[size2], y2.pos.old[size2], pch=15, col="white", cex=1.6)
 
       if (direction1 == 1)
-         y.pos.new[1] <<- y.pos.old[1] - movesize
+         y1.pos.new[1] <<- y1.pos.old[1] - movesize
       if (direction1 == 2)
-         x.pos.new[1] <<- x.pos.old[1] - movesize
+         x1.pos.new[1] <<- x1.pos.old[1] - movesize
       if (direction1 == 3)
-         y.pos.new[1] <<- y.pos.old[1] + movesize
+         y1.pos.new[1] <<- y1.pos.old[1] + movesize
       if (direction1 == 4)
-         x.pos.new[1] <<- x.pos.old[1] + movesize
+         x1.pos.new[1] <<- x1.pos.old[1] + movesize
+      if (direction2 == 1)
+         y2.pos.new[1] <<- y2.pos.old[1] - movesize
+      if (direction2 == 2)
+         x2.pos.new[1] <<- x2.pos.old[1] - movesize
+      if (direction1 == 3)
+         y2.pos.new[1] <<- y2.pos.old[1] + movesize
+      if (direction1 == 4)
+         x2.pos.new[1] <<- x2.pos.old[1] + movesize
 
-      points(x.pos.new[1], y.pos.new[1], pch=15, cex=1.5)
+      points(x1.pos.new[1], y1.pos.new[1], pch=15, cex=1.5, col="black")
+      points(x2.pos.new[1], y2.pos.new[1], pch=15, cex=1.5, col="red")
 
-      if (abs(x.pos.new[1] - x.block) <= 0.01 && abs(y.pos.new[1] - y.block) <= 0.01) {
-         x.pos.new <<- c(x.pos.new, x.pos.new[size])
-         y.pos.new <<- c(y.pos.new, y.pos.new[size])
-         size <<- size + 1
+      if (abs(x1.pos.new[1] - x1.block) <= 0.01 && abs(y1.pos.new[1] - y1.block) <= 0.01) {
+         x1.pos.new <<- c(x1.pos.new, x1.pos.new[size1])
+         y1.pos.new <<- c(y1.pos.new, y1.pos.new[size1])
+         size1 <<- size1 + 1
          points(x.block, y.block, pch=15, col="white", cex=1.6)
          x.block <<- runif(1)
          y.block <<- runif(1)
       }
 
-      x.pos.old <<- c(x.pos.new[1], x.pos.old[1:size-1])
-      y.pos.old <<- c(y.pos.new[1], y.pos.old[1:size-1])
+      if (abs(x2.pos.new[1] - x2.block) <= 0.01 && abs(y2.pos.new[1] - y2.block) <= 0.01) {
+         x2.pos.new <<- c(x2.pos.new, x2.pos.new[size2])
+         y2.pos.new <<- c(y2.pos.new, y2.pos.new[size2])
+         size2 <<- size2 + 1
+         points(x.block, y.block, pch=15, col="white", cex=1.6)
+         x.block <<- runif(1)
+         y.block <<- runif(1)
+      }
+
+      x1.pos.old <<- c(x1.pos.new[1], x1.pos.old[1:size1-1])
+      y1.pos.old <<- c(y1.pos.new[1], y1.pos.old[1:size1-1])
+      x2.pos.old <<- c(x2.pos.new[1], x2.pos.old[1:size2-1])
+      y2.pos.old <<- c(y2.pos.new[1], y2.pos.old[1:size2-1])
 
       return(NULL)
 
@@ -176,13 +196,22 @@ play <- function() {
    keyfun <- function(key) {
 
       if (identical(key, "Down"))
-         direction <<- 1
+         direction1 <<- 1
       if (identical(key, "Left"))
-         direction <<- 2
+         direction1 <<- 2
       if (identical(key, "Up"))
-         direction <<- 3
+         direction1 <<- 3
       if (identical(key, "Right"))
-         direction <<- 4
+         direction1 <<- 4
+
+      if (identical(key, "s"))
+         direction2 <<- 1
+      if (identical(key, "a"))
+         direction2 <<- 2
+      if (identical(key, "w"))
+         direction2 <<- 3
+      if (identical(key, "d"))
+         direction2 <<- 4
 
       if (identical(key, "q"))
          return(0)
