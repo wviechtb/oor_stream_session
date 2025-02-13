@@ -30,57 +30,62 @@ play()
 
 ############################################################################
 
-dat <- mtcars
-plot(dat$hp, dat$mpg, pch=21, bg="gray", cex=1.5)
+draw <- function() {
 
-while (TRUE) {
-
-   pressed <- FALSE
-   x.last <- NA_real_
-   y.last <- NA_real_
    col <- "black"
 
-   fun.mousedown <- function(button,x,y) {
-      pressed <<- TRUE
-      x <- grconvertX(x, from="ndc", to="user")
-      y <- grconvertY(y, from="ndc", to="user")
-      x.last <<- x
-      y.last <<- y
-      return(NULL)
-   }
+   while (TRUE) {
 
-   fun.mousemove <- function(button,x,y) {
-      if (pressed) {
+      pressed <- FALSE
+      x.last <- NA_real_
+      y.last <- NA_real_
+
+      fun.mousedown <- function(button,x,y) {
+         pressed <<- TRUE
          x <- grconvertX(x, from="ndc", to="user")
          y <- grconvertY(y, from="ndc", to="user")
-         #points(x, y, pch=19, cex=0.5)
-         segments(x.last, y.last, x, y, lwd=4, col=col)
          x.last <<- x
          y.last <<- y
+         return(NULL)
       }
-      return(NULL)
+
+      fun.mousemove <- function(button,x,y) {
+         if (pressed) {
+            x <- grconvertX(x, from="ndc", to="user")
+            y <- grconvertY(y, from="ndc", to="user")
+            #points(x, y, pch=19, cex=0.5)
+            segments(x.last, y.last, x, y, lwd=4, col=col)
+            x.last <<- x
+            y.last <<- y
+         }
+         return(NULL)
+      }
+
+      fun.mouseup <- function(button,x,y) {
+         pressed <<- FALSE
+         return(NULL)
+      }
+
+      fun.key <- function(key) return(key)
+
+      click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown, onMouseMove=fun.mousemove,
+                                onMouseUp=fun.mouseup, onKeybd=fun.key)
+
+      if (identical(click, "r"))
+         col <- "red"
+
+      if (identical(click, "b"))
+         col <- "black"
+
+      print(col)
+
+      if (identical(click, "q"))
+         break
+
    }
-
-   fun.mouseup <- function(button,x,y) {
-      pressed <<- FALSE
-      return(NULL)
-   }
-
-   fun.key <- function(key) return(key)
-
-   click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown, onMouseMove=fun.mousemove,
-                             onMouseUp=fun.mouseup, onKeybd=fun.key)
-
-   if (identical(click, "r"))
-      col <- "red"
-
-   if (identical(click, "b"))
-      col <- "black"
-
-   print(col)
-
-   if (identical(click, "q"))
-      break
 
 }
 
+dat <- mtcars
+plot(dat$hp, dat$mpg, pch=21, bg="gray", cex=1.5)
+draw()
