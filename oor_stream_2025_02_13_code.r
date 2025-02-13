@@ -40,6 +40,8 @@ draw <- function() {
       pressed <- FALSE
       x.last <- NA_real_
       y.last <- NA_real_
+      x.box.start <- NA_real_
+      y.box.start <- NA_real_
 
       fun.mousedown <- function(button,x,y) {
          pressed <<- TRUE
@@ -47,6 +49,8 @@ draw <- function() {
          y <- grconvertY(y, from="ndc", to="user")
          x.last <<- x
          y.last <<- y
+         x.box.start <<- x
+         y.box.start <<- y
          return(NULL)
       }
 
@@ -54,11 +58,8 @@ draw <- function() {
          if (pressed) {
             x <- grconvertX(x, from="ndc", to="user")
             y <- grconvertY(y, from="ndc", to="user")
-            if (mode == "line") {
+            if (mode == "line")
                segments(x.last, y.last, x, y, lwd=ifelse(col=="white",30,4), col=col)
-            }
-            if (mode == "box") {
-            }
             x.last <<- x
             y.last <<- y
          }
@@ -67,6 +68,8 @@ draw <- function() {
 
       fun.mouseup <- function(button,x,y) {
          pressed <<- FALSE
+         if (mode == "box")
+            rect(x.box.start, y.box.start, x.last, y.last, lwd=5, border=col)
          return(NULL)
       }
 
