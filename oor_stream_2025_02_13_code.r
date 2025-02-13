@@ -114,9 +114,6 @@ draw()
 
 play <- function() {
 
-   par(mar=c(2,2,2,2))
-   plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
-
    x.pos.old <- 0.5
    y.pos.old <- 0.5
    x.pos.new <- x.pos.old
@@ -126,7 +123,7 @@ play <- function() {
    movesize <- 0.01
 
    points(x.pos.new, y.pos.new, pch=19)
-   Sys.sleep(1)
+   Sys.sleep(2)
 
    idlefun <- function() {
 
@@ -141,10 +138,12 @@ play <- function() {
       if (direction == 4)
          x.pos.new <<- x.pos.old + movesize
 
-      points(x.pos.new, y.pos.new, pch=19, col="white")
+      points(x.pos.new, y.pos.new, pch=19)
 
       x.pos.old <<- x.pos.new
       y.pos.old <<- y.pos.new
+
+      print(c(x.pos.new, y.pos.new))
 
       return(NULL)
 
@@ -168,8 +167,10 @@ play <- function() {
 
    }
 
-   click <- getGraphicsEvent(prompt="", onKeybd=function(key) return(key), onIdle=idlefun)
+   click <- getGraphicsEvent(prompt="", onKeybd=keyfun, onIdle=idlefun)
 
 }
 
-
+par(mar=c(2,2,2,2))
+plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
+play()
