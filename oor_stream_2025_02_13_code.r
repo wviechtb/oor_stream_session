@@ -156,9 +156,9 @@ play <- function() {
          y2.pos.new[1] <<- y2.pos.old[1] - movesize
       if (direction2 == 2)
          x2.pos.new[1] <<- x2.pos.old[1] - movesize
-      if (direction1 == 3)
+      if (direction2 == 3)
          y2.pos.new[1] <<- y2.pos.old[1] + movesize
-      if (direction1 == 4)
+      if (direction2 == 4)
          x2.pos.new[1] <<- x2.pos.old[1] + movesize
 
       points(x1.pos.new[1], y1.pos.new[1], pch=15, cex=1.5, col="black")
@@ -222,6 +222,6 @@ play <- function() {
 
 }
 
-par(mar=c(2,2,2,2))
+par(mar=c(4,4,4,4))
 plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
 play()
