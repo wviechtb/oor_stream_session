@@ -145,8 +145,8 @@ play <- function() {
    text(0.25, 1.05, paste("Size: ", size1), col="black")
    text(0.75, 1.05, paste("Size: ", size2), col="red")
 
-   x.block <- runif(1)
-   y.block <- runif(1)
+   x.block <- runif(1, 0.05, 0.95)
+   y.block <- runif(1, 0.05, 0.95)
 
    idlefun <- function() {
 
@@ -189,8 +189,8 @@ play <- function() {
          y1.pos.new <<- c(y1.pos.new, y1.pos.new[size1])
          size1 <<- size1 + 1
          points(x.block, y.block, pch=15, col="white", cex=1.6)
-         x.block <<- runif(1)
-         y.block <<- runif(1)
+         x.block <<- runif(1, 0.05, 0.95)
+         y.block <<- runif(1, 0.05, 0.95)
          rect(0.05, 1.02, 0.45, 1.1, col="white", border=NA)
          text(0.25, 1.05, paste("Size: ", size1), col="black")
       }
@@ -200,8 +200,8 @@ play <- function() {
          y2.pos.new <<- c(y2.pos.new, y2.pos.new[size2])
          size2 <<- size2 + 1
          points(x.block, y.block, pch=15, col="white", cex=1.6)
-         x.block <<- runif(1)
-         y.block <<- runif(1)
+         x.block <<- runif(1, 0.05, 0.95)
+         y.block <<- runif(1, 0.05, 0.95)
          rect(0.55, 1.02, 0.95, 1.1, col="white", border=NA)
          text(0.75, 1.05, paste("Size: ", size2), col="red")
       }
