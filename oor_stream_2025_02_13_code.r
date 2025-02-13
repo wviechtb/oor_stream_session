@@ -114,7 +114,7 @@ draw()
 
 play <- function() {
 
-   size <- 5
+   size <- 2
 
    x.pos.old <- rep(0.5, size)
    y.pos.old <- rep(0.5, size)
@@ -124,12 +124,12 @@ play <- function() {
 
    movesize <- 0.01
 
-   points(x.pos.new[1], y.pos.new[1], pch=19, cex=1.5)
+   points(x.pos.new[1], y.pos.new[1], pch=15, cex=1.5)
    Sys.sleep(2)
 
    idlefun <- function() {
 
-      points(x.pos.old[size], y.pos.old[size], pch=19, col="white", cex=1.6)
+      points(x.pos.old[size], y.pos.old[size], pch=15, col="white", cex=1.6)
 
       if (direction == 1)
          y.pos.new[1] <<- y.pos.old[1] - movesize
@@ -140,10 +140,10 @@ play <- function() {
       if (direction == 4)
          x.pos.new[1] <<- x.pos.old[1] + movesize
 
-      points(x.pos.new[1], y.pos.new[1], pch=19, cex=1.5)
+      points(x.pos.new[1], y.pos.new[1], pch=15, cex=1.5)
 
-      x.pos.old <<- c(x.pos.new, x.pos.old[1:4])
-      y.pos.old <<- c(y.pos.new, y.pos.old[1:4])
+      x.pos.old <<- c(x.pos.new[1], x.pos.old[1:size-1])
+      y.pos.old <<- c(y.pos.new[1], y.pos.old[1:size-1])
 
       #print(c(x.pos.new, y.pos.new))
 
