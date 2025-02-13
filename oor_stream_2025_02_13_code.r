@@ -41,4 +41,11 @@ while (TRUE) {
 
    print(click)
 
+   x <- grconvertX(click[1], from="ndc", to="device")
+   y <- grconvertY(click[2], from="ndc", to="device")
+
+   print(c(x,y))
+
+   points(x, y, pch=19, cex=1.5)
+
 }
