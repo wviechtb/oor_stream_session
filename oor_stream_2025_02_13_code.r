@@ -112,6 +112,10 @@ draw()
 
 ############################################################################
 
+# a simple snake-like game for two players, where the goal is to eat up the
+# blue squares without touching the border of the playing area; player 1
+# controls their snake with the cursor keys, player 2 with the 'wasd; keys
+
 play <- function() {
 
    par(mar=c(4,4,4,4), xpd=NA, xaxs="i", yaxs="i")
