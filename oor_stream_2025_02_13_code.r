@@ -112,13 +112,20 @@ draw()
 
 ############################################################################
 
-draw <- function() {
+play <- function() {
 
    x.pos <- 0.5
    y.pos <- 0.5
    direction <- 3
 
+   par(mar=c(2,2,2,2))
+   plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
+
+   points(x.pos, y.pos, pch=19)
+   Sys.sleep(1)
+
    idlefun <- function() {
+      points(x.pos, y.pos, pch=19)
 
    }
 
@@ -139,5 +146,3 @@ draw <- function() {
 
 }
 
-par(mar=c(2,2,2,2))
-plot(NA, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n")
