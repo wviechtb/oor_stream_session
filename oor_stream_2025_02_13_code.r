@@ -116,10 +116,24 @@ draw <- function() {
 
    x.pos <- 0.5
    y.pos <- 0.5
+   direction <- 3
+
+   idlefun <- function() {
+
+   }
 
    while (TRUE) {
 
+      click <- getGraphicsEvent(prompt="", onKeybd=function(key) return(key), onIdle=idlefun)
 
+      if (identical(click, "Down"))
+         direction <- 1
+      if (identical(click, "Left"))
+         direction <- 2
+      if (identical(click, "Up"))
+         direction <- 3
+      if (identical(click, "Right"))
+         direction <- 4
 
    }
 
