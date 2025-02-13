@@ -30,13 +30,15 @@ play()
 
 ############################################################################
 
-plot(1)
+dat <- mtcars
+plot(dat$hp, dat$mpg, pch=21, bg="gray", cex=1.5)
 
 while (TRUE) {
 
    pressed <- FALSE
    x.last <- NA_real_
    y.last <- NA_real_
+   col <- "black"
 
    fun.mousedown <- function(button,x,y) {
       pressed <<- TRUE
@@ -52,7 +54,7 @@ while (TRUE) {
          x <- grconvertX(x, from="ndc", to="user")
          y <- grconvertY(y, from="ndc", to="user")
          #points(x, y, pch=19, cex=0.5)
-         segments(x.last, y.last, x, y, lwd=2)
+         segments(x.last, y.last, x, y, lwd=4, col=col)
          x.last <<- x
          y.last <<- y
       }
@@ -69,9 +71,14 @@ while (TRUE) {
    click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown, onMouseMove=fun.mousemove,
                              onMouseUp=fun.mouseup, onKeybd=fun.key)
 
+   if (identical(click, "r"))
+      col <- "red"
+
+   if (identical(click, "b"))
+      col <- "black"
+
    if (identical(click, "q"))
       break
-
 
 }
 
