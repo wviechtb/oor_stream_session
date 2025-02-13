@@ -32,20 +32,35 @@ play()
 
 plot(1)
 
+for(tp in c("in", "dev", "ndc", "nfc", "npc", "nic", "lines", "chars"))
+    print(grconvertX(c(0.5, 0.5), "user", tp))
+
 while (TRUE) {
 
-   click <- getGraphicsEvent(prompt="", onMouseDown=function(button,x,y) return(c(x,y,button)), onKeybd=function(key) return(key))
+   fun.mousedown <- function(button,x,y) {
+      return(NULL)
+   }
+
+   fun.mousemove <- function(button,x,y) {
+      print(c(x,y))
+   }
+
+   fun.mouseup <- function(button,x,y) {
+      return(NULL)
+   }
+
+   fun.key <- function(key) return(key)
+
+   click <- getGraphicsEvent(prompt="", onMouseDown=fun.mousedown, onMouseMove=fun.mousemove,
+                             onMouseUp=fun.mouseup onKeybd=fun.key)
 
    if (identical(click, "q"))
       break
 
-   print(click)
+   x <- grconvertX(click[1], from="ndc", to="user")
+   y <- grconvertY(click[2], from="ndc", to="user")
 
-   x <- grconvertX(click[1], from="ndc", to="device")
-   y <- grconvertY(click[2], from="ndc", to="device")
-
-   print(c(x,y))
-
-   points(x, y, pch=19, cex=1.5)
+   points(x, y, pch=19, cex=1)
 
 }
+
