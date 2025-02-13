@@ -114,7 +114,7 @@ draw()
 
 play <- function() {
 
-   size <- 2
+   size <- 4
 
    x.pos.old <- rep(0.5, size)
    y.pos.old <- rep(0.5, size)
@@ -126,6 +126,11 @@ play <- function() {
 
    points(x.pos.new[1], y.pos.new[1], pch=15, cex=1.5)
    Sys.sleep(2)
+
+   x.block <- runif(1)
+   y.block <- runif(1)
+
+   points(x.block, y.block, pch=15, cex=1.5)
 
    idlefun <- function() {
 
@@ -145,7 +150,7 @@ play <- function() {
       x.pos.old <<- c(x.pos.new[1], x.pos.old[1:size-1])
       y.pos.old <<- c(y.pos.new[1], y.pos.old[1:size-1])
 
-      #print(c(x.pos.new, y.pos.new))
+
 
       return(NULL)
 
