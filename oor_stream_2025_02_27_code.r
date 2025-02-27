@@ -27,6 +27,7 @@ plot(Divorce ~ Marriage, data=dat, pch=21, bg="gray", bty="l",
      xlab="Marriage rate", ylab="Divorce rate")
 plot(Divorce ~ MedianAgeMarriage, data=dat, pch=21, bg="gray", bty="l",
      xlab="Median age marriage", ylab="Divorce rate")
+par(mfrow=c(1,1))
 
 # standardize some variables
 dat$D <- c(scale(dat$Divorce))
@@ -53,9 +54,8 @@ set.seed(10)
 prior <- as.data.frame(extract.prior(res))
 head(prior)
 
-# based on each sampled pair of intercept and slope values in 'prior', compute
-# the predicted mean standardized divorce rate when the standardized median
-# age at marriage variable is -2 or 2
-mu <- link(res, post=prior, data=list(A=c(-2,2)))
+# plot 50 of the regression lines from the samples values
+plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Median age marriage (std)",
+     ylab="Divorce rate (std)", bty="l")
+apply(prior[1:50,], 1, function(x) abline(x[1], x[2]))
 
-plot( NULL , xlim=c(-2,2) , ylim=c(-2,2) ) for ( i in 1:50 ) lines( c(-2,2) , mu[i,] , col=col.alpha("black",0.4) )
