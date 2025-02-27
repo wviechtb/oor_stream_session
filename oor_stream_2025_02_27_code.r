@@ -122,6 +122,7 @@ library(dagitty)
 dag1 <- dagitty("dag{A -> D; A -> M; M -> D}")
 coordinates(dag1) <- list(x=c(A=0, D=1, M=2), y=c(A=0, D=1, M=0))
 drawdag(dag1)
+graphics.off()
 
 ## 5.1.2: Testable implications
 
@@ -153,4 +154,11 @@ model3 <- alist(D ~ dnorm(mu, sigma),
 res3 <- quap(model3, data=dat)
 precis(res3, prob=0.95)
 
-plot(coeftab(m5.1,m5.2,m5.3), par=c("bA","bM") )
+# plot the coefficients from all three models
+plot(coeftab(res1, res2, res3), par=c("bA","bM"))
+
+# Overthinking: Simulating the divorce example
+N <- 50 # number of simulated States
+age <- rnorm(N) # sim A
+mar <- rnorm(N, -age) # sim A -> M
+div <- rnorm(N,  age) # sim A -> D
