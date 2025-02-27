@@ -320,8 +320,15 @@ model3 <- alist(# model A -> D <- M
                 sigma ~ dexp(1),
                 # model A -> M
                 M ~ dnorm(mu_M, sigma_M),
-                mu_M <- aM + bAM * M,
+                mu_M <- aM + bAM * A,
                 aM ~ dnorm(0, 0.2),
                 bAM ~ dnorm(0, 0.5),
                 sigma_M ~ dexp(1))
 
+# fit the model
+res3 <- quap(model3, data=dat)
+precis(res3, prob=0.95)
+
+# simulate new data (note: first simulate M and then D, using A_seq)
+sim_dat <- data.frame(A=seq(from=-3, to=3.2, by=0.2))
+s <- sim(res3, data=sim_dat, vars=c("M","D"))
