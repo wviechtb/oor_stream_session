@@ -275,5 +275,16 @@ coef(lm(Divorce ~ resid(res), data=dat))
 
 ############################################################################
 
+# 5.1.5.2: Posterior prediction plots
 
+# call link() without specifying new data so it uses original data (so we get
+# 1000 predicted values for each of the 50 states based on their A and M values)
+mu <- link(res3)
+dim(mu)
+
+# summarize samples across cases
+mu_mean <- apply(mu, 2, mean)
+mu_pi   <- apply(mu, 2, PI, prob=0.95)
+
+# simulate observations # again no new data, so uses original data D_sim <- sim( m5.3 , n=1e4 ) D_PI <- apply( D_sim , 2 , PI )
 
