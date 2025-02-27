@@ -98,5 +98,20 @@ axis(side=2, at=((6:14) - mean(dat$Divorce)) / sd(dat$Divorce), labels=6:14)
 lines(A_seq, mu.mean, lwd=2)
 shade(mu.pi, A_seq)
 
+# define the regression model (predicting the standardized divorce rate D from
+# the standardized marriage rate M)
+model <- alist(D ~ dnorm(mu, sigma),
+               mu <- a + bA * M,
+               a ~ dnorm(0, 0.2),
+               bA ~ dnorm(0, 0.5),
+               sigma ~ dexp(1))
+
+# fit the model using the quadratic approximation approach
+res <- quap(model, data=dat)
+res
+
+
+
+
 ## 5.1.1: Think before you regress
 
