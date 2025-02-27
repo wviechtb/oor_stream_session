@@ -350,3 +350,11 @@ precis(res3, prob=0.95)
 # simulate new data (note: first simulate M and then D, using A_seq)
 sim_dat <- data.frame(A=seq(from=-3, to=3.2, by=0.2))
 s <- sim(res3, data=sim_dat, vars=c("M","D"))
+str(s)
+dim(s$M)
+dim(s$D)
+
+# Figure 5.6
+plot(sim_dat$A, colMeans(s$D), ylim=c(-2,2), type="l", bty="l", xlab="manipulated A",
+     ylab="counterfactual D", main="Total counterfactual effect of A on D")
+shade(apply(s$D, 2, PI), sim_dat$A)
