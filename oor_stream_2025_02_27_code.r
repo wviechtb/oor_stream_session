@@ -348,7 +348,7 @@ res3 <- quap(model3, data=dat)
 precis(res3, prob=0.95)
 
 # simulate new data (note: first simulate M and then D, using A_seq)
-sim_dat <- data.frame(A=seq(from=-2, to=2, by=0.2))
+sim_dat <- data.frame(A=seq(from=-2, to=2, length.out=30))
 s <- sim(res3, data=sim_dat, vars=c("M","D"))
 str(s)
 dim(s$M)
@@ -367,4 +367,13 @@ shade(apply(s$M, 2, PI), sim_dat$A)
 # new data frame where A is 20 or 30 and then standardized with mean 26.1 and SD 1.24
 sim2_dat <- data.frame(A=(c(20,30)-26.1)/1.24)
 s2 <- sim(res3, data=sim2_dat, vars=c("M","D"))
-mean( s2$D[,2] - s2$D[,1] )
+mean(s2$D[,2] - s2$D[,1])
+
+# simulate new data for the case where M is manipulated
+sim_dat <- data.frame(M=seq(from=-2, to=2, length.out=30), A=0)
+s <- sim(res3, data=sim_dat, vars="D")
+
+# Figure 5.7
+plot(sim_dat$M, colMeans(s), ylim=c(-2,2), type="l", bty="l", xlab="manipulated M",
+     ylab="counterfactual D", main="Total counterfactual effect of M on D")
+shade(apply(s, 2, PI), sim_dat$M)
