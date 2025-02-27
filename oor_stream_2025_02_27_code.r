@@ -314,17 +314,17 @@ segments(dat$D, D_PI[1,], dat$D, D_PI[2,])
 post <- extract.samples(res3, n=10000)
 head(post)
 
-# for each sample, compute the predicted value using the M and A values for
+# for each sample, compute the predicted mean using the M and A values for
 # the first state and compute a corresponding 95% percentile interval; this is
 # what link() does (the discrepancy is just a result of sampling randomness)
 mu_pi[,1]
 PI(apply(post, 1, function(par) par[1] + par[2]*dat$M[1] + par[3]*dat$A[1]), prob=0.95)
 
-
+# for each sample, now we simulate an actual observation from a normal
+# distribution with the predicted means as above and standard deviation as
+# given from the posterior samples of the error SD of the model; this is what
+# sim() does
 PI(apply(post, 1, function(par) rnorm(1, mean=par[1] + par[2]*dat$M[1] + par[3]*dat$A[1], sd=par[4])), prob=0.95)
-
-
-
 
 # 5.1.5.3: Counterfactual plots
 
