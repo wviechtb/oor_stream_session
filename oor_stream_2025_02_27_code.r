@@ -194,3 +194,25 @@ mu_resid
 # Figure 5.4 (upper left): plot of M (y-axis) on A (x-axis)
 plot(M ~ A, data=dat, pch=21, bg="gray", bty="l",
      xlab="Age at marriage (std)", ylab="Marriage rate (std)")
+abline(coef(res4)[1], coef(res4)[2], lwd=6)
+segments(dat$A, mu_mean, dat$A, dat$M)
+points(M ~ A, data=dat, pch=21, bg="gray")
+
+# Figure 5.4 (lower left): plot of D (y-axis) on the residuals (x-axis)
+plot(D ~ mu_resid, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Marriage rate residuals", ylab="Divorce rate (std)")
+
+# define the regression model where we predict D from the residuals
+model5 <- alist(D ~ dnorm(mu, sigma),
+                mu <- a + bR * mu_resid,
+                a ~ dnorm(0, 0.2),
+                bR ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
+
+# fit the model using the quadratic approximation approach
+res5 <- quap(model5, data=dat)
+
+abline(coef(res4)[1], coef(res4)[2], lwd=6)
+segments(dat$A, mu_mean, dat$A, dat$M)
+points(M ~ A, data=dat, pch=21, bg="gray")
+
