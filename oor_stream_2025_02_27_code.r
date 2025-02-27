@@ -287,13 +287,14 @@ mu_mean <- apply(mu, 2, mean)
 mu_pi   <- apply(mu, 2, PI, prob=0.95)
 
 # Figure 5.5: plot of the predicted means against the observed values of D
-plot(mu_mean ~ D, data=dat, pch=21, bg="gray", bty="l",
-     xlab="Divorce rate (std)", ylab="Predicted Value")
+plot(mu_mean ~ D, data=dat, pch=21, bg="gray", bty="l", ylim=range(mu_pi),
+     xlab="Observed divorce rate (std)", ylab="Predicted value")
+abline(0, 1, lty="dashed")
+segments(dat$D, mu_pi[1,], dat$D, mu_pi[2,])
+points(mu_mean ~ D, data=dat, pch=21, bg="gray")
 
-
-
-
-
+# using identify(), can left-click on points to label them (use right click to stop labeling)
+#identify(x=dat$D, y=mu_mean, labels=dat$Loc)
 
 
 
