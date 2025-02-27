@@ -37,8 +37,8 @@ dat$A <- c(scale(dat$MedianAgeMarriage))
 # SD of the MedianAgeMarriage variable
 sd(dat$MedianAgeMarriage)
 
-# define the regression model (predicting the standardized divorce rate from
-# the standardized median age at marriage)
+# define the regression model (predicting the standardized divorce rate D from
+# the standardized median age at marriage A)
 model <- alist(D ~ dnorm(mu, sigma),
                mu <- a + bA * A,
                a ~ dnorm(0, 0.2),
@@ -57,5 +57,34 @@ head(prior)
 # plot 50 of the regression lines based on the sampled values
 plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Median age marriage (std)",
      ylab="Divorce rate (std)", bty="l")
-apply(prior[1:50,], 1, function(x) abline(x[1], x[2], lwd=1.2, col="gray30"))
+apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.2, col="gray30"))
+
+# extract 1000 samples from the posterior distributions of the intercept,
+# slope, and error standard deviation
+set.seed(10)
+post <- extract.samples(res, n=1000)
+A_seq <- seq(from=-3, to=3.2, length.out=30)
+pred <- apply(post, 1, function(par) par[1] + par[2] * A_seq[1])
+
+
+
+# compute predicted values (i.e., the expected value of D) when A is equal to
+# -3, -2.8, ..., 3.2
+
+
+
+A_seq <- seq(from=-3, to=3.2, by=0.2)
+mu <- link(res, data=list(A=A_seq))
+
+# compute percentile interval of mean
+mu.mean <- apply(mu, 2, mean)
+mu.PI <- apply(mu, 2, PI)
+
+# plot it all
+plot(D ~ A, data=dat, col=rangi2)
+lines(A_seq, mu.mean, lwd=2)
+shade(mu.PI, A_seq)
+
+
+
 
