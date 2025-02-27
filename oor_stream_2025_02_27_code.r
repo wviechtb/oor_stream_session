@@ -39,19 +39,19 @@ sd(dat$MedianAgeMarriage)
 
 # define the regression model (predicting the standardized divorce rate D from
 # the standardized median age at marriage A)
-model <- alist(D ~ dnorm(mu, sigma),
-               mu <- a + bA * A,
-               a ~ dnorm(0, 0.2),
-               bA ~ dnorm(0, 0.5),
-               sigma ~ dexp(1))
+model1 <- alist(D ~ dnorm(mu, sigma),
+                mu <- a + bA * A,
+                a ~ dnorm(0, 0.2),
+                bA ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
 
 # fit the model using the quadratic approximation approach
-res <- quap(model, data=dat)
-precis(res, prob=0.95)
+res1 <- quap(model1, data=dat)
+precis(res1, prob=0.95)
 
 # sample 1000 values from the prior distributions
 set.seed(10)
-prior <- as.data.frame(extract.prior(res))
+prior <- as.data.frame(extract.prior(res1))
 head(prior)
 
 # plot 50 of the regression lines based on the sampled values
@@ -62,7 +62,7 @@ apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.2, col="gray30
 # extract 1000 samples from the posterior distributions of the intercept,
 # slope, and error standard deviation
 set.seed(10)
-post <- extract.samples(res, n=1000)
+post <- extract.samples(res1, n=1000)
 
 # compute the predicted value (i.e., the expected value of D) based on each of
 # the sampled intercept and slope values obtained above from A is equal to -3
@@ -74,7 +74,7 @@ head(pred)
 # to obtain the exact same values above and from link())
 set.seed(10)
 A_seq <- seq(from=-3, to=3.2, by=0.2)
-mu <- link(res, data=list(A=A_seq))
+mu <- link(res1, data=list(A=A_seq))
 
 # double-check that the predicted values for A = -3 are the same as the ones
 # we obtained above manually
@@ -100,15 +100,15 @@ shade(mu.pi, A_seq)
 
 # define the regression model (predicting the standardized divorce rate D from
 # the standardized marriage rate M)
-model <- alist(D ~ dnorm(mu, sigma),
-               mu <- a + bM * M,
-               a ~ dnorm(0, 0.2),
-               bM ~ dnorm(0, 0.5),
-               sigma ~ dexp(1))
+model2 <- alist(D ~ dnorm(mu, sigma),
+                mu <- a + bM * M,
+                a ~ dnorm(0, 0.2),
+                bM ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
 
 # fit the model using the quadratic approximation approach
-res <- quap(model, data=dat)
-precis(res, prob=0.95)
+res2 <- quap(model2, data=dat)
+precis(res2, prob=0.95)
 
 ## 5.1.1: Think before you regress
 
@@ -142,13 +142,15 @@ impliedConditionalIndependencies(dag1)
 ## 5.1.4: Approximating the posterior
 
 # define the regression model with both M and A as predictors of D
-model <- alist(D ~ dnorm(mu, sigma),
-               mu <- a + bM * M + bA * A,
-               a ~ dnorm(0, 0.2),
-               bM ~ dnorm(0, 0.5),
-               bA ~ dnorm(0, 0.5),
-               sigma ~ dexp(1))
+model3 <- alist(D ~ dnorm(mu, sigma),
+                mu <- a + bM * M + bA * A,
+                a ~ dnorm(0, 0.2),
+                bM ~ dnorm(0, 0.5),
+                bA ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
 
 # fit the model using the quadratic approximation approach
-res <- quap(model, data=dat)
-precis(res, prob=0.95)
+res3 <- quap(model3, data=dat)
+precis(res3, prob=0.95)
+
+plot(coeftab(m5.1,m5.2,m5.3), par=c("bA","bM") )
