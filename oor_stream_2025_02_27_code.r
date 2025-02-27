@@ -119,9 +119,9 @@ res
 library(dagitty)
 
 # draw the DAG described in the book
-dag5.1 <- dagitty("dag{A -> D; A -> M; M -> D}")
-coordinates(dag5.1) <- list(x=c(A=0, D=1, M=2), y=c(A=0, D=1, M=0))
-drawdag(dag5.1)
+dag1 <- dagitty("dag{A -> D; A -> M; M -> D}")
+coordinates(dag1) <- list(x=c(A=0, D=1, M=2), y=c(A=0, D=1, M=0))
+drawdag(dag1)
 
 ## 5.1.2: Testable implications
 
@@ -131,3 +131,10 @@ cor(dat[c("D","A","M")])
 # sidenote: to use correlations in this way to check that variables are in
 # fact not independent, strictly speaking we would have to assume that the
 # three variables jointly follow a multivariate normal distribution
+
+# define the DAG where M does not have a direct influence on D
+dag2 <- dagitty("dag{D <- A -> M}")
+impliedConditionalIndependencies(dag2)
+
+# check if there are conditional independencies in the first DAG
+impliedConditionalIndependencies(dag1)
