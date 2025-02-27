@@ -118,7 +118,9 @@ res
 # load the dagitty package
 library(dagitty)
 
-dag5.1 <- dagitty( "dag{ A -> D; A -> M; M -> D }" ) coordinates(dag5.1) <- list( x=c(A=0,D=1,M=2) , y=c(A=0,D=1,M=0) ) drawdag( dag5.1 )
+# draw the DAG described in the book
+dag5.1 <- dagitty("dag{A -> D; A -> M; M -> D}")
+coordinates(dag5.1) <- list(x=c(A=0, D=1, M=2), y=c(A=0, D=1, M=0))
+drawdag(dag5.1)
 
-
-
+## 5.1.2: Testable implications
