@@ -124,3 +124,10 @@ coordinates(dag5.1) <- list(x=c(A=0, D=1, M=2), y=c(A=0, D=1, M=0))
 drawdag(dag5.1)
 
 ## 5.1.2: Testable implications
+
+# check that all three variables are in fact not independent
+cor(dat[c("D","A","M")])
+
+# sidenote: to use correlations in this way to check that variables are in
+# fact not independent, strictly speaking we would have to assume that the
+# three variables jointly follow a multivariate normal distribution
