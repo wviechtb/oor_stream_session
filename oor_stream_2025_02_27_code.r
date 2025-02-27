@@ -181,5 +181,16 @@ precis(res4, prob=0.95)
 # compute predicted values for M for each of the 50 states based on 1000
 # sampled values from the posterior distributions of the intercept and slope
 mu <- link(res4)
+dim(mu)
+
+# compute the mean of the predicted values for each state
 mu_mean <- apply(mu, 2, mean)
-mu_resid <- d$M - mu_mean
+mu_mean
+
+# compute the residuals
+mu_resid <- dat$M - mu_mean
+mu_resid
+
+# Figure 5.4 (upper left): plot of M (y-axis) on A (x-axis)
+plot(M ~ A, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Age at marriage (std)", ylab="Marriage rate (std)")
