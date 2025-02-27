@@ -110,8 +110,15 @@ model <- alist(D ~ dnorm(mu, sigma),
 res <- quap(model, data=dat)
 res
 
-
-
-
 ## 5.1.1: Think before you regress
+
+# install the dagitty package (if necessary)
+#install.packages("dagitty")
+
+# load the dagitty package
+library(dagitty)
+
+dag5.1 <- dagitty( "dag{ A -> D; A -> M; M -> D }" ) coordinates(dag5.1) <- list( x=c(A=0,D=1,M=2) , y=c(A=0,D=1,M=0) ) drawdag( dag5.1 )
+
+
 
