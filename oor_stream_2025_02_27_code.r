@@ -308,6 +308,24 @@ D_PI  <- apply(D_sim, 2, PI, prob=0.95)
 # reference line (where observed = predicted)
 segments(dat$D, D_PI[1,], dat$D, D_PI[2,])
 
+# to make the distinction between the two intervals clearer, let's manually do
+# what link() and sim() are doing for the first state; for this, we extract
+# posterior samples from the posterior distributions of the parameters
+post <- extract.samples(res3, n=10000)
+head(post)
+
+# for each sample, compute the predicted value using the M and A values for
+# the first state and compute a corresponding 95% percentile interval; this is
+# what link() does (the discrepancy is just a result of sampling randomness)
+mu_pi[,1]
+PI(apply(post, 1, function(par) par[1] + par[2]*dat$M[1] + par[3]*dat$A[1]), prob=0.95)
+
+
+PI(apply(post, 1, function(par) rnorm(1, mean=par[1] + par[2]*dat$M[1] + par[3]*dat$A[1], sd=par[4])), prob=0.95)
+
+
+
+
 # 5.1.5.3: Counterfactual plots
 
 # model3 as above, but now also add the model for A -> M
