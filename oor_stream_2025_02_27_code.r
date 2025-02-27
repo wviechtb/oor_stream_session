@@ -25,3 +25,4 @@ dat <- get(data(WaffleDivorce))
 dat$D <- c(scale(dat$Divorce))
 dat$M <- c(scale(dat$Marriage))
 dat$A <- c(scale(dat$MedianAgeMarriage))
+
