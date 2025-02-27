@@ -219,3 +219,47 @@ mu.mean <- apply(mu, 2, mean)
 mu.pi   <- apply(mu, 2, PI, prob=0.95)
 lines(resid_seq, mu.mean, lwd=2)
 shade(mu.pi, resid_seq)
+abline(v=0, lty="dashed")
+
+# now we do the same thing as above but predicting A from M
+model6 <- alist(A ~ dnorm(mu, sigma),
+                mu <- a + bAM * M,
+                a ~ dnorm(0, 0.2),
+                bAM ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
+res6 <- quap(model6, data=dat)
+mu <- link(res6)
+mu_mean <- apply(mu, 2, mean)
+mu_resid <- dat$A - mu_mean
+
+# Figure 5.4 (upper right): plot of A (y-axis) on M (x-axis)
+plot(A ~ M, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Marriage rate (std)", ylab="Age at marriage (std)")
+abline(coef(res6)[1], coef(res6)[2], lwd=6)
+segments(dat$M, mu_mean, dat$M, dat$A)
+points(A ~ M, data=dat, pch=21, bg="gray")
+
+# Figure 5.4 (lower right): plot of D (y-axis) on the residuals (x-axis)
+plot(D ~ mu_resid, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Age at Marriage residuals", ylab="Divorce rate (std)")
+
+# fit the regression model where we predict D from the residuals
+model7 <- alist(D ~ dnorm(mu, sigma),
+                mu <- a + bR * mu_resid,
+                a ~ dnorm(0, 0.2),
+                bR ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
+res7 <- quap(model7, data=dat)
+
+# add the regression line and PI bounds to the plot
+resid_seq <- seq(from=-2, to=2, by=0.1)
+mu <- link(res7, data=list(mu_resid=resid_seq))
+mu.mean <- apply(mu, 2, mean)
+mu.pi   <- apply(mu, 2, PI, prob=0.95)
+lines(resid_seq, mu.mean, lwd=2)
+shade(mu.pi, resid_seq)
+abline(v=0, lty="dashed")
+
+
+
+
