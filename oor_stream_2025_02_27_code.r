@@ -159,6 +159,9 @@ plot(coeftab(res1, res2, res3), par=c("bA","bM"))
 
 # Overthinking: Simulating the divorce example
 N <- 50 # number of simulated States
-age <- rnorm(N) # sim A
-mar <- rnorm(N, -age) # sim A -> M
-div <- rnorm(N,  age) # sim A -> D
+age <- rnorm(N) # simulate A
+mar <- rnorm(N, mean = 0 + -1*age) # simulate A -> M
+div <- rnorm(N, mean = 0 +  1*age) # simulate A -> D
+
+## 5.1.5: Plotting multivariate posteriors
+
