@@ -286,7 +286,25 @@ dim(mu)
 mu_mean <- apply(mu, 2, mean)
 mu_pi   <- apply(mu, 2, PI, prob=0.95)
 
-# simulate observations # again no new data, so uses original data
+# Figure 5.5: plot of the predicted means against the observed values of D
+plot(mu_mean ~ D, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Divorce rate (std)", ylab="Predicted Value")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# simulate observations (again no new data, so uses original data)
 D_sim <- sim(res3, n=10000)
 D_PI  <- apply(D_sim, 2, PI, prob=0.95)
+
 
