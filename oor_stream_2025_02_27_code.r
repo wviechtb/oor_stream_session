@@ -212,7 +212,10 @@ model5 <- alist(D ~ dnorm(mu, sigma),
 # fit the model using the quadratic approximation approach
 res5 <- quap(model5, data=dat)
 
-abline(coef(res4)[1], coef(res4)[2], lwd=6)
-segments(dat$A, mu_mean, dat$A, dat$M)
-points(M ~ A, data=dat, pch=21, bg="gray")
-
+# add the regression line and PI bounds to the plot
+resid_seq <- seq(from=-2, to=2, by=0.1)
+mu <- link(res5, data=list(mu_resid=resid_seq))
+mu.mean <- apply(mu, 2, mean)
+mu.pi   <- apply(mu, 2, PI, prob=0.95)
+lines(resid_seq, mu.mean, lwd=2)
+shade(mu.pi, resid_seq)
