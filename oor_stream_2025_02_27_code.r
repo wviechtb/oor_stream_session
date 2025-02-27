@@ -47,7 +47,7 @@ model <- alist(D ~ dnorm(mu, sigma),
 
 # fit the model using the quadratic approximation approach
 res <- quap(model, data=dat)
-res
+precis(res, prob=0.95)
 
 # sample 1000 values from the prior distributions
 set.seed(10)
@@ -108,7 +108,7 @@ model <- alist(D ~ dnorm(mu, sigma),
 
 # fit the model using the quadratic approximation approach
 res <- quap(model, data=dat)
-res
+precis(res, prob=0.95)
 
 ## 5.1.1: Think before you regress
 
@@ -143,7 +143,7 @@ impliedConditionalIndependencies(dag1)
 
 # define the regression model with both M and A as predictors of D
 model <- alist(D ~ dnorm(mu, sigma),
-               mu <- a + bM * M + bA * A
+               mu <- a + bM * M + bA * A,
                a ~ dnorm(0, 0.2),
                bM ~ dnorm(0, 0.5),
                bA ~ dnorm(0, 0.5),
@@ -151,4 +151,4 @@ model <- alist(D ~ dnorm(mu, sigma),
 
 # fit the model using the quadratic approximation approach
 res <- quap(model, data=dat)
-res
+precis(res, prob=0.95)
