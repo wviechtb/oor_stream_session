@@ -63,18 +63,23 @@ apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.2, col="gray30
 # slope, and error standard deviation
 set.seed(10)
 post <- extract.samples(res, n=1000)
-A_seq <- seq(from=-3, to=3.2, length.out=30)
-pred <- apply(post, 1, function(par) par[1] + par[2] * A_seq[1])
 
+# compute the predicted value (i.e., the expected value of D) based on each of
+# the sampled intercept and slope values obtained above from A is equal to -3
+pred <- apply(post, 1, function(par) par[1] + par[2] * -3)
+head(pred)
 
-
-# compute predicted values (i.e., the expected value of D) when A is equal to
-# -3, -2.8, ..., 3.2
-
-
-
+# using the link() function, we can do the same thing; in fact, we will do the
+# same when A is equal to -3, -2.8, ..., 3.2 (note: we keep resetting the seed
+# to obtain the exact same values above and from link())
+set.seed(10)
 A_seq <- seq(from=-3, to=3.2, by=0.2)
 mu <- link(res, data=list(A=A_seq))
+
+# double-check that the predicted values for A = -3 are the same as the ones
+# we obtained above manually
+head(mu[,1])
+
 
 # compute percentile interval of mean
 mu.mean <- apply(mu, 2, mean)
