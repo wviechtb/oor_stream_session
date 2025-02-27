@@ -363,3 +363,8 @@ shade(apply(s$D, 2, PI), sim_dat$A)
 plot(sim_dat$A, colMeans(s$M), ylim=c(-2,2), type="l", bty="l", xlab="manipulated A",
      ylab="counterfactual M", main="Counterfactual effect of A on M")
 shade(apply(s$M, 2, PI), sim_dat$A)
+
+# new data frame where A is 20 or 30 and then standardized with mean 26.1 and SD 1.24
+sim2_dat <- data.frame(A=(c(20,30)-26.1)/1.24)
+s2 <- sim(res3, data=sim2_dat, vars=c("M","D"))
+mean( s2$D[,2] - s2$D[,1] )
