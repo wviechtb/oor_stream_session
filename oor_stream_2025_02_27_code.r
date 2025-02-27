@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 5.1 - ?
+# - Section(s): 5.1
 #
 # last updated: 2025-02-27
 
@@ -377,3 +377,5 @@ s <- sim(res3, data=sim_dat, vars="D")
 plot(sim_dat$M, colMeans(s), ylim=c(-2,2), type="l", bty="l", xlab="manipulated M",
      ylab="counterfactual D", main="Total counterfactual effect of M on D")
 shade(apply(s, 2, PI), sim_dat$M)
+
+############################################################################
