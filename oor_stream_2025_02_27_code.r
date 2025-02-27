@@ -53,6 +53,9 @@ set.seed(10)
 prior <- as.data.frame(extract.prior(res))
 head(prior)
 
-mu <- link(res, post=prior, data=list(A=c(-2,2)) )
+# based on each sampled pair of intercept and slope values in 'prior', compute
+# the predicted mean standardized divorce rate when the standardized median
+# age at marriage variable is -2 or 2
+mu <- link(res, post=prior, data=list(A=c(-2,2)))
 
 plot( NULL , xlim=c(-2,2) , ylim=c(-2,2) ) for ( i in 1:50 ) lines( c(-2,2) , mu[i,] , col=col.alpha("black",0.4) )
