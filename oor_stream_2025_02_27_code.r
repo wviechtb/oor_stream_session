@@ -101,9 +101,9 @@ shade(mu.pi, A_seq)
 # define the regression model (predicting the standardized divorce rate D from
 # the standardized marriage rate M)
 model <- alist(D ~ dnorm(mu, sigma),
-               mu <- a + bA * M,
+               mu <- a + bM * M,
                a ~ dnorm(0, 0.2),
-               bA ~ dnorm(0, 0.5),
+               bM ~ dnorm(0, 0.5),
                sigma ~ dexp(1))
 
 # fit the model using the quadratic approximation approach
@@ -138,3 +138,17 @@ impliedConditionalIndependencies(dag2)
 
 # check if there are conditional independencies in the first DAG
 impliedConditionalIndependencies(dag1)
+
+## 5.1.4: Approximating the posterior
+
+# define the regression model with both M and A as predictors of D
+model <- alist(D ~ dnorm(mu, sigma),
+               mu <- a + bM * M + bA * A
+               a ~ dnorm(0, 0.2),
+               bM ~ dnorm(0, 0.5),
+               bA ~ dnorm(0, 0.5),
+               sigma ~ dexp(1))
+
+# fit the model using the quadratic approximation approach
+res <- quap(model, data=dat)
+res
