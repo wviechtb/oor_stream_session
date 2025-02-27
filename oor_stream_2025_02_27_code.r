@@ -309,3 +309,19 @@ D_PI  <- apply(D_sim, 2, PI, prob=0.95)
 segments(dat$D, D_PI[1,], dat$D, D_PI[2,])
 
 # 5.1.5.3: Counterfactual plots
+
+# model3 as above, but now also add the model for A -> M
+model3 <- alist(# model A -> D <- M
+                D ~ dnorm(mu, sigma),
+                mu <- a + bM * M + bA * A,
+                a ~ dnorm(0, 0.2),
+                bM ~ dnorm(0, 0.5),
+                bA ~ dnorm(0, 0.5),
+                sigma ~ dexp(1),
+                # model A -> M
+                M ~ dnorm(mu_M, sigma_M),
+                mu_M <- aM + bAM * M,
+                aM ~ dnorm(0, 0.2),
+                bAM ~ dnorm(0, 0.5),
+                sigma_M ~ dexp(1))
+
