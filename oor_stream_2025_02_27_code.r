@@ -97,3 +97,6 @@ axis(side=1, at=((23:30) - mean(dat$MedianAgeMarriage)) / sd(dat$MedianAgeMarria
 axis(side=2, at=((6:14) - mean(dat$Divorce)) / sd(dat$Divorce), labels=6:14)
 lines(A_seq, mu.mean, lwd=2)
 shade(mu.pi, A_seq)
+
+## 5.1.1: Think before you regress
+
