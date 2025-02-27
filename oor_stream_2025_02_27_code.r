@@ -252,7 +252,7 @@ model7 <- alist(D ~ dnorm(mu, sigma),
 res7 <- quap(model7, data=dat)
 
 # add the regression line and PI bounds to the plot
-resid_seq <- seq(from=-2, to=2, by=0.1)
+resid_seq <- seq(from=-2, to=3, by=0.1)
 mu <- link(res7, data=list(mu_resid=resid_seq))
 mu.mean <- apply(mu, 2, mean)
 mu.pi   <- apply(mu, 2, PI, prob=0.95)
@@ -260,6 +260,20 @@ lines(resid_seq, mu.mean, lwd=2)
 shade(mu.pi, resid_seq)
 abline(v=0, lty="dashed")
 
+############################################################################
+
+# digression: when going back to a more traditional frequentist framework, we
+# can see the same idea at play and in fact get exact equivalence between the
+# coefficients from the full regression model and the models where we use
+# residuals to predict the outcome
+res <- lm(Divorce ~ MedianAgeMarriage + Marriage, data=dat)
+coef(res)
+res <- lm(MedianAgeMarriage ~ Marriage, data=dat)
+coef(lm(Divorce ~ resid(res), data=dat))
+res <- lm(Marriage ~ MedianAgeMarriage, data=dat)
+coef(lm(Divorce ~ resid(res), data=dat))
+
+############################################################################
 
 
 
