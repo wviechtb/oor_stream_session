@@ -282,9 +282,11 @@ coef(lm(Divorce ~ resid(res), data=dat))
 mu <- link(res3)
 dim(mu)
 
-# summarize samples across cases
+# summarize the predicted values for each state
 mu_mean <- apply(mu, 2, mean)
 mu_pi   <- apply(mu, 2, PI, prob=0.95)
 
-# simulate observations # again no new data, so uses original data D_sim <- sim( m5.3 , n=1e4 ) D_PI <- apply( D_sim , 2 , PI )
+# simulate observations # again no new data, so uses original data
+D_sim <- sim(res3, n=10000)
+D_PI  <- apply(D_sim, 2, PI, prob=0.95)
 
