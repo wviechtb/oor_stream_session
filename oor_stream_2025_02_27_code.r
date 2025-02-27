@@ -165,3 +165,21 @@ div <- rnorm(N, mean = 0 +  1*age) # simulate A -> D
 
 ## 5.1.5: Plotting multivariate posteriors
 
+# 5.1.5.1: Predictor residual plots
+
+# define the regression model where we predict M from A
+model4 <- alist(M ~ dnorm(mu, sigma),
+                mu <- a + bAM * A,
+                a ~ dnorm(0, 0.2),
+                bAM ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
+
+# fit the model using the quadratic approximation approach
+res4 <- quap(model4, data=dat)
+precis(res4, prob=0.95)
+
+# compute predicted values for M for each of the 50 states based on 1000
+# sampled values from the posterior distributions of the intercept and slope
+mu <- link(res4)
+mu_mean <- apply(mu, 2, mean)
+mu_resid <- d$M - mu_mean
