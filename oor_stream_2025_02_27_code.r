@@ -290,22 +290,22 @@ mu_pi   <- apply(mu, 2, PI, prob=0.95)
 plot(mu_mean ~ D, data=dat, pch=21, bg="gray", bty="l", ylim=range(mu_pi),
      xlab="Observed divorce rate (std)", ylab="Predicted value")
 abline(0, 1, lty="dashed")
-segments(dat$D, mu_pi[1,], dat$D, mu_pi[2,])
+segments(dat$D, mu_pi[1,], dat$D, mu_pi[2,], lwd=3)
 points(mu_mean ~ D, data=dat, pch=21, bg="gray")
 
 # using identify(), can left-click on points to label them (use right click to stop labeling)
 #identify(x=dat$D, y=mu_mean, labels=dat$Loc)
 
-
-
-
-
-
-
-
-
-# simulate observations (again no new data, so uses original data)
+# simulate actual new observations (again no new data, so uses original data)
+# and compute 95% prediction intervals based on these simulated data
 D_sim <- sim(res3, n=10000)
 D_PI  <- apply(D_sim, 2, PI, prob=0.95)
 
+# note: in the book, these values are not actually discussed or used (?!?) but
+# the point here is that mu_mean are predicted *means* while raw data are of
+# course more variable than that; therefore the prediction intervals for raw
+# data are quite a bit wider and overlap much more often with the diagonal
+# reference line (where observed = predicted)
+segments(dat$D, D_PI[1,], dat$D, D_PI[2,])
 
+# 5.1.5.3: Counterfactual plots
