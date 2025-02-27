@@ -54,8 +54,8 @@ set.seed(10)
 prior <- as.data.frame(extract.prior(res))
 head(prior)
 
-# plot 50 of the regression lines from the samples values
+# plot 50 of the regression lines based on the sampled values
 plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Median age marriage (std)",
      ylab="Divorce rate (std)", bty="l")
-apply(prior[1:50,], 1, function(x) abline(x[1], x[2]))
+apply(prior[1:50,], 1, function(x) abline(x[1], x[2], lwd=1.2, col="gray30"))
 
