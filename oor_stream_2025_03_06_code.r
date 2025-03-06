@@ -192,6 +192,14 @@ loo2_with_jacobian$pointwise[,1] <- loo2_with_jacobian$pointwise[,1] - log(dat$w
 # this warning because we have manually fixed the issue)
 suppressWarnings(loo_compare(kfold1, loo2_with_jacobian))
 
+# draw 4000 samples from the posterior distribution of the data
+yrep1 <- posterior_predict(res1)
+n_sims <- nrow(yrep1)
+subset <- sample(n_sims, 100)
+ppc_dens_overlay(mesquite$weight, yrep_1[subset,])
+yrep_2 <- posterior_predict(fit_2)
+ppc_dens_overlay(log(mesquite$weight), yrep_2[subset,])
+
 
 ############################################################################
 
