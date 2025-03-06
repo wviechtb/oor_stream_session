@@ -192,8 +192,9 @@ loo2_with_jacobian$pointwise[,1] <- loo2_with_jacobian$pointwise[,1] - log(dat$w
 # this warning because we have manually fixed the issue)
 suppressWarnings(loo_compare(kfold1, loo2_with_jacobian))
 
-# draw 4000 samples from the posterior distribution of the data
+# draw 4000 samples from the posterior distribution of the data for the two models
 yrep1 <- posterior_predict(res1)
+yrep2 <- posterior_predict(res2)
 
 # Figure 12.8 (left): kernel density plot of the observed weight values versus
 # 100 random kernel density lines from the 4000 samples drawn above
@@ -202,10 +203,22 @@ subset <- sample(nrow(yrep1), 100)
 invisible(apply(yrep1[subset,], 1, function(x) lines(density(x), col="gray80")))
 lines(density(dat$weight), lwd=5)
 
+# Figure 12.8 (right): kernel density plot of the observed log weight values
+# versus 100 random kernel density lines from the 4000 samples drawn above
+plot(density(log(dat$weight)), main="Model for log(weight)", lwd=5, bty="l", xlim=c(3,9), ylim=c(0,0.6))
+subset <- sample(nrow(yrep2), 100)
+invisible(apply(yrep2[subset,], 1, function(x) lines(density(x), col="gray80")))
+lines(density(log(dat$weight)), lwd=5)
 
+# extract the sampled values for the posterior distributions of the model parameters
+post2 <- as.data.frame(res2)
+head(post2)
 
-yrep_2 <- posterior_predict(fit_2)
-ppc_dens_overlay(log(mesquite$weight), yrep_2[subset,])
+# Figure 12.9 (left): kernel density estimates based on the samples values of
+# the posterior distributions for the regression coefficients
+library(bayesplot)
+mcmc_areas(post2[2:7])
+
 
 
 ############################################################################
