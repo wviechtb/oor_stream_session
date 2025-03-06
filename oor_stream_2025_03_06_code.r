@@ -139,21 +139,26 @@ head(dat)
 res1 <- stan_glm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat, refresh=0)
 res1
 
-# do leave-one-out cross-validation
+# do leave-one-out cross-validation for this model
 loo1 <- loo(res1)
 loo1
 
-# do 10-fold cross-validation
+# do 10-fold cross-validation for this model
 kfold1 <- kfold(res1, K=10)
 kfold1
 
 # obtain summary statistics of the quantitative variables in the dataset
 round(t(apply(dat[3:8], 2, function(x) c(summary(x), IQR=IQR(x)))), 1)
 
-# fit the model where we use all variables as predictors of weight
-res1hs <- update(res1, prior=hs())
-res1hs
+# fit the model where we remove some predictors
+res1b <- stan_glm(weight ~ canopy_height + total_height + density + group, data=dat, refresh=0)
+res1b
 
+# do 10-fold cross-validation for this model
+kfold1b <- kfold(res1b, K=10)
+kfoldb1
+
+loo_compare(kfold1, kfold1b)
 
 
 # fit the model where all variables are log transformed (except for the group dummy)
