@@ -169,3 +169,8 @@ res2
 
 # do leave-one-out cross-validation for this model
 loo2 <- loo(res2)
+
+tmp1 <- lm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat)
+tmp2 <- lm(log(weight) ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat)
+logLik(tmp1)
+logLik(tmp2)
