@@ -246,15 +246,18 @@ loo_compare(loo2, loo3)
 round(median(loo_R2(res2)), 2)
 round(median(loo_R2(res3)), 2)
 
-
 # compute the canopy area and shape variables
 dat$canopy_area  <- with(dat, diam1 * diam2)
 dat$canopy_shape <- with(dat, diam1 / diam2)
 
-# use (log transformed) canopy volume as the single predictor
-res3 <- stan_glm(log(weight) ~ log(canopy_volume) + log(canopy_area) + log(canopy_shape) +
+# use volume, area, shape, and the other variables as predictors
+res4 <- stan_glm(log(weight) ~ log(canopy_volume) + log(canopy_area) + log(canopy_shape) +
                  log(total_height) + log(density) + group, data=dat, refresh=0)
-res3
+res4
+
+# compare the performance of models res2 and res4
+loo4 <- loo(res4)
+loo_compare(loo2, loo4)
 
 
 ############################################################################
