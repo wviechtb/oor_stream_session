@@ -176,9 +176,18 @@ loo2 <- loo(res2)
 
 ## Using the Jacobian to adjust the predictive comparison after a transformation
 
-# correct the
+# the elpd values from models res1 and res2 cannot be directly compared
+# because the outcome variable is different for the two models (one uses raw
+# weight, the other uses log-transformed weight)
+kfold1
+loo2
+
+# we can correct the loo2 results for the transformation that was done on the
+# outcome variable as described in the book
 loo2_with_jacobian <- loo2
 loo2_with_jacobian$pointwise[,1] <- loo2_with_jacobian$pointwise[,1] - log(dat$weight)
+
+loo_compare(kfold1, loo2_with_jacobian)
 
 
 ############################################################################
