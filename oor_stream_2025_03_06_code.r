@@ -187,7 +187,10 @@ loo2
 loo2_with_jacobian <- loo2
 loo2_with_jacobian$pointwise[,1] <- loo2_with_jacobian$pointwise[,1] - log(dat$weight)
 
-loo_compare(kfold1, loo2_with_jacobian)
+# now we can compare the two models (note: loo_compare() still gives a warning
+# about the y variable being different for the two models, but we can suppress
+# this warning because we have manually fixed the issue)
+suppressWarnings(loo_compare(kfold1, loo2_with_jacobian))
 
 
 ############################################################################
