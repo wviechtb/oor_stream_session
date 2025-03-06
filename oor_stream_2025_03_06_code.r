@@ -241,6 +241,10 @@ res3
 loo3 <- loo(res3)
 loo_compare(loo2, loo3)
 
+# compare the leave-one-out R^2 values
+median(loo_R2(res2))
+median(loo_R2(res3))
+
 ############################################################################
 
 
