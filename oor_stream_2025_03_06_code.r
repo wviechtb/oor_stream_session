@@ -170,7 +170,24 @@ res2
 # do leave-one-out cross-validation for this model
 loo2 <- loo(res2)
 
-tmp1 <- lm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat)
-tmp2 <- lm(log(weight) ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat)
+############################################################################
+
+n <- 500
+
+x <- rnorm(n)
+y <- rnorm(n, mean=10, sd=2)
+tmp1 <- lm(y ~ x, data=dat)
+tmp2 <- lm(log(y) ~ x, data=dat)
 logLik(tmp1)
 logLik(tmp2)
+logLik(tmp2) - sum(log(y))
+
+y <- rlnorm(n, meanlog=0, sdlog=1)
+tmp1 <- lm(y ~ x, data=dat)
+tmp2 <- lm(log(y) ~ x, data=dat)
+logLik(tmp1)
+logLik(tmp2)
+logLik(tmp2) - sum(log(y))
+
+
+############################################################################
