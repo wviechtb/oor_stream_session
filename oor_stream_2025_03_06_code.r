@@ -120,3 +120,9 @@ for (i in 2:length(breaks)) {
    segments(breaks[i-1], pred, breaks[i], pred, lwd=3)
 }
 
+## Indicator variables, identifiability, and the baseline condition
+
+# fit the same model but exclude the intercept / constant term
+res3 <- stan_glm(Yes ~ 0 + age_discrete, data=tab, refresh=0)
+res3
+
