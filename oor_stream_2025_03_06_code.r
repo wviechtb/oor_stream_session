@@ -147,4 +147,5 @@ loo_1
 kfold_1 <- kfold(res, K=10)
 kfold_1
 
-
+# obtain summary statistics of the quantitative variables in the dataset
+round(t(apply(dat[3:8], 2, function(x) c(summary(x), IQR=IQR(x)))), 1)
