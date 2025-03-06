@@ -113,3 +113,10 @@ res2
 # Figure 12.7 (right): plot of gayFavorStateMarriage versus age
 plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
      xlab="Age", ylab="Support for same-sex marriage (%)")
+
+# add the regression line segments based on the model to the plot
+for (i in 2:length(breaks)) {
+   pred <- coef(res2)[1] + ifelse(i >= 3, coef(res2)[i-1], 0)
+   segments(breaks[i-1], pred, breaks[i], pred, lwd=3)
+}
+
