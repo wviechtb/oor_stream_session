@@ -84,6 +84,9 @@ head(tab)
 tab <- cbind(tab, age=as.numeric(rownames(tab)))
 head(tab)
 
+# turn tab into a data frame
+tab <- data.frame(tab)
+
 # Figure 12.7: plot of gayFavorStateMarriage versus age
 plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
      xlab="Age", ylab="Support for same-sex marriage (%)")
@@ -91,4 +94,10 @@ plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
 # fit the model (using the aggregated data)
 res <- stan_glm(Yes ~ age, data=tab, refresh=0)
 res
+
+# add the regression line to the plot
+abline(res, lwd=3)
+
+# compute the (median) R^2
+median(bayes_R2(res))
 
