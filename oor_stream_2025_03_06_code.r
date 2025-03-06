@@ -90,5 +90,5 @@ plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
 
 # fit the model (using the aggregated data)
 res <- stan_glm(Yes ~ age, data=tab, refresh=0)
-coef(res)
+res
 
