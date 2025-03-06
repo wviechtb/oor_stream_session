@@ -136,16 +136,23 @@ dat <- read.table("mesquite.dat", header=TRUE)
 head(dat)
 
 # fit the model where we use all variables as predictors of weight
-res <- stan_glm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat, refresh=0)
-res
+res1 <- stan_glm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat, refresh=0)
+res1
 
 # do leave-one-out cross-validation
-loo_1 <- loo(res)
-loo_1
+loo1 <- loo(res1)
+loo1
 
 # do 10-fold cross-validation
-kfold_1 <- kfold(res, K=10)
-kfold_1
+kfold1 <- kfold(res1, K=10)
+kfold1
 
 # obtain summary statistics of the quantitative variables in the dataset
 round(t(apply(dat[3:8], 2, function(x) c(summary(x), IQR=IQR(x)))), 1)
+
+# fit the model where all variables are log transformed (except for the group dummy)
+res2 <- stan_glm(log(weight) ~ log(diam1) + log(diam2) + log(canopy_height) + log(total_height) + log(density) + group, data=dat, refresh=0)
+res2
+
+# do 10-fold cross-validation for this model
+loo2 <- loo(res2)
