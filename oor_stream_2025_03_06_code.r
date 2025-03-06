@@ -151,7 +151,7 @@ kfold1
 round(t(apply(dat[3:8], 2, function(x) c(summary(x), IQR=IQR(x)))), 1)
 
 # fit the model where we remove some predictors
-res1b <- stan_glm(weight ~ canopy_height + total_height + density + group, data=dat, refresh=0)
+res1b <- stan_glm(weight ~ diam1 + diam2, data=dat, refresh=0)
 res1b
 
 # do 10-fold cross-validation for this model
