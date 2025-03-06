@@ -171,7 +171,8 @@ loo_compare(kfold1, kfold1b)
 dat$X <- NULL
 
 # fit the model where all variables are log transformed (except for the group dummy)
-res2 <- stan_glm(log(weight) ~ log(diam1) + log(diam2) + log(canopy_height) + log(total_height) + log(density) + group, data=dat, refresh=0)
+res2 <- stan_glm(log(weight) ~ log(diam1) + log(diam2) + log(canopy_height) +
+                 log(total_height) + log(density) + group, data=dat, refresh=0)
 res2
 
 # do leave-one-out cross-validation for this model
@@ -242,8 +243,19 @@ loo3 <- loo(res3)
 loo_compare(loo2, loo3)
 
 # compare the leave-one-out R^2 values
-median(loo_R2(res2))
-median(loo_R2(res3))
+round(median(loo_R2(res2)), 2)
+round(median(loo_R2(res3)), 2)
+
+
+# compute the canopy area and shape variables
+dat$canopy_area  <- with(dat, diam1 * diam2)
+dat$canopy_shape <- with(dat, diam1 / diam2)
+
+# use (log transformed) canopy volume as the single predictor
+res3 <- stan_glm(log(weight) ~ log(canopy_volume) + log(canopy_area) + log(canopy_shape) +
+                 log(total_height) + log(density) + group, data=dat, refresh=0)
+res3
+
 
 ############################################################################
 
