@@ -57,3 +57,17 @@ head(dat)
 # model predicting the kids' test score from mom_work treated as a categorical variable
 res <- stan_glm(kid_score ~ factor(mom_work), data=dat, refresh=0)
 res
+
+## Index and indicator variables
+
+# download the dataset if it doesn't already exist
+if (!file.exists("naes04.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Gay/data/naes04.csv", destfile="naes04.csv")
+
+# read in the dataset
+dat <- read.csv("naes04.csv")
+
+# inspect the first six rows of the dataset
+head(dat)
+
+
+
