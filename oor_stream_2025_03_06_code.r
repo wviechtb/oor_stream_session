@@ -87,17 +87,29 @@ head(tab)
 # turn tab into a data frame
 tab <- data.frame(tab)
 
-# Figure 12.7: plot of gayFavorStateMarriage versus age
+# Figure 12.7 (left): plot of gayFavorStateMarriage versus age
 plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
      xlab="Age", ylab="Support for same-sex marriage (%)")
 
 # fit the model (using the aggregated data)
-res <- stan_glm(Yes ~ age, data=tab, refresh=0)
-res
+res1 <- stan_glm(Yes ~ age, data=tab, refresh=0)
+res1
 
 # add the regression line to the plot
-abline(res, lwd=3)
+abline(res1, lwd=3)
 
 # compute the (median) R^2
-median(bayes_R2(res))
+median(bayes_R2(res1))
 
+# discretize the age variable into 7 groups
+breaks <- c(0, seq(29, 79, 10), 100)
+tab$age_discrete <- cut(tab$age, breaks = breaks)
+head(tab, 20)
+
+# fit the model (using the aggregated data)
+res2 <- stan_glm(Yes ~ age_discrete, data=tab, refresh=0)
+res2
+
+# Figure 12.7 (right): plot of gayFavorStateMarriage versus age
+plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
+     xlab="Age", ylab="Support for same-sex marriage (%)")
