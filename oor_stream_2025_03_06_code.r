@@ -44,3 +44,16 @@ head(post)
 # add 10 regression lines based on these posterior samples
 xs <- seq(min(dat$height), max(dat$height), length.out=1000)
 apply(post[1:10,], 1, function(b) lines(xs, (b[1] + b[2]*xs)^2))
+
+## Using discrete rather than continuous predictors
+
+# download the dataset if it doesn't already exist
+if (!file.exists("kidiq.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/KidIQ/data/kidiq.csv", destfile="kidiq.csv")
+
+# read in the data and inspect the first 6 rows
+dat <- read.csv("kidiq.csv")
+head(dat)
+
+# model predicting the kids' test score from mom_work treated as a categorical variable
+res <- stan_glm(kid_score ~ factor(mom_work), data=dat, refresh=0)
+res
