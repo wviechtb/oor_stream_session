@@ -160,13 +160,12 @@ res1b
 kfold1b <- kfold(res1b, K=10)
 kfold1b
 
+# use loo_compare() to compare the fit of the two models above
 loo_compare(kfold1, kfold1b)
-
-
 
 # fit the model where all variables are log transformed (except for the group dummy)
 res2 <- stan_glm(log(weight) ~ log(diam1) + log(diam2) + log(canopy_height) + log(total_height) + log(density) + group, data=dat, refresh=0)
 res2
 
-# do 10-fold cross-validation for this model
+# do leave-one-out cross-validation for this model
 loo2 <- loo(res2)
