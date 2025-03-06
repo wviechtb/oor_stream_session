@@ -71,11 +71,18 @@ head(dat)
 
 # create a frequency table of support versus age
 tab <- table(dat$age, dat$gayFavorStateMarriage)
-tab
+head(tab)
+
+# turn the frequencies into percentages
+tab <- prop.table(tab, margin=1) * 100
+head(tab)
+
+# add age as a proper variable to the table
+tab <- cbind(tab, age=as.numeric(rownames(tab)))
+head(tab)
 
 # Figure 12.7: plot of gayFavorStateMarriage versus age
-
-plot(gayFavorStateMarriage ~ age, data=dat, pch=19, cex=0.3,
-     xlab="Age", ylab="Support for same-sex marriage", bty="l", ylim=c(0,100))
+plot(Yes ~ age, data=tab, pch=19, cex=0.3, xlab="Age", ylab="Support for same-sex marriage",
+     bty="l", ylim=c(0,60))
 
 
