@@ -167,6 +167,9 @@ kfold1b
 # use loo_compare() to compare the fit of the two models above
 loo_compare(kfold1, kfold1b)
 
+# remove the noise predictors from the dataset
+dat$X <- NULL
+
 # fit the model where all variables are log transformed (except for the group dummy)
 res2 <- stan_glm(log(weight) ~ log(diam1) + log(diam2) + log(canopy_height) + log(total_height) + log(density) + group, data=dat, refresh=0)
 res2
@@ -219,7 +222,24 @@ head(post2)
 library(bayesplot)
 mcmc_areas(post2[2:7])
 
+# Figure 12.9 (right)
+plot(post2[["log(canopy_height)"]], post2[["log(total_height)"]], pch=21, cex=0.75,
+     bg="gray", bty="l", xlab="coef of log(canopy_height)", ylab="coef of log(total_height)")
+abline(h=0)
+abline(v=0)
 
+## Constructing a simpler model
+
+# compute the (approximate) volume of the canopy of the bushes
+dat$canopy_volume <- with(dat, diam1 * diam2 * canopy_height)
+
+# use (log transformed) canopy volume as the single predictor
+res3 <- stan_glm(log(weight) ~ log(canopy_volume), data=dat, refresh=0)
+res3
+
+# compare the performance of models res2 and res3
+loo3 <- loo(res3)
+loo_compare(loo2, loo3)
 
 ############################################################################
 
