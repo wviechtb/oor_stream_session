@@ -150,6 +150,12 @@ kfold1
 # obtain summary statistics of the quantitative variables in the dataset
 round(t(apply(dat[3:8], 2, function(x) c(summary(x), IQR=IQR(x)))), 1)
 
+# fit the model where we use all variables as predictors of weight
+res1hs <- update(res1, prior=hs())
+res1hs
+
+
+
 # fit the model where all variables are log transformed (except for the group dummy)
 res2 <- stan_glm(log(weight) ~ log(diam1) + log(diam2) + log(canopy_height) + log(total_height) + log(density) + group, data=dat, refresh=0)
 res2
