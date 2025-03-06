@@ -150,15 +150,18 @@ kfold1
 # obtain summary statistics of the quantitative variables in the dataset
 round(t(apply(dat[3:8], 2, function(x) c(summary(x), IQR=IQR(x)))), 1)
 
-# fit the model where we remove some predictors
-res1b <- stan_glm(weight ~ canopy_height + total_height, data=dat, refresh=0)
+# fit the model where we use some random noise predictors
+set.seed(1234)
+dat$X <- replicate(5, rnorm(nrow(dat)))
+res1b <- stan_glm(weight ~ X, data=dat, refresh=0)
 res1b
 
 # do 10-fold cross-validation for this model
 kfold1b <- kfold(res1b, K=10)
-kfoldb1
+kfold1b
 
 loo_compare(kfold1, kfold1b)
+
 
 
 # fit the model where all variables are log transformed (except for the group dummy)
