@@ -194,9 +194,16 @@ suppressWarnings(loo_compare(kfold1, loo2_with_jacobian))
 
 # draw 4000 samples from the posterior distribution of the data
 yrep1 <- posterior_predict(res1)
-n_sims <- nrow(yrep1)
-subset <- sample(n_sims, 100)
-ppc_dens_overlay(mesquite$weight, yrep_1[subset,])
+
+# Figure 12.8 (left): kernel density plot of the observed weight values versus
+# 100 random kernel density lines from the 4000 samples drawn above
+plot(density(dat$weight), main="Model for weight", lwd=5, bty="l", xlim=c(-1000,5000))
+subset <- sample(nrow(yrep1), 100)
+invisible(apply(yrep1[subset,], 1, function(x) lines(density(x), col="gray80")))
+lines(density(dat$weight), lwd=5)
+
+
+
 yrep_2 <- posterior_predict(fit_2)
 ppc_dens_overlay(log(mesquite$weight), yrep_2[subset,])
 
