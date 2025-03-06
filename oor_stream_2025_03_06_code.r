@@ -69,5 +69,13 @@ dat <- read.csv("naes04.csv")
 # inspect the first six rows of the dataset
 head(dat)
 
+# create a frequency table of support versus age
+tab <- table(dat$age, dat$gayFavorStateMarriage)
+tab
+
+# Figure 12.7: plot of gayFavorStateMarriage versus age
+
+plot(gayFavorStateMarriage ~ age, data=dat, pch=19, cex=0.3,
+     xlab="Age", ylab="Support for same-sex marriage", bty="l", ylim=c(0,100))
 
 
