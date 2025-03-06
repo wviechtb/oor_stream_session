@@ -174,17 +174,16 @@ loo2 <- loo(res2)
 
 n <- 500
 
-x <- rnorm(n)
-y <- rnorm(n, mean=10, sd=2)
-tmp1 <- lm(y ~ x, data=dat)
-tmp2 <- lm(log(y) ~ x, data=dat)
+y <- rnorm(n, mean=10, sd=1)
+tmp1 <- lm(y ~ 1, data=dat)
+tmp2 <- lm(log(y) ~ 1, data=dat)
 logLik(tmp1)
 logLik(tmp2)
 logLik(tmp2) - sum(log(y))
 
 y <- rlnorm(n, meanlog=0, sdlog=1)
-tmp1 <- lm(y ~ x, data=dat)
-tmp2 <- lm(log(y) ~ x, data=dat)
+tmp1 <- lm(y ~ 1, data=dat)
+tmp2 <- lm(log(y) ~ 1, data=dat)
 logLik(tmp1)
 logLik(tmp2)
 logLik(tmp2) - sum(log(y))
