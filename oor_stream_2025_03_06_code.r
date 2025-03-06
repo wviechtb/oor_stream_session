@@ -267,6 +267,20 @@ res5
 loo5 <- loo(res5)
 loo_compare(loo4, loo5)
 
+# compute the (approximate) surface area of the triaxial elipsoid formed by
+# the two diameter measurements and the canopy height variable; see:
+# https://en.wikipedia.org/wiki/Ellipsoid#Approximate_formula
+p <- 1.6075
+dat$canopy_surface <- with(dat, 4 * pi * (((diam1/2)^p*(diam2/2)^p + (diam1/2)^p*(canopy_height/2)^p + (diam2/2)^p*(canopy_height/2)^p)/3)^(1/p))
+
+# use the surface area instead of the volume of the canopy volume
+res6 <- stan_glm(log(weight) ~ log(canopy_surface) + log(canopy_shape) + group, data=dat, refresh=0)
+res6
+
+# compare the performance of models res5 and res6
+loo6 <- loo(res6)
+loo_compare(loo5, loo6)
+
 ############################################################################
 
 
