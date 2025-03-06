@@ -126,3 +126,17 @@ for (i in 2:length(breaks)) {
 res3 <- stan_glm(Yes ~ 0 + age_discrete, data=tab, refresh=0)
 res3
 
+### 12.6: Building and comparing regression models for prediction
+
+# download the dataset if it doesn't already exist
+if (!file.exists("mesquite.dat")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Mesquite/data/mesquite.dat", destfile="mesquite.dat")
+
+# read in the data and inspect the first 6 rows
+dat <- read.table("mesquite.dat", header=TRUE)
+head(dat)
+
+# fit the model where we use all variables as predictors of weight
+res <- stan_glm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat)
+
+
+
