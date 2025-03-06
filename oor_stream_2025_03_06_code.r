@@ -136,7 +136,15 @@ dat <- read.table("mesquite.dat", header=TRUE)
 head(dat)
 
 # fit the model where we use all variables as predictors of weight
-res <- stan_glm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat)
+res <- stan_glm(weight ~ diam1 + diam2 + canopy_height + total_height + density + group, data=dat, refresh=0)
+res
 
+# do leave-one-out cross-validation
+loo_1 <- loo(res)
+loo_1
+
+# do 10-fold cross-validation
+kfold_1 <- kfold(res, K=10)
+kfold_1
 
 
