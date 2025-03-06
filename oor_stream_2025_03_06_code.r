@@ -69,6 +69,9 @@ dat <- read.csv("naes04.csv")
 # inspect the first six rows of the dataset
 head(dat)
 
+# turn everybody age 91+ into 91 year olds
+dat$age[dat$age >= 91] <- 91
+
 # create a frequency table of support versus age
 tab <- table(dat$age, dat$gayFavorStateMarriage)
 head(tab)
@@ -82,7 +85,10 @@ tab <- cbind(tab, age=as.numeric(rownames(tab)))
 head(tab)
 
 # Figure 12.7: plot of gayFavorStateMarriage versus age
-plot(Yes ~ age, data=tab, pch=19, cex=0.3, xlab="Age", ylab="Support for same-sex marriage",
-     bty="l", ylim=c(0,60))
+plot(Yes ~ age, data=tab, pch=21, bg="gray", bty="l", ylim=c(0,60), las=1,
+     xlab="Age", ylab="Support for same-sex marriage (%)")
 
+# fit the model (using the aggregated data)
+res <- stan_glm(Yes ~ age, data=tab, refresh=0)
+coef(res)
 
