@@ -259,6 +259,13 @@ res4
 loo4 <- loo(res4)
 loo_compare(loo2, loo4)
 
+# fit the simplified model
+res5 <- stan_glm(log(weight) ~ log(canopy_volume) + log(canopy_shape) + group, data=dat, refresh=0)
+res5
+
+# compare the performance of models res4 and res5
+loo5 <- loo(res5)
+loo_compare(loo4, loo5)
 
 ############################################################################
 
