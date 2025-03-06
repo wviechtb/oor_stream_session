@@ -16,6 +16,8 @@
 # load the rstanarm package
 library(rstanarm)
 
+############################################################################
+
 ### 12.5: Other transformations
 
 ## Square root transformations
@@ -126,6 +128,8 @@ for (i in 2:length(breaks)) {
 res3 <- stan_glm(Yes ~ 0 + age_discrete, data=tab, refresh=0)
 res3
 
+############################################################################
+
 ### 12.6: Building and comparing regression models for prediction
 
 # download the dataset if it doesn't already exist
@@ -170,23 +174,42 @@ res2
 # do leave-one-out cross-validation for this model
 loo2 <- loo(res2)
 
+## Using the Jacobian to adjust the predictive comparison after a transformation
+
+# correct the
+loo2_with_jacobian <- loo2
+loo2_with_jacobian$pointwise[,1] <- loo2_with_jacobian$pointwise[,1] - log(dat$weight)
+
+
 ############################################################################
+
+
 
 n <- 500
 
-y <- rnorm(n, mean=10, sd=1)
-tmp1 <- lm(y ~ 1, data=dat)
-tmp2 <- lm(log(y) ~ 1, data=dat)
+y <- rnorm(n, mean=5, sd=1)
+tmp1 <- lm(y ~ 1)
+tmp2 <- lm(log(y) ~ 1)
 logLik(tmp1)
 logLik(tmp2)
 logLik(tmp2) - sum(log(y))
+
+sum(dnorm(y, mean=coef(tmp1), sd=sigma(tmp1), log=TRUE))
+sum(dnorm(log(y), mean=coef(tmp2), sd=sigma(tmp2), log=TRUE))
+sum(dnorm(log(y), mean=coef(tmp2), sd=sigma(tmp2), log=TRUE)) - sum(log(y))
+
+library(VGAM)
+tmp3 <- vglm(y ~ 1, family=lognormal)
+logLik(tmp3)
 
 y <- rlnorm(n, meanlog=0, sdlog=1)
-tmp1 <- lm(y ~ 1, data=dat)
-tmp2 <- lm(log(y) ~ 1, data=dat)
+tmp1 <- lm(y ~ 1)
+tmp2 <- lm(log(y) ~ 1)
 logLik(tmp1)
 logLik(tmp2)
 logLik(tmp2) - sum(log(y))
 
+tmp3 <- vglm(y ~ 1, family=lognormal)
+logLik(tmp3)
 
 ############################################################################
