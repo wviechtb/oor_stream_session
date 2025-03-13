@@ -70,7 +70,7 @@ model1 <- alist(K ~ dnorm(mu, sigma),
                 sigma ~ dexp(1))
 
 # fit the model
-res1 <- quap(model2, data=dat)
+res1 <- quap(model1, data=dat)
 
 # sample 1000 values from the prior distributions
 prior <- data.frame(extract.prior(res1))
