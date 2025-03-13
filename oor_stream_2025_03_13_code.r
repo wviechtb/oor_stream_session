@@ -177,5 +177,8 @@ dat <- get(data(Howell1))
 # inspect the first 6 rows
 head(dat)
 
-data(Howell1)
-d <- Howell1 str(d)
+# given the priors specified on page 154, simulate 10,000 mean height values
+# of females and males
+mu_female <- rnorm(1e4,178,20)
+mu_male   <- rnorm(1e4,178,20) + rnorm(1e4,0,10)
+precis( data.frame( mu_female , mu_male ) )
