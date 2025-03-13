@@ -72,13 +72,15 @@ model <- alist(K ~ dnorm(mu, sigma),
 # fit the model
 res <- quap(model, data=dat)
 
+# sample 1000 values from the prior distributions
+prior <- data.frame(extract.prior(res))
+head(prior)
+
 # Figure 5.8 (right): plot 50 of the regression lines based on the sampled values
 plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Neocortext Percent (std)",
      ylab="Kilocal per g (std)", bty="l")
 invisible(apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.5, col="gray30")))
 
-
-
-
+# examine summary statistics for the posterior distributions
 precis(res, prob=0.95)
 
