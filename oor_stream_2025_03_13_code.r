@@ -38,3 +38,6 @@ model <- alist(K ~ dnorm(mu, sigma),
 
 # fit the model
 res <- quap(model, data=dat)
+
+# get an error message, due to the missing values in neocortex.perc (and hence N)
+dat$neocortex.perc
