@@ -145,13 +145,26 @@ drawdag(dag)
 melist <- equivalentDAGs(dag)
 drawdag(melist)
 
+# Figure 5.9 (bottom left): counterfactual plot for manipulated N where M = 0
+xseq <- seq(from=min(dat$N)-0.15, to=max(dat$N)+0.15, length.out=30)
+mu <- link(res3, data=data.frame(N=xseq, M=0))
+mu_mean <- apply(mu, 2, mean)
+mu_pi <- apply(mu, 2, PI)
+plot(NA, xlim=range(dat$M), ylim=range(dat$K), bty="l",
+     xlab="Neocortext Percent (std)", ylab="Kilocal per g (std)")
+lines(xseq, mu_mean, lwd=2)
+shade(mu_pi, xseq)
+title("Counterfactual plot holding M = 0")
 
+# Figure 5.9 (bottom right): counterfactual plot for manipulated M where N = 0
 xseq <- seq(from=min(dat$M)-0.15, to=max(dat$M)+0.15, length.out=30)
 mu <- link(res3, data=data.frame(M=xseq, N=0))
 mu_mean <- apply(mu, 2, mean)
 mu_pi <- apply(mu, 2, PI)
-plot(NA, xlim=range(dat$M), ylim=range(dat$K))
+plot(NA, xlim=range(dat$M), ylim=range(dat$K), bty="l",
+     xlab="Log Body Mass (std)", ylab="Kilocal per g (std)")
 lines(xseq, mu_mean, lwd=2)
 shade(mu_pi, xseq)
+title("Counterfactual plot holding N = 0")
 
 
