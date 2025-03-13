@@ -57,7 +57,22 @@ res <- quap(model, data=dat)
 prior <- data.frame(extract.prior(res))
 head(prior)
 
-# plot 50 of the regression lines based on the sampled values
+# Figure 5.8 (left): plot 50 of the regression lines based on the sampled values
+plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Neocortext Percent (std)",
+     ylab="Kilocal per g (std)", bty="l")
+invisible(apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.5, col="gray30")))
+
+# model predicting K from N (using tighter priors for the intercept and slope)
+model <- alist(K ~ dnorm(mu, sigma),
+               mu <- a + bN*N,
+               a ~ dnorm(0, 0.2),
+               bN ~ dnorm(0, 0.5),
+               sigma ~ dexp(1))
+
+# fit the model
+res <- quap(model, data=dat)
+
+# Figure 5.8 (right): plot 50 of the regression lines based on the sampled values
 plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Neocortext Percent (std)",
      ylab="Kilocal per g (std)", bty="l")
 invisible(apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.5, col="gray30")))
