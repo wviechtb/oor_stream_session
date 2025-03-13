@@ -127,4 +127,22 @@ model3 <- alist(K ~ dnorm(mu, sigma),
 res3 <- quap(model3, data=dat)
 precis(res3, prob=0.95)
 
+# plot the slopes for all three models
 plot(coeftab(res1, res2, res3), pars=c("bM","bN"))
+
+# scatterplot matrix of the three variables
+pairs(~ K + M + N, dat, pch=21, bg="gray")
+
+# load the dagitty package
+library(dagitty)
+
+# define the DAG on the left on page 151 and draw it
+dag <- dagitty("dag{M -> K <- N; M -> N}")
+coordinates(dag) <- list(x=c(M=0, K=1, N=2), y=c(M=0.5, K=1, N=0.5))
+drawdag(dag)
+
+# get the Markov equivalence set for this DAG
+melist <- equivalentDAGs(dag)
+melist
+
+
