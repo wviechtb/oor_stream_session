@@ -171,3 +171,11 @@ title("Counterfactual plot holding N = 0")
 
 ### 5.3: Categorical variables
 
+# get the Howell1 dataset and put it into 'dat'
+dat <- get(data(Howell1))
+
+# inspect the first 6 rows
+head(dat)
+
+data(Howell1)
+d <- Howell1 str(d)
