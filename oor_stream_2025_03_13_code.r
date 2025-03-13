@@ -179,6 +179,22 @@ head(dat)
 
 # given the priors specified on page 154, simulate 10,000 mean height values
 # of females and males
-mu_female <- rnorm(1e4,178,20)
-mu_male   <- rnorm(1e4,178,20) + rnorm(1e4,0,10)
-precis( data.frame( mu_female , mu_male ) )
+mu_female <- rnorm(1e4, mean=178, sd=20)
+mu_male   <- rnorm(1e4, mean=178, sd=20) + rnorm(1e4, mean=0, sd=10)
+precis(data.frame(mu_female, mu_male), prob=0.95)
+
+# so we see more uncertainty in the prior means for the males compared to the
+# females; to avoid this, we use an index variable for the two groups, which
+# we can make use of when specifying the model
+
+model1 <- alist(height ~ dnorm(mu, sigma),
+                mu <- a[sex],
+                a[sex] ~ dnorm(178, 20),
+                sigma ~ dunif(0, 50))
+res1 <- quap(model1, data=dat)
+
+
+precis( m5.8 , depth=2 )
+
+
+dat$female <- 1 - dat$male
