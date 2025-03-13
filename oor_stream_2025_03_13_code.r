@@ -210,5 +210,12 @@ precis(post, prob=0.95)
 # get the milk dataset and put it into 'dat'
 dat <- get(data(milk))
 
+# standardize the kilocal variable
+dat$K <- c(scale(dat$kcal.per.g))
+
 # examine the levels of the 'clade' factor
 levels(dat$clade)
+
+# create indices for the levels of the factor
+dat$clade_id <- as.integer(dat$clade)
+
