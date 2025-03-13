@@ -46,6 +46,10 @@ dat$neocortex.perc
 dat <- dat[complete.cases(dat$K,dat$N,dat$M),]
 dat
 
+# plot the data
+plot(K ~ N, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Neocortext Percentage (std)", ylab="Energy of Milk (std)")
+
 # fit the model using the complete data
 res <- quap(model, data=dat)
 precis(res, prob=0.95)
