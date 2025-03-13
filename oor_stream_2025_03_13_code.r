@@ -186,6 +186,8 @@ precis(data.frame(mu_female, mu_male), prob=0.95)
 # so we see more uncertainty in the prior means for the males compared to the
 # females; to avoid this, we use an index variable for the two groups, which
 # we can make use of when specifying the model
+#dat$sex <- ifelse(dat$male==1, 2, 1)
+dat$sex <- dat$male + 1 # simpler
 
 model1 <- alist(height ~ dnorm(mu, sigma),
                 mu <- a[sex],
