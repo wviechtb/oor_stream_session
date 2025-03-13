@@ -243,3 +243,6 @@ model2 <- alist(K ~ dnorm(mu, sigma),
                 sigma ~ dexp(1))
 res2 <- quap(model2, data=dat)
 precis(res2, depth=2, prob=0.95)
+
+# note: since the code to simulate the house_id variable was slightly changed,
+# we do not see h[4] with a larger coefficient compared to the rest
