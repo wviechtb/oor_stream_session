@@ -28,3 +28,13 @@ head(dat)
 dat$K <- c(scale(dat$kcal.per.g))
 dat$N <- c(scale(dat$neocortex.perc))
 dat$M <- c(scale(log(dat$mass)))
+
+# model predicting K from N
+model <- alist(K ~ dnorm(mu, sigma),
+               mu <- a + bN*N,
+               a ~ dnorm(0, 1),
+               bN ~ dnorm(0, 1),
+               sigma ~ dexp(1))
+
+# fit the model
+res <- quap(model, data=dat)
