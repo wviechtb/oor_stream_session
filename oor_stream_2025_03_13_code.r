@@ -84,3 +84,12 @@ invisible(apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.5, c
 # examine summary statistics for the posterior distributions
 precis(res, prob=0.95)
 
+# Figure 5.9 (top left): plot the data and add the regression line (plus 95% compatibility interval)
+plot(K ~ N, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Neocortext Percent (std)", ylab="Kilocal per g (std)")
+xseq <- seq(from=min(dat$N)-0.15, to=max(dat$N)+0.15, length.out=30)
+mu <- link(res, data=list(N=xseq))
+mu_mean <- apply(mu, 2, mean)
+mu_pi <- apply(mu, 2, PI)
+lines(xseq, mu_mean, lwd=2)
+shade(mu_pi, xseq)
