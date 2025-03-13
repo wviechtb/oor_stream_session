@@ -48,7 +48,7 @@ dat
 
 # plot the data
 plot(K ~ N, data=dat, pch=21, bg="gray", bty="l",
-     xlab="Neocortext Percentage (std)", ylab="Energy of Milk (std)")
+     xlab="Neocortext Percent (std)", ylab="Kilocal per g (std)")
 
 # fit the model using the complete data
 res <- quap(model, data=dat)
