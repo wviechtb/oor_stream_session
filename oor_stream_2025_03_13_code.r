@@ -193,15 +193,15 @@ dat$sex <- dat$male + 1 # simpler
 
 # now specify the model where we use this index variable to denote two
 # different model coefficients as the means for the two groups
-model1 <- alist(height ~ dnorm(mu, sigma),
-                mu <- a[sex],
-                a[sex] ~ dnorm(178, 20),
-                sigma ~ dunif(0, 50))
-res1 <- quap(model1, data=dat)
-precis(res1, depth=2, prob=0.95)
+model <- alist(height ~ dnorm(mu, sigma),
+               mu <- a[sex],
+               a[sex] ~ dnorm(178, 20),
+               sigma ~ dunif(0, 50))
+res <- quap(model, data=dat)
+precis(res, depth=2, prob=0.95)
 
 # extract samples from the posterior distributions
-post <- data.frame(extract.samples(res1))
+post <- data.frame(extract.samples(res))
 post$diff_fm <- post$a.1 - post$a.2
 precis(post, prob=0.95)
 
@@ -218,4 +218,16 @@ levels(dat$clade)
 
 # create indices for the levels of the factor
 dat$clade_id <- as.integer(dat$clade)
+
+# specify the model where each clade level has its own mean (with the same prior)
+model <- alist(K ~ dnorm(mu, sigma),
+               mu <- a[clade_id],
+               a[clade_id] ~ dnorm(0, 0.5),
+               sigma ~ dexp(1))
+res <- quap(model, data=dat)
+precis(res, depth=2, prob=0.95)
+
+# plot the coefficients for the means
+labels <- paste0("a[" , 1:4 , "]: " , levels(dat$clade))
+plot(precis(res, depth=2, pars="a"), labels=labels, xlab="expected kcal (std)")
 
