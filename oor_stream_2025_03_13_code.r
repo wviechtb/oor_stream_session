@@ -13,10 +13,10 @@
 
 ############################################################################
 
-### 5.2: Masked relationship
-
 # load the rethinking package
 library(rethinking)
+
+### 5.2: Masked relationship
 
 # get the milk dataset and put it into 'dat'
 dat <- get(data(milk))
@@ -205,3 +205,10 @@ post <- data.frame(extract.samples(res1))
 post$diff_fm <- post$a.1 - post$a.2
 precis(post, prob=0.95)
 
+## 5.3.2: Many categories
+
+# get the milk dataset and put it into 'dat'
+dat <- get(data(milk))
+
+# examine the levels of the 'clade' factor
+levels(dat$clade)
