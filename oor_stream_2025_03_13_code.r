@@ -189,6 +189,8 @@ precis(data.frame(mu_female, mu_male), prob=0.95)
 #dat$sex <- ifelse(dat$male==1, 2, 1)
 dat$sex <- dat$male + 1 # simpler
 
+# now specify the model where we use this index variable to denote two
+# different model coefficients as the means for the two groups
 model1 <- alist(height ~ dnorm(mu, sigma),
                 mu <- a[sex],
                 a[sex] ~ dnorm(178, 20),
