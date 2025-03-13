@@ -141,8 +141,17 @@ dag <- dagitty("dag{M -> K <- N; M -> N}")
 coordinates(dag) <- list(x=c(M=0, K=1, N=2), y=c(M=0.5, K=1, N=0.5))
 drawdag(dag)
 
-# get the Markov equivalence set for this DAG
+# get the Markov equivalence set for this DAG and draw them all
 melist <- equivalentDAGs(dag)
-melist
+drawdag(melist)
+
+
+xseq <- seq(from=min(dat$M)-0.15, to=max(dat$M)+0.15, length.out=30)
+mu <- link(res3, data=data.frame(M=xseq, N=0))
+mu_mean <- apply(mu, 2, mean)
+mu_pi <- apply(mu, 2, PI)
+plot(NA, xlim=range(dat$M), ylim=range(dat$K))
+lines(xseq, mu_mean, lwd=2)
+shade(mu_pi, xseq)
 
 
