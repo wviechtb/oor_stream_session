@@ -245,4 +245,6 @@ res2 <- quap(model2, data=dat)
 precis(res2, depth=2, prob=0.95)
 
 # note: since the code to simulate the house_id variable was slightly changed,
-# we do not see h[4] with a larger coefficient compared to the rest
+# we do not see h[4] with a larger coefficient compared to the rest, but this
+# is not important here anyway, since none of the coefficients for h should
+# have a large mean anyway
