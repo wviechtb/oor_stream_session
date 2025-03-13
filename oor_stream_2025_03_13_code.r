@@ -171,6 +171,8 @@ title("Counterfactual plot holding N = 0")
 
 ### 5.3: Categorical variables
 
+## 5.3.1: Binary categories
+
 # get the Howell1 dataset and put it into 'dat'
 dat <- get(data(Howell1))
 
@@ -196,9 +198,10 @@ model1 <- alist(height ~ dnorm(mu, sigma),
                 a[sex] ~ dnorm(178, 20),
                 sigma ~ dunif(0, 50))
 res1 <- quap(model1, data=dat)
+precis(res1, depth=2, prob=0.95)
 
+# extract samples from the posterior distributions
+post <- data.frame(extract.samples(res1))
+post$diff_fm <- post$a.1 - post$a.2
+precis(post, prob=0.95)
 
-precis( m5.8 , depth=2 )
-
-
-dat$female <- 1 - dat$male
