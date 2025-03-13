@@ -231,3 +231,7 @@ precis(res, depth=2, prob=0.95)
 labels <- paste0("a[" , 1:4 , "]: " , levels(dat$clade))
 plot(precis(res, depth=2, pars="a"), labels=labels, xlab="expected kcal (std)")
 
+# create some random categorical variable
+set.seed(63)
+dat$house <- sample(1:4, replace=TRUE, size=nrow(dat))
+
