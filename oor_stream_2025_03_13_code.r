@@ -169,3 +169,5 @@ title("Counterfactual plot holding N = 0")
 
 ############################################################################
 
+### 5.3: Categorical variables
+
