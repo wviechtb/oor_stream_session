@@ -220,18 +220,26 @@ levels(dat$clade)
 dat$clade_id <- as.integer(dat$clade)
 
 # specify the model where each clade level has its own mean (with the same prior)
-model <- alist(K ~ dnorm(mu, sigma),
-               mu <- a[clade_id],
-               a[clade_id] ~ dnorm(0, 0.5),
-               sigma ~ dexp(1))
-res <- quap(model, data=dat)
-precis(res, depth=2, prob=0.95)
+model1 <- alist(K ~ dnorm(mu, sigma),
+                mu <- a[clade_id],
+                a[clade_id] ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
+res1 <- quap(model1, data=dat)
+precis(res1, depth=2, prob=0.95)
 
 # plot the coefficients for the means
 labels <- paste0("a[" , 1:4 , "]: " , levels(dat$clade))
-plot(precis(res, depth=2, pars="a"), labels=labels, xlab="expected kcal (std)")
+plot(precis(res1, depth=2, pars="a"), labels=labels, xlab="expected kcal (std)")
 
 # create some random categorical variable
 set.seed(63)
-dat$house <- sample(1:4, replace=TRUE, size=nrow(dat))
+dat$house_id <- sample(1:4, replace=TRUE, size=nrow(dat))
 
+# specify the model with two categorical predictors
+model2 <- alist(K ~ dnorm(mu, sigma),
+                mu <- a[clade_id] + h[house_id],
+                a[clade_id] ~ dnorm(0, 0.5),
+                h[house_id] ~ dnorm(0, 0.5),
+                sigma ~ dexp(1))
+res2 <- quap(model2, data=dat)
+precis(res2, depth=2, prob=0.95)
