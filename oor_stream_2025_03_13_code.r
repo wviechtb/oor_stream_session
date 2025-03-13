@@ -41,3 +41,10 @@ res <- quap(model, data=dat)
 
 # get an error message, due to the missing values in neocortex.perc (and hence N)
 dat$neocortex.perc
+
+# keep rows where K, N, and M are complete (i.e., not missing)
+dat <- dat[complete.cases(dat$K,dat$N,dat$M),]
+dat
+
+# fit the model using the complete data
+res <- quap(model, data=dat)
