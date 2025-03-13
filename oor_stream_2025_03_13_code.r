@@ -48,3 +48,4 @@ dat
 
 # fit the model using the complete data
 res <- quap(model, data=dat)
+precis(res, prob=0.95)
