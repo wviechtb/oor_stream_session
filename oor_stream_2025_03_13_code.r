@@ -29,6 +29,10 @@ dat$K <- c(scale(dat$kcal.per.g))
 dat$N <- c(scale(dat$neocortex.perc))
 dat$M <- c(scale(log(dat$mass)))
 
+# plot the data
+plot(K ~ N, data=dat, pch=21, bg="gray", bty="l",
+     xlab="Neocortext Percent (std)", ylab="Kilocal per g (std)")
+
 # model predicting K from N
 model <- alist(K ~ dnorm(mu, sigma),
                mu <- a + bN*N,
@@ -46,10 +50,20 @@ dat$neocortex.perc
 dat <- dat[complete.cases(dat$K,dat$N,dat$M),]
 dat
 
-# plot the data
-plot(K ~ N, data=dat, pch=21, bg="gray", bty="l",
-     xlab="Neocortext Percent (std)", ylab="Kilocal per g (std)")
-
 # fit the model using the complete data
 res <- quap(model, data=dat)
+
+# sample 1000 values from the prior distributions
+prior <- data.frame(extract.prior(res))
+head(prior)
+
+# plot 50 of the regression lines based on the sampled values
+plot(NA, xlim=c(-2,2), ylim=c(-2,2), xlab="Neocortext Percent (std)",
+     ylab="Kilocal per g (std)", bty="l")
+invisible(apply(prior[1:50,], 1, function(par) abline(par[1], par[2], lwd=1.5, col="gray30")))
+
+
+
+
 precis(res, prob=0.95)
+
