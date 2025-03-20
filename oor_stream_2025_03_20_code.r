@@ -83,8 +83,6 @@ legend("bottomright", pch=c(19,17,15), col=cols.t, legend=species,
 mtext("Flipper and bill length", side=3, adj=0, line=2.5)
 mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER", side=3, adj=0, line=1.5, cex=0.8)
 
-# examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
-
 # now let's try to simplify the above a bit by making use of tinyplot functionality
 
 # generally the syntax of tinyplot() (or plt() for short) is like the plot() syntax
