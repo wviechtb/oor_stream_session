@@ -193,8 +193,6 @@ plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2)
 # if we don't want the CI regions, we can suppress them with se=FALSE
 plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2, se=FALSE)
 
-
-
 ############################################################################
 
 library(nlme)
@@ -204,6 +202,15 @@ dat <- Orthodont
 tinytheme("clean")
 plt(distance ~ age, data=dat, pch=19, facet = ~ Subject)
 
+res <- tapply(dat, dat$Subject, function(x) lm(distance ~ age, data=x))
+res <- data.frame(t(sapply(res, function(x) c(coef(x)[2], confint(x)[2,]))))
+names(res) <- c("coef", "ci.lb", "ci.ub")
+res$subject <- rownames(res)
+res$sex <- ifelse(startsWith(res$subject, "M"), "male", "female")
+
+with(res,
+   tinyplot(x=subject, y=coef, facet=sex, ymin=ci.lb, ymax=ci.ub,
+            type="pointrange", pch=19, col="dodgerblue", facet.args=list(free=TRUE)))
 
 ############################################################################
 ############################################################################
