@@ -101,6 +101,9 @@ box(bty="l")
 # tinyplot supports specifying a grouping variable as part of the formula
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat)
 
+# using themes, we can also change the overall look of the plot, with other
+# defaults (e.g., the minimal theme uses horizontal axis labels by default)
+
 # recreate the same figure as above using tinyplot
 tinytheme("minimal")
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat,
