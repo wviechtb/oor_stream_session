@@ -64,10 +64,12 @@ cols <- apply(rbind(col2rgb(c("darkorange","purple","cyan4")), 200), 2,
 points(bill_length_mm ~ flipper_length_mm, data=penguins,
        pch=c(19,17,15)[species], col=cols[species])
 
-legend("bottomright", pch=c(19,17,15), col=c("darkorange","purple","cyan4"),
+# add a legend
+legend("bottomright", pch=c(19,17,15), col=cols,
        legend=c("Adelie","Chinstrap","Gentoo"), bty="n", title="Penguin species")
 
-
+mtext("Flipper and bill length", side=3, adj=0, line=2.5)
+mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER", side=3, adj=0, line=1.5, cex=0.8)
 
 
 # examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
