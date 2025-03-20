@@ -66,6 +66,9 @@ points(bill_length_mm ~ flipper_length_mm, data=penguins,
 
 # fit the model that allows for different intercepts and slopes for the species
 res <- lm(bill_length_mm ~ 0 + species + flipper_length_mm:species, data=dat)
+xs <- range(dat$flipper_length_mm[dat$species == "Adelie"], na.rm=TRUE)
+pred <- predict(res, newdata=data.frame(species="Adelie", flipper_length_mm=xs))
+lines(xs, pred, lwd=6, col="darkorange")
 
 # add a legend
 legend("bottomright", pch=c(19,17,15), col=cols,
