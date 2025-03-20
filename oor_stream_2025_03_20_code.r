@@ -159,3 +159,6 @@ head(dat)
 
 # line plot of temperature over days for the different months
 plt(Temp ~ Day | Month, data=dat, type="l", lwd=2)
+
+# instead of using colors for the different months, can use different line types
+plt(Temp ~ Day | Month, data=dat, type="l", lwd=2, col="black", lty="by")
