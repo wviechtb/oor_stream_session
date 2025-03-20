@@ -136,3 +136,11 @@ plt(bill_length_mm ~ flipper_length_mm | body_mass_g, data=dat, pch=19)
 
 # if we specify a facet variable, then we multiple plots per facet level
 plt(bill_length_mm ~ flipper_length_mm, data=dat, pch=19, facet = ~ species)
+
+# make this look nicer and add regression lines per group
+tinytheme("clean")
+plt(bill_length_mm ~ flipper_length_mm, data=dat, facet = ~ species,
+    xlab="Flipper length (mm)", ylab="Bill length (mm)", pch=21, bg="gray",
+    main="Flipper and bill length",
+    sub="Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER")
+plt_add(type="lm", se=FALSE, lwd=5, col="black")
