@@ -56,8 +56,9 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat, type="n",
 grid()
 
 # specify the three colors with some transparency added
-cols <- apply(rbind(col2rgb(c("darkorange","purple","cyan4")), 200), 2,
-              function(x) rgb(x[1], x[2], x[3], x[4], maxColorValue=255))
+cols <- c("darkorange","purple","cyan4")
+cols.t <- apply(rbind(col2rgb(cols), 200), 2,
+                function(x) rgb(x[1], x[2], x[3], x[4], maxColorValue=255))
 
 # now add the points, with different plotting symbols and colors for the three
 # species (Adelie = darkorange, Chinstrap = purple, Gentoo = cyan4)
@@ -66,9 +67,12 @@ points(bill_length_mm ~ flipper_length_mm, data=penguins,
 
 # fit the model that allows for different intercepts and slopes for the species
 res <- lm(bill_length_mm ~ 0 + species + flipper_length_mm:species, data=dat)
-xs <- range(dat$flipper_length_mm[dat$species == "Adelie"], na.rm=TRUE)
-pred <- predict(res, newdata=data.frame(species="Adelie", flipper_length_mm=xs))
-lines(xs, pred, lwd=6, col="darkorange")
+
+for (s in c("Adelie", "Chinstrap", "Gentoo")) {
+   xs <- range(dat$flipper_length_mm[dat$species == s], na.rm=TRUE)
+   pred <- predict(res, newdata=data.frame(species=s, flipper_length_mm=xs))
+   lines(xs, pred, lwd=6, col="darkorange")
+}
 
 # add a legend
 legend("bottomright", pch=c(19,17,15), col=cols,
