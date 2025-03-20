@@ -187,7 +187,12 @@ plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
 # kernel density plots for different groups
 plt(~ Temp | Month, data=dat, type="density", fill="by", legend="topright")
 
+# ridgeline plot of the densities
+tinytheme("ridge2")
+plt(Month ~ Temp | Month, data=dat, type="ridge", legend=FALSE)
+
 # plot smoothed (local regression) curves
+tinytheme("clean")
 plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2)
 
 # if we don't want the CI regions, we can suppress them with se=FALSE
