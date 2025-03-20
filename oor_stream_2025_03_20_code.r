@@ -146,3 +146,16 @@ plt(bill_length_mm ~ flipper_length_mm, data=dat, facet = ~ species,
 plt_add(type="lm", se=FALSE, lwd=5, col="gray40")
 
 ############################################################################
+
+# let's work with the airquality dataset
+dat <- airquality
+
+# inspect the first 6 rows
+head(dat)
+
+# turn the Month variable into a factor with proper (shortened) month names
+dat$Month <- factor(month.abb[dat$Month], levels=month.abb[5:9])
+head(dat)
+
+# line plot of temperature over days for the different months
+plt(Temp ~ Day | Month, data=dat, type="l", lwd=2)
