@@ -85,7 +85,8 @@ mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station L
 
 # examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
 
-
+# now let's try to simpify the above a bit by making use of tinyplot functionality
+plt(bill_length_mm ~ flipper_length_mm | species, data=dat)
 
 
 
