@@ -103,8 +103,8 @@ plt(bill_length_mm ~ flipper_length_mm | species, data=dat)
 
 # recreate the same figure as above using tinyplot
 tinytheme("minimal")
-plt(bill_length_mm ~ flipper_length_mm | species, data=dat, grid=TRUE,
-    frame=FALSE, xlab="Flipper length (mm)", ylab="Bill length (mm)",
+plt(bill_length_mm ~ flipper_length_mm | species, data=dat,
+    xlab="Flipper length (mm)", ylab="Bill length (mm)",
     palette=c("darkorange","purple","cyan4"), alpha=0.8, pch=c(19,17,15),
     legend=legend("bottomright", title="Penguin species"),
     main="Flipper and bill length",
@@ -112,6 +112,7 @@ plt(bill_length_mm ~ flipper_length_mm | species, data=dat, grid=TRUE,
 box(bty="l")
 plt_add(type="lm", se=FALSE, lwd=5)
 
+# much shorter / easier code
 
 ############################################################################
 
