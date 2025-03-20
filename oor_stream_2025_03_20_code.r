@@ -180,4 +180,9 @@ plt(Temp ~ Day | ordered(Month), data=dat, pch=19)
 # we could work around this here by manually specifying the desired palette
 plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
 
+############################################################################
 
+# let's explore some more plot types
+
+# kernel density plots for different groups
+plt(~ Temp | Month, data=dat, type="density", fill="by", legend="topright")
