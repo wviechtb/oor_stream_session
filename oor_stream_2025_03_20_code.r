@@ -143,4 +143,6 @@ plt(bill_length_mm ~ flipper_length_mm, data=dat, facet = ~ species,
     xlab="Flipper length (mm)", ylab="Bill length (mm)", pch=21, bg="gray",
     main="Flipper and bill length",
     sub="Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER")
-plt_add(type="lm", se=FALSE, lwd=5, col="black")
+plt_add(type="lm", se=FALSE, lwd=5, col="gray40")
+
+############################################################################
