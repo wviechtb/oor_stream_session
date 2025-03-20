@@ -33,6 +33,12 @@ install.packages("palmerpenguins")
 library(tinyplot)
 library(palmerpenguins)
 
+# copy the penguins dataset to dat (and make it a regular data frame)
+dat <- data.frame(penguins)
+
+# examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
+
+
 
 
 ############################################################################
