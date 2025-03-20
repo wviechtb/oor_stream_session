@@ -190,6 +190,8 @@ plt(~ Temp | Month, data=dat, type="density", fill="by", legend="topright")
 # ridgeline plot of the densities
 tinytheme("ridge2")
 plt(Month ~ Temp | Month, data=dat, type="ridge", legend=FALSE)
+plt(Month ~ Temp | Month, data=dat, type="ridge", legend=FALSE,
+    scale=0.8, gradient=TRUE)
 
 # plot smoothed (local regression) curves
 tinytheme("clean")
