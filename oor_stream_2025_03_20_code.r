@@ -46,6 +46,32 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat)
 plot(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
      xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
 
+# say we want to recreate the figure shown here: https://allisonhorst.github.io/palmerpenguins/
+
+plot(bill_length_mm ~ flipper_length_mm, data=dat,
+     pch=c(19,17,15)[species], col=c("darkorange","purple","cyan4")[species]
+     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
+
+# so Adelie -> darkorange, Chinstrap -> purple, Gentoo -> cyan4
+
+# same idea also works for using different plotting symbols for the groups
+
+plot(bill_length_mm ~ flipper_length_mm, data=penguins, pch=NA,
+     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
+
+grid()
+
+points(bill_length_mm ~ flipper_length_mm, data=penguins,
+       pch=c(19,17,15)[species], col=c("darkorange","purple","cyan4")[species])
+
+# note: we do not have to use penguins$species when using the 'data' argument
+
+legend("bottomright", pch=c(19,17,15), col=c("darkorange","purple","cyan4"),
+       legend=c("Adelie","Chinstrap","Gentoo"), bty="n", title="Penguin species")
+
+
+
+
 # examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
 
 
