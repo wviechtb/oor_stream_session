@@ -189,3 +189,7 @@ plt(~ Temp | Month, data=dat, type="density", fill="by", legend="topright")
 
 # plot smoothed (local regression) curves
 plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2)
+
+# if we don't want the CI regions, we can suppress them with se=FALSE
+plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2, se=FALSE)
+
