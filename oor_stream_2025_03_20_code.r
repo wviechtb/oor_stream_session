@@ -172,8 +172,17 @@ plt(Temp ~ Day | Month, data=dat, type="l", lwd=2, col="black", lty="by")
 plt(Temp ~ Day | Month, type="l", data=dat, lwd=2)
 plt_add(type="p", pch=21, col="black", fill="by")
 
-# sidenote: this also works for other arguments
+# in principle, if the grouping variable is an ordered factor, then a
+# sequential ("viridis") palette should be used automatically, but this does
+# not seem to work correctly at the moment
+plt(Temp ~ Day | ordered(Month), data=dat, pch=19)
+
+# we could work around this here by manually specifying the desired palette
+plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
+
+plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
+
+
 dat$Month <- ordered(dat$Month)
-plt(Temp ~ Day | Month, data=dat, pch=19)
 
 plt_add(type="l", lwd=2, col="by")
