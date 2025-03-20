@@ -193,3 +193,32 @@ plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2)
 # if we don't want the CI regions, we can suppress them with se=FALSE
 plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2, se=FALSE)
 
+
+
+############################################################################
+
+library(nlme)
+
+dat <- Orthodont
+
+tinytheme("clean")
+plt(distance ~ age, data=dat, pch=19, facet = ~ Subject)
+
+
+############################################################################
+############################################################################
+############################################################################
+
+par(mfrow=c(5,6), mar=c(0,0,2,0))
+invisible(lapply(split(dat, dat$Subject), function(x) {
+   plot(distance ~ age, data=x, xlab="", ylab="", xaxt="n", yaxt="n")
+   usr <- par()$usr
+   rect(usr[1], usr[2], usr[3], usr[4], col="gray")
+   title(x$Subject[1])
+}
+))
+
+par(mar=c(0,0,0,0))
+plot(1)
+
+############################################################################
