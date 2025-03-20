@@ -44,25 +44,24 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat)
 
 # a bit of customization
 plot(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
-     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
+     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l", las=1)
 
 # say we want to recreate the figure shown here: https://allisonhorst.github.io/palmerpenguins/
 
-plot(bill_length_mm ~ flipper_length_mm, data=dat,
-     pch=c(19,17,15)[species], col=c("darkorange","purple","cyan4")[species]
-     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
+plot(bill_length_mm ~ flipper_length_mm, data=dat, type="n",
+     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l", las=1)
+
+grid()
 
 # so Adelie -> darkorange, Chinstrap -> purple, Gentoo -> cyan4
 
 # same idea also works for using different plotting symbols for the groups
 
-plot(bill_length_mm ~ flipper_length_mm, data=penguins, pch=NA,
-     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
-
-grid()
+cols <- apply(rbind(col2rgb(c("darkorange","purple","cyan4")), 200), 2,
+              function(x) rgb(x[1], x[2], x[3], x[4], maxColorValue=255))
 
 points(bill_length_mm ~ flipper_length_mm, data=penguins,
-       pch=c(19,17,15)[species], col=c("darkorange","purple","cyan4")[species])
+       pch=c(19,17,15)[species], col=cols[species])
 
 # note: we do not have to use penguins$species when using the 'data' argument
 
