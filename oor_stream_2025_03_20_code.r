@@ -166,3 +166,8 @@ plt(Temp ~ Day | Month, data=dat, type="l", lwd=2,
 
 # but specifying the different line types this way is tedious; tinyplot
 # provides a special keyword ("by") for selecting different line types oer group
+plt(Temp ~ Day | Month, data=dat, type="l", lwd=2, col="black", lty="by")
+
+# sidenote: this also works for other arguments
+plt(Temp ~ Day | Month, data=dat, pch=21, col="black", fill="by")
+plt_add(type="l", lwd=2, col="by")
