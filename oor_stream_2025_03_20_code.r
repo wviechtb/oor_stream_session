@@ -56,6 +56,7 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat, type="n",
 grid()
 
 # specify the three colors with some transparency added
+species <- c("Adelie", "Chinstrap", "Gentoo")
 cols <- c("darkorange","purple","cyan4")
 cols.t <- apply(rbind(col2rgb(cols), 200), 2,
                 function(x) rgb(x[1], x[2], x[3], x[4], maxColorValue=255))
@@ -68,15 +69,15 @@ points(bill_length_mm ~ flipper_length_mm, data=penguins,
 # fit the model that allows for different intercepts and slopes for the species
 res <- lm(bill_length_mm ~ 0 + species + flipper_length_mm:species, data=dat)
 
-for (s in c("Adelie", "Chinstrap", "Gentoo")) {
-   xs <- range(dat$flipper_length_mm[dat$species == s], na.rm=TRUE)
-   pred <- predict(res, newdata=data.frame(species=s, flipper_length_mm=xs))
-   lines(xs, pred, lwd=6, col="darkorange")
+for (i in 1:length(species)) {
+   xs <- range(dat$flipper_length_mm[dat$species == species[i]], na.rm=TRUE)
+   pred <- predict(res, newdata=data.frame(species=species[i], flipper_length_mm=xs))
+   lines(xs, pred, lwd=6, col=cols[i])
 }
 
 # add a legend
-legend("bottomright", pch=c(19,17,15), col=cols,
-       legend=c("Adelie","Chinstrap","Gentoo"), bty="n", title="Penguin species")
+legend("bottomright", pch=c(19,17,15), col=cols, legend=species,
+       bty="n", title="Penguin species")
 
 mtext("Flipper and bill length", side=3, adj=0, line=2.5)
 mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER", side=3, adj=0, line=1.5, cex=0.8)
