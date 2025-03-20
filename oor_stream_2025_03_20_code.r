@@ -186,3 +186,6 @@ plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
 
 # kernel density plots for different groups
 plt(~ Temp | Month, data=dat, type="density", fill="by", legend="topright")
+
+# plot smoothed (local regression) curves
+plt(Temp ~ Day | Month, data=dat, type="loess", lwd=2)
