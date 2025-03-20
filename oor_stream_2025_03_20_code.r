@@ -19,13 +19,21 @@
 # - https://cran.r-project.org/package=tinyplot
 # - https://grantmcdermott.com/tinyplot/
 
-# install the tinyplot and palmerpenguins packages
-install.packages("tinyplot")
+# install the tinyplot package
+#install.packages("tinyplot")
+
+# actually, we will install the version that is available on the R-universe
+# website, since it is slightly newer
+install.packages("tinyplot", repos="https://grantmcdermott.r-universe.dev")
+
+# install the palmerpenguins packages
 install.packages("palmerpenguins")
 
 # load the packages
 library(tinyplot)
 library(palmerpenguins)
+
+
 
 ############################################################################
 
