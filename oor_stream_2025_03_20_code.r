@@ -191,7 +191,7 @@ plt(~ Temp | Month, data=dat, type="density", fill="by", legend="topright")
 tinytheme("ridge2")
 plt(Month ~ Temp | Month, data=dat, type="ridge", legend=FALSE)
 plt(Month ~ Temp | Month, data=dat, type="ridge", legend=FALSE,
-    scale=0.8, gradient=TRUE)
+    scale=0.8, gradient=TRUE) # error!
 
 # plot smoothed (local regression) curves
 tinytheme("clean")
