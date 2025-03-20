@@ -33,11 +33,15 @@ install.packages("palmerpenguins")
 library(tinyplot)
 library(palmerpenguins)
 
+############################################################################
+
 # copy the penguins dataset to dat (and make it a regular data frame)
 dat <- data.frame(penguins)
 
 # frequency table of the species variable
 table(dat$species)
+
+############################################################################
 
 # a default scatterplot of two variables against each other
 plot(bill_length_mm ~ flipper_length_mm, data=dat)
@@ -45,6 +49,8 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat)
 # a bit of customization
 plot(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
      xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l", las=1)
+
+############################################################################
 
 # say we want to recreate the figure shown here: https://allisonhorst.github.io/palmerpenguins/
 
@@ -82,6 +88,8 @@ legend("bottomright", pch=c(19,17,15), col=cols.t, legend=species,
 # add text at the top
 mtext("Flipper and bill length", side=3, adj=0, line=2.5)
 mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER", side=3, adj=0, line=1.5, cex=0.8)
+
+############################################################################
 
 # now let's try to simplify the above a bit by making use of tinyplot functionality
 
