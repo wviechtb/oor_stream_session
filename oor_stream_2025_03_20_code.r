@@ -86,6 +86,22 @@ mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station L
 # examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
 
 # now let's try to simplify the above a bit by making use of tinyplot functionality
+
+# generally the syntax of tinyplot() (or plt() for short) is like the plot() syntax
+plt(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
+    xlab="Flipper length (mm)", ylab="Bill length (mm)")
+
+# however, there are some subtle differences; bty="l" and las=1 do not work
+# within the plt() call as above; we can get around this by setting the 'las'
+# value first with par(), suppressing the box altogether with frame=FALSE, and
+# if we like adding the L box back with box()
+par(las=1)
+plt(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
+    xlab="Flipper length (mm)", ylab="Bill length (mm)", frame=FALSE)
+box(bty="l")
+
+
+# tinyplot supports specifying a grouping variable as part of the formula
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat)
 
 par(las=1)
