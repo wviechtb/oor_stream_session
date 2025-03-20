@@ -36,6 +36,16 @@ library(palmerpenguins)
 # copy the penguins dataset to dat (and make it a regular data frame)
 dat <- data.frame(penguins)
 
+# frequency table of the species variable
+table(dat$species)
+
+# a default scatterplot of two variables against each other
+plot(bill_length_mm ~ flipper_length_mm, data=dat)
+
+# a bit of customization
+plot(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
+     xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l")
+
 # examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
 
 
