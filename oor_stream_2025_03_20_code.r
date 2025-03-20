@@ -169,5 +169,11 @@ plt(Temp ~ Day | Month, data=dat, type="l", lwd=2,
 plt(Temp ~ Day | Month, data=dat, type="l", lwd=2, col="black", lty="by")
 
 # sidenote: this also works for other arguments
-plt(Temp ~ Day | Month, data=dat, pch=21, col="black", fill="by")
+plt(Temp ~ Day | Month, type="l", data=dat, lwd=2)
+plt_add(type="p", pch=21, col="black", fill="by")
+
+# sidenote: this also works for other arguments
+dat$Month <- ordered(dat$Month)
+plt(Temp ~ Day | Month, data=dat, pch=19)
+
 plt_add(type="l", lwd=2, col="by")
