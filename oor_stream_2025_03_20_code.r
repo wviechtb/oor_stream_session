@@ -163,3 +163,6 @@ plt(Temp ~ Day | Month, data=dat, type="l", lwd=2)
 # instead of using colors for the different months, can use different line types
 plt(Temp ~ Day | Month, data=dat, type="l", lwd=2,
     col="black", lty=c("solid","dashed","dotted","dotdash","longdash"))
+
+# but specifying the different line types this way is tedious; tinyplot
+# provides a special keyword ("by") for selecting different line types oer group
