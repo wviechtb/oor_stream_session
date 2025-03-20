@@ -200,7 +200,7 @@ library(nlme)
 dat <- Orthodont
 
 tinytheme("clean")
-plt(distance ~ age, data=dat, pch=19, facet = ~ Subject)
+plt(distance ~ age, data=dat, pch=19, facet = ~ Subject, frame=FALSE)
 
 res <- tapply(dat, dat$Subject, function(x) lm(distance ~ age, data=x))
 res <- data.frame(t(sapply(res, function(x) c(coef(x)[2], confint(x)[2,]))))
@@ -208,9 +208,11 @@ names(res) <- c("coef", "ci.lb", "ci.ub")
 res$subject <- rownames(res)
 res$sex <- ifelse(startsWith(res$subject, "M"), "male", "female")
 
+tinytheme("clean", las=2)
 with(res,
    tinyplot(x=subject, y=coef, facet=sex, ymin=ci.lb, ymax=ci.ub,
-            type="pointrange", pch=19, col="dodgerblue", facet.args=list(free=TRUE)))
+            type="pointrange", pch=19, col="dodgerblue",
+            facet.args=list(free=TRUE), xlab=""))
 
 ############################################################################
 ############################################################################
