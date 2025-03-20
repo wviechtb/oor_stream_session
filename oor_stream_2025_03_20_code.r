@@ -76,7 +76,7 @@ for (i in 1:length(species)) {
 }
 
 # add a legend
-legend("bottomright", pch=c(19,17,15), col=cols, legend=species,
+legend("bottomright", pch=c(19,17,15), col=cols.t, legend=species,
        bty="n", title="Penguin species")
 
 # add text at the top
@@ -88,12 +88,15 @@ mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station L
 # now let's try to simplify the above a bit by making use of tinyplot functionality
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat)
 
+par(las=1)
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat, grid=TRUE,
     frame=FALSE, xlab="Flipper length (mm)", ylab="Bill length (mm)",
     palette=c("darkorange","purple","cyan4"), alpha=0.8, pch=c(19,17,15),
-    legend="bottomright")
+    legend=legend("bottomright", title="Penguin species"))
 box(bty="l")
 plt_add(type="lm", se=FALSE, lwd=5)
+mtext("Flipper and bill length", side=3, adj=0, line=2.5)
+mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER", side=3, adj=0, line=1.5, cex=0.8)
 
 
 
