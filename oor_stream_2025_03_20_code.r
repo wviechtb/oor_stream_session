@@ -48,22 +48,21 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
 
 # say we want to recreate the figure shown here: https://allisonhorst.github.io/palmerpenguins/
 
+# set up the plot (but don't actually show the points)
 plot(bill_length_mm ~ flipper_length_mm, data=dat, type="n",
      xlab="Flipper length (mm)", ylab="Bill length (mm)", bty="l", las=1)
 
+# add a grid
 grid()
 
-# so Adelie -> darkorange, Chinstrap -> purple, Gentoo -> cyan4
-
-# same idea also works for using different plotting symbols for the groups
-
+# specify the three colors with some transparency added
 cols <- apply(rbind(col2rgb(c("darkorange","purple","cyan4")), 200), 2,
               function(x) rgb(x[1], x[2], x[3], x[4], maxColorValue=255))
 
+# now add the points, with different plotting symbols and colors for the three
+# species (Adelie = darkorange, Chinstrap = purple, Gentoo = cyan4)
 points(bill_length_mm ~ flipper_length_mm, data=penguins,
        pch=c(19,17,15)[species], col=cols[species])
-
-# note: we do not have to use penguins$species when using the 'data' argument
 
 legend("bottomright", pch=c(19,17,15), col=c("darkorange","purple","cyan4"),
        legend=c("Adelie","Chinstrap","Gentoo"), bty="n", title="Penguin species")
