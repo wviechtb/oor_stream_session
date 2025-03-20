@@ -125,5 +125,12 @@ plt_add(type="lm", se=FALSE, lwd=5)
 
 # much shorter / easier code
 
+# reset the theme to the default
+tinytheme()
+
 ############################################################################
+
+# if the variable after | is a quantitative variable, then it will be used as
+# a gradient for coloring the points
+plt(bill_length_mm ~ flipper_length_mm | body_mass_g, data=dat, pch=19)
 
