@@ -100,10 +100,10 @@ plt(bill_length_mm ~ flipper_length_mm, data=dat, pch=21, bg="gray",
     xlab="Flipper length (mm)", ylab="Bill length (mm)", frame=FALSE)
 box(bty="l")
 
-
 # tinyplot supports specifying a grouping variable as part of the formula
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat)
 
+# recreate the same figure as above using tinyplot
 par(las=1)
 plt(bill_length_mm ~ flipper_length_mm | species, data=dat, grid=TRUE,
     frame=FALSE, xlab="Flipper length (mm)", ylab="Bill length (mm)",
