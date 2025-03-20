@@ -134,3 +134,5 @@ tinytheme()
 # a gradient for coloring the points
 plt(bill_length_mm ~ flipper_length_mm | body_mass_g, data=dat, pch=19)
 
+# if we specify a facet variable, then we multiple plots per facet level
+plt(bill_length_mm ~ flipper_length_mm, data=dat, pch=19, facet = ~ species)
