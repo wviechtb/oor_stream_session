@@ -180,9 +180,4 @@ plt(Temp ~ Day | ordered(Month), data=dat, pch=19)
 # we could work around this here by manually specifying the desired palette
 plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
 
-plt(Temp ~ Day | Month, data=dat, pch=19, palette="viridis")
 
-
-dat$Month <- ordered(dat$Month)
-
-plt_add(type="l", lwd=2, col="by")
