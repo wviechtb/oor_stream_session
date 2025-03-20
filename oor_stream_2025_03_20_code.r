@@ -64,7 +64,7 @@ cols.t <- apply(rbind(col2rgb(cols), 200), 2,
 # now add the points, with different plotting symbols and colors for the three
 # species (Adelie = darkorange, Chinstrap = purple, Gentoo = cyan4)
 points(bill_length_mm ~ flipper_length_mm, data=penguins,
-       pch=c(19,17,15)[species], col=cols[species])
+       pch=c(19,17,15)[species], col=cols.t[species])
 
 # fit the model that allows for different intercepts and slopes for the species
 res <- lm(bill_length_mm ~ 0 + species + flipper_length_mm:species, data=dat)
@@ -93,6 +93,7 @@ plt(bill_length_mm ~ flipper_length_mm | species, data=dat, grid=TRUE,
     palette=c("darkorange","purple","cyan4"), alpha=0.8, pch=c(19,17,15),
     legend="bottomright")
 box(bty="l")
+plt_add(type="lm", se=FALSE, lwd=5)
 
 
 
