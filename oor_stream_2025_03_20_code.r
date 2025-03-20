@@ -55,7 +55,7 @@ plot(bill_length_mm ~ flipper_length_mm, data=dat, type="n",
 # add a grid
 grid()
 
-# specify the three colors with some transparency added
+# specify the three colors and the same colors with some transparency added
 species <- c("Adelie", "Chinstrap", "Gentoo")
 cols <- c("darkorange","purple","cyan4")
 cols.t <- apply(rbind(col2rgb(cols), 200), 2,
@@ -72,17 +72,16 @@ res <- lm(bill_length_mm ~ 0 + species + flipper_length_mm:species, data=dat)
 for (i in 1:length(species)) {
    xs <- range(dat$flipper_length_mm[dat$species == species[i]], na.rm=TRUE)
    pred <- predict(res, newdata=data.frame(species=species[i], flipper_length_mm=xs))
-   lines(xs, pred, lwd=6, col=cols[i])
+   lines(xs, pred, lwd=5, col=cols[i])
 }
 
 # add a legend
 legend("bottomright", pch=c(19,17,15), col=cols, legend=species,
        bty="n", title="Penguin species")
 
+# add text at the top
 mtext("Flipper and bill length", side=3, adj=0, line=2.5)
 mtext("Dimensions for Adelie, Chinstrap, and Gentoo Penguins at Palmer Station LTER", side=3, adj=0, line=1.5, cex=0.8)
-
-
 
 # examples based on the Quickstart (https://grantmcdermott.com/tinyplot/)
 
