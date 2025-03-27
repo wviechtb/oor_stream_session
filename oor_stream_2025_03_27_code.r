@@ -170,8 +170,30 @@ dat <- dat.bcg
 
 # fit random-effects model (here, we specify in the call to rma() what measure
 # to compute and provide the needed inputs)
-res <- rma(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat)
+res <- rma(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat,
+           slab=paste(author, year, sep=", "))
 res
 
 # draw a L'Abbe plot based on the model
 labbe(res)
+
+# 'Group 1' corresponds to the control groups, 'Group 2' to the vaccinated groups
+labbe(res, bty="l", grid=TRUE, xlab="Log Proportion (Control Group)",
+      ylab="Log Proportion (Vaccinated Group)")
+
+# the dashed line corresponds to the estimated pooled effect; we can also add
+# the region that corresponds to the congidence interval around the pooled effect
+labbe(res, bty="l", grid=TRUE, ci=TRUE, xlab="Log Proportion (Control Group)",
+      ylab="Log Proportion (Vaccinated Group)")
+
+# we can also add the prediction interval region and add a legend
+labbe(res, bty="l", grid=TRUE, ci=TRUE, pi=TRUE, legend=TRUE,
+      xlab="Log Proportion (Control Group)", ylab="Log Proportion (Vaccinated Group)")
+
+# back-transform the axes to proportions and save what the function returns invisibly
+sav <- labbe(res, bty="l", grid=TRUE, ci=TRUE, pi=TRUE, legend=TRUE, transf=exp,
+             xlab="Proportion (Control Group)", ylab="Proportion (Vaccinated Group)")
+
+# could use identify() to label points (left click next to points to add the
+# label to it, right click to stop labeling)
+identify(sav$x, sav$y, labels=sav$slab)
