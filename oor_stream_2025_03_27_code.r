@@ -58,7 +58,7 @@ predict(res, transf=exp, digits=2)
 forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
        ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
        ilab.xpos=c(-9.5,-8,-6,-4.5), cex=0.9, header="Author(s) and Year",
-       mlab="", shade=TRUE)
+       mlab="", shade=TRUE, addpred=TRUE)
 text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 # add text with Q-value, dfs, p-value, I^2, and tau^2 estimate
@@ -68,3 +68,17 @@ text(-16, -1, pos=4, cex=0.9, bquote(paste(
       .(fmtp2(res$QEp)), "; ",
       I^2, " = ", .(fmtx(res$I2, digits=1)), "%, ",
       tau^2, " = ", .(fmtx(res$tau2, digits=2)), ")")))
+
+# the dotted horizontal line around the summary polygon/diamond corresponds to
+# the prediction interval; however, this looks similar to the lines around the
+# individual study estimates above, which are confidence intervals, which has
+# the potential to lead to some confusion / misinterpretation
+
+# therefore, some additional ways of visualizing the prediction interval have
+# been added to the metafor package, via the 'predstyle' argument
+
+# show the prediction interval as a bar below the summary polygon
+forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), cex=0.9, header="Author(s) and Year",
+       shade=TRUE, addpred=TRUE, predstyle="bar")
