@@ -236,3 +236,10 @@ sel
 
 # plot the selection function
 plot(sel, ylim=c(0,1))
+
+# step function selection model that only applies to the non-preregistered studies
+sel <- selmodel(res, type="stepfun", alternative="greater", steps=.025,
+                subset=Preregistered=="Not Pre-Registered")
+sel
+
+############################################################################
