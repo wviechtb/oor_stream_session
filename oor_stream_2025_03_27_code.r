@@ -133,7 +133,8 @@ V <- vcalc(vi=1, cluster=author, rvars=c(v1i, v2i), data=dat)
 
 # fit multiple outcomes (meta-regression) model
 res <- rma.mv(yi, V, mods = ~ 0 + outcome,
-              random = ~ outcome | trial, struct="UN", data=dat)
+              random = ~ outcome | trial, struct="UN", data=dat,
+              slab=paste(author, year, sep=","))
 
 # with models with moderators, the predict function gives the fitted values
 # for the individual rows of the dataset
@@ -146,4 +147,15 @@ predict(res, newmods=diag(2))
 # but in order to obtain the corresponding prediction intervals, we also have
 # to specify the levels of the inner factor of '~ outcome | trial' (i.e., the
 # outcome level(s))
-predict(res, newmods=diag(2), tau2.levels=c("AL","PD"))
+pred <- predict(res, newmods=diag(2), tau2.levels=c("AL","PD"))
+pred
+
+# when drawing forest plots based on model objects that contain moderators,
+# the fitted values are indicated for each data point as polygons
+forest(res)
+
+# in this case, it would make more sense to add these polygons below the
+# estimates for the individual studies
+forest(res, addfit=FALSE, ylim=c(-3,13), ilab=outcome)
+abline(h=0)
+addpoly(pred, rows=-1, mlab=c("Pooled AL Estimate", "Pooled PD Estimate"))
