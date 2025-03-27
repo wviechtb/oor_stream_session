@@ -196,4 +196,7 @@ sav <- labbe(res, bty="l", grid=TRUE, ci=TRUE, pi=TRUE, legend=TRUE, transf=exp,
 
 # could use identify() to label points (left click next to points to add the
 # label to it, right click to stop labeling)
-identify(sav$x, sav$y, labels=sav$slab)
+#identify(sav$x, sav$y, labels=sav$slab)
+
+# or add the study id to all points where the risk is abive 0.03 in the control group
+text(sav$x[sav$x > 0.03], sav$y[sav$x > 0.03], sav$ids[sav$x > 0.03])
