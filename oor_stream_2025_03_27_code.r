@@ -104,8 +104,9 @@ pnorm(0, mean=pred$pred, sd=pred$pi.se, lower.tail=FALSE)
 
 ############################################################################
 
-# copy the data into dat
+# copy the data into 'dat'
 dat <- dat.konstantopoulos2011
+head(dat, 10)
 
 # fit a multilevel model
 res <- rma.mv(yi, vi, random = ~ 1 | district/school, data=dat)
@@ -119,4 +120,19 @@ predict(res)
 forest(res, cex=0.8, efac=c(0,1), predstyle="bar")
 
 # add the entire predictive distribution
-forest(res, cex=0.8, efac=c(0,1), xlim=c(-3,2.8), alim=c(-1,1.5), steps=6, predstyle="dist")
+forest(res, cex=0.8, efac=c(0,1,1,0.9), xlim=c(-3,2.8), alim=c(-1,1.5), steps=6, predstyle="dist")
+
+############################################################################
+
+# copy the data into 'dat'
+dat <- dat.berkey1998
+dat
+
+# construct block diagonal var-cov matrix of the observed outcomes based on variables v1i and v2i
+V <- vcalc(vi=1, cluster=author, rvars=c(v1i, v2i), data=dat)
+
+# fit multiple outcomes (meta-regression) model
+res <- rma.mv(yi, V, mods = ~ 0 + outcome, random = ~ outcome | trial, struct="UN",
+   data=dat)
+
+predict(res)
