@@ -101,3 +101,14 @@ forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
 # where the average true effect is
 pred <- predict(res)
 pnorm(0, mean=pred$pred, sd=pred$pi.se, lower.tail=FALSE)
+
+############################################################################
+
+# copy the data into dat
+dat <- dat.konstantopoulos2011
+
+# fit a multilevel model
+res <- rma.mv(yi, vi, random = ~ 1 | district/school, data=dat)
+res
+
+predict(res)
