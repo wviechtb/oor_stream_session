@@ -115,5 +115,8 @@ res
 predict(res)
 
 # draw a forest plot (note: have to increase the height of the plotting device
-# for the plot to look somewhat nice)
-forest(res)
+# for the plot to look somewhat nice) and add the prediction interval as a bar
+forest(res, cex=0.8, efac=c(0,1), predstyle="bar")
+
+# add the entire predictive distribution
+forest(res, cex=0.8, efac=c(0,1), xlim=c(-3,2.8), alim=c(-1,1.5), steps=6, predstyle="dist")
