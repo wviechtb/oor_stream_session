@@ -201,4 +201,20 @@ sav <- labbe(res, bty="l", grid=TRUE, ci=TRUE, pi=TRUE, legend=TRUE, transf=exp,
 # or add the study id to all points where the risk is abive 0.03 in the control group
 text(sav$x[sav$x > 0.03], sav$y[sav$x > 0.03], sav$ids[sav$x > 0.03])
 
+# say we conduct the meta-analysis with log odds ratios
+res <- rma(measure="OR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat,
+           slab=paste(author, year, sep=", "))
+res
+
+# then by default the arm-level log odds are shown in the L'abbe plot
+labbe(res)
+
+# we can back-transform the log odds to proportions using the inverse logit
+# transformation (and show the entire curve that results from 0-1 on each axis)
+labbe(res, transf=transf.ilogit, xlim=c(0,1), ylim=c(0,1))
+
+# also add the confidence and prediction interval regions and use the default axis limits
+labbe(res, transf=transf.ilogit, ci=TRUE, pi=TRUE,
+      bty="l", grid=TRUE, legend=TRUE)
+
 ############################################################################
