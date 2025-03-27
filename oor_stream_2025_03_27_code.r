@@ -164,3 +164,15 @@ addpoly(pred.AL, rows=-1, mlab="Pooled AL Estimate", predstyle="dist")
 addpoly(pred.PD, rows=-4, mlab="Pooled PD Estimate", predstyle="dist")
 
 ############################################################################
+
+# let's go back to the BCG vaccine dataset
+dat <- dat.bcg
+dat <- escalc(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg,
+              data=dat, slab=paste(author, year, sep=", "))
+
+# fit random-effects model
+res <- rma(yi, vi, data=dat)
+res
+
+# draw a L'Abbe plot based on the model
+labbe(res)
