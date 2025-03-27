@@ -54,8 +54,6 @@ predict(res)
 # back-transform the results to the risk ratio scale
 predict(res, transf=exp, digits=2)
 
-forest(res)
-
 # forest plot with extra annotations
 forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
        ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
@@ -64,7 +62,7 @@ forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
 text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=0.9, font=2)
 
 # add text with Q-value, dfs, p-value, I^2, and tau^2 estimate
-text(-16, -1, pos=4, cex=0.75, bquote(paste(
+text(-16, -1, pos=4, cex=0.9, bquote(paste(
       "RE Model (Q = ", .(fmtx(res$QE, digits=2)),
       ", df = ", .(res$k - res$p), ", ",
       .(fmtp2(res$QEp)), "; ",
