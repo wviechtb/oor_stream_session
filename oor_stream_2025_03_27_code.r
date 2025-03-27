@@ -235,4 +235,4 @@ sel <- selmodel(res, type="stepfun", alternative="greater", steps=.025)
 sel
 
 # plot the selection function
-plot(sel, ylim=c(0,1), ci="wald")
+plot(sel, ylim=c(0,1))
