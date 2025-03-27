@@ -132,7 +132,18 @@ dat
 V <- vcalc(vi=1, cluster=author, rvars=c(v1i, v2i), data=dat)
 
 # fit multiple outcomes (meta-regression) model
-res <- rma.mv(yi, V, mods = ~ 0 + outcome, random = ~ outcome | trial, struct="UN",
-   data=dat)
+res <- rma.mv(yi, V, mods = ~ 0 + outcome,
+              random = ~ outcome | trial, struct="UN", data=dat)
 
+# with models with moderators, the predict function gives the fitted values
+# for the individual rows of the dataset
 predict(res)
+
+# but we can also specify the moderator values to obtain predicted effects for
+# particular combinations of moderator values
+predict(res, newmods=diag(2))
+
+# but in order to obtain the corresponding prediction intervals, we also have
+# to specify the levels of the inner factor of '~ outcome | trial' (i.e., the
+# outcome level(s))
+predict(res, newmods=diag(2), tau2.levels=c("AL","PD"))
