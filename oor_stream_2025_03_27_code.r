@@ -111,4 +111,9 @@ dat <- dat.konstantopoulos2011
 res <- rma.mv(yi, vi, random = ~ 1 | district/school, data=dat)
 res
 
+# get the prediction interval
 predict(res)
+
+# draw a forest plot (note: have to increase the height of the plotting device
+# for the plot to look somewhat nice)
+forest(res)
