@@ -95,3 +95,9 @@ forest(res, atransf=exp, at=log(c(0.05, 0.25, 1, 4)), xlim=c(-16,6),
        ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
        ilab.xpos=c(-9.5,-8,-6,-4.5), cex=0.9, header="Author(s) and Year",
        shade=TRUE, addpred=TRUE, predstyle="dist")
+
+# compute the estimated probability that the true effect (i.e., the true log
+# risk ratio) in a particular study is above 0, that is, opposite in sign to
+# where the average true effect is
+pred <- predict(res)
+pnorm(0, mean=pred$pred, sd=pred$pi.se, lower.tail=FALSE)
