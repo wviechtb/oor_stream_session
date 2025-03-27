@@ -218,3 +218,21 @@ labbe(res, transf=transf.ilogit, ci=TRUE, pi=TRUE,
       bty="l", grid=TRUE, legend=TRUE)
 
 ############################################################################
+
+# meta-analysis on the effect of the color red on attractiveness ratings
+
+# copy data into 'dat', select only results for male raters, and examine data
+dat <- dat.lehmann2018
+dat <- dat[dat$Gender == "Males",]
+dat[c(1,6,48:49)]
+
+# fit random-effects model
+res <- rma(yi, vi, data=dat, method="ML")
+res
+
+# step function selection model (3PSM)
+sel <- selmodel(res, type="stepfun", alternative="greater", steps=.025)
+sel
+
+# plot the selection function
+plot(sel, ylim=c(0,1), ci="wald")
