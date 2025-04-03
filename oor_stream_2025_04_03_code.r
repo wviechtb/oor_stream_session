@@ -175,9 +175,9 @@ hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab=
 # muvar / (muvar + 3.3^2) = 0.3
 # (muvar + 3.3^2) / muvar = 1 / 0.3
 # 1 + 3.3^2 / muvar = 1 / 0.3
-# 3.3^2 / muvar = (1 + 0.3) / 0.3
-# muvar / 3.3^2 = 0.3 / (1 + 0.3)
-# muvar = 0.3 / (1 + 0.3) * 3.3^2
+# 3.3^2 / muvar = (1 - 0.3) / 0.3
+# muvar / 3.3^2 = 0.3 / (1 - 0.3)
+# muvar = 0.3 / (1 - 0.3) * 3.3^2
 
 muvar / (muvar + 3.3^2)
 
