@@ -170,25 +170,20 @@ hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
 
 # now say we assume that the best we might be able to do is to account for
-# about 30% of the variance (so R^2 =~ 0.30); then what would muvar have to be
-# to get such an R^2?
-
+# about 30% of the variance (so R^2 =~ 0.30); then we can set the SD of the
+# prior distributions for beta to sqrt(R^2 / p) * sd(y) and the mean of the
+# expoential distribution for sigma to sqrt(1-R^2) * sd(y), in which case we
+# will get the desired R^2 back
 sdbeta <- sqrt(0.3 / 26) * sd(dat$G3mat)
-musd <- sdbeta * sqrt(26)
+musd   <- sdbeta * sqrt(26)
+esd    <- sqrt(1-0.3) * sd(dat$G3mat)
+musd^2 / (musd^2 + esd^2)
 
 
 
-# muvar / (muvar + 3.3^2) = 0.3
-# (muvar + 3.3^2) / muvar = 1 / 0.3
-# 1 + 3.3^2 / muvar = 1 / 0.3
-# 3.3^2 / muvar = (1 - 0.3) / 0.3
-# muvar / 3.3^2 = 0.3 / (1 - 0.3)
-# muvar = 0.3 / (1 - 0.3) * 3.3^2
 
-# R2 / (1 - R2) * sigma2 = sdb^2 * p
-# sdb = R2 / (1 - R2) * sigma2 / p
 
-muvar / (muvar + 3.3^2)
+############################################################################
 
 
 
