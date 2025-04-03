@@ -20,3 +20,13 @@ library(rstanarm)
 
 ### 12.7: Models for regression coefficients
 
+# download the dataset if it doesn't already exist
+if (!file.exists("student-merged.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Student/data/student-merged.csv", destfile="student-merged.csv")
+
+# read in the dataset
+dat <- read.csv("student-merged.csv")
+
+# inspect the first six rows of the dataset
+head(dat)
+
+
