@@ -212,16 +212,8 @@ print(res2, digits=2)
 # when using the default prior, the difference here is quite negligible)
 prior_summary(res2)
 
-
-postR2 <- bayes_R2(res2)
-
-
-
-postR2 <- bayes_R2(res2)
-mean(postR2)
-sd(postR2)
-
 # Figure 12.11b (bottom): plot the posterior distribution for R^2
+postR2 <- bayes_R2(res2)
 hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
 
 
