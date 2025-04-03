@@ -70,21 +70,29 @@ for (i in 1:ncol(post)) {
 
 axis(side=2, at=(ncol(post)):1, label=colnames(post))
 
+# make a copy of the dataset and standardize all of the predictors
+dat2 <- dat
+dat2[,predictors] <- scale(dat2[,predictors])
 
-library(tinyplot)
-tinytheme("ridge2")
-plt(post, data=dat, type="ridge", legend=FALSE)
+# fit the model with all predictors standardized
+res1 <- stan_glm(G3mat ~ ., data=dat2, refresh=0)
 
-plt(Month ~ Temp, data=dat, type="ridge", gradient=TRUE, scale=0.8,
-    palette=hcl.colors(n=100, palette="temps", rev=TRUE))
+# Figure 12.10b: Like the previous figure, but with standardized predictors
 
+par(mar=c(4,8,2,2), las=1)
+plot(NA, xlim=range(post), ylim=c(1,ncol(post)), yaxt="n", bty="l",
+     xlab="", ylab="")
+abline(v=0, lty="dotted")
 
+for (i in 1:ncol(post)) {
+   tmp <- density(post[,i])
+   tmp$y <- tmp$y / max(tmp$y) * 0.9
+   cutoffs <- quantile(post[,i], prob=c(0.01,0.99))
+   tmp$y <- tmp$y[tmp$x > cutoffs[1] & tmp$x < cutoffs[2]]
+   tmp$x <- tmp$x[tmp$x > cutoffs[1] & tmp$x < cutoffs[2]]
+   lines(tmp$x, tmp$y+ncol(post)+1-i)
+   lines(tmp$x, rep(ncol(post)+1-i, length(tmp$x)))
+   segments(mean(tmp$x), ncol(post)+1-i, mean(tmp$x), ncol(post)+1-i+0.9)
+}
 
-library(ggplot2)
-library(bayesplot)
-
-p0 <- mcmc_areas(as.matrix(res0), pars=vars(-'(Intercept)',-sigma),
-                 prob_outer=0.95, area_method = "scaled height")
-p0 <- p0 + scale_y_discrete(limits = rev(levels(p0$data$parameter)))
-p0
-
+axis(side=2, at=(ncol(post)):1, label=colnames(post))
