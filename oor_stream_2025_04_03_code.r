@@ -104,4 +104,10 @@ axis(side=2, at=(ncol(post)):1, label=colnames(post))
 # compute the Bayesian R^2 (median of the posterior R^2 distribution)
 round(median(bayes_R2(res1)), digits=2)
 
-round(median(loo_R2(res1)), 2)
+# compute the leave-one-out R^2
+round(median(loo_R2(res1)), digits=2)
+
+# compute LOO log score
+loo1 <- loo(res1)
+loo1
+
