@@ -163,8 +163,12 @@ priorR2 <- replicate(4000, {
    muvar / (muvar + sigma2)
 })
 
-# plot the prior distribution for R^2
+# Figure 12.11 (top left): plot the prior distribution for R^2
 hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
+
+# Figure 12.11 (bottom left): plot the posterior distribution for R^2
+hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
+
 
 mean(ppR2)
 
