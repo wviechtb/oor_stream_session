@@ -29,3 +29,13 @@ dat <- read.csv("student-merged.csv")
 # inspect the first six rows of the dataset
 head(dat)
 
+# set up a vector with the names of the predictor variables
+predictors <- c("school","sex","age","address","famsize","Pstatus","Medu",
+                "Fedu", "traveltime","studytime","failures","schoolsup",
+                "famsup", "paid","activities","nursery","higher","internet",
+                "romantic","famrel","freetime","goout","Dalc","Walc","health",
+                "absences")
+
+data_G3mat <- subset(data, subset=G3mat>0, select=c("G3mat",predictors))
+fit0 <- stan_glm(G3mat ~ ., data=data_G3mat)
+
