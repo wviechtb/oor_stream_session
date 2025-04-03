@@ -77,6 +77,13 @@ dat2[,predictors] <- scale(dat2[,predictors])
 # fit the model with all predictors standardized
 res1 <- stan_glm(G3mat ~ ., data=dat2, refresh=0)
 
+# obtain information about the priors used in the model
+prior_summary(res1)
+
+# note: according to the output, the coefficients actually have a prior with
+# mean 0 and SD equal to 8.21 (which is 2.5 * sd(y)), so maybe the book is not
+# describing things accurately; we will ignore this issue below
+
 # extract the posterior samples
 post <- as.data.frame(res1)
 post <- post[-c(1,ncol(post))]
