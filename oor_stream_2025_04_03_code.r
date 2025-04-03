@@ -77,6 +77,10 @@ dat2[,predictors] <- scale(dat2[,predictors])
 # fit the model with all predictors standardized
 res1 <- stan_glm(G3mat ~ ., data=dat2, refresh=0)
 
+# extract the posterior samples
+post <- as.data.frame(res1)
+post <- post[-c(1,ncol(post))]
+
 # Figure 12.10b: Like the previous figure, but with standardized predictors
 
 par(mar=c(4,8,2,2), las=1)
@@ -96,3 +100,4 @@ for (i in 1:ncol(post)) {
 }
 
 axis(side=2, at=(ncol(post)):1, label=colnames(post))
+
