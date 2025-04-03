@@ -45,8 +45,12 @@ head(dat)
 res0 <- stan_glm(G3mat ~ ., data=dat, refresh=0)
 print(res0, digits=2)
 
+# extract the posterior samples
 post <- as.data.frame(res0)
 post <- post[-c(1,ncol(post))]
+
+# Figure 12.10a: Plot of kernel density estimates of the posterior
+# distributions of the coefficients for the predictors
 
 par(mar=c(4,8,2,2), las=1)
 plot(NA, xlim=range(post), ylim=c(1,ncol(post)), yaxt="n", bty="l",
@@ -61,6 +65,7 @@ for (i in 1:ncol(post)) {
    tmp$x <- tmp$x[tmp$x > cutoffs[1] & tmp$x < cutoffs[2]]
    lines(tmp$x, tmp$y+ncol(post)+1-i)
    lines(tmp$x, rep(ncol(post)+1-i, length(tmp$x)))
+   segments(mean(tmp$x), ncol(post)+1-i, mean(tmp$x), ncol(post)+1-i+0.9)
 }
 
 axis(side=2, at=(ncol(post)):1, label=colnames(post))
