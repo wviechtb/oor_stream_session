@@ -140,19 +140,19 @@ loo1
 
 # so in the present case, the standard deviation of the predicted mean based
 # on the prior distributions is approximately
-musd <- round(2.5 * sqrt(26), digits=2)
-musd
+musd <- 2.5 * sqrt(26)
+round(musd, digits=2)
 
 # the default prior for sigma is an exponential distribution, scaled to have
 # mean equal to the standard deviation of the outcome, which in this case is
 # approximately 3.3
-esd <- round(sd(dat$G3mat), digits=2)
-esd
+sdy <- sd(dat$G3mat)
+round(sdy, digits=2)
 
 # note: R^2 is roughly how much of the total variance (which consists of
 # variance in the predicted means plus the error variance) is due to the
 # variance in the predicted means
-musd^2 / (musd^2 + esd^2)
+musd^2 / (musd^2 + sdy^2)
 
 # to generate a whole prior distribution for R^2, we simulate many times
 # sigma2 and beta values from their respective prior distributions and repeat
@@ -189,6 +189,28 @@ priorR2 <- replicate(4000, {
 # Figure 12.11b (top): plot the prior distribution for R^2
 hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 
+# fit the model with the new priors
+res2 <- stan_glm(G3mat ~ ., data=dat2, refresh=0,
+                 prior=normal(scale=sdbeta),
+                 prior_aux=exponential(rate=1/(sqrt(1-0.3)*3.3)))
+
+postR2 <- bayes_R2(res2)
+mean(postR2)
+sd(postR2)
+
+prior_summary(res1)
+
+# fit the model with the new priors
+res2 <- stan_glm(G3mat ~ ., data=dat2, refresh=0,
+                 prior=normal(scale=sdbeta))
+prior_summary(res2)
+
+postR2 <- bayes_R2(res2)
+mean(postR2)
+sd(postR2)
+
+# Figure 12.11b (bottom): plot the posterior distribution for R^2
+hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
 
 
 
