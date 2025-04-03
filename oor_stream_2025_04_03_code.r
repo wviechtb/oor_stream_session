@@ -136,12 +136,20 @@ loo1
 
 # so in the present case, the standard deviation of the predicted mean based
 # on the prior distributions is approximately
-2.5 * sqrt(ncol(dat2)-1)
+varm <- round(2.5 * sqrt(ncol(dat2)-1), digits=2)
+varm
 
 # the default prior for sigma is an exponential distribution, scaled to have
 # mean equal to the standard deviation of the outcome, which in this case is
 # approximately 3.3
-sd(dat$G3mat)
+vare <- round(sd(dat$G3mat), digits=2)
+vare
+
+# note: R^2 is roughly how much of the total variance (which consists of
+# variance in the predicted means plus the error variance) is due to the
+# variance in the predicted means
+varm / (varm + vare)
+
 
 
 pred <- posterior_linpred(res1)
