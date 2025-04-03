@@ -218,6 +218,16 @@ hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab=
 
 
 
+
+
+p <- length(predictors)
+n <- nrow(datastd_G3mat)
+p0 <- 6
+slab_scale <- sqrt(0.3/p0)*sd(datastd_G3mat$G3mat) # global scale without sigma, as the scaling by sigma is done inside stan_glm
+global_scale <- (p0/(p - p0))/sqrt(n)
+fit3 <- stan_glm(G3mat ~ ., data=dat2, prior=hs(global_scale=global_scale, slab_scale=slab_scale))
+
+
 ############################################################################
 
 
