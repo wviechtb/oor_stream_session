@@ -101,3 +101,7 @@ for (i in 1:ncol(post)) {
 
 axis(side=2, at=(ncol(post)):1, label=colnames(post))
 
+# compute the Bayesian R^2 (median of the posterior R^2 distribution)
+round(median(bayes_R2(res1)), digits=2)
+
+round(median(loo_R2(res1)), 2)
