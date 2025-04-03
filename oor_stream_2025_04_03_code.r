@@ -49,13 +49,18 @@ post <- as.data.frame(res0)
 post <- post[-c(1,ncol(post))]
 
 par(mar=c(4,8,2,2), las=1)
-plot(NA, xlim=range(post), ylim=c(1,ncol(post)+1), yaxt="n", bty="l",
+plot(NA, xlim=range(post), ylim=c(1,ncol(post)), yaxt="n", bty="l",
      xlab="", ylab="")
+abline(v=0, lty="dotted")
 
 for (i in 1:ncol(post)) {
    tmp <- density(post[,i])
-   tmp$y <- tmp$y / max(tmp$y)
+   tmp$y <- tmp$y / max(tmp$y) * 0.9
+   cutoffs <- quantile(post[,i], prob=c(0.01,0.99))
+   tmp$y <- tmp$y[tmp$x > cutoffs[1] & tmp$x < cutoffs[2]]
+   tmp$x <- tmp$x[tmp$x > cutoffs[1] & tmp$x < cutoffs[2]]
    lines(tmp$x, tmp$y+ncol(post)+1-i)
+   lines(tmp$x, rep(ncol(post)+1-i, length(tmp$x)))
 }
 
 axis(side=2, at=(ncol(post)):1, label=colnames(post))
