@@ -42,5 +42,39 @@ dat <- subset(dat, subset=G3mat>0, select=c("G3mat",predictors))
 head(dat)
 
 # predict G3mat from all other variables in the dataset
-res0 <- stan_glm(G3mat ~ ., data=dat)
+res0 <- stan_glm(G3mat ~ ., data=dat, refresh=0)
+print(res0, digits=2)
+
+post <- as.data.frame(res0)
+post <- post[-c(1,ncol(post))]
+
+par(mar=c(4,8,2,2), las=1)
+plot(NA, xlim=range(post), ylim=c(1,ncol(post)+1), yaxt="n", bty="l",
+     xlab="", ylab="")
+
+for (i in 1:ncol(post)) {
+   tmp <- density(post[,i])
+   tmp$y <- tmp$y / max(tmp$y)
+   lines(tmp$x, tmp$y+ncol(post)+1-i)
+}
+
+axis(side=2, at=(ncol(post)):1, label=colnames(post))
+
+
+library(tinyplot)
+tinytheme("ridge2")
+plt(post, data=dat, type="ridge", legend=FALSE)
+
+plt(Month ~ Temp, data=dat, type="ridge", gradient=TRUE, scale=0.8,
+    palette=hcl.colors(n=100, palette="temps", rev=TRUE))
+
+
+
+library(ggplot2)
+library(bayesplot)
+
+p0 <- mcmc_areas(as.matrix(res0), pars=vars(-'(Intercept)',-sigma),
+                 prob_outer=0.95, area_method = "scaled height")
+p0 <- p0 + scale_y_discrete(limits = rev(levels(p0$data$parameter)))
+p0
 
