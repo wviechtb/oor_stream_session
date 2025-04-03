@@ -251,6 +251,14 @@ global_scale <- (p0/(p-p0)) / sqrt(n) # without sigma, as the scaling by sigma i
 res3 <- stan_glm(G3mat ~ ., data=dat2, prior=hs(global_scale=global_scale, slab_scale=slab_scale), refresh=0)
 print(res3, digits=2)
 
+res4 <- stan_glm(G3mat ~ failures + schoolsup + goout + absences, data=dat2, refresh=0)
+print(res4, digits=2)
+
+# compute the Bayesian R^2 (median of the posterior R^2 distribution)
+postR2 <- bayes_R2(res4)
+round(median(postR2), digits=2)
+round(median(loo_R2(res4)), digits=2)
+
 ############################################################################
 
 
