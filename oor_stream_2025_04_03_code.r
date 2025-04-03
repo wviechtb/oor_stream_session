@@ -181,7 +181,7 @@ musd^2 / (musd^2 + esd^2)
 
 # generate a whole prior distribution for R^2 using the new priors
 priorR2 <- replicate(4000, {
-   sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*3.3))^2
+   sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*sdy))^2
    muvar  <- var(c(as.matrix(dat2[,predictors]) %*% rnorm(26, mean=0, sd=sdbeta)))
    muvar / (muvar + sigma2)
 })
@@ -192,7 +192,7 @@ hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 # fit the model with the new priors
 res2 <- stan_glm(G3mat ~ ., data=dat2, refresh=0,
                  prior=normal(scale=sdbeta),
-                 prior_aux=exponential(rate=1/(sqrt(1-0.3)*3.3)))
+                 prior_aux=exponential(rate=1/(sqrt(1-0.3)*sdy)))
 
 postR2 <- bayes_R2(res2)
 mean(postR2)
