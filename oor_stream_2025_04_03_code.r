@@ -134,6 +134,13 @@ loo1
 #
 # and so SD(E[y])  = 2.5 * sqrt(p)
 
+# so in the present case, the standard deviation of the predicted mean based
+# on the prior distributions is approximately
+2.5 * sqrt(ncol(dat2)-1)
+
+# the default prior for sigma is an exponential distribution, scaled to have
+# mean equal to the standard deviation of the outcome, which in this case is
+# approximately 3.3
 sd(dat$G3mat)
 
 
