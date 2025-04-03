@@ -29,4 +29,3 @@ dat <- read.csv("student-merged.csv")
 # inspect the first six rows of the dataset
 head(dat)
 
-
