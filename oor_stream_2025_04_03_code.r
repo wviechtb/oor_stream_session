@@ -105,7 +105,8 @@ axis(side=2, at=(ncol(post)):1, label=colnames(post))
 graphics.off()
 
 # compute the Bayesian R^2 (median of the posterior R^2 distribution)
-round(median(bayes_R2(res1)), digits=2)
+postR2 <- bayes_R2(res1)
+round(median(postR2), digits=2)
 
 # compute the leave-one-out R^2
 round(median(loo_R2(res1)), digits=2)
@@ -160,8 +161,9 @@ ppR2 <- replicate(4000, {
    muvar / (muvar + sigma2)
 })
 
-hist(ppR2, breaks=seq(0,1,by=.01))
+hist(ppR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 
+mean(ppR2)
 
 
 pred <- posterior_linpred(res1)
