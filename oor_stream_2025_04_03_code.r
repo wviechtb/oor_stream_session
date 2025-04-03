@@ -36,6 +36,11 @@ predictors <- c("school","sex","age","address","famsize","Pstatus","Medu",
                 "romantic","famrel","freetime","goout","Dalc","Walc","health",
                 "absences")
 
-data_G3mat <- subset(data, subset=G3mat>0, select=c("G3mat",predictors))
-fit0 <- stan_glm(G3mat ~ ., data=data_G3mat)
+# select rows where the final-year mathematics grade (G3mat) is > 0 and only
+# select this variable plus the predictors
+dat <- subset(dat, subset=G3mat>0, select=c("G3mat",predictors))
+head(dat)
+
+# predict G3mat from all other variables in the dataset
+res0 <- stan_glm(G3mat ~ ., data=dat)
 
