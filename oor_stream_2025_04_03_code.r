@@ -101,6 +101,9 @@ for (i in 1:ncol(post)) {
 
 axis(side=2, at=(ncol(post)):1, label=colnames(post))
 
+# close the plot
+graphics.off()
+
 # compute the Bayesian R^2 (median of the posterior R^2 distribution)
 round(median(bayes_R2(res1)), digits=2)
 
@@ -136,19 +139,28 @@ loo1
 
 # so in the present case, the standard deviation of the predicted mean based
 # on the prior distributions is approximately
-varm <- round(2.5 * sqrt(ncol(dat2)-1), digits=2)
-varm
+musd <- round(2.5 * sqrt(ncol(dat2)-1), digits=2)
+musd
 
 # the default prior for sigma is an exponential distribution, scaled to have
 # mean equal to the standard deviation of the outcome, which in this case is
 # approximately 3.3
-vare <- round(sd(dat$G3mat), digits=2)
-vare
+esd <- round(sd(dat$G3mat), digits=2)
+esd
 
 # note: R^2 is roughly how much of the total variance (which consists of
 # variance in the predicted means plus the error variance) is due to the
 # variance in the predicted means
-varm / (varm + vare)
+musd^2 / (musd^2 + esd^2)
+
+# to generate a whole distribution for R^2 based on the priors, we
+ppR2 <- replicate(4000, {
+   sigma2 <- rexp(1, rate=0.3)^2
+   muvar  <- var(c(as.matrix(dat2[,predictors]) %*% rnorm(26, mean=0, sd=2.5)))
+   muvar / (muvar + sigma2)
+})
+
+hist(ppR2, breaks=seq(0,1,by=.01))
 
 
 
