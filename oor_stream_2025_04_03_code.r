@@ -169,7 +169,8 @@ musd^2 / (musd^2 + sdy^2)
 # the compuation of R^2 for each of the simulated values
 priorR2 <- replicate(4000, {
    sigma2 <- rexp(1, rate=0.3)^2
-   muvar  <- var(c(as.matrix(dat2[,predictors]) %*% rnorm(26, mean=0, sd=2.5)))
+   beta   <- rnorm(26, mean=0, sd=2.5)
+   muvar  <- var(as.matrix(dat2[,predictors]) %*% beta)
    muvar / (muvar + sigma2)
 })
 
@@ -192,7 +193,8 @@ musd^2 / (musd^2 + esd^2)
 # generate a whole prior distribution for R^2 using the new priors
 priorR2 <- replicate(4000, {
    sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*sdy))^2
-   muvar  <- var(c(as.matrix(dat2[,predictors]) %*% rnorm(26, mean=0, sd=sdbeta)))
+   beta   <- rnorm(26, mean=0, sd=sdbeta)
+   muvar  <- var(as.matrix(dat2[,predictors]) %*% beta)
    muvar / (muvar + sigma2)
 })
 
@@ -218,18 +220,19 @@ hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab=
 
 p0 <- 6
 slab_scale <- sd(dat2$G3mat) / sqrt(p0) * sqrt(0.3)
+
 replicate(4000, {
    sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*sdy))^2
    global_scale <- p0 / (26-p0) * sqrt(sigma2) / sqrt(n)
    z <- rnorm(26)
    lambda <- rcauchy(26)
    tau <- rcauchy(1, scale=global_scale)
-   caux <- 1 / rgamma(1, shape=0.5, rate=0.5)
+   caux <- 1 / rgamma(1, shape = 0.5, rate = 0.5)
    c <- slab_scale * sqrt(caux)
    lambda_tilde <- sqrt(c^2 * lambda^2 / (c^2 + tau^2*lambda^2))
-   beta <- rnorm(26) * lambda_tilde * tau
-   muvar <- var(as.matrix(dat2[,2:27]) %*% beta)
-   ppR2[i] <- muvar/(muvar+sigma2)
+   beta <- rnorm(26, mean = 0, sd = lambda_tilde * tau)
+   muvar <- var(as.matrix(dat2[,predictors]) %*% beta)
+   muvar / (muvar + sigma2)
 })
 
 
