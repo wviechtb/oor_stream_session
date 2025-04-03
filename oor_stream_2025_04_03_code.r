@@ -163,10 +163,10 @@ priorR2 <- replicate(4000, {
    muvar / (muvar + sigma2)
 })
 
-# Figure 12.11 (top left): plot the prior distribution for R^2
+# Figure 12.11a (top): plot the prior distribution for R^2
 hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 
-# Figure 12.11 (bottom left): plot the posterior distribution for R^2
+# Figure 12.11a (bottom): plot the posterior distribution for R^2
 hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
 
 # now say we assume that the best we might be able to do is to account for
@@ -178,6 +178,13 @@ sdbeta <- sqrt(0.3 / 26) * sd(dat$G3mat)
 musd   <- sdbeta * sqrt(26)
 esd    <- sqrt(1-0.3) * sd(dat$G3mat)
 musd^2 / (musd^2 + esd^2)
+
+# generate a whole prior distribution for R^2 using the new priors
+priorR2 <- replicate(4000, {
+   sigma2 <- rexp(1, rate=0.3)^2
+   muvar  <- var(c(as.matrix(dat2[,predictors]) %*% rnorm(26, mean=0, sd=2.5)))
+   muvar / (muvar + sigma2)
+})
 
 
 
