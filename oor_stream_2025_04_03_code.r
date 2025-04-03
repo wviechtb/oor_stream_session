@@ -81,8 +81,10 @@ res1 <- stan_glm(G3mat ~ ., data=dat2, refresh=0)
 prior_summary(res1)
 
 # note: according to the output, the coefficients actually have a prior with
-# mean 0 and SD equal to 8.21 (which is 2.5 * sd(y)), so maybe the book is not
-# describing things accurately; we will ignore this issue below
+# mean 0 and SD equal to 8.21 (which is 2.5 * sd(y)), because when using
+# default priors, then autoscale=TRUE; for further details, see:
+# https://mc-stan.org/rstanarm/articles/priors.html; so the book is not
+# describing things accurately, but we will ignore this issue below for now
 
 # extract the posterior samples
 post <- as.data.frame(res1)
@@ -201,16 +203,15 @@ res2 <- stan_glm(G3mat ~ ., data=dat2, refresh=0,
                  prior=normal(scale=sdbeta),
                  prior_aux=exponential(rate=1/(sqrt(1-0.3)*sdy)))
 
-postR2 <- bayes_R2(res2)
-mean(postR2)
-sd(postR2)
+# notes:
 
+# - when using default priors, then stan_glm() uses autoscale=TRUE, so the pri
+#
 prior_summary(res1)
 
-# fit the model with the new priors
-res2 <- stan_glm(G3mat ~ ., data=dat2, refresh=0,
-                 prior=normal(scale=sdbeta))
-prior_summary(res2)
+postR2 <- bayes_R2(res2)
+
+
 
 postR2 <- bayes_R2(res2)
 mean(postR2)
