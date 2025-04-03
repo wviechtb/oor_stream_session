@@ -154,14 +154,17 @@ esd
 # variance in the predicted means
 musd^2 / (musd^2 + esd^2)
 
-# to generate a whole distribution for R^2 based on the priors, we
-ppR2 <- replicate(4000, {
+# to generate a whole prior distribution for R^2, we simulate many times
+# sigma2 and beta values from their respective prior distributions and repeat
+# the compuation of R^2 for each of the simulated values
+priorR2 <- replicate(4000, {
    sigma2 <- rexp(1, rate=0.3)^2
    muvar  <- var(c(as.matrix(dat2[,predictors]) %*% rnorm(26, mean=0, sd=2.5)))
    muvar / (muvar + sigma2)
 })
 
-hist(ppR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
+# plot the prior distribution for R^2
+hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 
 mean(ppR2)
 
