@@ -169,6 +169,19 @@ hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 # Figure 12.11 (bottom left): plot the posterior distribution for R^2
 hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
 
+# now say we assume that the best we might be able to do is to account for
+# about 30% of the variance (so R^2 =~ 0.30); then what would muvar have to be
+# to get such an R^2?
+# muvar / (muvar + 3.3^2) = 0.3
+# (muvar + 3.3^2) / muvar = 1 / 0.3
+# 1 + 3.3^2 / muvar = 1 / 0.3
+# 3.3^2 / muvar = (1 + 0.3) / 0.3
+# muvar / 3.3^2 = 0.3 / (1 + 0.3)
+# muvar = 0.3 / (1 + 0.3) * 3.3^2
+
+muvar / (muvar + 3.3^2)
+
+
 
 mean(ppR2)
 
