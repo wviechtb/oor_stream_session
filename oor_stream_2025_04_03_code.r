@@ -140,7 +140,7 @@ loo1
 
 # so in the present case, the standard deviation of the predicted mean based
 # on the prior distributions is approximately
-musd <- round(2.5 * sqrt(ncol(dat2)-1), digits=2)
+musd <- round(2.5 * sqrt(26), digits=2)
 musd
 
 # the default prior for sigma is an exponential distribution, scaled to have
@@ -172,12 +172,21 @@ hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab=
 # now say we assume that the best we might be able to do is to account for
 # about 30% of the variance (so R^2 =~ 0.30); then what would muvar have to be
 # to get such an R^2?
+
+sdbeta <- sqrt(0.3 / 26) * sd(dat$G3mat)
+musd <- sdbeta * sqrt(26)
+
+
+
 # muvar / (muvar + 3.3^2) = 0.3
 # (muvar + 3.3^2) / muvar = 1 / 0.3
 # 1 + 3.3^2 / muvar = 1 / 0.3
 # 3.3^2 / muvar = (1 - 0.3) / 0.3
 # muvar / 3.3^2 = 0.3 / (1 - 0.3)
 # muvar = 0.3 / (1 - 0.3) * 3.3^2
+
+# R2 / (1 - R2) * sigma2 = sdb^2 * p
+# sdb = R2 / (1 - R2) * sigma2 / p
 
 muvar / (muvar + 3.3^2)
 
