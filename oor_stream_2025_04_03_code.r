@@ -218,9 +218,11 @@ prior_summary(res2)
 postR2 <- bayes_R2(res2)
 hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab="")
 
+# generate a prior distribution for R^2 using the horseshoe prior (code from
+# https://avehtari.github.io/ROS-Examples/Student/student.html with some
+# adjustments / corrections)
 p0 <- 6
 slab_scale <- sd(dat2$G3mat) / sqrt(p0) * sqrt(0.3)
-
 priorR2 <- replicate(4000, {
    sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*sdy))^2
    global_scale <- p0 / (26-p0) * sqrt(sigma2) / sqrt(343)
@@ -233,6 +235,10 @@ priorR2 <- replicate(4000, {
    muvar <- var(as.matrix(dat2[,predictors]) %*% beta)
    muvar / (muvar + sigma2)
 })
+
+# Figure 12.11c (top): plot the prior distribution for R^2
+hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
+
 
 
 
