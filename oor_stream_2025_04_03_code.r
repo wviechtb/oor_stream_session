@@ -111,3 +111,42 @@ round(median(loo_R2(res1)), digits=2)
 loo1 <- loo(res1)
 loo1
 
+# note: the model is predicting the mean of the outcome variable
+# E[y] = b1*z1 + b2*z2 + ... + bp*zp
+#
+# so the variance in E[y] is given by this:
+# Var(E[y]) = Var(b1*z1 + b2*z2 + ... + bp*zp)
+#
+# now assuming independence between the predictors and the priors for the
+# regression coefficients, we can rewrite this as:
+#           = Var(b1*z1) + Var(b2*z2) + ... + Var(bp*zp)
+#
+# since we assume priors with a mean of 0 and the predictors are also z-scored
+# and hence have a mean of 0, we can rewrite this as:
+#           = Var(b1)*Var(z1) + ... + Var(bp)*Var(zp)
+#
+# and since the predictors have a variance of 1, we can rewrite this as:
+#           = Var(b1) + ... + Var(bp)
+#
+# and since we assume a standard deviation of 2.5 for the prior distributions,
+# we can simply this to:
+#           = 2.5^2 * p
+#
+# and so SD(E[y])  = 2.5 * sqrt(p)
+
+sd(dat$G3mat)
+
+
+pred <- posterior_linpred(res1)
+pred <- apply(pred, 2, mean)
+sd(pred)
+
+var(pred) / (var(pred) + 2.885056^2)
+
+
+x1 <- rnorm(100000, mean=100, sd=15)
+x2 <- rnorm(100000, mean=10, sd=1)
+z1 <- c(scale(x1)) * 2.5
+z2 <- c(scale(x2))
+var(z1*z2)
+var(z1)*var(z2)
