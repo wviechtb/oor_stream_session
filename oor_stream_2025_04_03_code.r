@@ -221,6 +221,8 @@ hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab=
 p0 <- 6
 slab_scale <- sd(dat2$G3mat) / sqrt(p0) * sqrt(0.3)
 
+
+
 priorR2 <- replicate(4000, {
    sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*sdy))^2
    global_scale <- p0 / (26-p0) * sqrt(sigma2) / sqrt(343)
