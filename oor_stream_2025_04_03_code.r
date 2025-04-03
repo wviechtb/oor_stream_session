@@ -221,17 +221,15 @@ hist(postR2, breaks=seq(0,1,by=.01), main="Posterior Distribution of R^2", xlab=
 p0 <- 6
 slab_scale <- sd(dat2$G3mat) / sqrt(p0) * sqrt(0.3)
 
-
-
 priorR2 <- replicate(4000, {
    sigma2 <- rexp(1, rate=1/(sqrt(1-0.3)*sdy))^2
    global_scale <- p0 / (26-p0) * sqrt(sigma2) / sqrt(343)
    lambda <- rcauchy(26)
    tau <- rcauchy(1, scale=global_scale)
-   caux <- 1 / rgamma(1, shape = 0.5, rate = 0.5)
-   c <- slab_scale * sqrt(caux)
+   c2 <- 1 / rgamma(1, shape=0.5, rate=0.5)
+   c <- slab_scale * sqrt(c2)
    lambda_tilde <- sqrt(c^2 * lambda^2 / (c^2 + tau^2*lambda^2))
-   beta <- rnorm(26, mean = 0, sd = lambda_tilde * tau)
+   beta <- rnorm(26, mean = 0, sd = lambda_tilde * abs(tau))
    muvar <- var(as.matrix(dat2[,predictors]) %*% beta)
    muvar / (muvar + sigma2)
 })
@@ -242,7 +240,7 @@ priorR2 <- replicate(4000, {
 
 p <- length(predictors)
 n <- nrow(dat2)
-slab_scale <- sqrt(0.3/p0)*sd(dat2$G3mat) # global scale without sigma, as the scaling by sigma is done inside stan_glm
+slab_scale <- sqrt(0.3/p0)*sd(dat2$G3mat)
 global_scale <- (p0/(p - p0))/sqrt(n)
 fit3 <- stan_glm(G3mat ~ ., data=dat2, prior=hs(global_scale=global_scale, slab_scale=slab_scale))
 
