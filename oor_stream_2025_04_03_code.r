@@ -76,6 +76,7 @@ dat2[,predictors] <- scale(dat2[,predictors])
 
 # fit the model with all predictors standardized
 res1 <- stan_glm(G3mat ~ ., data=dat2, refresh=0)
+print(res1, digits=2)
 
 # obtain information about the priors used in the model
 prior_summary(res1)
@@ -202,12 +203,15 @@ hist(priorR2, breaks=seq(0,1,by=.01), main="Prior Distribution of R^2", xlab="")
 res2 <- stan_glm(G3mat ~ ., data=dat2, refresh=0,
                  prior=normal(scale=sdbeta),
                  prior_aux=exponential(rate=1/(sqrt(1-0.3)*sdy)))
+print(res2, digits=2)
 
-# notes:
+# note: since we are not using the default priors, then autoscale=FALSE by
+# default, so we are using normal priors with SD equal to sdbeta as desired;
+# also, we really should set the correct prior distribution for sigma (which
+# is not done in the book, although because of the autoscaling that is done
+# when using the default prior, the difference here is quite negligible)
+prior_summary(res2)
 
-# - when using default priors, then stan_glm() uses autoscale=TRUE, so the pri
-#
-prior_summary(res1)
 
 postR2 <- bayes_R2(res2)
 
