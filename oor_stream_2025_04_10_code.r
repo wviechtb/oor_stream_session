@@ -48,6 +48,16 @@ leg_right <- leg_prop*height + rnorm(N, 0, 0.02) # sim right leg as proportion +
 dat <- data.frame(height, leg_left, leg_right) # combine into data frame
 head(dat)
 
+# where does the 2.2 in the book come from?
 # if height (y) = 0,  then leg (x) = 0
 # if height (y) = 10, then leg (x) = 10*0.45 = 4.5
-# (10 - 0) / (4.5 - 0) = 10 / 4.5 = 2.2
+# so this implies a slope of: (10 - 0) / (4.5 - 0) = 10 / 4.5 =~ 2.2
+
+# fit the model predicting height from leg_left and leg_right
+res1 <- quap(alist(height ~ dnorm(mu, sigma),
+                   mu <- a + bl*leg_left + br*leg_right,
+                   a ~ dnorm(10, 100),
+                   bl ~ dnorm(2, 10),
+                   br ~ dnorm(2, 10),
+                   sigma ~ dexp(1)), data=d)
+precis(res1)
