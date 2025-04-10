@@ -59,7 +59,7 @@ res1 <- quap(alist(height ~ dnorm(mu, sigma),
                    a ~ dnorm(10, 100),
                    bl ~ dnorm(2, 10),
                    br ~ dnorm(2, 10),
-                   sigma ~ dexp(1)), data=d)
+                   sigma ~ dexp(1)), data=dat)
 precis(res1, prob=0.95)
 
 # plot the posterior means and corresponding 95% intervals
@@ -85,7 +85,7 @@ res2 <- quap(alist(height ~ dnorm(mu, sigma),
                    mu <- a + bl*leg_left,
                    a ~ dnorm(10, 100),
                    bl ~ dnorm(2, 10),
-                   sigma ~ dexp(1)), data=d)
+                   sigma ~ dexp(1)), data=dat)
 precis(res2, prob=0.95)
 
 ## 6.1.2: Multicollinear milk
@@ -96,3 +96,24 @@ dat$K <- c(scale(dat$kcal.per.g))
 dat$F <- c(scale(dat$perc.fat))
 dat$L <- c(scale(dat$perc.lactose))
 head(dat)
+
+# F and L are very highly negatively correlated
+cor(dat$F, dat$L)
+
+# model predicting K from F
+resF <- quap(alist(K ~ dnorm(mu, sigma),
+                   mu <- a + bF*F,
+                   a ~ dnorm(0, 0.2),
+                   bF ~ dnorm(0, 0.5),
+                   sigma ~ dexp(1)), data=dat)
+
+# model predicting K from L
+resL <- quap(alist(K ~ dnorm(mu, sigma),
+                   mu <- a + bL*L,
+                   a ~ dnorm(0, 0.2),
+                   bL ~ dnorm(0, 0.5),
+                   sigma ~ dexp(1)), data=dat)
+
+# examine the posterior means
+precis(resF, prob=0.95)
+precis(resL, prob=0.95)
