@@ -154,7 +154,9 @@ res <- quap(alist(h1 ~ dnorm(mu, sigma),
                   mu <- h0*p,
                   p <- a + bt*treatment + bf*fungus,
                   a ~ dlnorm(0, 0.2),
-                  bt ~ norm(0, 0.5),
-                  bf ~ norm(0, 0.5),
+                  bt ~ dnorm(0, 0.5),
+                  bf ~ dnorm(0, 0.5),
                   sigma ~ dexp(1)), data=dat)
 precis(res, prob=0.95)
+
+## 6.2.2: Blocked by consequence
