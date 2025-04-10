@@ -129,15 +129,16 @@ precis(resFL, prob=0.95)
 # Figure 6.3: scatterplot matrix of all variables against each other
 pairs(~ kcal.per.g + perc.fat + perc.lactose, data=dat, pch=19, col="#1e59ae")
 
+############################################################################
 
+### 6.2: Post-treatment bias
 
-# model
-
-library(brms)
-
-dat$id <- 1:nrow(dat)
-res <- brm(K ~ F + L + (1 | id), data=dat, chains=1)
-summary(res)
-
-res2 <- brm(K ~ F + L, data=dat, chains=1)
-summary(res2)
+set.seed(71)
+N <- 100 # number of plants
+h0 <- rnorm(N, mean=10, sd=2) # simulate initial heights
+treatment <- rep(0:1, each=N/2) # assign treatments
+fungus <- rbinom(N, size=1, prob=0.5 - treatment*0.4)
+h1 <- h0 + rnorm(N, 5 - 3*fungus)
+# compose a clean data frame
+d <- data.frame( h0=h0 , h1=h1 , treatment=treatment , fungus=fungus )
+precis(d)
