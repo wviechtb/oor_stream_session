@@ -144,3 +144,7 @@ dat <- data.frame(h0=h0, h1=h1, treatment=treatment, fungus=fungus)
 precis(dat, prob=0.95)
 
 ## 6.2.1: A prior is born
+
+# simulate values for a log-normal prior and examine the distribution
+sim_p <- rlnorm(1e4, 0, 0.25)
+precis(data.frame(sim_p))
