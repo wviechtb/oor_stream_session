@@ -97,9 +97,6 @@ dat$F <- c(scale(dat$perc.fat))
 dat$L <- c(scale(dat$perc.lactose))
 head(dat)
 
-# F and L are very highly negatively correlated
-cor(dat$F, dat$L)
-
 # model predicting K from F
 resF <- quap(alist(K ~ dnorm(mu, sigma),
                    mu <- a + bF*F,
@@ -131,3 +128,4 @@ precis(resFL, prob=0.95)
 
 # Figure 6.3: scatterplot matrix of all variables against each other
 pairs(~ kcal.per.g + perc.fat + perc.lactose, data=dat, pch=19, col="#1e59ae")
+
