@@ -63,7 +63,9 @@ res1 <- quap(alist(height ~ dnorm(mu, sigma),
 precis(res1, prob=0.95)
 
 # plot the posterior means and corresponding 95% intervals
+op <- par(no.readonly=TRUE)
 plot(precis(res1, prob=0.95))
+par(op)
 
 # extract samples from the posterior distributions
 post <- extract.samples(res1)
@@ -71,3 +73,9 @@ head(post)
 
 # Figure 6.2 (left): plot of the sampled values for the regression coefficients
 plot(bl ~ br, data=post, col=adjustcolor("#1e59ae",alpha.f=0.1), pch=16)
+
+# compute the sum of the sampled values
+sum_blbr <- post$bl + post$br
+
+# Figure 6.2 (right): plot of the kernel density estimate of the sum
+plot(density(sum_blbr), lwd=5, col="#1e59ae", xlab="sum of bl and br", main="", bty="l")
