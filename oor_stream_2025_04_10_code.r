@@ -79,3 +79,13 @@ sum_blbr <- post$bl + post$br
 
 # Figure 6.2 (right): plot of the kernel density estimate of the sum
 plot(density(sum_blbr), lwd=5, col="#1e59ae", xlab="sum of bl and br", main="", bty="l")
+
+# fit the model predicting height from only leg_left
+res2 <- quap(alist(height ~ dnorm(mu, sigma),
+                   mu <- a + bl*leg_left,
+                   a ~ dnorm(10, 100),
+                   bl ~ dnorm(2, 10),
+                   sigma ~ dexp(1)), data=d)
+precis(res2, prob=0.95)
+
+## 6.1.2: Multicollinear milk
