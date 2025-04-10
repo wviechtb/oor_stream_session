@@ -60,4 +60,14 @@ res1 <- quap(alist(height ~ dnorm(mu, sigma),
                    bl ~ dnorm(2, 10),
                    br ~ dnorm(2, 10),
                    sigma ~ dexp(1)), data=d)
-precis(res1)
+precis(res1, prob=0.95)
+
+# plot the posterior means and corresponding 95% intervals
+plot(precis(res1, prob=0.95))
+
+# extract samples from the posterior distributions
+post <- extract.samples(res1)
+head(post)
+
+# plot the sampled values for the regression coefficients against each other
+plot(bl ~ br, data=post, col=adjustcolor("#1e59ae",alpha.f=0.1), pch=16)
