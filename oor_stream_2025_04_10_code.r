@@ -27,10 +27,12 @@ nw <- rnorm(N) # simulate newsworthiness scores
 tw <- rnorm(N) # simulate trustworthiness scores
 s <- nw + tw   # compute the total score s
 q <- quantile(s, 1-p) # find the top 10% threshold
-
-# select top 10% of combined scores
-
-selected <- ifelse( s >= q , TRUE , FALSE )
-cor( tw[selected] , nw[selected] )
+selected <- s >= q # select a proposal if it has a top 10% combined score
+# plot the scores against each other with blue points for the selected proposals
+plot(tw, nw, pch=21, bg=ifelse(selected, "dodgerblue", "white"), bty="l",
+     xlab="trustworthiness", ylab="newsworthiness")
+cor(tw[selected], nw[selected]) # negative correlation among the selected proposals
 
 ############################################################################
+
+### 6.1: Multicollinearity
