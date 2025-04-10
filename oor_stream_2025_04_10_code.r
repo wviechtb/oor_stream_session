@@ -193,3 +193,22 @@ M <- rbinom(N, size=1, prob=0.5)
 fungus <- rbinom(N, size=1, prob=0.5-treatment*0.4 + 0.4*M)
 h1 <- h0 + rnorm(N, mean=5+3*M, sd=1)
 dat <- data.frame(h0=h0, h1=h1, treatment=treatment, fungus=fungus)
+
+# fit the model with treatment and fungus as predictors of p
+res <- quap(alist(h1 ~ dnorm(mu, sigma),
+                  mu <- h0*p,
+                  p <- a + bt*treatment + bf*fungus,
+                  a ~ dlnorm(0, 0.2),
+                  bt ~ dnorm(0, 0.5),
+                  bf ~ dnorm(0, 0.5),
+                  sigma ~ dexp(1)), data=dat)
+precis(res, prob=0.95)
+
+# fit the model with treatment as a predictor of p
+res <- quap(alist(h1 ~ dnorm(mu, sigma),
+                  mu <- h0*p,
+                  p <- a + bt*treatment,
+                  a ~ dlnorm(0, 0.2),
+                  bt ~ dnorm(0, 0.5),
+                  sigma ~ dexp(1)), data=dat)
+precis(res, prob=0.95)
