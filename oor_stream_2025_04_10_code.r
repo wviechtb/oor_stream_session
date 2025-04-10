@@ -69,5 +69,5 @@ plot(precis(res1, prob=0.95))
 post <- extract.samples(res1)
 head(post)
 
-# plot the sampled values for the regression coefficients against each other
+# Figure 6.2 (left): plot of the sampled values for the regression coefficients
 plot(bl ~ br, data=post, col=adjustcolor("#1e59ae",alpha.f=0.1), pch=16)
