@@ -89,3 +89,10 @@ res2 <- quap(alist(height ~ dnorm(mu, sigma),
 precis(res2, prob=0.95)
 
 ## 6.1.2: Multicollinear milk
+
+# get the milk data and standardize the variables of interest
+dat <- get(data(milk))
+dat$K <- c(scale(dat$kcal.per.g))
+dat$F <- c(scale(dat$perc.fat))
+dat$L <- c(scale(dat$perc.lactose))
+head(dat)
