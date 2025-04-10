@@ -47,3 +47,7 @@ leg_left  <- leg_prop*height + rnorm(N, 0, 0.02) # sim left leg as proportion + 
 leg_right <- leg_prop*height + rnorm(N, 0, 0.02) # sim right leg as proportion + error
 dat <- data.frame(height, leg_left, leg_right) # combine into data frame
 head(dat)
+
+# if height (y) = 0,  then leg (x) = 0
+# if height (y) = 10, then leg (x) = 10*0.45 = 4.5
+# (10 - 0) / (4.5 - 0) = 10 / 4.5 = 2.2
