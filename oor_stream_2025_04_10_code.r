@@ -117,3 +117,14 @@ resL <- quap(alist(K ~ dnorm(mu, sigma),
 # examine the posterior means
 precis(resF, prob=0.95)
 precis(resL, prob=0.95)
+
+# model predicting K from F and L
+resFL <- quap(alist(K ~ dnorm(mu, sigma),
+                    mu <- a + bF*F + bL*L,
+                    a ~ dnorm(0, 0.2),
+                    bF ~ dnorm(0, 0.5),
+                    bL ~ dnorm(0, 0.5),
+                    sigma ~ dexp(1)), data=dat)
+
+# examine the posterior means
+precis(resFL, prob=0.95)
