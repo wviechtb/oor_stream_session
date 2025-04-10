@@ -146,5 +146,12 @@ precis(dat, prob=0.95)
 ## 6.2.1: A prior is born
 
 # simulate values for a log-normal prior and examine the distribution
-sim_p <- rlnorm(1e4, 0, 0.25)
-precis(data.frame(sim_p))
+sim_p <- rlnorm(1e4, meanlog=0, sdlog=0.25)
+precis(data.frame(sim_p), prob=0.95)
+
+# fit the model h1 = h0*p + error
+res <- quap(alist(h1 ~ dnorm(mu, sigma),
+                  mu <- h0*p,
+                  p ~ dlnorm(0, 0.25),
+                  sigma ~ dexp(1)), data=dat)
+precis(res)
