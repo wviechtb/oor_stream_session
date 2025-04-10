@@ -152,6 +152,9 @@ precis(data.frame(sim_p), prob=0.95)
 # fit the model h1 = h0*p + error
 res <- quap(alist(h1 ~ dnorm(mu, sigma),
                   mu <- h0*p,
-                  p ~ dlnorm(0, 0.25),
+                  p <- a + bt*treatment + bf*fungus,
+                  a ~ dlnorm(0, 0.2),
+                  bt ~ norm(0, 0.5),
+                  bf ~ norm(0, 0.5),
                   sigma ~ dexp(1)), data=dat)
-precis(res)
+precis(res, prob=0.95)
