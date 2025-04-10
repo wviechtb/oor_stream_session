@@ -36,3 +36,14 @@ cor(tw[selected], nw[selected]) # negative correlation among the selected propos
 ############################################################################
 
 ### 6.1: Multicollinearity
+
+## 6.1.1: Multicollinear legs
+
+set.seed(909)
+N <- 100 # number of individuals
+height   <- rnorm(N, mean=10, sd=2) # simulate total height of each individual
+leg_prop <- runif(N, 0.4, 0.5)      # leg as proportion of height
+leg_left  <- leg_prop*height + rnorm(N, 0, 0.02) # sim left leg as proportion + error
+leg_right <- leg_prop*height + rnorm(N, 0, 0.02) # sim right leg as proportion + error
+dat <- data.frame(height, leg_left, leg_right) # combine into data frame
+head(dat)
