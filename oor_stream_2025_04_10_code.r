@@ -164,8 +164,10 @@ precis(res, prob=0.95)
 # fit the model with treatment as a predictor of p
 res <- quap(alist(h1 ~ dnorm(mu, sigma),
                   mu <- h0*p,
-                  p <- a + bt*treatment
+                  p <- a + bt*treatment,
                   a ~ dlnorm(0, 0.2),
                   bt ~ dnorm(0, 0.5),
                   sigma ~ dexp(1)), data=dat)
 precis(res, prob=0.95)
+
+## 6.2.3: Fungus and d-separation
