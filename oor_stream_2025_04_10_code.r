@@ -128,3 +128,6 @@ resFL <- quap(alist(K ~ dnorm(mu, sigma),
 
 # examine the posterior means
 precis(resFL, prob=0.95)
+
+# Figure 6.3: scatterplot matrix of all variables against each other
+pairs(~ kcal.per.g + perc.fat + perc.lactose, data=dat, pch=19, col="#1e59ae")
