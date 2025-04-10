@@ -171,3 +171,13 @@ res <- quap(alist(h1 ~ dnorm(mu, sigma),
 precis(res, prob=0.95)
 
 ## 6.2.3: Fungus and d-separation
+
+# load the dagitty package
+library(dagitty)
+
+# draw the DAG corresponding to the true model
+plant_dag <- dagitty("dag {H_0 -> H_1 F -> H_1 T -> F }")
+coordinates(plant_dag) <- list(x=c(H_0=0,T=2,F=1.5,H_1=1),
+                               y=c(H_0=0,T=0,F=0,H_1=0))
+drawdag(plant_dag)
+
