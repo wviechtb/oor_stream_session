@@ -139,7 +139,7 @@ N <- 100 # number of plants
 h0 <- rnorm(N, mean=10, sd=2) # simulate initial heights
 treatment <- rep(0:1, each=N/2) # assign treatments
 fungus <- rbinom(N, size=1, prob=0.5-treatment*0.4) # simulate fungus variable
-h1 <- h0 + rnorm(N, mean=5-3*fungus) # simulate final height
+h1 <- h0 + rnorm(N, mean=5-3*fungus, sd=1) # simulate final height
 dat <- data.frame(h0=h0, h1=h1, treatment=treatment, fungus=fungus)
 precis(dat, prob=0.95)
 
@@ -181,3 +181,15 @@ coordinates(plant_dag) <- list(x=c(H_0=0,T=2,F=1.5,H_1=1),
                                y=c(H_0=0,T=0,F=0,H_1=0))
 drawdag(plant_dag)
 
+# check what conditional independencies are present in the DAG
+impliedConditionalIndependencies(plant_dag)
+
+# simulate data corresponding to the DAG on page 175
+set.seed(71)
+N <- 1000
+h0 <- rnorm(N, mean=10, sd=2)
+treatment <- rep(0:1, each=N/2)
+M <- rbinom(N, size=1, prob=0.5)
+fungus <- rbinom(N, size=1, prob=0.5-treatment*0.4 + 0.4*M)
+h1 <- h0 + rnorm(N, mean=5+3*M, sd=1)
+dat <- data.frame(h0=h0, h1=h1, treatment=treatment, fungus=fungus)
