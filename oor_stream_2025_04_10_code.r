@@ -129,3 +129,15 @@ precis(resFL, prob=0.95)
 # Figure 6.3: scatterplot matrix of all variables against each other
 pairs(~ kcal.per.g + perc.fat + perc.lactose, data=dat, pch=19, col="#1e59ae")
 
+
+
+# model
+
+library(brms)
+
+dat$id <- 1:nrow(dat)
+res <- brm(K ~ F + L + (1 | id), data=dat, chains=1)
+summary(res)
+
+res2 <- brm(K ~ F + L, data=dat, chains=1)
+summary(res2)
