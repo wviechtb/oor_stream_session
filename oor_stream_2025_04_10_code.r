@@ -149,7 +149,7 @@ precis(dat, prob=0.95)
 sim_p <- rlnorm(1e4, meanlog=0, sdlog=0.25)
 precis(data.frame(sim_p), prob=0.95)
 
-# fit the model h1 = h0*p + error
+# fit the model with treatment and fungus as predictors of p
 res <- quap(alist(h1 ~ dnorm(mu, sigma),
                   mu <- h0*p,
                   p <- a + bt*treatment + bf*fungus,
@@ -160,3 +160,12 @@ res <- quap(alist(h1 ~ dnorm(mu, sigma),
 precis(res, prob=0.95)
 
 ## 6.2.2: Blocked by consequence
+
+# fit the model with treatment as a predictor of p
+res <- quap(alist(h1 ~ dnorm(mu, sigma),
+                  mu <- h0*p,
+                  p <- a + bt*treatment
+                  a ~ dlnorm(0, 0.2),
+                  bt ~ dnorm(0, 0.5),
+                  sigma ~ dexp(1)), data=dat)
+precis(res, prob=0.95)
