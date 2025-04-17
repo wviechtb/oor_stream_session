@@ -330,3 +330,11 @@ head(postpred)
 # point prediction for the probability of voting Republican
 mean(postpred)
 
+## Prediction given a range of input values
+
+# do the same as above, but for income = 1, ..., 5
+newdat <- data.frame(income=1:5)
+pred     <- predict(res, type="response", newdata=newdat)
+linpred  <- posterior_linpred(res, newdata=newdat)
+epred    <- posterior_epred(res, newdata=newdat)
+postpred <- posterior_predict(res, newdata=newdat)
