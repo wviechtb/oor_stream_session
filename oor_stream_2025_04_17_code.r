@@ -251,3 +251,7 @@ years
 
 # fit the model for the data in each unique year
 res <- lapply(years, function(y) stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0, subset=year==y))
+
+# extract the slopes and corresponding standard errors from the models
+b <- sapply(res, coef)[2,]
+se <- sapply(res, se)[2,]
