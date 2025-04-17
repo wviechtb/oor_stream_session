@@ -135,7 +135,7 @@ preds1 <- invlogit(coef(res)[1] + coef(res)[2]*xs1)
 preds2 <- invlogit(coef(res)[1] + coef(res)[2]*xs2)
 
 # plot the difference in probabilities as a function of the income
-plot(xs1, preds2 - preds1, type="l", bty="l")
+plot(xs2, preds2 - preds1, type="l", bty="l", ylab="Difference in probabilities")
 
 # horizontal dotted line at the largest difference
 abline(h=max(preds2 - preds1), lty="dotted")
@@ -143,3 +143,10 @@ abline(h=max(preds2 - preds1), lty="dotted")
 # we see that the largest difference is =~ slope / 4 for the predictor
 max(preds2 - preds1)
 coef(res)[[2]] / 4
+
+# we can also figure out where this largest difference occurs
+xs1[which.max(preds2 - preds1)]
+xs2[which.max(preds2 - preds1)]
+
+## Interpretation of coefficients as odds ratios
+
