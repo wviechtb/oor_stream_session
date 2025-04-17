@@ -263,3 +263,6 @@ segments(years, b-se, years, b+se)
 abline(h=0, lty="dotted")
 
 ############################################################################
+
+### 13.3 Predictions and comparisons
+
