@@ -154,3 +154,55 @@ pred[5] - pred[4]
 
 ## Interpretation of coefficients as odds ratios
 
+# predicted probability of voting Republican for income = 1, 2, ..., 5
+pred <- invlogit(coef(res)[1] + coef(res)[2]*1:5)
+round(pred, digits=2)
+
+# we saw earlier that difference in probabilities are not constant; but maybe
+# ratios of probabilities, so let's try that
+pred[2] / pred[1]
+pred[3] / pred[2]
+pred[4] / pred[3]
+pred[5] / pred[4]
+
+# nope, not constant either ...
+
+# compute the corresponding odds of voting Republican
+odds <- pred / (1 - pred)
+round(odds, digits=2)
+
+# but it turns out that ratios of odds are constant
+odds[2] / odds[1]
+odds[3] / odds[2]
+odds[4] / odds[3]
+odds[5] / odds[4]
+
+# the logistic regression model gives: log(p/(1-p)) given x = alpha + beta * x
+#
+# let's compute the difference in log odds when x is one unit higher versus
+# not, so the difference between:
+#
+# log(p/(1-p)) given x+1 = alpha + beta * (x+1)
+#
+# versus
+#
+# log(p/(1-p)) given x   = alpha + beta * x
+#
+# so
+#
+# log(p/(1-p)) given x+1 - log(p/(1-p)) given x
+#
+# is equal to
+#
+# (alpha + beta * (x+1)) - (alpha + beta * x) = beta
+#
+# and log(p/(1-p)) given x+1 - log(p/(1-p)) given x
+#
+# is equal to
+#
+# log(p/(1-p)) given x+1 / p/(1-p)) given x)
+#
+# which is really log(odds given x+1 / odds given x)
+#
+# which is log(odds ratio) when x differs by one unit, which is equal to beta,
+# so exp(beta) = odds ratio
