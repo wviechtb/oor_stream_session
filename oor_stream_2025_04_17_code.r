@@ -361,5 +361,16 @@ y
 
 # put the data into a data frame and fit the logistic regression model to
 # these data without any predictor (just an intercept)
-simple <- data.frame(y)
-fit <- stan_glm(y ~ 1, family=binomial(link="logit"), data=simple)
+dat <- data.frame(y)
+res <- stan_glm(y ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=2)
+
+# mean predicted proportion of y=1 (and the corresponding SD)
+newdat <- data.frame(x=0)
+epred <- posterior_epred(res, newdata=newdat)
+c(mean(epred), sd(epred))
+
+# this is in essence just the proportion of y=1 observed and the corresponding
+# standard error for such a proportion
+mean(y)
+sqrt(mean(y) * (1 - mean(y)) / length(y))
