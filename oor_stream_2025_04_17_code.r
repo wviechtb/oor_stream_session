@@ -414,3 +414,11 @@ diff <- epred[,2] - epred[,1]
 
 # compute the mean and SD of these differences
 print(c(mean(diff), sd(diff)))
+
+# compute the classical estimates (see page 52-53)
+p0 <- mean(y[x == 0])
+p1 <- mean(y[x == 1])
+p1 - p0
+n0 <- sum(x==0)
+n1 <- sum(x==1)
+sqrt(p0*(1-p0)/n0 + p1*(1-p1)/n1)
