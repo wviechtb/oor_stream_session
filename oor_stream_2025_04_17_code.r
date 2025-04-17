@@ -23,3 +23,16 @@ library(rstanarm)
 # make copies of the qlogis and plogis functions with easier to remember names
 logit <- qlogis
 invlogit <- plogis
+
+## Example: modeling political preference given income
+
+# download the dataset if it doesn't already exist
+if (!file.exists("nes.txt")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/NES/data/nes.txt", destfile="nes.txt")
+
+# read in the dataset
+dat <- read.csv("student-merged.csv")
+
+# inspect the first six rows of the dataset
+head(dat)
+
+https://github.com/avehtari/ROS-Examples/raw/refs/heads/master/NES/data/nes.txt
