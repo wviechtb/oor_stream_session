@@ -63,6 +63,8 @@ print(res, digits=2)
 curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE)
 curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, from=1, to=5, lwd=6)
 
+## The logistic regression model
+
 # sidenote: in principle, we could use a standard regression model to model
 # the relationship between the 0/1 outcome variable and the predictor (this is
 # called a 'linear probability model'; see Wikipedia for further details:
@@ -74,6 +76,3 @@ curve(coef(res.lm)[1] + coef(res.lm)[2]*x, add=TRUE, col="red")
 
 # reset the plot settings to the defaults
 par(op)
-
-## The logistic regression model
-
