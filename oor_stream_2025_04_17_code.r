@@ -322,3 +322,6 @@ round(c(mean=mean(epred), sd=sd(epred)), digits=2)
 
 ## Predictive distribution for a new observation using posterior_predict
 
+# simulate the votes of individual voters with income = 5
+postpred <- posterior_predict(res, newdata=newdat)
+head(postpred)
