@@ -76,7 +76,7 @@ curve(coef(res.lm)[1] + coef(res.lm)[2]*x, add=TRUE, col="red")
 
 # predicted probability of voting Republican for income = 1, 2, ..., 5
 pred <- invlogit(coef(res)[1] + coef(res)[2]*1:5)
-pred
+round(pred, digits=2)
 
 # difference in probabilities for income = 2 versus income = 1
 pred[2] - pred[1]
@@ -119,4 +119,9 @@ par(op)
 
 ## Evaluation at and near the mean of the data
 
+# predicted probability of voting Republican when x is equal to the mean
+round(invlogit(coef(res)[[1]] + coef(res)[[2]]*mean(dat$income)), digits=2)
+
+# difference in probability when income = 3 versus when income = 2
+round(pred[3] - pred[2], digits=2)
 
