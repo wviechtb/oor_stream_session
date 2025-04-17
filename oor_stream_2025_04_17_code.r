@@ -398,4 +398,19 @@ pmax(0, p + c(-2,2) * se)
 x <- rep(c(0, 1), c(50, 60))
 y <- rep(c(0, 1, 0, 1), c(40, 10, 40, 20))
 dat <- data.frame(x, y)
-fit <- stan_glm(y ~ x, family=binomial(link="logit"), data=simple)
+dat
+
+# fit a logistic regression model predicting y from the dichotomous predictor
+res <- stan_glm(y ~ x, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=2)
+
+# compute predicted probabilities for the two groups
+newdat <- data.frame(x=c(0,1))
+epred <- posterior_epred(res, newdata=newdat)
+head(epred)
+
+# compute the difference between the probabilities of the two groups
+diff <- epred[,2] - epred[,1]
+
+# compute the mean and SD of these differences
+print(c(mean(diff), sd(diff)))
