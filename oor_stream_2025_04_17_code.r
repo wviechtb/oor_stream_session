@@ -299,6 +299,13 @@ invlogit(b[[1]] + b[[2]] * 5)
 
 # obtain the predicted values when income = 5 using posterior_linpred()
 linpred <- posterior_linpred(res, newdata=newdat)
-
 head(linpred)
-head(apply(post, 1, function(b) b[[1]] + b[[2]] * 5))
+
+# this is the same as computing the predicted values based on the posterior
+# samples of the intercept and slope as we did above
+head(cbind(linpred, apply(post, 1, function(b) b[[1]] + b[[2]] * 5)))
+
+# note: here we are getting the predicted log odds, which is typically not
+# what we are interested in
+
+## Expected outcome with uncertainty using posterior_epred
