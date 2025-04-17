@@ -345,3 +345,10 @@ mean(epred[,5] > epred[,4])
 # compute a 95% percentile interval for the difference in probabilities for
 # income = 5 versus income = 4
 quantile(epred[,5] - epred[,4], probs=c(0.025, 0.975))
+
+# posterior distribution for the number of votes for Bush among the 5 new
+# people that have income = 1, 2, ..., 5
+total <- apply(postpred, 1, sum)
+
+# probability that 3 or more of the 5 support Bush
+mean(total >= 3)
