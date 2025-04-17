@@ -316,3 +316,9 @@ head(epred)
 
 # again, we could do this manually based on the sampled intercept and slope values
 head(cbind(epred, apply(post, 1, function(b) invlogit(b[[1]] + b[[2]] * 5))))
+
+# mean and SD of the predicted probabilities
+round(c(mean=mean(epred), sd=sd(epred)), digits=2)
+
+## Predictive distribution for a new observation using posterior_predict
+
