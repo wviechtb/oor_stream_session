@@ -20,3 +20,6 @@ library(rstanarm)
 
 ### 13.1: Logistic regression with a single predictor
 
+# make copies of the qlogis and plogis functions with easier to remember names
+logit <- qlogis
+invlogit <- plogis
