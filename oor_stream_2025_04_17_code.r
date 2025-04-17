@@ -215,5 +215,12 @@ exp(coef(res)[[2]])
 
 ## Coefficient estimates and standard errors
 
+# while our best guess (i.e., the median of the posterior distribution) about
+# the size of the slope is around .33, there is uncertainty as to how large
+# the slope actually is
+coef(res)[[2]]
+
+# we are around 95% certain that the slope is between these bounds (assuming
+# normality of the posterior distribution for the slope)
 coef(res)[[2]] - 2 * se(res)[[2]]
 coef(res)[[2]] + 2 * se(res)[[2]]
