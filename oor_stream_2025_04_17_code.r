@@ -280,6 +280,8 @@ print(res, digits=2)
 # extract samples from the posterior distributions of the intercept and slope parameters
 post <- as.data.frame(res)
 
+## Point prediction using predict
+
 # predicted probability when income = 5
 newdat <- data.frame(income=5)
 pred <- predict(res, type="response", newdata=newdat)
@@ -289,3 +291,14 @@ pred
 # computed from the sampled values from the posterior distributions
 mean(apply(post, 1, function(b) invlogit(b[[1]] + b[[2]] * 5)))
 
+# compute the mean of the posterior samples
+b <- apply(post, 2, mean)
+invlogit(b[[1]] + b[[2]] * 5)
+
+## Linear predictor with uncertainty using posterior_linpred
+
+# obtain the predicted values when income = 5 using posterior_linpred()
+linpred <- posterior_linpred(res, newdata=newdat)
+
+head(linpred)
+head(apply(post, 1, function(b) b[[1]] + b[[2]] * 5))
