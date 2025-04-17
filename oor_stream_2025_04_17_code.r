@@ -27,11 +27,12 @@ invlogit <- plogis
 # Figure 13.1(a):
 xs <- seq(-6, 6, length.out=1000)
 ys <- invlogit(xs)
-par(mar=c(5,5,4,2), xaxs="i", yaxs="i")
+op <- par(mar=c(5,5,4,2), xaxs="i", yaxs="i", las=1)
 plot(xs, ys, type="l", bty="l", xlab="x", ylab=expression("logit"^-1 * (x)), ylim=c(0,1))
 title(expression(y == logit^-1 * (x)))
 segments(0, 0, 0, invlogit(0), lty="dotted")
 segments(-6, invlogit(0), 0, invlogit(0), lty="dotted")
+par(op)
 
 ## Example: modeling political preference given income
 
@@ -45,8 +46,34 @@ dat <- read.table("nes.txt", header=TRUE)
 head(dat)
 
 # keep only the data from 1992 and exclude respondents who preferred other candidates or had no opinion
-ok <- dat$year==1992 & !is.na(nes$rvote) & !is.na(nes$dvote) & (nes$rvote==1 | nes$dvote==1)
-nes92 <- nes[ok,]
+ok <- dat$year==1992 & !is.na(dat$rvote) & !is.na(dat$dvote) & (dat$rvote==1 | dat$dvote==1)
+dat <- dat[ok,]
 
+# Figure 13.2
+op <- par(mgp=c(3,0.5,0), las=1)
+plot(jitter(rvote, amount=0.03) ~ jitter(income, amount=0.1), data=dat, bty="l",
+     pch=19, cex=0.2, xlim=c(-1,7), xaxt="n", xlab="Income", ylab="Pr(Republican vote)")
+axis(side=1, at=1:5, labels=c("1\n(poor)", 2:4, "5\n(rich)"), padj=1)
 
-plot(jitter(rvote, amount=0.05) ~ jitter(income, amount=.05), data=dat, bty="l", pch=19, cex=0.2)
+# fit the logistic regression model predicting rvote from income
+res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=2)
+
+# add the regression line giving the probability of voting Republican to the plot
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE)
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, from=1, to=5, lwd=6)
+
+# sidenote: in principle, we could use a standard regression model to model
+# the relationship between the 0/1 outcome variable and the predictor (this is
+# called a 'linear probability model'; see Wikipedia for further details:
+# https://en.wikipedia.org/wiki/Linear_probability_model); this can often give
+# very similar results, at least for parts of the line from the logistic
+# regression model
+res.lm <- stan_glm(rvote ~ income, data=dat, refresh=0)
+curve(coef(res.lm)[1] + coef(res.lm)[2]*x, add=TRUE, col="red")
+
+# reset the plot settings to the defaults
+par(op)
+
+## The logistic regression model
+
