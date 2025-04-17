@@ -383,9 +383,13 @@ dat <- data.frame(y)
 res <- stan_glm(y ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=2)
 
+# approximate 95% interval for the probability
+invlogit(coef(res) + c(-2,2) * se(res))
 
-
+# manually compute such an interval based on the adjust estimates
 n <- length(y)
 p <- (sum(y) + 2) / (n + 4)
 se <- sqrt(p*(1-p) / n)
-p + c(-2,2) * se
+pmax(0, p + c(-2,2) * se)
+
+## Logistic regression with a single binary predictor
