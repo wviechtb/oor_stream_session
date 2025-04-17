@@ -285,6 +285,7 @@ newdat <- data.frame(income=5)
 pred <- predict(res, type="response", newdata=newdat)
 pred
 
-# so we see that predict() uses the mean of the posterior samples
-b <- apply(post, 2, mean)
-b[[1]] + b[[2]] * 5
+# so we see that predict() gives us the mean of the predicted probabilities
+# computed from the sampled values from the posterior distributions
+mean(apply(post, 1, function(b) invlogit(b[[1]] + b[[2]] * 5)))
+
