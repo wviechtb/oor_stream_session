@@ -127,9 +127,15 @@ round(pred[3] - pred[2], digits=2)
 
 ## The divide-by-4 rule
 
-# predicted probability of voting Republican for income from 1 to 5 for 1000 values
-xs <- seq(1, 5, length.out=1000)
-preds <- invlogit(coef(res)[1] + coef(res)[2]*xs)
+# compute the predicted probability of voting Republican for income from 1 to
+# 5 and from 2 to 6 for 1000 values
+xs1 <- seq(1, 5, length.out=1000)
+xs2 <- seq(2, 6, length.out=1000)
+preds1 <- invlogit(coef(res)[1] + coef(res)[2]*xs1)
+preds2 <- invlogit(coef(res)[1] + coef(res)[2]*xs2)
 
 # plot the difference in probabilities as a function of the income
-plot(xs[1:999], preds[2:1000] - preds[1:999], type="l")
+plot(xs1, preds2 - preds1, type="l", bty="l")
+
+# horizontal dotted line at the largest difference
+abline(h=max(preds2 - preds1), lty="dotted")
