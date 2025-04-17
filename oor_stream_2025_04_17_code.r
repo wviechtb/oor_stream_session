@@ -212,3 +212,5 @@ exp(coef(res)[[2]])
 
 # so the odds of voting Republican are 1.39 times higher when comparing
 # individuals that differ by one unit on income
+
+## Coefficient estimates and standard errors
