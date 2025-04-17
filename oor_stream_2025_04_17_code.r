@@ -24,7 +24,7 @@ library(rstanarm)
 logit <- qlogis
 invlogit <- plogis
 
-# Figure 13.1(a):
+# Figure 13.1(a): illustrate the inverse logit function
 xs <- seq(-6, 6, length.out=1000)
 ys <- invlogit(xs)
 op <- par(mar=c(5,5,4,2), xaxs="i", yaxs="i", las=1)
@@ -49,7 +49,7 @@ head(dat)
 ok <- dat$year==1992 & !is.na(dat$rvote) & !is.na(dat$dvote) & (dat$rvote==1 | dat$dvote==1)
 dat <- dat[ok,]
 
-# Figure 13.2
+# Figure 13.2 (left): show the fitted regression line
 op <- par(mgp=c(3,0.5,0), las=1)
 plot(jitter(rvote, amount=0.03) ~ jitter(income, amount=0.1), data=dat, bty="l",
      pch=19, cex=0.2, xlim=c(-1,7), xaxt="n", xlab="Income", ylab="Pr(Republican vote)")
@@ -73,6 +73,22 @@ curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, from=1, to=5, lwd=6)
 # regression model
 res.lm <- stan_glm(rvote ~ income, data=dat, refresh=0)
 curve(coef(res.lm)[1] + coef(res.lm)[2]*x, add=TRUE, col="red")
+
+## Fitting the model using stan_glm and displaying uncertainty in the fitted model
+
+# Figure 13.2 (right)
+plot(jitter(rvote, amount=0.03) ~ jitter(income, amount=0.1), data=dat, bty="l",
+     pch=19, cex=0.2, xlim=c(-1,7), xaxt="n", xlab="Income", ylab="Pr(Republican vote)")
+axis(side=1, at=1:5, labels=c("1\n(poor)", 2:4, "5\n(rich)"), padj=1)
+
+# extract samples from the posterior distributions of the intercept and slope parameters
+post <- as.data.frame(res)
+invisible(apply(post[1:20,], 1, function(b) curve(invlogit(b[1] + b[2]*x), add=TRUE, col="gray80")))
+
+#
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE)
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, from=1, to=5, lwd=6)
+
 
 # reset the plot settings to the defaults
 par(op)
