@@ -214,3 +214,6 @@ exp(coef(res)[[2]])
 # individuals that differ by one unit on income
 
 ## Coefficient estimates and standard errors
+
+coef(res)[[2]] - 2 * se(res)[[2]]
+coef(res)[[2]] + 2 * se(res)[[2]]
