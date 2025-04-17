@@ -232,3 +232,6 @@ hist(post$income, breaks=50, xlab="Slope for income", main="")
 round(quantile(post$income, prob=c(.025, .975)), digits=2)
 
 ## Statistical significance
+
+# check how many standard errors the (median) slope is away from 0
+coef(res)[[2]] / se(res)[[2]]
