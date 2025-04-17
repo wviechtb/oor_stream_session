@@ -129,8 +129,8 @@ round(pred[3] - pred[2], digits=2)
 
 # compute the predicted probability of voting Republican for income from 1 to
 # 5 and from 2 to 6 for 1000 values
-xs1 <- seq(1, 5, length.out=1000)
-xs2 <- seq(2, 6, length.out=1000)
+xs1 <- seq(1, 5, length.out=10000)
+xs2 <- seq(2, 6, length.out=10000)
 preds1 <- invlogit(coef(res)[1] + coef(res)[2]*xs1)
 preds2 <- invlogit(coef(res)[1] + coef(res)[2]*xs2)
 
@@ -139,3 +139,7 @@ plot(xs1, preds2 - preds1, type="l", bty="l")
 
 # horizontal dotted line at the largest difference
 abline(h=max(preds2 - preds1), lty="dotted")
+
+# we see that the largest difference is =~ slope / 4 for the predictor
+max(preds2 - preds1)
+coef(res)[[2]] / 4
