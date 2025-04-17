@@ -81,10 +81,14 @@ pred
 # difference in probabilities for income = 2 versus income = 1
 pred[2] - pred[1]
 
-# difference in probabilities for income = 4 versus income = 3
+# difference in probabilities for income = 3 versus income = 2 and so on ...
+pred[3] - pred[2]
 pred[4] - pred[3]
+pred[5] - pred[4]
 
-# note that these are not the same even though the difference in income is one point
+# note that these are not the same even though the difference in the income
+# variable is always one point; this is just how things work for logistic
+# regression models
 
 ## Fitting the model using stan_glm and displaying uncertainty in the fitted model
 
