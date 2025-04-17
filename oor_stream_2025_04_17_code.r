@@ -338,3 +338,10 @@ pred     <- predict(res, type="response", newdata=newdat)
 linpred  <- posterior_linpred(res, newdata=newdat)
 epred    <- posterior_epred(res, newdata=newdat)
 postpred <- posterior_predict(res, newdata=newdat)
+
+# probability that Bush is more popular for people with income = 5 versus income = 4
+mean(epred[,5] > epred[,4])
+
+# compute a 95% percentile interval for the difference in probabilities for
+# income = 5 versus income = 4
+quantile(epred[,5] - epred[,4], probs=c(0.025, 0.975))
