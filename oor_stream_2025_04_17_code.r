@@ -218,9 +218,17 @@ exp(coef(res)[[2]])
 # while our best guess (i.e., the median of the posterior distribution) about
 # the size of the slope is around .33, there is uncertainty as to how large
 # the slope actually is
-coef(res)[[2]]
+round(coef(res)[[2]], digits=2)
 
 # we are around 95% certain that the slope is between these bounds (assuming
 # normality of the posterior distribution for the slope)
-coef(res)[[2]] - 2 * se(res)[[2]]
-coef(res)[[2]] + 2 * se(res)[[2]]
+round(coef(res)[[2]] - 2 * se(res)[[2]], digits=2)
+round(coef(res)[[2]] + 2 * se(res)[[2]], digits=2)
+
+# examine the posterior distribution for the slope
+hist(post$income, breaks=50, xlab="Slope for income", main="")
+
+# or we could just construct a 95% percentile interval based on the sampled values
+round(quantile(post$income, prob=c(.025, .975)), digits=2)
+
+## Statistical significance
