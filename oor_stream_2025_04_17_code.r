@@ -125,3 +125,11 @@ round(invlogit(coef(res)[[1]] + coef(res)[[2]]*mean(dat$income)), digits=2)
 # difference in probability when income = 3 versus when income = 2
 round(pred[3] - pred[2], digits=2)
 
+## The divide-by-4 rule
+
+# predicted probability of voting Republican for income from 1 to 5 for 1000 values
+xs <- seq(1, 5, length.out=1000)
+preds <- invlogit(coef(res)[1] + coef(res)[2]*xs)
+
+# plot the difference in probabilities as a function of the income
+plot(xs[1:999], preds[2:1000] - preds[1:999], type="l")
