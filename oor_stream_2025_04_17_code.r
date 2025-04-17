@@ -374,3 +374,11 @@ c(mean(epred), sd(epred))
 # standard error for such a proportion
 mean(y)
 sqrt(mean(y) * (1 - mean(y)) / length(y))
+
+## Data on the boundary
+
+# data where y=0 for everybody
+y <- rep(c(0,1), c(50,0))
+dat <- data.frame(y)
+res <- stan_glm(y ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
+
