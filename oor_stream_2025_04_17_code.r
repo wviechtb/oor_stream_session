@@ -352,3 +352,14 @@ total <- apply(postpred, 1, sum)
 
 # probability that 3 or more of the 5 support Bush
 mean(total >= 3)
+
+## Logistic regression with just an intercept
+
+# data for a sample of 50 people where 40 have y=0 and 10 have y=1
+y <- rep(c(0,1), c(40,10))
+y
+
+# put the data into a data frame and fit the logistic regression model to
+# these data without any predictor (just an intercept)
+simple <- data.frame(y)
+fit <- stan_glm(y ~ 1, family=binomial(link="logit"), data=simple)
