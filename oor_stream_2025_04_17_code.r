@@ -74,6 +74,18 @@ curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, from=1, to=5, lwd=6)
 res.lm <- stan_glm(rvote ~ income, data=dat, refresh=0)
 curve(coef(res.lm)[1] + coef(res.lm)[2]*x, add=TRUE, col="red")
 
+# predicted probability of voting Republican for income = 1, 2, ..., 5
+pred <- invlogit(coef(res)[1] + coef(res)[2]*1:5)
+pred
+
+# difference in probabilities for income = 2 versus income = 1
+pred[2] - pred[1]
+
+# difference in probabilities for income = 4 versus income = 3
+pred[4] - pred[3]
+
+# note that these are not the same even though the difference in income is one point
+
 ## Fitting the model using stan_glm and displaying uncertainty in the fitted model
 
 # Figure 13.2 (right)
