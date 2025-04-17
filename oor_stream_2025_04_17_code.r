@@ -148,5 +148,9 @@ coef(res)[[2]] / 4
 xs1[which.max(preds2 - preds1)]
 xs2[which.max(preds2 - preds1)]
 
+# so when income is equal to equal to 4.8 versus 3.8; so for income equal to 5
+# versus 4 we are actually quite close to that upper bound
+pred[5] - pred[4]
+
 ## Interpretation of coefficients as odds ratios
 
