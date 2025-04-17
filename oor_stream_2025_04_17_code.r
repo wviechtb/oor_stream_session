@@ -116,3 +116,7 @@ par(op)
 ############################################################################
 
 ### 13.2 Interpreting logistic regression coefficients and the divide-by-4 rule
+
+## Evaluation at and near the mean of the data
+
+
