@@ -393,3 +393,9 @@ se <- sqrt(p*(1-p) / n)
 pmax(0, p + c(-2,2) * se)
 
 ## Logistic regression with a single binary predictor
+
+# make up some data for two groups (defined by x=0 or x=1)
+x <- rep(c(0, 1), c(50, 60))
+y <- rep(c(0, 1, 0, 1), c(40, 10, 40, 20))
+dat <- data.frame(x, y)
+fit <- stan_glm(y ~ x, family=binomial(link="logit"), data=simple)
