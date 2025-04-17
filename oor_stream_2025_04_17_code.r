@@ -83,12 +83,20 @@ axis(side=1, at=1:5, labels=c("1\n(poor)", 2:4, "5\n(rich)"), padj=1)
 
 # extract samples from the posterior distributions of the intercept and slope parameters
 post <- as.data.frame(res)
+
+# add 20 regression lines based on these samples
 invisible(apply(post[1:20,], 1, function(b) curve(invlogit(b[1] + b[2]*x), add=TRUE, col="gray80")))
 
-#
-curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE)
-curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, from=1, to=5, lwd=6)
+# add the regression line based on the median values of the sampled coefficients
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), add=TRUE, lwd=2)
 
+# recall: coef() extracts the median values of the posterior distributions
+coef(res)
+apply(post, 2, median)
 
 # reset the plot settings to the defaults
 par(op)
+
+############################################################################
+
+### 13.2 Interpreting logistic regression coefficients and the divide-by-4 rule
