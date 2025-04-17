@@ -381,4 +381,11 @@ sqrt(mean(y) * (1 - mean(y)) / length(y))
 y <- rep(c(0,1), c(50,0))
 dat <- data.frame(y)
 res <- stan_glm(y ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=2)
 
+
+
+n <- length(y)
+p <- (sum(y) + 2) / (n + 4)
+se <- sqrt(p*(1-p) / n)
+p + c(-2,2) * se
