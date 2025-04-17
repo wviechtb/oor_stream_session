@@ -206,3 +206,9 @@ odds[5] / odds[4]
 #
 # which is log(odds ratio) when x differs by one unit, which is equal to beta,
 # so exp(beta) = odds ratio
+
+# in our analysis above, the odds ratio is therefore
+exp(coef(res)[[2]])
+
+# so the odds of voting Republican are 1.39 times higher when comparing
+# individuals that differ by one unit on income
