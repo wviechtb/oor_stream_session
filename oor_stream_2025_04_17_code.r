@@ -266,3 +266,25 @@ abline(h=0, lty="dotted")
 
 ### 13.3 Predictions and comparisons
 
+# read in the dataset again
+dat <- read.table("nes.txt", header=TRUE)
+
+# keep only the data from 1992 and exclude respondents who preferred other candidates or had no opinion
+ok <- dat$year==1992 & !is.na(dat$rvote) & !is.na(dat$dvote) & (dat$rvote==1 | dat$dvote==1)
+dat <- dat[ok,]
+
+# fit the logistic regression model predicting rvote from income
+res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=2)
+
+# extract samples from the posterior distributions of the intercept and slope parameters
+post <- as.data.frame(res)
+
+# predicted probability when income = 5
+newdat <- data.frame(income=5)
+pred <- predict(res, type="response", newdata=newdat)
+pred
+
+# so we see that predict() uses the mean of the posterior samples
+b <- apply(post, 2, mean)
+b[[1]] + b[[2]] * 5
