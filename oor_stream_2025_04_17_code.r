@@ -325,3 +325,8 @@ round(c(mean=mean(epred), sd=sd(epred)), digits=2)
 # simulate the votes of individual voters with income = 5
 postpred <- posterior_predict(res, newdata=newdat)
 head(postpred)
+
+# we can think of the mean (i.e., proportion of votes for a Republican) as the
+# point prediction for the probability of voting Republican
+mean(postpred)
+
