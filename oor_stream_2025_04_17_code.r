@@ -255,3 +255,9 @@ res <- lapply(years, function(y) stan_glm(rvote ~ income, family=binomial(link="
 # extract the slopes and corresponding standard errors from the models
 b <- sapply(res, coef)[2,]
 se <- sapply(res, se)[2,]
+
+# Figure 13.4: Plot of the slope coefficients over the years
+plot(years, b, pch=19, xlab="Year", ylab="Coefficient of income", bty="l",
+     xlim=c(1950,2000), ylim=c(-0.05,0.5), las=1)
+segments(years, b-se, years, b+se)
+abline(h=0, lty="dotted")
