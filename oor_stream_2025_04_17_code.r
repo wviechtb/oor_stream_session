@@ -309,3 +309,10 @@ head(cbind(linpred, apply(post, 1, function(b) b[[1]] + b[[2]] * 5)))
 # what we are interested in
 
 ## Expected outcome with uncertainty using posterior_epred
+
+# obtain the predicted probabilities
+epred <- posterior_epred(res, newdata=newdat)
+head(epred)
+
+# again, we could do this manually based on the sampled intercept and slope values
+head(cbind(epred, apply(post, 1, function(b) invlogit(b[[1]] + b[[2]] * 5))))
