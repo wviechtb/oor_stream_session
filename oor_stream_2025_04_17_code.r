@@ -235,3 +235,20 @@ round(quantile(post$income, prob=c(.025, .975)), digits=2)
 
 # check how many standard errors the (median) slope is away from 0
 coef(res)[[2]] / se(res)[[2]]
+
+## Displaying the results of several logistic regressions
+
+# read in the dataset again
+dat <- read.table("nes.txt", header=TRUE)
+
+# exclude respondents who preferred other candidates or had no opinion
+ok <- !is.na(dat$rvote) & !is.na(dat$dvote) & (dat$rvote==1 | dat$dvote==1)
+dat <- dat[ok,]
+
+# find the unique years
+years <- unique(dat$year)
+years
+
+lapply(years, function(y) {
+   stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0)
+})
