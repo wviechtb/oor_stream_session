@@ -249,6 +249,5 @@ dat <- dat[ok,]
 years <- unique(dat$year)
 years
 
-lapply(years, function(y) {
-   stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0)
-})
+# fit the model for the data in each unique year
+res <- lapply(years, function(y) stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0, subset=year==y))
