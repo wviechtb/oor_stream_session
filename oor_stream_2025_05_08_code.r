@@ -20,6 +20,8 @@ library(rethinking)
 
 ### 6.3: Collider bias
 
+## 6.3.1: Collider of false sorrow
+
 # simulate data according to the age, marriage, and happiness example
 dat <- sim_happiness(seed=1977, N_years=1000)
 precis(dat)
@@ -72,3 +74,4 @@ cor(dat2$A, dat2$happiness)
 cor(dat2$A[dat2$mid == 1], dat2$happiness[dat2$mid == 1])
 cor(dat2$A[dat2$mid == 2], dat2$happiness[dat2$mid == 2])
 
+## 6.3.2: The haunted DAG
