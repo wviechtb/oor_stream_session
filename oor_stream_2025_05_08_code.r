@@ -91,10 +91,15 @@ P <- rnorm(N, b_GP*G + b_U*U)
 C <- rnorm(N, b_PC*P + b_GC*G + b_U*U)
 dat <- data.frame(C=C, P=P, G=G, U=U)
 
-# define and fit the model predicting C from P and G
+# define and fit the model predicting C from P and G and inspect the results
 res <- quap(alist(C ~ dnorm(mu, sigma),
                   mu <- a + b_PC*P + b_GC*G,
                   a ~ dnorm(0, 1),
                   c(b_PC,b_GC) ~ dnorm(0, 1),
                   sigma ~ dexp(1)), data=dat)
 precis(res)
+
+# Figure 6.5
+sel <- quantile(P, .45) >= P & quantile(P, .60) <= P
+plot(scale(C) ~ scale(G), pch=21, col=ifelse(U==1,"#1e59ae","black"))
+
