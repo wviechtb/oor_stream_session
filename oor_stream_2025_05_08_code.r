@@ -89,4 +89,4 @@ U <- 2*rbern(N, 0.5) - 1
 G <- rnorm(N)
 P <- rnorm(N, b_GP*G + b_U*U)
 C <- rnorm(N, b_PC*P + b_GC*G + b_U*U)
-d <- data.frame(C=C , P=P , G=G , U=U)
+dat <- data.frame(C=C, P=P, G=G, U=U)
