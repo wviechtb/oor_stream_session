@@ -36,3 +36,15 @@ dat2 <- dat[dat$age >= 18,]
 
 # rescale the age variable so 0 corresponds to 18 and 1 corresponds to 65
 dat2$A <- (dat2$age - 18) / (65 - 18)
+
+# marriage status indicator (1 = not married, 2 = married)
+dat2$mid <- dat2$married + 1
+
+# define the model predicting happiness from marriage status and A (age)
+model <- alist(happiness ~ dnorm(mu, sigma),
+               mu <- a[mid] + bA*A,
+               a[mid] ~ dnorm( 0 , 1 ),
+               bA ~ dnorm( 0 , 2 ),
+               sigma ~ dexp(1))
+
+precis(m6.9,depth=2)
