@@ -29,7 +29,9 @@ sim_happiness
 
 # Figure 6.4: plot of age versus happiness with blue dots corresponding to
 # married individuals
-plot(happiness ~ age, data=dat, pch=21, bg=ifelse(married==1, "#1e59ae", "white"))
+plot(happiness ~ age, data=dat, pch=21, bg=ifelse(married==1, "#1e59ae", "white"), bty="l")
+legend(16, 2.7, pch=21, pt.bg=c("white","#1e59ae"), legend=c("unmarried","married"),
+       horiz=TRUE, xpd=TRUE, text.width=20, bty="n")
 
 # make a copy of data that only incldues the adults (age >= 18)
 dat2 <- dat[dat$age >= 18,]
@@ -43,8 +45,22 @@ dat2$mid <- dat2$married + 1
 # define the model predicting happiness from marriage status and A (age)
 model <- alist(happiness ~ dnorm(mu, sigma),
                mu <- a[mid] + bA*A,
-               a[mid] ~ dnorm( 0 , 1 ),
-               bA ~ dnorm( 0 , 2 ),
+               a[mid] ~ dnorm(0, 1),
+               bA ~ dnorm(0, 2),
                sigma ~ dexp(1))
 
-precis(m6.9,depth=2)
+# fit the model and inspect the results
+res <- quap(model, data=dat2)
+precis(res, depth=2)
+
+# define the model without marraige status as predictor
+model <- alist(happiness ~ dnorm(mu, sigma),
+               mu <- a + bA*A,
+               a ~ dnorm(0, 1),
+               bA ~ dnorm(0, 2),
+               sigma ~ dexp(1))
+
+# fit the model and inspect the results
+res <- quap(model, data=dat2)
+precis(res, depth=2)
+
