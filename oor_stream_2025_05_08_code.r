@@ -119,17 +119,19 @@ precis(res)
 
 # set values for the example
 N <- 200 # number of grandparent-parent-child triads
-b_GP <- 1 # direct effect of G on P
-b_GC <- 0 # direct effect of G on C
-b_PC <- 1 # direct effect of P on C
-b_U  <- 2 # direct effect of U on G, P, and C
+b_UG <- 1  # direct effect of U on G
+b_GP <- 1  # direct effect of G on P
+b_GC <- 0  # direct effect of G on C
+b_PC <- 1  # direct effect of P on C
+b_UP <- 2  # direct effect of U on P
+b_UC <- -1 # direct effect of U on C
 
 # simulate data
 set.seed(1)
 U <- rnorm(N)
-G <- rnorm(N, b_U*U)
-P <- rnorm(N, b_GP*G + b_U*U)
-C <- rnorm(N, b_PC*P + b_GC*G + b_U*U)
+G <- rnorm(N, b_UG*U)
+P <- rnorm(N, b_GP*G + b_UP*U)
+C <- rnorm(N, b_PC*P + b_GC*G + b_UC*U)
 dat <- data.frame(C=C, P=P, G=G, U=U)
 
 # define and fit the model predicting C from P and G and inspect the results
