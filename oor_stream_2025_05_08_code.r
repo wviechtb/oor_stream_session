@@ -21,8 +21,10 @@ library(rethinking)
 ### 6.3: Collider bias
 
 # simulate data according to the age, marriage, and happiness example
-d <- sim_happiness(seed=1977, N_years=1000)
-precis(d)
+dat <- sim_happiness(seed=1977, N_years=1000)
+precis(dat)
 
 # inspect the code for sim_happiness() to see how exactly the data are simulated
 sim_happiness
+
+plot(happiness ~ age, data=dat, bg=ifelse(married==1, "#1e59ae", "white"))
