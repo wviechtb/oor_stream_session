@@ -126,8 +126,8 @@ library(dagitty)
 dag <- dagitty("dag {U [unobserved] X -> Y X <- U <- A -> C -> Y U -> B <- C}")
 plot(dag)
 
-# check what variable(s) need to be adjusted to obtain an unbiased estimate of
-# the relationship between X and Y
+# check what variable(s) need to be adjusted for to obtain an unbiased
+# estimate of the relationship between X and Y
 adjustmentSets(dag, exposure="X", outcome="Y")
 
 # we can define exposure, outcome, and latent (unobserved) variables and their
@@ -164,3 +164,6 @@ paths(dag)
 # W <- S -> A -> D         - open
 # W <- S -> M <- A -> D    - closed (because M is a collider for S and A)
 # W <- S -> A -> M -> D    - open
+
+# check what variable(s) need to be adjusted for
+adjustmentSets(dag)
