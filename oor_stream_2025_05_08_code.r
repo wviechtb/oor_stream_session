@@ -184,8 +184,7 @@ dat <- get(data(WaffleDivorce))
 # inspect the first 6 rows
 head(dat)
 
-# standardize some variables
-dat$D <- c(scale(dat$Divorce))
-dat$M <- c(scale(dat$Marriage))
-dat$A <- c(scale(dat$MedianAgeMarriage))
-
+# we will check the conditional independencies give above in these data; we
+# could use Bayesian models for this, but for simplicity let's just go back to
+# using standard OLS estimation
+summary(lm(MedianAgeMarriage ~ WaffleHouses + South, data=dat))
