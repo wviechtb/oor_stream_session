@@ -185,9 +185,9 @@ dat <- get(data(WaffleDivorce))
 head(dat)
 
 # abbreviate the names of the variables as in the DAG
-dat$D <- dat$Divorce)
-dat$M <- dat$Marriage)
-dat$A <- dat$MedianAgeMarriage)
+dat$D <- dat$Divorce
+dat$M <- dat$Marriage
+dat$A <- dat$MedianAgeMarriage
 dat$S <- dat$South
 dat$W <- dat$WaffleHouses
 
@@ -195,3 +195,6 @@ dat$W <- dat$WaffleHouses
 # could use Bayesian models for this, but for simplicity let's just go back to
 # using standard OLS estimation
 summary(lm(A ~ W + S, data=dat))
+summary(lm(W ~ A + S, data=dat))
+
+summary(lm(D ~ S + , data=dat))
