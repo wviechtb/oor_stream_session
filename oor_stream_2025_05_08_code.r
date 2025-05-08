@@ -144,6 +144,14 @@ res <- quap(alist(C ~ dnorm(mu, sigma),
                   sigma ~ dexp(1)), data=dat)
 precis(res)
 
+# define and fit the model predicting C from only G and inspect the results
+res <- quap(alist(C ~ dnorm(mu, sigma),
+                  mu <- a + b_GC*G,
+                  a ~ dnorm(0, 1),
+                  c(b_GC) ~ dnorm(0, 1),
+                  sigma ~ dexp(1)), data=dat)
+precis(res)
+
 # - if b_UG = b_UP (i.e., the unmeasured U affects G and P equally), then we
 #   find above that the estimate of b_GC is unbiased
 # - if b_UC = 0 (i.e., U affects G and P but not C), then b_UG and b_UP can be
