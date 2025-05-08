@@ -194,7 +194,15 @@ dat$W <- dat$WaffleHouses
 # we will check the conditional independencies give above in these data; we
 # could use Bayesian models for this, but for simplicity let's just go back to
 # using standard OLS estimation
+
+# check A _||_ W | S
 summary(lm(A ~ W + S, data=dat))
 summary(lm(W ~ A + S, data=dat))
 
-summary(lm(D ~ S + , data=dat))
+# note: it does not matter whether A is the outcome and W the predictor or
+# vice-versa; the t-statistic (i.e., the signal to noise ratio) is the same in
+# both models
+
+# check D _||_ S | A, M, W
+summary(lm(D ~ S + A + M + W, data=dat))
+summary(lm(S ~ D + A + M + W, data=dat))
