@@ -23,3 +23,6 @@ library(rethinking)
 # simulate data according to the age, marriage, and happiness example
 d <- sim_happiness(seed=1977, N_years=1000)
 precis(d)
+
+# inspect the code for sim_happiness() to see how exactly the data are simulated
+sim_happiness
