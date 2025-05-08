@@ -64,3 +64,11 @@ model <- alist(happiness ~ dnorm(mu, sigma),
 res <- quap(model, data=dat2)
 precis(res, depth=2)
 
+# there is no correlation between A (age) and happiness
+cor(dat2$A, dat2$happiness)
+
+# but within each subgroup (unmarried and married), there is negative
+# correlation between A (age) and happiness
+cor(dat2$A[dat2$mid == 1], dat2$happiness[dat2$mid == 1])
+cor(dat2$A[dat2$mid == 2], dat2$happiness[dat2$mid == 2])
+
