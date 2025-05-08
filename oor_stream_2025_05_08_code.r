@@ -126,7 +126,7 @@ b_GP <- 1 # direct effect of G on P
 b_GC <- 0 # direct effect of G on C
 b_PC <- 1 # direct effect of P on C
 b_UP <- 4 # direct effect of U on P
-b_UC <- 0 # direct effect of U on C
+b_UC <- 2 # direct effect of U on C
 
 # simulate the data
 set.seed(1)
@@ -141,14 +141,6 @@ res <- quap(alist(C ~ dnorm(mu, sigma),
                   mu <- a + b_PC*P + b_GC*G,
                   a ~ dnorm(0, 1),
                   c(b_PC,b_GC) ~ dnorm(0, 1),
-                  sigma ~ dexp(1)), data=dat)
-precis(res)
-
-# define and fit the model predicting C from only G and inspect the results
-res <- quap(alist(C ~ dnorm(mu, sigma),
-                  mu <- a + b_GC*G,
-                  a ~ dnorm(0, 1),
-                  c(b_GC) ~ dnorm(0, 1),
                   sigma ~ dexp(1)), data=dat)
 precis(res)
 
