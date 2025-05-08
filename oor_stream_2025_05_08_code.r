@@ -18,3 +18,8 @@ library(rethinking)
 
 ############################################################################
 
+### 6.3: Collider bias
+
+# simulate data according to the age, marriage, and happiness example
+d <- sim_happiness(seed=1977, N_years=1000)
+precis(d)
