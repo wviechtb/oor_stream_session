@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 6.3 - ?
+# - Section(s): 6.3 - 6.6
 #
 # last updated: 2025-05-08
 
@@ -210,3 +210,5 @@ summary(lm(S ~ D + A + M + W, data=dat))
 # check M _||_ W | S
 summary(lm(M ~ W + S, data=dat))
 summary(lm(W ~ M + S, data=dat))
+
+############################################################################
