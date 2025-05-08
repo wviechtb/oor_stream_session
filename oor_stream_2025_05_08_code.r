@@ -143,3 +143,24 @@ A -> C A -> U C -> B C -> Y U -> B U -> X X -> Y
 }")
 plot(dag)
 adjustmentSets(dag)
+
+## 6.4.3: Backdoor waffles
+
+# define and plot the DAG
+dag <- dagitty("dag {
+A [pos=\"-1.050,0.160\"]
+D [outcome,pos=\"0.654,0.148\"]
+M [pos=\"-0.185,-0.478\"]
+S [pos=\"-1.054,-1.063\"]
+W [exposure,pos=\"0.654,-1.063\"]
+A -> D A -> M M -> D S -> A S -> M S -> W W -> D}")
+plot(dag)
+
+# show all paths
+paths(dag)
+
+# which paths are open/closed?
+# W <- S -> M -> D         - open
+# W <- S -> A -> D         - open
+# W <- S -> M <- A -> D    - closed (because M is a collider for S and A)
+# W <- S -> A -> M -> D    - open
