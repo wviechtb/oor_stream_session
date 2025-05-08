@@ -115,10 +115,12 @@ precis(res)
 
 ############################################################################
 
-# what happens if U directly influences G (in addition to P and C)?
+# what happens if U directly influences G (in addition to P and C)? we will
+# also set up the simulation that the direct effect of U on G, P, and C can be
+# different
 
 # set values for the example
-N <- 2000 # number of grandparent-parent-child triads
+N <- 200 # number of grandparent-parent-child triads
 b_UG <- 4 # direct effect of U on G
 b_GP <- 1 # direct effect of G on P
 b_GC <- 0 # direct effect of G on C
@@ -127,7 +129,7 @@ b_UP <- 4 # direct effect of U on P
 b_UC <- 2 # direct effect of U on C
 
 # simulate data
-#set.seed(1)
+set.seed(1)
 U <- rnorm(N)
 G <- rnorm(N, b_UG*U)
 P <- rnorm(N, b_GP*G + b_UP*U)
@@ -144,5 +146,6 @@ res <- quap(alist(C ~ dnorm(mu, sigma),
                   sigma ~ dexp(1)), data=dat)
 precis(res)
 
+#
 
 ############################################################################
