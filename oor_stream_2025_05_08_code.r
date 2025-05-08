@@ -76,14 +76,14 @@ cor(dat2$A[dat2$mid == 2], dat2$happiness[dat2$mid == 2])
 
 ## 6.3.2: The haunted DAG
 
-# set values for the example
-N <- 200 # number of grandparent-parent-child triads
+# set values for the simulation
+N <- 200  # number of grandparent-parent-child triads
 b_GP <- 1 # direct effect of G on P
 b_GC <- 0 # direct effect of G on C
 b_PC <- 1 # direct effect of P on C
 b_U  <- 2 # direct effect of U on P and C
 
-# simulate data
+# simulate the data
 set.seed(1)
 U <- 2*rbern(N, 0.5) - 1
 G <- rnorm(N)
@@ -119,8 +119,8 @@ precis(res)
 # also set up the simulation that the direct effect of U on G, P, and C can be
 # different
 
-# set values for the example
-N <- 200 # number of grandparent-parent-child triads
+# set values for the simulation
+N <- 200  # number of grandparent-parent-child triads
 b_UG <- 4 # direct effect of U on G
 b_GP <- 1 # direct effect of G on P
 b_GC <- 0 # direct effect of G on C
@@ -128,15 +128,13 @@ b_PC <- 1 # direct effect of P on C
 b_UP <- 4 # direct effect of U on P
 b_UC <- 2 # direct effect of U on C
 
-# simulate data
+# simulate the data
 set.seed(1)
 U <- rnorm(N)
 G <- rnorm(N, b_UG*U)
 P <- rnorm(N, b_GP*G + b_UP*U)
 C <- rnorm(N, b_PC*P + b_GC*G + b_UC*U)
 dat <- data.frame(C=C, P=P, G=G, U=U)
-
-summary(lm(C ~ P + G, data=dat))
 
 # define and fit the model predicting C from P and G and inspect the results
 res <- quap(alist(C ~ dnorm(mu, sigma),
@@ -146,6 +144,9 @@ res <- quap(alist(C ~ dnorm(mu, sigma),
                   sigma ~ dexp(1)), data=dat)
 precis(res)
 
-#
+# - if b_UG = b_UP (i.e., the unmeasured U affects G and P equally), then we
+#   find above that the estimate of b_GC is unbiased
+# - if b_UC = 0 (i.e., U affects G and P but not C), then b_UG and b_UP can be
+#   different and we again do not get any bias in b_GC
 
 ############################################################################
