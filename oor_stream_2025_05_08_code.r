@@ -177,8 +177,15 @@ impliedConditionalIndependencies(dag)
 
 # Exercise 6H2
 
-# get the WaffleDivorce dataset and put it into 'dat'
+# get the WaffleDivorce dataset and put it into 'dat' (see section 5.1 and the
+# code from the session on 2025-02-27 for our previous coverage of these data)
 dat <- get(data(WaffleDivorce))
 
 # inspect the first 6 rows
 head(dat)
+
+# standardize some variables
+dat$D <- c(scale(dat$Divorce))
+dat$M <- c(scale(dat$Marriage))
+dat$A <- c(scale(dat$MedianAgeMarriage))
+
