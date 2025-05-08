@@ -126,7 +126,7 @@ b_GP <- 1 # direct effect of G on P
 b_GC <- 0 # direct effect of G on C
 b_PC <- 1 # direct effect of P on C
 b_UP <- 4 # direct effect of U on P
-b_UC <- 2 # direct effect of U on C
+b_UC <- 0 # direct effect of U on C
 
 # simulate the data
 set.seed(1)
