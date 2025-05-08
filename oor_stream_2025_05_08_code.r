@@ -170,3 +170,15 @@ adjustmentSets(dag)
 
 # check for the implied conditional independencies in the DAG
 impliedConditionalIndependencies(dag)
+
+############################################################################
+
+### 6.6: Practice
+
+# Exercise 6H2
+
+# get the WaffleDivorce dataset and put it into 'dat'
+dat <- get(data(WaffleDivorce))
+
+# inspect the first 6 rows
+head(dat)
