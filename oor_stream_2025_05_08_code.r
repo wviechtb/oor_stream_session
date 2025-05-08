@@ -122,5 +122,22 @@ precis(res)
 # load the dagitty package
 library(dagitty)
 
-dag_6.1 <- dagitty("dag {U [unobserved] X -> Y X <- U <- A -> C -> Y U -> B <- C }")
-adjustmentSets( dag_6.1 , exposure="X" , outcome="Y" )
+# define and plot the DAG
+dag <- dagitty("dag {U [unobserved] X -> Y X <- U <- A -> C -> Y U -> B <- C}")
+plot(dag)
+adjustmentSets(dag, exposure="X", outcome="Y")
+
+# we can define exposure, outcome, and latent (unobserved) variables and their
+# position when defining a DAG
+dag <- dagitty("dag {
+A [pos=\"-0.290,-1.324\"]
+B [pos=\"-0.290,-0.644\"]
+C [pos=\"0.815,-1.026\"]
+U [latent,pos=\"-1.429,-1.026\"]
+X [exposure,pos=\"-1.421,-0.130\"]
+Y [outcome,pos=\"0.823,-0.130\"]
+A -> C A -> U C -> B C -> Y U -> B U -> X X -> Y
+}")
+plot(dag)
+
+adjustmentSets(dag)
