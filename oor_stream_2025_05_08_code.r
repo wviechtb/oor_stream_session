@@ -184,7 +184,14 @@ dat <- get(data(WaffleDivorce))
 # inspect the first 6 rows
 head(dat)
 
+# abbreviate the names of the variables as in the DAG
+dat$D <- dat$Divorce)
+dat$M <- dat$Marriage)
+dat$A <- dat$MedianAgeMarriage)
+dat$S <- dat$South
+dat$W <- dat$WaffleHouses
+
 # we will check the conditional independencies give above in these data; we
 # could use Bayesian models for this, but for simplicity let's just go back to
 # using standard OLS estimation
-summary(lm(MedianAgeMarriage ~ WaffleHouses + South, data=dat))
+summary(lm(A ~ W + S, data=dat))
