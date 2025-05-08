@@ -118,21 +118,23 @@ precis(res)
 # what happens if U directly influences G (in addition to P and C)?
 
 # set values for the example
-N <- 200 # number of grandparent-parent-child triads
-b_UG <- 1  # direct effect of U on G
-b_GP <- 1  # direct effect of G on P
-b_GC <- 0  # direct effect of G on C
-b_PC <- 1  # direct effect of P on C
-b_UP <- 2  # direct effect of U on P
-b_UC <- -1 # direct effect of U on C
+N <- 2000 # number of grandparent-parent-child triads
+b_UG <- 4 # direct effect of U on G
+b_GP <- 1 # direct effect of G on P
+b_GC <- 0 # direct effect of G on C
+b_PC <- 1 # direct effect of P on C
+b_UP <- 4 # direct effect of U on P
+b_UC <- 2 # direct effect of U on C
 
 # simulate data
-set.seed(1)
+#set.seed(1)
 U <- rnorm(N)
 G <- rnorm(N, b_UG*U)
 P <- rnorm(N, b_GP*G + b_UP*U)
 C <- rnorm(N, b_PC*P + b_GC*G + b_UC*U)
 dat <- data.frame(C=C, P=P, G=G, U=U)
+
+summary(lm(C ~ P + G, data=dat))
 
 # define and fit the model predicting C from P and G and inspect the results
 res <- quap(alist(C ~ dnorm(mu, sigma),
