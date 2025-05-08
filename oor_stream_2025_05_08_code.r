@@ -206,3 +206,7 @@ summary(lm(W ~ A + S, data=dat))
 # check D _||_ S | A, M, W
 summary(lm(D ~ S + A + M + W, data=dat))
 summary(lm(S ~ D + A + M + W, data=dat))
+
+# check M _||_ W | S
+summary(lm(M ~ W + S, data=dat))
+summary(lm(W ~ M + S, data=dat))
