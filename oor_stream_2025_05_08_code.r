@@ -117,3 +117,10 @@ precis(res)
 
 ### 6.4: Confronting confounding
 
+## 6.4.2: Two roads
+
+# load the dagitty package
+library(dagitty)
+
+dag_6.1 <- dagitty("dag {U [unobserved] X -> Y X <- U <- A -> C -> Y U -> B <- C }")
+adjustmentSets( dag_6.1 , exposure="X" , outcome="Y" )
