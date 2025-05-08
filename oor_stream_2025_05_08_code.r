@@ -167,3 +167,6 @@ paths(dag)
 
 # check what variable(s) need to be adjusted for
 adjustmentSets(dag)
+
+# check for the implied conditional independencies in the DAG
+impliedConditionalIndependencies(dag)
