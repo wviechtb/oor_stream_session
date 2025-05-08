@@ -125,6 +125,9 @@ library(dagitty)
 # define and plot the DAG
 dag <- dagitty("dag {U [unobserved] X -> Y X <- U <- A -> C -> Y U -> B <- C}")
 plot(dag)
+
+# check what variable(s) need to be adjusted to obtain an unbiased estimate of
+# the relationship between X and Y
 adjustmentSets(dag, exposure="X", outcome="Y")
 
 # we can define exposure, outcome, and latent (unobserved) variables and their
@@ -139,5 +142,4 @@ Y [outcome,pos=\"0.823,-0.130\"]
 A -> C A -> U C -> B C -> Y U -> B U -> X X -> Y
 }")
 plot(dag)
-
 adjustmentSets(dag)
