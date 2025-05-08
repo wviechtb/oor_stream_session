@@ -100,6 +100,15 @@ res <- quap(alist(C ~ dnorm(mu, sigma),
 precis(res)
 
 # Figure 6.5
-sel <- quantile(P, .45) >= P & quantile(P, .60) <= P
-plot(scale(C) ~ scale(G), pch=21, col=ifelse(U==1,"#1e59ae","black"))
+sel <- P >= quantile(P, .45) & P <= quantile(P, .60)
+plot(scale(C) ~ scale(G), pch=21, col=ifelse(U==1,"#1e59ae","black"),
+     bg=ifelse(U==1,ifelse(sel,"#1e59ae","transparent"),ifelse(sel,"black","transparent")),
+     xlab="gradparent education (G)", ylab="grandchild education (C)", bty="l")
 
+# define and fit the model predicting C from P, G, and U and inspect the results
+res <- quap(alist(C ~ dnorm(mu, sigma),
+                  mu <- a + b_PC*P + b_GC*G + b_U*U,
+                  a ~ dnorm(0, 1),
+                  c(b_PC,b_GC,b_U) ~ dnorm(0, 1),
+                  sigma ~ dexp(1)), data=dat)
+precis(res)
