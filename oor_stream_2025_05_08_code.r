@@ -75,3 +75,18 @@ cor(dat2$A[dat2$mid == 1], dat2$happiness[dat2$mid == 1])
 cor(dat2$A[dat2$mid == 2], dat2$happiness[dat2$mid == 2])
 
 ## 6.3.2: The haunted DAG
+
+# set values for the example
+N <- 200 # number of grandparent-parent-child triads
+b_GP <- 1 # direct effect of G on P
+b_GC <- 0 # direct effect of G on C
+b_PC <- 1 # direct effect of P on C
+b_U  <- 2 # direct effect of U on P and C
+
+# simulate data
+set.seed(1)
+U <- 2*rbern(N, 0.5) - 1
+G <- rnorm(N)
+P <- rnorm(N, b_GP*G + b_U*U)
+C <- rnorm(N, b_PC*P + b_GC*G + b_U*U)
+d <- data.frame(C=C , P=P , G=G , U=U)
