@@ -112,3 +112,33 @@ res <- quap(alist(C ~ dnorm(mu, sigma),
                   c(b_PC,b_GC,b_U) ~ dnorm(0, 1),
                   sigma ~ dexp(1)), data=dat)
 precis(res)
+
+############################################################################
+
+# what happens if U directly influences G (in addition to P and C)?
+
+# set values for the example
+N <- 200 # number of grandparent-parent-child triads
+b_GP <- 1 # direct effect of G on P
+b_GC <- 0 # direct effect of G on C
+b_PC <- 1 # direct effect of P on C
+b_U  <- 2 # direct effect of U on G, P, and C
+
+# simulate data
+set.seed(1)
+U <- rnorm(N)
+G <- rnorm(N, b_U*U)
+P <- rnorm(N, b_GP*G + b_U*U)
+C <- rnorm(N, b_PC*P + b_GC*G + b_U*U)
+dat <- data.frame(C=C, P=P, G=G, U=U)
+
+# define and fit the model predicting C from P and G and inspect the results
+res <- quap(alist(C ~ dnorm(mu, sigma),
+                  mu <- a + b_PC*P + b_GC*G,
+                  a ~ dnorm(0, 1),
+                  c(b_PC,b_GC) ~ dnorm(0, 1),
+                  sigma ~ dexp(1)), data=dat)
+precis(res)
+
+
+############################################################################
