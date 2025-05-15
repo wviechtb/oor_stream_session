@@ -230,7 +230,7 @@ bayes_sim <- function(n, a=-2, b=0.8) {
    fake <- data.frame(x, y, z)
    glm_fit <- glm(y ~ x, family=binomial(link="logit"), data=fake)
    stan_glm_fit <- stan_glm(y ~ x, family=binomial(link="logit"), data=fake, prior=normal(0.5, 0.5), refresh=0)
-   print(round(coef(summary(res))[,1:2], digits=1))
+   print(round(coef(summary(glm_fit))[,1:2], digits=1))
    cat("\n")
    print(stan_glm_fit, digits=1, detail=FALSE)
 }
