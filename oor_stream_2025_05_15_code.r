@@ -29,4 +29,6 @@ library(rstanarm)
 
 # Figure 13.5: plot of the pdf from a logistic distribution
 xs <- seq(-6, 6, length.out=1000)
-ys <- dlogis(xs, location=0, scale=sqrt(3)/pi)
+ys <- dlogis(xs, location=0, scale=1)
+plot(xs, ys, type="l", lwd=5, bty="l", xlab="", ylab="")
+
