@@ -233,6 +233,11 @@ bayes_sim <- function(n, a=-2, b=0.8) {
    print(round(coef(summary(glm_fit))[,1:2], digits=1))
    cat("\n")
    print(stan_glm_fit, digits=1, detail=FALSE)
+   return(invisible(c(coef(glm_fit)[2], coef(stan_glm_fit)[2])))
 }
 
+# simulate data based on n=10 subjects and compare the model fits
 bayes_sim(10)
+
+# repeat the above 100 times and save the slope coefficients from the two models
+sav <- replicate(100, bayes_sim(10))
