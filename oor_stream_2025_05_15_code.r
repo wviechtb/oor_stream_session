@@ -94,3 +94,6 @@ plot(xs, ys, type="l", lwd=5, bty="l", xlab="", ylab="")
 ys <- dnorm(xs, mean=0, sd=1.6)
 lines(xs, ys, lwd=5, col="red")
 
+############################################################################
+
+### 13.5: Maximum likelihood and Bayesian inference for logistic regression
