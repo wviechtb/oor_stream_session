@@ -32,3 +32,25 @@ xs <- seq(-6, 6, length.out=1000)
 ys <- dlogis(xs, location=0, scale=1)
 plot(xs, ys, type="l", lwd=5, bty="l", xlab="", ylab="")
 
+# let's add to this plot the pdf from a normal distribution with the same mean
+# and the same standard deviation
+ys <- dnorm(xs, mean=0, sd=pi/sqrt(3))
+lines(xs, ys, lwd=5, col="red")
+
+# let's redraw the figure and shade the region from -Inf to 1
+xs <- seq(-6, 6, length.out=1000)
+ys <- dlogis(xs, location=0, scale=1)
+plot(xs, ys, type="l", lwd=5, bty="l", xlab="", ylab="")
+ys <- ys[xs <= 1]
+xs <- xs[xs <= 1]
+polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray80", border=NA)
+lines(xs, ys, lwd=5)
+
+# the size of the shaded region corresponds to the probability of seeing a
+# value between -Inf and 1 under such a logistic distribution; we can compute
+# this probability via simulation
+z <- rlogis(10^7, location=0, scale=1)
+mean(z < 1)
+
+# but we can compute this exactly using plogis()
+plogis(1)
