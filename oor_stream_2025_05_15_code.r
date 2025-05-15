@@ -71,6 +71,12 @@ lines(xs, ys, lwd=5)
 # the shaded area corresponds to the probability that y=1
 plogis(0, location=-1.07, scale=1, lower.tail=FALSE)
 
+## Interpretation of the latent variables
+
 # what would happen if -1.40 + 0.33 * x is equal to 0? then there is a 50%
 # probability of y=1 (and analogously, a 50% probability of y=0)
 plogis(0, location=0, scale=1, lower.tail=FALSE)
+
+# so -1.40 + 0.33 * x can be thought of as the 'propensity' of voting
+# Republican, where 0 means an equal preference for Republican versus
+# Demoncrat and values greater 0 indicate a higher preference for Republican
