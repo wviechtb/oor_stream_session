@@ -364,5 +364,8 @@ logscore0 / nrow(dat)
 logscore1 / nrow(dat)
 logscore2 / nrow(dat)
 
+# differences between these (scaled) values for the various models
+round(logscore1 / nrow(dat) - logscore0 / nrow(dat), digits=3)
+round(logscore2 / nrow(dat) - logscore1 / nrow(dat), digits=3)
 
 loo(res)
