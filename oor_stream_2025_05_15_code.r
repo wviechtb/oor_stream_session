@@ -118,3 +118,49 @@ lines(xs, ys, lwd=5, col="red")
 # not know are the beta values; so when the data are fixed, but the beta
 # values are unknown, then this makes equation 13.7 the likelihood of beta
 # given the data
+
+# let's try finding the value of beta (i.e., the intercept and slope) that
+# maximizes the likelihood for the vote data from last time
+
+# download the dataset if it doesn't already exist
+if (!file.exists("nes.txt")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/NES/data/nes.txt", destfile="nes.txt")
+
+# read in the dataset
+dat <- read.table("nes.txt", header=TRUE)
+
+# inspect the first six rows of the dataset
+head(dat)
+
+# keep only the data from 1992 and exclude respondents who preferred other candidates or had no opinion
+ok <- dat$year==1992 & !is.na(dat$rvote) & !is.na(dat$dvote) & (dat$rvote==1 | dat$dvote==1)
+dat <- dat[ok,]
+
+fitfun <- function(beta, x, y) {
+
+   p <- plogis(beta[1] + beta[2] * x)
+
+   # we want to find the value of beta that maximizes the following
+   #
+   # prod(p^y * (1-p)^(1-y))
+   #
+   # however, the product of many probabilities becomes very small and
+   # essentially indistinguishable from 0, which causes some numeric problems
+   # when we use an algorithm to maximize the likelihood
+   #
+   # instead, we will find the value of beta that maximizes the log
+   # likelihood, which is simply the following
+   #
+   # log(prod(p^y * (1-p)^(1-y)))
+   #
+   # which we can rewite as:
+   #
+   # = sum(log(p^y * (1-p)^(1-y)))
+   # = sum(log(p^y) + log((1-p)^(1-y)))
+   # = sum(y*log(p) + (1-y)*log(1-p))
+   # = sum(y*log(p)) + sum((1-y)*log(1-p))
+
+   loglikelihood <- sum(y * log(p)) + sum((1-y)*log(1-p))
+   return(loglikelihood)
+
+}
+
