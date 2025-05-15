@@ -135,6 +135,8 @@ head(dat)
 ok <- dat$year==1992 & !is.na(dat$rvote) & !is.na(dat$dvote) & (dat$rvote==1 | dat$dvote==1)
 dat <- dat[ok,]
 
+# function that computes the log likelihood for a given beta vector and given x and y variables
+
 fitfun <- function(beta, x, y) {
 
    p <- plogis(beta[1] + beta[2] * x)
@@ -174,3 +176,6 @@ res
 res <- glm(rvote ~ income, data=dat, family="binomial")
 summary(res)
 logLik(res)
+
+## Bayesian inference with a uniform prior distribution
+
