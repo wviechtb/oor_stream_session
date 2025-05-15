@@ -368,4 +368,16 @@ logscore2 / nrow(dat)
 round(logscore1 / nrow(dat) - logscore0 / nrow(dat), digits=3)
 round(logscore2 / nrow(dat) - logscore1 / nrow(dat), digits=3)
 
+# do the leave-one-out cross-validation log score computation based on glm() manually
+logscore <- rep(NA_real_, length(dat))
+for (i in 1:nrow(dat)) {
+   res <- glm(rvote ~ income, data=dat, family=binomial(link="logit"), subset=-i)
+   pred <- predict(res, newdata=dat[i,], type="response")
+   logscore[i] <- dat$rvote[i]*log(pred) + (1-dat$rvote[i])*log(1-pred)
+}
+sum(logscore)
+
+# compare this to what loo() gives for the Bayesian model
+res <- stan_glm(rvote ~ income, data=dat, family=binomial(link="logit"), refresh=0)
 loo(res)
+
