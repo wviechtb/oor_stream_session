@@ -78,5 +78,7 @@ plogis(0, location=-1.07, scale=1, lower.tail=FALSE)
 plogis(0, location=0, scale=1, lower.tail=FALSE)
 
 # so -1.40 + 0.33 * x can be thought of as the 'propensity' of voting
-# Republican, where 0 means an equal preference for Republican versus
-# Demoncrat and values greater 0 indicate a higher preference for Republican
+# Republican, where 0 means an equal preference for the Republican versus
+# Democrat candidate and values greater 0 indicate a higher preference for the
+# Republican candidate
+
