@@ -97,3 +97,6 @@ lines(xs, ys, lwd=5, col="red")
 ############################################################################
 
 ### 13.5: Maximum likelihood and Bayesian inference for logistic regression
+
+## Maximum likelihood using iteratively weighted least squares
+
