@@ -388,4 +388,13 @@ res <- glm(rvote ~ income, data=dat, family=binomial(link="logit"))
 # the log likelihood minus the number of parameters
 logLik(res) - 2
 
+# this is directly related to the Akaike information criterion (AIC; see
+# Wikipedia: https://en.wikipedia.org/wiki/Akaike_information_criterion),
+# which just multiplies this by -2
+-2 * (logLik(res) - 2)
+AIC(res)
+
+# asymptotically, these two things are equivalent, so the AIC gives us an
+# estimate of the out-of-sample performance of the model
+
 ############################################################################
