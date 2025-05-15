@@ -82,3 +82,14 @@ plogis(0, location=0, scale=1, lower.tail=FALSE)
 # Democrat candidate and values greater 0 indicate a higher preference for the
 # Republican candidate
 
+## Nonidentifiability of the latent scale parameter
+
+# Figure 13.5: plot of the pdf from a logistic distribution
+xs <- seq(-6, 6, length.out=1000)
+ys <- dlogis(xs, location=0, scale=1)
+plot(xs, ys, type="l", lwd=5, bty="l", xlab="", ylab="")
+
+# now let's add to this plot the pdf from a normal distribution with the same
+# mean but a standard deviation of 1.6; the two distributions are very similar
+ys <- dnorm(xs, mean=0, sd=1.6)
+lines(xs, ys, lwd=5, col="red")
