@@ -307,3 +307,9 @@ segments(1.8, 0.5, 2.2, 0.5, lwd=5, col="blue")
 
 # frequency table of the rvote variable (0 = voted for Clinton, 1 = voted for Bush)
 table(dat$rvote)
+
+# log score for the null model
+log(0.5) * nrow(dat)
+
+#
+sum(dat$rvote==1) * log(mean(dat$rvote)) + sum(dat$rvote==0) * log(1-mean(dat$rvote))
