@@ -173,9 +173,15 @@ res
 # res$par gives the estimated value of beta; res$value is the log likelihood
 
 # fit the logistic regression model with maximum likelihood estimation using glm()
-res <- glm(rvote ~ income, data=dat, family="binomial")
+res <- glm(rvote ~ income, data=dat, family=binomial(link="logit"))
 summary(res)
 logLik(res)
 
 ## Bayesian inference with a uniform prior distribution
+
+# fit the logistic regression model predicting rvote from income
+res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat,
+                refresh=0, prior=NULL, prior_intercept=NULL)
+print(res, digits=3)
+
 
