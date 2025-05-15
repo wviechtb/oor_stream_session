@@ -184,4 +184,10 @@ res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat,
                 refresh=0, prior=NULL, prior_intercept=NULL)
 print(res, digits=3)
 
+# extract the samples from the posterior distributions of the intercept and slope parameters
+post <- as.data.frame(res)
 
+den <- density(post[,1], n=4096)
+plot(den, main="Kernel density estimate of the posterior distribution for the intercept",
+     bty="l", lwd=5)
+den$x[which.max(den$y)[
