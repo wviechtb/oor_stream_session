@@ -165,8 +165,12 @@ fitfun <- function(beta, x, y) {
 }
 
 # find the value of beta that maximizes the function above
-optim(par=c(0,0), fitfun, x=dat$income, y=dat$rvote, control=list(fnscale=-1))
+res <- optim(par=c(0,0), fitfun, x=dat$income, y=dat$rvote, control=list(fnscale=-1))
+res
+
+# res$par gives the estimated value of beta; res$value is the log likelihood
 
 # fit the logistic regression model with maximum likelihood estimation using glm()
 res <- glm(rvote ~ income, data=dat, family="binomial")
 summary(res)
+logLik(res)
