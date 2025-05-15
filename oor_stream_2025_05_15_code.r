@@ -303,3 +303,7 @@ segments(1.8, 0.5, 2.2, 0.5, lwd=5, col="blue")
 
 ### 13.6: Cross validation and log score for logistic regression
 
+## Log score for logistic regression
+
+# frequency table of the rvote variable (0 = voted for Clinton, 1 = voted for Bush)
+table(dat$rvote)
