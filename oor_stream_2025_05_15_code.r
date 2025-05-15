@@ -381,3 +381,11 @@ sum(logscore)
 res <- stan_glm(rvote ~ income, data=dat, family=binomial(link="logit"), refresh=0)
 loo(res)
 
+# refit the logistic regression model with income as predictor using glm()
+res <- glm(rvote ~ income, data=dat, family=binomial(link="logit"))
+
+# the leave-one-out cross-validation log score should be roughly similar to
+# the log likelihood minus the number of parameters
+logLik(res) - 2
+
+############################################################################
