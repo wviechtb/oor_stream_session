@@ -100,3 +100,9 @@ lines(xs, ys, lwd=5, col="red")
 
 ## Maximum likelihood using iteratively weighted least squares
 
+# first think of y as a variable that follows a Bernoulli distribution (see
+# Wikipedia: https://en.wikipedia.org/wiki/Bernoulli_distribution), where p is
+# the probability that y=1; we can write the probability mass function (pmf)
+# of such a variable as p^y * (1-p)^(1-y); so when y=1, then this is equal to
+# p and when y=0, then this is equal to 1-p
+
