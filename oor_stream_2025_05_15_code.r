@@ -318,6 +318,11 @@ logLik(res)
 
 # note that the log likelihood is the same as the log score for this model
 
+# this is the same as getting the predicted probabilities from this model
+# (which are all 0.5) and then computing the log score
+pred <- predict(res, type="response")
+sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1 - pred))
+
 # log score for the model where we just use the information how many people
 # actually voted for Bush versus Clinton
 sum(dat$rvote==1) * log(mean(dat$rvote)) + sum(dat$rvote==0) * log(1-mean(dat$rvote))
@@ -329,3 +334,6 @@ logLik(res)
 # note that the log likelihood is the same as the log score for this model
 
 
+
+res <- stan_glm(rvote ~ 1, data=dat, family=binomial(link="logit"), refresh=0)
+loo(res)
