@@ -311,12 +311,21 @@ table(dat$rvote)
 # log score for the null model
 log(0.5) * nrow(dat)
 
+# fit a logistic regression model without any predictors and no intercept (or
+# more precisely, the intercept is fixed to 0)
+res <- glm(rvote ~ 0, data=dat, family=binomial(link="logit"))
+logLik(res)
+
+# note that the log likelihood is the same as the log score for this model
+
 # log score for the model where we just use the information how many people
 # actually voted for Bush versus Clinton
 sum(dat$rvote==1) * log(mean(dat$rvote)) + sum(dat$rvote==0) * log(1-mean(dat$rvote))
 
-# fit the logistic regression model without any predictors
+# fit a logistic regression model without any predictors but an estimated intercept
 res <- glm(rvote ~ 1, data=dat, family=binomial(link="logit"))
 logLik(res)
 
 # note that the log likelihood is the same as the log score for this model
+
+
