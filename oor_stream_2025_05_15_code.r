@@ -209,3 +209,6 @@ print(res, digits=3)
 res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0,
                 prior=normal(0,1))
 print(res, digits=3)
+
+# all of this makes very little difference; let's say we are a prior much more
+# skeptical that there is a relationship between income and voting behavior
