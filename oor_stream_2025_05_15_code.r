@@ -358,9 +358,11 @@ sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
 # priors, but since the priors are only weakly informative and we have lots of
 # data, the difference is negligible
 
-logscore0
-logscore1
-logscore2
+# since the log scores get more and more negative as the sample size
+# increases, we can divide them by the sample size
+logscore0 / nrow(dat)
+logscore1 / nrow(dat)
+logscore2 / nrow(dat)
 
 
 loo(res)
