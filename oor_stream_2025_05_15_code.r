@@ -321,7 +321,8 @@ logLik(res)
 # this is the same as getting the predicted probabilities from this model
 # (which are all 0.5) and then computing the log score
 pred <- predict(res, type="response")
-sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+logscore0 <- sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+logscore0
 
 # log score for the model where we just use the information how many people
 # actually voted for Bush versus Clinton
@@ -336,7 +337,8 @@ logLik(res)
 # this is the same as getting the predicted probabilities from this model
 # (which are all ~0.405) and then computing the log score
 pred <- predict(res, type="response")
-sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+logscore1 <- sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+logscore1
 
 # fit a logistic regression model with income as predictor
 res <- glm(rvote ~ income, data=dat, family=binomial(link="logit"))
@@ -344,7 +346,8 @@ logLik(res)
 
 # the log likelihood is again the same as the log score for this model
 pred <- predict(res, type="response")
-sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+logscore2 <- sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+logscore2
 
 # now let's do the same with stan_glm() for this last model
 res <- stan_glm(rvote ~ income, data=dat, family=binomial(link="logit"), refresh=0)
@@ -355,6 +358,9 @@ sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
 # priors, but since the priors are only weakly informative and we have lots of
 # data, the difference is negligible
 
+logscore0
+logscore1
+logscore2
 
 
 loo(res)
