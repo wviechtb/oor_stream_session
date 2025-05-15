@@ -187,7 +187,12 @@ print(res, digits=3)
 # extract the samples from the posterior distributions of the intercept and slope parameters
 post <- as.data.frame(res)
 
+# use kernel density estimation to find the mode of the posterior distributions
 den <- density(post[,1], n=4096)
 plot(den, main="Kernel density estimate of the posterior distribution for the intercept",
      bty="l", lwd=5)
-den$x[which.max(den$y)[
+den$x[which.max(den$y)]
+den <- density(post[,2], n=4096)
+plot(den, main="Kernel density estimate of the posterior distribution for the slope",
+     bty="l", lwd=5)
+den$x[which.max(den$y)]
