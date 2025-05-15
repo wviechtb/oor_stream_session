@@ -211,4 +211,12 @@ res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh
 print(res, digits=3)
 
 # all of this makes very little difference; let's say we are a prior much more
-# skeptical that there is a relationship between income and voting behavior
+# skeptical that there is a relationship between income and voting behavior;
+# let's use a N(0,0.1) prior on the slope
+res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0,
+                prior=normal(0,0.1))
+print(res, digits=3)
+
+# now we are starting to see how the prior for the slope is exerting some
+# influence on the posterior distribution for the slope (and as a consequence
+# also on the intercept)
