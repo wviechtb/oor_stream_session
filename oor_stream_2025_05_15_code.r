@@ -338,7 +338,23 @@ logLik(res)
 pred <- predict(res, type="response")
 sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
 
+# fit a logistic regression model with income as predictor
+res <- glm(rvote ~ income, data=dat, family=binomial(link="logit"))
+logLik(res)
+
+# the log likelihood is again the same as the log score for this model
+pred <- predict(res, type="response")
+sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+
+# now let's do the same with stan_glm() for this last model
+res <- stan_glm(rvote ~ income, data=dat, family=binomial(link="logit"), refresh=0)
+pred <- predict(res, type="response")
+sum(dat$rvote*log(pred) + (1-dat$rvote)*log(1-pred))
+
+# this is not exactly the same as what we get from glm() because of the
+# priors, but since the priors are only weakly informative and we have lots of
+# data, the difference is negligible
 
 
-res <- stan_glm(rvote ~ 1, data=dat, family=binomial(link="logit"), refresh=0)
+
 loo(res)
