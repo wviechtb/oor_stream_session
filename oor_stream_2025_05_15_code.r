@@ -54,3 +54,7 @@ mean(z < 1)
 
 # but we can compute this exactly using plogis()
 plogis(1)
+
+# logit^-1(x) = exp(x) / (1 + exp(x))
+exp(1) / (1 + exp(1))
+
