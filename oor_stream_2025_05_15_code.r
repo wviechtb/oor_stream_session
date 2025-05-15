@@ -220,3 +220,16 @@ print(res, digits=3)
 # now we are starting to see how the prior for the slope is exerting some
 # influence on the posterior distribution for the slope (and as a consequence
 # also on the intercept)
+
+## Comparing maximum likelihood and Bayesian inference using a simulation study
+
+bayes_sim <- function(n, a=-2, b=0.8) {
+   x <- runif(n, -1, 1)
+   z <- rlogis(n, a + b*x, 1)
+   y <- ifelse(z > 0, 1, 0)
+   fake <- data.frame(x, y, z)
+   glm_fit <- glm(y ~ x, family=binomial(link="logit"), data=fake)
+   stan_glm_fit <- stan_glm(y ~ x, family=binomial(link="logit"), data=fake, prior=normal(0.5, 0.5))
+   #display(glm_fit, digits=1)
+   print(stan_glm_fit, digits=1)
+}
