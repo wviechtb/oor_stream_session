@@ -106,9 +106,11 @@ lines(xs, ys, lwd=5, col="red")
 # of such a variable as p^y * (1-p)^(1-y); so when y=1, then this is equal to
 # p and when y=0, then this is equal to 1-p
 
-# in a logistic regression model, p = logit^{-1}(X beta) (see 13.2), so we can
-# write the pmf of y under such a model as:
+# in a logistic regression model, p = logit^{-1}(X beta) (see equation 13.2),
+# so we can write the pmf of y under such a model as:
 #
 # logit^{-1}(X beta)^y * (1-logit^{-1}(X beta))^(1-y)
-
+#
+# and since we have n subjects, we just take the product of these values (see
+# equation 13.7) to get the joint pmf of (y_1, y_2, ..., y_n)
 
