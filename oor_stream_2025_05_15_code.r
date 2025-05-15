@@ -298,3 +298,8 @@ par(bty="l")
 stripchart(data.frame(apply(sav, 2, jitter, amount=0.02)), pch=19, vertical=TRUE, method="jitter")
 abline(h=0.8, lty="dotted")
 segments(1.8, 0.5, 2.2, 0.5, lwd=5, col="blue")
+
+############################################################################
+
+### 13.6: Cross validation and log score for logistic regression
+
