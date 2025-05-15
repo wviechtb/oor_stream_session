@@ -58,3 +58,19 @@ plogis(1)
 # logit^-1(x) = exp(x) / (1 + exp(x))
 exp(1) / (1 + exp(1))
 
+# Figure 13.6: pdf for a logistic distribution with mean (location) equal to
+# -1.40 + 0.33 * 1 = -1.07 with the region > 0 shaded
+xs <- seq(-6, 6, length.out=1000)
+ys <- dlogis(xs, location=-1.07, scale=1)
+plot(xs, ys, type="l", lwd=5, bty="l", xlab="", ylab="")
+ys <- ys[xs > 0]
+xs <- xs[xs > 0]
+polygon(c(xs,rev(xs)), c(ys,rep(0,length(xs))), col="gray80", border=NA)
+lines(xs, ys, lwd=5)
+
+# the shaded area corresponds to the probability that y=1
+plogis(0, location=-1.07, scale=1, lower.tail=FALSE)
+
+# what would happen if -1.40 + 0.33 * x is equal to 0? then there is a 50%
+# probability of y=1 (and analogously, a 50% probability of y=0)
+plogis(0, location=0, scale=1, lower.tail=FALSE)
