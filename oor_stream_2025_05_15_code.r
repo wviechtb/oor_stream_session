@@ -256,3 +256,24 @@ par(bty="l")
 stripchart(data.frame(apply(sav, 2, jitter, amount=0.02)), pch=19, vertical=TRUE, method="jitter")
 abline(h=0.8, lty="dotted")
 segments(1.8, 0.5, 2.2, 0.5, lwd=5, col="blue")
+
+# simulate data based on n=100 subjects and compare the model fits
+bayes_sim(100)
+
+# repeat the above 100 times and save the slope coefficients from the two models
+sav <- replicate(100, bayes_sim(100))
+sav <- t(sav)
+sav <- data.frame(sav)
+names(sav) <- c("mle", "bayes")
+sav
+
+# set slope MLEs smaller than 0 to 0 and MLEs larger than 1 to 1
+sav$mle[sav$mle <= 0] <- 0
+sav$mle[sav$mle >= 1] <- 1
+
+# plot the MLE and Bayesian slope estimates; the dotted line is the true slope
+# and the blue line is the prior mean for the Bayesian model
+par(bty="l")
+stripchart(data.frame(apply(sav, 2, jitter, amount=0.02)), pch=19, vertical=TRUE, method="jitter")
+abline(h=0.8, lty="dotted")
+segments(1.8, 0.5, 2.2, 0.5, lwd=5, col="blue")
