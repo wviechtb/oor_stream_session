@@ -201,3 +201,11 @@ den$x[which.max(den$y)]
 # fit the logistic regression model using the default (weakly informative) priors
 res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=3)
+
+## Bayesian inference with some prior information
+
+# fit the logistic regression model using a slightly more informative N(0,1)
+# prior on the slope
+res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0,
+                prior=normal(0,1))
+print(res, digits=3)
