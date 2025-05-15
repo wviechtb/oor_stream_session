@@ -179,7 +179,8 @@ logLik(res)
 
 ## Bayesian inference with a uniform prior distribution
 
-# fit the logistic regression model predicting rvote from income
+# fit the logistic regression model predicting rvote from income using
+# uniform/flat priors on the intercept and slope
 res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat,
                 refresh=0, prior=NULL, prior_intercept=NULL)
 print(res, digits=3)
@@ -196,3 +197,7 @@ den <- density(post[,2], n=4096)
 plot(den, main="Kernel density estimate of the posterior distribution for the slope",
      bty="l", lwd=5)
 den$x[which.max(den$y)]
+
+# fit the logistic regression model using the default (weakly informative) priors
+res <- stan_glm(rvote ~ income, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=3)
