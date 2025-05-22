@@ -111,3 +111,5 @@ res6 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
                    a ~ dnorm(0.5, 1),
                    b ~ dnorm(0, 10),
                    log_sigma ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,6)))
+
+# note: model res6 also runs; we do not need to fix exp(log_sigma) to 0.001
