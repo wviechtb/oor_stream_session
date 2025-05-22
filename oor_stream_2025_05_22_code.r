@@ -73,3 +73,14 @@ r <- apply(s, 2, mean) - dat$brain_std
 resid_var <- var2(r)
 outcome_var <- var2(dat$brain_std)
 1 - resid_var/outcome_var
+
+# function to compute R^2 in this manner
+R2_is_bad <- function(quap_fit) {
+   s <- sim(quap_fit, refresh=0)
+   r <- apply(s, 2, mean) - dat$brain_std
+   1 - var2(r) / var2(dat$brain_std)
+}
+
+# try this out (using the same seed as above to check that we get the same result)
+set.seed(12)
+R2_is_bad(res1)
