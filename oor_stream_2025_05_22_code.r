@@ -60,3 +60,16 @@ mean(exp(post$log_sigma))
 # can also take samples for the intercept and slope based on the lm() model (but not sigma)
 post.lm <- extract.samples(res1.lm)
 head(post.lm)
+
+# simulate posterior observations of brain_std corresponding to the 7 observed species
+set.seed(12)
+s <- sim(res1)
+head(s)
+
+# compute the residuals
+r <- apply(s, 2, mean) - dat$brain_std
+
+# compute R^2 (note: using variances computed with n in the denominator, not n-1)
+resid_var <- var2(r)
+outcome_var <- var2(dat$brain_std)
+1 - resid_var/outcome_var
