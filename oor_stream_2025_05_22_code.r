@@ -118,10 +118,16 @@ res6 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
 # - sim() simulates posterior observations of y|x (i.e., for single individuals)
 # - link() simulates posterior predictions of E[y|x]
 
+# simulates posterior predictions for mass_std values between min and max mass_std
 mass_seq <- seq(from=min(dat$mass_std), to=max(dat$mass_std), length.out=100)
 l <- link(res1, data=list(mass_std=mass_seq))
+head(l)
+
+# compute the mean and percentile interval for each column
 mu <- apply(l, 2, mean)
 ci <- apply(l, 2, PI)
+
+# plot the data and add the line based on the mean with the corresponding interval
 plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="standardized body mass (kg)",
      ylab="standardized brain volume (cc)", bty="l")
 lines(mass_seq, mu)
