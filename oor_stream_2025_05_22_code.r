@@ -199,3 +199,17 @@ invisible(lapply(1:7, function(i) {
 ############################################################################
 
 ### 7.2: Entropy and accuracy
+
+## 7.2.3: From entropy to accuracy
+
+# compute the Kullback-Leibler divergence for the example
+p <- c(0.3, 0.7)
+qis <- seq(0.01, 0.99, length=1000)
+dkl <- sapply(qs, function(qi) {
+   q <- c(qi, 1-qi)
+   sum(p * (log(p) - log(q)))
+})
+
+# Figure 7.5: plot of the KL divergence as a fuction of q[1]
+plot(qs, dkl, type="l", lwd=5, xlab="q[1]", ylab="Divergence of q from p")
+abline(v=0.3, lty="dashed")
