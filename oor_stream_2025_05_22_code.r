@@ -133,16 +133,24 @@ plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="standardized body 
 lines(mass_seq, mu)
 shade(ci, mass_seq)
 
+# Figure 7.3: corresponding plots for all 6 models
 par(mfrow=c(3,2))
 res <- list(res1, res2, res3, res4, res5, res6)
+mass_seq <- seq(from=-1.2, to=1.5, length.out=100)
 invisible(lapply(res, function(x) {
    l <- link(x, data=list(mass_std=mass_seq))
    mu <- apply(l, 2, mean)
    ci <- apply(l, 2, PI)
+   xs <- seq(30, 65, by=5)
+   xs_std <- (xs-mean(dat$mass))/sd(dat$mass)
+   ys <- seq(0, 1800, by=450)
+   ys_std <- ys / max(dat$brain)
    plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
-        ylab="brain volume (cc)", bty="l", ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
-   xs <- seq(30, 70, by=20)
-   axis(side=1, at=(xs-mean(dat$mass))/sd(dat$mass), labels=xs)
+        ylab="brain volume (cc)", bty="l", xlim=range(xs_std),
+        ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
+   axis(side=1, at=xs_std, labels=xs)
+   axis(side=2, at=ys_std, labels=ys)
    lines(mass_seq, mu, lwd=3)
    shade(ci, mass_seq)
+   mtext(paste0("R^2 = ", round(R2_is_bad(x), digits=2)), cex=0.8)
 }))
