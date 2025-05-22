@@ -50,7 +50,8 @@ res1.lm <- lm(brain_std ~ mass_std, data=dat)
 summary(res1.lm)
 sigma(res1.lm)
 
-# sidenote: to compare
+# sidenote: to compare sigma to the Bayesian model we should extract samples
+# from the posterior distributions, including the one for log(sigma), then
+# transform the latter to sigma, and then take the mean
 post <- extract.samples(res1)
-exp(mean(post$log_sigma))
 mean(exp(post$log_sigma))
