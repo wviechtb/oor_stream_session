@@ -18,3 +18,7 @@ library(rethinking)
 
 ############################################################################
 
+### 7.1: The problem with parameters
+
+## 7.1.1: More parameters (almost) always improve fit
+
