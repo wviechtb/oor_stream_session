@@ -216,8 +216,15 @@ abline(v=0.3, lty="dashed")
 
 ## 7.2.4: Estimating divergence
 
-lppd(res1, n=1e4)
+# compute the log pointwise predictive density of each individual observation
+lppdi <- lppd(res1, n=1e4)
+lppdi
 
+# we can reproduce this manually by extracting posterior samples of the
+# intercept, slope, and log(sigma) values; then we compute for an observation
+# its density under a normal distribution with mean and SD based on a
+# particular sample of these parameters, repeating this for all samples,
+# taking the mean of the density values, and finally the log thereof
 post <- extract.samples(res1)
 c(log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[1], mean=par[1] + par[2] * dat$mass_std[1], sd=exp(par[3]))))),
   log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[2], mean=par[1] + par[2] * dat$mass_std[2], sd=exp(par[3]))))),
@@ -227,16 +234,28 @@ c(log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[1], mean=par[1] + pa
   log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[6], mean=par[1] + par[2] * dat$mass_std[6], sd=exp(par[3]))))),
   log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[7], mean=par[1] + par[2] * dat$mass_std[7], sd=exp(par[3]))))))
 
+sigma2.mle <- sum(resid(res1.lm)^2) / 7
+fitted <- fitted(res1.lm)
+dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE)
+
+############################################################################
+
+
+
+
+
+
+############################################################################
+############################################################################
+############################################################################
+
+
 
 s1 <- apply(post, 1, function(par) rnorm(1, mean=par[1] + par[2] * dat$mass_std[1], sd=exp(par[3])))
 
 
 sum(lppd(res1, n=1e4))
 
-logLik(res1.lm)
-sigma2.mle <- sum(resid(res1.lm)^2) / 7
-fitted <- fitted(res1.lm)
-sum(dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE))
 
 
 
@@ -262,5 +281,5 @@ res1 <- quap(alist(brain_std ~ dnorm(mu, sigma),
                    mu <- a + b*mass_std,
                    a ~ dnorm(0.5, 1),
                    b ~ dnorm(0, 10),
-                   sigma ~ dunif(0.0001, 10)), data=dat)
+                   sigma ~ dunif(0.001, 10)), data=dat)
 precis(res1)
