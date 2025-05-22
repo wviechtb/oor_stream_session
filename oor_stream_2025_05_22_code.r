@@ -249,7 +249,15 @@ sigma2.mle <- sum(resid(res1.lm)^2) / 7
 fitted <- fitted(res1.lm)
 sum(dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE))
 
+## 7.2.5: Scoring the right data
 
+# compute the log score for each of the models
+set.seed(1)
+res <- list(res1, res2, res3, res4, res5, res6)
+sapply(res, function(m) sum(lppd(m)))
+
+# compare against the corresponding
+sapply(res, logLik)
 
 ############################################################################
 
