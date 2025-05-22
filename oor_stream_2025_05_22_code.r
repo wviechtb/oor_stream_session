@@ -242,11 +242,14 @@ c(log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[1], mean=par[1] + pa
 sum(lppdi)
 
 # we can think of this total log probability score as the Bayesian analog of
-# the log likelihood under maximum likelihood estimation
+# the log likelihood under maximum likelihood estimation (does not give the
+# same value, but it is similar in spirit)
 logLik(res1.lm)
 sigma2.mle <- sum(resid(res1.lm)^2) / 7
 fitted <- fitted(res1.lm)
-dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE)
+sum(dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE))
+
+
 
 ############################################################################
 
