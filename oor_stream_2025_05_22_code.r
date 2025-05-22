@@ -137,14 +137,14 @@ shade(ci, mass_seq)
 par(mfrow=c(3,2))
 res <- list(res1, res2, res3, res4, res5, res6)
 mass_seq <- seq(from=-1.2, to=1.5, length.out=100)
+xs <- seq(30, 65, by=5)
+xs_std <- (xs-mean(dat$mass))/sd(dat$mass)
+ys <- seq(0, 1800, by=450)
+ys_std <- ys / max(dat$brain)
 invisible(lapply(res, function(x) {
    l <- link(x, data=list(mass_std=mass_seq))
    mu <- apply(l, 2, mean)
    ci <- apply(l, 2, PI)
-   xs <- seq(30, 65, by=5)
-   xs_std <- (xs-mean(dat$mass))/sd(dat$mass)
-   ys <- seq(0, 1800, by=450)
-   ys_std <- ys / max(dat$brain)
    plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
         ylab="brain volume (cc)", bty="l", xlim=range(xs_std),
         ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
@@ -154,3 +154,45 @@ invisible(lapply(res, function(x) {
    shade(ci, mass_seq)
    mtext(paste0("R^2 = ", round(R2_is_bad(x), digits=2)), cex=0.8)
 }))
+par(mfrow=c(1,1))
+
+## 7.1.2: Too few parameters hurts, too
+
+# Figure 7.4 (left): regression lines based on the linear model leaving out
+# one data point at a time
+plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
+     ylab="brain volume (cc)", bty="l", xlim=range(xs_std),
+     ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
+axis(side=1, at=xs_std, labels=xs)
+axis(side=2, at=ys_std, labels=ys)
+
+invisible(lapply(1:7, function(i) {
+   tmp <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                      mu <- a + b*mass_std,
+                      a ~ dnorm(0.5, 1),
+                      b ~ dnorm(0, 10),
+                      log_sigma ~ dnorm(0, 1)), data=dat[-i,])
+   l <- link(tmp, data=list(mass_std=mass_seq))
+   mu <- apply(l, 2, mean)
+   lines(mass_seq, mu, lwd=3, col="gray40")
+}))
+
+# Figure 7.4 (right): regression lines based on the 4th degree polynomial
+# model leaving out one data point at a time
+plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
+     ylab="brain volume (cc)", bty="l", xlim=range(xs_std),
+     ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
+axis(side=1, at=xs_std, labels=xs)
+axis(side=2, at=ys_std, labels=ys)
+
+invisible(lapply(1:7, function(i) {
+   tmp <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                     mu <- a + b[1]*mass_std + b[2]*mass_std^2 + b[3]*mass_std^3 + b[4]*mass_std^4,
+                     a ~ dnorm(0.5, 1),
+                     b ~ dnorm(0, 10),
+                     log_sigma ~ dnorm(0, 1)), data=dat[-i,], start=list(b=rep(0,4)))
+   l <- link(tmp, data=list(mass_std=mass_seq))
+   mu <- apply(l, 2, mean)
+   lines(mass_seq, mu, lwd=3, col="gray40")
+}))
+
