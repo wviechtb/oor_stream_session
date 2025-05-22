@@ -213,3 +213,22 @@ dkl <- sapply(qs, function(qi) {
 # Figure 7.5: plot of the KL divergence as a fuction of q[1]
 plot(qs, dkl, type="l", lwd=5, xlab="q[1]", ylab="Divergence of q from p")
 abline(v=0.3, lty="dashed")
+
+## 7.2.4: Estimating divergence
+
+sum(lppd(res1, n=1e4))
+
+logLik(res1.lm)
+sigma2.mle <- sum(resid(res1.lm)^2) / 7
+fitted <- fitted(res1.lm)
+sum(dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE))
+
+res1 <- quap(alist(brain_std ~ dnorm(mu, sigma),
+                   mu <- a + b*mass_std,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   sigma ~ dunif(0.0001, 10)), data=dat)
+precis(res1)
+sqrt(sigma2.mle)
+
+############################################################################
