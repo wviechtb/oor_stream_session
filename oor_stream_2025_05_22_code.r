@@ -196,3 +196,6 @@ invisible(lapply(1:7, function(i) {
    lines(mass_seq, mu, lwd=3, col="gray40")
 }))
 
+############################################################################
+
+### 7.2: Entropy and accuracy
