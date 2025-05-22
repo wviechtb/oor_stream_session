@@ -256,7 +256,14 @@ set.seed(1)
 res <- list(res1, res2, res3, res4, res5, res6)
 sapply(res, function(m) sum(lppd(m)))
 
-# compare against the corresponding
+# compare against the corresponding log likelihood values from lm() models
+res1.lm <- lm(brain_std ~ poly(mass_std, 1, raw=TRUE), data=dat)
+res2.lm <- lm(brain_std ~ poly(mass_std, 2, raw=TRUE), data=dat)
+res3.lm <- lm(brain_std ~ poly(mass_std, 3, raw=TRUE), data=dat)
+res4.lm <- lm(brain_std ~ poly(mass_std, 4, raw=TRUE), data=dat)
+res5.lm <- lm(brain_std ~ poly(mass_std, 5, raw=TRUE), data=dat)
+res6.lm <- lm(brain_std ~ poly(mass_std, 6, raw=TRUE), data=dat)
+res.lm <- list(res1.lm, res2.lm, res3.lm, res4.lm, res5.lm, res6.lm)
 sapply(res, logLik)
 
 ############################################################################
