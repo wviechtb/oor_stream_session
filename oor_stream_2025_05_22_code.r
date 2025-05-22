@@ -38,12 +38,11 @@ dat <- transform(dat, mass_std  = (mass - mean(mass)) / sd(mass),
                       brain_std = brain / max(brain))
 
 # fit the linear model
-res1 <- quap(alist(brain_std ~ dnorm(mu, sigma),
+res1 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
                    mu <- a + b*mass_std,
                    a ~ dnorm(0.5, 1),
                    b ~ dnorm(0, 10),
-                   log_sigma ~ dnorm(0, 1),
-                   sigma <- exp(log_sigma)), data=dat)
+                   log_sigma ~ dnorm(0, 1)), data=dat)
 precis(res1, digits=3)
 
 # compare the results to using lm() (they are essentially the same)
