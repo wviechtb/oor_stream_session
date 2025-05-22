@@ -216,6 +216,21 @@ abline(v=0.3, lty="dashed")
 
 ## 7.2.4: Estimating divergence
 
+lppd(res1, n=1e4)
+
+post <- extract.samples(res1)
+c(log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[1], mean=par[1] + par[2] * dat$mass_std[1], sd=exp(par[3]))))),
+  log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[2], mean=par[1] + par[2] * dat$mass_std[2], sd=exp(par[3]))))),
+  log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[3], mean=par[1] + par[2] * dat$mass_std[3], sd=exp(par[3]))))),
+  log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[4], mean=par[1] + par[2] * dat$mass_std[4], sd=exp(par[3]))))),
+  log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[5], mean=par[1] + par[2] * dat$mass_std[5], sd=exp(par[3]))))),
+  log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[6], mean=par[1] + par[2] * dat$mass_std[6], sd=exp(par[3]))))),
+  log(mean(apply(post, 1, function(par) dnorm(dat$brain_std[7], mean=par[1] + par[2] * dat$mass_std[7], sd=exp(par[3]))))))
+
+
+s1 <- apply(post, 1, function(par) rnorm(1, mean=par[1] + par[2] * dat$mass_std[1], sd=exp(par[3])))
+
+
 sum(lppd(res1, n=1e4))
 
 logLik(res1.lm)
@@ -223,13 +238,15 @@ sigma2.mle <- sum(resid(res1.lm)^2) / 7
 fitted <- fitted(res1.lm)
 sum(dnorm(dat$brain_std, mean=fitted, sd=sqrt(sigma2.mle), log=TRUE))
 
-res1 <- quap(alist(brain_std ~ dnorm(mu, sigma),
-                   mu <- a + b*mass_std,
-                   a ~ dnorm(0.5, 1),
-                   b ~ dnorm(0, 10),
-                   sigma ~ dunif(0.0001, 10)), data=dat)
-precis(res1)
-sqrt(sigma2.mle)
+
+
+
+
+
+
+s <- sim(res1)
+plot(density(s[,1]))
+lines(density(s1), col="red")
 
 set.seed(12)
 s <- sim(res1)
@@ -239,5 +256,11 @@ p <- sim(res1, ll=TRUE)
 dnorm(s[1,1], mean=apply(s, 2, mean)[1], sd=apply(s, 2, sd)[1], log=TRUE)
 
 
-
 ############################################################################
+
+res1 <- quap(alist(brain_std ~ dnorm(mu, sigma),
+                   mu <- a + b*mass_std,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   sigma ~ dunif(0.0001, 10)), data=dat)
+precis(res1)
