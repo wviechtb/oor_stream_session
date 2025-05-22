@@ -54,4 +54,9 @@ sigma(res1.lm)
 # from the posterior distributions, including the one for log(sigma), then
 # transform the latter to sigma, and then take the mean
 post <- extract.samples(res1)
+head(post)
 mean(exp(post$log_sigma))
+
+# can also take samples for the intercept and slope based on the lm() model (but not sigma)
+post.lm <- extract.samples(res1.lm)
+head(post.lm)
