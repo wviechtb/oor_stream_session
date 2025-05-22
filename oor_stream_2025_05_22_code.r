@@ -162,7 +162,7 @@ par(mfrow=c(1,1))
 # one data point at a time
 plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
      ylab="brain volume (cc)", bty="l", xlim=range(xs_std),
-     ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
+     ylim=range(brain_std), xaxt="n", yaxt="n")
 axis(side=1, at=xs_std, labels=xs)
 axis(side=2, at=ys_std, labels=ys)
 
@@ -179,9 +179,11 @@ invisible(lapply(1:7, function(i) {
 
 # Figure 7.4 (right): regression lines based on the 4th degree polynomial
 # model leaving out one data point at a time
+ys <- seq(-500, 2500, by=500)
+ys_std <- ys / max(dat$brain)
 plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
      ylab="brain volume (cc)", bty="l", xlim=range(xs_std),
-     ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
+     ylim=range(brain_std), xaxt="n", yaxt="n")
 axis(side=1, at=xs_std, labels=xs)
 axis(side=2, at=ys_std, labels=ys)
 
