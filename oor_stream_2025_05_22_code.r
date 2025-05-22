@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 7.1 - ?
+# - Section(s): 7.1 - 7.2
 #
 # last updated: 2025-05-22
 
@@ -265,5 +265,7 @@ res5.lm <- lm(brain_std ~ poly(mass_std, 5, raw=TRUE), data=dat)
 res6.lm <- lm(brain_std ~ poly(mass_std, 6, raw=TRUE), data=dat)
 res.lm <- list(res1.lm, res2.lm, res3.lm, res4.lm, res5.lm, res6.lm)
 sapply(res, logLik)
+
+# add the code for the simulation here!!!
 
 ############################################################################
