@@ -84,3 +84,30 @@ R2_is_bad <- function(quap_fit) {
 # try this out (using the same seed as above to check that we get the same result)
 set.seed(12)
 R2_is_bad(res1)
+
+# fit polynomial models of degree 2 to 6
+res2 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                   mu <- a + b[1]*mass_std + b[2]*mass_std^2,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   log_sigma ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,2)))
+res3 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                   mu <- a + b[1]*mass_std + b[2]*mass_std^2 + b[3]*mass_std^3,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   log_sigma ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,3)))
+res4 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                   mu <- a + b[1]*mass_std + b[2]*mass_std^2 + b[3]*mass_std^3 + b[4]*mass_std^4,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   log_sigma ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,4)))
+res5 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                   mu <- a + b[1]*mass_std + b[2]*mass_std^2 + b[3]*mass_std^3 + b[4]*mass_std^4 + b[5]*mass_std^5,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   log_sigma ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,5)))
+res6 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
+                   mu <- a + b[1]*mass_std + b[2]*mass_std^2 + b[3]*mass_std^3 + b[4]*mass_std^4 + b[5]*mass_std^5 + b[6]*mass_std^6,
+                   a ~ dnorm(0.5, 1),
+                   b ~ dnorm(0, 10),
+                   log_sigma ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,6)))
