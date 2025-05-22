@@ -114,3 +114,12 @@ res6 <- quap(alist(brain_std ~ dnorm(mu, exp(log_sigma)),
 
 # note: model res6 also runs; we do not need to fix exp(log_sigma) to 0.001
 
+post1 <- extract.samples(res1)
+mass_seq <- seq(from=min(dat$mass_std), to=max(dat$mass_std), length.out=100)
+l <- link(res1, data=list(mass_std=mass_seq))
+mu <- apply(l, 2, mean)
+ci <- apply(l, 2, PI)
+
+plot(brain_std ~ mass_std, data=dat)
+lines(mass_seq, mu)
+shade(ci, mass_seq)
