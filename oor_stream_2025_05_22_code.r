@@ -132,3 +132,17 @@ plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="standardized body 
      ylab="standardized brain volume (cc)", bty="l")
 lines(mass_seq, mu)
 shade(ci, mass_seq)
+
+par(mfrow=c(3,2))
+res <- list(res1, res2, res3, res4, res5, res6)
+invisible(lapply(res, function(x) {
+   l <- link(x, data=list(mass_std=mass_seq))
+   mu <- apply(l, 2, mean)
+   ci <- apply(l, 2, PI)
+   plot(brain_std ~ mass_std, data=dat, pch=21, bg="gray", xlab="body mass (kg)",
+        ylab="brain volume (cc)", bty="l", ylim=c(min(ci,brain_std),max(ci,brain_std)), xaxt="n", yaxt="n")
+   xs <- seq(30, 70, by=20)
+   axis(side=1, at=(xs-mean(dat$mass))/sd(dat$mass), labels=xs)
+   lines(mass_seq, mu, lwd=3)
+   shade(ci, mass_seq)
+}))
