@@ -231,4 +231,13 @@ res1 <- quap(alist(brain_std ~ dnorm(mu, sigma),
 precis(res1)
 sqrt(sigma2.mle)
 
+set.seed(12)
+s <- sim(res1)
+set.seed(12)
+p <- sim(res1, ll=TRUE)
+
+dnorm(s[1,1], mean=apply(s, 2, mean)[1], sd=apply(s, 2, sd)[1], log=TRUE)
+
+
+
 ############################################################################
