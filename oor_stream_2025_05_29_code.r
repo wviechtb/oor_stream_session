@@ -65,6 +65,6 @@ lint("oor_stream_2025_05_22_code.r")
 #install.packages("formatR")
 library(formatR)
 
-tidy_source("oor_stream_2025_05_22_code.r", indent=3)
+tidy_source("oor_stream_2025_05_22_code.r", indent=3, file="oor_stream_2025_05_22_code_formated.r")
 
 ############################################################################
