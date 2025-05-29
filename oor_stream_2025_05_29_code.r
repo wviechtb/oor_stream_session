@@ -14,9 +14,14 @@
 
 ############################################################################
 
-# some well-known syntax style guides:
+# there is no 'official' R style guide -- in the sense of that it can be found
+# on the R Project website (https://www.r-project.org) or on CRAN
+# (https://cran.r-project.org)
+
+# but people have written such guides; some well-known syntax style guides:
 # - https://style.tidyverse.org
 # - https://google.github.io/styleguide/Rguide.html
+# - https://contributions.bioconductor.org/r-code.html#r-code
 
 # sometimes labs / research groups have their own style guide:
 # - https://jef.works/R-style-guide/
