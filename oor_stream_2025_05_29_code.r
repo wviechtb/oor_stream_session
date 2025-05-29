@@ -65,9 +65,10 @@ lint("oor_stream_2025_05_22_code.r")
 #install.packages("formatR")
 library(formatR)
 
+# tidy the script and save into a separate file
 tidy_source("oor_stream_2025_05_22_code.r", indent=3, file="oor_stream_2025_05_22_code_formated.r")
+
+# or can tidy a script and save into the same file
 tidy_file("oor_stream_2025_05_22_code.r", indent=3)
-
-
 
 ############################################################################
