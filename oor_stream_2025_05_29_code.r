@@ -39,8 +39,13 @@
 #install.packages("styler")
 library(styler)
 
+# can style a file like the script from the last session (assuming it is in
+# the current working directory); note: this changes the file, so make a
+# backup if you want to keep the original
 style_file("oor_stream_2025_05_22_code.r")
 
+# in RStudio, there is an add-in that you can access via the toolbar (e.g.,
+# Addins -> Style active file)
 
 ############################################################################
 
