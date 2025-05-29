@@ -26,14 +26,10 @@
 # sometimes labs / research groups have their own style guide:
 # - https://jef.works/R-style-guide/
 
+############################################################################
+
 # - https://cran.r-project.org/package=styler
 # - https://cran.r-project.org/package=lintr
+# - https://cran.r-project.org/package=formatR
 # - https://posit-dev.github.io/air/
 
-x = c(2, 4, 3, 5, 6)
-x <- c(2, 4, 3, 5, 6)
-
-dat <- data.frame(species = c("afarensis", "africanus", "habilis", "boisei", "rudolfensis", "ergaster", "sapiens"),
-                  pos     = c(4, 3, 3, 4, 4, 3, 1),
-                  brain   = c(438, 452, 612, 521, 752, 871, 1350),
-                  mass    = c(37.0, 35.5, 34.5, 41.5, 55.5, 61.0, 53.5))
