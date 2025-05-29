@@ -87,3 +87,10 @@ tidy_file("oor_stream_2025_05_22_code.r", indent=3)
 #
 # note that this changes the file again, so make a backup before trying this
 # out
+
+############################################################################
+
+# some final thoughts:
+#
+
+############################################################################
