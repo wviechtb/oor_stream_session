@@ -72,3 +72,6 @@ tidy_source("oor_stream_2025_05_22_code.r", indent=3, file="oor_stream_2025_05_2
 tidy_file("oor_stream_2025_05_22_code.r", indent=3)
 
 ############################################################################
+
+curl -LsSf https://github.com/posit-dev/air/releases/latest/download/air-installer.sh | sh
+
