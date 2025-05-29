@@ -39,6 +39,11 @@
 #install.packages("styler")
 library(styler)
 
+style_file("oor_stream_2025_05_22_code.r")
+
+
+############################################################################
+
 # install the lintr package and load it
 #install.packages("lintr")
 library(lintr)
