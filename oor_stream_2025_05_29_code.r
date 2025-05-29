@@ -28,6 +28,8 @@
 
 ############################################################################
 
+# https://en.wikipedia.org/wiki/Lint_(software)
+
 # - https://cran.r-project.org/package=styler
 # - https://cran.r-project.org/package=lintr
 # - https://cran.r-project.org/package=formatR
