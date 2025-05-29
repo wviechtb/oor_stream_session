@@ -55,3 +55,6 @@ style_file("oor_stream_2025_05_22_code.r")
 #install.packages("lintr")
 library(lintr)
 
+lint("oor_stream_2025_05_22_code.r")
+
+############################################################################
