@@ -55,6 +55,14 @@ style_file("oor_stream_2025_05_22_code.r")
 #install.packages("lintr")
 library(lintr)
 
+# lint the same file; this shows all potential style issues, but does not
+# actually change the file (not sure if that is even possible)
 lint("oor_stream_2025_05_22_code.r")
+
+############################################################################
+
+# install the formatR package and load it
+#install.packages("formatR")
+library(formatR)
 
 ############################################################################
