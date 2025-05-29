@@ -73,5 +73,17 @@ tidy_file("oor_stream_2025_05_22_code.r", indent=3)
 
 ############################################################################
 
-curl -LsSf https://github.com/posit-dev/air/releases/latest/download/air-installer.sh | sh
-
+# Air is a separate piece of software to format R code
+#
+# https://posit-dev.github.io/air/
+#
+# you can follow the installation directions given there or just download a
+# pre-compiled binary from: https://github.com/posit-dev/air (add the path to
+# the binary to your path if you want to call air from the command line)
+#
+# the syntax for the command line is this:
+#
+# air format oor_stream_2025_05_22_code.r
+#
+# note that this changes the file again, so make a backup before trying this
+# out
