@@ -20,3 +20,20 @@ library(rstanarm)
 
 ### 13.7: Building a logistic regression model: wells in Bangladesh
 
+# download the dataset if it doesn't already exist
+if (!file.exists("wells.csv")) download.file("https://raw.githubusercontent.com/avehtari/ROS-Examples/refs/heads/master/Arsenic/data/wells.csv", destfile="wells.csv")
+
+# read in the dataset
+dat <- read.csv("wells.csv")
+
+# inspect the first six rows of the dataset
+head(dat)
+
+# fit the logistic regression model using only 'dist' as predictor
+res <- stan_glm(switch ~ dist, family=binomial(link="logit"), data=wells, refresh=0)
+print(res, digits=3)
+
+# Figure 13.8a: Histogram of distance to the nearest safe well
+hist(dat$dist, breaks=50, xlab="Distance (in meters)", main="")
+
+
