@@ -186,5 +186,21 @@ curve(invlogit(cbind(1, mean(dat$dist100), mean(dat$arsenic), x, mean(dat$educ))
 plot(jitter(dat$educ, amount=0.2), dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
      xlab="Years of education (head of household)", ylab="Pr(Switching)")
 curve(invlogit(cbind(1, mean(dat$dist100), mean(dat$arsenic), mean(dat$assoc), x) %*% coef(res3)), add=TRUE, lwd=3)
+par(mfrow=c(1,1))
+
+# the emmeans package can also be used for creating such plots
+
+library(emmeans)
+
+plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
+curve(invlogit(cbind(1, x, mean(dat$arsenic), mean(dat$assoc), mean(dat$educ)) %*% coef(res3)), add=TRUE, lwd=3)
+
+# compute the predicted values using emmeans() (note: all other variables are
+# automatically held constant at their mean)
+pred <- emmeans(res3, specs = ~ dist100, at=list(dist100=seq(0,3.5,by=0.1)))
+pred <- summary(pred, type="response")
+lines(pred$dist100, pred$prob, col="red")
+
 
 ############################################################################
