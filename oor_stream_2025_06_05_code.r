@@ -171,4 +171,9 @@ loo3 <- loo(res3)
 # compare the score for models res2 and res3
 loo_compare(loo2, loo3)
 
+par(mfrow=c(2,2))
+plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
+curve(invlogit(cbind(1, x, mean(dat$arsenic), mean(dat$assoc), mean(dat$educ)) %*% coef(res3)), add=TRUE, lwd=3)
+
 ############################################################################
