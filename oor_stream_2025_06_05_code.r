@@ -225,7 +225,7 @@ head(dat)
 res <- stan_glm(y ~ x, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=2)
 
-# Figure 14.1: plot of x versus y and the curve showing the predicted
+# Figure 14.1a: plot of x versus y and the curve showing the predicted
 # probability of y=1 as a function of x based on the model and the true model
 plot(dat$x, dat$y, pch=19, cex=0.8, bty="l", xlab="x", ylab="y")
 curve(invlogit(a + b*x), lwd=2, add=TRUE)
@@ -234,3 +234,8 @@ curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=2, lty="dashed", add=TRUE)
 # created a binned version of x
 k <- 5
 bins <- as.numeric(cut(dat$x, k))
+
+# FIgure 14.1b: plot x versus y and the proportions of y=1 within each bin
+plot(dat$x, dat$y, pch=19, cex=0.8, bty="l", xlab="x", ylab="y", col="darkgray")
+props <- prop.table(table(bins, dat$y), margin=1)
+props
