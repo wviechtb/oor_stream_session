@@ -256,6 +256,7 @@ head(dat)
 
 # Figure 14.2: data simulated from a logistic regression model with two predictors
 plot(dat$x1, dat$x2, pch=ifelse(dat$y == 1, 21, 19), xlab="x1", ylab="x2", bty="l")
+legend("topright", pch=c(21,19), legend=c("y=1", "y=0"))
 
 # fit the logistic regression model
 res <- stan_glm(y ~ x1 + x2, family=binomial(link="logit"), data=dat, refresh=0)
@@ -280,5 +281,3 @@ abline(a=(qlogis(0.1) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
 
 # this defines the line where Pr(y=1) is equal to 0.9
 abline(a=(qlogis(0.9) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
-
-
