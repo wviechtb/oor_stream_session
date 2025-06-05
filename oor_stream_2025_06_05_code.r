@@ -226,6 +226,7 @@ res <- stan_glm(y ~ x, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=2)
 
 # Figure 14.1: plot of x versus y and the curve showing the predicted
-# probability of y=1 as a function of x
+# probability of y=1 as a function of x based on the model and the true model
 plot(dat$x, dat$y, pch=19, cex=0.5, bty="l", xlab="x", ylab="y")
-curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=3, add=TRUE)
+curve(invlogit(a + b*x), lwd=3, add=TRUE)
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=3, lty="dashed", add=TRUE)
