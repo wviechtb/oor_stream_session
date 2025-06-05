@@ -53,4 +53,12 @@ plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
      xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
 curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=3, add=TRUE)
 
+# show the distribution of the dist100 variable within the two groups
+plot(density(dat$dist100[dat$switch==1]), lwd=3, main="", bty="l", col="dodgerblue",
+     xlab="Distance (in 100 meters) to nearest safe well")
+lines(density(dat$dist100[dat$switch==0]), lwd=3, col="firebrick")
+legend("topright", lwd=3, col=c("dodgerblue","firebrick"),
+       legend=c("Switchers", "Non-Switchers"))
+
+## Interpreting the logistic regression coefficients
 
