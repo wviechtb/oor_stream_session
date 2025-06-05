@@ -29,6 +29,8 @@ dat <- read.csv("wells.csv")
 # inspect the first six rows of the dataset
 head(dat)
 
+## Logistic regression with just one predictor
+
 # fit the logistic regression model using only 'dist' as predictor
 res <- stan_glm(switch ~ dist, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=3)
@@ -39,5 +41,7 @@ hist(dat$dist, breaks=50, xlab="Distance (in meters) to nearest safe well", main
 # fit the logistic regression model using only 'dist100' as predictor
 res <- stan_glm(switch ~ dist100, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=3)
+
+## Graphing the fitted model
 
 
