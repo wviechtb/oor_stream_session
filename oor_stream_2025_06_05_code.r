@@ -134,3 +134,33 @@ loo_compare(loo0, loo1, loo2)
 coef(res1)
 coef(res2)
 
+## Graphing the fitted model with two predictors
+
+# Figure 13.10a: probability of switching as a function of dist100 when
+# arsenic level is equal to 0.5, 1, or 4
+plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
+pred <- curve(invlogit(cbind(1, x, 0.5) %*% coef(res2)), add=TRUE, lwd=3)
+text(pred$x[30]-0.10, pred$y[30], "arsenic = 0.5", pos=2)
+pred <- curve(invlogit(cbind(1, x, 1.0) %*% coef(res2)), add=TRUE, lwd=3)
+text(pred$x[30]+0.04, pred$y[30], "arsenic = 1.0", pos=4)
+pred <- curve(invlogit(cbind(1, x, 4.0) %*% coef(res2)), add=TRUE, lwd=3)
+text(pred$x[30]+0.04, pred$y[30], "arsenic = 4.0", pos=4)
+
+# Figure 13.10b: probability of switching as a function of arsenic level when
+# dist100 is equal to 0, 0.5, or 2
+plot(dat$arsenic, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Arsenic concentration in well water", ylab="Pr(Switching)")
+pred <- curve(invlogit(cbind(1, 0.0, x) %*% coef(res2)), add=TRUE, lwd=3)
+text(pred$x[30]-0.10, pred$y[30], "dist100 = 0", pos=2)
+pred <- curve(invlogit(cbind(1, 0.5, x) %*% coef(res2)), add=TRUE, lwd=3)
+text(pred$x[30]+0.06, pred$y[30], "dist100 = 0.5", pos=4)
+pred <- curve(invlogit(cbind(1, 2.0, x) %*% coef(res2)), add=TRUE, lwd=3)
+text(pred$x[30]+0.06, pred$y[30], "dist100 = 2", pos=4)
+
+## Add the other two predictors to the model
+
+# add assoc and educ4 as additional predictors to the model
+res3 <- stan_glm(switch ~ dist100 + arsenic + assoc + educ4,
+                 family=binomial(link="logit"), data=dat, refresh=0)
+print(res2, digits=2)
