@@ -113,3 +113,5 @@ res2 <- stan_glm(switch ~ dist100 + arsenic, family=binomial(link="logit"),
                  data=dat, refresh=0)
 print(res2, digits=2)
 
+# use the divide-by-4 rule interpret the slopes
+round(coef(res2)[2:3] / 4, digits=2)
