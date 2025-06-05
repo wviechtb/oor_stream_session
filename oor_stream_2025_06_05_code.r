@@ -401,3 +401,10 @@ coef(res6)[["educ4"]] / 4
 res7 <- stan_glm(switch ~ dist100 + arsenic + educ4,
                  family=binomial(link="logit"), data=dat, refresh=0)
 print(res7, digits=2)
+
+# compute the leave-one-out log scores for the model
+loo7 <- loo(res7)
+loo7
+
+# compare the model to the one with just dist100 and arsenic as predictors
+loo_compare(loo2, loo7)
