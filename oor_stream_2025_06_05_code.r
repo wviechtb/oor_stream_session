@@ -235,7 +235,10 @@ curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=2, lty="dashed", add=TRUE)
 k <- 5
 bins <- as.numeric(cut(dat$x, k))
 
-# FIgure 14.1b: plot x versus y and the proportions of y=1 within each bin
+# Figure 14.1b: plot x versus y and the proportions of y=1 within each bin
+# (also add the line based on the fitted model)
 plot(dat$x, dat$y, pch=19, cex=0.8, bty="l", xlab="x", ylab="y", col="darkgray")
 props <- prop.table(table(bins, dat$y), margin=1)
 props
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=1, lty="dashed", add=TRUE)
+lines(by(dat$x, bins, mean), props[,"1"], pch=21, bg="white", cex=1.2, type="o")
