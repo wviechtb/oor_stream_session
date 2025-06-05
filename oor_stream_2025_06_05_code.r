@@ -87,3 +87,8 @@ round(apply(post, 2, quantile, prob=c(.025, .975)), digits=2)
 
 # note: in the book, the interval for the slope is incorrectly reported to be
 # [-0.73, -0.49], but it is actually [-0.82, -0.43]
+
+# fit the logistic regression model with no predictors (only an intercept)
+res0 <- stan_glm(switch ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
+loo(res0)
+loo(res)
