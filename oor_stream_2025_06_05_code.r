@@ -100,4 +100,16 @@ loo0
 loo1
 
 # compare the scores
-loo_compare(res0, res1)
+loo_compare(loo0, loo1)
+
+## Adding a second input variable
+
+# Figure 13.9: histogram of arsenic levels in unsafe wells (those exceeding 0.5)
+hist(dat$arsenic, breaks=50, xlab="Arsenic concentration in well water",
+     main="", xlim=c(0,max(dat$arsenic)))
+
+# add 'arsenic' as an additional predictor to the model
+res2 <- stan_glm(switch ~ dist100 + arsenic, family=binomial(link="logit"),
+                 data=dat, refresh=0)
+print(res2, digits=2)
+
