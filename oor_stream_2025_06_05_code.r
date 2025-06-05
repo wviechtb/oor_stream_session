@@ -76,3 +76,14 @@ round(quantile(pred[,1], prob=c(.025, .975)), digits=2)
 # switching for a one-unit increase in x (distance in 100 meters)
 coef(res)[[2]] / 4
 
+# extract the samples of the posterior distributions for the intercept and slope
+post <- as.data.frame(res)
+
+# get the medians of the distributions
+apply(post, 2, median)
+
+# construct 95% percentile intervals for the two coefficients
+round(apply(post, 2, quantile, prob=c(.025, .975)), digits=2)
+
+# note: in the book, the interval for the slope is incorrectly reported to be
+# [-0.73, -0.49], but it is actually [-0.82, -0.43]
