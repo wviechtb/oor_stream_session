@@ -298,12 +298,12 @@ res4 <- stan_glm(switch ~ dist100 + arsenic + dist100:arsenic,
 print(res4, digits=2)
 
 # estimated probability of switching when dist1000=0 and arsenic=0
-plogis(coef(res4)[[1]])
+round(plogis(coef(res4)[[1]]), digits=2)
 
 # we can use posterior_epred() for these calculations
 pred <- posterior_epred(res4, newdata=data.frame(dist100=0, arsenic=0))
-median(pred[,1])
+round(median(pred[,1]), digits=2)
 
-cbind(1, mean(dat$dist100), mean(dat$arsenic)
-
-coef(res4)
+# estimated probability of switching when both variables are equal to their mean
+pred <- posterior_epred(res4, newdata=data.frame(dist100=mean(dat$dist100), arsenic=mean(dat$arsenic)))
+round(median(pred[,1]), digits=2)
