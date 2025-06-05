@@ -209,3 +209,23 @@ lines(pred$dist100, pred$upper.HPD, col="red", lwd=3, lty="dotted")
 ############################################################################
 
 ### 14.1: Graphing logistic regression and binary data
+
+# simulate data as described (and based on the code given on the book website)
+set.seed(1234)
+n <- 50
+a <- 2
+b <- 3
+x_mean <- -a/b
+x_sd <- 4/b
+dat <- data.frame(x = rnorm(n, mean=x_mean, sd=x_sd))
+dat$y <- rbinom(n, 1, invlogit(a + b*dat$x))
+head(dat)
+
+# fit the logistic regression model
+res <- stan_glm(y ~ x, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=3)
+
+# Figure 14.1: plot of x versus y and the curve showing the predicted
+# probability of y=1 as a function of x
+plot(dat$x, dat$y, pch=19, cex=0.5, bty="l")
+curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=3, add=TRUE)
