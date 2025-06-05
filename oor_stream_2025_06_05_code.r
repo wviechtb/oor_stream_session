@@ -32,15 +32,15 @@ head(dat)
 ## Logistic regression with just one predictor
 
 # fit the logistic regression model using only 'dist' as predictor
-res <- stan_glm(switch ~ dist, family=binomial(link="logit"), data=dat, refresh=0)
-print(res, digits=3)
+res1 <- stan_glm(switch ~ dist, family=binomial(link="logit"), data=dat, refresh=0)
+print(res1, digits=3)
 
 # Figure 13.8a: histogram of distance to the nearest safe well
 hist(dat$dist, breaks=50, xlab="Distance (in meters) to nearest safe well", main="")
 
 # fit the logistic regression model using only 'dist100' as predictor
-res <- stan_glm(switch ~ dist100, family=binomial(link="logit"), data=dat, refresh=0)
-print(res, digits=3)
+res1 <- stan_glm(switch ~ dist100, family=binomial(link="logit"), data=dat, refresh=0)
+print(res1, digits=3)
 
 ## Graphing the fitted model
 
@@ -51,7 +51,7 @@ jitter_binary <- function(a, jitt=0.05)
 dat$switch_jitter <- jitter_binary(dat$switch)
 plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
      xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
-curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=3, add=TRUE)
+curve(invlogit(coef(res1)[1] + coef(res1)[2]*x), lwd=3, add=TRUE)
 
 # show the distribution of the dist100 variable within the two groups
 plot(density(dat$dist100[dat$switch==1]), lwd=3, main="", bty="l", col="dodgerblue",
@@ -64,20 +64,20 @@ legend("topright", lwd=3, col=c("dodgerblue","firebrick"),
 
 # apply the inverse logit function to the intercept (to be precise, to the
 # median of the posterior distribution of the intercept)
-round(plogis(coef(res)[[1]]), digits=2)
+round(plogis(coef(res1)[[1]]), digits=2)
 
 # to get a credible/percentile interval for this value, we need to obtain
 # samples for the entire posterior distribution for this predicted value
-pred <- posterior_epred(res, newdata=data.frame(dist100=0))
+pred <- posterior_epred(res1, newdata=data.frame(dist100=0))
 round(apply(pred, 2, median), digits=2)
 round(quantile(pred[,1], prob=c(.025, .975)), digits=2)
 
 # use the divide-by-4 rule to get the maximum difference in probability of
 # switching for a one-unit increase in x (distance in 100 meters)
-coef(res)[[2]] / 4
+coef(res1)[[2]] / 4
 
 # extract the samples of the posterior distributions for the intercept and slope
-post <- as.data.frame(res)
+post <- as.data.frame(res1)
 
 # get the medians of the distributions
 apply(post, 2, median)
@@ -90,5 +90,12 @@ round(apply(post, 2, quantile, prob=c(.025, .975)), digits=2)
 
 # fit the logistic regression model with no predictors (only an intercept)
 res0 <- stan_glm(switch ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
-loo(res0)
-loo(res)
+print(res0, digits=2)
+round(plogis(coef(res0)[[1]]), digits=2)
+
+loo0 <- loo(res0)
+loo1 <- loo(res1)
+loo0
+loo1
+
+loo_compare(res0, res1)
