@@ -71,3 +71,8 @@ round(plogis(coef(res)[[1]]), digits=2)
 pred <- posterior_epred(res, newdata=data.frame(dist100=0))
 round(apply(pred, 2, median), digits=2)
 round(quantile(pred[,1], prob=c(.025, .975)), digits=2)
+
+# use the divide-by-4 rule to get the maximum difference in probability of
+# switching for a one-unit increase in x (distance in 100 meters)
+coef(res)[[2]] / 4
+
