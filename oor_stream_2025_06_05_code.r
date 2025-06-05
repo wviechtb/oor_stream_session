@@ -113,7 +113,7 @@ res2 <- stan_glm(switch ~ dist100 + arsenic, family=binomial(link="logit"),
                  data=dat, refresh=0)
 print(res2, digits=2)
 
-# use the divide-by-4 rule interpret the slopes
+# use the divide-by-4 rule to interpret the slopes
 round(coef(res2)[2:3] / 4, digits=2)
 
 # compute how the log odds changes for a one SD increase in the predictors
@@ -315,14 +315,14 @@ round(median(pred[,1]), digits=2)
 slope <- coef(res4)["dist100"] + coef(res4)["dist100:arsenic"] * mean(dat$arsenic)
 slope
 
-# use the divide-by-4 rule interpret the slope
+# use the divide-by-4 rule to interpret the slope
 round(slope / 4, digits=2)
 
 # compute the slope for arsenic when arsenic is equal to its mean
 slope <- coef(res4)["arsenic"] + coef(res4)["dist100:arsenic"] * mean(dat$dist100)
 slope
 
-# use the divide-by-4 rule interpret the slope
+# use the divide-by-4 rule to interpret the slope
 round(slope / 4, digits=2)
 
 ## Centering the input variables
@@ -345,10 +345,10 @@ round(plogis(coef(res5)[["(Intercept)"]]), digits=2)
 pred <- posterior_epred(res5, newdata=data.frame(c_dist100=0, c_arsenic=0))
 round(median(pred[,1]), digits=2)
 
-# use the divide-by-4 rule interpret the slope for c_dist100
+# use the divide-by-4 rule to interpret the slope for c_dist100
 round(coef(res5)["c_dist100"] / 4, digits=2)
 
-# use the divide-by-4 rule interpret the slope for c_arsenic
+# use the divide-by-4 rule to interpret the slope for c_arsenic
 round(coef(res5)["c_arsenic"] / 4, digits=2)
 
 ## Statistical significance of the interaction
@@ -380,9 +380,24 @@ text(pred$x[30]+0.04, pred$y[30], "arsenic = 4.0", pos=4)
 # dist100 is equal to 0, 0.5, or 2
 plot(dat$arsenic, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
      xlab="Arsenic concentration in well water", ylab="Pr(Switching)")
-pred <- curve(invlogit(cbind(1, 0.0, x) %*% coef(res4)), add=TRUE, lwd=3)
+pred <- curve(invlogit(cbind(1, 0.0, x, 0.0*x) %*% coef(res4)), add=TRUE, lwd=3)
 text(pred$x[30]-0.10, pred$y[30], "dist100 = 0", pos=2)
-pred <- curve(invlogit(cbind(1, 0.5, x) %*% coef(res4)), add=TRUE, lwd=3)
+pred <- curve(invlogit(cbind(1, 0.5, x, 0.5*x) %*% coef(res4)), add=TRUE, lwd=3)
 text(pred$x[30]+0.06, pred$y[30], "dist100 = 0.5", pos=4)
-pred <- curve(invlogit(cbind(1, 2.0, x) %*% coef(res4)), add=TRUE, lwd=3)
-text(pred$x[30]+0.06, pred$y[30], "dist100 = 2", pos=4)
+pred <- curve(invlogit(cbind(1, 2.0, x, 2.0*x) %*% coef(res4)), add=TRUE, lwd=3)
+text(pred$x[30]+0.25, pred$y[30], "dist100 = 2", pos=4)
+
+## Adding social predictors
+
+# add assoc and educ4 as additional predictors to the model
+res6 <- stan_glm(switch ~ dist100 + arsenic + assoc + educ4,
+                 family=binomial(link="logit"), data=dat, refresh=0)
+print(res6, digits=2)
+
+# use the divide-by-4 rule to interpret the slope for educ4
+coef(res6)[["educ4"]] / 4
+
+# remove assoc from the model
+res7 <- stan_glm(switch ~ dist100 + arsenic + educ4,
+                 family=binomial(link="logit"), data=dat, refresh=0)
+print(res7, digits=2)
