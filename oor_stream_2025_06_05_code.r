@@ -271,6 +271,14 @@ plogis(0)
 # this defines the line where Pr(y=1) is equal to 0.5
 abline(a=-2.4/5.00, b=-3.5/5.00, lwd=2)
 
+# now we want plogis(2.4 + 3.5*x1 + 5.00*x2) = 0.1
+# so 2.4 + 3.5*x1 + 5.00*x2 = qlogis(0.1)
+# now solve this again for x2:
+# x2 = (qlogis(0.1) - 2.4)/5.00 - 3.5/5.00*x1
+# this defines the line where Pr(y=1) is equal to 0.1
+abline(a=(qlogis(0.1) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
 
-plogis(cbind(1, 0.0279949, -0.5) %*% coef(res))
+# this defines the line where Pr(y=1) is equal to 0.9
+abline(a=(qlogis(0.9) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
+
 
