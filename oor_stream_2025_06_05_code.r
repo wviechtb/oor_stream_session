@@ -30,10 +30,14 @@ dat <- read.csv("wells.csv")
 head(dat)
 
 # fit the logistic regression model using only 'dist' as predictor
-res <- stan_glm(switch ~ dist, family=binomial(link="logit"), data=wells, refresh=0)
+res <- stan_glm(switch ~ dist, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=3)
 
-# Figure 13.8a: Histogram of distance to the nearest safe well
-hist(dat$dist, breaks=50, xlab="Distance (in meters)", main="")
+# Figure 13.8a: histogram of distance to the nearest safe well
+hist(dat$dist, breaks=50, xlab="Distance (in meters) to nearest safe well", main="")
+
+# fit the logistic regression model using only 'dist100' as predictor
+res <- stan_glm(switch ~ dist100, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=3)
 
 
