@@ -348,4 +348,6 @@ round(coef(res5)["c_dist100"] / 4, digits=2)
 # use the divide-by-4 rule interpret the slope for c_arsenic
 round(coef(res5)["c_arsenic"] / 4, digits=2)
 
+## Statistical significance of the interaction
+
 
