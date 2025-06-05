@@ -242,3 +242,14 @@ props <- prop.table(table(bins, dat$y), margin=1)
 props
 curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=1, lty="dashed", add=TRUE)
 lines(by(dat$x, bins, mean), props[,"1"], pch=21, bg="white", cex=1.2, type="o")
+
+# simulate data as described (and based on the code given on the book website)
+set.seed(1245)
+n <- 100
+a <- 2
+b1 <- 3
+b2 <- 4
+dat <- data.frame(x1 = rnorm(n, mean= 0,   sd=0.4),
+                  x2 = rnorm(n, mean=-0.5, sd=0.4))
+dat$y <- rbinom(n, 1, invlogit(a + b1*dat$x1 + b2*dat$x2))
+head(dat)
