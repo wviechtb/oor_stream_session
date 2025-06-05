@@ -418,3 +418,12 @@ dat$c_educ4 <- dat$educ4 - mean(dat$educ4)
 res8 <- stan_glm(switch ~ c_dist100*c_educ4 + c_arsenic*c_educ4,
                  family=binomial(link="logit"), data=dat, refresh=0)
 print(res8, digits=2)
+
+# compute the leave-one-out log scores for the model
+loo8 <- loo(res8)
+loo8
+
+# compare the model to the one with just dist100 and arsenic as predictors
+loo_compare(loo2, loo8)
+
+############################################################################
