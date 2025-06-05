@@ -336,29 +336,16 @@ res5 <- stan_glm(switch ~ c_dist100 + c_arsenic + c_dist100:c_arsenic,
 print(res5, digits=2)
 
 # estimated probability of switching when dist1000 and arsenic are equal to their mean
-round(plogis(coef(res4)[["(Intercept)"]]), digits=2)
-
+round(plogis(coef(res5)[["(Intercept)"]]), digits=2)
 
 # we can use posterior_epred() for these calculations
-pred <- posterior_epred(res4, newdata=data.frame(dist100=0, arsenic=0))
+pred <- posterior_epred(res5, newdata=data.frame(c_dist100=0, c_arsenic=0))
 round(median(pred[,1]), digits=2)
 
-# estimated probability of switching when both variables are equal to their mean
-pred <- posterior_epred(res4, newdata=data.frame(dist100=mean(dat$dist100), arsenic=mean(dat$arsenic)))
-round(median(pred[,1]), digits=2)
+# use the divide-by-4 rule interpret the slope for c_dist100
+round(coef(res5)["c_dist100"] / 4, digits=2)
 
-# compute the slope for dist100 when arsenic is equal to its mean
-slope <- coef(res4)["dist100"] + coef(res4)["dist100:arsenic"] * mean(dat$arsenic)
-slope
-
-# use the divide-by-4 rule interpret the slope
-round(slope / 4, digits=2)
-
-# compute the slope for arsenic when arsenic is equal to its mean
-slope <- coef(res4)["arsenic"] + coef(res4)["dist100:arsenic"] * mean(dat$dist100)
-slope
-
-# use the divide-by-4 rule interpret the slope
-round(slope / 4, digits=2)
+# use the divide-by-4 rule interpret the slope for c_arsenic
+round(coef(res5)["c_arsenic"] / 4, digits=2)
 
 
