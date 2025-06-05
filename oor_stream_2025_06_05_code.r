@@ -115,3 +115,6 @@ print(res2, digits=2)
 
 # use the divide-by-4 rule interpret the slopes
 round(coef(res2)[2:3] / 4, digits=2)
+
+# compute how the log odds changes for a one SD increase in the predictors
+coef(res2)[2:3] * c(sd(dat$dist100), sd(dat$arsenic))
