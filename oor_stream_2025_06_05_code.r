@@ -292,6 +292,9 @@ dat <- read.csv("wells.csv")
 # inspect the first six rows of the dataset
 head(dat)
 
+# jitter the switch variable
+dat$switch_jitter <- jitter_binary(dat$switch)
+
 # fit the model where dist1000 and arsenic interact
 res4 <- stan_glm(switch ~ dist100 + arsenic + dist100:arsenic,
                  family=binomial(link="logit"), data=dat, refresh=0)
@@ -351,14 +354,14 @@ round(coef(res5)["c_arsenic"] / 4, digits=2)
 ## Statistical significance of the interaction
 
 # reexamine the regression table for the interaction model
-print(res4, digits=2)
+print(res5, digits=2)
 
 # compute the leave-one-out log scores for the model
-loo4 <- loo(res4)
-loo4
+loo5 <- loo(res5)
+loo5
 
 # compare the model without and with the interaction
-loo_compare(loo2, loo4)
+loo_compare(loo2, loo5)
 
 ## Graphing the model with interactions
 
@@ -366,7 +369,7 @@ loo_compare(loo2, loo4)
 # arsenic level is equal to 0.5, 1, or 4
 plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
      xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
-pred <- curve(invlogit(cbind(1, x, 0.5) %*% coef(res5)), add=TRUE, lwd=3)
+pred <- curve(invlogit(cbind(1, x, 0.5, x*0.5) %*% coef(res4)), add=TRUE, lwd=3)
 text(pred$x[30]-0.10, pred$y[30], "arsenic = 0.5", pos=2)
 pred <- curve(invlogit(cbind(1, x, 1.0) %*% coef(res5)), add=TRUE, lwd=3)
 text(pred$x[30]+0.04, pred$y[30], "arsenic = 1.0", pos=4)
