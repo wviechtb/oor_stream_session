@@ -207,3 +207,5 @@ lines(pred$dist100, pred$lower.HPD, col="red", lwd=3, lty="dotted")
 lines(pred$dist100, pred$upper.HPD, col="red", lwd=3, lty="dotted")
 
 ############################################################################
+
+### 14.1: Graphing logistic regression and binary data
