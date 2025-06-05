@@ -62,3 +62,9 @@ legend("topright", lwd=3, col=c("dodgerblue","firebrick"),
 
 ## Interpreting the logistic regression coefficients
 
+# apply the inverse logit function to the intercept (to be precise, to the
+# median of the posterior distribution of the intercept)
+plogis(coef(res)[[1]])
+
+pred <- posterior_epred(res, newdata=data.frame(dist100=0))
+apply(pred, 2, median)
