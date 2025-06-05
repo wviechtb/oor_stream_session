@@ -350,4 +350,12 @@ round(coef(res5)["c_arsenic"] / 4, digits=2)
 
 ## Statistical significance of the interaction
 
+# reexamine the regression table for the interaction model
+print(res4, digits=2)
 
+# compute the leave-one-out log scores for the model
+loo4 <- loo(res4)
+loo4
+
+# compare the model without and with the interaction
+loo_compare(loo2, loo4)
