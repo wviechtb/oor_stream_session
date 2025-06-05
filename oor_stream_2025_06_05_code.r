@@ -127,3 +127,5 @@ loo2 <- loo(res2)
 
 # compare the scores
 loo_compare(loo0, loo1, loo2)
+
+## Comparing the coefficient estimates when adding a predictor
