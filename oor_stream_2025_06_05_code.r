@@ -297,3 +297,13 @@ res4 <- stan_glm(switch ~ dist100 + arsenic + dist100:arsenic,
                  family=binomial(link="logit"), data=dat, refresh=0)
 print(res4, digits=2)
 
+# estimated probability of switching when dist1000=0 and arsenic=0
+plogis(coef(res4)[[1]])
+
+# we can use posterior_epred() for these calculations
+pred <- posterior_epred(res4, newdata=data.frame(dist100=0, arsenic=0))
+median(pred[,1])
+
+cbind(1, mean(dat$dist100), mean(dat$arsenic)
+
+coef(res4)
