@@ -129,3 +129,8 @@ loo2 <- loo(res2)
 loo_compare(loo0, loo1, loo2)
 
 ## Comparing the coefficient estimates when adding a predictor
+
+# examine the change in the slope for dist100 when arsenic is added to the model
+coef(res1)
+coef(res2)
+
