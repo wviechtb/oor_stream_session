@@ -260,3 +260,17 @@ plot(dat$x1, dat$x2, pch=ifelse(dat$y == 1, 21, 19), xlab="x1", ylab="x2", bty="
 # fit the logistic regression model
 res <- stan_glm(y ~ x1 + x2, family=binomial(link="logit"), data=dat, refresh=0)
 print(res, digits=2)
+
+# logit(Pr(y=1)) = 2.4 + 3.5*x1 + 5.00*x2
+#
+# when logit(Pr(y=1)) = 0, then Pr(y=1) is equal to 0.5
+plogis(0)
+
+# so we solve 2.4 + 3.5*x1 + 5.00*x2 = 0 for x2, which yields:
+# x2 = -2.4/5.00 - 3.5/5.00*x1
+# this defines the line where Pr(y=1) is equal to 0.5
+abline(a=-2.4/5.00, b=-3.5/5.00, lwd=2)
+
+
+plogis(cbind(1, 0.0279949, -0.5) %*% coef(res))
+
