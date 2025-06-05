@@ -160,7 +160,15 @@ text(pred$x[30]+0.06, pred$y[30], "dist100 = 2", pos=4)
 
 ## Add even more predictors
 
-# add assoc and educ4 as additional predictors to the model
-res3 <- stan_glm(switch ~ dist100 + arsenic + assoc + educ4,
+# add assoc and educ as additional predictors to the model
+res3 <- stan_glm(switch ~ dist100 + arsenic + assoc + educ,
                  family=binomial(link="logit"), data=dat, refresh=0)
-print(res2, digits=2)
+print(res3, digits=2)
+
+# compute the leave-one-out log scores for this model
+loo3 <- loo(res3)
+
+# compare the score for models res2 and res3
+loo_compare(loo2, loo3)
+
+############################################################################
