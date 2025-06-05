@@ -199,8 +199,11 @@ curve(invlogit(cbind(1, x, mean(dat$arsenic), mean(dat$assoc), mean(dat$educ)) %
 
 # compute the predicted values using emmeans() (note: all other variables are
 # automatically held constant at their means)
-pred <- emmeans(res3, specs = ~ dist100, at=list(dist100=seq(0,3.5,by=0.1)))
+pred <- emmeans(res3, specs = ~ dist100, at=list(dist100=seq(0,3.5,length.out=100)))
 pred <- summary(pred, type="response")
-lines(pred$dist100, pred$prob, col="red")
+head(pred)
+lines(pred$dist100, pred$prob, col="red", lwd=3)
+lines(pred$dist100, pred$lower.HPD, col="red", lwd=3, lty="dotted")
+lines(pred$dist100, pred$upper.HPD, col="red", lwd=3, lty="dotted")
 
 ############################################################################
