@@ -286,3 +286,14 @@ abline(a=(qlogis(0.9) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
 
 ### 14.2: Logistic regression with interactions
 
+# read in the dataset
+dat <- read.csv("wells.csv")
+
+# inspect the first six rows of the dataset
+head(dat)
+
+# fit the model where dist1000 and arsenic interact
+res4 <- stan_glm(switch ~ dist100 + arsenic + dist100:arsenic,
+                 family=binomial(link="logit"), data=dat, refresh=0)
+print(res4, digits=2)
+
