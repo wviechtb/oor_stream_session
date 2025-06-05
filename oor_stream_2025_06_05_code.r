@@ -158,7 +158,7 @@ text(pred$x[30]+0.06, pred$y[30], "dist100 = 0.5", pos=4)
 pred <- curve(invlogit(cbind(1, 2.0, x) %*% coef(res2)), add=TRUE, lwd=3)
 text(pred$x[30]+0.06, pred$y[30], "dist100 = 2", pos=4)
 
-## Add the other two predictors to the model
+## Add even more predictors
 
 # add assoc and educ4 as additional predictors to the model
 res3 <- stan_glm(switch ~ dist100 + arsenic + assoc + educ4,
