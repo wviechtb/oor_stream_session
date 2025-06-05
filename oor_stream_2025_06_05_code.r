@@ -49,8 +49,8 @@ jitter_binary <- function(a, jitt=0.05)
 
 # Figure 13.8b: graphical expression of the fitted logistic regression model
 dat$switch_jitter <- jitter_binary(dat$switch)
-plot(dat$dist, dat$switch_jitter, pch=21, bg="gray", cex=0.5,
-     xlab="Distance (in meters) to nearest safe well", ylab="Pr(Switching)")
+plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
 curve(invlogit(coef(res)[1] + coef(res)[2]*x), lwd=3, add=TRUE)
 
 
