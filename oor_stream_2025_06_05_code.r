@@ -176,4 +176,16 @@ plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
      xlab="Distance (in 100 meters) to nearest safe well", ylab="Pr(Switching)")
 curve(invlogit(cbind(1, x, mean(dat$arsenic), mean(dat$assoc), mean(dat$educ)) %*% coef(res3)), add=TRUE, lwd=3)
 
+plot(dat$arsenic, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Arsenic concentration in well water", ylab="Pr(Switching)")
+curve(invlogit(cbind(1, mean(dat$dist100), x, mean(dat$assoc), mean(dat$educ)) %*% coef(res3)), add=TRUE, lwd=3)
+
+plot(dat$assoc, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Member(s) of household participate in community organizations", ylab="Pr(Switching)")
+curve(invlogit(cbind(1, mean(dat$dist100), mean(dat$aresenic), x, mean(dat$educ)) %*% coef(res3)), add=TRUE, lwd=3)
+
+plot(dat$educ, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
+     xlab="Years of education (head of household)", ylab="Pr(Switching)")
+curve(invlogit(cbind(1, mean(dat$dist100), mean(dat$aresenic), mean(dat$assoc), x) %*% coef(res3)), add=TRUE, lwd=3)
+
 ############################################################################
