@@ -253,3 +253,10 @@ dat <- data.frame(x1 = rnorm(n, mean= 0,   sd=0.4),
                   x2 = rnorm(n, mean=-0.5, sd=0.4))
 dat$y <- rbinom(n, 1, invlogit(a + b1*dat$x1 + b2*dat$x2))
 head(dat)
+
+# Figure 14.2: data simulated from a logistic regression model with two predictors
+plot(dat$x1, dat$x2, pch=ifelse(dat$y == 1, 21, 19), xlab="x1", ylab="x2", bty="l")
+
+# fit the logistic regression model
+res <- stan_glm(y ~ x1 + x2, family=binomial(link="logit"), data=dat, refresh=0)
+print(res, digits=2)
