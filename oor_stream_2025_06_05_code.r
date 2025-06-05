@@ -333,3 +333,32 @@ dat$c_arsenic <- dat$arsenic - mean(dat$arsenic)
 # fit the model with the centered predictors
 res5 <- stan_glm(switch ~ c_dist100 + c_arsenic + c_dist100:c_arsenic,
                  family=binomial(link="logit"), data=dat, refresh=0)
+print(res5, digits=2)
+
+# estimated probability of switching when dist1000 and arsenic are equal to their mean
+round(plogis(coef(res4)[["(Intercept)"]]), digits=2)
+
+
+# we can use posterior_epred() for these calculations
+pred <- posterior_epred(res4, newdata=data.frame(dist100=0, arsenic=0))
+round(median(pred[,1]), digits=2)
+
+# estimated probability of switching when both variables are equal to their mean
+pred <- posterior_epred(res4, newdata=data.frame(dist100=mean(dat$dist100), arsenic=mean(dat$arsenic)))
+round(median(pred[,1]), digits=2)
+
+# compute the slope for dist100 when arsenic is equal to its mean
+slope <- coef(res4)["dist100"] + coef(res4)["dist100:arsenic"] * mean(dat$arsenic)
+slope
+
+# use the divide-by-4 rule interpret the slope
+round(slope / 4, digits=2)
+
+# compute the slope for arsenic when arsenic is equal to its mean
+slope <- coef(res4)["arsenic"] + coef(res4)["dist100:arsenic"] * mean(dat$dist100)
+slope
+
+# use the divide-by-4 rule interpret the slope
+round(slope / 4, digits=2)
+
+
