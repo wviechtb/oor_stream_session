@@ -93,7 +93,7 @@ res0 <- stan_glm(switch ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
 print(res0, digits=2)
 round(plogis(coef(res0)[[1]]), digits=2)
 
-# get the leave-one-out log scores for the two models
+# compute the leave-one-out log scores for the two models
 loo0 <- loo(res0)
 loo1 <- loo(res1)
 loo0
@@ -118,3 +118,12 @@ round(coef(res2)[2:3] / 4, digits=2)
 
 # compute how the log odds changes for a one SD increase in the predictors
 coef(res2)[2:3] * c(sd(dat$dist100), sd(dat$arsenic))
+
+# apply the divide-by-4 rule to these values
+round(coef(res2)[2:3] * c(sd(dat$dist100), sd(dat$arsenic)) / 4, digits=2)
+
+# compute the leave-one-out log scores for this model
+loo2 <- loo(res2)
+
+# compare the scores
+loo_compare(loo0, loo1, loo2)
