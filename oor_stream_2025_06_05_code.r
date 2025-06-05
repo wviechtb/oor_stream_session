@@ -190,6 +190,7 @@ par(mfrow=c(1,1))
 
 # the emmeans package can also be used for creating such plots
 
+# install.packages(emmeans)
 library(emmeans)
 
 plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
@@ -197,10 +198,9 @@ plot(dat$dist100, dat$switch_jitter, pch=21, bg="gray", cex=0.5, bty="l",
 curve(invlogit(cbind(1, x, mean(dat$arsenic), mean(dat$assoc), mean(dat$educ)) %*% coef(res3)), add=TRUE, lwd=3)
 
 # compute the predicted values using emmeans() (note: all other variables are
-# automatically held constant at their mean)
+# automatically held constant at their means)
 pred <- emmeans(res3, specs = ~ dist100, at=list(dist100=seq(0,3.5,by=0.1)))
 pred <- summary(pred, type="response")
 lines(pred$dist100, pred$prob, col="red")
-
 
 ############################################################################
