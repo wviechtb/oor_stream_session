@@ -408,3 +408,13 @@ loo7
 
 # compare the model to the one with just dist100 and arsenic as predictors
 loo_compare(loo2, loo7)
+
+## Adding further interactions
+
+# center educ4 at its mean
+dat$c_educ4 <- dat$educ4 - mean(dat$educ4)
+
+# fit the model with additional interactions
+res8 <- stan_glm(switch ~ c_dist100*c_educ4 + c_arsenic*c_educ4,
+                 family=binomial(link="logit"), data=dat, refresh=0)
+print(res8, digits=2)
