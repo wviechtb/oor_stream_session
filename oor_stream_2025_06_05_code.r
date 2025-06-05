@@ -64,7 +64,10 @@ legend("topright", lwd=3, col=c("dodgerblue","firebrick"),
 
 # apply the inverse logit function to the intercept (to be precise, to the
 # median of the posterior distribution of the intercept)
-plogis(coef(res)[[1]])
+round(plogis(coef(res)[[1]]), digits=2)
 
+# to get a credible/percentile interval for this value, we need to obtain
+# samples for the entire posterior distribution for this predicted value
 pred <- posterior_epred(res, newdata=data.frame(dist100=0))
-apply(pred, 2, median)
+round(apply(pred, 2, median), digits=2)
+round(quantile(pred[,1], prob=c(.025, .975)), digits=2)
