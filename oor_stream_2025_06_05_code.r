@@ -281,3 +281,8 @@ abline(a=(qlogis(0.1) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
 
 # this defines the line where Pr(y=1) is equal to 0.9
 abline(a=(qlogis(0.9) - 2.4)/5.00, b=-3.5/5.00, lwd=2, lty="dotted")
+
+############################################################################
+
+### 14.2: Logistic regression with interactions
+
