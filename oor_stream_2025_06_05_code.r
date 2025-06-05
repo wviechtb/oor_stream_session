@@ -93,9 +93,11 @@ res0 <- stan_glm(switch ~ 1, family=binomial(link="logit"), data=dat, refresh=0)
 print(res0, digits=2)
 round(plogis(coef(res0)[[1]]), digits=2)
 
+# get the leave-one-out log scores for the two models
 loo0 <- loo(res0)
 loo1 <- loo(res1)
 loo0
 loo1
 
+# compare the scores
 loo_compare(res0, res1)
