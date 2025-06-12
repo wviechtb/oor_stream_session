@@ -203,6 +203,14 @@ res
 # also get the 95% prediction interval
 predict(res)
 
+# use sample size as a moderator in a meta-regression model
+res <- rma(yi, vi, mods = ~ ni, data=dat)
+res
+
+# calculated the predicted average standardized mean difference for studies
+# with a sample size of 20, 100, or 500
+predict(res, newmods = c(20,100,500))
+
 # fit a location-scale model with the sample size as predictor for the size of
 # the average effect and for the amount of heterogeneity
 res <- rma(yi, vi, mods = ~ ni, scale = ~ ni, data=dat)
