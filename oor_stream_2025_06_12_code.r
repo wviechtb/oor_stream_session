@@ -235,6 +235,9 @@ predict(res, newmods = c(20,100,200,500))
 # also get the prediction intervals
 predict(res, newmods = c(20,100,200,500), newscale = c(20,100,200,500))
 
+# we can also just get the predicted tau^2 values
+predict(res, newscale = c(20,100,200,500), transf=exp)
+
 # draw a forest plot of the effect size estimates
 # note: only plotting a subset of the estimates
 sav <- with(dat, forest(yi, vi, xlim=c(-5,3.5), ylim=c(-9,20),
@@ -252,6 +255,13 @@ pred3 <- predict(res, newmods=500, newscale=500)
 addpoly(pred1, rows=-1, mlab="Pooled Estimate for n=20",  predstyle="dist")
 addpoly(pred2, rows=-4, mlab="Pooled Estimate for n=100", predstyle="dist")
 addpoly(pred3, rows=-7, mlab="Pooled Estimate for n=500", predstyle="dist")
+
+# draw a bubble plot where we show how the prediction interval gets really
+# narrow as sample size increases
+nis <- seq(0, 600, by=1)
+pred <- predict(res, newmods=nis, newscale=nis)
+regplot(res, xlab="Sample Size", bty="l", grid=TRUE, las=1, pi=TRUE,
+        legend=TRUE, pred=pred, xvals=nis)
 
 ############################################################################
 
