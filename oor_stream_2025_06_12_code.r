@@ -208,8 +208,16 @@ res <- rma(yi, vi, mods = ~ ni, data=dat)
 res
 
 # calculated the predicted average standardized mean difference for studies
-# with a sample size of 20, 100, or 500
-predict(res, newmods = c(20,100,500))
+# with a sample size of 20, 100, 200, or 500
+predict(res, newmods = c(20,100,200,500))
+
+# show a bubble plot corresponding to the model (and also add the prediction
+# interval to the plot)
+regplot(res, xlab="Sample Size", bty="l", grid=TRUE, las=1, pi=TRUE, legend=TRUE)
+
+# this model assumes that, at a given sample size, the true effects are
+# normally distributed around the average effect with a constant amount of
+# (residual) heterogeneity (see the estimate of tau^2 above)
 
 # fit a location-scale model with the sample size as predictor for the size of
 # the average effect and for the amount of heterogeneity
