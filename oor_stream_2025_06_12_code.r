@@ -146,6 +146,20 @@ forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
        addpred=TRUE, predstyle="dist")
 text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
 
+# light gray shaded regions: 2.5% in the tail areas of the predictive
+# distribution (i.e., this is the 95% prediction interval)
+#
+# dark gray shaded region: the area opposite in sign (on the original log
+# scale) to the estimated average effect
+#
+# this area corresponds to the probability that the true log risk ratio is
+# above 0 (or that the true risk ratio is above 1) and hence the probability
+# that the treatment/vaccine is not effective in a particular study
+
+# we can compute the size of this area / probability as follows
+pred <- predict(res)
+pnorm(0, mean=coef(res), sd=pred$pi.se, lower.tail=FALSE)
+
 ############################################################################
 
 ### subgrouping
