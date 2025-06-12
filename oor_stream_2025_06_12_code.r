@@ -231,6 +231,10 @@ predict(res, newmods = c(20,100,200,500))
 # note that we do not get prediction intervals (because we did not specify the
 # values of ni for the scale part of the model)
 
+# if we specify the corresponding sample sizes for the scale part, then we
+# also get the prediction intervals
+predict(res, newmods = c(20,100,200,500), newscale = c(20,100,200,500))
+
 # draw a forest plot of the effect size estimates
 # note: only plotting a subset of the estimates
 sav <- with(dat, forest(yi, vi, xlim=c(-5,3.5), ylim=c(-9,20),
