@@ -257,7 +257,8 @@ addpoly(pred2, rows=-4, mlab="Pooled Estimate for n=100", predstyle="dist")
 addpoly(pred3, rows=-7, mlab="Pooled Estimate for n=500", predstyle="dist")
 
 # draw a bubble plot where we show how the prediction interval gets really
-# narrow as sample size increases
+# narrow as sample size increases (have to use 'pred' argument of the
+# regplot() function for this)
 nis <- seq(0, 600, by=1)
 pred <- predict(res, newmods=nis, newscale=nis)
 regplot(res, xlab="Sample Size", bty="l", grid=TRUE, las=1, pi=TRUE,
