@@ -1,0 +1,281 @@
+############################################################################
+
+# Open Online R Stream (https://www.wvbauer.com/doku.php/live_streams)
+#
+# By:   Wolfgang Viechtbauer (https://www.wvbauer.com)
+# Date: 2025-06-12
+#
+# Topic(s):
+# - Meta-Analysis Topic Mix (in connection with ESMARConf2025)
+#
+# last updated: 2025-06-12
+
+############################################################################
+
+# install (if not already installed) the metafor package
+#install.packages("metafor")
+
+# note: for some of the things that are shown below to work properly, you need
+# to install the 'development version' of the metafor package at the moment
+# (this won't be necessary once a new version of metafor goes to CRAN); so for
+# now, you should run the following two commands to install the devel version
+#install.packages("remotes")
+#remotes::install_github("wviechtb/metafor")
+
+# load the metafor package
+library(metafor)
+
+############################################################################
+
+### compute the effect sizes and fit a random-effects model
+
+# meta-analysis examining the effectiveness of the BCG vaccine for preventing
+# tuberculosis infections
+#
+# source: Colditz, G. A., Brewer, T. F., Berkey, C. S., Wilson, M. E.,
+# Burdick, E., Fineberg, H. V., & Mosteller, F. (1994). Efficacy of BCG
+# vaccine in the prevention of tuberculosis: Meta-analysis of the published
+# literature. Journal of the American Medical Association, 271(9), 698-702.
+# https://doi.org/10.1001/jama.1994.03510330076038
+
+# copy the data to 'dat' and examine the data
+dat <- dat.bcg
+dat
+
+# tpos  - number of TB positive cases in the treated (vaccinated) group
+# tneg  - number of TB negative cases in the treated (vaccinated) group
+# cpos  - number of TB positive cases in the control (non-vaccinated) group
+# cneg  - number of TB negative cases in the control (non-vaccinated) group
+#
+# these variables denote the values in 2x2 tables of the form:
+#
+#           TB+    TB-
+#         +------+------+
+# treated | tpos | tneg |
+#         +------+------+
+# control | cpos | cneg |
+#         +------+------+
+#
+# year  - publication year of the study
+# ablat - absolute latitude of the study location (in degrees)
+# alloc - method of treatment allocation (random, alternate, or systematic assignment)
+
+# calculate log risk ratios and corresponding sampling variances
+dat <- escalc(measure="RR", ai=tpos, bi=tneg,
+                            ci=cpos, di=cneg,
+              data=dat, slab=paste(author, year, sep=", ")) # also add study labels
+dat
+
+# yi = the log risk ratios
+# vi = the corresponding sampling variances
+
+# fit a random-effects model
+res <- rma(yi, vi, data=dat)
+res
+
+# get the 95% prediction interval (back-transformed to the risk ratio scale)
+pred <- predict(res, transf=exp, digits=2)
+pred
+
+############################################################################
+
+### standard forest plot
+
+# draw a standard forest plot
+sav <- forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+              atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+              ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+              ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1))
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+# add information about the test of the overall effect and heterogeneity
+par(xpd=NA)
+text(sav$xlim[1], -2, pos=4, cex=sav$cex,
+     bquote(paste("Test of the overall effect: Z=",
+            .(fmtx(res$zval, digits=2)), ", ",
+            .(fmtp(res$pval, digits=3, pname="p", add0=TRUE, equal=TRUE)))))
+text(sav$xlim[1], -3, pos=4, cex=sav$cex,
+     bquote(paste("Heterogeneity: Q=",
+            .(fmtx(res$QE, digits=2)), ", df=", .(res$k-res$p), ", ",
+            .(fmtp(res$QEp, digits=3, pname="p", add0=TRUE, equal=TRUE)), "; ",
+            hat(tau)*""^2, "=", .(fmtx(res$tau2, digits=2)), ", ",
+            I^2, "=", .(round(res$I2)), "%")))
+par(xpd=FALSE)
+
+############################################################################
+
+### illustrate different ways of visualizing the prediction interval
+
+# prediction interval indicated by a horizontal line through the diamond
+forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+       atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1),
+       addpred=TRUE, predstyle="line")
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+# prediction interval indicated by another polygon
+forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+       atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1),
+       addpred=TRUE, predstyle="polygon", col=c("black","white"))
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+# prediction interval indicated by a horizontal bar (predstyle="bar")
+forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+       atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1),
+       addpred=TRUE, predstyle="bar")
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+# prediction interval indicated by a shaded bar (predstyle="shade")
+forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+       atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1),
+       addpred=TRUE, predstyle="shade")
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+# prediction interval indicated via the predictive distribution (predstyle="dist")
+forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+       atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+       ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+       ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1),
+       addpred=TRUE, predstyle="dist")
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+############################################################################
+
+### subgrouping
+
+# recode the alloc variable into random="yes"/"no"
+dat$random <- ifelse(dat$alloc == "random", "yes", "no")
+
+# reorder studies by 'random' and their effect sizes
+dat <- sort_by(dat, ~ random + yi)
+
+# fit a random-effects model within each level of 'random'
+res0 <- rma(yi, vi, data=dat, subset=random=="no")
+res1 <- rma(yi, vi, data=dat, subset=random=="yes")
+
+# draw a forest plot of the effect size estimates
+sav <- with(dat, forest(yi, vi, xlim=c(-12,6), ylim=c(-6,16),
+       cex=0.85, header="Author(s) and Year",
+       atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+       ilab=random, ilab.lab="Random", shade=TRUE, efac=c(0,1,1)))
+abline(h=0)
+
+# add the summary polygons and predictive distributions for each subgroup to the plot
+pred0 <- predict(res0)
+pred1 <- predict(res1)
+addpoly(pred0, rows=-1, mlab="Pooled Estimate for Non-Random Allocation", predstyle="dist")
+addpoly(pred1, rows=-4, mlab="Pooled Estimate for Random Allocation",     predstyle="dist")
+
+############################################################################
+
+### location-scale models
+
+# copy the data to 'dat', reorder by sample size, and examine the data
+dat <- dat.bangertdrowns2004
+dat <- sort_by(dat, ~ ni)
+head(dat)
+
+# fit a location-scale model with the sample size as predictor for the size of
+# the average effect and for the amount of heterogeneity
+res <- rma(yi, vi, mods = ~ ni, scale = ~ ni, data=dat)
+res
+
+# draw a forest plot of the effect size estimates
+# note: only plotting a subset of the estimates
+sav <- with(dat, forest(yi, vi, xlim=c(-5,3.5), ylim=c(-9,20),
+       cex=0.85, header="Author(s) and Year", ilab=ni, ilab.lab="Sample Size",
+       slab=paste(author, year, sep=", "), efac=c(0,1,1),
+       subset=c(1:5,30:34,44:48), rows=rev(c(1:5, 7:11, 13:17)), shade=seq(1,17,by=2)))
+abline(h=0)
+text(sav$xlim[1], c(6,12), "...", pos=4, cex=sav$cex)
+text(sav$xlim[2], c(6,12), "...", pos=2, cex=sav$cex)
+
+# add the summary polygons and predictive distributions for three values of ni to the plot
+pred1 <- predict(res, newmods=20, newscale=20)
+pred2 <- predict(res, newmods=100, newscale=100)
+pred3 <- predict(res, newmods=500, newscale=500)
+addpoly(pred1, rows=-1, mlab="Pooled Estimate for n=20",  predstyle="dist")
+addpoly(pred2, rows=-4, mlab="Pooled Estimate for n=100", predstyle="dist")
+addpoly(pred3, rows=-7, mlab="Pooled Estimate for n=500", predstyle="dist")
+
+############################################################################
+
+### multivariate models
+
+# copy the data to 'dat' and examine the data
+dat <- dat.berkey1998
+dat
+
+# construct block diagonal var-cov matrix of the observed outcomes based on variables v1i and v2i
+V <- vcalc(vi=1, cluster=author, rvars=c(v1i, v2i), data=dat)
+
+# fit the multivariate model
+res <- rma.mv(yi, V, mods = ~ 0 + outcome,
+              random = ~ outcome | trial, struct="UN", data=dat)
+res
+
+# compute prediction intervals for each outcome
+pred.AL <- predict(res, newmods=c(1,0), tau2.levels="AL", digits=2)
+pred.PD <- predict(res, newmods=c(0,1), tau2.levels="PD", digits=2)
+pred.AL
+pred.PD
+
+# draw a forest plot of the effect size estimates
+sav <- with(dat, forest(yi, vi, xlim=c(-3,2.2), ylim=c(-6,13), cex=0.9,
+       slab=paste(author, year, sep=", "), ilab=outcome, ilab.lab="Outcome",
+       efac=c(0,1,1), shade=c(1:2,5:6,9:10)))
+abline(h=0)
+
+# add the summary polygons and predictive distributions for each outcome to the plot
+addpoly(pred.AL, rows=-1, mlab="Pooled Estimate for Outcome AL", predstyle="dist")
+addpoly(pred.PD, rows=-4, mlab="Pooled Estimate for Outcome PD", predstyle="dist")
+
+############################################################################
+
+### non-normal true effects
+
+# back to the BCG vaccine dataset
+dat <- dat.bcg
+dat <- escalc(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat,
+              slab=paste(author, year, sep=", "))
+res <- rma(yi, vi, data=dat)
+
+# draw the plot
+sav <- forest(res, xlim=c(-15,6), cex=0.85, header="Author(s) and Year",
+              atransf=exp, at=log(2^(-4:3)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4,8),
+              ilab=cbind(tpos, tneg, cpos, cneg), ilab.lab=c("TB+","TB-","TB+","TB-"),
+              ilab.xpos=c(-9.5,-8,-6,-4.5), shade=TRUE, efac=c(0,1,1),
+              ylim=c(-4,16), addpred=TRUE, predstyle="dist")
+text(c(-8.75,-5.25), res$k+2.8, c("Vaccinated", "Control"), cex=sav$cex, font=2)
+
+# kernel density estimation of the distribution of true effects (based on Wang & Lee, 2019)
+thetai <- coef(res) + sqrt(res$tau2 / (res$tau2 + dat$vi)) * (dat$yi - coef(res))
+dens <- density(thetai, bw=0.2, from=-4, to=4, n=2^16)
+
+# add the non-parametric PI distribution to the plot
+addpoly(res, addpred=TRUE, predstyle="dist", preddist=dens, row=c(NA,-3),
+        mlab=c("", "Predictive Distribution (non-parametric) [95% PI]"),
+        predlim=log(c(1/8,2)), efac=c(1,0.9))
+
+# add information about the test of the overall effect and heterogeneity
+par(xpd=NA)
+text(sav$xlim[1], -4, pos=4, cex=sav$cex,
+     bquote(paste("Test of the overall effect: Z=",
+            .(fmtx(res$zval, digits=2)), ", ",
+            .(fmtp(res$pval, digits=3, pname="p", add0=TRUE, equal=TRUE)))))
+text(sav$xlim[1], -5, pos=4, cex=sav$cex,
+     bquote(paste("Heterogeneity: Q=",
+            .(fmtx(res$QE, digits=2)), ", df=", .(res$k-res$p), ", ",
+            .(fmtp(res$QEp, digits=3, pname="p", add0=TRUE, equal=TRUE)), "; ",
+            hat(tau)*""^2, "=", .(fmtx(res$tau2, digits=2)), ", ",
+            I^2, "=", .(round(res$I2)), "%")))
+par(xpd=FALSE)
+
+############################################################################
