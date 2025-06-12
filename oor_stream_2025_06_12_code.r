@@ -403,21 +403,28 @@ predict(res, digits=2)
 
 # draw a forest plot of the effect size estimates
 # note: only plotting a subset of the estimates
-sav <- with(dat, forest(yi, vi, xlim=c(-3,3.5), ylim=c(-7.5,19),
+sav <- with(dat, forest(yi, vi, xlim=c(-3,3.5), ylim=c(-8.5,19),
        cex=0.85, efac=c(0,1,1),
        subset=c(1:9,95:100), rows=rev(c(1:9, 11:16))))
 abline(h=0)
 text(sav$xlim[1], 10, "...", pos=4, cex=sav$cex)
 text(sav$xlim[2], 10, "...", pos=2, cex=sav$cex)
 
-addpoly(res, row=c(-1,-6), predstyle="dist")
+addpoly(res, row=-1)
 
 dist <- list(x = seq(-3, 3, length.out=10000))
 dist$y <- dnorm(dist$x, mean=coef(res), sd=sqrt(res$sigma2[1] + vcov(res)))
-addpoly(res, row=c(NA,-2.5), predstyle="dist", preddist=dist)
+addpoly(res, row=c(NA,-3), predstyle="dist", preddist=dist,
+        mlab=c("", "Predictive Distribution for the\nAverage Effect of Studies"))
 
 dist <- list(x = seq(-3, 3, length.out=10000))
 dist$y <- dnorm(dist$x, mean=coef(res), sd=sqrt(res$sigma2[2] + vcov(res)))
-addpoly(res, row=c(NA,-4), predstyle="dist", preddist=dist)
+addpoly(res, row=c(NA,-5), predstyle="dist", preddist=dist,
+        mlab=c("", "Predictive Distribution for the\nEffects within Studies"))
+
+dist <- list(x = seq(-3, 3, length.out=10000))
+dist$y <- dnorm(dist$x, mean=coef(res), sd=sqrt(res$sigma2[1] + res$sigma2[2] + vcov(res)))
+addpoly(res, row=c(NA,-7), predstyle="dist", preddist=dist,
+        mlab=c("", "Predictive Distribution of Effects"))
 
 ############################################################################
