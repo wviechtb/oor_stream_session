@@ -338,3 +338,54 @@ text(sav$xlim[1], -5, pos=4, cex=sav$cex,
 par(xpd=FALSE)
 
 ############################################################################
+
+### an example of a meta-analysis of correlation coefficients
+
+# copy the data to 'dat' and examine the data
+dat <- dat.molloy2014
+dat
+
+# compute the r-to-z transformed correlations and corresponding sampling variances
+dat <- escalc(measure="ZCOR", ri=ri, ni=ni, data=dat,
+              slab=paste(authors, year, sep=", "))
+dat
+
+# fit a random-effects model to the r-to-z transformed correlations
+res <- rma(yi, vi, data=dat)
+res
+
+# average correlation with 95% CI
+predict(res, transf=transf.ztor, digits=2)
+
+# draw the forest plot with the predictive distribution
+forest(res, predstyle="dist", efac=c(0,1,1), shade=TRUE,
+       atransf=transf.ztor, at=transf.rtoz(seq(-0.4,0.6,by=0.2)))
+
+############################################################################
+
+### an example of a meta-analysis with no evidence for heterogeneity
+
+# copy the data to 'dat' and examine the data
+dat <- dat.yusuf1985
+
+# compute log risk ratios for the data from table 11 (nonfatal reinfarction
+# from long-term trials of beta blockers)
+dat <- escalc(measure="RR", ai=ai, n1i=n1i,
+                            ci=ci, n2i=n2i, data=dat, subset=(table=="11"))
+dat
+
+# negative log risk ratios indicate a lower reinfarction risk in the group
+# receiving beta blockers
+
+# fit a random-effects model to the log risk ratios
+res <- rma(yi, vi, data=dat)
+res
+
+# get the 95% prediction interval for the risk ratio
+predict(res, transf=exp, digits=2)
+
+# draw the forest plot
+forest(res, xlim=c(-5.5,3.0), predstyle="dist", efac=c(0,1,1), shade=TRUE, atransf=exp,
+       at=log(2^(-4:2)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4))
+
+############################################################################
