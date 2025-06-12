@@ -224,6 +224,13 @@ regplot(res, xlab="Sample Size", bty="l", grid=TRUE, las=1, pi=TRUE, legend=TRUE
 res <- rma(yi, vi, mods = ~ ni, scale = ~ ni, data=dat)
 res
 
+# calculated the predicted average standardized mean difference for studies
+# with a sample size of 20, 100, 200, or 500
+predict(res, newmods = c(20,100,200,500))
+
+# note that we do not get prediction intervals (because we did not specify the
+# values of ni for the scale part of the model)
+
 # draw a forest plot of the effect size estimates
 # note: only plotting a subset of the estimates
 sav <- with(dat, forest(yi, vi, xlim=c(-5,3.5), ylim=c(-9,20),
