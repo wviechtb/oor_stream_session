@@ -389,3 +389,31 @@ forest(res, xlim=c(-5.5,3.0), predstyle="dist", efac=c(0,1,1), shade=TRUE, atran
        at=log(2^(-4:2)), at.lab=c("¹⁄₁₆","⅛","¼","½",1,2,4))
 
 ############################################################################
+
+# copy data into 'dat' and examine data
+dat <- dat.assink2016
+head(dat, 9)
+
+# fit a multilevel random-effects model
+res <- rma.mv(yi, vi, random = ~ 1 | study/esid, data=dat)
+res
+
+# get the prediction interval
+predict(res, digits=2)
+
+# draw a forest plot of the effect size estimates
+# note: only plotting a subset of the estimates
+sav <- with(dat, forest(yi, vi, xlim=c(-3,3.5), ylim=c(-5.5,19),
+       cex=0.85, efac=c(0,1,1),
+       subset=c(1:9,95:100), rows=rev(c(1:9, 11:16))))
+abline(h=0)
+text(sav$xlim[1], 10, "...", pos=4, cex=sav$cex)
+text(sav$xlim[2], 10, "...", pos=2, cex=sav$cex)
+
+addpoly(res, row=c(-1,-4), predstyle="dist")
+
+dist <- list(x = seq(-3, 3, length.out=10000))
+dist$y <- dnorm(dist$x, mean=coef(res), sd=sqrt(res$sigma2[1]))
+addpoly(res, row=c(NA,-2.5), predstyle="dist", preddist=dist)
+
+############################################################################
