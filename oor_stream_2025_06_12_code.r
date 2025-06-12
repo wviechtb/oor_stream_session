@@ -196,6 +196,13 @@ dat <- dat.bangertdrowns2004
 dat <- sort_by(dat, ~ ni)
 head(dat)
 
+# fit a random-effects model
+res <- rma(yi, vi, data=dat)
+res
+
+# also get the 95% prediction interval
+predict(res)
+
 # fit a location-scale model with the sample size as predictor for the size of
 # the average effect and for the amount of heterogeneity
 res <- rma(yi, vi, mods = ~ ni, scale = ~ ni, data=dat)
