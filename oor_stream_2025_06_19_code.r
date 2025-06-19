@@ -88,9 +88,8 @@ for (j in 1:iters) {
       res.loo <- fitmodels(dat[-k,])
       lppd.cv <- lppd.cv + sapply(res.loo, function(m) lppd(m, data=dat[k,]))
    }
-   lppd.cv
-   mapply(function(m,start) cv_quap(m, start=start), res, lapply(res, function(x) x@start))
-
+   #lppd.cv
+   #mapply(function(model,start) cv_quap(model, start=start), res, lapply(res, function(x) x@start))
    dev.cv[j,] <- -2 * lppd.cv
    dat <- simdata(n)
    lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
