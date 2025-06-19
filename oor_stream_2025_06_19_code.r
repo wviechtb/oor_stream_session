@@ -99,7 +99,7 @@ dev.train.mean.vague <- apply(dev.train, 2, mean)
 dev.test.mean.vague  <- apply(dev.test, 2, mean)
 dev.cv.mean.vague    <- apply(dev.cv, 2, mean)
 
-# Figure 7.8: deviance in and out of sample for the 5 models for n=20
+# Figure 7.8: deviance in and out of sample for the 5 models
 plot(NA, xlim=c(0.8,5.2), ylim=range(dev.train.mean.vague, dev.test.mean.vague),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
 points(1:5, dev.train.mean.vague, pch=19, col="#1e59ae")
@@ -208,8 +208,12 @@ round(coef(res), digits=2)
 
 ## 7.4.1: Cross-validation
 
-# Figure 7.8: deviance in and out of sample for the 5 models for n=20
+# Figure 7.8: deviance in and out of sample for the 5 models
 plot(NA, xlim=c(0.8,5.2), ylim=range(dev.test.mean.vague, dev.cv.mean.vague, dev.test.mean.ridge, dev.cv.mean.ridge),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
 points(1:5, dev.test.mean.vague, pch=21)
 points(1:5, dev.test.mean.ridge, pch=19)
+
+lines(1:5, dev.cv.mean.vague, col="#1e59ae", lwd=3)
+lines(1:5, dev.cv.mean.vague, col="#1e59ae", lwd=3)
+
