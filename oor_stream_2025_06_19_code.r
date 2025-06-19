@@ -40,7 +40,8 @@ simdata <- function(n) {
 
 # function to the fit 5 regression models of increasing complexity, starting
 # with a model without any predictor, then one predictor, two predictors, all
-# the way up to all 4 predictors
+# the way up to all 4 predictors; using the betasd argument, one can specify
+# the SD of the prior distributions for the slopes
 
 fitmodels <- function(dat, betasd) {
 
