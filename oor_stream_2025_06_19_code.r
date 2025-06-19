@@ -27,3 +27,42 @@ plot(NA, xlim=c(-3,3), ylim=c(0,2), xlab="parameter value", ylab="density",
 curve(dnorm(x, mean=0, sd=1),   from=-3, to=3, n=1001, add=TRUE, lty="dashed")
 curve(dnorm(x, mean=0, sd=0.5), from=-3, to=3, n=1001, add=TRUE)
 curve(dnorm(x, mean=0, sd=0.2), from=-3, to=3, n=1001, add=TRUE, lwd=3)
+
+# function to simulate data based on the model given on page 212
+
+simdata <- function(n) {
+   X <- replicate(4, rnorm(n))
+   mu <- 0.15 * X[,1] - 0.4 * X[,2]
+   y <- rnorm(n, mean=mu, sd=1)
+   return(data.frame(X, y))
+}
+
+# function to the fit 5 regression models of increasing complexity, starting
+# with a model without any predictor, then one predictor, two predictors, all
+# the way up to all 4 predictors
+
+fitmodels <- function(dat) {
+
+   res1 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a,
+                      a ~ dnorm(0, 1)), data=dat)
+   res2 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,1)))
+   res3 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1 + b[2]*X2,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,2)))
+   res4 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,3)))
+   res5 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 1)), data=dat, start=list(b=rep(0,4)))
+   res <- list(res1, res2, res3, res4, res5)
+   return(res)
+
+}
