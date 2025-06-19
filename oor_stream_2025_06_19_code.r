@@ -99,7 +99,5 @@ dev.test.mean  <- apply(dev.test, 2, mean)
 # Figure 7.8: deviance in and out of sample for the 5 models for n=20
 plot(NA, xlim=c(0.8,5.2), ylim=c(min(dev.train.mean, dev.test.mean), max(dev.train.mean, dev.test.mean)),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
-segments(1:5, dev.train.lo, 1:5, dev.train.hi, col="#1e59ae", lwd=2)
-points(1:5, dev.train.mean, pch=19, col="#1e59ae")
-segments(1:5 + 0.1, dev.test.lo, 1:5 + 0.1, dev.test.hi, lwd=2)
-points(1:5 + 0.1, dev.test.mean, pch=21)
+lines(1:5, dev.train.mean, lty="dashed")
+lines(1:5, dev.test.mean, lty="dashed", col="#1e59ae")
