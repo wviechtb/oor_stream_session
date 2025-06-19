@@ -28,7 +28,8 @@ curve(dnorm(x, mean=0, sd=1),   from=-3, to=3, n=1001, add=TRUE, lty="dashed")
 curve(dnorm(x, mean=0, sd=0.5), from=-3, to=3, n=1001, add=TRUE)
 curve(dnorm(x, mean=0, sd=0.2), from=-3, to=3, n=1001, add=TRUE, lwd=3)
 
-# function to simulate data based on the model given on page 212
+# function to simulate data based on the model given on page 212 (note: only
+# predictors 1 and 2 actually are related to the outcomes)
 
 simdata <- function(n) {
    X <- replicate(4, rnorm(n))
