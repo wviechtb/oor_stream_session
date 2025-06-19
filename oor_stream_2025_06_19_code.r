@@ -7,7 +7,7 @@
 #
 # Topic(s):
 # - Statistical Rethinking (https://xcelab.net/rm/)
-# - Section(s): 7.3 - ?
+# - Section(s): 7.3 - 7.4
 #
 # last updated: 2025-06-19
 
@@ -24,7 +24,7 @@ library(rethinking)
 # standard deviations of 1, 0.5, and 0.2
 plot(NA, xlim=c(-3,3), ylim=c(0,2), xlab="parameter value", ylab="density",
      bty="l", las=1)
-curve(dnorm(x, mean=0, sd=1),   from=-3, to=3, n=1001, add=TRUE, lty="dashed")
+curve(dnorm(x, mean=0, sd=1.0), from=-3, to=3, n=1001, add=TRUE, lty="dashed")
 curve(dnorm(x, mean=0, sd=0.5), from=-3, to=3, n=1001, add=TRUE)
 curve(dnorm(x, mean=0, sd=0.2), from=-3, to=3, n=1001, add=TRUE, lwd=3)
 
@@ -220,4 +220,3 @@ lines(1:5, dev.cv.mean.vague, col="#1e59ae", lwd=3)
 lines(1:5, dev.cv.mean.ridge, col="#1e59ae", lwd=3)
 
 ############################################################################
-
