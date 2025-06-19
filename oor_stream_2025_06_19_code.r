@@ -97,6 +97,7 @@ for (j in 1:iters) {
 
 dev.train.mean.vague <- apply(dev.train, 2, mean)
 dev.test.mean.vague  <- apply(dev.test, 2, mean)
+dev.cv.mean.vague    <- apply(dev.cv, 2, mean)
 
 # Figure 7.8: deviance in and out of sample for the 5 models for n=20
 plot(NA, xlim=c(0.8,5.2), ylim=range(dev.train.mean.vague, dev.test.mean.vague),
