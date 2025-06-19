@@ -158,6 +158,7 @@ for (j in 1:iters) {
 
 dev.train.mean.ridge <- apply(dev.train, 2, mean)
 dev.test.mean.ridge  <- apply(dev.test, 2, mean)
+dev.cv.mean.ridge    <- apply(dev.cv, 2, mean)
 
 # add the lines for the deviance from these models to the plot
 lines(1:5, dev.train.mean.ridge, col="#1e59ae", lwd=3)
