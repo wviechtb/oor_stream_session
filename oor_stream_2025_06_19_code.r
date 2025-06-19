@@ -70,11 +70,10 @@ fitmodels <- function(dat) {
 }
 
 iters <- 100
+n <- 20
 
 dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
 dev.test  <- matrix(NA_real_, nrow=iters, ncol=5)
-
-n <- 20
 
 for (j in 1:iters) {
 
@@ -129,13 +128,11 @@ fitmodels <- function(dat) {
 dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
 dev.test  <- matrix(NA_real_, nrow=iters, ncol=5)
 
-n <- 20
-
 for (j in 1:iters) {
 
    print(j)
    dat <- simdata(n)
-   res <- fitmodels(dat, betasd=1)
+   res <- fitmodels(dat)
    lppd <- sapply(res, function(m) sum(lppd(m)))
    dev.train[j,] <- -2 * lppd
    dat <- simdata(n)
@@ -147,15 +144,9 @@ for (j in 1:iters) {
 dev.train.mean <- apply(dev.train, 2, mean)
 dev.test.mean  <- apply(dev.test, 2, mean)
 
-# Figure 7.8: deviance in and out of sample for the 5 models for n=20
-plot(NA, xlim=c(0.8,5.2), ylim=c(min(dev.train.mean, dev.test.mean), max(dev.train.mean, dev.test.mean)),
-     xlab="number of parameters", ylab="deviance", main=paste("N =", n))
-lines(1:5, dev.train.mean, lty="dashed", col="#1e59ae", lwd=3)
-lines(1:5, dev.test.mean, lty="dashed", lwd=3)
-
-# to reproduce the full figure, we would have to rerun everything with the
-# different betasd values for the priors and also for the two different sample
-# sizes (we'll skip this)
+# add the lines for the deviance from these models to the plot
+lines(1:5, dev.train.mean, col="#1e59ae", lwd=3)
+lines(1:5, dev.test.mean, lwd=3)
 
 ## Rethinking: Ridge regression
 
