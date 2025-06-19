@@ -146,3 +146,5 @@ round(coef(res), digits=2)
 
 ### 7.4: Predicting predictive accuracy
 
+## 7.4.1: Cross-validation
+
