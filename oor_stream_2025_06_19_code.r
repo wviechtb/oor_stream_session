@@ -137,5 +137,7 @@ res5 <- quap(alist(y ~ dnorm(mu, sigma),
                   sigma ~ dexp(1)), data=dat, start=list(b=rep(0,4)))
 precis(res5, depth=2)
 
+# use lm.ridge() with a lambda value that gives the same results as the
+# Bayesian model (note: found lambda here by trial and error)
 res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=20)
 round(coef(res), digits=2)
