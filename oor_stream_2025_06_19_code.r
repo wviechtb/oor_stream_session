@@ -39,11 +39,11 @@ simdata <- function(n) {
 }
 
 # function to the fit 5 regression models of increasing complexity, starting
-# with a model without any predictor, then one predictor, two predictors, all
-# the way up to all 4 predictors; using the betasd argument, one can specify
-# the SD of the prior distributions for the slopes
+# with a model without any predictors (just an intercept), then one predictor,
+# then two predictors, all the way up to all 4 predictors; here, we use vague
+# priors on the slopes (SD=10)
 
-fitmodels <- function(dat, betasd) {
+fitmodels <- function(dat) {
 
    res1 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a,
@@ -51,23 +51,52 @@ fitmodels <- function(dat, betasd) {
    res2 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, betasd)), data=dat, start=list(b=rep(0,1)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,1)))
    res3 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, betasd)), data=dat, start=list(b=rep(0,2)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,2)))
    res4 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, betasd)), data=dat, start=list(b=rep(0,3)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,3)))
    res5 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, betasd)), data=dat, start=list(b=rep(0,4)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,4)))
    res <- list(res1, res2, res3, res4, res5)
    return(res)
 
 }
+
+iters <- 100
+
+dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
+dev.test  <- matrix(NA_real_, nrow=iters, ncol=5)
+
+n <- 20
+
+for (j in 1:iters) {
+
+   print(j)
+   dat <- simdata(n)
+   res <- fitmodels(dat)
+   lppd <- sapply(res, function(m) sum(lppd(m)))
+   dev.train[j,] <- -2 * lppd
+   dat <- simdata(n)
+   lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
+   dev.test[j,] <- -2 * lppd
+
+}
+
+dev.train.mean.vague <- apply(dev.train, 2, mean)
+dev.test.mean.vague  <- apply(dev.test, 2, mean)
+
+# Figure 7.8: deviance in and out of sample for the 5 models for n=20
+plot(NA, xlim=c(0.8,5.2), ylim=range(dev.train.mean, dev.test.mean),
+     xlab="number of parameters", ylab="deviance", main=paste("N =", n))
+lines(1:5, dev.train.mean, lty="dashed", col="#1e59ae", lwd=3)
+lines(1:5, dev.test.mean, lty="dashed", lwd=3)
 
 # now we repeat the simulation described (note: this takes quite a bit of
 # time, so the code prints the iteration number to keep track of progress;
