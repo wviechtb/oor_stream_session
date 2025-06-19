@@ -215,5 +215,7 @@ points(1:5, dev.test.mean.vague, pch=21)
 points(1:5, dev.test.mean.ridge, pch=19)
 
 lines(1:5, dev.cv.mean.vague, col="#1e59ae", lwd=3)
-lines(1:5, dev.cv.mean.vague, col="#1e59ae", lwd=3)
+lines(1:5, dev.cv.mean.ridge, col="#1e59ae", lwd=3)
+
+############################################################################
 
