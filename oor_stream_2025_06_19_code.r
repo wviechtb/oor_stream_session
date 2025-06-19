@@ -99,5 +99,9 @@ dev.test.mean  <- apply(dev.test, 2, mean)
 # Figure 7.8: deviance in and out of sample for the 5 models for n=20
 plot(NA, xlim=c(0.8,5.2), ylim=c(min(dev.train.mean, dev.test.mean), max(dev.train.mean, dev.test.mean)),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
-lines(1:5, dev.train.mean, lty="dashed")
-lines(1:5, dev.test.mean, lty="dashed", col="#1e59ae")
+lines(1:5, dev.train.mean, lty="dashed", col="#1e59ae", lwd=3)
+lines(1:5, dev.test.mean, lty="dashed", lwd=3)
+
+# to reproduce the full figure, we would have to rerun everything with the
+# different betasd values for the priors and also for the two different sample
+# sizes (we'll skip this)
