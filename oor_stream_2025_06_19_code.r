@@ -93,17 +93,38 @@ dev.train.mean.vague <- apply(dev.train, 2, mean)
 dev.test.mean.vague  <- apply(dev.test, 2, mean)
 
 # Figure 7.8: deviance in and out of sample for the 5 models for n=20
-plot(NA, xlim=c(0.8,5.2), ylim=range(dev.train.mean, dev.test.mean),
+plot(NA, xlim=c(0.8,5.2), ylim=range(dev.train.mean.vague, dev.test.mean.vague),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
-lines(1:5, dev.train.mean, lty="dashed", col="#1e59ae", lwd=3)
-lines(1:5, dev.test.mean, lty="dashed", lwd=3)
+points(1:5, dev.train.mean.vague, pch=19, col="#1e59ae")
+points(1:5, dev.test.mean.vague, pch=21)
 
-# now we repeat the simulation described (note: this takes quite a bit of
-# time, so the code prints the iteration number to keep track of progress;
-# running this with 100 iterations is already sufficient to see the same
-# pattern as shown in the book)
+# now we repeat the same as above, but using SD=0.2 for the slope priors
 
-iters <- 100
+fitmodels <- function(dat) {
+
+   res1 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a,
+                      a ~ dnorm(0, 1)), data=dat)
+   res2 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,1)))
+   res3 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1 + b[2]*X2,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,2)))
+   res4 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,3)))
+   res5 <- quap(alist(y ~ dnorm(mu, 1),
+                      mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
+                      a ~ dnorm(0, 1),
+                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,4)))
+   res <- list(res1, res2, res3, res4, res5)
+   return(res)
+
+}
 
 dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
 dev.test  <- matrix(NA_real_, nrow=iters, ncol=5)
