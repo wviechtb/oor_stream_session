@@ -42,7 +42,7 @@ simdata <- function(n) {
 # with a model without any predictor, then one predictor, two predictors, all
 # the way up to all 4 predictors
 
-fitmodels <- function(dat, betasd=1) {
+fitmodels <- function(dat, betasd) {
 
    res1 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a,
@@ -84,7 +84,7 @@ for (j in 1:iters) {
 
    print(j)
    dat <- simdata(n)
-   res <- fitmodels(dat)
+   res <- fitmodels(dat, betasd=1)
    lppd <- sapply(res, function(m) sum(lppd(m)))
    dev.train[j,] <- -2 * lppd
    dat <- simdata(n)
@@ -94,15 +94,10 @@ for (j in 1:iters) {
 }
 
 dev.train.mean <- apply(dev.train, 2, mean)
-dev.train.lo   <- dev.train.mean - apply(dev.train, 2, sd)
-dev.train.hi   <- dev.train.mean + apply(dev.train, 2, sd)
-
 dev.test.mean  <- apply(dev.test, 2, mean)
-dev.test.lo    <- dev.test.mean - apply(dev.test, 2, sd)
-dev.test.hi    <- dev.test.mean + apply(dev.test, 2, sd)
 
-# Figure 7.6 (left): deviance in and out of sample for the 5 models for n=20
-plot(NA, xlim=c(0.8,5.2), ylim=c(min(dev.train.lo, dev.test.lo), max(dev.train.hi, dev.test.hi)),
+# Figure 7.8: deviance in and out of sample for the 5 models for n=20
+plot(NA, xlim=c(0.8,5.2), ylim=c(min(dev.train.mean, dev.test.mean), max(dev.train.mean, dev.test.mean)),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
 segments(1:5, dev.train.lo, 1:5, dev.train.hi, col="#1e59ae", lwd=2)
 points(1:5, dev.train.mean, pch=19, col="#1e59ae")
