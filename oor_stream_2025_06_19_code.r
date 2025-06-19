@@ -51,19 +51,19 @@ fitmodels <- function(dat) {
    res2 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,1)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(a=0, b=rep(0,1)))
    res3 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,2)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(a=0, b=rep(0,2)))
    res4 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,3)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(a=0, b=rep(0,3)))
    res5 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,4)))
+                      b ~ dnorm(0, 10)), data=dat, start=list(a=0, b=rep(0,4)))
    res <- list(res1, res2, res3, res4, res5)
    return(res)
 
@@ -85,9 +85,12 @@ for (j in 1:iters) {
    dev.train[j,] <- -2 * lppd
    lppd.cv <- c(0,0,0,0,0)
    for (k in 1:n) {
-      res <- fitmodels(dat[-k,])
-      lppd.cv <- lppd.cv + sapply(res, function(m) lppd(m, data=dat[k,]))
+      res.loo <- fitmodels(dat[-k,])
+      lppd.cv <- lppd.cv + sapply(res.loo, function(m) lppd(m, data=dat[k,]))
    }
+   lppd.cv
+   sapply(res, function(m) cv_quap(m))
+
    dev.cv[j,] <- -2 * lppd.cv
    dat <- simdata(n)
    lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
@@ -146,8 +149,8 @@ for (j in 1:iters) {
    dev.train[j,] <- -2 * lppd
    lppd.cv <- c(0,0,0,0,0)
    for (k in 1:n) {
-      res <- fitmodels(dat[-k,])
-      lppd.cv <- lppd.cv + sapply(res, function(m) sum(lppd(m, data=dat[k,])))
+      res.loo <- fitmodels(dat[-k,])
+      lppd.cv <- lppd.cv + sapply(res.loo, function(m) sum(lppd(m, data=dat[k,])))
    }
    dev.cv[j,] <- -2 * lppd.cv
    dat <- simdata(n)
