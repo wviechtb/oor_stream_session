@@ -74,6 +74,7 @@ n <- 20
 
 dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
 dev.test  <- matrix(NA_real_, nrow=iters, ncol=5)
+dev.cv    <- matrix(NA_real_, nrow=iters, ncol=5)
 
 for (j in 1:iters) {
 
@@ -82,6 +83,12 @@ for (j in 1:iters) {
    res <- fitmodels(dat)
    lppd <- sapply(res, function(m) sum(lppd(m)))
    dev.train[j,] <- -2 * lppd
+   lppd.cv <- c(0,0,0,0,0)
+   for (k in 1:n) {
+      res <- fitmodels(dat[-k,])
+      lppd.cv <- lppd.cv + sapply(res, function(m) sum(lppd(m, data=dat[k,])))
+   }
+   dev.cv[j,] <- lppd.cv
    dat <- simdata(n)
    lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
    dev.test[j,] <- -2 * lppd
@@ -127,6 +134,7 @@ fitmodels <- function(dat) {
 
 dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
 dev.test  <- matrix(NA_real_, nrow=iters, ncol=5)
+dev.cv    <- matrix(NA_real_, nrow=iters, ncol=5)
 
 for (j in 1:iters) {
 
@@ -140,6 +148,7 @@ for (j in 1:iters) {
       res <- fitmodels(dat[-k,])
       lppd.cv <- lppd.cv + sapply(res, function(m) sum(lppd(m, data=dat[k,])))
    }
+   dev.cv[j,] <- lppd.cv
    dat <- simdata(n)
    lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
    dev.test[j,] <- -2 * lppd
