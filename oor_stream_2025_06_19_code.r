@@ -113,10 +113,11 @@ set.seed(1234)
 dat <- simdata(n=20)
 
 # fit the most complex model with very vague priors on the intercept and slopes
-res5 <- quap(alist(y ~ dnorm(mu, 1),
+res5 <- quap(alist(y ~ dnorm(mu, sigma),
                   mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
                   a ~ dnorm(0, 10),
-                  b ~ dnorm(0, 10)), data=dat, start=list(b=rep(0,4)))
+                  b ~ dnorm(0, 10),
+                  sigma ~ dexp(1)), data=dat, start=list(b=rep(0,4)))
 precis(res5, depth=2)
 
 # compare this against just using lm()
@@ -128,9 +129,12 @@ res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=0)
 round(coef(res), digits=2)
 
 # fit the most complex model with a fairly strict prior on the slopes
-res5 <- quap(alist(y ~ dnorm(mu, 1),
+res5 <- quap(alist(y ~ dnorm(mu, sigma),
                   mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
                   a ~ dnorm(0, 10),
-                  b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,4)))
+                  b ~ dnorm(0, 0.2),
+                  sigma ~ dexp(1)), data=dat, start=list(b=rep(0,4)))
 precis(res5, depth=2)
 
+res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=30)
+round(coef(res), digits=2)
