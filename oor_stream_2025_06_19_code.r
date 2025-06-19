@@ -89,7 +89,7 @@ for (j in 1:iters) {
       lppd.cv <- lppd.cv + sapply(res.loo, function(m) lppd(m, data=dat[k,]))
    }
    lppd.cv
-   sapply(res, function(m) cv_quap(m))
+   mapply(function(m,start) cv_quap(m, start=start), res, lapply(res, function(x) x@start))
 
    dev.cv[j,] <- -2 * lppd.cv
    dat <- simdata(n)
