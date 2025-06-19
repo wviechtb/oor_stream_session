@@ -107,19 +107,19 @@ fitmodels <- function(dat) {
    res2 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,1)))
+                      b ~ dnorm(0, 0.5)), data=dat, start=list(b=rep(0,1)))
    res3 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,2)))
+                      b ~ dnorm(0, 0.5)), data=dat, start=list(b=rep(0,2)))
    res4 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,3)))
+                      b ~ dnorm(0, 0.5)), data=dat, start=list(b=rep(0,3)))
    res5 <- quap(alist(y ~ dnorm(mu, 1),
                       mu <- a + b[1]*X1 + b[2]*X2 + b[3]*X3 + b[4]*X4,
                       a ~ dnorm(0, 1),
-                      b ~ dnorm(0, 0.2)), data=dat, start=list(b=rep(0,4)))
+                      b ~ dnorm(0, 0.5)), data=dat, start=list(b=rep(0,4)))
    res <- list(res1, res2, res3, res4, res5)
    return(res)
 
@@ -141,12 +141,12 @@ for (j in 1:iters) {
 
 }
 
-dev.train.mean <- apply(dev.train, 2, mean)
-dev.test.mean  <- apply(dev.test, 2, mean)
+dev.train.mean.ridge <- apply(dev.train, 2, mean)
+dev.test.mean.ridge  <- apply(dev.test, 2, mean)
 
 # add the lines for the deviance from these models to the plot
-lines(1:5, dev.train.mean, col="#1e59ae", lwd=3)
-lines(1:5, dev.test.mean, lwd=3)
+lines(1:5, dev.train.mean.ridge, col="#1e59ae", lwd=3)
+lines(1:5, dev.test.mean.ridge, lwd=3)
 
 ## Rethinking: Ridge regression
 
