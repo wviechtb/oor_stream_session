@@ -139,5 +139,10 @@ precis(res5, depth=2)
 
 # use lm.ridge() with a lambda value that gives the same results as the
 # Bayesian model (note: found lambda here by trial and error)
-res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=20)
+res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=19.0205)
 round(coef(res), digits=2)
+
+############################################################################
+
+### 7.4: Predicting predictive accuracy
+
