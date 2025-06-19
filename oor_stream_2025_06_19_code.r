@@ -69,7 +69,7 @@ fitmodels <- function(dat) {
 
 }
 
-iters <- 100
+iters <- 2
 n <- 20
 
 dev.train <- matrix(NA_real_, nrow=iters, ncol=5)
@@ -164,6 +164,8 @@ dev.cv.mean.ridge    <- apply(dev.cv, 2, mean)
 lines(1:5, dev.train.mean.ridge, col="#1e59ae", lwd=3)
 lines(1:5, dev.test.mean.ridge, lwd=3)
 
+############################################################################
+
 ## Rethinking: Ridge regression
 
 # simulate some new data based on n=20 and standardize all variables
@@ -206,9 +208,8 @@ round(coef(res), digits=2)
 
 ## 7.4.1: Cross-validation
 
-
 # Figure 7.8: deviance in and out of sample for the 5 models for n=20
 plot(NA, xlim=c(0.8,5.2), ylim=range(dev.test.mean.vague, dev.cv.mean.vague, dev.test.mean.ridge, dev.cv.mean.ridge),
      xlab="number of parameters", ylab="deviance", main=paste("N =", n))
-points(1:5, dev.train.mean.vague, pch=19, col="#1e59ae")
 points(1:5, dev.test.mean.vague, pch=21)
+points(1:5, dev.test.mean.ridge, pch=19)
