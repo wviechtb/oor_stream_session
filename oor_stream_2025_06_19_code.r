@@ -86,9 +86,9 @@ for (j in 1:iters) {
    lppd.cv <- c(0,0,0,0,0)
    for (k in 1:n) {
       res <- fitmodels(dat[-k,])
-      lppd.cv <- lppd.cv + sapply(res, function(m) sum(lppd(m, data=dat[k,])))
+      lppd.cv <- lppd.cv + sapply(res, function(m) lppd(m, data=dat[k,]))
    }
-   dev.cv[j,] <- lppd.cv
+   dev.cv[j,] <- -2 * lppd.cv
    dat <- simdata(n)
    lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
    dev.test[j,] <- -2 * lppd
@@ -148,7 +148,7 @@ for (j in 1:iters) {
       res <- fitmodels(dat[-k,])
       lppd.cv <- lppd.cv + sapply(res, function(m) sum(lppd(m, data=dat[k,])))
    }
-   dev.cv[j,] <- lppd.cv
+   dev.cv[j,] <- -2 * lppd.cv
    dat <- simdata(n)
    lppd <- sapply(res, function(m) sum(lppd(m, data=dat)))
    dev.test[j,] <- -2 * lppd
