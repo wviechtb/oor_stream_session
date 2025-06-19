@@ -136,5 +136,5 @@ res5 <- quap(alist(y ~ dnorm(mu, sigma),
                   sigma ~ dexp(1)), data=dat, start=list(b=rep(0,4)))
 precis(res5, depth=2)
 
-res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=30)
+res <- lm.ridge(y ~ X1 + X2 + X3 + X4, data=dat, lambda=16)
 round(coef(res), digits=2)
